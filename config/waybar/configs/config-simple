@@ -1,0 +1,35 @@
+// ### SIMPLE ### //
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 6,
+"margin-left": 8,
+"margin-right": 8,
+
+"modules-left": [
+	"custom/menu", 
+	"hyprland/workspaces",
+	],
+"modules-center": [
+	"clock",
+	"custom/light_dark",
+	],
+"modules-right": [
+	"backlight",
+	"keyboard-state", 
+	"pulseaudio", 
+	"bluetooth", 
+	"network", 
+	"battery",
+	],
+
+
+}

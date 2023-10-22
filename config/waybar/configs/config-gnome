@@ -1,0 +1,46 @@
+// ### "Gnome" style (top) ### //
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"margin-left": 10,
+"margin-right": 10,
+"margin-top": 6,
+
+"modules-left": [
+	"custom/menu", 
+	"hyprland/workspaces",
+	//"custom/updater", 
+	"hyprland/window", 
+	],
+  
+"modules-center": [
+	"clock",
+	"custom/light_dark",
+	"cava",
+	"custom/weather",
+	], 
+
+"modules-right": [
+	"tray",
+	"network",
+	"bluetooth",
+	"cpu",
+	"temperature", 
+	"memory", 
+	"battery",  
+	"backlight",
+	"keyboard-state",
+	"pulseaudio",
+	//"wireplumber", 
+	"pulseaudio#microphone", 
+	"custom/cycle_wall",
+	"custom/power",
+	],
+}

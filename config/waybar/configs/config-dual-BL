@@ -1,0 +1,71 @@
+// ### BOTTOM and LEFT PANEL
+
+[{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "bottom",
+"spacing": 2,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 6,
+"margin-left": 8,
+"margin-right": 8,
+
+"modules-left": [
+	"custom/menu",
+	"cpu", 
+	"temperature", 
+	"memory",
+	],
+  
+"modules-center": [
+	"hyprland/window", 
+	"custom/weather",
+	], 
+
+"modules-right": [
+	"network",
+	"bluetooth",
+	//"cava", 
+	"battery", 
+	"backlight",
+	"pulseaudio",
+	//"wireplumber", 
+	"pulseaudio#microphone",
+	"keyboard-state",
+	"custom/power",
+	],
+},
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+"position": "left",
+"margin-top": 8,
+"margin-bottom": 8,
+"margin-left": 8,
+"margin-right": 1,
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"gtk-layer-shell": true,
+  
+"modules-left": [
+	"custom/light_dark",
+	],
+
+"modules-center": [
+	"hyprland/workspaces",
+	],
+
+"modules-right": [
+	"idle_inhibitor",
+	"custom/lock",
+	"tray",
+	"clock#vertical",
+	],
+
+}]

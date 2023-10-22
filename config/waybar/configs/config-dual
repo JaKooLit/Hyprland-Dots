@@ -1,0 +1,76 @@
+// ### DUAL TOP and BOTTOM ### //
+
+[{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"margin-left": 6,
+"margin-right": 10,
+"margin-top": 10,
+
+"modules-left": [
+	"hyprland/workspaces", 
+	"cpu", 
+	"temperature", 
+	"memory",
+	"disk", 
+	],
+  
+"modules-center": [
+	"idle_inhibitor", 
+	"clock",
+	"custom/light_dark",
+	], 
+
+"modules-right": [
+	"custom/weather",	  
+	"battery", 
+	"backlight",
+	"bluetooth",
+	"network",
+	//"custom/updater",
+	"custom/cycle_wall",
+	"custom/lock", 
+	],
+},
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "bottom",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"margin-left": 6,
+"margin-right": 10,
+"margin-bottom": 6,
+
+"modules-left": [
+	"custom/menu",  
+	"wlr/taskbar",
+	 ],
+
+"modules-center": [
+	"cava",
+	],
+
+"modules-right": [
+	"hyprland/window",
+	"tray",
+	"keyboard-state",
+	"pulseaudio",
+	//"wireplumber", 
+	"pulseaudio#microphone",	  
+	"custom/power",
+	],
+
+}]
