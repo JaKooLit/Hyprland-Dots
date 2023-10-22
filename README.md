@@ -50,8 +50,8 @@ chmod +x ~/.config/hypr/scripts/*
 - Waybar styles (all those new panel styles require some tweaking) - Please request assistance
 
 ### 🤷‍♂️ TO DO!
-- [] After Arch update the hyprland package, will uncomment line 38 to 44 in ~/.config/hypr/configs/Settings.conf. Users of hyprland-git or if compiled from source, you can safely uncomment these lines (group and groupbar)
-- [] Tweak waybar layouts and Themes
+- [ ] After Arch update the hyprland package, will uncomment line 38 to 44 in ~/.config/hypr/configs/Settings.conf. Users of hyprland-git or if compiled from source, you can safely uncomment these lines (group and groupbar)
+- [ ] Tweak waybar layouts and Themes
 
 ### 🔮 Discord Server
 - kindly join my Discord Server https://discord.gg/V2SJ92vbEN
@@ -62,4 +62,4 @@ chmod +x ~/.config/hypr/scripts/*
 - Subscribe to my Youtube Channel [YouTube](https://www.youtube.com/@Ja.KooLit) 
 
 - You can also buy me Coffee Through ko-fi.com 🤩
-<a href='https://ko-fi.com/jakoolit' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+- <a href='https://ko-fi.com/jakoolit' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
