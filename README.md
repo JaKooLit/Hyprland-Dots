@@ -23,7 +23,7 @@ My Hyprland install Scripts
 - Users of my Hyprland install scripts, Arch-Hyprlands, Fedora-Hyprland, Debian/Ubuntu-Hyprland, can use this dotfiles to replace their previous dots.
 
 ### 📦 Changelogs
-- In order for you to easily track changes, I will be updating the changelogs
+- In order for you to easily track changes, I will be updating the changelogs. Screenshots will be included if worth it!
 [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md)
 
 ## ✨ Copying instructions. 
