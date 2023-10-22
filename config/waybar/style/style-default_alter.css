@@ -132,8 +132,8 @@ tooltip label{
 #custom-cycle_wall,
 #custom-screen_locker,
 #custom-weather {
-    padding: 1px 6px 0px 6px;
-    margin: 4px 3px 5px 3px;
+    padding: 0px 6px;
+    /*margin: 4px 3px 5px 3px;*/
     /*color: @fgcolor;*/
     /* background-color: #bbccdd; */
     background-color:transparent;
@@ -193,7 +193,7 @@ label:focus {
 
 #custom-menu{
     color: #FFFFFF;
-    padding: 3px;
+    /*padding: 3px;*/
 }
 
 #cpu {
