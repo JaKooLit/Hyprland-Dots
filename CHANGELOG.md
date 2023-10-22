@@ -2,7 +2,7 @@
 
 #### 22 Oct 2023
 - initial commit
-- adding some waybar layout (Super Shift W)
+- adding some waybar layouts (Super Alt W). YOu can also choose colors of your waybar panels (Super Shift W)
 ### 📷 Screenshots of changes. Click to magnify
 
 <p align="center">
