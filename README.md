@@ -1,4 +1,17 @@
-### My Hyprland Dots / Configurations
+<div align="center">
+
+# 💌 ** JaKooLit Hyprland Dot Files ** 💌
+
+![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Hyprland-Dots?style=for-the-badge&color=E08BCA) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Hyprland-Dots?style=for-the-badge&color=E08BCA) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Hyprland-Dots?style=for-the-badge&color=E08BCA)
+
+
+<br/>
+
+My Hyprland install Scripts
+[Arch-Linux](https://github.com/JaKooLit/Hyprland-v4)
+[Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
+[Debian/Ubuntu-Linux](https://github.com/JaKooLit/Debian-Hyprland)
+
 
 ### ❗❗ This is basically to re-construct my previous hyprland dot files
 - why? Generally, alot of users, especially new users are confused with my original layout. In which waybar, dunst, swaylock, etc are inside ~/.config/hypr , which is originally mean for Hyprland configuration only.
@@ -40,18 +53,25 @@ chmod +x ~/.config/hypr/scripts/*
 - By default I have not set a wallpaper. If using swww, just press SUPER CTRL W and choose wallpaper. Once you reboot, the last wallpaper will be loaded by swww
 - If not using swww, edit ~/.config/hypr/Execs.conf and set using swaybg
 - Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf and uncomment atleast env = WLR_NO_HARDWARE_CURSORS,1 before log out or reboot. 
+- If you have already set your own keybinds, monitors, etc.... Just copy over from backup created.
 
-### 🙋 QUESTIONS ?!?!
+### 📖 Known issues and possibly solutions
+- Foot tty fonts after copying dots is broken - Install Fira Code or just restore your previous foot configuration in ~/.config/foot
+- Themes are broken when changing dark light - Ensure you have Tokyo Night Dark and Light themes installed and Tokyo Night SE icons or adjust the Dark Light script located in ~/.config/hypr/scripts/DarkLight.sh
+- Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
+
+### 🙋 QUESTIONS ?!?! ⁉️
 - Maybe answered already in Help File! SUPER H to launch it!
-- If you still have, kindly join my discord for faster communication. See invite link below.
+- If you still have, kindly join my discord for faster communication. See invite link below. If not, open an issue on github
 
 ### 🙏 Special request
-- If you have improvements on the dotfiles, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys
-- Waybar styles (all those new panel styles require some tweaking) - Please request assistance
+- If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
+- Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
 
 ### 🤷‍♂️ TO DO!
 - [ ] After Arch update the hyprland package, will uncomment line 38 to 44 in ~/.config/hypr/configs/Settings.conf. Users of hyprland-git or if compiled from source, you can safely uncomment these lines (group and groupbar)
 - [ ] Tweak waybar layouts and Themes
+- [ ] Integrate these dotfiles into my Hyprland install scripts for a centralized configurations
 
 ### 🔮 Discord Server
 - kindly join my Discord Server https://discord.gg/V2SJ92vbEN
