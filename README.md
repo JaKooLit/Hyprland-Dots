@@ -4,8 +4,8 @@
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Hyprland-Dots?style=for-the-badge&color=E08BCA) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Hyprland-Dots?style=for-the-badge&color=E08BCA) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Hyprland-Dots?style=for-the-badge&color=E08BCA)
 
-
 <br/>
+</div>
 
 My Hyprland install Scripts
 [Arch-Linux](https://github.com/JaKooLit/Hyprland-v4)
