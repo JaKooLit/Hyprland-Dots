@@ -42,13 +42,20 @@ cd Hyprland-Dots
 chmod +x copy.sh
 ./copy.sh
 ```
-### 🐌 Manual installation
+### 🐌 Manual installation (no recommended for newbies)
 - Backup your existing folders in ~/.config (advisable)
 - copy all contents of configs into ~/.config, overwriting all
-- copy contents of wallpapers into ~/Pictures/wallpapers (create wallpapers folder if required)
+- copy contents of wallpapers into ~/Pictures/wallpapers/ (create wallpapers folder if required)
 - make the Hyprland scripts executable 
 ```bash
-chmod +x ~/.config/hypr/scripts/*
+chmod +x $HOME/.config/hypr/scripts/*
+```
+- Make sure to execute initial symlinks else dunst, wofi and waybar will fail to launch
+```bash
+ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config"
+ln -sf "$HOME/.config/waybar/style/style-dark.css" "$HOME/.config/waybar/style.css"
+ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
+ln -sf "$HOME/.config/wofi/styles/style-dark.css" "$HOME/.config/wofi/style.css"
 ```
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
