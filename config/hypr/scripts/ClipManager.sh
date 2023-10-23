@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # WOFI STYLES
 CONFIG="$HOME/.config/wofi/WofiBig/config"
