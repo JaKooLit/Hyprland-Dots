@@ -109,7 +109,7 @@
   #custom-weather.showyIcyDay,
   #custom-weather.snowyIcyNight,
   #custom-weather.default {
-    padding: 0px 6px;
+    padding: 0px 10px;
     color: #e5e5e5;
     /* color: #bf616a; */
     border-radius: 8px;
