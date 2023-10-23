@@ -317,7 +317,7 @@
 },
     
 "custom/power": {
-  "format": "  ",
+  "format": "⏻ ",
   "tooltip": false,
   //"on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
   "on-click": "$HOME/.config/hypr/scripts/WofiPower.sh",
@@ -345,7 +345,43 @@
   "tooltip" : true,
 },
 
+
+// Separators
+"custom/separator#dot": {
+  "format": "",
+  "interval": "once",
+  "tooltip": false
+},
+
+"custom/separator#dot-line": {
+  "format": "",
+  "interval": "once",
+  "tooltip": false
+},
+
+"custom/separator#line": {
+  "format": "|",
+  "interval": "once",
+  "tooltip": false
+},
+
 // Modules below are for vertical layout
+
+"backlight#vertical": {
+  "interval": 2,
+  "align": 0,
+  "rotate": 0,
+  "format": "{icon}",
+  "format-icons": ["󰃞", "󰃟", "󰃠"],
+  "icon-size": 10,
+  "on-click": "",
+  "on-click-middle": "",
+  "on-click-right": "",
+  "on-update": "",
+  "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
+  "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
+  "smooth-scrolling-threshold": 1,
+},
 
 "clock#vertical": {
    "format": "{:\n%H\n%M\n\n \n%d\n%m\n%y}",
@@ -361,7 +397,22 @@
      }
    }
 },
-   
+"cpu#vertical": {
+  "format": "󰍛\n{usage}%",  
+  "interval": 1,
+  "on-click-right": "gnome-system-monitor",
+},
+
+"memory#vertical": {
+  "interval": 10,
+  "format": "󰾆\n{percentage}%",
+  "format-alt": "󰾆\n{used:0.1f}G",
+  "format-alt-click": "click",
+  "tooltip": true,
+  "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
+  "on-click-right": "foot --title btop sh -c 'btop'",
+},
+
 "pulseaudio#vertical": {
   "format": "{icon}",
   "format-bluetooth": "\n{icon}",
@@ -396,22 +447,6 @@
   "tooltip-format": "{icon} {desc} {volume}%",
 },
 
-"cpu#vertical": {
-  "format": "󰍛\n{usage}%",  
-  "interval": 1,
-  "on-click-right": "gnome-system-monitor",
-},
-
-"memory#vertical": {
-  "interval": 10,
-  "format": "󰾆\n{percentage}%",
-  "format-alt": "󰾆\n{used:0.1f}G",
-  "format-alt-click": "click",
-  "tooltip": true,
-  "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
-  "on-click-right": "foot --title btop sh -c 'btop'",
-},
-
 "temperature#vertical": {
   "interval": 10,
   "tooltip": true,
@@ -422,6 +457,13 @@
   "format": " {icon}",
   "format-icons": [""],
   "on-click-right": "foot --title nvtop sh -c 'nvtop'"
+},
+
+"custom/power_vertical": {
+  "format": "⏻",
+  "tooltip": false,
+  "on-click": "$HOME/.config/hypr/scripts/WofiPower.sh",
+  "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
 },
 }
 

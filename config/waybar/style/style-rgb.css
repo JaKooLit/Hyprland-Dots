@@ -36,52 +36,60 @@ window#waybar.empty #window {
 }
 
 tooltip {
-    background: #1e1e2e;
-    opacity: 0.8;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
+	background: #1e1e2e;
+	opacity: 0.8;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #11111b;
 }
 
 tooltip label{
-    color: #cdd6f4;
+	color: #cdd6f4;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
 #backlight,
-#network,
-#pulseaudio,
+#battery,
 #bluetooth,
-#wireplumber,
-#mode,
-#tray,
 #cava,
-#window,
+#clock,
+#cpu,
+#disk,
 #idle_inhibitor,
-#keyboard-state,
 #keyboard-state label,
 #keyboard-state label.locked,
+#keyboard-state,
+#memory,
+#mode,
 #mpd,
-#custom-light_dark,
-#workspaces,
-#taskbar,
+#network,
+#pulseaudio,
 #taskbar button,
-#bluetooth,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
 #workspaces,
-#custom-menu,
-#custom-power,
 #custom-cycle_wall,
-#custom-media,
-#custom-updater,
+#custom-light_dark,
 #custom-lock,
-#custom-weather, 
-#idle_inhibitor {
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-spotify,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
 	border-radius: 8px;
 	margin: 4px 1px;
 	padding: 0px 4px;
@@ -98,7 +106,7 @@ tooltip label{
 }
 
 #taskbar button.active {
-    background-color: #7f849c;
+	background-color: #7f849c;
 }
 
 #battery {
@@ -106,19 +114,19 @@ tooltip label{
 }
 
 @keyframes blink {
-    	to {
-        	color: #000000;
-    	}
+		to {
+			color: #000000;
+		}
 }
 
 #battery.critical:not(.charging) {
 	background-color: #f38ba8;
-    color: #f38ba8;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+	color: #f38ba8;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 #clock {
@@ -144,10 +152,10 @@ tooltip label{
 	background-color: #b4befe;
 }
 #tray > .passive {
-    	-gtk-icon-effect: dim;
+		-gtk-icon-effect: dim;
 }
 #tray > .needs-attention {
-    	-gtk-icon-effect: highlight;
+		-gtk-icon-effect: highlight;
 }
 
 #workspaces button {
@@ -213,6 +221,7 @@ tooltip label{
   	background-color: #86b4fa;
 }
 
+#custom-power_vertical,
 #custom-light_dark,
 #idle_inhibitor {
   	background-color: #86b4fa;

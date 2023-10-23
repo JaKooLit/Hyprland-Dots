@@ -11,26 +11,26 @@ margin-bottom: 1px;
 }
 
 window#waybar {
- background: transparent;
+	background: transparent;
 }
 
 window#waybar.empty {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 window#waybar.empty #window {
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
-  background-color: transparent;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
+	background-color: transparent;
 }
 
 window > box {
-   /*margin: 1px 2px 2px;*/
-    background: rgba(0, 0, 0, 0);
-    border-bottom: 1px solid rgba(0, 0, 0, 0);
-    color: white;
+	/*margin: 1px 2px 2px;*/
+	background: rgba(0, 0, 0, 0);
+	border-bottom: 1px solid rgba(0, 0, 0, 0);
+	color: white;
 }
 
 window {
@@ -38,43 +38,43 @@ window {
 }
 
 tooltip {
-    background: #1e1e2e;
-    opacity: 0.8;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
+	background: #1e1e2e;
+	opacity: 0.8;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #11111b;
 }
 
 tooltip label{
-    color: #cdd6f4;
+	color: #cdd6f4;
 }
 /*-----module groups----*/
 .modules-right {
 	background-color: rgba(0,43,51,0.3);
-    /*margin: 2px 10px 0 0;*/
-    border: 1px solid #cba6f7;
+	/*margin: 2px 10px 0 0;*/
+	border: 1px solid #cba6f7;
 	border-radius: 8px;
 }
 .modules-center {
 	background-color: rgba(0,43,51,0.3);
-    /*margin: 2px 0 0 0;*/
-    border: 1px solid #cba6f7;
-    border-radius: 8px;
+	/*margin: 2px 0 0 0;*/
+	border: 1px solid #cba6f7;
+	border-radius: 8px;
 }
 .modules-left {
-    /*margin: 2px 0 0 5px;*/
+	/*margin: 2px 0 0 5px;*/
 	background-color: rgba(0,43,51,0.3);
-    border: 1px solid #cba6f7;
-    border-radius: 8px;
+	border: 1px solid #cba6f7;
+	border-radius: 8px;
 }
 /*-----modules indv----*/
 #workspaces button {
-    padding: 0px 0px;
-    background-color: transparent;
+	padding: 0px 0px;
+	background-color: transparent;
 }
 #workspaces button:hover {
-    box-shadow: inherit;
+	box-shadow: inherit;
 	background-color: rgba(0,153,153,0);
 }
 
@@ -86,96 +86,94 @@ tooltip label{
 	/*box-shadow:inherit;*/
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
 #backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#mode,
-#tray,
+#battery,
+#bluetooth,
 #cava,
+#clock,
+#cpu,
+#disk,
 #idle_inhibitor,
-#keyboard-state,
 #keyboard-state label,
 #keyboard-state label.locked,
+#keyboard-state,
+#memory,
+#mode,
 #mpd,
-#window,
-#workspaces,
-#taskbar,
-#bluetooth,
-#taskbar,
+#network,
+#pulseaudio,
 #taskbar button,
-#custom-light_dark,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
 #custom-cycle_wall,
-#custom-updater,
+#custom-light_dark,
+#custom-lock,
 #custom-menu,
+#custom-power_vertical,
 #custom-power,
 #custom-spotify,
+#custom-updater,
 #custom-weather,
-#custom-power,
-#custom-lock,
-#custom-weather.severe,
-#custom-weather.sunnyDay,
 #custom-weather.clearNight,
 #custom-weather.cloudyFoggyDay,
 #custom-weather.cloudyFoggyNight,
+#custom-weather.default 
 #custom-weather.rainyDay,
 #custom-weather.rainyNight,
+#custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
-#custom-weather.default 
-#idle_inhibitor {
+#custom-weather.sunnyDay {
 	padding: 0px 6px;
 }
 #mode {
-    color: #cc3436;
-    font-weight: bold;
+	color: #cc3436;
+	font-weight: bold;
 }
 #custom-power {
-     /*background-color: rgba(0,119,179,0.6);*/
-    /*border-radius: 50px;*/
-    margin: 5px 5px;
-    padding: 1px 3px;
+	/*background-color: rgba(0,119,179,0.6);*/
+	/*border-radius: 50px;*/
+	margin: 5px 5px;
+	padding: 1px 3px;
 }
 /*-----Indicators----*/
 #idle_inhibitor.activated {
-    color: #2dcc36;
+	color: #2dcc36;
 }
 #pulseaudio.muted {
-    color: #cc3436;
+	color: #cc3436;
 }
 #temperature.critical {
-    color: #cc3436;
+	color: #cc3436;
 }
 
 #waybar {
-    background-color: #282828;
-    color: #d8d8d8;
+	background-color: #282828;
+	color: #d8d8d8;
 }
 
 @keyframes blink {
-    to {
-        color: #000000;
-    }
+	to {
+		color: #000000;
+	}
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+	color: #f53c3c;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 #taskbar button.active {
-    background-color: #7f849c;
+	background-color: #7f849c;
 }
 #waybar.empty, #waybar.tiled, #waybar.floating {
-    background-color: transparent;
+	background-color: transparent;
 }

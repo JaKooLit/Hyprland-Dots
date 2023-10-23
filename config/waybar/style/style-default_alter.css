@@ -45,11 +45,11 @@ window#waybar.empty {
 }
 
 window#waybar.empty #window {
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
-  background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
+    background-color: transparent;
 }
 
 tooltip {
@@ -72,7 +72,7 @@ tooltip label{
     color: #ffffff;
     /*min-width: 36px;*/
     /* Use box-shadow instead of border so the text isn't offset */
-/*    box-shadow: inset 0 -3px transparent;*/
+    /*    box-shadow: inset 0 -3px transparent;*/
     /* border-radius: 0px; */
 }
 
@@ -83,7 +83,7 @@ tooltip label{
     color: #D3D3D3;
     /*min-width: 36px;*/
     /* Use box-shadow instead of border so the text isn't offset */
-/*    box-shadow: inset 0 -3px transparent;*/
+    /*    box-shadow: inset 0 -3px transparent;*/
     /* border-radius: 0px; */
 }
 
@@ -108,30 +108,48 @@ tooltip label{
     border-bottom: 3px solid #ffffff;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#temperature,
 #backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#keyboard-state,
+#battery,
+#bluetooth,
+#cava,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
 #keyboard-state label,
 #keyboard-state label.locked,
-#tray,
-#cava,
+#keyboard-state,
+#memory,
 #mode,
-#custom-light_dark,
-#taskbar,
+#mpd,
+#network,
+#pulseaudio,
 #taskbar button,
-#idle_inhibitor,
-#custom-updater,
+#taskbar,
+#temperature,
+#tray,
 #window,
+#wireplumber,
+#workspaces,
 #custom-cycle_wall,
-#custom-screen_locker,
-#custom-weather {
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-spotify,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
     padding: 0px 10px;
     /*margin: 4px 3px 5px 3px;*/
     /*color: @fgcolor;*/
@@ -155,7 +173,7 @@ tooltip label{
 }
 
 #clock {
-     color: @accent2;
+    color: @accent2;
 }
 
 #custom-updater {
@@ -179,12 +197,12 @@ tooltip label{
 }
 
 #battery.critical:not(.charging) {
-        color: #f53c3c;
-        animation-name: blink;
-        animation-duration: 0.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 label:focus {
@@ -201,7 +219,7 @@ label:focus {
 }
 
 #memory {
-     color: @accent3;
+    color: @accent3;
 }
 
 #backlight {
@@ -247,7 +265,7 @@ label:focus {
     color: @accent5;
 }
 #custom-power_profile {
-     color: @accent3;
+    color: @accent3;
 }
 #custom-media {
     background-color: #66cc99;

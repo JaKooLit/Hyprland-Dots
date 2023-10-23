@@ -11,19 +11,19 @@ margin-bottom: 1px;
 }
 
 window#waybar {
-    background: transparent;
-    border-radius: 10px;
-    color: #cba6f7;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #cba6f7;
+	background: transparent;
+	border-radius: 10px;
+	color: #cba6f7;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #cba6f7;
 }
 
 window#waybar.hidden {
-    opacity: 0.5;
+	opacity: 0.5;
 }
 window#waybar.empty {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 window#waybar.empty #window {
@@ -36,126 +36,125 @@ window#waybar.empty #window {
   
    
 tooltip {
-    background: #1e1e2e;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
-    color: #cba6f7;
+	background: #1e1e2e;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #11111b;
+	color: #cba6f7;
 }
 /*-----module groups----*/
 .modules-right {
-    /*background-color: #1e1e2e;*/
-    border: 0px solid #b4befe;
-    border-radius: 10px;
+	/*background-color: #1e1e2e;*/
+	border: 0px solid #b4befe;
+	border-radius: 10px;
 }
 
 .modules-center {
-    /*background-color: #1e1e2e;*/
-    border: 0px solid #b4befe;
-    border-radius: 10px;
+	/*background-color: #1e1e2e;*/
+	border: 0px solid #b4befe;
+	border-radius: 10px;
 }
 
 .modules-left {
-    /*background-color: #1e1e2e;*/
-    border: 0px solid #b4befe;
-    border-radius: 10px;
+	/*background-color: #1e1e2e;*/
+	border: 0px solid #b4befe;
+	border-radius: 10px;
    
 }
 
 #workspaces button {
-    padding: 2px;
-    color: #6E6A86;
-    margin-right: 5px;
+	padding: 2px;
+	color: #6E6A86;
+	margin-right: 5px;
 }
    
 #workspaces button.active {
-    color: #cba6f7;
-    border-radius: 15px 15px 15px 15px;
+	color: #cba6f7;
+	border-radius: 15px 15px 15px 15px;
 }
   
 #workspaces button.focused {
-    color: #d8dee9;
+	color: #d8dee9;
 }
    
 #workspaces button.urgent {
-    color: #11111b;
-    border-radius: 10px;
+	color: #11111b;
+	border-radius: 10px;
 }
-       
+	   
 #workspaces button:hover {
-    color: #9CCFD8;
-    border-radius: 15px;
+	color: #9CCFD8;
+	border-radius: 15px;
 }
    
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#network,
-#pulseaudio,
-#wireplumber,
-#mode,
-#tray,
-#cava,
 #backlight,
-#window,
+#battery,
+#bluetooth,
+#cava,
+#clock,
+#cpu,
+#disk,
 #idle_inhibitor,
-#keyboard-state,
 #keyboard-state label,
 #keyboard-state label.locked,
+#keyboard-state,
+#memory,
+#mode,
 #mpd,
-#bluetooth,
-#taskbar,
+#network,
+#pulseaudio,
 #taskbar button,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
 #workspaces,
-#custom-light_dark,
-#custom-updater,
-#custom-menu,
 #custom-cycle_wall,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
 #custom-power,
 #custom-spotify,
+#custom-updater,
 #custom-weather,
-#custom-power,
-#custom-lock,
-#custom-weather.severe,
-#custom-weather.sunnyDay,
 #custom-weather.clearNight,
 #custom-weather.cloudyFoggyDay,
 #custom-weather.cloudyFoggyNight,
+#custom-weather.default 
 #custom-weather.rainyDay,
 #custom-weather.rainyNight,
+#custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
-#custom-weather.default 
-#idle_inhibitor {
-    color: #cba7f7;
-    padding: 0px 10px;
-    border-radius:10px;
+#custom-weather.sunnyDay {
+	color: #cba7f7;
+	padding: 0px 10px;
+	border-radius:10px;
 }
-     
+	 
 #temperature.critical {
-    background-color: #ff0000;
+	background-color: #ff0000;
 }
    
 @keyframes blink {
-    to {
-    color: #000000;
-       }
+	to {
+	color: #000000;
+	   }
 }
    
 #taskbar button.active {
-    background-color: #7f849c;
+	background-color: #7f849c;
 }
-       
+	   
 #battery.critical:not(.charging) {
-    color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+	color: #f53c3c;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
  

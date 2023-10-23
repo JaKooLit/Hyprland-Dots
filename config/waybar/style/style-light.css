@@ -11,147 +11,146 @@ margin-bottom: 1px;
 }
 
 window#waybar {
-  background: rgba(0, 0, 0, 0)
+	background: rgba(0, 0, 0, 0)
 }
 
 window#waybar.hidden {
-  opacity: 0.7;
+	opacity: 0.7;
 }
 
 window#waybar.empty {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 window#waybar.empty #window {
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
-  background-color: transparent;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
+	background-color: transparent;
 }
 
 tooltip {
-  background: rgba(236, 236, 236, 0.8);
-  border-radius: 10px;
+	background: rgba(236, 236, 236, 0.8);
+	border-radius: 10px;
 }
 
 tooltip label {
-  color: #373737;
-  margin-right: 2px;
-  margin-left: 2px;
+	color: #373737;
+	margin-right: 2px;
+	margin-left: 2px;
 }
 
 /*-----module groups----*/
 .modules-right {
-  background-color: rgba(232, 236, 241, 0.8);
-  border: 0px solid #b4befe;
-  border-radius: 10px;
+	background-color: rgba(232, 236, 241, 0.8);
+	border: 0px solid #b4befe;
+	border-radius: 10px;
 }
 
 .modules-center {
-  background-color: rgba(232, 236, 241, 0.8);
-  border: 0px solid #b4befe;
-  border-radius: 10px;
+	background-color: rgba(232, 236, 241, 0.8);
+	border: 0px solid #b4befe;
+	border-radius: 10px;
 }
 
 .modules-left {
-  background-color: rgba(232, 236, 241, 0.8);
-  border: 0px solid #b4befe;
-  border-radius: 10px;
-
+	background-color: rgba(232, 236, 241, 0.8);
+	border: 0px solid #b4befe;
+	border-radius: 10px;
+	
 }
 
 #workspaces button {
-  color: #585b70;
+	color: #585b70;
 }
 
 #workspaces button.active {
-  color: #000000;
-  border-radius: 15px 15px 15px 15px;
+	color: #000000;
+	border-radius: 15px 15px 15px 15px;
 }
 
 #workspaces button.focused {
-  color: #000000;
+	color: #000000;
 }
 
 #workspaces button.urgent {
-  color: #000000;
-  border-radius: 10px;
+	color: #000000;
+	border-radius: 10px;
 }
 
 #workspaces button:hover {
-  color: #000000;
-  border-radius: 15px;
+	color: #000000;
+	border-radius: 15px;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#network,
-#pulseaudio,
-#wireplumber,
-#mode,
-#tray,
-#cava,
 #backlight,
-#window,
+#battery,
+#bluetooth,
+#cava,
+#clock,
+#cpu,
+#disk,
 #idle_inhibitor,
-#keyboard-state,
 #keyboard-state label,
 #keyboard-state label.locked,
+#keyboard-state,
+#memory,
+#mode,
 #mpd,
-#bluetooth,
-#taskbar,
+#network,
+#pulseaudio,
 #taskbar button,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
 #workspaces,
-#custom-light_dark,
-#custom-updater,
-#custom-menu,
 #custom-cycle_wall,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
 #custom-power,
 #custom-spotify,
+#custom-updater,
 #custom-weather,
-#custom-power,
-#custom-lock,
-#custom-weather.severe,
-#custom-weather.sunnyDay,
 #custom-weather.clearNight,
 #custom-weather.cloudyFoggyDay,
 #custom-weather.cloudyFoggyNight,
+#custom-weather.default 
 #custom-weather.rainyDay,
 #custom-weather.rainyNight,
+#custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
-#custom-weather.default, 
-#idle_inhibitor {
-  color: #000000;
-  padding: 0px 10px;
-  border-radius: 10px;
+#custom-weather.sunnyDay {
+	color: #000000;
+	padding: 0px 10px;
+	border-radius: 10px;
 }
 
 #temperature.critical {
-  background-color: #ff0000;
+	background-color: #ff0000;
 }
 
 @keyframes blink {
-  to {
-    color: #000000;
-  }
+	to {
+		color: #000000;
+	}
 }
 
 #taskbar button.active {
-  background-color: #585b70;
-  color: #cdd6f4;
+	background-color: #585b70;
+	color: #cdd6f4;
 }
 
 #battery.critical:not(.charging) {
-  color: #f53c3c;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+	color: #f53c3c;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
