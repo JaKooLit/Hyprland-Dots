@@ -89,7 +89,7 @@
 	],
 
 "modules-right": [
-	"custom/power",
+	"custom/power_vertical",
 	],
 },
 
