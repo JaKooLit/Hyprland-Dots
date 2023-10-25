@@ -63,8 +63,8 @@ ln -sf "$HOME/.config/wofi/configs/config-default" "$HOME/.config/wofi/config"
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
 - By default I have not set a wallpaper. If using swww, just press SUPER CTRL W and choose wallpaper. Once you reboot or logged out, the last wallpaper will be loaded by swww automatically.
 - If not using swww, edit ~/.config/hypr/Execs.conf and set using swaybg
-- Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf and uncomment atleast env = WLR_NO_HARDWARE_CURSORS,1 before log out or reboot. 
-- If you have already set your own keybinds, monitors, etc.... Just copy over from backup created.
+- Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf if you have set a proper environment already. (recommended). WLR_NO_CURSORS will be activated if nvidia gpu is detected.
+- If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
 ### 📖 Known issues and possibly solutions
 - Foot tty fonts after copying dots is broken - Install Fira Code or just restore your previous foot configuration in ~/.config/foot

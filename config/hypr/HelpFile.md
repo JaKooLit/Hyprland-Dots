@@ -14,6 +14,9 @@
   Super          d        *show app menu* (`wofi small`)
   Super   Shift  d        *show app menu* (`wofi large`)
 
+# Wofi scripts (Power menu, waybar-layout menu, wallpaper menu, etc, have small box)
+  - edit the scripts which are all located in ~/.config/hypr/scripts. You can set a desired Width and Height to your liking.
+  
 # wallpaper / styling stuff
   Super           w       *wallpaper shuffle* (right click on wallpaper   waybar module)
   Super   Shift   w       *waybar style-change* (middle click on wallpaper   waybar module)
@@ -49,13 +52,11 @@
 
 # applications shortcuts
   Super   T		  *file manager* (`thunar`) - if installed
-
     
 # container layout
   Super   Shift   Space       *toggle tiling/floating mode*
   Super   left mouse button   *move window*
   Super   right mouse button  *resize window* (note only in float mode)
-
 
 # workspaces
   Super         1 .. 0    *switch to workspace 1 .. 10*
@@ -91,4 +92,4 @@
 
 
 
-TO CLOSE THIS DOCUMENT - Super q or Super Shift q or if vim, press esc :q!
+TO CLOSE THIS DOCUMENT - (vim) press esc :q!

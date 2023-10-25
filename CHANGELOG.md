@@ -1,5 +1,8 @@
 ## CHANGES
 
+### 26-Oct-2023
+- Automatic nvidia gpu detection and setting WLR_NO_CURSORS of ENVariables.conf automatically
+
 ### 24-Oct-2023
 - fix lots of waybar stylings
 - introducing waybar separators (only in default)

@@ -21,6 +21,12 @@ RESET=$(tput sgr0)
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S)_dotfiles.log"
 
+#uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
+if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
+  # NVIDIA GPU detected, uncomment line 23 in ENVariables.conf
+  sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/configs/ENVariables.conf
+fi
+
 # preparing hyprland.conf keyboard layout
 # Function to detect keyboard layout in an X server environment
 detect_x_layout() {
