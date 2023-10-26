@@ -6,8 +6,8 @@ STYLE="$HOME/.config/wofi/style.css"
 COLORS="$HOME/.config/wofi/colors"
 
 # Wofi window config (in %)
-WOFI_WIDTH=28
-WOFI_HEIGHT=8
+WOFI_WIDTH=5
+WOFI_HEIGHT=23
 
 wofi_command="wofi --show dmenu \
 			--prompt choose... \
