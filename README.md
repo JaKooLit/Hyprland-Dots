@@ -17,6 +17,8 @@
 
 - As you noticed there are 2 for Arch Linux. At some point I will be concentrating on the Arch-Linux only
 
+## 👀 Screenshots 👀
+- All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/Hyprland-Screenshots)
 
 ### ❗❗ This is basically to re-construct my previous hyprland dot files
 - why? Generally, alot of users, especially new users are confused with my original layout. In which waybar, dunst, swaylock, etc are inside ~/.config/hypr , which is originally meant for Hyprland configuration only.
