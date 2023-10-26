@@ -28,7 +28,7 @@ notification(){
 menu(){
 printf "1. Lofi Girl\n"
 printf "2. 96.3 Easy Rock - FM Radio\n"
-printf "3. Box Lofi\n"
+printf "3. Ghibli Music (Instrumental)\n"
 printf "4. Top Music 2023\n"
 printf "5. Youtube Global Top 100\n"
 printf "6. SmoothChill\n"
@@ -51,7 +51,7 @@ case $choice in
 ;; 
 3)
   notification
-   mpv "http://stream.zeno.fm/f3wvbbqmdg8uv"
+   mpv --shuffle --vid=no "https://youtube.com/playlist?list=PLNi74S754EXbrzw-IzVhpeAaMISNrzfUy&si=rqnXCZU5xoFhxfOl"
    return
    ;;
 4)
