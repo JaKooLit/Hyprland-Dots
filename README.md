@@ -47,7 +47,7 @@ cd Hyprland-Dots
 chmod +x copy.sh
 ./copy.sh
 ```
-### 🐌 Manual installation (not recommended for newbies)
+### 🐌 Manual copy (not recommended for newbies)
 - Backup your existing folders in ~/.config (advisable)
 - copy all contents of configs into ~/.config, overwriting all
 - copy contents of wallpapers into ~/Pictures/wallpapers/ (create wallpapers folder if required)
