@@ -8,12 +8,14 @@
 </div>
 
 ## 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
-
-- [Arch-Linux](https://github.com/JaKooLit/Hyprland-v4)
-
 - [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
 
 - [Debian/Ubuntu-Linux](https://github.com/JaKooLit/Debian-Hyprland)
+
+- [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
+- [Arch-Linux-(orig)](https://github.com/JaKooLit/Hyprland-v4)
+
+- As you noticed there are 2 for Arch Linux. At some point I will be concentrating on the Arch-Linux only
 
 
 ### ❗❗ This is basically to re-construct my previous hyprland dot files
