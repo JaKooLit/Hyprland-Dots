@@ -17,6 +17,8 @@
 
 - As you noticed there are 2 for Arch Linux. At some point I will be concentrating on the Arch-Linux only
 
+- refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
+
 ## 👀 Screenshots 👀
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
