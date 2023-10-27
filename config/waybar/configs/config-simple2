@@ -5,6 +5,7 @@
 "width": 1050,
 "margin-bottom": 5,
 "margin-top": 5,
+
 "modules-left": [
 	"clock",  
 	"custom/weather", 
@@ -17,8 +18,8 @@
 "modules-right": [
 	"custom/menu", 
 	"tray", 
-	//"network", 
-	//"bluetooth", 
+	"network", 
+	"bluetooth", 
 	"backlight", 
 	"pulseaudio", 
 	"battery", 

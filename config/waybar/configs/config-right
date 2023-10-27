@@ -24,9 +24,10 @@
 
 "modules-right": [
 	"tray",
+	"network",
 	"backlight#vertical",
 	"pulseaudio#microphone_vertical",
-	"pulseaudio#vertical",
+	"pulseaudio",
 	"custom/power_vertical",
 	"custom/menu",
 ],
