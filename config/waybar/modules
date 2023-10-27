@@ -3,8 +3,11 @@
   "interval": 2,
   "align": 0,
   "rotate": 0,
-  "format": "{icon} {percent}%",
-  "format-icons": ["󰃞", "󰃟", "󰃠"],
+  //"format": "{icon} {percent}%",
+  //"format-icons": ["󰃞", "󰃟", "󰃠"],
+  "format": "{icon}",
+  "format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
+  "tooltip-format": "{percent}%",
   "icon-size": 10,
   "on-click": "",
   "on-click-middle": "",
@@ -75,8 +78,9 @@
 },
  
 "clock": {
+	"interval": 1,
   //"format": " {:%I:%M %p}",
-  "format": " {:%H:%M}",
+  "format": " {:%H:%M:%S}",
   "format-alt": " {:%H:%M   %Y, %d %B, %A}",
   "tooltip-format": "<tt><small>{calendar}</small></tt>",
   "calendar": {
@@ -164,7 +168,20 @@
   "on-scroll-up": "hyprctl dispatch workspace e+1",
   "on-scroll-down": "hyprctl dispatch workspace e-1",
 },
-   
+
+"hyprland/workspaces#2": {
+    "format": "{icon}",
+    "on-click": "activate",
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "format-icons": {
+      "active": "",
+      "default": "",
+  },
+    "active-only": false,
+    "all-outputs": true   
+},
+
 "idle_inhibitor": {
   "format": "{icon}",
   "format-icons": {
@@ -207,6 +224,7 @@
   "tooltip-format-ethernet": "{ifname} 󰈁",
   "tooltip-format-disconnected": "󰈂 Disconnected",
   "max-length": 50,
+  "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"]
 },
     
 "pulseaudio": {
@@ -314,6 +332,16 @@
   "on-click": "$HOME/.config/hypr/scripts/Wofi.sh",
   "on-click-right": "$HOME/.config/hypr/scripts/ChangeLayoutMenu.sh",
   "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh swaybg",
+},
+
+"custom/playerctl": {
+  "format": "<span>{}</span>",
+  "return-type": "json",
+  "max-length": 35,
+  "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} ~ {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+  "on-click-middle": "playerctl play-pause",
+  "on-click": "playerctl previous",
+  "on-click-right": "playerctl next"
 },
     
 "custom/power": {
