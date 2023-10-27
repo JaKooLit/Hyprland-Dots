@@ -88,7 +88,7 @@ ln -sf "$HOME/.config/wofi/configs/config-default" "$HOME/.config/wofi/config"
 ### 🤷‍♂️ TO DO!
 - [ ] After Arch update the hyprland package, will uncomment line 38 to 44 in ~/.config/hypr/configs/Settings.conf. Users of hyprland-git or if compiled from source, you can safely uncomment these lines (group and groupbar)
 - [ ] Tweak waybar layouts and Themes
-- [ ] Integrate these dotfiles into my Hyprland install scripts for a centralized configurations
+- [X] ~~Integrate these dotfiles into my Hyprland install scripts for a centralized configurations~~ 
 
 ### 🔮 Discord Server
 - kindly join my Discord Server https://discord.gg/V2SJ92vbEN
