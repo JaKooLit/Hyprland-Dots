@@ -15,7 +15,9 @@ elif [ "$THEMEIS" == "default_alter" ]; then
 elif [ "$THEMEIS" == "mauve" ]; then
     SWITCHTO="-light"
 elif [ "$THEMEIS" == "light" ]; then
-    SWITCHTO="-dark"     
+    SWITCHTO="-dark"
+elif [ "$THEMEIS" == "dark" ]; then
+    SWITCHTO="-uline"      
 else
     SWITCHTO="-default"
 fi

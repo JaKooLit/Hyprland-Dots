@@ -16,17 +16,16 @@
 "margin-right": 8,
     
 "modules-left": [
-    "temperature",
-    "cpu", 
+    "custom/menu",
+    "cpu",
+    "temperature", 
     "memory",
     "disk",
     ],
     
 "modules-center": [
     //"hyprland/window",
-    "custom/lock",
-    "custom/menu",
-    "idle_inhibitor",
+    "hyprland/workspaces#2",
 	],
     
 "modules-right": [
@@ -58,7 +57,8 @@
 //"gtk-layer-shell": true,
    
 "modules-left": [
-	"hyprland/workspaces#2",     
+    "custom/lock",
+    "idle_inhibitor",   
     ],
     
 "modules-center": [
