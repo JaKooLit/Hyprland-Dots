@@ -25,7 +25,6 @@
   - right click on update   waybar module  *wallpaper cycle using swaybg* (no animations)
   
   - To change permanently the wallpaper edit the file in *~/.config/hypr/configs/Execs.conf*
-  - For a persistent wallpaper after dark-light mode, edit your Execs.conf. Either delete or put # before exec-once=swww query | swww init and delete the # before exec-once = swww init (Lines 6 and 7 on Execs.conf )
   
   - for the wallpaper styles and configurations, you can watch my video about it *https://youtu.be/6ZGzOjMJBe4*
   
@@ -64,12 +63,12 @@
   Super   Tab             *cycle through workspaces*
 
 # waybar customizations
-  - waybar font too big or too small. Edit the font-size in waybar styles located in ~/.config/hypr/waybar/styles/ . By default, it is set to 100%. After adjusting the GTK font scaling to your liking, edit all the waybar styles. Reduce or increase according to your needs. NOTE that its on percent %. You can also change to px whichever suits you.
+  - waybar font too big or too small. Edit the font-size in waybar styles located in ~/.config/waybar/styles/ . By default, it is set to 100%. After adjusting the GTK font scaling to your liking, edit all the waybar styles. Reduce or increase according to your needs. NOTE that its on percent %. You can also change to px whichever suits you.
 
-  - if you want 12h format instead of 24H format, edit the ~/.config/hypr/waybar/modules look for clock. delete the // and add // or delete the previous one
+  - if you want 12h format instead of 24H format, edit the ~/.config/waybar/modules look for clock. delete the // and add // or delete the previous one
 
   - CPU Temperature:
-    - a.) to change from deg C to deg F , edit the ~/.config/hypr/waybar/modules look for "temperature". Change the format to "format": "{temperatureF}°F {icon}",
+    - a.) to change from deg C to deg F , edit the ~/.config/waybar/modules look for "temperature". Change the format to "format": "{temperatureF}°F {icon}",
     - b.) to fix the temperature if not showing correctly, comment "thermal zone": 0 by putting // before. Delete the // on the "hwmon path". Refresh waybar by pressing CTRL SHIFT w. If still not showing correctly, navigate to /sys/class/hwmon/ and open each hwmon. Look for k10temp for amd. Not sure about intel cpu. and edit accordingly the hwmon path in the "temperature" waybar module.
     - b.1) use this function to easily identify the hwmon path. Ran this in your terminal    ``` for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done ```
   
