@@ -31,15 +31,16 @@ printf "1. default\n"
 printf "2. plasma-style\n" 
 printf "3. gnome-style\n"
 printf "4. simple panel\n"
-printf "5. top & bot panel\n"
-printf "6. left panel\n"
-printf "7. right panel\n"
-printf "8. top & left panel\n"
-printf "9. top & right panel\n"
-printf "10. bottom & left panel\n"
-printf "11. bottom & right panel\n"
-printf "12. all sides\n"
-printf "13. no panel" 
+printf "5. simple 2 panel\n"
+printf "6. top & bot panel\n"
+printf "7. left panel\n"
+printf "8. right panel\n"
+printf "9. top & left panel\n"
+printf "10. top & right panel\n"
+printf "11. bottom & left panel\n"
+printf "12. bottom & right panel\n"
+printf "13. all sides\n"
+printf "14. no panel" 
 }
 
 main() {
@@ -62,38 +63,42 @@ main() {
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
     5)
-        ln -sf "$CONFIG/config-dual" "$WCONFIG"
+        ln -sf "$CONFIG/config-simple2" "$WCONFIG"
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
     6)
-        ln -sf "$CONFIG/config-left" "$WCONFIG"
+        ln -sf "$CONFIG/config-dual" "$WCONFIG"
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
     7)
-        ln -sf "$CONFIG/config-right" "$WCONFIG"
+        ln -sf "$CONFIG/config-left" "$WCONFIG"
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
     8)
-        ln -sf "$CONFIG/config-dual-TL" "$WCONFIG"
+        ln -sf "$CONFIG/config-right" "$WCONFIG"
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
     9)
-        ln -sf "$CONFIG/config-dual-TR" "$WCONFIG"
+        ln -sf "$CONFIG/config-dual-TL" "$WCONFIG"
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
     10)
-        ln -sf "$CONFIG/config-dual-BL" "$WCONFIG"
+        ln -sf "$CONFIG/config-dual-TR" "$WCONFIG"
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
     11)
-        ln -sf "$CONFIG/config-dual-BR" "$WCONFIG"
+        ln -sf "$CONFIG/config-dual-BL" "$WCONFIG"
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
     12)
+        ln -sf "$CONFIG/config-dual-BR" "$WCONFIG"
+        ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
+        ;;
+    13)
         ln -sf "$CONFIG/config-all" "$WCONFIG"
         ln -sf "$WOFICONFIGS/config-default" "$WOFICONFIG"
         ;;
-	13)
+	14)
         if pgrep -x "waybar" >/dev/null; then
         killall waybar
         exit

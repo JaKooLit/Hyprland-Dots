@@ -1,5 +1,12 @@
 ## CHANGES
 
+### 28-Oct-2023
+- Various fixes / cleanup on waybar and modules
+- added simple layout 2 (can be summoned with SUPER ALT W)
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Changelogs-Screenshots/28-10-23-Simple2Layout.png" /> 
+
+
 ### 26-Oct-2023
 - Automatic nvidia gpu detection and setting WLR_NO_CURSORS of ENVariables.conf automatically
 

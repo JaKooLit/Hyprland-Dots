@@ -1,0 +1,27 @@
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+"position": "top",
+"width": 1050,
+"margin-bottom": 5,
+"margin-top": 5,
+
+"modules-left": [
+	"clock",  
+	"custom/weather", 
+	],
+
+"modules-center": [
+	"hyprland/workspaces#2"
+	],
+
+"modules-right": [
+	"custom/menu", 
+	"tray", 
+	"network", 
+	"bluetooth", 
+	"backlight", 
+	"pulseaudio", 
+	"battery", 
+	"custom/power"],
+}
