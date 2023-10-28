@@ -50,7 +50,7 @@
 "height": 650,
 "margin-top": 8,
 "margin-bottom": 8,
-"margin-left": 8,
+"margin-left": 3,
 "margin-right": 3,
 "spacing": 3,
 "fixed-center": true,

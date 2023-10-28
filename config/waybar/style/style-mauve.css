@@ -15,7 +15,7 @@ window#waybar {
 	border-radius: 10px;
 	color: #cba6f7;
 	border-style: solid;
-	border-width: 2px;
+	border-width: 1px;
 	border-color: #cba6f7;
 }
 
@@ -131,7 +131,7 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: #cba7f7;
-	padding: 0px 10px;
+	padding: 3px 6px;
 	border-radius:10px;
 }
 	 

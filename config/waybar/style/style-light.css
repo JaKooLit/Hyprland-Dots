@@ -127,8 +127,8 @@ tooltip label {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: #000000;
-	padding: 0px 10px;
-	border-radius: 10px;
+	padding: 1px 4px;
+	border-radius: 8px;
 }
 
 #temperature.critical {
