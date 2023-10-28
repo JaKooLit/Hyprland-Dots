@@ -4,6 +4,7 @@
 "include": "~/.config/waybar/modules",
 "layer": "top",
 //"mode": "dock",
+"width": 950,
 "exclusive": true,
 "passthrough": false,
 "position": "top",
@@ -16,6 +17,7 @@
     
 "modules-left": [
     "custom/menu",
+    "idle_inhibitor",
     "cpu", 
     "temperature", 
     "memory",
@@ -23,15 +25,16 @@
     ],
     
 "modules-center": [
-    "hyprland/window", 
+    //"hyprland/window",
+    "custom/lock", 
     "custom/weather",
 ]   , 
     
 "modules-right": [
-    "network",
-    "bluetooth",
-    "battery", 
-    "backlight",
+    //"network",
+    //"bluetooth",
+    //"battery", 
+    //"backlight",
     "pulseaudio",
     //"wireplumber", 
     "pulseaudio#microphone",
@@ -44,6 +47,7 @@
 "include": "~/.config/waybar/modules",
 "layer": "top",
 "position": "left",
+"height": 650,
 "margin-top": 8,
 "margin-bottom": 8,
 "margin-left": 8,
@@ -54,18 +58,16 @@
 //"gtk-layer-shell": true,
    
 "modules-left": [
-    "idle_inhibitor",     
+	"hyprland/workspaces#2",     
     ],
     
 "modules-center": [
-    "hyprland/workspaces#2",
+    "clock#vertical",
     ],
     
 "modules-right": [
     "tray",
-    "clock#vertical",
     "custom/light_dark",
-    "custom/lock",
     ],
     
 }]
