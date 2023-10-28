@@ -19,7 +19,7 @@
 ],
 
 "modules-center": [
-	"hyprland/workspaces",
+	"hyprland/workspaces#2",
 ],
 
 "modules-right": [
@@ -27,7 +27,7 @@
 	"network",
 	"backlight#vertical",
 	"pulseaudio#microphone_vertical",
-	"pulseaudio",
+	"pulseaudio#vertical",
 	"custom/power_vertical",
 	"custom/menu",
 ],
