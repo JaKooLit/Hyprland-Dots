@@ -4,7 +4,7 @@
 "include": "~/.config/waybar/modules",
 "layer": "top",
 //"mode": "dock",
-"width": 950,
+"width": 1200,
 "exclusive": true,
 "passthrough": false,
 "position": "top",
@@ -16,25 +16,25 @@
 "margin-right": 8,
     
 "modules-left": [
-    "custom/menu",
-    "idle_inhibitor",
+    "temperature",
     "cpu", 
-    "temperature", 
     "memory",
     "disk",
     ],
     
 "modules-center": [
     //"hyprland/window",
-    "custom/lock", 
-    "custom/weather",
-]   , 
+    "custom/lock",
+    "custom/menu",
+    "idle_inhibitor",
+	],
     
 "modules-right": [
     //"network",
     //"bluetooth",
-    //"battery", 
-    //"backlight",
+	"custom/weather",
+    "battery", 
+    "backlight",
     "pulseaudio",
     //"wireplumber", 
     "pulseaudio#microphone",

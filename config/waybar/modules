@@ -229,7 +229,7 @@
     
 "pulseaudio": {
   "format": "{icon}",
-  "format-bluetooth": "{icon}  {volume}%",
+  "format-bluetooth": "{icon}  {volume} %",
   "format-muted": "󰖁",
   "format-icons": {
       "headphone": "",
@@ -263,8 +263,8 @@
 "temperature": {
   "interval": 10,
   "tooltip": false,
-  "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
-  //"thermal-zone": 1,
+  //"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+  "thermal-zone": 0,
   "critical-threshold": 82,
   "format-critical": "{temperatureC}°C {icon}",
   "format": "{temperatureC}°C {icon}",
@@ -444,28 +444,6 @@
   "on-click-right": "foot --title btop sh -c 'btop'",
 },
 
-"pulseaudio#vertical": {
-  "format": "{icon}",
-  "format-bluetooth": "{icon} ",
-  "format-muted": "󰖁",
-  "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-  "default": ["", "", "󰕾", ""], 
-  "ignored-sinks": ["Easy Effects Sink"],
-  },
-  "scroll-step": 5.0,
-  "on-click": "~/.config/hypr/scripts/Volume.sh --toggle",
-  "on-click-right": "pavucontrol -t 3",
-  "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
-  "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
-  "smooth-scrolling-threshold": 1,
-},
-
 "pulseaudio#microphone_vertical": {
   "format": "{format_source}",
   "format-source": "󰍬",
@@ -482,8 +460,8 @@
 "temperature#vertical": {
   "interval": 10,
   "tooltip": true,
-  //"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-  "thermal-zone": 0,
+  "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+  //"thermal-zone": 0,
   "critical-threshold": 80,
   "format-critical": "{icon}\n{temperatureC}°C",
   "format": " {icon}",

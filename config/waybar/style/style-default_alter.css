@@ -238,7 +238,6 @@ label:focus {
     color: @alert;
 }
 
-#custom-light_dark,
 #pulseaudio {
     color: @accent4;
 }
@@ -278,7 +277,6 @@ label:focus {
     color: #66cc99;
 }
 
-#idle_inhibitor,
 #custom-lock {
     color: #ffa000;
 }
@@ -297,6 +295,7 @@ label:focus {
 }
 
 #idle_inhibitor {
+	color: #f9e2af;
     /*background-color: #2d3436;*/
 }
 
