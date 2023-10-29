@@ -86,7 +86,7 @@ ln -sf "$HOME/.config/wofi/configs/config-default" "$HOME/.config/wofi/config"
 - Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
 
 ### 🤷‍♂️ TO DO!
-- [ ] After Arch update the hyprland package, will uncomment line 38 to 44 in ~/.config/hypr/configs/Settings.conf. Users of hyprland-git or if compiled from source, you can safely uncomment these lines (group and groupbar)
+- [X] ~~After Arch update the hyprland package, will uncomment line 38 to 44 in ~/.config/hypr/configs/Settings.conf. Users of hyprland-git or if compiled from source, you can safely uncomment these lines (group and groupbar)~~ Switched to Hyprland-git for Arch-Hyprland script as Arch dev is not updating its Hyprland repo
 - [ ] Tweak waybar layouts and Themes
 - [X] ~~Integrate these dotfiles into my Hyprland install scripts for a centralized configurations~~ 
 
