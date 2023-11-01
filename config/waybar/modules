@@ -268,7 +268,7 @@
   "critical-threshold": 82,
   "format-critical": "{temperatureC}°C {icon}",
   "format": "{temperatureC}°C {icon}",
-  "format-icons": [""],
+  "format-icons": ["󰈸"],
   "on-click-right": "foot --title nvtop sh -c 'nvtop'"
 },
     
