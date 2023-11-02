@@ -37,7 +37,7 @@ fi
 _ps=(waybar mako dunst)
 for _prs in "${_ps[@]}"; do
 	if [[ $(pidof ${_prs}) ]]; then
-		killall -9 ${_prs}
+		pkill ${_prs}
 	fi
 done
 

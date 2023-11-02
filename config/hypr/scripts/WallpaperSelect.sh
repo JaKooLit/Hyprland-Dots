@@ -73,7 +73,7 @@ main() {
 
 # Check if wofi is already running
 if pidof wofi >/dev/null; then
-    killall wofi
+    pkill wofi
     exit 0
 else
     main

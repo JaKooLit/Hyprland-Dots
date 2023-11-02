@@ -100,7 +100,7 @@ main() {
         ;;
 	14)
         if pgrep -x "waybar" >/dev/null; then
-        killall waybar
+        pkill waybar
         exit
         fi
         ;;        
@@ -111,7 +111,7 @@ main() {
 
 # Check if wofi is already running
 if pidof wofi >/dev/null; then
-    killall wofi
+    pkill wofi
     exit 0
 else
     main
