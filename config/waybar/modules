@@ -264,7 +264,7 @@
   "interval": 10,
   "tooltip": false,
   //"hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
-  "thermal-zone": 2,
+  "thermal-zone": 0,
   "critical-threshold": 82,
   "format-critical": "{temperatureC}°C {icon}",
   "format": "{temperatureC}°C {icon}",
