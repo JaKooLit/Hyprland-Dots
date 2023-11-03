@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 CONFIG="$HOME/.config/dunst/dunstrc"
 

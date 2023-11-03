@@ -1,5 +1,16 @@
 ## CHANGES
 
+### 04-Nov-2023
+- Various clean up scripts (change all to !#/bin/bash shebangs) except pythons!
+- Tweaked abit Wofi Beats (SUPER CTRL S) to have a better notification
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Changelogs-Screenshots/04-11-2023-WofiBeats.png" /> 
+
+- Returning wlogout and removing the previous logout menu (WofiPower.sh). Can be launch by pressing power button on waybar or (keybinds) CTRL ALT P
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Changelogs-Screenshots/04-11-2023-wlogout.png" />
+    
+
 ### 28-Oct-2023
 - Various fixes / cleanup on waybar and modules
 - added simple layout 2 (can be summoned with SUPER ALT W)

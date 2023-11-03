@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 iDIR="$HOME/.config/dunst/icons"
 notification_timeout=1000
