@@ -1,0 +1,113 @@
+window {
+    font-family: monospace;
+    font-size: 14pt;
+    color: #cdd6f4; /* text */
+    background-color: rgba(30, 30, 46, 0.5);
+}
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    border: none;
+    background-color: rgba(30, 30, 46, 0);
+    margin: 5px;
+	animation: gradient_f 20s ease-in infinite;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+button:hover#lock {
+	/*background-color: rgba(49, 50, 68, 0.2);*/
+	background-size: 25%;
+	margin-right : 30px;
+	margin-bottom : 30px;
+	border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:hover#logout {
+	/*background-color: rgba(49, 50, 68, 0.2);*/
+	background-size: 25%;
+	margin-right : 30px;
+	margin-top : 30px;
+	border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:hover#shutdown {
+	/*background-color: rgba(49, 50, 68, 0.2);*/
+	background-size: 25%;
+	margin-left : 20px;
+	margin-bottom : 30px;
+	border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:hover#reboot {
+	/*background-color: rgba(49, 50, 68, 0.2);*/
+	background-size: 25%;
+	margin-left : 30px;
+	margin-top : 30px;
+	border-radius: 20px;
+    	animation: gradient_f 20s ease-in infinite;
+	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:hover#suspend {
+	/*background-color: rgba(49, 50, 68, 0.2);*/
+	background-size: 25%;
+	margin-left : 30px;
+	margin-top : 30px;
+	border-radius: 20px;
+    	animation: gradient_f 20s ease-in infinite;
+	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:focus {
+    background-color: rgba(180, 190, 254, 0.3);
+    color: #1e1e2e;
+	background-size: 25%;
+	margin-left : 30px;
+	margin-top : 30px;
+	border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+#lock {
+    background-image: image(url("./lock.png"));
+}
+#lock:focus {
+    background-image: image(url("./lock-hover.png"));
+}
+
+#logout {
+    background-image: image(url("./logout.png"));
+}
+#logout:focus {
+    background-image: image(url("./logout-hover.png"));
+}
+
+#suspend {
+    background-image: image(url("./sleep.png"));
+}
+#suspend:focus {
+    background-image: image(url("./sleep-hover.png"));
+}
+
+#shutdown {
+    background-image: image(url("./power.png"));
+}
+#shutdown:focus {
+    background-image: image(url("./power-hover.png"));
+}
+
+#reboot {
+    background-image: image(url("./restart.png"));
+}
+#reboot:focus {
+    background-image: image(url("./restart-hover.png"));
+}
