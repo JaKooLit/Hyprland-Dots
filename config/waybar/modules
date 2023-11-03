@@ -195,12 +195,12 @@
   "capslock": true,
   "format": {
     "numlock": "N {icon}",
-    "capslock": "󰪛 {icon}"                                                                                                                                                       
-     },
+	"capslock":"󰪛 {icon}",
+			}, 
   "format-icons": {
     "locked": "",
     "unlocked": ""
-    }
+    			  },
 },
   
 "memory": {
@@ -263,12 +263,12 @@
 "temperature": {
   "interval": 10,
   "tooltip": false,
-  //"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-  "thermal-zone": 0,
+  //"hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+  "thermal-zone": 2,
   "critical-threshold": 82,
   "format-critical": "{temperatureC}°C {icon}",
   "format": "{temperatureC}°C {icon}",
-  "format-icons": ["󰈸"],
+  "format-icons": [""],
   "on-click-right": "foot --title nvtop sh -c 'nvtop'"
 },
     
@@ -347,8 +347,7 @@
 "custom/power": {
   "format": "⏻ ",
   "tooltip": false,
-  //"on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
-  "on-click": "$HOME/.config/hypr/scripts/WofiPower.sh",
+  "on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
   "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
 },
   
