@@ -39,7 +39,7 @@ path_param=$(echo $next_mode | sed 's/.*/\u&/')
 
 notify_user "$next_mode"
 ln -sf "${waybar_config}/style/style-${next_mode}.css" "${waybar_config}/style.css"
-ln -sf "${dunst_config}/styles/dunstrc-${next_mode}" "${dunst_config}/styles/dunstrc"
+ln -sf "${dunst_config}/styles/dunstrc-${next_mode}" "${dunst_config}/dunstrc"
 ln -sf "${wofi_config}/styles/style-${next_mode}.css" "${wofi_config}/style.css"
 
 gtk_theme="${next_mode}_gtk_theme"
