@@ -1,7 +1,4 @@
 /*
-*/
-
-
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
