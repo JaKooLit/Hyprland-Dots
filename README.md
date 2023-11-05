@@ -8,14 +8,13 @@
 </div>
 
 ## 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
+- You can install Hyprland using Scripts below:
+
 - [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
 
 - [Debian/Ubuntu-Linux](https://github.com/JaKooLit/Debian-Hyprland)
 
 - [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
-- [Arch-Linux-(orig)](https://github.com/JaKooLit/Hyprland-v4)
-
-- As you noticed there are 2 for Arch Linux. At some point I will be concentrating on the Arch-Linux only
 
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
 
@@ -60,20 +59,16 @@ chmod +x $HOME/.config/hypr/scripts/*
 - Make sure to execute initial symlinks else dunst, wofi and waybar will fail to launch
 ```bash
 ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config"
-ln -sf "$HOME/.config/waybar/style/style-dark.css" "$HOME/.config/waybar/style.css"
+ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css"
 ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
-ln -sf "$HOME/.config/wofi/styles/style-dark.css" "$HOME/.config/wofi/style.css"
-ln -sf "$HOME/.config/wofi/configs/config-default" "$HOME/.config/wofi/config"
 ```
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
-- By default I have not set a wallpaper. If using swww, just press SUPER CTRL W and choose wallpaper. Once you reboot or logged out, the last wallpaper will be loaded by swww automatically.
-- If not using swww, edit ~/.config/hypr/Execs.conf and set using swaybg
+- By default I have not set a wallpaper. Press Super CTRL W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes
 - Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf if you have set a proper environment already. (recommended). WLR_NO_CURSORS will be activated if nvidia gpu is detected.
 - If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
 ### 📖 Known issues and possibly solutions
-- Foot tty fonts after copying dots is broken - Install Fira Code or just restore your previous foot configuration in ~/.config/foot
 - Themes are broken when changing dark light - Ensure you have Tokyo Night Dark and Light themes installed and Tokyo Night SE icons or adjust the Dark Light script located in ~/.config/hypr/scripts/DarkLight.sh
 - Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
 
@@ -86,9 +81,9 @@ ln -sf "$HOME/.config/wofi/configs/config-default" "$HOME/.config/wofi/config"
 - Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
 
 ### 🤷‍♂️ TO DO!
-- [X] ~~After Arch update the hyprland package, will uncomment line 38 to 44 in ~/.config/hypr/configs/Settings.conf. Users of hyprland-git or if compiled from source, you can safely uncomment these lines (group and groupbar)~~ Switched to Hyprland-git for Arch-Hyprland script as Arch dev is not updating its Hyprland repo
 - [ ] Tweak waybar layouts and Themes
-- [X] ~~Integrate these dotfiles into my Hyprland install scripts for a centralized configurations~~ 
+- [ ] Tweak rofi layouts and Themes
+
 
 ### 🔮 Discord Server
 - kindly join my Discord Server https://discord.gg/V2SJ92vbEN

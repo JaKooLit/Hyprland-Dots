@@ -21,10 +21,16 @@ RESET=$(tput sgr0)
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S)_dotfiles.log"
 
-#uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
+# uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
   # NVIDIA GPU detected, uncomment line 23 in ENVariables.conf
   sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/configs/ENVariables.conf
+fi
+
+# uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
+if hostnamectl | grep -q 'Chassis: vm'; then
+  echo "This script is running in a virtual machine."
+  sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/configs/ENVariables.conf
 fi
 
 # preparing hyprland.conf keyboard layout
@@ -83,7 +89,7 @@ printf "\n"
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} copying dotfiles\n"
-  for DIR in btop cava dunst foot hypr swappy swaylock waybar wofi; do 
+  for DIR in btop cava dunst hypr kitty rofi swappy swaylock waybar wlogout; do 
     DIRPATH=~/.config/$DIR
     if [ -d "$DIRPATH" ]; then 
       echo -e "${NOTE} - Config for $DIR found, attempting to back up."
