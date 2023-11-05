@@ -1,6 +1,6 @@
 #!/bin/bash
 
-city=Busan
+city=
 cachedir=~/.cache/rbn
 cachefile=${0##*/}-$1
 

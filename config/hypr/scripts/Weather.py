@@ -2,7 +2,7 @@
 # From https://raw.githubusercontent.com/rxyhn/dotfiles/main/home/rxyhn/modules/desktop/waybar/scripts/waybar-wttr.py
 
 ## ensure to insert city inside ""
-city = "Busan"
+city = " "
 import json
 import requests
 from datetime import datetime
@@ -61,7 +61,7 @@ WEATHER_CODES = {
 data = {}
 
 
-weather = requests.get("https://wttr.in/{city}?format=j1").json()
+weather = requests.get(f"https://wttr.in/{city}?format=j1").json()
 
 
 def format_time(time):
