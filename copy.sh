@@ -65,8 +65,7 @@ fi
 
 echo "Keyboard layout: $layout"
 
-printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n"
-printf "\n"
+printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n\n"
 
 # Prompt the user to confirm whether the detected layout is correct
 read -p "Detected keyboard layout or keymap: $layout. Is this correct? [y/n] " confirm
@@ -126,6 +125,9 @@ ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" &
   
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
+
+# Initializing the initial wallpaper and wal
+~/.config/hypr/scripts/Wallpaper.sh 2>&1 | tee -a "$LOG"
 
 printf "\n${OK} Copy Completed!\n\n"
 printf "${NOTE} Highly recommended to logout and re-login\n\n"
