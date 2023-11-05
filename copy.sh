@@ -113,14 +113,10 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 # Initial Symlinks to avoid errors
 # symlinks for waybar
 ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config" && \
-ln -sf "$HOME/.config/waybar/style/style-dark.css" "$HOME/.config/waybar/style.css" && \
+ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css" && \
 
 # symlinks for dunst
 ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" && \
-# symlink for wofi
-ln -sf "$HOME/.config/wofi/styles/style-dark.css" "$HOME/.config/wofi/style.css" && \
-ln -sf "$HOME/.config/wofi/configs/config-default" "$HOME/.config/wofi/config" && \
-
   
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"

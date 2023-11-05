@@ -1,4 +1,5 @@
-/* 💫 https://github.com/JaKooLit 💫 */
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
@@ -8,7 +9,7 @@ configuration {
     display-run:                "";
     display-filebrowser:        "";
     display-window:             "";
-	drun-display-format:        "{name}";
+	  drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
@@ -151,7 +152,7 @@ element {
     cursor:                       pointer;
     background-color:             @background;
     border-radius:                10px;
-    border:                       2px;
+    border:                       0px;
 }
 
 element normal.normal {
