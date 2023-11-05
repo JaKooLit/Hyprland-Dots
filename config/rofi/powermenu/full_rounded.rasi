@@ -1,0 +1,112 @@
+/*
+ *
+ * Author  : Aditya Shakya
+ * Mail    : adi1090x@gmail.com
+ * Github  : @adi1090x
+ * Twitter : @adi1090x
+ *
+ */
+
+configuration {
+	font:							"Sourcecode Pro Regular 14";
+    show-icons:                     false;
+	icon-theme: 					"Papirus";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+	sidebar-mode: 					false;
+}
+
+@import "styles/colors.rasi"
+
+window {
+    transparency:                   "real";
+    background-color:               rgba ( 46, 52, 62, 0 % );
+    text-color:                     @foreground;
+	width:							100%;
+	height:							100%;
+}
+
+prompt {
+    enabled: 						true;
+    padding:                        1% 1% 1% 0%;
+	background-color: 				rgba ( 107, 160, 222, 0 % );
+	text-color: 					@foreground;
+}
+
+textbox-prompt-colon {
+	expand: 						false;
+	str: 							"System |";
+	background-color: 				rgba ( 107, 160, 222, 0 % );
+	text-color: 					@foreground;
+    padding:                        1% 0.5% 1% 0.5%;
+}
+
+inputbar {
+	children: 						[ textbox-prompt-colon, prompt ];
+    background-color:               rgba ( 107, 160, 222, 0 % );
+    text-color:                     @foreground;
+    expand:                         false;
+    margin:                         0% 59.3% 0% 0%;
+    padding:                        0.5%;
+    position:                       center;
+}
+
+listview {
+    background-color:               rgba ( 46, 52, 62, 0 % );
+    margin:                         0% 0% 0% 0%;
+    spacing:                        3%;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         horizontal;
+}
+
+mainbox {
+    background-color:               rgba ( 46, 52, 62, 80 % );
+    children:                       [ inputbar, listview ];
+    spacing:                        5%;
+    padding:                        32.50% 0% 0% 13.25%;
+}
+
+element {
+    background-color:               rgba ( 46, 52, 62, 0 % );
+    text-color:                     @foreground;
+    orientation:                    horizontal;
+}
+
+element-text {
+    background-color: 				#00000000;
+    text-color:       				inherit;
+	font:							"feather 64";
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         6.5% 4% 6.5% 4%;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+}
+
+element normal.active,
+element alternate.active {
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+}
+
+element selected {
+    background-color:               #BF616A;
+    text-color:                     @foreground;
+    border-radius:                  15px;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+}
+
+element selected.active {
+    background-color:               @background-alt;
+    color:                          @foreground;
+}

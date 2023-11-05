@@ -8,10 +8,6 @@ FPS=30
 TYPE="simple"
 DURATION=3
 
-# wofi window config (in %)
-WIDTH=10
-HEIGHT=30
-
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
 PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$"))
@@ -20,24 +16,13 @@ PICS=($(ls ${DIR} | grep -e ".jpg$" -e ".jpeg$" -e ".png$" -e ".gif$"))
 RANDOM_PIC=${PICS[ $RANDOM % ${#PICS[@]} ]}
 RANDOM_PIC_NAME="${#PICS[@]}. random"
 
-# WOFI STYLES
-CONFIG="$HOME/.config/wofi/WofiBig/config"
-STYLE="$HOME/.config/wofi/style.css"
-COLORS="$HOME/.config/wofi/colors"
-
 # to check if swaybg is running
 if [[ $(pidof swaybg) ]]; then
   pkill swaybg
 fi
 
-## Wofi Command
-wofi_command="wofi --show dmenu \
-			--prompt choose...
-			--conf $CONFIG --style $STYLE --color $COLORS \
-			--width=$WIDTH% --height=$HEIGHT% \
-			--cache-file=/dev/null \
-			--hide-scroll --no-actions \
-			--matching=fuzzy"
+## Rofi Command
+rofi_command="rofi -dmenu -config ~/.config/rofi/config-short.rasi"
 
 menu(){
     # Here we are looping in the PICS array that is composed of all images in the $DIR folder
@@ -56,7 +41,7 @@ menu(){
 swww query || swww init
 
 main() {
-    choice=$(menu | ${wofi_command})
+    choice=$(menu | ${rofi_command})
 
     # no choice case
     if [[ -z $choice ]]; then return; fi
@@ -71,13 +56,17 @@ main() {
     swww img ${DIR}/${PICS[$pic_index]} $SWWW_PARAMS
 }
 
-# Check if wofi is already running
-if pidof wofi >/dev/null; then
-    pkill wofi
+# Check if rofi is already running
+if pidof rofi >/dev/null; then
+    pkill rofi
     exit 0
 else
     main
 fi
+
+exec $HOME/.config/hypr/scripts/PywalSwww.sh &
+
+exec $HOME/.config/hypr/scripts/Refresh.sh
 
 # Uncomment to launch something if a choice was made 
 # if [[ -n "$choice" ]]; then
