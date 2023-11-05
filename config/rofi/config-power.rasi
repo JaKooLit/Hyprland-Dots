@@ -1,8 +1,8 @@
-/*
-/** ---- Configuration ---- **/
+/* 💫 https://github.com/JaKooLit 💫 */
+/* ---- Configuration ---- */
 configuration {
-    modi:                       "drun,filebrowser,window,run";
-    font:                       "Fira Code 12";
+    modi:                       "drun,run";
+    font:                       "Fira Code SemiBold 12";
     show-icons:                 true;
     display-drun:               "";
     display-run:                "";
@@ -10,7 +10,7 @@ configuration {
     display-window:             "";
 	drun-display-format:        "{name}";
     hover-select:               true;
-    me-select-entry:            "";
+    me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
     
