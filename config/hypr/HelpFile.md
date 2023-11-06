@@ -36,7 +36,7 @@
   Super Shift PrintSrc(button) *active window screenshot*         
   Super CTRL SHIFT PrintScr    *full screenshot + timer (5s)*
   Super Alt PrintScr           *full screenshot + timer (10s)*
-  Super Shift S                *screenshot with swappy*
+  Super Shift S                *screenshot with swappy* (NOT AVAILABLE FOR DEBIAN/UBUNTU)
 
 # clipboard manager (cliphist)
   Super Alt V   *launch the rofi menu of clipboard manager* 
