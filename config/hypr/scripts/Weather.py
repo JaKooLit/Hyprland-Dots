@@ -2,7 +2,7 @@
 # From https://raw.githubusercontent.com/rxyhn/dotfiles/main/home/rxyhn/modules/desktop/waybar/scripts/waybar-wttr.py
 
 ## ensure to insert city inside ""
-city = " "
+city = ""
 import json
 import requests
 from datetime import datetime

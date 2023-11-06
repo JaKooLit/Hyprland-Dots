@@ -35,7 +35,9 @@
 	"custom/separator#dot-line",
 	"custom/light_dark",
 	"custom/separator#dot-line",	
-	"custom/lock",	
+	"custom/lock",
+	"custom/separator#dot-line",
+	"custom/keybinds",	
 	], 
 
 "modules-right": [

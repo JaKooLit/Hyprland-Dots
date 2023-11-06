@@ -7,7 +7,7 @@
   //"format-icons": ["󰃞", "󰃟", "󰃠"],
   "format": "{icon}",
   "format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
-  "tooltip-format": "{percent}%",
+  "tooltip-format": "backlight {percent}%",
   "icon-size": 10,
   "on-click": "",
   "on-click-middle": "",
@@ -310,10 +310,10 @@
   "tooltip-format": "Change wallpaper or style"
 },
     
-"custom/keybindings": {
-  "format":"",
+"custom/keybinds": {
+  "format":"󰺁 HINT!",
   "tooltip": false,
-  "on-click": "~/.config/hypr/scripts/Help.sh",
+  "on-click": "~/.config/hypr/scripts/KeyHints.sh",
 },
   
 "custom/light_dark": {
