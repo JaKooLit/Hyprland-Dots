@@ -126,6 +126,22 @@ ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" &
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 
+# Check if the ~/.cache/wal directory exists
+if [ ! -d ~/.cache/wal ]; then
+    printf "${NOTE} Initializing pywal........\n\n"
+    # Check if the ~/Pictures/wallpapers directory exists
+    if [ -d ~/Pictures/wallpapers ]; then
+        # Run wal with random wallpapers from ~/Pictures/wallpapers
+        wal -i ~/Pictures/wallpapers/*
+        echo "${OK} Pywal initialized"
+    else
+        echo "${ERROR} ~/Pictures/wallpapers directory not found."
+        echo "${WARN} Please make sure to have wallpapers in ~/Pictures/wallpapers."
+    fi
+else
+    echo "${OK} ~/.cache/wal directory found. No action required."
+fi
+
 # Initializing the initial wallpaper and wal
 ~/.config/hypr/scripts/Wallpaper.sh 2>&1 | tee -a "$LOG"
 
