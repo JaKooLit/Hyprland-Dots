@@ -1,5 +1,9 @@
 ## CHANGES
 
+### 06-Nov-2023
+- Initializing version 0.4. Featuring rofi, kitty and pywal. 
+- Screen shot to follow
+
 ### 04-Nov-2023
 - Various clean up scripts (change all to !#/bin/bash shebangs) except pythons!
 - Tweaked abit Wofi Beats (SUPER CTRL S) to have a better notification

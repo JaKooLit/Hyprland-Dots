@@ -37,7 +37,7 @@
 ## ✨ Copying instructions. 
 - Note! The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
 
-- ~/.config (btop, cava, dunst, foot, hypr, swappy, swaylock, waybar, wofi) - These are folders to be copied.
+- ~/.config (btop cava dunst gtk-3.0 hypr kitty rofi swappy swaylock waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
 
 ### 🔔 Automatic copy of configurations
@@ -64,7 +64,7 @@ ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
 ```
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
-- By default I have not set a wallpaper. Press Super CTRL W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes
+- By default I have not set a wallpaper. Press Super CTRL W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
 - Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf if you have set a proper environment already. (recommended). WLR_NO_CURSORS will be activated if nvidia gpu is detected.
 - If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
@@ -73,7 +73,8 @@ ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
 - Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
 
 ### 🙋 QUESTIONS ?!?! ⁉️
-- Maybe answered already in Help File! SUPER H to launch it!
+- Some quick Hints! Click the Hint! Waybar module (note only available in default layout). Can launched by Keybind SUPER H
+- More question? Maybe answered already in Help File! SUPER SHIFT H to launch it!
 - If you still have, kindly join my discord for faster communication. See invite link below. If not, open an issue on github
 
 ### 🙏 Special request
@@ -83,6 +84,7 @@ ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
 ### 🤷‍♂️ TO DO!
 - [ ] Tweak waybar layouts and Themes
 - [ ] Tweak rofi layouts and Themes
+- [ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.
 
 
 ### 🔮 Discord Server
