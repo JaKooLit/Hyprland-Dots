@@ -7,34 +7,28 @@
   Super = Windows Key
 
 # common operations
-  Super          h        *keyhint* (THIS DOCUMENT)
-  Super          Return   *term* (`foot`)
+  Super Shift    H        *keyhint* (THIS DOCUMENT)
+  Super          Return   *term* (`kitty`)
   Super          q        *quit* (kill focused window)
   Super   Shift  q        *quit* (kill focused window)
-  Super          d        *show app menu* (`wofi small`)
-  Super   Shift  d        *show app menu* (`wofi large`)
+  Super          d        *show app menu* (`rofi`)
 
-# Wofi scripts (Power menu, waybar-layout menu, wallpaper menu, etc, have small box)
-  - edit the scripts which are all located in ~/.config/hypr/scripts. You can set a desired Width and Height to your liking.
+# Scripts (Power menu, waybar-layout menu, wallpaper menu, etc, have small box)
+  - All the scripts all located in ~/.config/hypr/scripts.
   
 # wallpaper / styling stuff
   Super           w       *wallpaper shuffle* (right click on wallpaper   waybar module)
   Super   Shift   w       *waybar style-change* (middle click on wallpaper   waybar module)
-  Super   Ctrl    w       *wallpaper switcher* (click on wallpaper waybar    module)
+  Super   Ctrl    w       *wallpaper select* (click on wallpaper waybar    module) add more wallpaper in ~/Pictures/wallpapers
   
-  - right click on update   waybar module  *wallpaper cycle using swaybg* (no animations)
-  
-  - To change permanently the wallpaper edit the file in *~/.config/hypr/configs/Execs.conf*
+  - right click on update   waybar module  *wallpaper cycle using swww*
   
   - for the wallpaper styles and configurations, you can watch my video about it *https://youtu.be/6ZGzOjMJBe4*
   
-  - scripts for wallpaper stuff are located in *~/.config/hypr/scripts* file names `DarkLight.sh` `DarkLight-swaybg.sh` `Wallpaper.sh` `WallpaperSelect.sh` `WaybarStyles.sh` (last one for waybar)
-
-  - swww is broken if you use fractional scaling. Use swaybg as your wallpaper provider.
-  - Sample of swaybg for wallpaper is located in ~/.config/hypr/configs/Execs.conf
+  - scripts for wallpaper stuff are located in *~/.config/hypr/scripts* file names `DarkLight.sh` `Wallpaper.sh` `WallpaperSelect.sh` `WaybarStyles.sh` (last one for waybar)
 
 # Monitor, executables, keybindings, window rules, 
-  files are located in *~/.config/hypr/configs*
+  files are located in *~/.config/hypr/configs* . View with SUPER E
   Keybindings file is located here *~/.config/hypr/configs/Keybinds.conf*
 
 # screenshot may need to hold down the function (`fn`) key. You can change keybinds in *~/.config/hypr/configs/Keybinds.conf* 
