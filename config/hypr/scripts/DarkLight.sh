@@ -45,11 +45,11 @@ ln -sf "${waybar_config}/style/style-pywal.css" "${waybar_config}/style.css"
 ln -sf "${dunst_config}/styles/dunstrc-${next_mode}" "${dunst_config}/styles/dunstrc"
 
 # Symlink for rofi theme
-#if [ "$next_mode" = "dark" ]; then
-#  ln -sf $dark_rofi_pywal "$HOME/.config/rofi/pywal-theme.rasi"
-#else
-#  ln -sf $light_rofi_pywal "$HOME/.config/rofi/pywal-theme.rasi"
-#fi
+if [ "$next_mode" = "dark" ]; then
+  ln -sf $dark_rofi_pywal "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+else
+  ln -sf $light_rofi_pywal "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+fi
 
 gtk_theme="${next_mode}_gtk_theme"
 icon_theme="${next_mode}_icon_theme"
