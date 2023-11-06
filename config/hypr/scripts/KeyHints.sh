@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yad --width=1000 --height=800 \
+yad --width=1000 --height=900 \
 --center \
 --title="Keybindings" \
 --no-buttons \
@@ -14,7 +14,7 @@ yad --width=1000 --height=800 \
 " enter" "Terminal" "(kitty)" \
 " D" "App Launcher" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
-" Q |  Shift Q" "close focused app" "(kill)" \
+" Q or  Shift Q  " "close focused app" "(kill)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
 " CTRL W" "Choose wallpaper" "(swww)" \
 " W" "Random wallpaper" "(swww)" \
