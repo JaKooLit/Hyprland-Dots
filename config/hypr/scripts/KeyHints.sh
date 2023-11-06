@@ -24,6 +24,7 @@ yad --width=1000 --height=900 \
 " Shift Print" "screenshot region" "(grim + slurp)" \
 " Shift S" "screenshot region" "(swappy)" \
 "CTRL ALT P" "power-menu" "(wlogout)" \
+"CTRL ALT L" "screenlock" "(swaylock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
 " F" "Fullscreen" "Toggles to full screen" \
 " Spacebar" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
