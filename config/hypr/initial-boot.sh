@@ -12,13 +12,13 @@ if [ ! -f ~/.hyprland_startup_done ]; then
     	# Check if the ~/Pictures/wallpapers directory exists
     	if [ -d ~/Pictures/wallpapers ]; then
         	# Run wal with random wallpapers from ~/Pictures/wallpapers
-        	wal -i ~/Pictures/wallpapers/*
+        	wal -i ~/Pictures/wallpapers/* 
         	echo "Pywal initialized"
 		fi
 	fi
 
 	# Initializing the initial wallpaper and wal
-	exec ~/.config/hypr/scripts/Wallpaper.sh 
+	exec ~/.config/hypr/scripts/Wallpaper.sh &
 
     # Create a marker file to indicate that the script has been executed.
     touch ~/.hyprland_startup_done
