@@ -14,12 +14,12 @@ if [ ! -f ~/.hyprland_startup_done ]; then
         	# Run wal with random wallpapers from ~/Pictures/wallpapers
         	wal -i ~/Pictures/wallpapers/* 
         	echo "Pywal initialized"
-
-			#initial symlink for Pywal Dark and Light for Rofi Themes
-			ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 		fi
 	fi
 
+	#initial symlink for Pywal Dark and Light for Rofi Themes
+	ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+	
 	# Initializing the initial wallpaper and wal
 	exec ~/.config/hypr/scripts/Wallpaper.sh &
 
