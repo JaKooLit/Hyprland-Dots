@@ -85,3 +85,8 @@
   - Follow the github - https://github.com/hyprwm/Hyprland
 
 # If you dont like kitty or in your tty to get the pywal colors, edit ~/.config/kitty/kitty.conf or .zshrc (for zsh)
+
+# HIDDEN FEATURES!
+
+  - ROFI BEATS or ONLINE Music ( SUPER SHIFT S)
+  - EMOTICONS (SUPER ALT E) - useful for chats or messages )
