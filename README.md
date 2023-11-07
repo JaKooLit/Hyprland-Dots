@@ -77,9 +77,11 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
 
 ### 🙋 QUESTIONS ?!?! ⁉️
-- Some quick Hints! Click the Hint! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
+- FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
+- QUICK HINT! Click the HINT! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
 - More question? Maybe answered already in Help File! SUPER SHIFT H to launch it!
 - If you still have, kindly join my discord for faster communication. See invite link below. If not, open an issue on github
+
 
 ### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
