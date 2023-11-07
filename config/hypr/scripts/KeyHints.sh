@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yad --width=1000 --height=900 \
+yad --width=1000 --height=1000 \
 --center \
 --title="Keybindings" \
 --no-buttons \
@@ -28,7 +28,9 @@ yad --width=1000 --height=900 \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
 " F" "Fullscreen" "Toggles to full screen" \
 " Spacebar" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
-" Shift F" "Toggle all windows to float" "" \
+" Shift F" "Toggle float" "single window" \
+" ALT F" "Toggle all windows to float" "all windows" \
+" SHIFT G" "Gamemode! All animations off" "" \
 " SHIFT H" "Launch a small Help File" "" \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
