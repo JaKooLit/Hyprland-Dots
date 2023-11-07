@@ -4,7 +4,7 @@
 
 # A bash script designed to ran it only once dotfiles installed
 # Check if a marker file exists.
-if [ ! -f ~/.hyprland_startup_done ]; then
+if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 
 	# Check if the ~/.cache/wal directory exists
 	if [ ! -d ~/.cache/wal ]; then
@@ -12,7 +12,7 @@ if [ ! -f ~/.hyprland_startup_done ]; then
     	# Check if the ~/Pictures/wallpapers directory exists
     	if [ -d ~/Pictures/wallpapers ]; then
         	# Run wal with random wallpapers from ~/Pictures/wallpapers
-        	wal -i ~/Pictures/wallpapers/* 
+        	wal -i ~/Pictures/wallpapers/mecha-nostalgia.png 
         	echo "Pywal initialized"
 		fi
 	fi
@@ -20,11 +20,16 @@ if [ ! -f ~/.hyprland_startup_done ]; then
 	#initial symlink for Pywal Dark and Light for Rofi Themes
 	ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 	
-	# Initializing the initial wallpaper and wal
-	exec ~/.config/hypr/scripts/Wallpaper.sh &
+	# Setting initial wallpaper
+	exec swww query || swww init && swww img $HOME/Pictures/wallpapers/mecha-nostalgia.png &
+
+	# Initial scripts inorder to have a proper waybar and pywal themes
+	exec $HOME/.config/hypr/scripts/PywalSwww.sh &
+	
+	exec $HOME/.config/hypr/scripts/Refresh.sh
 
     # Create a marker file to indicate that the script has been executed.
-    touch ~/.hyprland_startup_done
+    touch ~/.config/hypr/.initial_startup_done
 fi
 
 
