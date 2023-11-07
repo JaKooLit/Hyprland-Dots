@@ -10,81 +10,82 @@ margin-top: 1px;
 margin-bottom: 1px;
 }
 
-
 @import '../../.cache/wal/colors-waybar.css';
 
 window#waybar {
-    background: rgba(0, 0, 0, 0);
-}
-
-window#waybar.hidden {
-    opacity: 0.5;
+	background: transparent;
 }
 
 window#waybar.empty {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 window#waybar.empty #window {
-    padding: 0px;
-    margin: 0px;
-    border: 0px;
-    /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
-    background-color: transparent;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	background-color: transparent;
+}
+
+window > box {
+	background: rgba(0, 0, 0, 0);
+	border-bottom: 1px solid rgba(0, 0, 0, 0);
+	color: @foreground;
+}
+
+window {
+	/*font-weight: bold;*/
 }
 
 tooltip {
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
+	background: rgba(0, 0, 0, 0.4);
+	opacity: 0.8;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: @color15;
 }
 
-tooltip label {
-    color: @color11;
-    margin-right: 2px;
-    margin-left: 2px;
+tooltip label{
+	color: @foreground;
 }
-
 /*-----module groups----*/
 .modules-right {
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 0px solid #b4befe;
-    border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 0.5px solid @color15;
+	border-radius: 10px;
 }
-
 .modules-center {
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 0px solid #b4befe;
-    border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 0.5px solid @color15;
+	border-radius: 10px;
 }
-
 .modules-left {
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 0px solid #b4befe;
-    border-radius: 10px;
-    
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 0.5px solid @color15;
+	border-radius: 10px;
 }
+/*-----modules indv----*/
 
 #workspaces button {
-    color: @color11;
+	color: @color1;
+	padding: 0px 0px;
+	background-color: rgba(0, 0, 0, 0);
+	transition: all 0.3s ease-in-out;
 }
-
-#workspaces button.active {
-    color: @color2;
-    border-radius: 15px 15px 15px 15px;
+#workspaces button:hover {
+	box-shadow: inherit;
+	background-color: @color2;
 }
 
 #workspaces button.focused {
-    color: @color1;
+	background-color: rgba(0,85,102,0);
 }
+#workspaces button.active {
+	color: @foreground;
+	/*background-color: rgba(0,85,102,0.3);*/
+	transition: all 0.3s ease-in-out;
 
-#workspaces button.urgent {
-    color: #11111b;
-    border-radius: 10px;
-}
-
-#workspaces button:hover {
-    color: @color5;
-    border-radius: 15px;
 }
 
 #backlight,
@@ -130,30 +131,55 @@ tooltip label {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-    color: @color11;
-    padding: 1px 4px;
-    border-radius: 8px;
+	padding: 0px 6px;
+}
+#mode {
+	color: #cc3436;
+	font-weight: bold;
+}
+#custom-power {
+	/*background-color: rgba(0,119,179,0.6);*/
+	/*border-radius: 50px;*/
+	margin: 5px 5px;
+	padding: 1px 3px;
+}
+/*-----Indicators----*/
+#idle_inhibitor.activated {
+	color: #2dcc36;
+}
+#pulseaudio.muted {
+	color: #cc3436;
+}
+#pulseaudio-microphone.muted {
+	color: #cc3436;
+}
+#temperature.critical {
+	color: #cc3436;
 }
 
-#temperature.critical {
-    background-color: #ff0000;
+#waybar {
+	background-color: @color14;
+	color: @color3;
 }
 
 @keyframes blink {
-    to {
-        color: #000000;
-    }
-}
-
-#taskbar button.active {
-    background-color: #7f849c;
+	to {
+		color: #000000;
+	}
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+	color: #f53c3c;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#taskbar button.active {
+	background-color: #7f849c;
+}
+#waybar.empty, #waybar.tiled, #waybar.floating {
+	background-color: transparent;
 }
