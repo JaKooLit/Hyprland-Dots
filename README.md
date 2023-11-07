@@ -21,14 +21,10 @@
 ## 👀 Screenshots 👀
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
-### ❗❗ This is basically to re-construct my previous hyprland dot files
-- why? Generally, alot of users, especially new users are confused with my original layout. In which waybar, dunst, swaylock, etc are inside ~/.config/hypr , which is originally meant for Hyprland configuration only.
-
-- This would ultimately mean much easier for users to use other waybar, or hyprland dots from other Hyprland users who are sharing their dotfiles. - (Make me sad, although, I am still glad you tried my install script and dotfiles)
-
-- But my main reason for creating this repo, is that, in the future, I will be focusing only into one repo, as I aimed to just download and install this repo for any install script that I will be using or wanted to share. Less maintainance for me and to avoid errors.
-
-- Users of my Hyprland install scripts, Arch-Hyprlands, Fedora-Hyprland, Debian/Ubuntu-Hyprland, upgrade to these dotfiles/configuration to replace their previous dots.
+### ❗❗ V2! What's new?
+- Switched to rofi as app launcher, added pywal colors and switched Kitty for tty.
+- I have also added a small button HINT!, which should help new users.
+- Previous users can upgrade! However, you need to install rofi-wayland, kitty and pywal. If you want the HINT button, install yad as well.
 
 ### 📦 Changelogs
 - To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md)  Screenshots will be included if worth it!
@@ -62,9 +58,17 @@ ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/confi
 ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css"
 ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
 ```
+- after that initialize pywal with
+```wal -i wallpaper/path```
+- then run this 
+```bash
+ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+```
+- Before reboot or logout, choose wallpaper with SUPER CTRL W.
+
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
-- By default I have not set a wallpaper. Press Super CTRL W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
+- By default I have not set a wallpaper. Press SSUPER CTRL W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
 - Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf if you have set a proper environment already. (recommended). WLR_NO_CURSORS will be activated if nvidia gpu is detected.
 - If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
@@ -73,7 +77,7 @@ ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
 - Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
 
 ### 🙋 QUESTIONS ?!?! ⁉️
-- Some quick Hints! Click the Hint! Waybar module (note only available in default layout). Can launched by Keybind SUPER H
+- Some quick Hints! Click the Hint! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
 - More question? Maybe answered already in Help File! SUPER SHIFT H to launch it!
 - If you still have, kindly join my discord for faster communication. See invite link below. If not, open an issue on github
 
