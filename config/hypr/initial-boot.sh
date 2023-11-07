@@ -20,14 +20,9 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 	#initial symlink for Pywal Dark and Light for Rofi Themes
 	ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 	
-	# Setting initial wallpaper
-	exec swww query || swww init && swww img $HOME/Pictures/wallpapers/mecha-nostalgia.png &
-
-	# Initial scripts inorder to have a proper waybar and pywal themes
-	exec $HOME/.config/hypr/scripts/PywalSwww.sh &
+	# Initial scripts to load inorder to have a proper wallpaper waybar and pywal themes
+	exec $HOME/.config/hypr/scripts/Wallpaper.sh &
 	
-	exec $HOME/.config/hypr/scripts/Refresh.sh
-
     # Create a marker file to indicate that the script has been executed.
     touch ~/.config/hypr/.initial_startup_done
 fi
