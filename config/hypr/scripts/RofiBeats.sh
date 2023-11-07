@@ -1,22 +1,7 @@
 #!/bin/bash
 ## Files
-CONFIG="$HOME/.config/wofi/WofiBig/config"
-STYLE="$HOME/.config/wofi/style.css"
-COLORS="$HOME/.config/wofi/colors"
+
 iDIR="$HOME/.config/dunst/icons"
-
-# wofi window config (in %)
-WIDTH=12
-HEIGHT=30
-
-## Wofi Command
-wofi_command="wofi --show dmenu \
-			--prompt choose...
-			--conf $CONFIG --style $STYLE --color $COLORS \
-			--width=$WIDTH% --height=$HEIGHT% \
-			--cache-file=/dev/null \
-			--hide-scroll --no-actions \
-			--matching=fuzzy"
 
 notification(){
   notify-send -h string:x-canonical-private-synchronous:sys-notify -u normal -i "$iDIR/music.png" "Playing now: " "$@" 
@@ -34,7 +19,8 @@ printf "8. Youtube Remix\n"
 printf "9. Korean Drama OST"
 }
 main() {
-choice=$(menu | ${wofi_command} | cut -d. -f1)
+choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi | cut -d. -f1)
+
 case $choice in
 1)
 	notification "Lofi Girl ☕️🎶";

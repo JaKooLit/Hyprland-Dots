@@ -21,10 +21,17 @@ RESET=$(tput sgr0)
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S)_dotfiles.log"
 
-#uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
+# uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
   # NVIDIA GPU detected, uncomment line 23 in ENVariables.conf
   sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/configs/ENVariables.conf
+fi
+
+# uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
+if hostnamectl | grep -q 'Chassis: vm'; then
+  echo "This script is running in a virtual machine."
+  sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/configs/ENVariables.conf
+  sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/configs/ENVariables.conf
 fi
 
 # preparing hyprland.conf keyboard layout
@@ -59,8 +66,7 @@ fi
 
 echo "Keyboard layout: $layout"
 
-printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n"
-printf "\n"
+printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n\n"
 
 # Prompt the user to confirm whether the detected layout is correct
 read -p "Detected keyboard layout or keymap: $layout. Is this correct? [y/n] " confirm
@@ -83,7 +89,7 @@ printf "\n"
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} copying dotfiles\n"
-  for DIR in btop cava dunst foot hypr swappy swaylock waybar wofi; do 
+  for DIR in btop cava dunst gtk-3.0 hypr kitty rofi swappy swaylock waybar wlogout; do 
     DIRPATH=~/.config/$DIR
     if [ -d "$DIRPATH" ]; then 
       echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -113,17 +119,16 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 # Initial Symlinks to avoid errors
 # symlinks for waybar
 ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config" && \
-ln -sf "$HOME/.config/waybar/style/style-dark.css" "$HOME/.config/waybar/style.css" && \
+ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css" && \
 
 # symlinks for dunst
 ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" && \
-# symlink for wofi
-ln -sf "$HOME/.config/wofi/styles/style-dark.css" "$HOME/.config/wofi/style.css" && \
-ln -sf "$HOME/.config/wofi/configs/config-default" "$HOME/.config/wofi/config" && \
-
   
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
+
+# Set executable for initial-boot.sh
+chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
 printf "\n${OK} Copy Completed!\n\n"
 printf "${NOTE} Highly recommended to logout and re-login\n\n"

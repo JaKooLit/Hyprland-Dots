@@ -7,7 +7,7 @@
   //"format-icons": ["󰃞", "󰃟", "󰃠"],
   "format": "{icon}",
   "format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
-  "tooltip-format": "{percent}%",
+  "tooltip-format": "backlight {percent}%",
   "icon-size": 10,
   "on-click": "",
   "on-click-middle": "",
@@ -41,17 +41,18 @@
   "tooltip": true,
   "tooltip-format": "{timeTo} {power}w",
   "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
-  "on-click-right": "$HOME/.config/hypr/scripts/WofiPower.sh",
+  "on-click-right": "$HOME/.config/hypr/scripts/Wlogout.sh",
 },
     
 "bluetooth": {
-  "format": "",
-  "format-disabled": "", // an empty format will hide the module
-  "format-connected": " {num_connections}",
+  "format": "",
+  "format-disabled": "󰂳",
+  "format-connected": "󰂱 {num_connections}",
   "tooltip-format": " {device_alias}",
   "tooltip-format-connected": "{device_enumerate}",
   "tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
-   "tooltip": true
+  "tooltip": true,
+  "on-click": "blueman-manager",
 },
 
 "cava": {
@@ -163,7 +164,7 @@
     "9": "",
     "10": "10",
     "focused": "",
-    "default": "",
+    "default": "",
   },
   "on-scroll-up": "hyprctl dispatch workspace e+1",
   "on-scroll-down": "hyprctl dispatch workspace e-1",
@@ -210,7 +211,7 @@
   "format-alt-click": "click",
   "tooltip": true,
   "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
-  "on-click-right": "foot --title btop sh -c 'btop'"
+  "on-click-right": "kitty --title btop sh -c 'btop'"
 },
     
 "network": {
@@ -229,7 +230,7 @@
     
 "pulseaudio": {
   "format": "{icon}",
-  "format-bluetooth": "{icon}  {volume}%",
+  "format-bluetooth": "{icon} 󰂰 {volume}%",
   "format-muted": "󰖁",
   "format-icons": {
       "headphone": "",
@@ -268,8 +269,8 @@
   "critical-threshold": 82,
   "format-critical": "{temperatureC}°C {icon}",
   "format": "{temperatureC}°C {icon}",
-  "format-icons": [""],
-  "on-click-right": "foot --title nvtop sh -c 'nvtop'"
+  "format-icons": ["󰈸"],
+  "on-click-right": "kitty --title nvtop sh -c 'nvtop'"
 },
     
 "tray": {
@@ -295,7 +296,8 @@
   "on-click": "activate",
   "on-click-middle": "close",
   "ignore-list": [
-        "wofi"  
+        "wofi",
+        "rofi",  
                  ]
 },
     
@@ -308,10 +310,10 @@
   "tooltip-format": "Change wallpaper or style"
 },
     
-"custom/keybindings": {
-  "format":"",
+"custom/keybinds": {
+  "format":"󰺁 HINT!",
   "tooltip": false,
-  "on-click": "~/.config/hypr/scripts/Help.sh",
+  "on-click": "~/.config/hypr/scripts/KeyHints.sh",
 },
   
 "custom/light_dark": {
@@ -329,9 +331,9 @@
 "custom/menu": {
   "format": "",
   "tooltip": false,
-  "on-click": "$HOME/.config/hypr/scripts/Wofi.sh",
+  "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser",
   "on-click-right": "$HOME/.config/hypr/scripts/ChangeLayoutMenu.sh",
-  "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh swaybg",
+  "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh swww",
 },
 
 "custom/playerctl": {
@@ -356,8 +358,7 @@
   "exec": "checkupdates | wc -l",
   "exec-if": "[[ $(checkupdates | wc -l) ]]",
   "interval": 15,
-  "on-click": "foot -T update paru -Syu || yay -Syu && notify-send 'The system has been updated'",
-  "on-click-right": "~/.config/hypr/scripts/WallpaperSwitch.sh",
+  "on-click": "kitty -T update paru -Syu || yay -Syu && notify-send 'The system has been updated'",
 },
   
 "custom/weather": {
@@ -440,7 +441,7 @@
   "format-alt-click": "click",
   "tooltip": true,
   "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
-  "on-click-right": "foot --title btop sh -c 'btop'",
+  "on-click-right": "kitty --title btop sh -c 'btop'",
 },
 
 "pulseaudio#microphone_vertical": {
@@ -459,19 +460,19 @@
 "temperature#vertical": {
   "interval": 10,
   "tooltip": true,
-  "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-  //"thermal-zone": 0,
+  //"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+  "thermal-zone": 0,
   "critical-threshold": 80,
   "format-critical": "{icon}\n{temperatureC}°C",
   "format": " {icon}",
-  "format-icons": [""],
-  "on-click-right": "foot --title nvtop sh -c 'nvtop'"
+  "format-icons": ["󰈸"],
+  "on-click-right": "kitty --title nvtop sh -c 'nvtop'"
 },
 
 "custom/power_vertical": {
   "format": "⏻",
   "tooltip": false,
-  "on-click": "$HOME/.config/hypr/scripts/WofiPower.sh",
+  "on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
   "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
 },
 }

@@ -8,28 +8,23 @@
 </div>
 
 ## 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
+- You can install Hyprland using Scripts below:
+
 - [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
 
 - [Debian/Ubuntu-Linux](https://github.com/JaKooLit/Debian-Hyprland)
 
 - [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
-- [Arch-Linux-(orig)](https://github.com/JaKooLit/Hyprland-v4)
-
-- As you noticed there are 2 for Arch Linux. At some point I will be concentrating on the Arch-Linux only
 
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
 
 ## 👀 Screenshots 👀
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
-### ❗❗ This is basically to re-construct my previous hyprland dot files
-- why? Generally, alot of users, especially new users are confused with my original layout. In which waybar, dunst, swaylock, etc are inside ~/.config/hypr , which is originally meant for Hyprland configuration only.
-
-- This would ultimately mean much easier for users to use other waybar, or hyprland dots from other Hyprland users who are sharing their dotfiles. - (Make me sad, although, I am still glad you tried my install script and dotfiles)
-
-- But my main reason for creating this repo, is that, in the future, I will be focusing only into one repo, as I aimed to just download and install this repo for any install script that I will be using or wanted to share. Less maintainance for me and to avoid errors.
-
-- Users of my Hyprland install scripts, Arch-Hyprlands, Fedora-Hyprland, Debian/Ubuntu-Hyprland, upgrade to these dotfiles/configuration to replace their previous dots.
+### ❗❗ V2! What's new?
+- Switched to rofi as app launcher, added pywal colors and switched Kitty for tty.
+- I have also added a small button HINT!, which should help new users.
+- Previous users can upgrade! However, you need to install rofi-wayland, kitty and pywal. If you want the HINT button, install yad as well.
 
 ### 📦 Changelogs
 - To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md)  Screenshots will be included if worth it!
@@ -38,7 +33,7 @@
 ## ✨ Copying instructions. 
 - Note! The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
 
-- ~/.config (btop, cava, dunst, foot, hypr, swappy, swaylock, waybar, wofi) - These are folders to be copied.
+- ~/.config (btop cava dunst gtk-3.0 hypr kitty rofi swappy swaylock waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
 
 ### 🔔 Automatic copy of configurations
@@ -60,35 +55,43 @@ chmod +x $HOME/.config/hypr/scripts/*
 - Make sure to execute initial symlinks else dunst, wofi and waybar will fail to launch
 ```bash
 ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config"
-ln -sf "$HOME/.config/waybar/style/style-dark.css" "$HOME/.config/waybar/style.css"
+ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css"
 ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
-ln -sf "$HOME/.config/wofi/styles/style-dark.css" "$HOME/.config/wofi/style.css"
-ln -sf "$HOME/.config/wofi/configs/config-default" "$HOME/.config/wofi/config"
 ```
+- after that initialize pywal with
+```wal -i wallpaper/path```
+- then run this 
+```bash
+ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+```
+- Before reboot or logout, choose wallpaper with SUPER CTRL W.
+
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
-- By default I have not set a wallpaper. If using swww, just press SUPER CTRL W and choose wallpaper. Once you reboot or logged out, the last wallpaper will be loaded by swww automatically.
-- If not using swww, edit ~/.config/hypr/Execs.conf and set using swaybg
+- By default I have not set a wallpaper. Press SSUPER CTRL W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
 - Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf if you have set a proper environment already. (recommended). WLR_NO_CURSORS will be activated if nvidia gpu is detected.
 - If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
 ### 📖 Known issues and possibly solutions
-- Foot tty fonts after copying dots is broken - Install Fira Code or just restore your previous foot configuration in ~/.config/foot
 - Themes are broken when changing dark light - Ensure you have Tokyo Night Dark and Light themes installed and Tokyo Night SE icons or adjust the Dark Light script located in ~/.config/hypr/scripts/DarkLight.sh
 - Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
 
 ### 🙋 QUESTIONS ?!?! ⁉️
-- Maybe answered already in Help File! SUPER H to launch it!
+- FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
+- QUICK HINT! Click the HINT! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
+- More question? Maybe answered already in Help File! SUPER SHIFT H to launch it!
 - If you still have, kindly join my discord for faster communication. See invite link below. If not, open an issue on github
+
 
 ### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
 - Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
 
 ### 🤷‍♂️ TO DO!
-- [X] ~~After Arch update the hyprland package, will uncomment line 38 to 44 in ~/.config/hypr/configs/Settings.conf. Users of hyprland-git or if compiled from source, you can safely uncomment these lines (group and groupbar)~~ Switched to Hyprland-git for Arch-Hyprland script as Arch dev is not updating its Hyprland repo
 - [ ] Tweak waybar layouts and Themes
-- [X] ~~Integrate these dotfiles into my Hyprland install scripts for a centralized configurations~~ 
+- [ ] Tweak rofi layouts and Themes
+- [ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.
+
 
 ### 🔮 Discord Server
 - kindly join my Discord Server https://discord.gg/V2SJ92vbEN

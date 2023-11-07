@@ -17,7 +17,9 @@ elif [ "$THEMEIS" == "mauve" ]; then
 elif [ "$THEMEIS" == "light" ]; then
     SWITCHTO="-dark"
 elif [ "$THEMEIS" == "dark" ]; then
-    SWITCHTO="-uline"      
+    SWITCHTO="-uline"
+elif [ "$THEMEIS" == "uline" ]; then
+    SWITCHTO="-pywal"      
 else
     SWITCHTO="-default"
 fi

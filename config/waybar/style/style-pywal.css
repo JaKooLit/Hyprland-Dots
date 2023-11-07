@@ -10,12 +10,10 @@ margin-top: 1px;
 margin-bottom: 1px;
 }
 
-window#waybar {
-	background: rgba(0, 0, 0, 0)
-}
+@import '../../.cache/wal/colors-waybar.css';
 
-window#waybar.hidden {
-	opacity: 0.7;
+window#waybar {
+	background: transparent;
 }
 
 window#waybar.empty {
@@ -26,62 +24,68 @@ window#waybar.empty #window {
 	padding: 0px;
 	margin: 0px;
 	border: 0px;
-	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
 	background-color: transparent;
 }
 
+window > box {
+	background: rgba(0, 0, 0, 0);
+	border-bottom: 1px solid rgba(0, 0, 0, 0);
+	color: @foreground;
+}
+
+window {
+	/*font-weight: bold;*/
+}
+
 tooltip {
-	background: rgba(236, 236, 236, 0.8);
+	background: rgba(0, 0, 0, 0.4);
+	opacity: 0.8;
 	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: @color15;
 }
 
-tooltip label {
-	color: #373737;
-	margin-right: 2px;
-	margin-left: 2px;
+tooltip label{
+	color: @foreground;
 }
-
 /*-----module groups----*/
 .modules-right {
-	background-color: rgba(232, 236, 241, 0.8);
-	border: 0px solid #b4befe;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 0.5px solid @color15;
 	border-radius: 10px;
 }
-
 .modules-center {
-	background-color: rgba(232, 236, 241, 0.8);
-	border: 0px solid #b4befe;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 0.5px solid @color15;
 	border-radius: 10px;
 }
-
 .modules-left {
-	background-color: rgba(232, 236, 241, 0.8);
-	border: 0px solid #b4befe;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 0.5px solid @color15;
 	border-radius: 10px;
-	
 }
+/*-----modules indv----*/
 
 #workspaces button {
-	color: #585b70;
+	color: @color1;
+	padding: 0px 0px;
+	background-color: rgba(0, 0, 0, 0);
+	transition: all 0.3s ease-in-out;
 }
-
-#workspaces button.active {
-	color: #000000;
-	border-radius: 15px 15px 15px 15px;
+#workspaces button:hover {
+	box-shadow: inherit;
+	background-color: @color2;
 }
 
 #workspaces button.focused {
-	color: #000000;
+	background-color: rgba(0,85,102,0);
 }
+#workspaces button.active {
+	color: @foreground;
+	/*background-color: rgba(0,85,102,0.3);*/
+	transition: all 0.3s ease-in-out;
 
-#workspaces button.urgent {
-	color: #000000;
-	border-radius: 10px;
-}
-
-#workspaces button:hover {
-	color: #000000;
-	border-radius: 15px;
 }
 
 #backlight,
@@ -127,24 +131,41 @@ tooltip label {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	color: #000000;
-	padding: 1px 4px;
-	border-radius: 8px;
+	padding: 0px 6px;
+}
+#mode {
+	color: #cc3436;
+	font-weight: bold;
+}
+#custom-power {
+	/*background-color: rgba(0,119,179,0.6);*/
+	/*border-radius: 50px;*/
+	margin: 5px 5px;
+	padding: 1px 3px;
+}
+/*-----Indicators----*/
+#idle_inhibitor.activated {
+	color: #2dcc36;
+}
+#pulseaudio.muted {
+	color: #cc3436;
+}
+#pulseaudio-microphone.muted {
+	color: #cc3436;
+}
+#temperature.critical {
+	color: #cc3436;
 }
 
-#temperature.critical {
-	background-color: #ff0000;
+#waybar {
+	background-color: @color14;
+	color: @color3;
 }
 
 @keyframes blink {
 	to {
 		color: #000000;
 	}
-}
-
-#taskbar button.active {
-	background-color: #585b70;
-	color: #cdd6f4;
 }
 
 #battery.critical:not(.charging) {
@@ -154,4 +175,11 @@ tooltip label {
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
+}
+
+#taskbar button.active {
+	background-color: #7f849c;
+}
+#waybar.empty, #waybar.tiled, #waybar.floating {
+	background-color: transparent;
 }

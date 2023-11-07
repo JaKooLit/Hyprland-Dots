@@ -1,16 +1,7 @@
 #!/bin/bash
 
-# WOFI STYLES
-CONFIG="$HOME/.config/wofi/WofiBig/config"
-STYLE="$HOME/.config/wofi/style.css"
-COLORS="$HOME/.config/wofi/colors"
-
-# wofi window config (in %)
-WIDTH=40
-HEIGHT=40
-
 sed '1,/^### DATA ###$/d' $0 | 
-wofi --show dmenu -i --conf ${CONFIG} --style ${STYLE} --color ${COLORS} --width=$WIDTH% --height=$HEIGHT% |
+rofi -dmenu | 
 cut -d ' ' -f 1 | tr -d '\n' | wl-copy
 
 exit

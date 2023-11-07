@@ -1,5 +1,15 @@
 ## CHANGES
 
+### 06-Nov-2023
+- Hyprland-Dots-v2 Featuring rofi, kitty and pywal and adding Hint Button to Assist new users
+- Screenshots
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/General/pywal-kitty.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/General/Rofi-Dark.png" />   
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/General/Different-Waybar-Layouts.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/General/Hint.png" />
+
+- More Screenshots can be viewed here
+-Hyprland-Dots-v2 Changes [`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-V2-Screenshots/General)
+
 ### 04-Nov-2023
 - Various clean up scripts (change all to !#/bin/bash shebangs) except pythons!
 - Tweaked abit Wofi Beats (SUPER CTRL S) to have a better notification

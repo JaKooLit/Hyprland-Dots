@@ -1,2 +1,3 @@
 #!/bin/bash
-foot -e vim ~/.config/hypr/HelpFile.md
+
+mousepad ~/.config/hypr/HelpFile.md
