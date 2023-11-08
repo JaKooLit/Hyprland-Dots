@@ -408,7 +408,7 @@
   "interval": 2,
   "align": 0,
   "rotate": 0,
-  "format": "{icon}",
+  "format": " {icon}",
   "format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
   "tooltip-format": "{percent}%",
   "icon-size": 10,
