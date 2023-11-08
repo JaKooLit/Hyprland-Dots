@@ -33,11 +33,11 @@
 
 
 ### 📹 A video walkthroughs
--[Walkthough](https://youtu.be/fO-RBHvVEcc)
+- [Walkthough](https://youtu.be/fO-RBHvVEcc)
 
--[V1-Changes](https://youtu.be/upDl1ns05eg)
+- [V1-Changes](https://youtu.be/upDl1ns05eg)
 
--[v2-Changes](https://youtu.be/yaVurRoXc-s)
+- [v2-Changes](https://youtu.be/yaVurRoXc-s)
 
 
 ## ✨ Copying instructions. 
