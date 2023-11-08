@@ -140,8 +140,16 @@
   
 "hyprland/window": {
   "format": "{}",
-  "max-length": 360,
+  "max-length": 40,
   "separate-outputs": true,
+  "offscreen-css" : true,
+  "offscreen-css-text": "(inactive)",
+   "rewrite": {
+        "(.*) — Mozilla Firefox": " $1",
+        "(.*) - fish": "> [$1]",
+		    "(.*) - zsh": "> [$1]",
+		    "(.*) - kitty": "> [$1]",
+	},
 },
    
 "hyprland/workspaces": {
@@ -352,7 +360,8 @@
   "on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
   "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
 },
-  
+
+// NOTE:! This is only for Arch and Arch Based Distros  
 "custom/updater":{
   "format": " {}",
   "exec": "checkupdates | wc -l",

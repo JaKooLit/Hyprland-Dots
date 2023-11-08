@@ -29,7 +29,7 @@
 
 "modules-right": [
 	"tray",
-	"network",
+	//"network",
 	"bluetooth",
 	"cpu",
 	"temperature", 
