@@ -1,5 +1,8 @@
 ## CHANGES
 
+### 08-Nov-2023
+ - some small tweak... I have made some small note on Wlogout.sh located in ~/.config/hypr/scripts . This is to adjust for screen resolution.
+
 ### 06-Nov-2023
 - Hyprland-Dots-v2 Featuring rofi, kitty and pywal and adding Hint Button to Assist new users
 - Screenshots
