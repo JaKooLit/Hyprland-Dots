@@ -25,7 +25,7 @@
 - Switched to rofi as app launcher, added pywal colors and switched Kitty for tty.
 - I have also added a small button HINT!, which should help new users.
 - Previous users can upgrade! However, you need to install rofi-wayland, kitty and pywal. If you want the HINT button, install yad as well.
-[v2 Changes - Youtube](https://youtu.be/yaVurRoXc-s)
+- [v2 Changes - Youtube](https://youtu.be/yaVurRoXc-s)
 
 
 ### 📦 Changelogs
@@ -33,9 +33,9 @@
 
 
 ### 📹 A video walkthroughs
-[Walkthough](https://youtu.be/fO-RBHvVEcc)
-[V1 - Changes ](https://youtu.be/upDl1ns05eg)
-[v2 Changes - Youtube](https://youtu.be/yaVurRoXc-s)
+`[Walkthough](https://youtu.be/fO-RBHvVEcc)`
+`[V1-Changes ](https://youtu.be/upDl1ns05eg)`
+`[v2-Changes - Youtube](https://youtu.be/yaVurRoXc-s)`
 
 
 ## ✨ Copying instructions. 
