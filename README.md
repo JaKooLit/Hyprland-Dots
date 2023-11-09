@@ -104,6 +104,10 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - [ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.
 
 
+### Some ricing tips
+- [Ricing Tips](https://github.com/JaKooLit/Hyprland-Dots/assets/Tips.md)
+
+
 ### 🔮 Discord Server
 - kindly join my Discord Server https://discord.gg/V2SJ92vbEN
 

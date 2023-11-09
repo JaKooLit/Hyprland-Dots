@@ -21,12 +21,12 @@
 	"cpu", 
 	"temperature", 
 	"memory",
-	"disk", 
+	"disk",
+	"custom/weather", 
 	],
   
 "modules-center": [ 
-	"custom/weather",
-	"custom/light_dark",
+	"hyprland/workspaces#4",
 	], 
 
 "modules-right": [	  
@@ -58,7 +58,7 @@
 	],
 
 "modules-center": [
-	"hyprland/workspaces#3",
+	"custom/light_dark",
 	],
 
 "modules-right": [

@@ -69,7 +69,7 @@
 //  NUMBERS and ICONS style
 "hyprland/workspaces#4": {
   "format": "{name}",
-  //"format": " {name}:{icon} ",
+  "format": " {name} {icon} ",
   //"format": " {icon} ",
   "show-special": false,
   "on-click": "activate",
