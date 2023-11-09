@@ -245,45 +245,6 @@
 		"(.*) - kitty": "> [$1]",
 	},
 },
-   
-"hyprland/workspaces": {
-  "format": "{name}",
-  //"format": " {name}:{icon} ",
-  //"format": " {icon} ",
-  "show-special": false,
-  "on-click": "activate",
-  "all-outputs": true,
-  "sort-by-number": true,
-  "format-icons": {
-    "1": " ",
-    "2": " ",
-    "3": " ",
-    "4": " ",
-    "5": " ",
-    "6": " ",
-    "7": "",
-    "8": " ",
-    "9": "",
-    "10": "10",
-    "focused": "",
-    "default": "",
-  },
-  "on-scroll-up": "hyprctl dispatch workspace e+1",
-  "on-scroll-down": "hyprctl dispatch workspace e-1",
-},
-
-"hyprland/workspaces#2": {
-    "format": "{icon}",
-    "on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
-    "format-icons": {
-      "active": "",
-      "default": "",
-  },
-    "active-only": false,
-    "all-outputs": true   
-},
 
 "idle_inhibitor": {
   "format": "{icon}",

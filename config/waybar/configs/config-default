@@ -1,5 +1,4 @@
 // ### DEFAULT ### //
-
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
@@ -36,10 +35,10 @@
 	"custom/light_dark",
 	"custom/separator#dot-line",	
 	"custom/lock",
-	//],
-	"custom/separator#dot-line",
-	"custom/keybinds",	
-	], 
+	],
+	//"custom/separator#dot-line",
+	//"custom/keybinds",	
+	//], 
 
 "modules-right": [
 	//"hyprland/window", 

@@ -15,7 +15,7 @@
 
 "modules-left": [
 	"custom/menu", 
-	"hyprland/workspaces",
+	"hyprland/workspaces#3",
 	//"custom/updater", 
 	"hyprland/window", 
 	],

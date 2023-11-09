@@ -58,7 +58,7 @@
 	],
 
 "modules-center": [
-	"hyprland/workspaces",
+	"hyprland/workspaces#3",
 	],
 
 "modules-right": [
