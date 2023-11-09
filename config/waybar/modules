@@ -1,5 +1,6 @@
 {
- //CIRCLES
+// HYPRLAND WORKSPACES. CHOOSE as required
+// CIRCLES Style
  "hyprland/workspaces": {
   "all-outputs": true,
   "format": "{icon}",
@@ -21,7 +22,7 @@
   "all-outputs": true   
 },
 
-//ROMAN
+// ROMAN Numerals style
 "hyprland/workspaces#2": {
   "active-only":false,
   "all-outputs": true,
@@ -43,7 +44,8 @@
     
   }
 },
-//PACMAN 
+
+// PACMAN Style
 "hyprland/workspaces#3": {
   "active-only":false,
   "all-outputs": true,
@@ -62,6 +64,33 @@
     "default": " ",
     "persistent":"󰑊"
   }
+},
+
+//  NUMBERS and ICONS style
+"hyprland/workspaces#4": {
+  "format": "{name}",
+  //"format": " {name}:{icon} ",
+  //"format": " {icon} ",
+  "show-special": false,
+  "on-click": "activate",
+  "all-outputs": true,
+  "sort-by-number": true,
+  "format-icons": {
+    "1": " ",
+    "2": " ",
+    "3": " ",
+    "4": " ",
+    "5": " ",
+    "6": " ",
+    "7": "",
+    "8": " ",
+    "9": "",
+    "10": "10",
+    "focused": "",
+    "default": "",
+  },
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-down": "hyprctl dispatch workspace e-1",
 },
 
 "backlight": {
