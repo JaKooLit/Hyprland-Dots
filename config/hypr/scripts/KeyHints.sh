@@ -20,7 +20,7 @@ yad --width=1000 --height=1000 \
 " W" "Random wallpaper" "(swww)" \
 " ALT W" "Choose waybar layout" "(waybar layout)" \
 " SHIFT W" "cycle waybar styles" "(waybar styles)" \
-"CTRL SHIFT W" "Reload Waybar" "(Press twice!!)" \
+"CTRL SHIFT W" "Reload Waybar and Dunst" "" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
 " Shift S" "screenshot region" "(swappy)" \
