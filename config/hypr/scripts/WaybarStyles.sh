@@ -4,7 +4,7 @@
 THEMEIS=$(realpath ~/.config/waybar/style.css | sed 's/.*-\(.*\)\.css/\1/')
 
 # Array for the styles
-STYLES=("default" "b&w" "rgb" "default_alter" "mauve" "light" "dark" "uline")
+STYLES=("pywal" "default" "b&w" "rgb" "default_alter" "mauve" "light" "dark" "uline")
 
 # Build ROFI
 SELECTED_STYLE=$(printf "%s\n" "${STYLES[@]}" | rofi -dmenu -p "Choose" -lines "${#STYLES[@]}")
