@@ -43,19 +43,19 @@ tooltip label {
 
 /*-----module groups----*/
 .modules-right {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     border: 0px solid #b4befe;
     border-radius: 10px;
 }
 
 .modules-center {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     border: 0px solid #b4befe;
     border-radius: 10px;
 }
 
 .modules-left {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     border: 0px solid #b4befe;
     border-radius: 10px;
     
