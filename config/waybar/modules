@@ -135,7 +135,7 @@
   "tooltip": true,
   "tooltip-format": "{timeTo} {power}w",
   "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
-  "on-click-right": "$HOME/.config/hypr/scripts/Wlogout.sh",
+  "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
 },
     
 "bluetooth": {
@@ -382,6 +382,8 @@
 "custom/light_dark": {
   "format": "",
   "on-click": "~/.config/hypr/scripts/DarkLight.sh",
+	"on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh",
+  "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh swww",
   "tooltip": false,
 },
     
@@ -395,8 +397,8 @@
   "format": "",
   "tooltip": false,
   "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser",
-  "on-click-right": "$HOME/.config/hypr/scripts/ChangeLayoutMenu.sh",
-  "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh swww",
+  "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",
+  "on-click-right": "~/.config/hypr/scripts/ChangeLayoutMenu.sh",
 },
 
 "custom/playerctl": {
@@ -412,7 +414,7 @@
 "custom/power": {
   "format": "⏻ ",
   "tooltip": false,
-  "on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
+  "on-click": "~/.config/hypr/scripts/Wlogout.sh",
   "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
 },
 
@@ -558,7 +560,7 @@
 "custom/power_vertical": {
   "format": "⏻",
   "tooltip": false,
-  "on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
+  "on-click": "~/.config/hypr/scripts/Wlogout.sh",
   "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
 },
 }
