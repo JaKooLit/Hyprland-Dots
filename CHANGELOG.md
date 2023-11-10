@@ -9,6 +9,7 @@
 
 - added additional informations on HINTS! (SUPER H)
 - added ricing tips (checkout Readme)
+- renamed waybar styles
 
 ### 08-Nov-2023
  - some small tweak... I have made some small note on Wlogout.sh located in ~/.config/hypr/scripts . This is to adjust for screen resolution.
