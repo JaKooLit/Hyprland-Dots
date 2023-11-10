@@ -1,5 +1,15 @@
 ## CHANGES
 
+### 10-Nov-2023
+- Waybar styles menu. (SUPER SHIFT W) Thanks to @Krautt
+- added different styles of hyprland/workspaces
+- Some changes on waybar modules 
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Changelogs-Screenshots/10-11-2023.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Changelogs-Screenshots/10-11-2023-waybar-buttons.png" /> 
+
+- added additional informations on HINTS! (SUPER H)
+- added ricing tips (checkout Readme)
+
 ### 08-Nov-2023
  - some small tweak... I have made some small note on Wlogout.sh located in ~/.config/hypr/scripts . This is to adjust for screen resolution.
 
