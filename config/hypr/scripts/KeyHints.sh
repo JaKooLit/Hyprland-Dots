@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 yad --width=1000 --height=1000 \
 --center \
