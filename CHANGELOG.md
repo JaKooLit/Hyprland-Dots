@@ -1,5 +1,12 @@
 ## CHANGES
 
+### 11-Nov-2023
+- Cleanup / renaming of waybar styles and layouts for human readable output
+- added Catppuccin Mocha and Latte waybar themes
+- Scripts and rofi adjustments in line with waybar cleaning and renaming
+- Dark Light function wont change waybar style anymore. However, if Catpuccin waybar themes is in use, color will change according :)
+- Drop support for "mauve" waybar style.. I think nobody is using it anyway :)
+
 ### 10-Nov-2023
 - Waybar styles menu. (SUPER SHIFT W) Thanks to @Krautt
 - added different styles of hyprland/workspaces

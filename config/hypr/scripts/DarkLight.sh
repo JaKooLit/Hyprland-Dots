@@ -41,7 +41,7 @@ fi
 path_param=$(echo $next_mode | sed 's/.*/\u&/')
 
 notify_user "$next_mode"
-ln -sf "${waybar_config}/style/style-pywal.css" "${waybar_config}/style.css"
+#ln -sf "${waybar_config}/style/style-pywal.css" "${waybar_config}/style.css"
 ln -sf "${dunst_config}/styles/dunstrc-${next_mode}" "${dunst_config}/styles/dunstrc"
 
 # Symlink for rofi theme
