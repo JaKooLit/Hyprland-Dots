@@ -19,7 +19,7 @@
 ],
 
 "modules-center": [
-	"hyprland/workspaces#2",
+	"hyprland/workspaces",
 ],
 
 "modules-right": [

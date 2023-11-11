@@ -1,69 +1,75 @@
+//* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
+
 {
-// HYPRLAND WORKSPACES. CHOOSE as required
+// HYPRLAND WORKSPACES. CHOOSE as desired and place on waybar configs
 // CIRCLES Style
- "hyprland/workspaces": {
-  "all-outputs": true,
+"hyprland/workspaces": {
+  "active-only": false,
+  "all-outputs": true, 
   "format": "{icon}",
+  "show-special": false,
   "on-click": "activate",
-"on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
   "on-scroll-down": "hyprctl dispatch workspace e-1",
   "persistent_workspaces": {
     "1": [],
     "2": [],
     "3": [],
     "4": [],
-    "5": []
+    "5": [],
   },
   "format-icons": {
     "active": "",
     "default": "",
+  },  
 },
-  "active-only": false,
-  "all-outputs": true   
-},
-
 // ROMAN Numerals style
 "hyprland/workspaces#2": {
   "active-only":false,
   "all-outputs": true,
   "format": "{icon}",
+  "show-special": false,
   "on-click": "activate",
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-down": "hyprctl dispatch workspace e-1",
   "persistent_workspaces":{
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": []
+      "5": [],
   },
   "format-icons": {
     "1": "I",
     "2": "II",
     "3": "III",
     "4": "IV",
-    "5": "V"
+    "5": "V",
     
-  }
+  },
 },
-
 // PACMAN Style
 "hyprland/workspaces#3": {
   "active-only":false,
   "all-outputs": true,
   "format": "{icon}",
   "on-click": "activate",
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-down": "hyprctl dispatch workspace e-1",
+  "show-special": false,
   "persistent_workspaces":{
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": []
+      "5": [],
   },
   "format": "{icon}",
   "format-icons": {
     "active": " 󰮯 ",
     "default": "  ",
-    "persistent":"󰑊"
-  }
+    "persistent":"󰑊",
+  },
 },
 
 //  NUMBERS and ICONS style
@@ -73,6 +79,8 @@
   //"format": " {icon} ",
   "show-special": false,
   "on-click": "activate",
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-down": "hyprctl dispatch workspace e-1",
   "all-outputs": true,
   "sort-by-number": true,
   "format-icons": {
@@ -88,11 +96,8 @@
     "10": "10",
     "focused": "",
     "default": "",
-  },
-  "on-scroll-up": "hyprctl dispatch workspace e+1",
-  "on-scroll-down": "hyprctl dispatch workspace e-1",
+	},
 },
-
 "backlight": {
   "interval": 2,
   "align": 0,
