@@ -43,7 +43,7 @@
 ## ✨ Copying instructions. 
 - Note! The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
 
-- ~/.config (btop cava dunst gtk-3.0 hypr kitty rofi swappy swaylock waybar wlogout) - These are folders to be copied.
+- ~/.config (btop cava dunst hypr kitty rofi swappy swaylock waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
 
 ### 🔔 Automatic copy of configurations
