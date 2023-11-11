@@ -6,6 +6,8 @@
 - Scripts and rofi adjustments in line with waybar cleaning and renaming
 - Dark Light function wont change waybar style anymore. However, if Catpuccin waybar themes is in use, color will change according :)
 - Drop support for "mauve" waybar style.. I think nobody is using it anyway :)
+- Added random wallpaper switcher every 5 minutes. can adjust the timer by editing ~/.config/hypr/scripts/RandomWallpaper.sh. Wallpapers path can be adjust in ~/.config/hypr/configs/Execs.conf
+
 
 ### 10-Nov-2023
 - Waybar styles menu. (SUPER SHIFT W) Thanks to @Krautt

@@ -134,11 +134,19 @@ window#waybar.hidden {
   color: @sapphire;
 }
 
+#temperature {
+  color: @teal;
+}
+
 #tray > .passive {
   -gtk-icon-effect: dim;
 }
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
+}
+
+#keyboard-state {
+  color: @flamingo;
 }
 
 #workspaces button {
@@ -181,7 +189,7 @@ window#waybar.hidden {
   color: @red;
 }
 
-#custom-uptime {
+#custom-light_dark {
   color: @blue;
 }
 
@@ -189,11 +197,8 @@ window#waybar.hidden {
   color: @lavender;
 }
 
-#custom-vpn_check {
-  color: @sky;
-}
-#custom-cputemp {
-  color: @teal;
+#custom-lock {
+  color: @maroon;
 }
 
 #pulseaudio {
