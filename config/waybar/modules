@@ -398,7 +398,7 @@
   "tooltip": false,
   "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser",
   "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",
-  "on-click-right": "~/.config/hypr/scripts/ChangeLayoutMenu.sh",
+  "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
 },
 
 "custom/playerctl": {

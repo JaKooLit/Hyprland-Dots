@@ -12,12 +12,13 @@ STYLES=(
 "colors" 
 "colors-border"
 "colors-line"
-"colorful" 
-"mauve" 
+"colorful"
+"catppuccin-mocha"
+"catppuccin-latte"  
 	)
 
 # Build ROFI
-SELECTED_STYLE=$(printf "%s\n" "${STYLES[@]}" | rofi -dmenu -p "Choose" -lines "${#STYLES[@]}")
+SELECTED_STYLE=$(printf "%s\n" "${STYLES[@]}" | rofi -dmenu -config ~/.config/rofi/config-waybar.rasi "${#STYLES[@]}")
 
 # Here you verify the selected theme
 if [[ " ${STYLES[@]} " =~ " $SELECTED_STYLE " ]]; then

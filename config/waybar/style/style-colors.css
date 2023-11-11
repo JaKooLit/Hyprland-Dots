@@ -12,19 +12,19 @@
 @define-color accent5 #7da6ff;
 @define-color accent6 #0db9d7;
 
-*{
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+* {
 font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
 min-height: 0;
 /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
 font-size: 98%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-padding: 0px;
+padding: 1px;
 margin-top: 1px;
 margin-bottom: 1px;
 }
-
-/* icons start at U+E900 in Jetbrains mono in gucharmap */
 
 window#waybar {
     background-color: rgba(50, 50, 50, 0.0);
