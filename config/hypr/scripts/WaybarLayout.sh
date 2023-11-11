@@ -29,12 +29,17 @@ apply_config() {
 main() {
     choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-waybar.rasi)
 
+    if [[ -z "$choice" ]]; then
+        echo "No option selected. Exiting."
+        exit 0
+    fi
+
     case $choice in
         "no panel")
             if pgrep -x "waybar" >/dev/null; then
                 pkill waybar
-                exit
             fi
+            exit 0
             ;;
         *)
             apply_config "$choice"
@@ -43,11 +48,11 @@ main() {
 }
 
 # Check if rofi is already running
-if pidof rofi >/dev/null; then
+if pgrep -x "rofi" >/dev/null; then
     pkill rofi
     exit 0
-else
-    main
 fi
 
-exec ~/.config/hypr/scripts/Refresh.sh &
+main
+
+~/.config/hypr/scripts/Refresh.sh &
