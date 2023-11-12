@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # If you have 1440p, better to use this
-# wlogout --protocol layer-shell -b 5 -T 600 -B 600 &
+#wlogout --protocol layer-shell -b 5 -T 600 -B 600 &
 
 # for 1080p
 wlogout --protocol layer-shell -b 5 -T 450 -B 450 &

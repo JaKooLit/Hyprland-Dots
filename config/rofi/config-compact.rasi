@@ -22,7 +22,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						30%;
+    width:						40%;
 	height:						30%;
     x-offset:                   0px;
     y-offset:                   0px;
