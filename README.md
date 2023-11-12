@@ -93,7 +93,6 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - More question? Maybe answered already in Help File! SUPER SHIFT H to launch it!
 - If you still have, kindly join my discord for faster communication. See invite link below. If not, open an issue on github
 
-
 ### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
 - Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
@@ -103,10 +102,8 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - [ ] Tweak rofi layouts and Themes
 - [ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.
 
-
 ### Some ricing tips
 - [Ricing Tips](https://github.com/JaKooLit/Hyprland-Dots/blob/main/assets/Tips.md?plain=1)
-
 
 ### 🔮 Discord Server
 - kindly join my Discord Server https://discord.gg/V2SJ92vbEN
