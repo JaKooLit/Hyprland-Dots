@@ -138,6 +138,10 @@ window#waybar.hidden {
   color: @teal;
 }
 
+#temperature.critical {
+  background-color: @red;
+}
+
 #tray > .passive {
   -gtk-icon-effect: dim;
 }
