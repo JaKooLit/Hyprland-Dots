@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sed '1,/^### DATA ###$/d' $0 | 
-rofi -dmenu -config ~/.config/rofi/config-long.rasi | 
+rofi -dmenu -config ~/.config/rofi/config-long.rasi| 
 cut -d ' ' -f 1 | tr -d '\n' | wl-copy
 
 exit

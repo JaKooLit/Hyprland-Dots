@@ -70,7 +70,7 @@ echo "Keyboard layout: $layout"
 printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n\n"
 
 # Prompt the user to confirm whether the detected layout is correct
-read -p "Detected keyboard layout or keymap: $layout. Is this correct? [y/n] " confirm
+read -p "$ORANGE Detected keyboard layout or keymap: $layout. Is this correct? [y/n] " confirm
 
 if [ "$confirm" = "y" ]; then
   # If the detected layout is correct, update the 'kb_layout=' line in the file
@@ -86,10 +86,42 @@ else
 fi
 printf "\n"
 
+# Action to do for better rofi appearance
+while true; do
+    echo "$ORANGE Select monitor resolution for better Rofi appearance:"
+    echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
+    echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
+    read -p "$CAT Enter the number of your choice: " choice
+
+    case $choice in
+        1)
+            resolution="≤ 1080p"
+            break
+            ;;
+        2)
+            resolution="≥ 1440p"
+            break
+            ;;
+        *)
+            echo "Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
+            ;;
+    esac
+done
+
+# Use the selected resolution in your existing script
+echo "You chose $resolution resolution for better Rofi appearance."
+
+# Add your commands based on the resolution choice
+if [ "$resolution" == "<= 1080p" ]; then
+	cp -r config/rofi/resolution/1080p/* config/rofi/
+elif [ "$resolution" == ">= 1440p" ]; then
+    cp -r config/rofi/resolution/1440p/* config/rofi/
+fi
+
 ### Copy Config Files ###
 set -e # Exit immediately if a command exits with a non-zero status.
 
-printf "${NOTE} copying dotfiles\n"
+printf "${NOTE} - copying dotfiles\n"
   for DIR in btop cava dunst hypr kitty rofi swappy swaylock waybar wlogout; do 
     DIRPATH=~/.config/$DIR
     if [ -d "$DIRPATH" ]; then 

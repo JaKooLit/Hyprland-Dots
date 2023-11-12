@@ -1,5 +1,10 @@
 ## CHANGES
 
+### 12-Nov-2023
+- added monitor resolution for better rofi appearance
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Changelogs-Screenshots/12-11-2023-resolution.png" /> 
+
 ### 11-Nov-2023
 - Cleanup / renaming of waybar styles and layouts for human readable output
 - added Catppuccin Mocha and Latte waybar themes
