@@ -78,7 +78,7 @@ if [ "$confirm" = "y" ]; then
   mv temp.conf config/hypr/configs/Settings.conf
 else
   # If the detected layout is not correct, prompt the user to enter the correct layout
-  printf "${WARN} Ensure to type in the proper keyboard layout, e.g., gb, de, pl, etc.\n"
+  printf "${WARN} Ensure to type in the proper keyboard layout else Hyprland will crash, e.g., gb, de, pl, etc.\n"
   read -p "Please enter the correct keyboard layout: " new_layout
   # Update the 'kb_layout=' line with the correct layout in the file
   awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/configs/Settings.conf > temp.conf
