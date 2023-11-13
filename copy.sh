@@ -164,4 +164,4 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
 printf "\n${OK} Copy Completed!\n\n"
-printf "${NOTE} Highly recommended to logout and re-login\n\n"
+printf "${NOTE} Need to logout and re-login or reboot\n\n"
