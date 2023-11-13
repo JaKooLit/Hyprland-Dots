@@ -1,4 +1,7 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
 // ### "Plasma" (bottom) ### //
+
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
