@@ -13,9 +13,9 @@
 "fixed-center": true,
 "ipc": true,
 "padding": 4,
-"margin-left": 6,
-"margin-right": 10,
-"margin-top": 10,
+"margin-top": 6,
+"margin-left": 8,
+"margin-right": 8,
 
 "modules-left": [
 	"cpu", 
@@ -47,7 +47,7 @@
 "margin-top": 8,
 "margin-bottom": 8,
 "margin-left": 8,
-"margin-right": 3,
+//"margin-right": 3,
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
@@ -73,7 +73,7 @@
 "position": "right",
 "margin-top": 8,
 "margin-bottom": 8,
-"margin-left": 1,
+//"margin-left": 1,
 "margin-right": 8,
 "spacing": 3,
 "fixed-center": true,
@@ -105,8 +105,8 @@
 "fixed-center": true,
 "ipc": true,
 "margin-left": 6,
-"margin-right": 10,
-"margin-bottom": 6,
+"margin-right": 6,
+"margin-bottom": 4,
 
 "modules-left": [  
 	"wlr/taskbar",

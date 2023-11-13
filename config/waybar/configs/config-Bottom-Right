@@ -10,9 +10,9 @@
 "spacing": 2,
 "fixed-center": true,
 "ipc": true,
-"margin-top": 6,
-"margin-left": 8,
-"margin-right": 8,
+"margin-left": 6,
+"margin-right": 6,
+"margin-bottom": 4,
 
 "modules-left": [
     "custom/menu",
@@ -48,7 +48,7 @@
 "height": 650,
 "margin-top": 8,
 "margin-bottom": 8,
-"margin-left": 3,
+//"margin-left": 3,
 "margin-right": 3,
 "spacing": 3,
 "fixed-center": true,

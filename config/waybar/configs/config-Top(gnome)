@@ -9,9 +9,9 @@
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-"margin-left": 10,
-"margin-right": 10,
 "margin-top": 6,
+"margin-left": 8,
+"margin-right": 8,
 
 "modules-left": [
 	"custom/menu", 
