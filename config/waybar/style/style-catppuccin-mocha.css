@@ -17,8 +17,9 @@ margin-bottom: 1px;
 window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
-  background: @theme_base_color;
-  border: 2px solid @overlay0;
+  background: transparent;
+  /*border: 2px solid @overlay0;*/
+  /*background: @theme_base_color;*/
   border-radius: 10px;
 }
 
@@ -31,17 +32,17 @@ window#waybar.hidden {
 }
 
 /* This section can be use if you want to separate waybar modules */
-/* .modules-left, .modules-center, .modules-right { */
-/*   background: @theme_base_color; */
-/*   border: 3px solid @overlay0; */
-/*   padding: 0px 5px; */
-/*   border-radius: 5; */
-/* } */
+.modules-left, .modules-center, .modules-right {
+  background: @theme_base_color; 
+  border: 0.5px solid @overlay0;
+  padding: 0px 5px;
+  border-radius: 10px;
+} 
 
-/* .modules-center { */
-  /* border: 3px solid @lavender; */
-  /* margin: 0px 5px; */
-/* } */
+ .modules-left, .modules-right {
+   border: 1px solid @blue;
+   /*margin: 0px 5px;*/
+} 
 
 #backlight,
 #battery,
@@ -136,10 +137,6 @@ window#waybar.hidden {
 
 #temperature {
   color: @teal;
-}
-
-#temperature.critical {
-  background-color: @red;
 }
 
 #tray > .passive {

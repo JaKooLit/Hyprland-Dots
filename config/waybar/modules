@@ -1,75 +1,69 @@
-//* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
-
 {
-// HYPRLAND WORKSPACES. CHOOSE as desired and place on waybar configs
+// HYPRLAND WORKSPACES. CHOOSE as required
 // CIRCLES Style
-"hyprland/workspaces": {
-  "active-only": false,
-  "all-outputs": true, 
+ "hyprland/workspaces": {
+  "all-outputs": true,
   "format": "{icon}",
-  "show-special": false,
   "on-click": "activate",
-  "on-scroll-up": "hyprctl dispatch workspace e+1",
+"on-scroll-up": "hyprctl dispatch workspace e+1",
   "on-scroll-down": "hyprctl dispatch workspace e-1",
   "persistent_workspaces": {
     "1": [],
     "2": [],
     "3": [],
     "4": [],
-    "5": [],
+    "5": []
   },
   "format-icons": {
     "active": "",
     "default": "",
-  },  
 },
+  "active-only": false,
+  "all-outputs": true   
+},
+
 // ROMAN Numerals style
 "hyprland/workspaces#2": {
   "active-only":false,
   "all-outputs": true,
   "format": "{icon}",
-  "show-special": false,
   "on-click": "activate",
-  "on-scroll-up": "hyprctl dispatch workspace e+1",
-  "on-scroll-down": "hyprctl dispatch workspace e-1",
   "persistent_workspaces":{
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
+      "5": []
   },
   "format-icons": {
     "1": "I",
     "2": "II",
     "3": "III",
     "4": "IV",
-    "5": "V",
+    "5": "V"
     
-  },
+  }
 },
+
 // PACMAN Style
 "hyprland/workspaces#3": {
   "active-only":false,
   "all-outputs": true,
   "format": "{icon}",
   "on-click": "activate",
-  "on-scroll-up": "hyprctl dispatch workspace e+1",
-  "on-scroll-down": "hyprctl dispatch workspace e-1",
-  "show-special": false,
   "persistent_workspaces":{
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
+      "5": []
   },
   "format": "{icon}",
   "format-icons": {
     "active": " 󰮯 ",
     "default": "  ",
-    "persistent":"󰑊",
-  },
+    "persistent":"󰑊"
+  }
 },
 
 //  NUMBERS and ICONS style
@@ -79,8 +73,6 @@
   //"format": " {icon} ",
   "show-special": false,
   "on-click": "activate",
-  "on-scroll-up": "hyprctl dispatch workspace e+1",
-  "on-scroll-down": "hyprctl dispatch workspace e-1",
   "all-outputs": true,
   "sort-by-number": true,
   "format-icons": {
@@ -96,8 +88,11 @@
     "10": "10",
     "focused": "",
     "default": "",
-	},
+  },
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-down": "hyprctl dispatch workspace e-1",
 },
+
 "backlight": {
   "interval": 2,
   "align": 0,
@@ -332,8 +327,8 @@
 "temperature": {
   "interval": 10,
   "tooltip": false,
-  //"hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
-  "thermal-zone": 0,
+  "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+  //"thermal-zone": 0,
   "critical-threshold": 82,
   "format-critical": "{temperatureC}°C {icon}",
   "format": "{temperatureC}°C {icon}",
@@ -342,7 +337,7 @@
 },
     
 "tray": {
-  "icon-size": 17,
+  //"icon-size": 17,
   "spacing": 8,
 },
     
@@ -413,7 +408,11 @@
   "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} ~ {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
   "on-click-middle": "playerctl play-pause",
   "on-click": "playerctl previous",
-  "on-click-right": "playerctl next"
+  "on-click-right": "playerctl next",
+  "scroll-step": 5.0,
+  "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
+  "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
+  "smooth-scrolling-threshold": 1,
 },
     
 "custom/power": {
@@ -553,8 +552,8 @@
 "temperature#vertical": {
   "interval": 10,
   "tooltip": true,
-  //"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-  "thermal-zone": 0,
+  "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+  //"thermal-zone": 0,
   "critical-threshold": 80,
   "format-critical": "{icon}\n{temperatureC}°C",
   "format": " {icon}",
