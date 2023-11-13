@@ -6,6 +6,7 @@ WCONFIG="$HOME/.config/waybar/config"
 menu() {
     cat <<EOF
 default
+default-Bottom
 Top(gnome)
 Bottom(plasma)
 simple-long
