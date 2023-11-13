@@ -1,5 +1,8 @@
 ## CHANGES
 
+### 13-Nov-2023
+- created a separated conf for Laptop (Laptops.conf) in ~/.config/hyp/configs . This was mostly from Keybinds.conf. This is just to easily identity for laptop Keybinds specific.
+
 ### 12-Nov-2023
 - added monitor resolution for better rofi appearance
 <p align="center">
