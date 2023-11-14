@@ -12,6 +12,7 @@
   Super          q        *quit* (kill focused window)
   Super   Shift  q        *quit* (kill focused window)
   Super          d        *show app menu* (`rofi`)
+  Super                   *show app menu* (`rofi`)
 
 # Scripts (Power menu, waybar-layout menu, wallpaper menu, etc, have small box)
   - All the scripts all located in ~/.config/hypr/scripts.

@@ -12,7 +12,7 @@ yad --width=1000 --height=1000 \
 --timeout-indicator=bottom \
 "ESC" "close this app" "" "=" "SUPER KEY" "(SUPER KEY)" \
 " enter" "Terminal" "(kitty)" \
-" D" "App Launcher" "(rofi)" \
+" or  D" "App Launcher" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
 " Q or  Shift Q  " "close focused app" "(kill)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
