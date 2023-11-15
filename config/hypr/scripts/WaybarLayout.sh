@@ -1,63 +1,50 @@
 #!/bin/bash
 
+# Files
+#waybar
 CONFIG="$HOME/.config/waybar/configs"
 WCONFIG="$HOME/.config/waybar/config"
 
-menu() {
-    cat <<EOF
-default
-default-Bottom
-Top(gnome)
-Bottom(plasma)
-simple-long
-simple-short
-Top-&-Bottom
-Left
-Right
-Top-Left
-Top-Right
-Bottom-Left
-Bottom-Right
-all-sides
-no panel
-Peony
-Chrysanthemum
-Gardenia
-Camellia
-EOF
-}
-
-apply_config() {
-    ln -sf "$CONFIG/config-$1" "$WCONFIG"
+menu(){
+printf "1. Peony\n" 
+printf "2. Chrysanthemum\n" 
+printf "3. Gardenia\n"
+printf "4. Camellia\n"
 }
 
 main() {
-    choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-waybar.rasi)
-
-    if [[ -z "$choice" ]]; then
-        echo "No option selected. Exiting."
-        exit 0
-    fi
-
+    choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-long.rasi | cut -d. -f1)
     case $choice in
-        "no panel")
-            if pgrep -x "waybar" >/dev/null; then
-                pkill waybar
-            fi
-            exit 0
-            ;;
+    1)
+        ln -sf "$CONFIG/Peony" "$WCONFIG"
+        ;;
+    2)
+        ln -sf "$CONFIG/Chrysanthemum" "$WCONFIG"
+        ;;
+    3)
+        ln -sf "$CONFIG/Gardenia" "$WCONFIG"
+        ;;
+    4)
+        ln -sf "$CONFIG/Camellia" "$WCONFIG"
+        ;;
+	10)
+        if pgrep -x "waybar" >/dev/null; then
+        pkill waybar
+        exit
+        fi
+        ;;        
         *)
-            apply_config "$choice"
-            ;;
+        ;;
     esac
 }
 
 # Check if rofi is already running
-if pgrep -x "rofi" >/dev/null; then
+if pidof rofi >/dev/null; then
     pkill rofi
     exit 0
+else
+    main
 fi
 
-main
-
-~/.config/hypr/scripts/Refresh.sh &
+exec ~/.config/hypr/scripts/Refresh.sh &
+                

@@ -109,7 +109,7 @@
   "tooltip-format": "{timeTo} {power}w",
   "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
   "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
-},
+}
 
     
 }
