@@ -19,7 +19,7 @@ STYLES=(
 "colorful" 
 "Catppuccin-Mocha" 
 "Catppuccin-Latte"
-"None"
+"Transparent"
 )
 
 # Build ROFI
