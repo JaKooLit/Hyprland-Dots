@@ -5,83 +5,79 @@
 //* --- 👍 designed by https://github.com/Krautt  👍 --- */
 
 {
- 
-
-    "include": "~/.config/waybar/modules",
-	"layer": "top",
-	//"mode": "dock",
-	"exclusive": true,
-	"passthrough": false,
-	"position": "top",
-	"spacing": 5,
-	"fixed-center": false,
-	"ipc": true,
-	"margin-top": 0,
-	"margin-bottom": 5,
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 5,
+"fixed-center": false,
+"ipc": true,
+"margin-top": 0,
+//"margin-bottom": 5,
 	
-	"modules-left": ["clock#gar","tray"],
-	  
-	"modules-center": ["hyprland/workspaces#gar"], 
-	
-	"modules-right": ["pulseaudio#gar","backlight#gar", "battery#gar"],
-
-
-    // M O D U L E S //
-
-    "hyprland/workspaces#gar": {
-      "active-only": false,
-      "all-outputs": true, 
-      "format": "{icon}",
-      "show-special": false,
-      "on-click": "activate",
-      "on-scroll-up": "hyprctl dispatch workspace e+1",
-      "on-scroll-down": "hyprctl dispatch workspace e-1",
-      "persistent_workspaces": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-      },
-      "format-icons": {
-        "active": "",
-        "default": "",
-      }
+"modules-left": ["clock#gar","tray"],
   
-    },
+"modules-center": ["hyprland/workspaces#gar"], 
+	
+"modules-right": ["pulseaudio#gar","backlight#gar", "battery#gar"],
 
-    "clock#gar": {
-			"format": "{:%a %d | %H:%M}",
-			"format-alt": "{:%A, %d %B, %Y (%R)}"
-		},
+// M O D U L E S //
 
-    "hyprland/window#gar": {
-      "format": "{}",
-      "max-length": 60
-  },
-
-  "tray#gar": {
-    "icon-size": 15,
-    "spacing": 10
-  },
-
-  "pulseaudio#gar": {
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon} {volume}%",
-    "format-bluetooth-muted": " {icon}",
-    "format-muted": "󰸈",
+"hyprland/workspaces#gar": {
+  "active-only": false,
+  "all-outputs": true, 
+  "format": "{icon}",
+  "show-special": false,
+  "on-click": "activate",
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-down": "hyprctl dispatch workspace e-1",
+     "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+},
     "format-icons": {
-          "headphone": "",
-          "hands-free": "",
-          "headset": "",
-          "phone": "",
-          "portable": "",
-          "car": "",
-          "default": ["", "", ""]
-    },
-    "on-click": "pamixer --toggle-mute",
-"on-click-right": "pavucontrol",
-"tooltip": false
+      "active": "",
+      "default": "",
+    }
+},
+
+"clock#gar": {
+	"format": "{:%a %d | %H:%M}",
+	"format-alt": "{:%A, %d %B, %Y (%R)}"
+},
+
+"hyprland/window#gar": {
+  "format": "{}",
+  "max-length": 60
+},
+
+"tray#gar": {
+  "icon-size": 15,
+  "spacing": 10
+},
+
+"pulseaudio#gar": {
+  "format": "{icon} {volume}%",
+  "format-bluetooth": "{icon} {volume}%",
+  "format-bluetooth-muted": " {icon}",
+  "format-muted": "󰸈",
+  "format-icons": {
+    "headphone": "",
+    "hands-free": "",
+    "headset": "",
+    "phone": "",
+    "portable": "",
+    "car": "",
+    "default": ["", "", ""]
+  },
+  "on-click": "pamixer --toggle-mute",
+  "on-click-right": "pavucontrol",
+  "tooltip": false
 },
 
 "backlight#gar": {
@@ -89,7 +85,6 @@
   "format": "{icon} {percent}%",
   "format-icons": ["", ""]
 },
-
 
 "battery#gar": {
   "interval": 60,
@@ -115,7 +110,5 @@
   "tooltip-format": "{timeTo} {power}w",
   "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
   "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
-},
-
-    
+},    
 }
