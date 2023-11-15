@@ -1,5 +1,19 @@
 ## CHANGES
 
+### 15-Nov-2023
+- edited pywal.css waybar style.
+- waybar configs and styles renamed.
+- removed / added wallpaper
+- dropped support for waybar layouts (gnome,plasma,all-sides)
+- added new waybar flavours and design (huge credit to @Krautt)
+- some new waybar screenshots. These are only few. You can mix and match however you prefer
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/waybar/waybar1.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/waybar/waybar2.png" />   
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/waybar/waybar3.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/waybar/waybar4.png" />
+
+
+
+
 ### 13-Nov-2023
 - created a separated conf for Laptop (Laptops.conf) in ~/.config/hyp/configs . This was mostly from Keybinds.conf. This is just to easily identity for laptop Keybinds specific.
 
