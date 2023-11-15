@@ -151,8 +151,8 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 
 # Initial Symlinks to avoid errors
 # symlinks for waybar
-ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config" && \
-ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css" && \
+ln -sf "$HOME/.config/waybar/configs/default" "$HOME/.config/waybar/config" && \
+ln -sf "$HOME/.config/waybar/style/Golden-Noir.css" "$HOME/.config/waybar/style.css" && \
 
 # symlinks for dunst
 ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" && \
