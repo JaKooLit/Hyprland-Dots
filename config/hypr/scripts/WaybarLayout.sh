@@ -7,6 +7,10 @@ menu() {
     cat <<EOF
 default
 default-Bottom
+Peony
+Chrysanthemum
+Gardenia
+Camellia
 Top(gnome)
 Bottom(plasma)
 simple-long
@@ -20,6 +24,7 @@ Bottom-Left
 Bottom-Right
 all-sides
 no panel
+
 EOF
 }
 

@@ -5,6 +5,10 @@ THEMEIS=$(realpath ~/.config/waybar/style.css | sed 's/.*-\(.*\)\.css/\1/')
 
 # Array for the styles
 STYLES=(
+"Purple"
+"Crimson"
+"Golden-Noir"
+"Simple-Pink"
 "pywal" 
 "dark" 
 "light" 
@@ -15,6 +19,7 @@ STYLES=(
 "colorful" 
 "catppuccin-mocha" 
 "catppuccin-latte"
+"None"
 )
 
 # Build ROFI
