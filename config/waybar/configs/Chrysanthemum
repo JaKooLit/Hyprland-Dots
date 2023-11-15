@@ -1,23 +1,23 @@
 //* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-//* .............................................................................*/
-//* ......................     GARDENIA           .................... */
-//* ............................................................................ */
+//* ............................................*/
+//* .............CHRYSANTHEMUM.......................*/
+//* ............................................*/
 //* --- 👍 designed by https://github.com/Krautt  👍 --- */
 
 {
  
+
     "include": "~/.config/waybar/modules",
 	"layer": "top",
 	//"mode": "dock",
 	"exclusive": true,
 	"passthrough": false,
-	"position": "bottom",
+	"position": "top",
 	"spacing": 5,
 	"fixed-center": false,
 	"ipc": true,
-	"margin-top": 5,
+	"margin-top": 0,
 	"margin-bottom": 5,
-  "width": 768,
 	
 	"modules-left": ["clock#gar","tray"],
 	  
@@ -29,28 +29,29 @@
     // M O D U L E S //
 
     "hyprland/workspaces#gar": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{icon}",
-        "persistent_workspaces": {
-          "1": [],
-          "2": [],
-          "3": [],
-          "4": [],
-          "5": []
-        },
-        "format-icons": {
-          "1": "一",
-          "2": "二",
-          "3": "三",
-          "4": "四",
-          "5": "五"
-        }
-
+      "active-only": false,
+      "all-outputs": true, 
+      "format": "{icon}",
+      "show-special": false,
+      "on-click": "activate",
+      "on-scroll-up": "hyprctl dispatch workspace e+1",
+      "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "persistent_workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+      },
+      "format-icons": {
+        "active": "",
+        "default": "",
+      }
+  
     },
 
     "clock#gar": {
-			"format": "{:%a %d | %H:%M %p}",
+			"format": "{:%a %d | %H:%M}",
 			"format-alt": "{:%A, %d %B, %Y (%R)}"
 		},
 

@@ -1,7 +1,7 @@
 /* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-/* .............................................................................*/
-/* .............................    Purple    .............................. */
-/* ............................................................................ */
+/* ....................................*/
+/* .....            None      .........*/
+/* ................................... */
 /* --- 👍 designed by https://github.com/Krautt  👍 --- */
 
 *{
@@ -9,15 +9,15 @@
 	font-weight: bold;
 	min-height: 0;
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-	font-size: 98%;
+	font-size: 100%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 	padding: 1px;
 	}
 	
 	window#waybar {
-		background: #100214;
+		background:transparent;
 		border-radius: 1px;
-		color: #cba6f7;
+		color: whitesmoke;
 	}
 	
 	window#waybar.hidden {
@@ -25,7 +25,6 @@
 	}
 	window#waybar.empty {
 		background-color: transparent;
-		background: #100214;
 	}
 	
 	window#waybar.empty #window {
@@ -47,26 +46,17 @@
 	}
 	/*-----module groups----*/
 	.modules-right {
-		border: 5px solid #20052a;
-		border-radius: 5px 0px 0px 5px;
-		background-color: #3d174b;
-		padding-right: 2px;
-		padding-left: 2px;
+	
 	}
 	
 	.modules-center {
-		/*background-color: #1e1e2e;*/
+	
 	
 		
 	}
 	
 	.modules-left {
-		/*background-color: #1e1e2e;*/
-		border: 5px solid #20052a;
-		border-radius: 0px 0px 100px 0px;
-		background-color: #441a53;
-		padding-right: 2px;
-		padding-left: 2px;
+	
 	   
 	}
 	
@@ -77,9 +67,8 @@
 	}
 	   
 	#workspaces button.active {
-		color: #cba6f7;
-		border-radius: 50%;
-		background-color: black;
+		color: whitesmoke;
+		
 	}
 	  
 	#workspaces button.focused {
@@ -92,10 +81,10 @@
 	}
 		   
 	#workspaces button:hover {
-		color: #9CCFD8;
-		border-radius: 15px;
+		color: whitesmoke;
+	
 	}
-
+	
 
 	
 	#backlight,
@@ -157,7 +146,7 @@
 	}
 	   
 	#taskbar button.active {
-		background-color: purple;
+		background-color: #7f849c;
 	}
 		   
 	#battery.critical:not(.charging) {
@@ -179,16 +168,16 @@
 	}
 	
 	#pulseaudio-slider trough {
-		min-width: 80px;  
-		min-height: 5px; 
+		min-width: 80px;  /* Ajusta el ancho según tus preferencias */
+		min-height: 10px; /* Ajusta la altura según tus preferencias */
 		border-radius: 5px;
-		background-color: #22252a;
+		background-color: black;
 	}
 	
 	#pulseaudio-slider highlight {
-		min-height: 10px; 
+		min-height: 10px; /* Ajusta la altura según tus preferencias */
 		border-radius: 5px;
-		background-color: purple;
+		background-color: wheat;
 	}
 
 	#backlight-slider slider {
@@ -201,16 +190,16 @@
 	}
 	
 	#backlight-slider trough {
-		min-width: 80px;  
-		min-height: 10px; 
+		min-width: 80px;  /* Ajusta el ancho según tus preferencias */
+		min-height: 10px; /* Ajusta la altura según tus preferencias */
 		border-radius: 5px;
-		background-color: #22252a;
+		background-color: black;
 	}
 	
 	#backlight-slider highlight {
-		min-width: 10px; 
+		min-width: 10px; /* Ajusta el ancho según tus preferencias */
 		border-radius: 5px;
-		background-color: purple;
+		background-color: wheat;
 	}
 	
 	

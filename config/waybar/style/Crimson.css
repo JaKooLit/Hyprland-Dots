@@ -1,31 +1,30 @@
 /* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-/* .............................................................................*/
-/* ......................     Simple Pink        ........................ */
-/* ............................................................................ */
+/* ....................................*/
+/* ..........Crimson.................. */
+/* ................................... */
 /* --- 👍 designed by https://github.com/Krautt  👍 --- */
 
-
 *{
-	font-family: "JetBrains Mono Nerd Font";
+	font-family: "JetBrainsMono Nerd Font";
 	font-weight: bold;
 	min-height: 0;
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-	font-size: 98%;
+	font-size: 100%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-	
 	}
 	
 	window#waybar {
-		background: black;
-		border-radius: 50px;
-		color: whitesmoke;
+		background: #240303;
+		color: wheat;
+		border-radius: 00px 0px 100px 100px;
+		border: 1px solid grey;
 	}
 	
 	window#waybar.hidden {
 		opacity: 0.5;
 	}
 	window#waybar.empty {
-		background-color: black;
+		
 	}
 	
 	window#waybar.empty #window {
@@ -47,38 +46,37 @@
 	}
 	/*-----module groups----*/
 	.modules-right {
-		border: 5px solid #19141b;
-		border-radius: 50px 50px 50px 50px;
-		background-color: #ba5663;
-		padding-right: 2px;
-		padding-left: 2px;
-		margin: 1px;
+		padding-right: 5px;
+		padding-left: 5px;
+
 	}
 	
 	.modules-center {
-		background-color: black;
-	
+		
+		
 		
 	}
 	
 	.modules-left {
-		border: 5px solid #0d0a0f;
-		border-radius: 50px 50px 50px 50px;
-		background-color: #ba5663;
+		padding-right: 5px;
+		padding-left: 5px;
+		
+		
 	}
 	
 	#workspaces button {
-		color: pink;
+		color: wheat;
+		padding: 5px;
 	}
 	   
 	#workspaces button.active {
-		color: whitesmoke;
-		
-		
+		color: rgb(108, 18, 18);
+		background-color: #000000;
+		border: 1px solid grey;
 	}
 	  
 	#workspaces button.focused {
-		color: #c42a60;
+		color: #d8dee9;
 	}
 	   
 	#workspaces button.urgent {
@@ -87,18 +85,14 @@
 	}
 		   
 	#workspaces button:hover {
-		color: #ba5663;
-		background-color: #0d0a0d;
-	
-	}
+		color: rgb(71, 14, 14);
+		background-color: #000000;
 
-	#taskbar button:hover {
-		color: #ba5663;
-		background-color: #0d0a0d;
 	}
 
 	
-	
+
+
 	#backlight,
 	#battery,
 	#bluetooth,
@@ -142,9 +136,9 @@
 	#custom-weather.showyIcyDay,
 	#custom-weather.snowyIcyNight,
 	#custom-weather.sunnyDay {
-		color:whitesmoke;
-		padding: 0px 6px;
-		
+		color: wheat;
+		padding-right: 10px;
+		padding-left: 10px;
 	}
 		 
 	#temperature.critical {
@@ -158,9 +152,8 @@
 	}
 	   
 	#taskbar button.active {
-		background-color: pink;
-		border:1px solid #22252a;
-
+		background-color: rgb(128, 31, 31);
+		border: 1px solid grey;
 	}
 		   
 	#battery.critical:not(.charging) {
@@ -191,7 +184,7 @@
 	#pulseaudio-slider highlight {
 		min-height: 10px; 
 		border-radius: 5px;
-		background-color: pink;
+		background-color: #ba5663;
 	}
 
 	#backlight-slider slider {
@@ -213,7 +206,7 @@
 	#backlight-slider highlight {
 		min-width: 10px; 
 		border-radius: 5px;
-		background-color: pink;
+		background-color: #ba5663;
 	}
 	
 	

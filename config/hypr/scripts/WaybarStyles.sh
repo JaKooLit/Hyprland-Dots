@@ -17,8 +17,8 @@ STYLES=(
 "colors-border" 
 "colors-line" 
 "colorful" 
-"catppuccin-mocha" 
-"catppuccin-latte"
+"Catppuccin-Mocha" 
+"Catppuccin-Latte"
 "None"
 )
 
@@ -40,7 +40,7 @@ else
 fi
 
 # APPLY THEME
-THEMEFILE="$HOME/.config/waybar/style/style-${SWITCHTO}.css"
+THEMEFILE="$HOME/.config/waybar/style/${SWITCHTO}.css"
 if [ -f "$THEMEFILE" ]; then
     ln -sf "$THEMEFILE" "$HOME/.config/waybar/style.css"
 else

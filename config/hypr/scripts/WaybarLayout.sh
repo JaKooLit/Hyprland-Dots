@@ -7,10 +7,6 @@ menu() {
     cat <<EOF
 default
 default-Bottom
-Peony
-Chrysanthemum
-Gardenia
-Camellia
 Top(gnome)
 Bottom(plasma)
 simple-long
@@ -24,12 +20,15 @@ Bottom-Left
 Bottom-Right
 all-sides
 no panel
-
+Peony
+Chrysanthemum
+Gardenia
+Camellia
 EOF
 }
 
 apply_config() {
-    ln -sf "$CONFIG/config-$1" "$WCONFIG"
+    ln -sf "$CONFIG/$1" "$WCONFIG"
 }
 
 main() {
