@@ -21,7 +21,7 @@
 		opacity: 0.5;
 	}
 	window#waybar.empty {
-		background-color: transparent;
+		background-color: #040406;
 	}
 	
 	window#waybar.empty #window {
