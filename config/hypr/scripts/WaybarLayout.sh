@@ -20,6 +20,10 @@ Bottom-Left
 Bottom-Right
 all-sides
 no panel
+Peony
+Chrysanthemum
+Gardenia
+Camellia
 EOF
 }
 
