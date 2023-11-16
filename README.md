@@ -57,7 +57,7 @@ to copy from upstream (possible bugs)
 chmod +x copy.sh
 ./copy.sh
 ```
-to copy from releases (more test)
+to copy from releases (more "stable")
 ```bash
 chmod +x release.sh
 ./release.sh
