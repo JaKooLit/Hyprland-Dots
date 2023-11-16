@@ -112,9 +112,9 @@ done
 echo "You chose $resolution resolution for better Rofi appearance."
 
 # Add your commands based on the resolution choice
-if [ "$resolution" == "<= 1080p" ]; then
-	cp -r config/rofi/resolution/1080p/* config/rofi/
-elif [ "$resolution" == ">= 1440p" ]; then
+if [ "$resolution" == "≤ 1080p" ]; then
+    cp -r config/rofi/resolution/1080p/* config/rofi/
+elif [ "$resolution" == "≥ 1440p" ]; then
     cp -r config/rofi/resolution/1440p/* config/rofi/
 fi
 
@@ -151,8 +151,8 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 
 # Initial Symlinks to avoid errors
 # symlinks for waybar
-ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config" && \
-ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css" && \
+ln -sf "$HOME/.config/waybar/configs/default" "$HOME/.config/waybar/config" && \
+ln -sf "$HOME/.config/waybar/style/pywal.css" "$HOME/.config/waybar/style.css" && \
 
 # symlinks for dunst
 ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" && \

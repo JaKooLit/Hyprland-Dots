@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### DEFAULT-BOTTOM### //
+// ### DEFAULT ### //
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
@@ -11,12 +11,12 @@
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-"margin-left": 6,
-"margin-right": 6,
-"margin-bottom": 4,
+//"margin-top": 6,
+"margin-left": 8,
+"margin-right": 8,
 
 "modules-left": [
-	"hyprland/workspaces",
+	"hyprland/workspaces#3",
 	"custom/separator#dot-line",
 	"cpu",
 	"custom/separator#dot-line", 
@@ -26,7 +26,7 @@
 	"custom/separator#dot-line",
 	"custom/weather",
 	],
-  
+
 "modules-center": [
 	"custom/menu",
 	"custom/separator#dot-line",
@@ -48,9 +48,8 @@
 	"custom/separator#dot-line",
 	"bluetooth",
 	"custom/separator#dot-line",
-	"network",
-	"custom/separator#dot-line",
-	//"cava", 
+	//"network",
+	//"custom/separator#dot-line", 
 	"battery",
 	"custom/separator#dot-line", 
 	"backlight",

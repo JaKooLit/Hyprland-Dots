@@ -17,7 +17,6 @@
 "margin-right": 8,
 
 "modules-left": [
-	"hyprland/workspaces#2", 
 	"cpu", 
 	"temperature", 
 	"memory",
@@ -62,7 +61,7 @@
 	 ],
 
 "modules-center": [
-	"cava",
+	"hyprland/workspaces#2", 
 	],
 
 "modules-right": [

@@ -5,6 +5,10 @@ THEMEIS=$(realpath ~/.config/waybar/style.css | sed 's/.*-\(.*\)\.css/\1/')
 
 # Array for the styles
 STYLES=(
+"Purple"
+"Crimson"
+"Golden-Noir"
+"Simple-Pink"
 "pywal" 
 "dark" 
 "light" 
@@ -13,8 +17,9 @@ STYLES=(
 "colors-border" 
 "colors-line" 
 "colorful" 
-"catppuccin-mocha" 
-"catppuccin-latte"
+"Catppuccin-Mocha" 
+"Catppuccin-Latte"
+"Transparent"
 )
 
 # Build ROFI
@@ -35,7 +40,7 @@ else
 fi
 
 # APPLY THEME
-THEMEFILE="$HOME/.config/waybar/style/style-${SWITCHTO}.css"
+THEMEFILE="$HOME/.config/waybar/style/${SWITCHTO}.css"
 if [ -f "$THEMEFILE" ]; then
     ln -sf "$THEMEFILE" "$HOME/.config/waybar/style.css"
 else

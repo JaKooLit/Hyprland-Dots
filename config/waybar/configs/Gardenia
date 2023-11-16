@@ -1,0 +1,118 @@
+//* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+//* ............................................*/
+//* .............GARDENIA.......................*/
+//* ............................................*/
+//* --- 👍 designed by https://github.com/Krautt  👍 --- */
+
+{
+ 
+
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "bottom",
+"spacing": 5,
+"fixed-center": false,
+"ipc": true,
+//"margin-top": 5,
+"margin-bottom": 5,
+"width": 768,
+	
+"modules-left": ["clock#gar","tray"],
+	  
+"modules-center": ["hyprland/workspaces#gar"], 
+	
+"modules-right": ["pulseaudio#gar","backlight#gar", "battery#gar"],
+
+
+// M O D U L E S //
+
+"hyprland/workspaces#gar": {
+  "disable-scroll": true,
+  "all-outputs": true,
+  "format": "{icon}",
+  "persistent_workspaces": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": []
+    },
+  "format-icons": {
+    "1": "一",
+    "2": "二",
+    "3": "三",
+    "4": "四",
+    "5": "五"
+    }
+},
+
+"clock#gar": {
+	"format": "{:%a %d | %H:%M %p}",
+	"format-alt": "{:%A, %d %B, %Y (%R)}"
+},
+
+"hyprland/window#gar": {
+  "format": "{}",
+  "max-length": 60
+},
+
+"tray#gar": {
+  "icon-size": 15,
+  "spacing": 10
+},
+
+"pulseaudio#gar": {
+  "format": "{icon} {volume}%",
+  "format-bluetooth": "{icon} {volume}%",
+  "format-bluetooth-muted": " {icon}",
+  "format-muted": "󰸈",
+  "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+  "on-click": "pamixer --toggle-mute",
+  "on-click-right": "pavucontrol",
+  "tooltip": false
+},
+
+"backlight#gar": {
+  "device": "intel_backlight",
+  "format": "{icon} {percent}%",
+  "format-icons": ["", ""]
+},
+
+"battery#gar": {
+  "interval": 60,
+  "align": 0,
+  "rotate": 0,
+  //"bat": "BAT1",
+  //"adapter": "ACAD",
+  "full-at": 100,
+  "design-capacity": false,
+  "states": {
+    "good": 95,
+    "warning": 30,
+    "critical": 15
+       },
+  "format": "{icon}  {capacity}%",
+  "format-charging": " {capacity}%",
+  "format-plugged": "󱘖 {capacity}%",
+  "format-full": "{icon} Full",
+  "format-alt": "{icon} {time}",
+  "format-icons": ["", "", "", "", ""],
+  "format-time": "{H}h {M}min",
+  "tooltip": true,
+  "tooltip-format": "{timeTo} {power}w",
+  "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
+  "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
+},
+   
+}

@@ -1,0 +1,218 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* ..........................................*/
+/* .......Simple Pink....................... */
+/* ......................................... */
+/* --- 👍 designed by https://github.com/Krautt  👍 --- */
+
+* {
+	font-family: "JetBrains Mono Nerd Font";
+	font-weight: bold;
+	min-height: 0;
+	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+	font-size: 98%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+
+}
+
+window#waybar {
+	background: black;
+	border-radius: 50px;
+	color: whitesmoke;
+}
+
+window#waybar.hidden {
+	opacity: 0.5;
+}
+
+window#waybar.empty {
+	background-color: black;
+}
+
+window#waybar.empty #window {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	/*  background-color: rgba(66,66,66,0.5); */
+	/* transparent */
+	background-color: transparent;
+}
+
+
+tooltip {
+	background: #1e1e2e;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #11111b;
+	color: #cba6f7;
+}
+
+/*-----module groups----*/
+.modules-right {
+	border: 5px solid #19141b;
+	border-radius: 50px 50px 50px 50px;
+	background-color: #ba5663;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin: 3px;
+}
+
+.modules-center {
+	background-color: black;
+
+
+}
+
+.modules-left {
+	border: 5px solid #0d0a0f;
+	border-radius: 50px 50px 50px 50px;
+	background-color: #ba5663;
+}
+
+#workspaces button {
+	color: pink;
+}
+
+#workspaces button.active {
+	color: whitesmoke;
+
+
+}
+
+#workspaces button.focused {
+	color: #c42a60;
+}
+
+#workspaces button.urgent {
+	color: #11111b;
+	border-radius: 10px;
+}
+
+#workspaces button:hover {
+	color: #ba5663;
+	background-color: #0d0a0d;
+
+}
+
+#taskbar button:hover {
+	color: #ba5663;
+	background-color: #0d0a0d;
+}
+
+
+
+#backlight,
+#battery,
+#bluetooth,
+#cava,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state label,
+#keyboard-state label.locked,
+#keyboard-state,
+#memory,
+#mode,
+#mpd,
+#network,
+#pulseaudio,
+#taskbar button,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-cycle_wall,
+#custom-keybinds,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-spotify,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default #custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+	color: whitesmoke;
+	padding: 0px 10px;
+
+}
+
+#temperature.critical {
+	background-color: #ff0000;
+}
+
+@keyframes blink {
+	to {
+		color: #000000;
+	}
+}
+
+#taskbar button.active {
+	background-color: pink;
+	border: 1px solid #22252a;
+
+}
+
+#battery.critical:not(.charging) {
+	color: #f53c3c;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+	min-width: 80px;
+	min-height: 5px;
+	border-radius: 5px;
+	background-color: #22252a;
+}
+
+#pulseaudio-slider highlight {
+	min-height: 10px;
+	border-radius: 5px;
+	background-color: pink;
+}
+
+#backlight-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#backlight-slider trough {
+	min-width: 80px;
+	min-height: 10px;
+	border-radius: 5px;
+	background-color: #22252a;
+}
+
+#backlight-slider highlight {
+	min-width: 10px;
+	border-radius: 5px;
+	background-color: pink;
+}
