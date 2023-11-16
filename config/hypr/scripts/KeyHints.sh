@@ -16,10 +16,10 @@ yad --width=1000 --height=1000 \
 " T" "Open File Manager" "(Thunar)" \
 " Q or  Shift Q  " "close focused app" "(kill)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
-" CTRL W" "Choose wallpaper" "(swww)" \
-" W" "Random wallpaper" "(swww)" \
-" ALT W" "Choose waybar layout" "(waybar layout)" \
-" SHIFT W" "Choose waybar styles" "(waybar styles)" \
+" W" "Choose wallpaper" "(swww)" \
+"CTRL ALT W" "Random wallpaper" "(swww)" \
+"CTRL W" "Choose waybar styles" "(waybar styles)" \
+"ALT W" "Choose waybar layout" "(waybar layout)" \
 "CTRL SHIFT W" "Reload Waybar and Dunst" "" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
