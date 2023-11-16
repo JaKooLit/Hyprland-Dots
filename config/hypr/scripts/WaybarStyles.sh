@@ -1,58 +1,49 @@
 #!/bin/bash
 
-# ACTUAL THEME
-THEMEIS=$(realpath ~/.config/waybar/style.css | sed 's/.*-\(.*\)\.css/\1/')
+CONFIG="$HOME/.config/waybar/style"
+WCONFIG="$HOME/.config/waybar/style.css"
 
-# Array for the styles
-STYLES=(
-"Purpl"
-"Crimson"
-"Golden-Noir"
-"Simple-Pink"
-"pywal" 
-"dark" 
-"light" 
-"Black-&-White" 
-"colors" 
-"colors-border" 
-"colors-line" 
-"colorful" 
-"Catppuccin-Mocha" 
-"Catppuccin-Latte"
-"Transparent"
-)
+menu() {
+    # List only files (excluding directories) in the directory and sort alphabetically
+    options=()
+    while IFS= read -r file; do
+        if [ -f "$CONFIG/$file" ]; then
+            options+=("$(basename "$file" .css)")
+        fi
+    done < <(find "$CONFIG" -maxdepth 1 -type f -name '*.css' -exec basename {} \; | sort)
+    
+    printf '%s\n' "${options[@]}"
+}
 
-# Build ROFI
-SELECTED_STYLE=$(printf "%s\n" "${STYLES[@]}" | rofi -dmenu -config ~/.config/rofi/config-waybar.rasi "${#STYLES[@]}")
+apply_style() {
+    ln -sf "$CONFIG/$1.css" "$WCONFIG"
+}
+
+main() {
+    choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-waybar-style.rasi)
+
+    if [[ -z "$choice" ]]; then
+        echo "No option selected. Exiting."
+        exit 0
+    fi
+
+    apply_style "$choice"
+
+    # Restart relevant processes
+    for process in waybar mako dunst; do
+        if pgrep -x "$process" >/dev/null; then
+            pkill "$process"
+        fi
+    done
+
+    # Launch Refresh.sh in the background
+    ~/.config/hypr/scripts/Refresh.sh &
+}
 
 # Check if rofi is already running
-if pidof rofi > /dev/null; then
-  pkill rofi
-  exit 0
+if pgrep -x "rofi" >/dev/null; then
+    pkill rofi
+    exit 0
 fi
 
-# Verify the selected theme
-if [[ " ${STYLES[@]} " =~ " $SELECTED_STYLE " ]]; then
-    SWITCHTO="${SELECTED_STYLE}"
-else
-    echo "Invalid selection"
-    exit 1
-fi
-
-# APPLY THEME
-THEMEFILE="$HOME/.config/waybar/style/${SWITCHTO}.css"
-if [ -f "$THEMEFILE" ]; then
-    ln -sf "$THEMEFILE" "$HOME/.config/waybar/style.css"
-else
-    echo "Error: $THEMEFILE not found"
-    exit 1
-fi
-
-# Restart relevant processes
-for process in waybar mako dunst; do
-    if pidof "$process" > /dev/null; then
-        pkill "$process"
-    fi
-done
-
-exec ~/.config/hypr/scripts/Refresh.sh
+main

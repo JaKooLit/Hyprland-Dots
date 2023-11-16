@@ -160,7 +160,7 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 
 # Initial Symlinks to avoid errors
 # symlinks for waybar
-ln -sf "$HOME/.config/waybar/configs/default" "$HOME/.config/waybar/config" && \
+ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" && \
 ln -sf "$HOME/.config/waybar/style/pywal.css" "$HOME/.config/waybar/style.css" && \
 
 # symlinks for dunst

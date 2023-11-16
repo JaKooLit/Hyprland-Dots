@@ -3,7 +3,7 @@
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
-    font:                       "Fira Code SemiBold 12";
+    font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
     display-run:                "";
@@ -95,7 +95,7 @@ entry {
     background-color:           transparent;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Choose Waybar Styles or Layouts";
+    placeholder:                "Choose Waybar Syles";
     placeholder-color:          inherit;
 }
 

@@ -4,24 +4,15 @@ CONFIG="$HOME/.config/waybar/configs"
 WCONFIG="$HOME/.config/waybar/config"
 
 menu() {
-    cat <<EOF
-default
-default-Bottom
-Peony
-Chrysanthemum
-Gardenia
-Camellia
-simple-long
-simple-short
-Top-&-Bottom
-Left
-Right
-Top-Left
-Top-Right
-Bottom-Left
-Bottom-Right
-no panel
-EOF
+    # List only files (excluding directories) in the directory and sort alphabetically
+    options=()
+    while IFS= read -r file; do
+        if [ -f "$CONFIG/$file" ]; then
+            options+=("$file")
+        fi
+    done < <(find "$CONFIG" -maxdepth 1 -type f -exec basename {} \; | sort)
+    
+    printf '%s\n' "${options[@]}"
 }
 
 apply_config() {
@@ -29,7 +20,7 @@ apply_config() {
 }
 
 main() {
-    choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-waybar.rasi)
+    choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-waybar-layout.rasi)
 
     if [[ -z "$choice" ]]; then
         echo "No option selected. Exiting."
