@@ -112,9 +112,9 @@ done
 echo "You chose $resolution resolution for better Rofi appearance."
 
 # Add your commands based on the resolution choice
-if [ "$resolution" == "<= 1080p" ]; then
-	cp -r config/rofi/resolution/1080p/* config/rofi/
-elif [ "$resolution" == ">= 1440p" ]; then
+if [ "$resolution" == "≤ 1080p" ]; then
+    cp -r config/rofi/resolution/1080p/* config/rofi/
+elif [ "$resolution" == "≥ 1440p" ]; then
     cp -r config/rofi/resolution/1440p/* config/rofi/
 fi
 
