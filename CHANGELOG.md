@@ -7,6 +7,10 @@ chmod +x release.sh
 ./release.sh
 ```
 
+- changes on keybinds. Sorry but as usual, you can always change to your liking. - keybinds are also updated in the KeyBinds help (SUPER H)
+<p align="center">
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Changelogs-Screenshots/16-11-2023-KeyBinds.png" /> 
+
 ### 15-Nov-2023
 - edited pywal.css waybar style.
 - waybar configs and styles renamed.
