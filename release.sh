@@ -34,7 +34,10 @@ if [ -f Hyprland-Dots.tar.gz ]; then
     echo -e "${WARN} Hyprland-Dots.tar.gz is outdated (Existing version: $existing_version, Latest version: $latest_version)."
     read -p "Do you want to upgrade to the latest version? (y/n): " upgrade_choice
     if [ "$upgrade_choice" = "y" ]; then
-      echo -e "${NOTE} Proceeding to download the latest release."
+		echo -e "${NOTE} Proceeding to download the latest release."
+		
+		# Delete existing directories starting with JaKooLit-Hyprland-Dots
+      find . -type d -name 'JaKooLit-Hyprland-Dots*' -exec rm -rf {} +
       rm -f Hyprland-Dots.tar.gz
       printf "${WARN} Removed existing Hyprland-Dots.tar.gz.\n"
     else
