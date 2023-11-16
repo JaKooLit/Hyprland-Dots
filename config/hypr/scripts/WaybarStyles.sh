@@ -5,7 +5,7 @@ THEMEIS=$(realpath ~/.config/waybar/style.css | sed 's/.*-\(.*\)\.css/\1/')
 
 # Array for the styles
 STYLES=(
-"Purple"
+"Purpl"
 "Crimson"
 "Golden-Noir"
 "Simple-Pink"
