@@ -10,7 +10,7 @@
 <p align="center">
     <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/waybar/waybar1.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/waybar/waybar2.png" />   
     <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/waybar/waybar3.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/JaKooLit/screenshots/main/Hyprland-V2-Screenshots/waybar/waybar4.png" />
-- more screenshot can be checked [`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-V2-Screenshots/waybar)
+- for more screenshots, check [`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-V2-Screenshots/waybar)
 
 ### 13-Nov-2023
 - created a separated conf for Laptop (Laptops.conf) in ~/.config/hyp/configs . This was mostly from Keybinds.conf. This is just to easily identity for laptop Keybinds specific.
