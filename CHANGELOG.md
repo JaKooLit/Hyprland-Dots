@@ -2,7 +2,7 @@
 
 ### 16-Nov-2023
 - added function to download from releases only and not from upstream repo
-- ```bash
+```bash
 chmod +x release.sh
 ./release.sh
 ```
