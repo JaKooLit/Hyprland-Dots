@@ -35,12 +35,16 @@ if hostnamectl | grep -q 'Chassis: vm'; then
   sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/configs/Monitors.conf
 fi
 
-# preparing hyprland.conf keyboard layout
+# Preparing hyprland.conf to check for current keyboard layout
 # Function to detect keyboard layout in an X server environment
 detect_x_layout() {
-  layout=$(setxkbmap -query | grep layout | awk '{print $2}')
-  if [ -n "$layout" ]; then
-    echo "$layout"
+  if command -v setxkbmap >/dev/null 2>&1; then
+    layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+    if [ -n "$layout" ]; then
+      echo "$layout"
+    else
+      echo "unknown"
+    fi
   else
     echo "unknown"
   fi
@@ -48,9 +52,13 @@ detect_x_layout() {
 
 # Function to detect keyboard layout in a tty environment
 detect_tty_layout() {
-  layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
-  if [ -n "$layout" ]; then
-    echo "$layout"
+  if command -v localectl >/dev/null 2>&1; then
+    layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
+    if [ -n "$layout" ]; then
+      echo "$layout"
+    else
+      echo "unknown"
+    fi
   else
     echo "unknown"
   fi
@@ -78,8 +86,9 @@ if [ "$confirm" = "y" ]; then
   mv temp.conf config/hypr/configs/Settings.conf
 else
   # If the detected layout is not correct, prompt the user to enter the correct layout
-  printf "${WARN} Ensure to type in the proper keyboard layout else Hyprland will crash, e.g., gb, de, pl, etc.\n"
-  read -p "Please enter the correct keyboard layout: " new_layout
+  printf "${YELLOW} Ensure to type in the proper keyboard layout else Hyprland will crash and might not start!!!\n\n"
+  printf "${WARN} - Sample Keyboard layouts are us, kr, es, gb, de, pl, etc.\n\n"
+  read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
   # Update the 'kb_layout=' line with the correct layout in the file
   awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/configs/Settings.conf > temp.conf
   mv temp.conf config/hypr/configs/Settings.conf
