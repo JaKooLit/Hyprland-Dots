@@ -22,8 +22,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						40%;
-	height:						30%;
+    width:						50%;
+	height:						50%;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
@@ -95,7 +95,7 @@ entry {
     background-color:           transparent;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Choose";
+    placeholder:                "Choose Waybar Layout";
     placeholder-color:          inherit;
 }
 
@@ -125,10 +125,10 @@ button selected {
 listview {
     enabled:                    true;
     columns:                    1;
-    lines:                      8;
+    lines:                      10;
     cycle:                      true;
     dynamic:                    true;
-    scrollbar:                  false;
+    scrollbar:                  true;
     layout:                     vertical;
     reverse:                    false;
     fixed-height:               true;

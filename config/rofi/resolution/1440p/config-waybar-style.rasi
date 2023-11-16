@@ -95,7 +95,7 @@ entry {
     background-color:           transparent;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Choose Waybar Styles or Layouts";
+    placeholder:                "Choose Waybar Syles";
     placeholder-color:          inherit;
 }
 
