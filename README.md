@@ -47,13 +47,22 @@
 - ~/Pictures/wallpapers - Will be backed up
 
 ### 🔔 Automatic copy of configurations
-> clone this repo by using git. Change directory, make executable and run the script
+clone this repo by using git. Change directory, make executable and run the script
 ```bash
 git clone https://github.com/JaKooLit/Hyprland-Dots.git
 cd Hyprland-Dots
+```
+to copy from upstream (possible bugs)
+```bash
 chmod +x copy.sh
 ./copy.sh
 ```
+to copy from releases (more test)
+```bash
+chmod +x release.sh
+./release.sh
+```
+
 ### 🐌 Manual copy (not recommended for newbies)
 - Backup your existing folders in ~/.config (advisable)
 - copy all contents of configs into ~/.config, overwriting all
