@@ -48,6 +48,8 @@ tooltip label {
     background-color: rgba(0, 0, 0, 0.8);
     border: 0px solid #b4befe;
     border-radius: 10px;
+    padding-right: 2px;
+    padding-left: 2px;
 }
 
 .modules-center {
@@ -60,6 +62,8 @@ tooltip label {
     background-color: rgba(0, 0, 0, 0.8);
     border: 0px solid #b4befe;
     border-radius: 10px;
+    padding-right: 2px;
+    padding-left: 2px;
     
 }
 

@@ -5,7 +5,6 @@
 /* --- 👍 designed by https://github.com/Krautt  👍 --- */
 
 @import '../../.cache/wal/colors-waybar.css';
-@import "../waybar/style/catppuccin-themes/latte.css";
 
 * {
     font-family: "JetBrainsMono Nerd Font";
@@ -49,16 +48,16 @@ tooltip {
 
 /*-----module groups----*/
 .modules-right {
-	border: 5px solid @color14;
+	border: 3px solid @color14;
 	border-radius: 100px 0px 0px 0px;
 	background-color: @color1;
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 2px;
+    padding-left: 2px;
 
 }
 
 .modules-center {
-	border: 5px solid @color14;
+	border: 3px solid @color14;
 	border-radius: 100px 0px 100px 0px;
 	background-color: @background;
 
@@ -66,9 +65,9 @@ tooltip {
 }
 
 .modules-left {
-    padding-right: 5px;
-    padding-left: 5px;
-	border: 5px solid @color14;
+    padding-right: 2px;
+    padding-left: 2px;
+	border: 3px solid @color14;
 	border-radius: 0px 0px 100px 0px;
 	background-color: @color1;
 
@@ -147,8 +146,8 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: @foreground;
-    padding-right: 10px;
-    padding-left: 15px;
+    padding-right: 8px;
+    padding-left: 12px;
 }
 
 #temperature.critical {
