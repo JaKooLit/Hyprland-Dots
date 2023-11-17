@@ -69,7 +69,9 @@
     - b.) to fix the temperature if not showing correctly, comment "thermal zone": 0 by putting // before. Delete the // on the "hwmon path". Refresh waybar by pressing SUPER SHIFT W or SUPER ALT W If still not showing correctly, navigate to /sys/class/hwmon/ and open each hwmon. Look for k10temp for amd. Not sure about intel cpu. and edit accordingly the hwmon path in the "temperature" waybar module.
     - b.1) use this function to easily identify the hwmon path. Ran this in your terminal    ``` for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done ```
   
-  - Weather.sh (Default weather app in waybar) edit ~/.config/hypr/scripts/Weather.sh or Weather.py and add your city. Make sure a major city in your Area. Delete rbn folder in ~/.cache and refresh waybar by either pressing SUPER SHIFT W or choose waybar layout SUPER ALT W. If wanted to use Weather.py for weather, edit weather module located in  ~/.config/waybar/modules.
+  - Weather.sh (Default weather app in waybar) edit ~/.config/hypr/scripts/Weather.sh or Weather.py and add your city. Make sure a major city in your Area. Delete rbn folder in ~/.cache and refresh waybar by either pressing SUPER SHIFT W or choose waybar layout SUPER ALT W. If wanted to use Weather.py for weather, edit weather module located in  ~/.config/waybar/modules.\
+
+  - some waybars layouts have a separate modules baked into their respective configs (ie Peony, Chrysanthemum, Camelia, etc) and does not get all modules from main waybar modules file. Edit each configs accordingly to your liking (~/.config/waybar/configs)
 
 # Hyprland configurations
   - *Hyprland* configuration files are in `~/.config/hypr/configs` Can view using SUPER E
