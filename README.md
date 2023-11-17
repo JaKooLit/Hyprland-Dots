@@ -91,7 +91,7 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf if you have set a proper environment already. (recommended). WLR_NO_CURSORS will be activated if nvidia gpu is detected.
 - If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
-### 📖 Known issues and possibly solutions
+### 📖 Known issues and possible solutions
 - Themes are broken when changing dark light - Ensure you have Tokyo Night Dark and Light themes installed and Tokyo Night SE icons or adjust the Dark Light script located in ~/.config/hypr/scripts/DarkLight.sh
 - Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
 - Background for rofi is not changing - This actually applies to multimonitor setup! I have designed that background will be pulled from ~/.cache/swww first monitor. To fix, delete the files in ~/.cache/swww and then reselect a new wallpaper either by SUPER W or CTRL ALT W.
@@ -110,7 +110,7 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 ### 🤷‍♂️ TO DO!
 - [ ] Tweak waybar layouts and Themes
 - [ ] Tweak rofi layouts and Themes
-- [ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.
+- ```[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.``` no plans for now
 
 ### Some ricing tips
 - [Ricing Tips](https://github.com/JaKooLit/Hyprland-Dots/blob/main/assets/Tips.md?plain=1)
