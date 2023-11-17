@@ -94,7 +94,7 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 ### 📖 Known issues and possibly solutions
 - Themes are broken when changing dark light - Ensure you have Tokyo Night Dark and Light themes installed and Tokyo Night SE icons or adjust the Dark Light script located in ~/.config/hypr/scripts/DarkLight.sh
 - Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
-- Background for rofi is not changing - This actually applies to multimonitor setup! I have designed that background will be pulled from ~/.cache/swww first monitor. To fix, delete the files in ~/.cache/swww and then reselect a new wallpaper either by SUPER W or SUPER CTRL W.
+- Background for rofi is not changing - This actually applies to multimonitor setup! I have designed that background will be pulled from ~/.cache/swww first monitor. To fix, delete the files in ~/.cache/swww and then reselect a new wallpaper either by SUPER W or CTRL ALT W.
 
 ### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
