@@ -110,7 +110,7 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 ### 🤷‍♂️ TO DO!
 - [ ] Tweak waybar layouts and Themes
 - [ ] Tweak rofi layouts and Themes
-- ```[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.``` no plans for now
+- ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
 
 ### Some ricing tips
 - [Ricing Tips](https://github.com/JaKooLit/Hyprland-Dots/blob/main/assets/Tips.md?plain=1)
