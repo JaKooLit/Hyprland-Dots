@@ -11,7 +11,7 @@
 //"mode": "dock",
 "exclusive": true,
 "passthrough": false,
-"position": "bottom",
+"position": "top",
 "spacing": 0,
 "fixed-center": false,
 "ipc": true,
