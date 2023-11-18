@@ -87,7 +87,7 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
-- By default I have not set a wallpaper. Press SUPER CTRL W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
+- By default I have not set a wallpaper. Press SUPER W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
 - Nvidia Owners. Make sure to edit your ~/.config/hypr/configs/ENVariables.conf if you have set a proper environment already. (recommended). WLR_NO_CURSORS will be activated if nvidia gpu is detected.
 - If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
