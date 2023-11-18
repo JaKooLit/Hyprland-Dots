@@ -96,7 +96,7 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - Keyboard shortcuts or customized Keybinds are broken! - Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
 - Background for rofi is not changing - This actually applies to multimonitor setup! I have designed that background will be pulled from ~/.cache/swww first monitor. To fix, delete the files in ~/.cache/swww and then reselect a new wallpaper either by SUPER W or CTRL ALT W.
 - if you dont want tty (kitty) to change color during wallpaper changed, edit ~/.config/hypr/PywalSwww.sh. At the bottom of the script, change `wal -i $wallpaper_path` to `wal -s $wallpaper_path -s -t` that will skip the changing color of your opened tty. source [pywal](https://github.com/dylanaraps/pywal/wiki/Getting-Started)
-- Some users reported that they are getting rofi-theme error upgrade like [THIS](https://github.com/JaKooLit/screenshots/blob/main/Errors/rofi-theme-error.jpg) to fix that open tty ( SUPER Enter) and execute this command 
+- Some users reported that they are getting rofi-theme error after upgrade like [THIS](https://github.com/JaKooLit/screenshots/blob/main/Errors/rofi-theme-error.jpg). Inorder to fix that open tty ( SUPER Enter) and execute this command 
 ```bash
 ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 ```
