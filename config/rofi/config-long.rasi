@@ -3,10 +3,10 @@
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
-    font:                       "Fira Code SemiBold 12";
+    font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
-    display-run:                "";
+	display-run:                "";
     display-filebrowser:        "";
     display-window:             "";
 	drun-display-format:        "{name}";
@@ -14,7 +14,7 @@ configuration {
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
-    
+	dpi:						1;
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -22,8 +22,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						35%;
-	height:						60%;
+    width:						30%;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
@@ -44,18 +43,18 @@ window {
 /* ---- Mainbox ---- */
 mainbox {
     enabled:                    true;
-    orientation:                horizontal;
+    orientation:                vertical;
     spacing:                    0px;
     margin:                     0px;
-    background-color:           transparent;
-    background-image:           url("~/.config/rofi/.current_wallpaper", height);
+    background-color:      transparent;
+    background-image:    url("~/.config/rofi/.current_wallpaper", height);
     children:                   [ "listbox" ];
 }
 
 /* ---- Imagebox ---- */
 imagebox {
-    padding:                    18px;
-    background-color:           transparent;
+    padding:                    6px;
+    background-color:      transparent;
     orientation:                vertical;
     children:                   [ "inputbar", "dummy", "mode-switcher" ];
 }
@@ -77,9 +76,10 @@ inputbar {
     enabled:                    true;
     text-color:                 @foreground;
     spacing:                    10px;
-    padding:                    15px;
+    padding:                    20px;
     border-radius:              10px;
     border-color:               @foreground;
+	background-color:		transparent;
     children:                   [ "textbox-prompt-colon", "entry" ];
 }
 
@@ -88,6 +88,7 @@ textbox-prompt-colon {
     expand:                     false;
     str:                        "🔎 ";
     text-color:                 inherit;
+	background-color:		transparent;
 }
 
 entry {
@@ -125,7 +126,7 @@ button selected {
 listview {
     enabled:                    true;
     columns:                    1;
-    lines:                      12;
+    lines:                      20;
     cycle:                      true;
     dynamic:                    true;
     scrollbar:                  true;
@@ -134,22 +135,21 @@ listview {
     fixed-height:               true;
     fixed-columns:              true;
     spacing:                    0px;
-    padding:                    10px;
+    padding:                    2px;
     margin:                     0px;
     border-radius:              10px;
     border:                     0px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", height);
+	background-color:		transparent;
 }
 
 /* ---- Element ---- */
 element {
     enabled:                    true;
-    padding:                    5px;
+    padding:                    2px;
     margin:                     2px;
     cursor:                     pointer;
-    background-color:           @background;
+    background-color:           transparent;
     border-radius:              10px;
-    border:                     0px;
 }
 
 element normal.normal {
@@ -223,17 +223,17 @@ message {
 }
 
 textbox {
-    padding:                    15px;
+    padding:                    6px;
     margin:                     0px;
     border-radius:              0px;
-    background-color:           @background;
+    background-color:           transparent;
     text-color:                 @foreground;
     vertical-align:             0.5;
     horizontal-align:           0.0;
 }
 
 error-message {
-    padding:                    15px;
+    padding:                    6px;
     border-radius:              20px;
     background-color:           @background;
     text-color:                 @foreground;
