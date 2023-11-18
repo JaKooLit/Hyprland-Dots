@@ -61,7 +61,7 @@
 "clock#peony": {
 	"interval": 60,
 	"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-	//"format": "{:%B | %a %d, %Y | %H:%M %p}",
+	//"format": "{:%B | %a %d, %Y | %I:%M %p}",
 	"format": "{:%B | %a %d, %Y | %H:%M}",
 	"format-alt": "{:%a %b %d, %G}",
 },

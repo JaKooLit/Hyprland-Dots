@@ -76,7 +76,7 @@
 
 "clock#cam": {
 	"interval": 60,
-	//"format": "{:%A, %H:%M %p}",
+	//"format": "{:%A, %I:%M %P}",
 	"format": "{:%A, %H:%M}",
 	"max-length": 25,
 	

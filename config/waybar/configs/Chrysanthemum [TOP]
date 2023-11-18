@@ -47,6 +47,7 @@
 },
 
 "clock#gar": {
+  //"format": "{:%A, %I:%M %P}",
 	"format": "{:%a %d | %H:%M}",
 	"format-alt": "{:%A, %d %B, %Y (%R)}"
 },
