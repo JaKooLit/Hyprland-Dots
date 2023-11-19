@@ -1,5 +1,10 @@
 ## CHANGES
 
+### 19-Nov-2023
+- Created a wiki page to utilize a centralized tips and FAQ. And also to not over populate Readme page
+- Tweaks on rofi themes
+- Move distro installation of dots to releases instead of upstream
+
 ### 16-Nov-2023
 - added function to download from releases only and not from upstream repo
 ```bash

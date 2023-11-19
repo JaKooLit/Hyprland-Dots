@@ -32,7 +32,6 @@ yad --width=1000 --height=1000 \
 " Shift F" "Toggle float" "single window" \
 " ALT F" "Toggle all windows to float" "all windows" \
 " SHIFT G" "Gamemode! All animations off" "" \
-" SHIFT H" "Launch a small Help File" "" \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \

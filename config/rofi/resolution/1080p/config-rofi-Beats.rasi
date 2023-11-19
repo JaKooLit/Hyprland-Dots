@@ -6,7 +6,7 @@ configuration {
     font:                       "Fira Code SemiBold 12";
     show-icons:                 true;
     display-drun:               "";
-    display-run:                "";
+	display-run:                "";
     display-filebrowser:        "";
     display-window:             "";
 	drun-display-format:        "{name}";
@@ -14,7 +14,7 @@ configuration {
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
-    
+	dpi:						1;
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -22,16 +22,15 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						45%;
-	height:						45%;
+    width:						35%;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
     padding:                    0px;
     margin:                     0px; 
     color:                      transparent;
-    border:                     2px;
-    border-color:               @background;
+    border:                     1px;
+    border-color:               @active-background;
     cursor:                     "default";
     transparency:               "real";
     location:                   center;
@@ -48,7 +47,7 @@ mainbox {
     spacing:                    0px;
     margin:                     0px;
     background-color:           transparent;
-    background-image:           url("~/.config/rofi/.current_wallpaper", height);
+    background-image:           url("~/.config/rofi/.current_wallpaper",width);
     children:                   [ "imagebox", "listbox" ];
 }
 
@@ -80,14 +79,16 @@ inputbar {
     padding:                    15px;
     border-radius:              10px;
     border-color:               @foreground;
+	background-color:		transparent;
     children:                   [ "textbox-prompt-colon", "entry" ];
 }
 
 textbox-prompt-colon {
     enabled:                    true;
     expand:                     false;
-    str:                        "🔎 ";
+    str:                        "📻 ";
     text-color:                 inherit;
+	background-color:		transparent;
 }
 
 entry {
@@ -95,7 +96,7 @@ entry {
     background-color:           transparent;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Choose";
+    placeholder:                "Choose Online Music";
     placeholder-color:          inherit;
 }
 
@@ -110,7 +111,7 @@ mode-switcher{
 button {
     padding:                    10px;
     border-radius:              10px;
-    background-color:           @background;
+    background-color:           transparent;
     text-color:                 inherit;
     cursor:                     pointer;
     border:                     0px;
@@ -138,7 +139,7 @@ listview {
     margin:                     0px;
     border-radius:              10px;
     border:                     0px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", height);
+    background-color:		transparent;
 }
 
 /* ---- Element ---- */
@@ -147,7 +148,7 @@ element {
     padding:                    5px;
     margin:                     2px;
     cursor:                     pointer;
-    background-color:           @background;
+    background-color:           transparent;
     border-radius:              10px;
     border:                     0px;
 }
@@ -226,7 +227,7 @@ textbox {
     padding:                    15px;
     margin:                     0px;
     border-radius:              0px;
-    background-color:           @background;
+    background-color:           transparent;
     text-color:                 @foreground;
     vertical-align:             0.5;
     horizontal-align:           0.0;

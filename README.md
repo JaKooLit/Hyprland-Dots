@@ -64,26 +64,7 @@ chmod +x release.sh
 ```
 
 ### 🐌 Manual copy (not recommended for newbies)
-- Backup your existing folders in ~/.config (advisable)
-- copy all contents of configs into ~/.config, overwriting all
-- copy contents of wallpapers into ~/Pictures/wallpapers/ (create wallpapers folder if required)
-- make the Hyprland scripts executable 
-```bash
-chmod +x $HOME/.config/hypr/scripts/*
-```
-- Make sure to execute initial symlinks else dunst, wofi and waybar will fail to launch
-```bash
-ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config"
-ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css"
-ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
-```
-- after that initialize pywal with
-```wal -i wallpaper/path```
-- then run this 
-```bash
-ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
-```
-- Before reboot or logout, choose wallpaper with SUPER CTRL W.
+ Click [HERE](https://github.com/JaKooLit/Hyprland-Dots/wiki/Copying-dots)
 
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
@@ -94,26 +75,13 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 
 + If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
-
 ### 📖 Known issues and possible solutions
-+ Themes are broken when changing dark light - Ensure you have Tokyo Night Dark and Light themes installed and Tokyo Night SE icons or adjust the Dark Light script located in ~/.config/hypr/scripts/DarkLight.sh
-
-+ Keyboard shortcuts or customized Keybinds are broken! Just copy over your previous Keybinds.conf from the hypr-backup in ~/.config/
-
-+ Background for rofi is not changing - This actually applies to multimonitor setup! I have designed that background will be pulled from ~/.cache/swww first monitor. To fix, delete the files in ~/.cache/swww and then reselect a new wallpaper either by SUPER W or CTRL ALT W.
-
-+ if you dont want tty (kitty) to change color during wallpaper changed, edit ~/.config/hypr/PywalSwww.sh. At the bottom of the script, change `wal -i $wallpaper_path` to `wal -s $wallpaper_path -s -t` that will skip the changing color of your opened tty. source [pywal](https://github.com/dylanaraps/pywal/wiki/Getting-Started)
-
-+ Some users reported that they are getting rofi-theme error after upgrade like [THIS](https://github.com/JaKooLit/screenshots/blob/main/Errors/rofi-theme-error.jpg). Inorder to fix that open tty ( SUPER Enter) and execute this command 
-```bash
-ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
-```
+- check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known%E2%80%90Issues-and-possible-solutions)
 
 ### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
 - QUICK HINT! Click the HINT! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
-- More question? Maybe answered already in Help File! SUPER SHIFT H to launch it!
-- If you still have, kindly join my discord for faster communication. See invite link below. If not, open an issue on github
+- More question? click here [Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/Some-Tips)
 
 ### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
@@ -124,11 +92,8 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - [ ] Tweak rofi layouts and Themes
 - ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
 
-### Some ricing tips
-- [Ricing Tips](https://github.com/JaKooLit/Hyprland-Dots/blob/main/assets/Tips.md?plain=1)
-
 ### 🔮 Discord Server
-- kindly join my Discord Server https://discord.gg/V2SJ92vbEN
+- kindly join my [Discord](https://discord.gg/V2SJ92vbEN)
 
 ## 💖 Support
 - a Star on my Github repos would be nice 🌟
