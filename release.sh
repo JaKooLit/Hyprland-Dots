@@ -10,7 +10,7 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
-printf "${NOTE} Checking for existing Hyprland-Dots.tar.gz...\n"
+printf "${NOTE} Downloading / Checking for existing Hyprland-Dots.tar.gz...\n"
 
 # Check if Hyprland-Dots.tar.gz exists
 if [ -f Hyprland-Dots.tar.gz ]; then
@@ -49,6 +49,15 @@ fi
 
 printf "${NOTE} Downloading the latest Hyprland source code release...\n"
 
+# Fetch the tag name for the latest release using the GitHub API
+latest_tag=$(curl -s https://api.github.com/repos/JaKooLit/Hyprland-Dots/releases/latest | grep "tag_name" | cut -d '"' -f 4)
+
+# Check if the tag is obtained successfully
+if [ -z "$latest_tag" ]; then
+  echo -e "${ERROR} Unable to fetch the latest tag information."
+  exit 1
+fi
+
 # Fetch the tarball URL for the latest release using the GitHub API
 latest_tarball_url=$(curl -s https://api.github.com/repos/JaKooLit/Hyprland-Dots/releases/latest | grep "tarball_url" | cut -d '"' -f 4)
 
@@ -58,21 +67,22 @@ if [ -z "$latest_tarball_url" ]; then
   exit 1
 fi
 
-# Extract the direct download URL from the tarball URL
-download_url=$(echo "$latest_tarball_url" | sed 's/{\/tarball\/.*}//')
-
-# Get the filename from the URL
-file_name=$(basename "$download_url")
+# Get the filename from the URL and include the tag name in the file name
+file_name="Hyprland-Dots-${latest_tag}.tar.gz"
 
 # Download the latest release source code tarball to the current directory
-if curl -LOk "$download_url"; then
-  mv "$file_name" Hyprland-Dots.tar.gz  # Rename the downloaded file if needed
-
+if curl -L "$latest_tarball_url" -o "$file_name"; then
   # Extract the contents of the tarball
-  tar -xzf Hyprland-Dots.tar.gz
+  tar -xzf "$file_name" || exit 1
+
+  # delete existing Hyprland-Dots
+  rm -rf JaKooLit-Hyprland-Dots
+
+  # Identify the extracted directory
+  extracted_directory=$(tar -tf "$file_name" | grep -o '^[^/]\+' | uniq)
 
   # Rename the extracted directory to JaKooLit-Hyprland-Dots
-  mv JaKooLit-Hyprland-Dots-* JaKooLit-Hyprland-Dots
+  mv "$extracted_directory" JaKooLit-Hyprland-Dots || exit 1
 
   cd "JaKooLit-Hyprland-Dots" || exit 1
 
