@@ -29,8 +29,7 @@
 
 
 ### 📦 Changelogs
-- To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md)  Screenshots will be included if worth it!
-
+- To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/CHANGELOGS)  Screenshots will be included if worth it!
 
 ### 📹 A video walkthroughs
 - [Walkthough](https://youtu.be/fO-RBHvVEcc)

@@ -1,0 +1,155 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+@define-color bar-bg rgba(0, 0, 0, 0);
+@define-color main-bg #26233a;
+@define-color main-fg #ebbcba;
+@define-color wb-act-bg #31748f;
+@define-color wb-act-fg #9ccfd8;
+@define-color wb-hvr-bg #eb6f92;
+@define-color wb-hvr-fg #f6c177;
+
+* {
+	font-family: "JetBrainsMono Nerd Font";
+	font-weight: bold;
+	min-height: 0;
+	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+	font-size: 98%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border-radius: 10px;
+}
+
+window#waybar {
+    background: @bar-bg;
+}
+
+tooltip {
+    background: @main-bg;
+    color: @main-fg;
+    border-radius: 7px;
+    border-width: 0px;
+}
+
+#workspaces button {
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: @main-fg;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.active {
+    background: @wb-act-bg;
+    color: @wb-act-fg;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button {
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: @wb-color;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button.active {
+    background: @wb-act-bg;
+    color: @wb-act-color;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-color;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#backlight,
+#battery,
+#bluetooth,
+#cava,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state label,
+#keyboard-state label.locked,
+#keyboard-state,
+#memory,
+#mode,
+#mpd,
+#network,
+#pulseaudio,
+#taskbar button,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-cycle_wall,
+#custom-keybinds,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-spotify,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+    color: @main-fg;
+    background: @main-bg;
+    opacity: 1;
+    margin: 4px 0px 4px 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#temperature.critical {
+  background-color: @red;
+}
