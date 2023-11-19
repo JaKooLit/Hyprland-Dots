@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
+/* Main Config (long) */
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
@@ -37,7 +37,7 @@ window {
     anchor:                     center;
     fullscreen:                 false;
     enabled:                    true;
-    border-radius:              10px;
+    border-radius:              15px;
 }
 
 /* ---- Mainbox ---- */
@@ -46,9 +46,10 @@ mainbox {
     orientation:                vertical;
     spacing:                    0px;
     margin:                     0px;
-    background-color:      transparent;
+	padding:					20px;
     background-image:    url("~/.config/rofi/.current_wallpaper", height);
     children:                   [ "listbox" ];
+    border-radius:              10px;
 }
 
 /* ---- Imagebox ---- */
@@ -65,6 +66,7 @@ listbox {
     background-color:           transparent;
     orientation:                vertical;
     children:                   [ "inputbar", "message", "listview" ];
+    border-radius:              10px;
 }
 /* ---- Dummy ---- */
 dummy {
@@ -76,10 +78,10 @@ inputbar {
     enabled:                    true;
     text-color:                 @foreground;
     spacing:                    10px;
-    padding:                    20px;
+    padding:                    10px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:		transparent;
+	background-color:		@background;
     children:                   [ "textbox-prompt-colon", "entry" ];
 }
 
@@ -96,7 +98,7 @@ entry {
     background-color:           transparent;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Choose";
+    placeholder:                "Search";
     placeholder-color:          inherit;
 }
 
@@ -139,7 +141,8 @@ listview {
     margin:                     0px;
     border-radius:              10px;
     border:                     0px;
-	background-color:		transparent;
+	background-color:            @background;
+	border-radius:             10px;
 }
 
 /* ---- Element ---- */

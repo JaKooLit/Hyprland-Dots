@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
+/* config - Waybar */
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
@@ -37,7 +37,7 @@ window {
     anchor:                     center;
     fullscreen:                 false;
     enabled:                    true;
-    border-radius:              10px;
+    border-radius:              15px;
 }
 
 /* ---- Mainbox ---- */
@@ -47,6 +47,7 @@ mainbox {
 	padding:					20px;
     background-image:    url("~/.config/rofi/.current_wallpaper", height);
     children:                   [ "imagebox", "listbox" ];
+    border-radius:              10px;
 }
 
 /* ---- Imagebox ---- */
@@ -76,7 +77,7 @@ inputbar {
     padding:                    15px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:		transparent;
+	background-color:		@backrgound;
     children:                   [ "textbox-prompt-colon", "entry" ];
 }
 
@@ -93,7 +94,7 @@ entry {
     background-color:      transparent;
     text-color:                  inherit;
     cursor:                       text;
-    placeholder:                "Choose Waybar Style";
+    placeholder:                "Choose Waybar Layout";
     placeholder-color:          inherit;
 }
 
@@ -131,7 +132,8 @@ listview {
   reverse:                    false;
   fixed-height:               true;
   fixed-columns:              false;
-  background-color:         transparent;
+	background-color:            @background;
+	border-radius:             10px;
 }
 
 /* ---- Element ---- */
