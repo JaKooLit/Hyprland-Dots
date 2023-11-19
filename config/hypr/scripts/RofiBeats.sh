@@ -11,7 +11,7 @@ menu(){
 printf "1. Lofi Girl\n"
 printf "2. 96.3 Easy Rock - FM Radio\n"
 printf "3. Ghibli Music (Instrumental)\n"
-printf "4. Top Music 2023\n"
+printf "4. Top Youtube Music 2023\n"
 printf "5. Chillhop\n"
 printf "6. SmoothChill\n"
 printf "7. Relaxing Music\n"
@@ -38,8 +38,8 @@ case $choice in
    	return
    	;;
 4)
-   	notification "Top Music 2023 ☕️🎶";
-   	mpv --shuffle --vid=no "https://youtube.com/playlist?list=PL6k9a6aYB2zk0qSbXR-ZEiwqgdHymsRtQ"
+   	notification "Top Youtube Music 2023 ☕️🎶";
+   	mpv --shuffle --vid=no "https://youtube.com/playlist?list=PLDIoUOhQQPlXr63I_vwF9GD8sAKh77dWU&si=y7qNeEVFNgA-XxKy"
    	return
    	;;
 5)

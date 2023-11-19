@@ -131,7 +131,7 @@ listview {
 	cycle:                       true;
 	scrollbar:                   false;
 	layout:                      vertical;
-	reverse:                     true;
+	reverse:                     false;
 	fixed-height:                true;
 	fixed-columns:               false;
 	background-color:            @background;
