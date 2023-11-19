@@ -117,7 +117,7 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - [Ricing Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/Ricing-Tips)
 
 ### 🔮 Discord Server
-- kindly join my Discord Server https://discord.gg/V2SJ92vbEN
+- kindly join my [Discord](https://discord.gg/V2SJ92vbEN)
 
 ## 💖 Support
 - a Star on my Github repos would be nice 🌟
