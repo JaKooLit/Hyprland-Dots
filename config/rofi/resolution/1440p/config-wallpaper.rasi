@@ -129,10 +129,10 @@ listview {
   dynamic:                     true;
   enabled:                     true;
   cycle:                       true;
-  scrollbar:                   false;
+  scrollbar:                   true;
   layout:                      vertical;
-  reverse:                     true;
-  fixed-height:                false;
+  reverse:                     false;
+  fixed-height:                true;
   fixed-columns:               false;
   background-color:            transparent;
 }

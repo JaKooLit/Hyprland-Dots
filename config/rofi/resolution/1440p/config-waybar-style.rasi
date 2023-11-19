@@ -126,10 +126,10 @@ listview {
   spacing:                      4px;
   dynamic:                     true;
   cycle:                      true;
-  scrollbar:                  false;
+  scrollbar:                  true;
   layout:                     vertical;
   reverse:                    false;
-  fixed-height:               false;
+  fixed-height:               true;
   fixed-columns:              false;
   background-color:         transparent;
 }
