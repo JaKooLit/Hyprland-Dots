@@ -98,6 +98,35 @@
     "default": "",
 	},
 },
+
+// GROUP
+
+"group/motherboard": {
+	"orientation": "horizontal",
+	"modules": [
+		"cpu",
+		"memory",
+		"temperature",
+		"disk",
+		]	
+},
+
+"group/laptop": {
+	"orientation": "horizontal",
+	"modules": [
+		"backlight",
+		"battery",
+		]	
+},
+
+"group/audio": {
+	"orientation": "horizontal",
+	"modules": [
+		"pulseaudio",
+		"pulseaudio#microphone",
+		]	
+},
+
 "backlight": {
   "interval": 2,
   "align": 0,
@@ -342,7 +371,7 @@
 },
     
 "tray": {
-  //"icon-size": 17,
+  "icon-size": 17,
   "spacing": 8,
 },
     
@@ -468,6 +497,18 @@
   "tooltip": false
 },
 
+"custom/separator#blank": {
+  "format": "",
+  "interval": "once",
+  "tooltip": false
+},
+
+"custom/separator#blank_2": {
+  "format": "  ",
+  "interval": "once",
+  "tooltip": false
+},
+
 // Modules below are for vertical layout
 
 "backlight#vertical": {
@@ -572,5 +613,7 @@
   "on-click": "~/.config/hypr/scripts/Wlogout.sh",
   "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
 },
+
+
 }
 

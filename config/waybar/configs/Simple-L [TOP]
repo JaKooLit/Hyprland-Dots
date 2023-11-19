@@ -9,7 +9,7 @@
 "exclusive": true,
 "passthrough": false,
 "position": "top",
-"spacing": 3,
+"spacing": 6,
 "fixed-center": true,
 "ipc": true,
 "margin-top": 6,
@@ -17,21 +17,23 @@
 "margin-right": 8,
 
 "modules-left": [
-	"custom/menu", 
+	"custom/menu",
+	"custom/separator#blank_2", 
 	"hyprland/workspaces",
+	"custom/separator#blank_2",
+	"tray",
 	],
 "modules-center": [
 	"clock",
-	"custom/light_dark",
 	],
 "modules-right": [
-	"backlight",
-	"keyboard-state", 
-	"pulseaudio", 
-	"bluetooth", 
-	"network", 
-	"battery",
+	"temperature",
+	"custom/separator#blank_2",
+	"group/laptop",
+	"custom/separator#blank_2",
+	"group/audio",
+	"custom/separator#blank_2",
+	"custom/power",
 	],
-
 
 }
