@@ -47,7 +47,7 @@ mainbox {
     enabled:                    true;
     orientation:                horizontal;
 	padding:					20px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    background-image:           url("~/.config/rofi/.current_wallpaper", both);
     children:                   [ "imagebox", "listbox" ];
     border-radius:              10px;
 }
@@ -125,7 +125,7 @@ button selected {
 listview {
 	enabled:						true;
 	columns:						1;
-	lines:								8;
+	lines:								7;
 	spacing:                     4px;
 	dynamic:                     true;
 	cycle:                       true;
