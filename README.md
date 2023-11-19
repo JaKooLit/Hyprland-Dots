@@ -64,26 +64,7 @@ chmod +x release.sh
 ```
 
 ### 🐌 Manual copy (not recommended for newbies)
-- Backup your existing folders in ~/.config (advisable)
-- copy all contents of configs into ~/.config, overwriting all
-- copy contents of wallpapers into ~/Pictures/wallpapers/ (create wallpapers folder if required)
-- make the Hyprland scripts executable 
-```bash
-chmod +x $HOME/.config/hypr/scripts/*
-```
-- Make sure to execute initial symlinks else dunst, wofi and waybar will fail to launch
-```bash
-ln -sf "$HOME/.config/waybar/configs/config-default" "$HOME/.config/waybar/config"
-ln -sf "$HOME/.config/waybar/style/style-pywal.css" "$HOME/.config/waybar/style.css"
-ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc"
-```
-- after that initialize pywal with
-```wal -i wallpaper/path```
-- then run this 
-```bash
-ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
-```
-- Before reboot or logout, choose wallpaper with SUPER CTRL W.
+ Click [HERE](https://github.com/JaKooLit/Hyprland-Dots/wiki/Copying-dots)
 
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
@@ -113,7 +94,7 @@ ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/
 - [ ] Tweak rofi layouts and Themes
 - ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
 
-### Some ricing tips
+### 🍣 Some ricing tips
 - [Ricing Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/Ricing-Tips)
 
 ### 🔮 Discord Server
