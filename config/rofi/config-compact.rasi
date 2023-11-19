@@ -1,6 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config Hyprland Settings*/
-
+/* Main Config (long) */
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
@@ -16,7 +15,6 @@ configuration {
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
 	dpi:						1;
-    
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -24,15 +22,15 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						35%;
+    width:						20%;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
-    padding:                    2px;
+    padding:                    0px;
     margin:                     0px; 
     color:                      transparent;
-    border:                     1px;
-    border-color:               @active-background;
+    border:                     2px;
+    border-color:               @background;
     cursor:                     "default";
     transparency:               "real";
     location:                   center;
@@ -45,26 +43,29 @@ window {
 /* ---- Mainbox ---- */
 mainbox {
     enabled:                    true;
-    orientation:                horizontal;
+    orientation:                vertical;
+    spacing:                    0px;
+    margin:                     0px;
 	padding:					20px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", width);
-    children:                   [ "imagebox", "listbox" ];
+    background-image:    url("~/.config/rofi/.current_wallpaper", both);
+    children:                   [ "listbox" ];
     border-radius:              10px;
 }
 
 /* ---- Imagebox ---- */
 imagebox {
-    background-color:           transparent;
+    padding:                    6px;
+    background-color:      transparent;
     orientation:                vertical;
     children:                   [ "inputbar", "dummy", "mode-switcher" ];
 }
 
 /* ---- Listbox ---- */
 listbox {
-    spacing:                    4px;
+    spacing:                    20px;
     background-color:           transparent;
     orientation:                vertical;
-    children:                   [ "listview" ];
+    children:                   [ "inputbar", "message", "listview" ];
     border-radius:              10px;
 }
 /* ---- Dummy ---- */
@@ -80,59 +81,66 @@ inputbar {
     padding:                    10px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:		    @backrgound;
+	background-color:		@background;
     children:                   [ "textbox-prompt-colon", "entry" ];
 }
 
 textbox-prompt-colon {
     enabled:                    true;
     expand:                     false;
-    str:                        	"🔎";
+    str:                        "🔎 ";
     text-color:                 inherit;
+	background-color:		transparent;
 }
 
 entry {
     enabled:                    true;
+    background-color:           transparent;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "View / Edit Hyprland Settings";
+    placeholder:                "Search";
     placeholder-color:          inherit;
 }
 
 /* ---- Mode Switcher ---- */
 mode-switcher{
     enabled:                    true;
-    spacing:                    10px;
-    background-color:          transparent;
+    spacing:                    20px;
+    background-color:           transparent;
     text-color:                 @foreground;
 }
 
 button {
-    padding:                   10px;
-    border-radius:             10px;
-    background-color:          @background;
-    text-color:                inherit;
-    cursor:                    pointer;
+    padding:                    10px;
+    border-radius:              10px;
+    background-color:           @background;
+    text-color:                 inherit;
+    cursor:                     pointer;
+    border:                     0px;
 }
 
 button selected {
-    background-color:          @selected-normal-background;
-    text-color:                @foreground;
+    background-color:           @selected-normal-background;
+    text-color:                 @foreground;
 }
 
 /* ---- Listview ---- */
 listview {
-	enabled:						true;
-	columns:						1;
-	lines:								7;
-	spacing:                     4px;
-	dynamic:                     true;
-	cycle:                       true;
-	scrollbar:                   false;
-	layout:                      vertical;
-	reverse:                     false;
-	fixed-height:                true;
-	fixed-columns:               false;
+    enabled:                    true;
+    columns:                    1;
+    lines:                      7;
+    cycle:                      true;
+    dynamic:                    true;
+    scrollbar:                  false;
+    layout:                     vertical;
+    reverse:                    false;
+    fixed-height:               true;
+    fixed-columns:              true;
+    spacing:                    0px;
+    padding:                    2px;
+    margin:                     0px;
+    border-radius:              10px;
+    border:                     0px;
 	background-color:            @background;
 	border-radius:             10px;
 }
@@ -140,12 +148,11 @@ listview {
 /* ---- Element ---- */
 element {
     enabled:                    true;
-    padding:                    5px;
+    padding:                    2px;
     margin:                     2px;
     cursor:                     pointer;
-    background-color:         transparent;
+    background-color:           transparent;
     border-radius:              10px;
-    border:                     0px;
 }
 
 element normal.normal {
@@ -210,20 +217,27 @@ element-text {
 
 /*****----- Message -----*****/
 message {
-    background-color:           @background;
+    background-color:           transparent;
+    border:						0px;
     margin:						20px 0px 0px 0px;
+    padding:					0px;
+    spacing:					0px;
     border-radius: 				10px;
 }
 
 textbox {
-    padding:                    15px;
-    background-color:      @background;
+    padding:                    6px;
+    margin:                     0px;
+    border-radius:              0px;
+    background-color:           transparent;
     text-color:                 @foreground;
+    vertical-align:             0.5;
+    horizontal-align:           0.0;
 }
 
 error-message {
-    padding:                    15px;
-    border-radius:            20px;
-    background-color:      @background;
+    padding:                    6px;
+    border-radius:              20px;
+    background-color:           @background;
     text-color:                 @foreground;
 }

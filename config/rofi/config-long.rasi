@@ -47,7 +47,7 @@ mainbox {
     spacing:                    0px;
     margin:                     0px;
 	padding:					20px;
-    background-image:    url("~/.config/rofi/.current_wallpaper", height);
+    background-image:    url("~/.config/rofi/.current_wallpaper", width);
     children:                   [ "listbox" ];
     border-radius:              10px;
 }
