@@ -75,15 +75,13 @@ chmod +x release.sh
 
 + If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
-
 ### 📖 Known issues and possible solutions
 - check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known%E2%80%90Issues-and-possible-solutions)
 
 ### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
 - QUICK HINT! Click the HINT! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
-- More question? Maybe answered already in Help File! SUPER SHIFT H to launch it!
-- If you still have, kindly join my discord for faster communication. See invite link below. If not, open an issue on github
+- More question? click here [Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/Ricing-Tips)
 
 ### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
@@ -93,9 +91,6 @@ chmod +x release.sh
 - [ ] Tweak waybar layouts and Themes
 - [ ] Tweak rofi layouts and Themes
 - ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
-
-### 🍣 Some ricing tips
-- [Ricing Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/Ricing-Tips)
 
 ### 🔮 Discord Server
 - kindly join my [Discord](https://discord.gg/V2SJ92vbEN)
