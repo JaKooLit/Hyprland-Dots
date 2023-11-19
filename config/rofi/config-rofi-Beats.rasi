@@ -3,7 +3,7 @@
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
-    font:                       "Fira Code SemiBold 14";
+    font:                       "Fira Code SemiBold 12";
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";

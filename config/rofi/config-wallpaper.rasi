@@ -1,9 +1,10 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Main Config */
 
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
-    font:                       "Fira Code SemiBold 14";
+    font:                       "Fira Code SemiBold 12";
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
@@ -15,6 +16,7 @@ configuration {
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
 	dpi:						1;
+    
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -22,15 +24,15 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						20%;
+    width:						40%;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
-    padding:                    0px;
+    padding:                    2px;
     margin:                     0px; 
     color:                      transparent;
-    border:                     2px;
-    border-color:               @background;
+    border:                     1px;
+    border-color:               @active-background;
     cursor:                     "default";
     transparency:               "real";
     location:                   center;
@@ -43,28 +45,25 @@ window {
 /* ---- Mainbox ---- */
 mainbox {
     enabled:                    true;
-    orientation:                vertical;
-    spacing:                    0px;
-    margin:                     0px;
-    background-color:      transparent;
-    background-image:    url("~/.config/rofi/.current_wallpaper", height);
-    children:                   [ "listbox" ];
+    orientation:                horizontal;
+	padding:					20px;
+    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    children:                   [ "imagebox", "listbox" ];
 }
 
 /* ---- Imagebox ---- */
 imagebox {
-    padding:                    6px;
-    background-color:      transparent;
+    background-color:           transparent;
     orientation:                vertical;
     children:                   [ "inputbar", "dummy", "mode-switcher" ];
 }
 
 /* ---- Listbox ---- */
 listbox {
-    spacing:                    20px;
+    spacing:                    4px;
     background-color:           transparent;
     orientation:                vertical;
-    children:                   [ "inputbar", "message", "listview" ];
+    children:                   [ "listview" ];
 }
 /* ---- Dummy ---- */
 dummy {
@@ -76,19 +75,19 @@ inputbar {
     enabled:                    true;
     text-color:                 @foreground;
     spacing:                    10px;
-    padding:                    20px;
+    padding:                    15px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:		transparent;
+	background-color:		    transparent;
     children:                   [ "textbox-prompt-colon", "entry" ];
 }
 
 textbox-prompt-colon {
     enabled:                    true;
     expand:                     false;
-    str:                        "🔎 ";
+    str:                        	"󰸉 ";
     text-color:                 inherit;
-	background-color:		transparent;
+	background-color:		    transparent;
 }
 
 entry {
@@ -96,7 +95,7 @@ entry {
     background-color:           transparent;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Choose Wallpaper";
+    placeholder:                "Choose Desired wallpaper";
     placeholder-color:          inherit;
 }
 
@@ -109,47 +108,44 @@ mode-switcher{
 }
 
 button {
-    padding:                    10px;
-    border-radius:              10px;
-    background-color:           @background;
-    text-color:                 inherit;
-    cursor:                     pointer;
-    border:                     0px;
+    padding:                   10px;
+    border-radius:             10px;
+    background-color:          transparent;
+    text-color:                inherit;
+    cursor:                    pointer;
 }
 
 button selected {
-    background-color:           @selected-normal-background;
-    text-color:                 @foreground;
+    background-color:          @selected-normal-background;
+    text-color:                @foreground;
 }
 
 /* ---- Listview ---- */
 listview {
-    enabled:                    true;
-    columns:                    1;
-    lines:                      10;
-    cycle:                      true;
-    dynamic:                    true;
-    scrollbar:                  true;
-    layout:                     vertical;
-    reverse:                    false;
-    fixed-height:               true;
-    fixed-columns:              true;
-    spacing:                    0px;
-    padding:                    2px;
-    margin:                     0px;
-    border-radius:              10px;
-    border:                     0px;
-	background-color:		transparent;
+    enabled:                   true;
+    columns:                   1;
+    lines:                     10;
+  spacing:                     4px;
+  dynamic:                     true;
+  enabled:                     true;
+  cycle:                       true;
+  scrollbar:                   false;
+  layout:                      vertical;
+  reverse:                     true;
+  fixed-height:                false;
+  fixed-columns:               false;
+  background-color:            transparent;
 }
 
 /* ---- Element ---- */
 element {
     enabled:                    true;
-    padding:                    2px;
+    padding:                    5px;
     margin:                     2px;
     cursor:                     pointer;
     background-color:           transparent;
     border-radius:              10px;
+    border:                     0px;
 }
 
 element normal.normal {
@@ -215,26 +211,19 @@ element-text {
 /*****----- Message -----*****/
 message {
     background-color:           transparent;
-    border:						0px;
     margin:						20px 0px 0px 0px;
-    padding:					0px;
-    spacing:					0px;
     border-radius: 				10px;
 }
 
 textbox {
-    padding:                    6px;
-    margin:                     0px;
-    border-radius:              0px;
-    background-color:           transparent;
+    padding:                    15px;
+    background-color:      transparent;
     text-color:                 @foreground;
-    vertical-align:             0.5;
-    horizontal-align:           0.0;
 }
 
 error-message {
-    padding:                    6px;
-    border-radius:              20px;
-    background-color:           @background;
+    padding:                    15px;
+    border-radius:            20px;
+    background-color:      @background;
     text-color:                 @foreground;
 }
