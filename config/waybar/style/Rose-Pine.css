@@ -17,7 +17,7 @@
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 	margin-top: 1px;
 	margin-bottom: 1px;
-	border-radius: 10px;
+	border-radius: 12px;
 }
 
 window#waybar {
@@ -146,10 +146,20 @@ tooltip {
     background: @main-bg;
     opacity: 1;
     margin: 4px 0px 4px 0px;
-    padding-left: 4px;
-    padding-right: 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 #temperature.critical {
   background-color: @red;
 }
+
+#group-motherboard,
+#group-laptop,
+#group-audio {
+    color: @main-fg;
+    background-color: @main-bg;
+}
+
