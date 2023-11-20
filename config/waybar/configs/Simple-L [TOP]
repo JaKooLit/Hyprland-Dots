@@ -27,7 +27,7 @@
 	"clock",
 	],
 "modules-right": [
-	"temperature",
+	"group/motherboard",
 	"custom/separator#blank_2",
 	"group/laptop",
 	"custom/separator#blank_2",

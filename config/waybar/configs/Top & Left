@@ -19,10 +19,8 @@
     
 "modules-left": [
     "custom/menu",
-    "cpu",
-    "temperature", 
-    "memory",
-    "disk",
+	"custom/separator#blank_2",
+	"group/motherboard",
     ],
     
 "modules-center": [
@@ -31,14 +29,12 @@
 	],
     
 "modules-right": [
-    //"network",
-    //"bluetooth",
+    "network",
+    "bluetooth",
 	"custom/weather",
-    "battery", 
-    "backlight",
-    "pulseaudio",
-    //"wireplumber", 
-    "pulseaudio#microphone",
+	"custom/separator#blank_2",
+	"group/audio",
+	"custom/separator#blank_2",
     "keyboard-state",
     "custom/power",
     ],

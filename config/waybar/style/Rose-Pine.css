@@ -27,7 +27,7 @@ window#waybar {
 tooltip {
     background: @main-bg;
     color: @main-fg;
-    border-radius: 7px;
+    border-radius: 8px;
     border-width: 0px;
 }
 
@@ -145,7 +145,6 @@ tooltip {
     color: @main-fg;
     background: @main-bg;
     opacity: 1;
-    margin: 4px 0px 4px 0px;
 	padding-top: 2px;
 	padding-bottom: 2px;
     padding-left: 6px;

@@ -77,12 +77,16 @@ tooltip {
     padding: 2px;
     color: @foreground;
     margin-right: 5px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
     color: @foreground;
     border-radius: 40%;
     background-color: @color0;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.focused {
@@ -97,6 +101,8 @@ tooltip {
 #workspaces button:hover {
     color: @color4;
     border-radius: 15px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #clock#2 {
