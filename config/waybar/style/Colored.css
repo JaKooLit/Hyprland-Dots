@@ -13,6 +13,7 @@
 @define-color accent6 #0db9d7;
 
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* colored */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -66,31 +67,37 @@ tooltip label{
 }
 
 #workspaces button {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
     background-color: transparent;
     color: #ffffff;
-    /*min-width: 36px;*/
-    /* Use box-shadow instead of border so the text isn't offset */
-    /*    box-shadow: inset 0 -3px transparent;*/
-    /* border-radius: 0px; */
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
     background-color: transparent;
     color: #D3D3D3;
-    /*min-width: 36px;*/
-    /* Use box-shadow instead of border so the text isn't offset */
-    /*    box-shadow: inset 0 -3px transparent;*/
-    /* border-radius: 0px; */
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
-    /* box-shadow: inset 0 -3px #ffffff; */
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.focused {
@@ -152,9 +159,6 @@ tooltip label{
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
     padding: 0px 10px;
-    /*margin: 4px 3px 5px 3px;*/
-    /*color: @fgcolor;*/
-    /* background-color: #bbccdd; */
     background-color:transparent;
 }
 
@@ -308,6 +312,19 @@ label:focus {
 
 #taskbar button.active {
     background-color: #7f849c;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #mpd {

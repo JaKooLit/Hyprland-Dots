@@ -44,7 +44,7 @@ tooltip {
 	border-width: 2px;
 	border-style: solid;
 	border-color: #11111b;
-	color: #cba6f7;
+	color: pink;
 }
 
 /*-----module groups----*/
@@ -71,11 +71,27 @@ tooltip {
 
 #workspaces button {
 	color: pink;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
 	color: whitesmoke;
-
+    border-radius: 15px 15px 15px 15px;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 
 }
 
@@ -91,15 +107,13 @@ tooltip {
 #workspaces button:hover {
 	color: #ba5663;
 	background-color: #0d0a0d;
+    border-radius: 15px;
+ 	padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 
 }
-
-#taskbar button:hover {
-	color: #ba5663;
-	background-color: #0d0a0d;
-}
-
-
 
 #backlight,
 #battery,
@@ -162,7 +176,21 @@ tooltip {
 #taskbar button.active {
 	background-color: pink;
 	border: 1px solid #22252a;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
 
+#taskbar button:hover {
+	color: #ba5663;
+	background-color: #0d0a0d;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #battery.critical:not(.charging) {

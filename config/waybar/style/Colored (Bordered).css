@@ -1,4 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Colored - Bordered */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -51,14 +52,18 @@ tooltip label{
 	color: #cdd6f4;
 }
 #workspaces button {
-	padding: 0 0px;
 	color: #7984a4;
 	background-color: transparent;
-	/* Use box-shadow instead of border so the text isn't offset */
-	box-shadow: inset 0 -3px transparent;
-	/* Avoid rounded borders under each workspace name */
-	border: none;
-	border-radius: 0;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.focused {
@@ -66,9 +71,19 @@ tooltip label{
 }
 #workspace button.hover {
 	background-color: transparent;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 #workspaces button.active {
 	color: white;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.urgent {
@@ -326,4 +341,17 @@ label:focus {
 
 #taskbar button.active {
 	background-color: #7f849c;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

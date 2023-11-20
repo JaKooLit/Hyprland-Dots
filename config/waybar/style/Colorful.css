@@ -1,4 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Colorful */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -162,14 +163,36 @@ tooltip label{
 }
 
 #workspaces button {
-  	border-radius: 8px;
   	background-color: #d9e0ee;
   	color: #3A3B3C;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
   	background-color: #eba0ac;
   	color: #3A3B3C;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #taskbar button {
@@ -181,7 +204,21 @@ tooltip label{
 #taskbar button.active {
   	background-color: #b4befe;
   	color: #3A3B3C;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
+
+#taskbar button:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
 #custom-menu {
 	background-color: #f5c2e7;
 	/*padding: 1px;*/
@@ -222,6 +259,10 @@ tooltip label{
 
 #temperature {
   	background-color: #86b4fa;
+}
+
+#temperature.critical {
+  background-color: red;
 }
 
 #custom-power_vertical,

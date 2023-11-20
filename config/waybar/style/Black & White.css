@@ -1,4 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Black and White */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -8,8 +9,8 @@ min-height: 0;
 font-size: 98%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 1px;
-margin-top: 1px;
-margin-bottom: 1px;
+margin-left: 4px;
+margin-right: 4px;
 }
 
 window#waybar {
@@ -79,12 +80,25 @@ tooltip label{
 }
 /*-----modules indv----*/
 #workspaces button {
-	padding: 0px 0px;
 	background-color: transparent;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 #workspaces button:hover {
-	box-shadow: inherit;
+	color: grey;
 	background-color: rgba(0,153,153,0);
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.focused {
@@ -93,7 +107,12 @@ tooltip label{
 #workspaces button.active {
 	color: white;
 	background-color: rgba(191, 191, 191,0.1);
-	/*box-shadow:inherit;*/
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #backlight,
@@ -184,6 +203,19 @@ tooltip label{
 
 #taskbar button.active {
 	background-color: #7f849c;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 #waybar.empty, #waybar.tiled, #waybar.floating {
 	background-color: transparent;

@@ -1,4 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Catppuccin Latte */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -8,8 +9,8 @@ min-height: 0;
 font-size: 98%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 1px;
-margin-top: 1px;
-margin-bottom: 1px;
+margin-left: 4px;
+margin-right: 4px;
 }
 
 @import "../waybar/style/catppuccin-themes/latte.css";
@@ -157,15 +158,26 @@ window#waybar.hidden {
 }
 
 #workspaces button {
-  border-radius: 5px;
-  /*margin: 3px;*/
-  /*padding: 1px;*/
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
- border-radius: 5px;
- color: @overlay0;
- background-color: @surface0;
+	border-radius: 8px;
+	color: @overlay0;
+	background-color: @surface0;
+ 	padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.persistent {
@@ -174,13 +186,35 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  color: @peach;
-  border-radius: 0px;
+	color: @peach;
+  	border-radius: 8px;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.urgent {
   color: @red;
   border-radius: 0px;
+}
+
+#taskbar button.active {
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #custom-menu {

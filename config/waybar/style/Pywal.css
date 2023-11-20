@@ -1,8 +1,5 @@
 /* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-/* ...........................................*/
-/* ...............Golden Noir................ */
-/* .......................................... */
-/* --- 👍 designed by https://github.com/Krautt  👍 --- */
+/* pywal */
 
 @import '../../.cache/wal/colors-waybar.css';
 
@@ -74,17 +71,26 @@ tooltip {
 }
 
 #workspaces button {
-    padding: 2px;
     color: @foreground;
-    margin-right: 5px;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
     color: @foreground;
-    border-radius: 40%;
     background-color: @color0;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -100,7 +106,8 @@ tooltip {
 
 #workspaces button:hover {
     color: @color4;
-    border-radius: 15px;
+    padding-left: 3px;
+    padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -168,6 +175,19 @@ tooltip {
 
 #taskbar button.active {
     background-color: rgb(47, 46, 46);
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #battery.critical:not(.charging) {
