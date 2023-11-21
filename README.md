@@ -75,12 +75,12 @@ chmod +x release.sh
 + If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
 ### 📖 Known issues and possible solutions
-- check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known%E2%80%90Issues-and-possible-solutions)
+- check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ)
 
 ### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
 - QUICK HINT! Click the HINT! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
-- More question? click here [Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/Some-Tips)
+- More question? click here [Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/TIPS)
 
 ### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
