@@ -107,7 +107,7 @@
 "pulseaudio/slider": {
 	"min": 0,
 	"max": 100,
-	"orientation": "horizontal"
+	"orientation": "horizontal",
 	
 },
 
@@ -121,7 +121,7 @@
 	"min": 0,
 	"max": 100,
 	"orientation": "horizontal",
-	"device": "intel_backlight"
+	//"device": "intel_backlight"
 },
 
 "custom/backlight": {

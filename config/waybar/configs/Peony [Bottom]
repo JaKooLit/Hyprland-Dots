@@ -19,7 +19,7 @@
 "margin-bottom": 5,
 "width": 1444,
 	
-"modules-left": ["hyprland/workspaces#peony", "tray#peony"],
+"modules-left": ["hyprland/workspaces#roman", "tray#peony"],
   
 "modules-center": ["clock#peony"], 
 	
@@ -35,28 +35,6 @@
 
 
 //M O D U L E S //
-
-"hyprland/workspaces#peony": {
-	"active-only":false,
-	"all-outputs": true,
-	"format": "{icon}",
-	"on-click": "activate",
-	"persistent_workspaces":{
-		"1": [],
-		"2": [],
-		"3": [],
-		"4": [],
-		"5": []
-	},
-	"format-icons": {
-        "1": "I",
-	    "2": "II",
-	    "3": "III",
-	    "4": "IV",
-	    "5": "V"
-	  
-	}
-  },
 
 "clock#peony": {
 	"interval": 60,

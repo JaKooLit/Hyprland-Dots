@@ -19,7 +19,7 @@
 "modules-left": [
 	"custom/menu",
 	"custom/separator#blank_2", 
-	"hyprland/workspaces",
+	"hyprland/workspaces#pacman",
 	"custom/separator#blank_2",
 	"tray",
 	],

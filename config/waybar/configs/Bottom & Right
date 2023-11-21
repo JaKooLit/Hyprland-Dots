@@ -26,7 +26,7 @@
     
 "modules-center": [
     //"hyprland/window",
-    "hyprland/workspaces#2",
+    "hyprland/workspaces#roman",
 	],
     
 "modules-right": [

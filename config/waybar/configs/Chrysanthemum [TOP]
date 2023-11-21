@@ -19,32 +19,11 @@
 	
 "modules-left": ["clock#gar","tray"],
   
-"modules-center": ["hyprland/workspaces#gar"], 
+"modules-center": ["hyprland/workspaces"], 
 	
 "modules-right": ["pulseaudio#gar","backlight#gar", "battery#gar"],
 
 // M O D U L E S //
-
-"hyprland/workspaces#gar": {
-  "active-only": false,
-  "all-outputs": true, 
-  "format": "{icon}",
-  "show-special": false,
-  "on-click": "activate",
-  "on-scroll-up": "hyprctl dispatch workspace e+1",
-  "on-scroll-down": "hyprctl dispatch workspace e-1",
-     "persistent_workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": [],
-},
-    "format-icons": {
-      "active": "",
-      "default": "",
-    }
-},
 
 "clock#gar": {
   //"format": "{:%A, %I:%M %P}",

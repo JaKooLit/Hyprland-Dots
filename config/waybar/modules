@@ -24,7 +24,7 @@
   },  
 },
 // ROMAN Numerals style
-"hyprland/workspaces#2": {
+"hyprland/workspaces#roman": {
   "active-only":false,
   "all-outputs": true,
   "format": "{icon}",
@@ -45,11 +45,16 @@
     "3": "III",
     "4": "IV",
     "5": "V",
+	"6": "VI",
+	"7": "VII",
+	"8": "VIII",
+	"9": "IX",
+	"10": "X",
     
   },
 },
 // PACMAN Style
-"hyprland/workspaces#3": {
+"hyprland/workspaces#pacman": {
   "active-only":false,
   "all-outputs": true,
   "format": "{icon}",
@@ -67,9 +72,34 @@
   "format": "{icon}",
   "format-icons": {
     "active": " 󰮯 ",
-    "default": "  ",
+    "default": "󰑊",
     "persistent":"󰑊",
   },
+},
+
+"hyprland/workspaces#kanji": {
+  "disable-scroll": true,
+  "all-outputs": true,
+  "format": "{icon}",
+  "persistent_workspaces": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    },
+  "format-icons": {
+    "1": "一",
+    "2": "二",
+    "3": "三",
+    "4": "四",
+    "5": "五",
+	"6": "六",
+	"7": "七",
+	"8": "八",
+	"9": "九",
+	"10": "十",
+    }
 },
 
 //  NUMBERS and ICONS style
