@@ -105,8 +105,8 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-
 #backlight,
+#backlight-slider,
 #battery,
 #bluetooth,
 #cava,
@@ -122,6 +122,7 @@ tooltip {
 #mpd,
 #network,
 #pulseaudio,
+#pulseaudio-slider,
 #taskbar button,
 #taskbar,
 #temperature,
@@ -129,6 +130,7 @@ tooltip {
 #window,
 #wireplumber,
 #workspaces,
+#custom-backlight,
 #custom-cycle_wall,
 #custom-keybinds,
 #custom-light_dark,
@@ -136,13 +138,13 @@ tooltip {
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
-#custom-spotify,
+#custom-speaker,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
 #custom-weather.cloudyFoggyDay,
 #custom-weather.cloudyFoggyNight,
-#custom-weather.default 
+#custom-weather.default, 
 #custom-weather.rainyDay,
 #custom-weather.rainyNight,
 #custom-weather.severe,
