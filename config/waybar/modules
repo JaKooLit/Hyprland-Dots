@@ -72,8 +72,8 @@
   "format": "{icon}",
   "format-icons": {
     "active": " 󰮯 ",
-    "default": "󰑊",
-    "persistent":"󰑊",
+    "default": "󰊠",
+    "persistent":"󰊠",
   },
 },
 
