@@ -28,41 +28,44 @@ window {
     spacing:                    0px;
     padding:                    2px;
     margin:                     0px; 
-    color:                      transparent;
-    border:                     1px;
+    border:                     2px;
     border-color:               @active-background;
     cursor:                     "default";
-    transparency:               "real";
     location:                   center;
     anchor:                     center;
     fullscreen:                 false;
     enabled:                    true;
     border-radius:              15px;
+    border-radius:              15px;
+ 	background-color:           @background-color;
 }
 
 /* ---- Mainbox ---- */
 mainbox {
     enabled:                    true;
     orientation:                horizontal;
-	padding:					20px;
-    background-image:    url("~/.config/rofi/.current_wallpaper", height);
+	padding:					15px;
+    background-image:    		url("~/.config/rofi/.current_wallpaper", height);
     children:                   [ "imagebox", "listbox" ];
-    border-radius:              10px;
+    border-radius:              12px;
 }
 
 /* ---- Imagebox ---- */
 imagebox {
     background-color:      transparent;
     orientation:                vertical;
-    children:                   [ "inputbar", "dummy", "mode-switcher" ];
+    children:                   [ "inputbar", "dummy"];
 }
 
 /* ---- Listbox ---- */
 listbox {
     spacing:                    4px;
-    background-color:      transparent;
     orientation:                vertical;
     children:                   [ "listview" ];
+    border-radius:              10px;
+    border:                     1px;
+    border-color:               @active-background;
+	background-color:		    @background90;
 }
 /* ---- Dummy ---- */
 dummy {
@@ -77,46 +80,27 @@ inputbar {
     padding:                    15px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:		@backrgound;
+	background-color:			@backrgound90;
     children:                   [ "textbox-prompt-colon", "entry" ];
+    border:                     1px;
+    border-color:               @active-background;
 }
 
 textbox-prompt-colon {
     enabled:                    true;
     expand:                     false;
-    str:                        	"🔎 ";
+    str:                        " ";
     text-color:                 inherit;
-	background-color:		transparent;
+	background-color:			transparent;
 }
 
 entry {
     enabled:                    true;
-    background-color:      transparent;
-    text-color:                  inherit;
-    cursor:                       text;
+    background-color:      		transparent;
+    text-color:                 inherit;
+    cursor:                     text;
     placeholder:                "Choose Waybar Layout";
     placeholder-color:          inherit;
-}
-
-/* ---- Mode Switcher ---- */
-mode-switcher{
-    enabled:                    true;
-    spacing:                    20px;
-    background-color:           transparent;
-    text-color:                 @foreground;
-}
-
-button {
-    padding:                   10px;
-    border-radius:           10px;
-    background-color:     transparent;
-    text-color:                 inherit;
-    cursor:                     pointer;
-}
-
-button selected {
-    background-color:     @selected-normal-background;
-    text-color:                 @foreground;
 }
 
 /* ---- Listview ---- */
@@ -124,16 +108,16 @@ listview {
     enabled:                    true;
     columns:                    1;
     lines:                      16;
-  spacing:                      4px;
-  dynamic:                     true;
-  cycle:                      true;
-  scrollbar:                  true;
-  layout:                     vertical;
-  reverse:                    false;
-  fixed-height:               true;
-  fixed-columns:              false;
-	background-color:            @background;
-	border-radius:             10px;
+  	spacing:                    4px;
+  	dynamic:                    true;
+  	cycle:                      true;
+  	scrollbar:                  true;
+  	layout:                     vertical;
+  	reverse:                    false;
+  	fixed-height:               true;
+  	fixed-columns:              false;
+	background-color:            transparent;
+	border-radius:             	10px;
 }
 
 /* ---- Element ---- */
