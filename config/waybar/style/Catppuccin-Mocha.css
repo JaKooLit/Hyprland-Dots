@@ -9,8 +9,6 @@ min-height: 0;
 font-size: 98%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 1px;
-margin-top: 1px;
-margin-bottom: 1px;
 }
 
 @import "../waybar/style/catppuccin-themes/mocha.css";

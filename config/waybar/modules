@@ -543,8 +543,8 @@
 
 "backlight#vertical": {
 	"interval": 2,
-    "align": 0,
-    "rotate": 0,
+    "align": 0.35,
+    "rotate": 1,
     "format": "{icon}",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
     "on-click": "",

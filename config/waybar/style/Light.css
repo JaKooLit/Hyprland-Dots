@@ -9,8 +9,6 @@ min-height: 0;
 font-size: 98%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 1px;
-margin-top: 1px;
-margin-bottom: 1px;
 }
 
 window#waybar {
@@ -158,7 +156,7 @@ tooltip label {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: #000000;
-	padding: 1px 4px;
+	padding: 1px 5px;
 	border-radius: 8px;
 }
 
