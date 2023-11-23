@@ -172,5 +172,6 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
-printf "\n${OK} Copy Completed!\n\n"
-printf "${NOTE} Need to logout and re-login or reboot\n\n"
+printf "\n${OK} Copy Completed!\n\n\n"
+printf "${ORANGE} ATTENTION!!!! \n"
+printf "${ORANGE} YOU NEED to logout and re-login or reboot to avoid issues\n\n"
