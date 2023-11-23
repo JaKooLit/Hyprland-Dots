@@ -3,7 +3,7 @@
 SCRIPTSDIR=$HOME/.config/hypr/scripts
 
 # Kill already running process
-_ps=(waybar mako dunst rofi)
+_ps=(waybar dunst rofi)
 for _prs in "${_ps[@]}"; do
 	if [[ $(pidof ${_prs}) ]]; then
 		pkill ${_prs}
