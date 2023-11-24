@@ -2,7 +2,7 @@
 
 /* ---- Configuration ---- */
 configuration {
-    show-icons:                 false;
+    show-icons:                     false;
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -10,7 +10,7 @@ configuration {
 
 /* ---- Global Properties ---- */
 * {
-    font:                        "JetBrains Mono Nerd Font 14";
+    font:                           "JetBrains Mono Nerd Font 14";
 }
 
 /* ---- Main Window ---- */
@@ -24,7 +24,7 @@ window {
     x-offset:                       0px;
     y-offset:                       0px;
     padding:                        0px;
-    border:                         1px solid;
+    border:                         2px solid;
     border-radius:                  15px;
     border-color:                   @active-background;
     cursor:                         "default";
@@ -48,7 +48,7 @@ mainbox {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                        true;
-    padding:                        2px 4%;
+    padding:                        10px 6.5%;
     background-color:               transparent;
     orientation:                    vertical;
     children:                       ["prompt"];
@@ -56,7 +56,7 @@ inputbar {
 
 prompt {
     enabled:                        true;
-    padding:                        2% 5%;
+    padding:                        1% 2.5%;
     border-radius:                  100% 100% 100% 100%;
     border-color:                   @foreground;
     background-color:               @background-color;
@@ -67,8 +67,8 @@ prompt {
 /* ---- Listview ---- */
 listview {
     enabled:                        true;
-    columns:                        5;
-    lines:                          1;
+    columns:                        3;
+    lines:                          2;
     cycle:                          true;
     dynamic:                        true;
     scrollbar:                      false;
@@ -76,8 +76,8 @@ listview {
     reverse:                        false;
     fixed-height:                   true;
     fixed-columns:                  true;
-    spacing:                        30px;
-    padding:                        4% 30px;
+    spacing:                        20px;
+    padding:                        1% 30px;
     background-color:               transparent;
     cursor:                         "default";
     border:                         0px;
@@ -86,14 +86,14 @@ listview {
 /* ---- Elements ---- */
 element {
     enabled:                        true;
-    padding:                        20px;
-    border-radius:                  40px;
+    padding:                        10px;
+    border-radius:                  30px;
     background-color:               transparent;
     text-color:                     @foreground;
     cursor:                         pointer;
 }
 element-text {
-    font:                           "JetBrains Mono Nerd Font 32";
+    font:                           "JetBrains Mono Nerd Font 18";
     background-color:               transparent;
     text-color:                     inherit;
     cursor:                         inherit;

@@ -8,20 +8,21 @@ uptime="`uptime -p | sed -e 's/up //g'`"
 host=`hostnamectl hostname`
 
 # Options
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
+shutdown='	Shutdown'
+reboot=' Reboot'
+lock=' Lock'
+suspend=' Suspend'
+logout=' Logout'
+hibernate=' Hibernate'
 
 # Rofi CMD
 rofi_cmd() {
-	rofi -dmenu -p " $USER@$host" -mesg " Uptime: $uptime" -theme ~/.config/rofi/config-powermenu.rasi
+	rofi -dmenu -p " $USER@$host" -mesg " Uptime: $uptime" -sep '|' -eh 2 -theme ~/.config/rofi/config-powermenu.rasi
 }
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$lock\0meta\x1fl\n$suspend\0meta\x1fu\n$logout\0meta\x1fe\n$reboot\0meta\x1fr\n$shutdown\0meta\x1fs" | rofi_cmd
+	echo -e "$lock\0meta\x1fl|$suspend\0meta\x1fu|$logout\0meta\x1fe|$reboot\0meta\x1fr|$shutdown\0meta\x1fs|$hibernate\0meta\x1fh" | rofi_cmd
 }
 
 # Execute Command
@@ -34,6 +35,8 @@ run_cmd() {
 		systemctl suspend
 	elif [[ $1 == '--logout' ]]; then
 		hyprctl dispatch exit 0
+	elif [[ $1 == '--hibernate' ]]; then
+		systemctl hibernate
 	fi
 }
 
@@ -58,4 +61,7 @@ case ${chosen} in
     $logout)
 		run_cmd --logout
         ;;
+	$hibernate)
+		run_cmd --hibernate
+		;;
 esac

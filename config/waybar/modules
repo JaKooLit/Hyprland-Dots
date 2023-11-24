@@ -199,7 +199,7 @@
     "tooltip": true,
     "tooltip-format": "{timeTo} {power}w",
     "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
-    "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
+    "on-click-right": "~/.config/hypr/scripts/rofipower.sh",
   },
       
   "bluetooth": {
@@ -497,7 +497,7 @@
   "custom/power": {
     "format": "⏻ ",
     "tooltip": false,
-    "on-click": "~/.config/hypr/scripts/Wlogout.sh",
+    "on-click": "~/.config/hypr/scripts/rofipower.sh",
     "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
   },
   
@@ -652,7 +652,7 @@
   "custom/power_vertical": {
     "format": "⏻",
     "tooltip": false,
-    "on-click": "~/.config/hypr/scripts/Wlogout.sh",
+    "on-click": "~/.config/hypr/scripts/rofipower.sh",
     "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
   },
   
