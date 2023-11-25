@@ -7,6 +7,9 @@
 <br/>
 </div>
 
+### Some preview
+https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4c98fa74-0190-4a1d-96d6-2df304ed1aa2
+
 ## 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
 - You can install Hyprland using Scripts below:
 
