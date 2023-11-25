@@ -3,7 +3,6 @@
 /* ---- Configuration ---- */
 configuration {
     show-icons:                     false;
-    auto-select:                    true;
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -19,8 +18,8 @@ window {
     location:                       center;
     anchor:                         center;
     fullscreen:                     false;
-    width:                          38%;
-    /*height:                         30%;*/
+    width:                          900px;
+    height:                         400px;
     x-offset:                       0px;
     y-offset:                       0px;
     padding:                        0px;
@@ -48,7 +47,7 @@ mainbox {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                        true;
-	padding:						10px;
+	padding:						20px;
     background-color:               transparent;
     orientation:                    horizontal;
     children:                       ["prompt"];
@@ -77,11 +76,12 @@ listview {
     reverse:                        false;
     fixed-height:                   false;
     fixed-columns:                  true;
-    spacing:                        30px;
-    padding:                        2% 30px;
+    spacing:                        40px;
+    padding:                        4% 40px;
     background-color:               transparent;
     cursor:                         "default";
     border:                         0px;
+	border-color:                   @active-background;
 }
 
 /* ---- Elements ---- */
