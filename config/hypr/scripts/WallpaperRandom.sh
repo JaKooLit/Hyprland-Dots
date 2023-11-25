@@ -2,8 +2,6 @@
 
 # This script will randomly go through the files of a directory, setting it
 # up as the wallpaper at regular intervals
-#
-# NOTE: this script uses bash (not POSIX shell) for the RANDOM variable
 
 pywal_script=$HOME/.config/hypr/scripts/PywalSwww.sh
 pywal_refresh=$HOME/.config/hypr/scripts/Refresh.sh

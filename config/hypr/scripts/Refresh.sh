@@ -2,16 +2,17 @@
 
 SCRIPTSDIR=$HOME/.config/hypr/scripts
 
-# Kill already running process
+# Kill already running processes
 _ps=(waybar dunst rofi)
 for _prs in "${_ps[@]}"; do
-	if [[ $(pidof ${_prs}) ]]; then
-		pkill ${_prs}
-	fi
+    if pidof "${_prs}" >/dev/null; then
+        pkill "${_prs}"
+    fi
 done
 
-# Lauch notification daemon (dunst)
-${SCRIPTSDIR}/Dunst.sh &
+# relaunch apps
+dunst &
+waybar &
 
-# Lauch statusbar (waybar)
-${SCRIPTSDIR}/Waybar.sh &
+#sleep 1
+#${SCRIPTSDIR}/RainbowBorders.sh &

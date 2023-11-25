@@ -1,6 +1,7 @@
 #!/bin/bash
 # WALLPAPERS PATH
 DIR=$HOME/Pictures/wallpapers
+
 # Transition config
 FPS=30
 TYPE="simple"

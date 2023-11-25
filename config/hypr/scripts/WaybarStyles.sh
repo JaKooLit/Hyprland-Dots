@@ -30,7 +30,7 @@ main() {
     apply_style "$choice"
 
     # Restart relevant processes
-    for process in waybar mako dunst; do
+    for process in waybar dunst; do
         if pgrep -x "$process" >/dev/null; then
             pkill "$process"
         fi
