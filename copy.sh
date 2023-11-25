@@ -188,6 +188,10 @@ chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 printf " adding user to input group...\n"
 sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
 
+# initialize pywal to avoid config error on hyprland
+wal -i ~/Pictures/wallpapers/mecha-nostalgia.png 2>&1 | tee -a "$LOG"
+
+
 printf "\n${OK} Copy Completed!\n\n\n"
 printf "${ORANGE} ATTENTION!!!! \n"
 printf "${ORANGE} YOU NEED to logout and re-login or reboot to avoid issues\n\n"
