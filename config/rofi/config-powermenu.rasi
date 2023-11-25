@@ -1,0 +1,123 @@
+/* --- Configuration for Rofi Power ---- */
+
+/* ---- Configuration ---- */
+configuration {
+    show-icons:                     false;
+}
+
+/* ---- Load pywal colors (custom wal template) ---- */
+@import "~/.config/rofi/pywal-color/pywal-theme.rasi"
+
+/* ---- Global Properties ---- */
+* {
+    font:                           "Fira Code Medium 12";
+}
+
+/* ---- Main Window ---- */
+window {
+    location:                       center;
+    anchor:                         center;
+    fullscreen:                     false;
+    width:                          900px;
+    height:                         400px;
+    x-offset:                       0px;
+    y-offset:                       0px;
+    padding:                        0px;
+    border:                         2px;
+    border-radius:                  15px;
+    border-color:                   @active-background;
+    cursor:                         "default";
+    background-color:               @background-color;
+}
+
+/* ---- Main Box ---- */
+mainbox {
+    enabled:                        true;
+    spacing:                        0px;
+    margin:                         0px;
+    padding:                        0px;
+    border:                         0px solid;
+    border-radius:                  0px;
+    background-image:               url("~/.config/rofi/.current_wallpaper", width);
+    border-color:                   @active-background;
+    background-color:               @background-color;
+    children:                       [ "inputbar", "listview", "message" ];
+}
+
+/* ---- Inputbar ---- */
+inputbar {
+    enabled:                        true;
+	padding:						20px;
+    background-color:               transparent;
+    orientation:                    horizontal;
+    children:                       ["prompt"];
+}
+
+prompt {
+    enabled:                        true;
+	padding:						10px;
+	border-radius:					15px;
+    border-color:                   @foreground;
+    background-color:               @background-color;
+    text-color:                     @foreground;
+    cursor:                         text;
+	
+}
+
+/* ---- Listview ---- */
+listview {
+    enabled:                        true;
+    columns:                        3;
+    lines:                          2;
+    cycle:                          true;
+    dynamic:                        true;
+    scrollbar:                      false;
+    layout:                         vertical;
+    reverse:                        false;
+    fixed-height:                   false;
+    fixed-columns:                  true;
+    spacing:                        40px;
+    padding:                        4% 40px;
+    background-color:               transparent;
+    cursor:                         "default";
+    border:                         0px;
+	border-color:                   @active-background;
+}
+
+/* ---- Elements ---- */
+element {
+    enabled:                        true;
+    padding:                        20px;
+    border-radius:                  30px;
+    background-color:               transparent;
+    text-color:                     @foreground;
+    cursor:                         pointer;
+}
+element-text {
+    font:                           "Fira Code SemiBold 16";
+    background-color:               transparent;
+    text-color:                     inherit;
+    cursor:                         inherit;
+    vertical-align:                 0.5;
+    horizontal-align:               0.5;
+}
+element selected.normal {
+    background-color:               @selected-normal-background;
+    text-color:                     @background;
+}
+
+/* ---- Message ---- */
+message {
+    enabled:                        true;
+    margin:                         0px;
+    background-color:               transparent;
+    text-color:                     @foreground;
+    border:                         0px;
+}
+textbox {
+    font:                           "Fira Code SemiBold 8";
+    background-color:               @background;
+    text-color:                     @foreground;
+    vertical-align:                 0.5;
+    horizontal-align:               0.5;
+}
