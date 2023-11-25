@@ -65,7 +65,7 @@ listbox {
     border-radius:              10px;
     border:                     1px;
     border-color:               @active-background;
-	background-color:		    @background90;
+	background-color:		    @background;
 }
 /* ---- Dummy ---- */
 dummy {

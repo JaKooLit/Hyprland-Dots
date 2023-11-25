@@ -8,6 +8,16 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
+echo " 
+
+     ██╗ █████╗    ██╗  ██╗ ██████╗  ██████╗ ██╗     ██╗████████╗      ██████╗  ██████╗ ████████╗███████╗
+     ██║██╔══██╗   ██║ ██╔╝██╔═══██╗██╔═══██╗██║     ██║╚══██╔══╝      ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
+     ██║███████║   █████╔╝ ██║   ██║██║   ██║██║     ██║   ██║   █████╗██║  ██║██║   ██║   ██║   ███████╗
+██   ██║██╔══██║   ██╔═██╗ ██║   ██║██║   ██║██║     ██║   ██║   ╚════╝██║  ██║██║   ██║   ██║   ╚════██║
+╚█████╔╝██║  ██║██╗██║  ██╗╚██████╔╝╚██████╔╝███████╗██║   ██║         ██████╔╝╚██████╔╝   ██║   ███████║
+ ╚════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝   ╚═╝         ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝
+                                                                                                         
+"
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -149,6 +159,9 @@ printf "${NOTE} - copying dotfiles\n"
     fi
   done
 
+# update home folders
+xdg-user-dirs-update
+
 # Copying config files
 printf " Copying config files...\n"
 mkdir -p ~/.config
@@ -171,6 +184,9 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
+
+printf " adding user to input group...\n"
+sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
 
 printf "\n${OK} Copy Completed!\n\n\n"
 printf "${ORANGE} ATTENTION!!!! \n"
