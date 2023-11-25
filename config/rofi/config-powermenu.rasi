@@ -3,6 +3,7 @@
 /* ---- Configuration ---- */
 configuration {
     show-icons:                     false;
+    auto-select:                    true;
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -10,21 +11,20 @@ configuration {
 
 /* ---- Global Properties ---- */
 * {
-    font:                           "JetBrains Mono Nerd Font 14";
+    font:                           "Fira Code Medium 12";
 }
 
 /* ---- Main Window ---- */
 window {
-    transparency:                   "real";
     location:                       center;
     anchor:                         center;
     fullscreen:                     false;
-    width:                          25%;
-    height:                         25%;
+    width:                          38%;
+    /*height:                         30%;*/
     x-offset:                       0px;
     y-offset:                       0px;
     padding:                        0px;
-    border:                         2px solid;
+    border:                         2px;
     border-radius:                  15px;
     border-color:                   @active-background;
     cursor:                         "default";
@@ -48,20 +48,21 @@ mainbox {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                        true;
-    padding:                        10px 6.5%;
+	padding:						10px;
     background-color:               transparent;
-    orientation:                    vertical;
+    orientation:                    horizontal;
     children:                       ["prompt"];
 }
 
 prompt {
     enabled:                        true;
-    padding:                        1% 2.5%;
-    border-radius:                  100% 100% 100% 100%;
+	padding:						10px;
+	border-radius:					15px;
     border-color:                   @foreground;
     background-color:               @background-color;
     text-color:                     @foreground;
     cursor:                         text;
+	
 }
 
 /* ---- Listview ---- */
@@ -74,10 +75,10 @@ listview {
     scrollbar:                      false;
     layout:                         vertical;
     reverse:                        false;
-    fixed-height:                   true;
+    fixed-height:                   false;
     fixed-columns:                  true;
-    spacing:                        20px;
-    padding:                        1% 30px;
+    spacing:                        30px;
+    padding:                        2% 30px;
     background-color:               transparent;
     cursor:                         "default";
     border:                         0px;
@@ -86,14 +87,14 @@ listview {
 /* ---- Elements ---- */
 element {
     enabled:                        true;
-    padding:                        10px;
+    padding:                        20px;
     border-radius:                  30px;
     background-color:               transparent;
     text-color:                     @foreground;
     cursor:                         pointer;
 }
 element-text {
-    font:                           "JetBrains Mono Nerd Font 18";
+    font:                           "Fira Code SemiBold 16";
     background-color:               transparent;
     text-color:                     inherit;
     cursor:                         inherit;
@@ -109,15 +110,14 @@ element selected.normal {
 message {
     enabled:                        true;
     margin:                         0px;
-    padding:                        15px;
-    border-radius:                  0px;
     background-color:               transparent;
     text-color:                     @foreground;
     border:                         0px;
 }
 textbox {
-    background-color:               inherit;
-    text-color:                     inherit;
+    font:                           "Fira Code SemiBold 8";
+    background-color:               @background;
+    text-color:                     @foreground;
     vertical-align:                 0.5;
     horizontal-align:               0.5;
 }
