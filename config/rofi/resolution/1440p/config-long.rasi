@@ -104,7 +104,7 @@ entry {
 listview {
 	enabled:					 true;
 	columns:					 1;
-	lines:						 15;
+	lines:						 12;
 	spacing:                     4px;
 	dynamic:                     true;
 	cycle:                       true;
