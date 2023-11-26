@@ -26,6 +26,7 @@ rofi_cmd() {
 	-kb-select-5 "s" \
 	-kb-select-6 "h" \
 	-theme ~/.config/rofi/config-powermenu.rasi | awk '{print $1}')
+    echo "$chosen_option"
 }
 
 # Execute Command
