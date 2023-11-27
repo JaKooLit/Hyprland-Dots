@@ -4,11 +4,12 @@ set -x
 wallpaper_path="$HOME/Pictures/wallpapers/Dynamic-Wallpapers"
 hypr_config_path="$HOME/.config/hypr"
 waybar_config="$HOME/.config/waybar"
-dunst_config="$HOME/.config/dunst"
+SCRIPTSDIR="$HOME/.config/hypr/scripts"
+dunst_notif="$HOME/.config/dunst/images/bell.png"
+
 
 dark_rofi_pywal="$HOME/.cache/wal/colors-rofi-dark.rasi"
 light_rofi_pywal="$HOME/.cache/wal/colors-rofi-light.rasi"
-
 
 # Tokyo Night
 light_gtk_theme="Tokyonight-Light-B"
@@ -25,9 +26,9 @@ swww query || swww init
 swww="swww img"
 effect="--transition-bezier .43,1.19,1,.4 --transition-fps 60 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"
 
-# Define functions for notifying user and updating symlinks
+
 notify_user() {
-	notify-send -h string:x-canonical-private-synchronous:sys-notify -u normal "Switching to $1 mode"
+    dunstify -u normal -i "$dunst_notif" "Switching to $1 mode"
 }
 
 # Determine the current wallpaper mode by checking a configuration file
@@ -41,8 +42,6 @@ fi
 path_param=$(echo $next_mode | sed 's/.*/\u&/')
 
 notify_user "$next_mode"
-#ln -sf "${waybar_config}/style/style-pywal.css" "${waybar_config}/style.css"
-ln -sf "${dunst_config}/styles/dunstrc-${next_mode}" "${dunst_config}/dunstrc"
 
 # Symlink for rofi theme
 if [ "$next_mode" = "dark" ]; then
@@ -71,6 +70,8 @@ $swww "${next_wallpaper}" $effect
 echo "$next_mode" > ~/.cache/.wallpaper_mode
 echo "$next_wallpaper" > ~/.cache/.current_wallpaper
 
-exec ~/.config/hypr/scripts/PywalSwww.sh &
+${SCRIPTSDIR}/PywalSwww.sh &
 sleep 2
-exec ~/.config/hypr/scripts/Refresh.sh &
+${SCRIPTSDIR}/Refresh.sh &
+sleep 1
+${SCRIPTSDIR}/PywalDunst.sh

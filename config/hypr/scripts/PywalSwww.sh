@@ -28,6 +28,6 @@ done
 wal -i $wallpaper_path
 
 # execute pywal skipping tty and terminal
-#wal -i $wallpaper_path -s -t
+#wal -i $wallpaper_path -s -t &
 
 # more info regarding Pywal https://github.com/dylanaraps/pywal/wiki/Getting-Started
