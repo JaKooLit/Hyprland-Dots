@@ -1,6 +1,8 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Colored Line */
 
+@import '../../.cache/wal/colors-waybar.css';
+
 * {
 font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
@@ -12,8 +14,11 @@ padding: 1px;
 }
 
 window#waybar {
-    background:rgba (0, 0, 0, 0.5);
-    border-radius: 20px 20px 20px 20px; 
+    background: rgba (0, 0, 0, 0.5);
+    border-radius: 20px 20px 20px 20px;
+	border-bottom: 4px;
+    border-style: solid;
+	border-color: @color2; 
 }
 
 #workspaces button {
@@ -97,8 +102,6 @@ window#waybar {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
     padding: 1px 4px;
-    border-bottom: 1px;
-    border-style: solid;
 }
  
 /* -----------------------------------------------------------------------------
