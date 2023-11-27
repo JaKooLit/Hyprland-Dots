@@ -11,6 +11,8 @@ dunst_notif="$HOME/.config/dunst/images/bell.png"
 dark_rofi_pywal="$HOME/.cache/wal/colors-rofi-dark.rasi"
 light_rofi_pywal="$HOME/.cache/wal/colors-rofi-light.rasi"
 
+
+
 # Tokyo Night
 light_gtk_theme="Tokyonight-Light-B"
 dark_gtk_theme="Tokyonight-Dark-B"
@@ -42,7 +44,14 @@ path_param=$(echo $next_mode | sed 's/.*/\u&/')
 
 notify_user "$next_mode"
 
-ln -sf "${dunst_config}/styles/dunstrc-${next_mode}" "${dunst_config}/dunstrc"
+# Change background for dunst
+if [ "$next_mode" = "dark" ]; then
+    sed -i '/background = /s/.*/    background = "#00000080"/' "${dunst_config}/dunstrc"
+	sed -i '/foreground = /s/.*/    foreground = "#FFFFFF90"/' "${dunst_config}/dunstrc"
+else
+    sed -i '/background = /s/.*/    background = "#FFFFFF80"/' "${dunst_config}/dunstrc"
+	sed -i '/foreground = /s/.*/    foreground = "#00000090"/' "${dunst_config}/dunstrc"
+fi
 
 # Symlink for rofi theme
 if [ "$next_mode" = "dark" ]; then
