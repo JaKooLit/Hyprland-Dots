@@ -5,6 +5,8 @@ wallpaper_path="$HOME/Pictures/wallpapers/Dynamic-Wallpapers"
 hypr_config_path="$HOME/.config/hypr"
 waybar_config="$HOME/.config/waybar"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
+dunst_notif="$HOME/.config/dunst/images/bell.png"
+
 
 dark_rofi_pywal="$HOME/.cache/wal/colors-rofi-dark.rasi"
 light_rofi_pywal="$HOME/.cache/wal/colors-rofi-light.rasi"
@@ -24,9 +26,9 @@ swww query || swww init
 swww="swww img"
 effect="--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type random --transition-pos 0.925,0.977 --transition-duration 2"
 
-# Define functions for notifying user and updating symlinks
+
 notify_user() {
-	notify-send -h string:x-canonical-private-synchronous:sys-notify -u normal "Switching to $1 mode"
+    dunstify -u normal -i "$dunst_notif" "Switching to $1 mode"
 }
 
 # Determine the current wallpaper mode by checking a configuration file

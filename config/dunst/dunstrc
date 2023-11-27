@@ -67,10 +67,10 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 3
+    frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#158E15"
+    frame_color = "#7F8153"
 
     # Define a color for the separator.
     # possible values are:
@@ -283,17 +283,17 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     timeout = 2
     # Icon for notifications with low urgency, uncomment to enable
-    icon = ~/.config/hypr/dunst/images/notification2.png
+    icon = $HOME/.config/dunst/images/bell.png
 
 [urgency_normal]
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
-    icon = ~/.config/hypr/dunst/images/notification2.png
+    icon = $HOME/.config/dunst/images/bell.png
 
 [urgency_critical]
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    icon = ~/.config/hypr/dunst/images/notification2.png
+    icon = $HOME/.config/dunst/images/bell.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
@@ -310,8 +310,8 @@
 #    summary
 #
 # and you can override the
-    background = "#0C0C0C"
-    foreground = "#80ef80"
+    background = "#080A10"
+    foreground = "#f1f1bc"
 #    format
 #    frame_color
 #    fullscreen
