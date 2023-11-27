@@ -21,7 +21,7 @@ export SWWW_TRANSITION_STEP=2
 export SWWW_TRANSITION_TYPE=random
 
 # This controls (in seconds) when to switch to the next image
-INTERVAL=600
+INTERVAL=900
 
 while true; do
 	find "$1" \
