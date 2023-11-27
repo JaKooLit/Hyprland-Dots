@@ -67,6 +67,4 @@ fi
 main
 
 ${SCRIPTSDIR}/PywalSwww.sh &
-${SCRIPTSDIR}/Refresh.sh &
-sleep 1
-${SCRIPTSDIR}/PywalDunst.sh
+${SCRIPTSDIR}/Refresh.sh 
