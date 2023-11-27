@@ -24,7 +24,7 @@ get_icon() {
 }
 # Notify
 notify_user() {
-	notify-send -h string:x-dunst-stack-tag:brightness_notif -h int:value:$current -u low -i "$icon" "Keyboard Brightness : $current%"
+	dunstify -h string:x-dunst-stack-tag:brightness_notif -h int:value:$current -u low -i "$icon" "Keyboard Brightness : $current%"
 }
 
 # Change brightness

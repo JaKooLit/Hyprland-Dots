@@ -13,6 +13,4 @@ swww img ${RANDOMPICS} --transition-fps 30 --transition-type any --transition-du
 
 ${SCRIPTSDIR}/PywalSwww.sh &
 sleep 1
-${SCRIPTSDIR}/Refresh.sh &
-sleep 1
-${SCRIPTSDIR}/PywalDunst.sh
+${SCRIPTSDIR}/Refresh.sh 

@@ -4,7 +4,7 @@
 iDIR="$HOME/.config/dunst/icons"
 
 notification(){
-  notify-send -h string:x-canonical-private-synchronous:sys-notify -u normal -i "$iDIR/music.png" "Playing now: " "$@" 
+  dunstify -h string:x-canonical-private-synchronous:sys-notify -u normal -i "$iDIR/music.png" "Playing now: " "$@" 
 }
 
 menu(){

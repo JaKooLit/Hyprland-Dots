@@ -7,7 +7,6 @@
 
 pywal_script=$HOME/.config/hypr/scripts/PywalSwww.sh
 pywal_refresh=$HOME/.config/hypr/scripts/Refresh.sh
-pywal_dunst=$HOME/.config/hypr/scripts/PywalDunst.sh
 
 if [[ $# -lt 1 ]] || [[ ! -d $1   ]]; then
 	echo "Usage:
@@ -30,7 +29,7 @@ while true; do
 		done \
 		| sort -n | cut -d':' -f2- \
 		| while read -r img; do
-			swww img "$img" && $pywal_script && $pywal_refresh && $pywal_dunst
+			swww img "$img" && $pywal_script && $pywal_refresh 
 			sleep $INTERVAL
 			
 		done
