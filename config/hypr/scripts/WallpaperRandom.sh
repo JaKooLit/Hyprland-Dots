@@ -2,9 +2,12 @@
 
 # This script will randomly go through the files of a directory, setting it
 # up as the wallpaper at regular intervals
+#
+# NOTE: this script uses bash (not POSIX shell) for the RANDOM variable
 
 pywal_script=$HOME/.config/hypr/scripts/PywalSwww.sh
 pywal_refresh=$HOME/.config/hypr/scripts/Refresh.sh
+pywal_dunst=$HOME/.config/hypr/scripts/PywalDunst.sh
 
 if [[ $# -lt 1 ]] || [[ ! -d $1   ]]; then
 	echo "Usage:
@@ -18,7 +21,7 @@ export SWWW_TRANSITION_STEP=2
 export SWWW_TRANSITION_TYPE=random
 
 # This controls (in seconds) when to switch to the next image
-INTERVAL=300
+INTERVAL=600
 
 while true; do
 	find "$1" \
@@ -27,7 +30,7 @@ while true; do
 		done \
 		| sort -n | cut -d':' -f2- \
 		| while read -r img; do
-			swww img "$img" && $pywal_script && $pywal_refresh
+			swww img "$img" && $pywal_script && $pywal_refresh && $pywal_dunst
 			sleep $INTERVAL
 			
 		done

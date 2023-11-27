@@ -1,26 +1,44 @@
 #!/bin/bash
 
-CONFIG="$HOME/.config/waybar/style"
-WCONFIG="$HOME/.config/waybar/style.css"
+set -euo pipefail
+IFS=$'\n\t'
 
+# Define directories
+config_dir="$HOME/.config/waybar/style"
+waybar_config="$HOME/.config/waybar/style.css"
+scripts_dir="$HOME/.config/hypr/scripts"
+rofi_config="$HOME/.config/rofi/config-waybar-style.rasi"
+
+# Function to display menu options
 menu() {
-    # List only files (excluding directories) in the directory and sort alphabetically
     options=()
     while IFS= read -r file; do
-        if [ -f "$CONFIG/$file" ]; then
+        if [ -f "$config_dir/$file" ]; then
             options+=("$(basename "$file" .css)")
         fi
-    done < <(find "$CONFIG" -maxdepth 1 -type f -name '*.css' -exec basename {} \; | sort)
+    done < <(find "$config_dir" -maxdepth 1 -type f -name '*.css' -exec basename {} \; | sort)
     
     printf '%s\n' "${options[@]}"
 }
 
+# Apply selected style
 apply_style() {
-    ln -sf "$CONFIG/$1.css" "$WCONFIG"
+    ln -sf "$config_dir/$1.css" "$waybar_config"
+    restart_waybar_if_needed
 }
 
+# Restart Waybar if it's running
+restart_waybar_if_needed() {
+    if pgrep -x "waybar" >/dev/null; then
+        pkill waybar
+        sleep 0.1  # Delay for Waybar to completely terminate
+    fi
+    "${scripts_dir}/Refresh.sh" &
+}
+
+# Main function
 main() {
-    choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-waybar-style.rasi)
+    choice=$(menu | rofi -dmenu -config "$rofi_config")
 
     if [[ -z "$choice" ]]; then
         echo "No option selected. Exiting."
@@ -28,19 +46,9 @@ main() {
     fi
 
     apply_style "$choice"
-
-    # Restart relevant processes
-    for process in waybar dunst; do
-        if pgrep -x "$process" >/dev/null; then
-            pkill "$process"
-        fi
-    done
-
-    # Launch Refresh.sh in the background
-    ~/.config/hypr/scripts/Refresh.sh &
 }
 
-# Check if rofi is already running
+# Kill Rofi if already running before execution
 if pgrep -x "rofi" >/dev/null; then
     pkill rofi
     exit 0

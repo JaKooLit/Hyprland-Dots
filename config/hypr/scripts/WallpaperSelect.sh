@@ -1,6 +1,9 @@
 #!/bin/bash
+
+SCRIPTSDIR="$HOME/.config/hypr/scripts"
+
 # WALLPAPERS PATH
-DIR=$HOME/Pictures/wallpapers
+DIR="$HOME/Pictures/wallpapers/"
 
 # Transition config
 FPS=30
@@ -25,13 +28,14 @@ menu() {
   for i in "${!PICS[@]}"; do
     # Displaying .gif to indicate animated images
     if [[ -z $(echo "${PICS[$i]}" | grep .gif$) ]]; then
-      printf "$i. $(echo "${PICS[$i]}" | cut -d. -f1)\n"
+      filename=$(basename "${PICS[$i]}" | sed 's/\.[^.]*$//')  # Remove file extension
+      printf "%s\n" "${filename//[[:digit:]]/}"  # Remove leading numbers
     else
-      printf "$i. ${PICS[$i]}\n"
+      printf "%s\n" "${PICS[$i]}"
     fi
   done
 
-  printf "$RANDOM_PIC_NAME"
+  printf "%s\n" "$RANDOM_PIC_NAME"
 }
 
 swww query || swww init
@@ -50,7 +54,7 @@ main() {
     exit 0
   fi
 
-  pic_index=$(echo "$choice" | cut -d. -f1)
+  pic_index=$(printf '%s\n' "${!PICS[@]}" | grep -E "\b${choice}\b")  # Get index based on choice
   swww img "${DIR}/${PICS[$pic_index]}" $SWWW_PARAMS
 }
 
@@ -62,5 +66,7 @@ fi
 
 main
 
-$HOME/.config/hypr/scripts/PywalSwww.sh &
-$HOME/.config/hypr/scripts/Refresh.sh
+${SCRIPTSDIR}/PywalSwww.sh &
+${SCRIPTSDIR}/Refresh.sh &
+sleep 1
+${SCRIPTSDIR}/PywalDunst.sh
