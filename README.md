@@ -24,15 +24,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4c98fa74-0190-4a1d-96d
 ## 👀 Screenshots 👀
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
-### ❗❗ V2! What's new?
-- Switched to rofi as app launcher, added pywal colors and switched Kitty for tty.
-- I have also added a small button HINT!, which should help new users.
-- Previous users can upgrade! However, you need to install rofi-wayland, kitty and pywal. If you want the HINT button, install yad as well.
-- [v2 Changes - Youtube](https://youtu.be/yaVurRoXc-s)
-
-
-### 📦 Changelogs
-- To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/CHANGELOGS)  Screenshots will be included if worth it!
+### 📦 Whats new?
+- To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/7.-CHANGELOGS)  Screenshots will be included if worth it!
 
 ### 📹 A video walkthroughs
 - [Walkthough](https://youtu.be/fO-RBHvVEcc)
@@ -65,8 +58,7 @@ chmod +x release.sh
 ./release.sh
 ```
 
-### 🐌 Manual copy (not recommended for newbies)
- Click [HERE](https://github.com/JaKooLit/Hyprland-Dots/wiki/Copying-dots)
++ More info [HERE](https://github.com/JaKooLit/Hyprland-Dots/wiki/2.-Installations-&-Copying-dots)
 
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
@@ -78,12 +70,12 @@ chmod +x release.sh
 + If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
 ### 📖 Known issues and possible solutions
-- check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ)
+- check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/4.-FAQ)
 
 ### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
 - QUICK HINT! Click the HINT! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
-- More question? click here [Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/TIPS)
+- More question? click here [Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/5.-TIPS)
 
 ### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
