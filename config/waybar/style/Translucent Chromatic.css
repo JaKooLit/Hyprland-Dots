@@ -13,22 +13,20 @@
 @define-color accent6 #0db9d7;
 
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* colored */
+/* Translucent Chromatic */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
 min-height: 0;
 /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 98%;
+font-size: 95%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 1px;
 }
 
 window#waybar {
     background-color: rgba(0,0,0,0.2);
-    /*background-color: @bgcolor;*/
-    /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -156,8 +154,8 @@ tooltip label{
 #custom-weather.sunnyDay {
 	padding-top: 3px;
 	padding-bottom: 3px;
-    padding: 0px 10px;
-    background-color:transparent;
+    padding-left: 4px;
+	padding-right: 4px;
 }
 
 #window,
