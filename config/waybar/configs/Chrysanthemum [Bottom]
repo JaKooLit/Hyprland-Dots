@@ -14,8 +14,8 @@
 "spacing": 5,
 "fixed-center": false,
 "ipc": true,
-//"margin-top": 0,
-//"margin-bottom": 5,
+"margin-left": 5,
+"margin-right": 5,
 	
 "modules-left": ["clock#gar","tray"],
   

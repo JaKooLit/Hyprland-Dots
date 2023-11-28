@@ -32,7 +32,6 @@ window#waybar.empty {
 
 window#waybar.empty #window {
     padding: 0px;
-    margin: 0px;
     border: 0px;
     /*  background-color: rgba(66,66,66,0.5); */
     /* transparent */
@@ -51,6 +50,8 @@ tooltip {
 
 /*-----module groups----*/
 .modules-right {
+	padding-top: 3px;
+	padding-bottom: 3px;
     padding-right: 5px;
     padding-left: 5px;
 
@@ -60,14 +61,17 @@ tooltip {
     border-left: 1px solid #ffd700;
     border-right: 1px solid #ffd700;
     border-radius: 20px;
-
-
+	padding-top: 3px;
+	padding-bottom: 3px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .modules-left {
+	padding-top: 3px;
+	padding-bottom: 3px;
     padding-right: 5px;
     padding-left: 5px;
-
 }
 
 #workspaces button {
@@ -76,8 +80,6 @@ tooltip {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -89,10 +91,8 @@ tooltip {
     border-radius: 50%;
     background-color: black;
     border-radius: 15px 15px 15px 15px;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -166,8 +166,8 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
     color: #e5d9f5;
-    padding-right: 10px;
-    padding-left: 15px;
+    padding-right: 8px;
+    padding-left: 8px;
 }
 
 #temperature.critical {
@@ -182,10 +182,8 @@ tooltip {
 
 #taskbar button.active {
     background-color: rgb(47, 46, 46);
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

@@ -17,7 +17,7 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   /*background: transparent;*/
-  border: 2px solid @sapphire;
+  border-bottom: 3px solid @sapphire;
   background: @theme_base_color;
   border-radius: 10px;
 }
@@ -90,7 +90,10 @@ window#waybar.hidden {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-  padding: 0px 6px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 #idle_inhibitor {
@@ -162,8 +165,6 @@ window#waybar.hidden {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -188,10 +189,8 @@ window#waybar.hidden {
 #workspaces button.active {
 	color: @peach;
   	border-radius: 8px;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -202,10 +201,8 @@ window#waybar.hidden {
 }
 
 #taskbar button.active {
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -223,7 +220,6 @@ window#waybar.hidden {
 
 #custom-power {
   color: @red;
-  margin-right: 3px;
 }
 
 #custom-updater {

@@ -16,7 +16,7 @@ font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 window#waybar {
 	background: #240303;
 	color: wheat;
-	border-radius: 00px 0px 100px 100px;
+	border-radius: 0px 0px 100px 100px;
 	border: 1px solid grey;
 }
 	
@@ -29,7 +29,6 @@ window#waybar.empty {
 	
 window#waybar.empty #window {
     padding: 0px;
-    margin: 0px;
     border: 0px;
     /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
     background-color: transparent;
@@ -46,17 +45,24 @@ tooltip {
 
 /*-----module groups----*/
 .modules-right {
-	padding-right: 5px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	padding-left: 5px;
+	padding-right: 5px;
 }
 	
 .modules-center {
-		
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 5px;
+	padding-right: 5px;	
 }
 	
 .modules-left {
-	padding-right: 5px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	padding-left: 5px;
+	padding-right: 5px;
 }
 	
 #workspaces button {
@@ -65,8 +71,6 @@ tooltip {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -78,10 +82,8 @@ tooltip {
 	background-color: #000000;
 	border: 1px solid grey;
     border-radius: 15px 15px 15px 15px;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -152,6 +154,8 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: wheat;
+	padding-top: 2px;
+	padding-bottom: 2px;
 	padding-right: 10px;
 	padding-left: 10px;
 }
@@ -169,10 +173,8 @@ tooltip {
 #taskbar button.active {
 	background-color: rgb(128, 31, 31);
 	border: 1px solid grey;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

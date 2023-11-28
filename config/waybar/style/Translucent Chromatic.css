@@ -45,7 +45,6 @@ window#waybar.empty {
 
 window#waybar.empty #window {
     padding: 0px;
-    margin: 0px;
     border: 0px;
     /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
     background-color: transparent;
@@ -71,8 +70,6 @@ tooltip label{
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -82,10 +79,8 @@ tooltip label{
 #workspaces button.active {
     background-color: transparent;
     color: #D3D3D3;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -165,17 +160,14 @@ tooltip label{
 
 #window,
 #workspaces {
-    margin: 0 4px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
 }
 
 #clock {
@@ -313,10 +305,8 @@ label:focus {
 
 #taskbar button.active {
     background-color: #7f849c;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -345,18 +335,12 @@ label:focus {
 }
 
 #custom-language {
-    /* background: #bbccdd;
-    color: #333333;
-    padding: 0 5px;
-    margin: 4px 3px 6px 3px; */
     color: @accent5;
     min-width: 16px;
 }
 
 #custom-separator {
     color: #606060;
-    margin: 0 1px;
-    padding-bottom: 5px;
 }
 #pulseaudio-slider slider {
 	min-width: 0px;

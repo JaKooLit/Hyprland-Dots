@@ -21,14 +21,12 @@ window#waybar.empty {
 
 window#waybar.empty #window {
 	padding: 0px;
-	margin: 0px;
 	border: 0px;
 	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
 	background-color: transparent;
 }
 
 window > box {
-	/*margin: 1px 2px 2px;*/
 	background: rgba(0, 0, 0, 0);
 	border-bottom: 1px solid rgba(0, 0, 0, 0);
 	color: white;
@@ -54,7 +52,6 @@ tooltip label{
 /*-----module groups----*/
 .modules-right {
 	background-color: black;
-	/*margin: 2px 10px 0 0;*/
 	border: 1px;
 	border-style: solid;
 	border-color: white;
@@ -62,14 +59,12 @@ tooltip label{
 }
 .modules-center {
 	background-color: black;;
-	/*margin: 2px 0 0 0;*/
 	border: 1px;
 	border-style: solid;
 	border-color: white;
 	border-radius: 10px;
 }
 .modules-left {
-	/*margin: 2px 0 0 5px;*/
 	background-color: black;
 	border: 1px;
 	border-style: solid;
@@ -83,8 +78,6 @@ tooltip label{
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -105,10 +98,8 @@ tooltip label{
 #workspaces button.active {
 	color: white;
 	background-color: rgba(191, 191, 191,0.1);
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -159,16 +150,16 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding: 0px 6px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
 }
 #mode {
 	color: #cc3436;
 	font-weight: bold;
 }
 #custom-power {
-	/*background-color: rgba(0,119,179,0.6);*/
-	/*border-radius: 50px;*/
-	margin: 5px 5px;
 	padding: 1px 3px;
 }
 /*-----Indicators----*/
@@ -204,10 +195,8 @@ tooltip label{
 
 #taskbar button.active {
 	background-color: #7f849c;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

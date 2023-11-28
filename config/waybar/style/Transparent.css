@@ -29,7 +29,6 @@ window#waybar.empty {
 	
 window#waybar.empty #window {
    padding: 0px;
-   margin: 0px;
    border: 0px;
    background-color: transparent;
 }
@@ -58,13 +57,10 @@ tooltip {
 
 #workspaces button {
 	color: #6E6A86;
-	margin-right: 5px;
    	box-shadow: none;
 	text-shadow: none;
    	padding: 0px;
    	border-radius: 9px;
-   	margin-top: 3px;
-   	margin-bottom: 3px;
    	padding-left: 3px;
    	padding-right: 3px;
    	animation: gradient_f 20s ease-in infinite;
@@ -74,10 +70,8 @@ tooltip {
 #workspaces button.active {
 	color: whitesmoke;
    	border-radius: 15px 15px 15px 15px;
-   	margin-left: 3px;
    	padding-left: 12px;
    	padding-right: 12px;
-   	margin-right: 3px;
    	animation: gradient_f 20s ease-in infinite;
    	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -166,10 +160,8 @@ tooltip {
    
 #taskbar button.active {
 	background-color: #7f849c;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -193,14 +185,14 @@ tooltip {
 }
 
 #pulseaudio-slider trough {
-	min-width: 80px;  /* Ajusta el ancho según tus preferencias */
-	min-height: 10px; /* Ajusta la altura según tus preferencias */
+	min-width: 80px;  
+	min-height: 10px; 
 	border-radius: 5px;
 	background-color: black;
 }
 
 #pulseaudio-slider highlight {
-	min-height: 10px; /* Ajusta la altura según tus preferencias */
+	min-height: 10px; 
 	border-radius: 5px;
 	background-color: wheat;
 }
@@ -215,14 +207,14 @@ tooltip {
 }
 
 #backlight-slider trough {
-	min-width: 80px;  /* Ajusta el ancho según tus preferencias */
-	min-height: 10px; /* Ajusta la altura según tus preferencias */
+	min-width: 80px;  
+	min-height: 10px;
 	border-radius: 5px;
 	background-color: black;
 }
 
 #backlight-slider highlight {
-	min-width: 10px; /* Ajusta el ancho según tus preferencias */
+	min-width: 10px; 
 	border-radius: 5px;
 	background-color: wheat;
 }
