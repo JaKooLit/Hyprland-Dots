@@ -14,7 +14,7 @@ done
 waybar &
 
 # Relaunch dunst with pywal-borders
-${SCRIPTSDIR}/PywalDunst.sh
+${SCRIPTSDIR}/PywalDunst.sh &
 
 ## trying to figure out how to restart Rainbow borders
 #sleep 1
