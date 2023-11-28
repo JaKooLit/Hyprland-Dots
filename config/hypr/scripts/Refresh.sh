@@ -6,7 +6,7 @@ SCRIPTSDIR=$HOME/.config/hypr/scripts
 _ps=(waybar rofi)
 for _prs in "${_ps[@]}"; do
     if pidof "${_prs}" >/dev/null; then
-        pkill "${_prs}"
+        killall "${_prs}"
     fi
 done
 
