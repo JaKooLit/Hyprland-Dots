@@ -26,13 +26,13 @@ padding: 1px;
 }
 
 window#waybar {
-    background-color: rgba(50, 50, 50, 0.0);
+    background-color: rgba(0,0,0,0.2);
     /*background-color: @bgcolor;*/
     /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 window#waybar.hidden {
@@ -154,6 +154,8 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
+	padding-top: 3px;
+	padding-bottom: 3px;
     padding: 0px 10px;
     background-color:transparent;
 }
