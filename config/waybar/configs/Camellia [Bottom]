@@ -131,7 +131,7 @@
 },
 
 "tray#cam": {
-	"icon-size": 16,
+	//"icon-size": 16,
 	"spacing": 10
 },
 
@@ -151,7 +151,7 @@
 
 "wlr/taskbar": {
 	"format": "{icon}",
-	"icon-size": 14,
+	//"icon-size": 14,
 	//"icon-theme": "Numix-Circle",
 	"tooltip-format": "{title}",
 	"on-click": "activate",

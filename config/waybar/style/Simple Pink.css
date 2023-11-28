@@ -30,7 +30,6 @@ window#waybar.empty {
 
 window#waybar.empty #window {
 	padding: 0px;
-	margin: 0px;
 	border: 0px;
 	/*  background-color: rgba(66,66,66,0.5); */
 	/* transparent */
@@ -52,13 +51,18 @@ tooltip {
 	border: 5px solid #19141b;
 	border-radius: 50px 50px 50px 50px;
 	background-color: #ba5663;
+	padding-top: 3px;
+	padding-bottom: 3px;
 	padding-right: 10px;
 	padding-left: 10px;
-	margin: 3px;
 }
 
 .modules-center {
 	background-color: black;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 10px;
+	padding-left: 10px;
 
 
 }
@@ -67,6 +71,10 @@ tooltip {
 	border: 5px solid #0d0a0f;
 	border-radius: 50px 50px 50px 50px;
 	background-color: #ba5663;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 #workspaces button {
@@ -75,8 +83,6 @@ tooltip {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -85,11 +91,10 @@ tooltip {
 
 #workspaces button.active {
 	color: whitesmoke;
+	background-color: pink;
     border-radius: 15px 15px 15px 15px;
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 
@@ -163,7 +168,6 @@ tooltip {
 #custom-weather.sunnyDay {
 	color: whitesmoke;
 	padding: 0px 10px;
-	margin: 3px;
 
 }
 
@@ -179,11 +183,8 @@ tooltip {
 
 #taskbar button.active {
 	background-color: pink;
-	border: 1px solid #22252a;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

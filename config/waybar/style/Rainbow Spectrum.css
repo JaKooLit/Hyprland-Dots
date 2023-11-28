@@ -30,7 +30,6 @@ window#waybar.empty {
 
 window#waybar.empty #window {
 	padding: 0px;
-	margin: 0px;
 	border: 0px;
 	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
 	background-color: transparent;
@@ -95,9 +94,10 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	border-radius: 8px;
-	margin: 4px 1px;
+	border-radius: 10px;
 	padding: 0px 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
   	color: #3A3B3C;
   	border: 1px solid #b4befe;
 }
@@ -170,8 +170,6 @@ tooltip label{
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -181,15 +179,15 @@ tooltip label{
 #workspaces button.active {
   	background-color: #eba0ac;
   	color: #3A3B3C;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
+    background: #eb6f92;
+    color: #f6c177;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -205,10 +203,8 @@ tooltip label{
 #taskbar button.active {
   	background-color: #b4befe;
   	color: #3A3B3C;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

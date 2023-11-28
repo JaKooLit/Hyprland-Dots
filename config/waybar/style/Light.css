@@ -25,7 +25,6 @@ window#waybar.empty {
 
 window#waybar.empty #window {
 	padding: 0px;
-	margin: 0px;
 	border: 0px;
 	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
 	background-color: transparent;
@@ -38,8 +37,8 @@ tooltip {
 
 tooltip label {
 	color: #373737;
-	margin-right: 2px;
-	margin-left: 2px;
+	padding-right: 2px;
+	padding-left: 2px;
 }
 
 /*-----module groups----*/
@@ -47,23 +46,30 @@ tooltip label {
 	background-color: rgba(232, 236, 241, 0.8);
 	border: 0px solid #b4befe;
 	border-radius: 10px;
-	padding-right: 2px;
-	padding-left: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 .modules-center {
 	background-color: rgba(232, 236, 241, 0.8);
 	border: 0px solid #b4befe;
 	border-radius: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 .modules-left {
 	background-color: rgba(232, 236, 241, 0.8);
 	border: 0px solid #b4befe;
 	border-radius: 10px;
-    padding-right: 2px;
-    padding-left: 2px;
-	
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 #workspaces button {
@@ -72,8 +78,6 @@ tooltip label {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -83,10 +87,8 @@ tooltip label {
 #workspaces button.active {
 	color: #000000;
     border-radius: 15px 15px 15px 15px;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -173,10 +175,8 @@ tooltip label {
 #taskbar button.active {
 	background-color: #585b70;
 	color: #cdd6f4;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -196,6 +196,7 @@ tooltip label {
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 }
+
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;
@@ -204,16 +205,18 @@ tooltip label {
 	border: none;
 	box-shadow: none;
 }
-
+	
 #pulseaudio-slider trough {
-	min-width: 80px;
-	min-height: 5px;
+	min-width: 80px;  
+	min-height: 5px; 
 	border-radius: 5px;
+	background-color: #22252a;
 }
-
+	
 #pulseaudio-slider highlight {
-	min-height: 10px;
+	min-height: 10px; 
 	border-radius: 5px;
+	background-color: #ba5663;
 }
 
 #backlight-slider slider {
@@ -224,14 +227,16 @@ tooltip label {
 	border: none;
 	box-shadow: none;
 }
-
+	
 #backlight-slider trough {
-	min-width: 80px;
-	min-height: 10px;
+	min-width: 80px;  
+	min-height: 10px; 
 	border-radius: 5px;
+	background-color: #22252a;
 }
-
+	
 #backlight-slider highlight {
-	min-width: 10px;
+	min-width: 10px; 
 	border-radius: 5px;
+	background-color: #ba5663;
 }

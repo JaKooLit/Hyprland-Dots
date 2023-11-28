@@ -1,6 +1,8 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Colored - Bordered */
 
+@import '../../.cache/wal/colors-waybar.css';
+
 * {
 font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
@@ -20,14 +22,12 @@ window#waybar {
 	/* border-top: 8px transparent; */
 	border-radius: 0px;
 	transition-duration: 0.5s;
-	margin: 0px 0px;
 }
 window#waybar.empty {
 	background-color: transparent;
 }
 window#waybar.empty #window {
 	padding: 0px;
-	margin: 0px;
 	border: 0px;
 	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
 	background-color: transparent;
@@ -40,10 +40,10 @@ window#waybar.hidden {
 tooltip {
 	background: #1e1e2e;
 	opacity: 0.8;
-	border-radius: 10px;
+	border-radius: 12px;
 	border-width: 2px;
 	border-style: solid;
-	border-color: #11111b;
+	border-color: @color2;
 }
 
 tooltip label{
@@ -56,8 +56,6 @@ tooltip label{
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -76,10 +74,8 @@ tooltip label{
 }
 #workspaces button.active {
 	color: white;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -97,8 +93,6 @@ tooltip label{
 #cpu,
 #disk,
 #idle_inhibitor,
-#keyboard-state label,
-#keyboard-state label.locked,
 #keyboard-state,
 #memory,
 #mode,
@@ -106,7 +100,6 @@ tooltip label{
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,
@@ -134,35 +127,33 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding: 0px 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
 	color: #e5e5e5;
 	/* color: #bf616a; */
-	border-radius: 8px;
+	border-radius: 12px;
 	background-color: rgba(50, 50, 50, 0.1);
-	border: 1px solid #b4befe;
+	border: 2px solid @color2;
 }
 
 #workspaces {
-	border-radius: 6px;
+	border-radius: 12px;
 	padding: 0px 6px;
-	border: 1px solid #b4befe;
 }
 
 #cpu {
 	color: #fb958b;
 	padding: 3px;
-	border-radius: 8px;
 	background-color: rgba(50, 50, 50, 0.1);
-	border: 1px solid #b4befe;
 }
 
 #custom-cycle_wall,
 #custom-updater {
 	color: #cba7f7;
 	padding: 3px;
-	border-radius: 8px;
 	background-color: rgba(50, 50, 50, 0.1);
-	border: 1px solid #b4befe;
 	
 }
 
@@ -170,9 +161,7 @@ tooltip label{
 	color: #FFFFFF;
 	padding: 6px;
 	padding-right: 6px;
-	border-radius: 8px;
 	background-color: rgba(50, 50, 50, 0.1);
-	border: 1px solid #b4befe;
 }
 
 #memory {
@@ -186,7 +175,6 @@ tooltip label{
 #custom-launcher {
 	background-color: #1b242b;
 	color: #6a92d7;
-	border-radius: 6px;
 	padding: 0 0px;
 }
 
@@ -219,16 +207,6 @@ tooltip label{
 
 #custom-weather.default {
 	color: #ebecf0;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-	margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-	margin-right: 0;
 }
 
 #pulseaudio {
@@ -342,10 +320,8 @@ label:focus {
 
 #taskbar button.active {
 	background-color: #7f849c;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -356,6 +332,7 @@ label:focus {
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
+
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;

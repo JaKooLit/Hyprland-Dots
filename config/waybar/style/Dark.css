@@ -1,6 +1,8 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Dark */
 
+@import '../../.cache/wal/colors-waybar.css';
+
 * {
 font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
@@ -25,21 +27,21 @@ window#waybar.empty {
 
 window#waybar.empty #window {
     padding: 0px;
-    margin: 0px;
     border: 0px;
     /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
     background-color: transparent;
 }
 
 tooltip {
-    background: rgba(0, 0, 0, 0.6);
+	color: @foreground;
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
 }
 
 tooltip label {
-    color: #cba6f7;
-    margin-right: 2px;
-    margin-left: 2px;
+    color: @foreground;
+    padding-right: 2px;
+    padding-left: 2px;
 }
 
 /*-----module groups----*/
@@ -47,33 +49,38 @@ tooltip label {
     background-color: rgba(0, 0, 0, 0.8);
     border: 0px solid #b4befe;
     border-radius: 10px;
-    padding-right: 2px;
-    padding-left: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+    padding-right: 4px;
+    padding-left: 4px;
 }
 
 .modules-center {
     background-color: rgba(0, 0, 0, 0.8);
     border: 0px solid #b4befe;
     border-radius: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+    padding-right: 4px;
+    padding-left: 4px;
 }
 
 .modules-left {
     background-color: rgba(0, 0, 0, 0.8);
     border: 0px solid #b4befe;
     border-radius: 10px;
-    padding-right: 2px;
-    padding-left: 2px;
-    
+	padding-top: 2px;
+	padding-bottom: 2px;
+    padding-right: 4px;
+    padding-left: 4px;    
 }
 
 #workspaces button {
-    color: #6E6A86;
+    color: @color2;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -81,12 +88,10 @@ tooltip label {
 }
 
 #workspaces button.active {
-    color: #cba6f7;
+    color: @foreground;
     border-radius: 15px 15px 15px 15px;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -155,7 +160,9 @@ tooltip label {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-    color: #cba7f7;
+    color: @foreground;
+	padding-top: 2px;
+	padding-bottom: 2px;
     padding: 1px 4px;
     border-radius: 8px;
 }
@@ -172,10 +179,8 @@ tooltip label {
 
 #taskbar button.active {
     background-color: #7f849c;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
