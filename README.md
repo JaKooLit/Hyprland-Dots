@@ -75,7 +75,7 @@ chmod +x release.sh
 ### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
 - QUICK HINT! Click the HINT! Waybar module (note only available in default layout). Can be launched by Keybind SUPER H
-- More question? click here [Tips](https://github.com/JaKooLit/Hyprland-Dots/wiki/)
+- More question? click here [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/)
 
 ### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
