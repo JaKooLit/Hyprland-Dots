@@ -35,6 +35,8 @@ yad --width=1000 --height=1000 \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
-"" "This window will auto-close in 60 secs" ""\
+"" "More tips on Hyprland-Dots github wiki page" ""\
+"" "" "" \
+"" "" "This window will auto-close in 60 secs" ""\
 
 

@@ -12,7 +12,7 @@
 "passthrough": false,
 "position": "top",
 "spacing": 5,
-"fixed-center": false,
+"fixed-center": true,
 "ipc": true,
 "margin-left": 5,
 "margin-right": 5,
