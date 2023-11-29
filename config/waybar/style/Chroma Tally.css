@@ -34,9 +34,6 @@ window#waybar {
 }
 
 #workspaces button.active {
-	border: 1px;
-    border-color: #cba6f7;
-    border-style: solid;
 	border-radius: 15px;
 	background-color: @color2;
     padding-left: 8px;
@@ -191,7 +188,9 @@ window#waybar {
 #tray {
 }
 
-#custom-menu,
+#custom-menu {
+	color: @color2;
+}
 #custom-power{
     color: #eba0ac; 
 }
