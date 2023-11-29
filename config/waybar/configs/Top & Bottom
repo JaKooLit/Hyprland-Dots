@@ -12,7 +12,7 @@
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-"margin-top": 6,
+"margin-top": 2,
 "margin-left": 8,
 "margin-right": 8,
 
@@ -51,9 +51,9 @@
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-"margin-left": 6,
-"margin-right": 10,
-"margin-bottom": 6,
+"margin-left": 8,
+"margin-right": 8,
+"margin-bottom": 2,
 
 "modules-left": [
 	"custom/menu",  

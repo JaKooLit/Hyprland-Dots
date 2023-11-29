@@ -7,7 +7,7 @@
 "layer": "top",
 "position": "top",
 "width": 1050,
-"margin-top": 5,
+"margin-top": 3,
 
 "modules-left": [
 	"clock",  
