@@ -416,7 +416,7 @@
   },
       
   "tray": {
-    "icon-size": 17,
+    "icon-size": 12,
     "spacing": 8,
   },
       
