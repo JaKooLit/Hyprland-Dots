@@ -38,11 +38,11 @@ tooltip label{
 }
 /*-----module groups----*/
 .modules-right {
-	background-color: black;
-	color: white;
-	border-bottom: 3px;
+	background-color: white;
+	color: black;
+	border-bottom: 4px;
 	border-style: solid;
-	border-color: white;
+	border-color: black;
 	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
@@ -50,11 +50,11 @@ tooltip label{
 	padding-left: 4px;
 }
 .modules-center {
-	background-color: black;
-	color: white;
-	border-bottom: 3px;
+	background-color: white;
+	color: black;
+	border-bottom: 4px;
 	border-style: solid;
-	border-color: white;
+	border-color: black;
 	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
@@ -62,11 +62,11 @@ tooltip label{
 	padding-left: 4px;
 }
 .modules-left {
-	background-color: black;
-	color: white;
-	border-bottom: 3px;
+	background-color: white;
+	color: black;
+	border-bottom: 4px;
 	border-style: solid;
-	border-color: white;
+	border-color: black;
 	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
@@ -75,6 +75,7 @@ tooltip label{
 }
 /*-----modules indv----*/
 #workspaces button {
+	color: black;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
@@ -94,7 +95,7 @@ tooltip label{
 }
 
 #workspaces button.active {
-	color: white;
+	color: grey;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
