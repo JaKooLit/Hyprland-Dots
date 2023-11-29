@@ -81,8 +81,8 @@ tooltip label {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -90,8 +90,8 @@ tooltip label {
 #workspaces button.active {
     color: @foreground;
     border-radius: 15px 15px 15px 15px;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -108,8 +108,8 @@ tooltip label {
 #workspaces button:hover {
     color: #9CCFD8;
     border-radius: 15px;
- 	padding-left: 3px;
-    padding-right: 3px;
+ 	padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -163,7 +163,8 @@ tooltip label {
     color: @foreground;
 	padding-top: 2px;
 	padding-bottom: 2px;
-    padding: 1px 4px;
+	padding-right: 4px;
+	padding-left: 4px;
     border-radius: 8px;
 }
 

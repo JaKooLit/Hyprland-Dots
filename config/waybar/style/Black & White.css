@@ -56,6 +56,10 @@ tooltip label{
 	border-style: solid;
 	border-color: white;
 	border-radius: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 .modules-center {
 	background-color: black;;
@@ -63,6 +67,10 @@ tooltip label{
 	border-style: solid;
 	border-color: white;
 	border-radius: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 .modules-left {
 	background-color: black;
@@ -70,38 +78,42 @@ tooltip label{
 	border-style: solid;
 	border-color: white;
 	border-radius: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 /*-----modules indv----*/
 #workspaces button {
-	background-color: transparent;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 #workspaces button:hover {
 	color: grey;
-	background-color: rgba(0,153,153,0);
-    padding-left: 3px;
-    padding-right: 3px;
+	background-color: rgba(0,153,153,0.2);
+    padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#workspaces button.focused {
-	background-color: rgba(0,85,102,0);
-}
 #workspaces button.active {
 	color: white;
-	background-color: rgba(191, 191, 191,0.1);
-    padding-left: 12px;
-    padding-right: 12px;
+	background: rgba(191, 191, 191,0.1);
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.persistent {
+	border-radius: 10px;
 }
 
 #backlight,
@@ -150,10 +162,10 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 3px;
-	padding-bottom: 3px;
-	padding-left: 6px;
-	padding-right: 6px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 #mode {
 	color: #cc3436;
@@ -195,15 +207,15 @@ tooltip label{
 
 #taskbar button.active {
 	background-color: #7f849c;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 6px;
+    padding-right: 6px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
