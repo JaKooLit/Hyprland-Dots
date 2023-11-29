@@ -45,24 +45,24 @@ tooltip {
 
 /*-----module groups----*/
 .modules-right {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 	
 .modules-center {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-left: 5px;
-	padding-right: 5px;	
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 	
 .modules-left {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 	
 #workspaces button {
@@ -71,8 +71,8 @@ tooltip {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -82,8 +82,8 @@ tooltip {
 	background-color: #000000;
 	border: 1px solid grey;
     border-radius: 15px 15px 15px 15px;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -156,8 +156,8 @@ tooltip {
 	color: wheat;
 	padding-top: 2px;
 	padding-bottom: 2px;
-	padding-right: 10px;
-	padding-left: 10px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 		 
 #temperature.critical {
@@ -172,6 +172,7 @@ tooltip {
 	   
 #taskbar button.active {
 	background-color: rgb(128, 31, 31);
+	border-radius: 8px;
 	border: 1px solid grey;
     padding-left: 12px;
     padding-right: 12px;

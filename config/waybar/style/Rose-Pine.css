@@ -36,8 +36,8 @@ tooltip {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     color: @main-fg;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
@@ -46,8 +46,8 @@ tooltip {
 #workspaces button.active {
     background: @wb-act-bg;
     color: @wb-act-fg;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -55,8 +55,8 @@ tooltip {
 #workspaces button:hover {
     background: @wb-hvr-bg;
     color: @wb-hvr-fg;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -76,8 +76,8 @@ tooltip {
 #taskbar button.active {
     background: @wb-act-bg;
     color: @wb-act-color;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 6px;
+    padding-right: 6px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -140,10 +140,10 @@ tooltip {
     color: @main-fg;
     background: @main-bg;
     opacity: 1;
-	padding-top: 3px;
-	padding-bottom: 3px;
-    padding-left: 6px;
-    padding-right: 6px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 
 #temperature.critical {

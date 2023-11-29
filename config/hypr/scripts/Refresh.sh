@@ -6,7 +6,7 @@ SCRIPTSDIR=$HOME/.config/hypr/scripts
 _ps=(waybar rofi)
 for _prs in "${_ps[@]}"; do
     if pidof "${_prs}" >/dev/null; then
-        pkill "${_prs}"
+        killall "${_prs}"
     fi
 done
 
@@ -14,7 +14,7 @@ done
 waybar &
 
 # Relaunch dunst with pywal-borders
-${SCRIPTSDIR}/PywalDunst.sh
+${SCRIPTSDIR}/PywalDunst.sh &
 
 ## trying to figure out how to restart Rainbow borders
 #sleep 1

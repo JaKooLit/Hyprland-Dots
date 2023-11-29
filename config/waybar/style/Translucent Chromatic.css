@@ -13,7 +13,7 @@
 @define-color accent6 #0db9d7;
 
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* colored */
+/* Translucent Chromatic */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -26,13 +26,11 @@ padding: 1px;
 }
 
 window#waybar {
-    background-color: rgba(50, 50, 50, 0.0);
-    /*background-color: @bgcolor;*/
-    /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
+    background-color: rgba(0,0,0,0.2);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 window#waybar.hidden {
@@ -70,8 +68,8 @@ tooltip label{
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -79,16 +77,16 @@ tooltip label{
 #workspaces button.active {
     background-color: transparent;
     color: #D3D3D3;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -154,8 +152,10 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-    padding: 0px 10px;
-    background-color:transparent;
+	padding-top: 2px;
+	padding-bottom: 2px;
+    padding-left: 4px;
+	padding-right: 4px;
 }
 
 #window,

@@ -56,26 +56,23 @@ tooltip label{
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#workspaces button.focused {
-	background-color: transparent;
-}
 #workspace button.hover {
 	background-color: transparent;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 #workspaces button.active {
 	color: white;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -83,6 +80,7 @@ tooltip label{
 #workspaces button.urgent {
 	background-color: #eb4d4b;
 }
+
 
 #backlight,
 #backlight-slider,
@@ -127,10 +125,10 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 3px;
-	padding-bottom: 3px;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 	color: #e5e5e5;
 	/* color: #bf616a; */
 	border-radius: 12px;
