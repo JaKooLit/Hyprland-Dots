@@ -28,7 +28,7 @@
 	"custom/separator#line",
 	"backlight#peony",
 	"custom/separator#line",
-	"temperature#peony",
+	"temperature",
 	"custom/separator#line",
 	"battery#peony",
 	"network#peony"],
@@ -58,15 +58,6 @@
 	"device": "intel_backlight",
 	"format": "{percent}% {icon}",
 	"format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
-},
-		
-"temperature#peony": {
-	// "thermal-zone": 2,
-	"hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
-	"critical-threshold": 80,
-	// "format-critical": "{temperatureC}°C ",
-	"format": "{temperatureC}°C "
-
 },
 
 "network#peony": {
