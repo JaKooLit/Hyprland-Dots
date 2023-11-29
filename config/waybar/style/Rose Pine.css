@@ -15,34 +15,19 @@
 	font-weight: bold;
 	min-height: 0;
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-	font-size: 97%;
+	font-size: 96%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 	border-radius: 12px;
 }
 
 window#waybar {
-    background: #2B5D34;
-	border-bottom: 2px;
-	border-top: 1px;
-	border-color: #D4A2CB;
-	border-style: solid;
-	border-radius: 10px;
-	
+    background: @bar-bg;
 }
 
-.modules-left, .modules-center, .modules-right {
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
-	border-radius: 10px;
-
-}
- 
 tooltip {
-    background: #2B5D34;
-    color: #D4A2CB;
-    border-radius: 10px;
+    background: @main-bg;
+    color: @main-fg;
+    border-radius: 8px;
     border-width: 0px;
 }
 
@@ -50,10 +35,14 @@ tooltip {
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
-    border-radius: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
-    color: #D4A2CB;
+	border-bottom: 2px;
+	border-color: #2B5D34;
+	border-style: solid;
+	border-radius: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+	background: @main-bg;
+    color: @main-fg;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -80,7 +69,10 @@ tooltip {
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
-    border-radius: 9px;
+	border-bottom: 2px;
+	border-color: #2B5D34;
+	border-style: solid;
+	border-radius: 10px;
     padding-left: 3px;
     padding-right: 3px;
     color: @wb-color;
@@ -91,8 +83,8 @@ tooltip {
 #taskbar button.active {
     background: @wb-act-bg;
     color: @wb-act-color;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -124,13 +116,10 @@ tooltip {
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
-#taskbar,
 #temperature,
 #tray,
 #window,
 #wireplumber,
-#workspaces,
 #custom-backlight,
 #custom-cycle_wall,
 #custom-keybinds,
@@ -152,13 +141,17 @@ tooltip {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-    color: #D4A2CB;
-    background: #2B5D34;
+    color: @main-fg;
+    background: @main-bg;
     opacity: 1;
 	padding-top: 3px;
 	padding-bottom: 3px;
-	padding-right: 4px;
-	padding-left: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+	border-bottom: 2px;
+	border-color: #2B5D34;
+	border-style: solid;
+	border-radius: 10px;
 }
 
 #temperature.critical {
