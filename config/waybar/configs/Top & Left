@@ -13,7 +13,7 @@
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-"margin-top": 6,
+"margin-top": 2,
 "margin-left": 8,
 "margin-right": 8,
     
@@ -47,8 +47,7 @@
 "height": 650,
 "margin-top": 8,
 "margin-bottom": 8,
-"margin-left": 8,
-//"margin-right": 3,
+"margin-left": 3,
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
