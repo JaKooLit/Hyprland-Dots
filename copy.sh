@@ -175,8 +175,8 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 
 # Initial Symlinks to avoid errors
 # symlinks for waybar
-ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" && \
-ln -sf "$HOME/.config/waybar/style/Pywal.css" "$HOME/.config/waybar/style.css" && \
+ln -sf "$HOME/.config/waybar/configs/Simple-L [TOP]" "$HOME/.config/waybar/config" && \
+ln -sf "$HOME/.config/waybar/style/Chroma Tally.css" "$HOME/.config/waybar/style.css" && \
 
   
 # Set some files as executable
