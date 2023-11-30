@@ -10,16 +10,16 @@ configuration {
 
 /* ---- Global Properties ---- */
 * {
-    font:                           "Fira Code Medium 12";
+    font:                           "Fira Code Medium 10";
 }
 
 /* ---- Main Window ---- */
 window {
-    location:                       center;
+    location:                       east;
     anchor:                         center;
     fullscreen:                     false;
-    width:                          900px;
-    height:                         400px;
+    width:                          240px;
+    /*height:                         800px;*/
     x-offset:                       0px;
     y-offset:                       0px;
     padding:                        0px;
@@ -38,7 +38,7 @@ mainbox {
     padding:                        0px;
     border:                         0px solid;
     border-radius:                  0px;
-    background-image:               url("~/.config/rofi/.current_wallpaper", width);
+    background-image:               url("~/.config/rofi/.current_wallpaper", height);
     border-color:                   @active-background;
     background-color:               @background-color;
     children:                       [ "inputbar", "listview", "message" ];
@@ -47,7 +47,7 @@ mainbox {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                        true;
-	padding:						20px;
+	padding:						10px;
     background-color:               transparent;
     orientation:                    horizontal;
     children:                       ["prompt"];
@@ -55,7 +55,7 @@ inputbar {
 
 prompt {
     enabled:                        true;
-	padding:						10px;
+	/*padding:						10px;*/
 	border-radius:					15px;
     border-color:                   @foreground;
     background-color:               @background-color;
@@ -67,8 +67,8 @@ prompt {
 /* ---- Listview ---- */
 listview {
     enabled:                        true;
-    columns:                        3;
-    lines:                          2;
+    columns:                        1;
+    lines:                          6;
     cycle:                          true;
     dynamic:                        true;
     scrollbar:                      false;
@@ -76,8 +76,8 @@ listview {
     reverse:                        false;
     fixed-height:                   false;
     fixed-columns:                  true;
-    spacing:                        40px;
-    padding:                        4% 40px;
+    spacing:                        20px;
+    padding:                        20px;
     background-color:               transparent;
     cursor:                         "default";
     border:                         0px;
@@ -87,14 +87,14 @@ listview {
 /* ---- Elements ---- */
 element {
     enabled:                        true;
-    padding:                        20px;
+    padding:                        10px;
     border-radius:                  30px;
     background-color:               transparent;
     text-color:                     @foreground;
     cursor:                         pointer;
 }
 element-text {
-    font:                           "Fira Code SemiBold 16";
+    font:                           "Fira Code SemiBold 14";
     background-color:               transparent;
     text-color:                     inherit;
     cursor:                         inherit;

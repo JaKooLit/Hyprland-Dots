@@ -189,7 +189,7 @@ window#waybar {
 }
 
 #custom-menu {
-	color: @color2;
+	color: yellow;
 }
 #custom-power{
     color: #eba0ac; 

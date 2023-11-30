@@ -18,6 +18,8 @@
 
 "modules-left": [
 	"custom/menu",
+	"custom/separator#blank_2",
+	"custom/keybinds",
 	"custom/separator#blank_2", 
 	"hyprland/workspaces#pacman",
 	"custom/separator#blank_2",
