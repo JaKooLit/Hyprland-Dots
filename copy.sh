@@ -31,6 +31,9 @@ RESET=$(tput sgr0)
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S)_dotfiles.log"
 
+# update home folders
+xdg-user-dirs-update
+
 # uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
   # NVIDIA GPU detected, uncomment line 23 in ENVariables.conf
@@ -160,9 +163,6 @@ printf "${NOTE} - copying dotfiles\n"
       echo -e "${NOTE} - Backed up $DIRw to $DIRPATH-back-up."
     fi
   done
-
-# update home folders
-xdg-user-dirs-update
 
 # Copying config files
 printf " Copying config files...\n"
