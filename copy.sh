@@ -32,7 +32,7 @@ RESET=$(tput sgr0)
 LOG="install-$(date +%d-%H%M%S)_dotfiles.log"
 
 # update home folders
-xdg-user-dirs-update
+xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 
 # uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
