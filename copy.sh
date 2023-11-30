@@ -178,8 +178,6 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" && \
 ln -sf "$HOME/.config/waybar/style/Pywal.css" "$HOME/.config/waybar/style.css" && \
 
-# symlinks for dunst
-ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" && \
   
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
