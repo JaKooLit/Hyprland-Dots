@@ -19,6 +19,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4c98fa74-0190-4a1d-96d
 
 - [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
 
+- [OpenSUSE(Tumbleweed)](https://github.com/JaKooLit/OpenSuse-Hyprland)
+
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
 
 ## 👀 Screenshots 👀
