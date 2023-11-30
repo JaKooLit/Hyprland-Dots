@@ -24,7 +24,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						20%;
+    width:						600px;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;

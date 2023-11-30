@@ -4,7 +4,7 @@
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
-    font:                       "Fira Code SemiBold 12";
+    font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
@@ -24,7 +24,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						34%;
+    width:						800px;
+	height:						450px;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
@@ -50,7 +51,7 @@ mainbox {
     background-image:           url("~/.config/rofi/.current_wallpaper", width);
     children:                   [ "imagebox"];
     border-radius:              12px;
-    background-color:      		@background90;
+    background-color:      		@background;
 }
 
 /* ---- Imagebox ---- */
@@ -111,7 +112,7 @@ entry {
 listview {
 	enabled:					 true;
 	columns:					 2;
-	lines:						 5;
+	lines:						 8;
 	spacing:                     4px;
 	dynamic:                     true;
 	cycle:                       true;

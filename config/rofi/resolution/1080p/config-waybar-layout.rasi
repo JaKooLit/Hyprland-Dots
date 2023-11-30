@@ -22,7 +22,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						34%;
+    width:						800px;
+	height:						800px;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
@@ -107,7 +108,7 @@ entry {
 listview {
     enabled:                    true;
     columns:                    1;
-    lines:                      16;
+    lines:                      15;
   	spacing:                    4px;
   	dynamic:                    true;
   	cycle:                      true;
@@ -115,8 +116,8 @@ listview {
   	layout:                     vertical;
   	reverse:                    false;
   	fixed-height:               true;
-  	fixed-columns:              false;
-	background-color:            transparent;
+  	fixed-columns:              true;
+	background-color:           transparent;
 	border-radius:             	10px;
 }
 

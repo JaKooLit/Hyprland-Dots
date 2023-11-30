@@ -18,9 +18,9 @@ window {
     location:                       east;
     anchor:                         center;
     fullscreen:                     false;
-    width:                          240px;
-    /*height:                         800px;*/
-    x-offset:                       0px;
+    width:                          250px;
+    height:                         500px;
+    x-offset:                       -10px;
     y-offset:                       0px;
     padding:                        0px;
     border:                         2px;
@@ -68,7 +68,7 @@ prompt {
 listview {
     enabled:                        true;
     columns:                        1;
-    lines:                          6;
+    lines:                          7;
     cycle:                          true;
     dynamic:                        true;
     scrollbar:                      false;

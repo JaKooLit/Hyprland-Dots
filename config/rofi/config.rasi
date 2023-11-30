@@ -4,7 +4,7 @@
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
-    font:                       "Fira Code SemiBold 12";
+    font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
@@ -24,7 +24,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						35%;
+    width:						800px;
+	height:						450px;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
@@ -46,7 +47,7 @@ mainbox {
     enabled:                    true;
     orientation:                horizontal;
 	padding:					14px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", height);
+    background-image:           url("~/.config/rofi/.current_wallpaper", width);
     children:                   [ "imagebox", "listbox" ];
     border-radius:              10px;
 }
@@ -135,7 +136,7 @@ button selected {
 listview {
 	enabled:					true;
 	columns:					1;
-	lines:						9;
+	lines:						8;
 	spacing:                    4px;
 	dynamic:                    true;
 	cycle:                      true;
@@ -143,7 +144,7 @@ listview {
 	layout:                     vertical;
 	reverse:                    false;
 	fixed-height:               true;
-	fixed-columns:              false;
+	fixed-columns:              true;
 	background-color:           transparent;
 	border-radius:   	        10px;
 }
