@@ -21,6 +21,8 @@ window {
     width:                          250px;
     height:                         500px;
     x-offset:                       -10px;
+/* Debian/Ubuntu users use this offset */
+/*	x-offset:						-130px; */
     y-offset:                       0px;
     padding:                        0px;
     border:                         2px;
