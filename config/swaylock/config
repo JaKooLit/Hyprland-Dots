@@ -1,30 +1,35 @@
 ## Swaylock-effects config
 
-ignore-empty-password
+daemonize
+
 font="Fira Sans Semibold"
 
 # clock choose between AM/PM or 24H
 clock
 # AM/PM formats (American Format)
-#datestr=%a, %B %e
-#timestr=%I:%M %p
+# datestr=%a, %B %e
+# timestr=%I:%M %p
 
 #24 HRS clock format and standard Europe Date Format
 timestr=%H:%M:%S
 datestr=%d %B, %a
 
 # Add current display as background
-# screenshots
+#screenshots
 
 # Add an image as a background. You need to disable screenshots above
 image=$HOME/.config/rofi/.current_wallpaper
 
 # Effect for background
 # NOTE: if you choose image as wallpaper, you may want to comment (#) these effects 
-# effect-blur=5x4
+#effect-blur=9x5
+#effect-vignette=0.5:0.5
 # effect-greyscale
 # effect-pixelate=5
-# effect-vignette 0:1
+
+show-failed-attempts
+ignore-empty-password
+grace=1
 
 # Fade in time (secs)
 fade-in=0.5
