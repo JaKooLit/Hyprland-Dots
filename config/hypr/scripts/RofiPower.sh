@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#### By default will not show the keyboard shortcuts as it looks Hideous :)
+
 SwayLock=$HOME/.config/hypr/scripts/LockScreen.sh
 
 # CMDs
@@ -7,7 +9,7 @@ uptime_info=$(uptime -p | sed -e 's/up //g')
 host=$(hostnamectl hostname)
 
 # Options with Icons and Text
-options=("Lock(l)" "Suspend(u)" "Logout(e)" "Reboot(r)" "Shutdown(s)" "Hibernate(h)")
+options=("Lock" "Suspend" "Logout" "Reboot" "Shutdown" "Hibernate")
 icons=("" "" "󰿅" "󱄌" "" "󰒲")
 
 # Rofi CMD
