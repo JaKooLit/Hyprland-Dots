@@ -4,11 +4,11 @@
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
-    font:                       "Fira Code SemiBold 14";
+    font:                       "Fira Code SemiBold 12";
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
-    display-filebrowser:        "";
+    display-filebrowser:        "";
     display-window:             "";
 	drun-display-format:        "{name}";
     hover-select:               true;
@@ -16,7 +16,7 @@ configuration {
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
 	dpi:						1;
-    fake-transparency:          true;
+    
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -38,8 +38,8 @@ window {
     anchor:                     center;
     fullscreen:                 false;
     enabled:                    true;
-    border-radius:              15px;
-    border-radius:              15px;
+    border-radius:              12px;
+    border-radius:              12px;
  	background-color:           @background-color;
 }
 
@@ -47,7 +47,7 @@ window {
 mainbox {
     enabled:                    true;
     orientation:                horizontal;
-	padding:					15px;
+	padding:					8px;
     background-image:           url("~/.config/rofi/.current_wallpaper", height);
     children:                   [ "imagebox"];
     border-radius:              12px;
