@@ -185,12 +185,28 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
+# adding user to input group
 printf " adding user to input group...\n"
 sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
 
+
+# Additional wallpaper
+echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)\n"
+read -n1 -rep "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
+sleep 1
+
+if [[ $WALL =~ ^[Yy]$ ]]; then
+  printf "${NOTE} Downloading additional wallpapers...\n"
+  if git clone https://github.com/JaKooLit/Wallpaper-Bank.git 2>&1 | tee -a "$LOG"; then
+    cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/
+    rm -rf Wallpaper-Bank # Remove cloned repository after copying wallpapers
+  else
+    echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
+  fi
+fi
+
 # initialize pywal to avoid config error on hyprland
 wal -i ~/Pictures/wallpapers/mecha-nostalgia.png 2>&1 | tee -a "$LOG"
-
 
 printf "\n${OK} Copy Completed!\n\n\n"
 printf "${ORANGE} ATTENTION!!!! \n"
