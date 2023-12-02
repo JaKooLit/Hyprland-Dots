@@ -36,6 +36,9 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4c98fa74-0190-4a1d-96d
 
 - [v2-Changes](https://youtu.be/yaVurRoXc-s)
 
+### 📽️ A video coverage by other users. Pls watch and subscribe to their channel
+- [`Link`](https://github.com/JaKooLit/Hyprland-Dots/wiki/8.-Videos-and-Reviews)
+
 
 ## ✨ Copying instructions. 
 - Note! The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
