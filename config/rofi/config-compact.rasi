@@ -8,7 +8,7 @@ configuration {
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
-    display-filebrowser:        "";
+    display-filebrowser:        "";
     display-window:             "";
 	drun-display-format:        "{name}";
     hover-select:               true;
@@ -16,7 +16,7 @@ configuration {
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
 	dpi:						1;
-    fake-transparency:          true;
+    
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -24,7 +24,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						20%;
+    width:						500px;
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
@@ -46,11 +46,11 @@ window {
 mainbox {
     enabled:                    true;
     orientation:                horizontal;
-	padding:					15px;
+	padding:					8px;
     background-image:           url("~/.config/rofi/.current_wallpaper", height);
     children:                   [ "imagebox"];
     border-radius:              12px;
-    background-color:      		@background90;
+    background-color:      		@background;
 }
 
 /* ---- Imagebox ---- */

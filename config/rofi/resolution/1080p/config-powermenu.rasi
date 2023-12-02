@@ -18,13 +18,15 @@ window {
     location:                       east;
     anchor:                         center;
     fullscreen:                     false;
-    width:                          240px;
-    /*height:                         800px;*/
-    x-offset:                       0px;
+    width:                          280px;
+    /*height:                         500px;*/
+    x-offset:                       -10px;
+/* Debian/Ubuntu users use this offset */
+/*	x-offset:						-130px; */
     y-offset:                       0px;
     padding:                        0px;
-    border:                         2px;
-    border-radius:                  15px;
+    border:                         3px;
+    border-radius:                  10px;
     border-color:                   @active-background;
     cursor:                         "default";
     background-color:               @background-color;
@@ -47,7 +49,7 @@ mainbox {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                        true;
-	padding:						10px;
+	padding:						5px;
     background-color:               transparent;
     orientation:                    horizontal;
     children:                       ["prompt"];
@@ -56,9 +58,9 @@ inputbar {
 prompt {
     enabled:                        true;
 	/*padding:						10px;*/
-	border-radius:					15px;
+	border-radius:					10px;
     border-color:                   @foreground;
-    background-color:               @background-color;
+    background-color:               @background;
     text-color:                     @foreground;
     cursor:                         text;
 	
@@ -68,7 +70,7 @@ prompt {
 listview {
     enabled:                        true;
     columns:                        1;
-    lines:                          6;
+    lines:                          7;
     cycle:                          true;
     dynamic:                        true;
     scrollbar:                      false;
@@ -87,14 +89,14 @@ listview {
 /* ---- Elements ---- */
 element {
     enabled:                        true;
-    padding:                        10px;
-    border-radius:                  30px;
+    padding:                        30px 40px 30px 40px;
+    border-radius:                  20px;
     background-color:               transparent;
     text-color:                     @foreground;
     cursor:                         pointer;
 }
 element-text {
-    font:                           "Fira Code SemiBold 14";
+    font:                           "Fira Code SemiBold 16";
     background-color:               transparent;
     text-color:                     inherit;
     cursor:                         inherit;

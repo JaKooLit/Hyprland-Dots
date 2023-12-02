@@ -164,7 +164,7 @@
     //"format": "{icon} {percent}%",
     //"format-icons": ["󰃞", "󰃟", "󰃠"],
     "format": "{icon}",
-    "format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
+    "format-icons": ["","","","","","","","","","","","","","",""],
     "tooltip-format": "backlight {percent}%",
     "icon-size": 10,
     "on-click": "",
@@ -313,8 +313,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": " ",
-      "deactivated": " ",
+      "activated": " ",
+      "deactivated": " ",
                     }
   },
     
@@ -416,7 +416,7 @@
   },
       
   "tray": {
-    "icon-size": 12,
+    "icon-size": 14,
     "spacing": 8,
   },
       
@@ -473,7 +473,7 @@
   },
     
   "custom/menu": {
-    "format": "",
+    "format": "",
     "tooltip": false,
     "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser",
     "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",

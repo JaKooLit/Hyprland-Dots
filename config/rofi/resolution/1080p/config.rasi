@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config (main) - mine */
+/* Main Config (main) */
 
 /* ---- Configuration ---- */
 configuration {
@@ -8,7 +8,7 @@ configuration {
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
-    display-filebrowser:        "";
+    display-filebrowser:        "";
     display-window:             "";
 	drun-display-format:        "{name}";
     hover-select:               true;
@@ -24,7 +24,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						35%;
+    width:						800px;
+	/*height:						450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
@@ -37,25 +38,25 @@ window {
     anchor:                     center;
     fullscreen:                 false;
     enabled:                    true;
-    border-radius:              15px;
+    border-radius:              12px;
  	background-color:           @background-color;
 }
 
 /* ---- Mainbox ---- */
 mainbox {
     enabled:                    true;
-    orientation:                horizontal;
-	padding:					14px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", height);
-    children:                   [ "imagebox", "listbox" ];
-    border-radius:              10px;
+    orientation:                vertical;
+	padding:					8px;
+    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    children:                   [ "inputbar", "listbox" ];
+    border-radius:              12px;
 }
 
 /* ---- Imagebox ---- */
 imagebox {
     background-color:           transparent;
     orientation:                vertical;
-    children:                   [ "inputbar", "dummy", "mode-switcher" ];
+    /*children:                   [ "inputbar"];*/
 }
 
 /* ---- Listbox ---- */
@@ -63,7 +64,8 @@ listbox {
     spacing:                    4px;
     orientation:                vertical;
     children:                   [ "listview" ];
-    border-radius:              10px;
+	padding:					10px;
+    border-radius:              12px;
     border:                     1px;
     border-color:               @active-background;
 	background-color:		    @background;
@@ -79,17 +81,17 @@ inputbar {
     enabled:                    true;
     text-color:                 @foreground;
     spacing:                    10px;
-    padding:                    10px;
-    border-radius:              10px;
+    border-radius:              12px;
     border-color:               @foreground;
 	background-color:		    @background;
-    children:                   [ "textbox-prompt-colon", "entry" ];
+    children:                   [ "mode-switcher", "textbox-prompt-colon", "entry" ];
     border:                     1px;
     border-color:               @active-background;
 }
 
 textbox-prompt-colon {
     enabled:                    true;
+	padding:					10px 0px 10px 10px;
     expand:                     false;
     str:                        "🐧";
     text-color:                 inherit;
@@ -98,6 +100,7 @@ textbox-prompt-colon {
 
 entry {
     enabled:                    true;
+	padding:					10px 0px 10px 0px;
     text-color:                 inherit;
     cursor:                     text;
     placeholder:                "Search";
@@ -114,8 +117,8 @@ mode-switcher{
 }
 
 button {
-    padding:                   10px;
-    border-radius:             10px;
+    padding:                   2px 24px 2px 24px;
+    border-radius:             12px;
     background-color:          @background;
     text-color:                inherit;
     cursor:                    pointer;
@@ -134,9 +137,10 @@ button selected {
 /* ---- Listview ---- */
 listview {
 	enabled:					true;
-	columns:					1;
-	lines:						9;
-	spacing:                    4px;
+	columns:					2;
+	lines:						6;
+	spacing:                    5px;
+	padding:					6px;
 	dynamic:                    true;
 	cycle:                      true;
 	scrollbar:                  false;
@@ -145,7 +149,8 @@ listview {
 	fixed-height:               true;
 	fixed-columns:              false;
 	background-color:           transparent;
-	border-radius:   	        10px;
+	border-radius:   	        12px;
+	border:						0px;
 }
 
 /* ---- Element ---- */
@@ -155,7 +160,7 @@ element {
     margin:                     2px;
     cursor:                     pointer;
     background-color:         	transparent;
-    border-radius:              10px;
+    border-radius:              12px;
     border:                     0px;
 }
 
@@ -216,25 +221,25 @@ element-text {
     text-color:                 inherit;
     cursor:                     inherit;
     vertical-align:             0.5;
-    horizontal-align:           0.0;
+    horizontal-align:           0;
 }
 
 /*****----- Message -----*****/
 message {
     background-color:           @background;
     margin:						20px 0px 0px 0px;
-    border-radius: 				10px;
+    border-radius: 				12px;
 }
 
 textbox {
-    padding:                    15px;
+    padding:                    10px;
     background-color:      		@background;
     text-color:                 @foreground;
 }
 
 error-message {
     padding:                    15px;
-    border-radius:            	20px;
+    border-radius:            	12px;
     background-color:      		@background;
     text-color:                 @foreground;
 }

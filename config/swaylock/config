@@ -1,10 +1,7 @@
-## Swaylock-effects config
-
-ignore-empty-password
-font="Fira Sans Semibold"
-
-# clock choose between AM/PM or 24H
+daemonize
+show-failed-attempts
 clock
+
 # AM/PM formats (American Format)
 #datestr=%a, %B %e
 #timestr=%I:%M %p
@@ -14,55 +11,47 @@ timestr=%H:%M:%S
 datestr=%d %B, %a
 
 # Add current display as background
-# screenshots
+#screenshots
 
 # Add an image as a background. You need to disable screenshots above
 image=$HOME/.config/rofi/.current_wallpaper
 
 # Effect for background
 # NOTE: if you choose image as wallpaper, you may want to comment (#) these effects 
-# effect-blur=5x4
-# effect-greyscale
+# effect-blur=9x5
+# effect-vignette=0.5:0.5
+effect-greyscale
 # effect-pixelate=5
-# effect-vignette 0:1
 
-# Fade in time (secs)
-fade-in=0.5
-
-# Show/Hide indicator circle
+color=1f1d2e80
+font="Inter"
 indicator
-
-# indicator (higher number means bigger clock)
 indicator-radius=200
-
 indicator-thickness=20
-indicator-caps-lock
-
-# colors
-bs-hl-color=31748f
-inside-color=323232
+line-color=1f1d2e
+ring-color=191724
+inside-color=1f1d2e
 key-hl-color=eb6f92
-line-color=4f4f4f
-ring-color=4f4f4f
 separator-color=00000000
 text-color=e0def4
-
-inside-ver-color=1f1d2e
+text-caps-lock-color=""
 line-ver-color=eb6f92
 ring-ver-color=eb6f92
+inside-ver-color=1f1d2e
 text-ver-color=e0def4
-
-inside-wrong-color=1f1d2e
-line-wrong-color=1f1d2e
 ring-wrong-color=31748f
 text-wrong-color=31748f
-
+inside-wrong-color=1f1d2e
 inside-clear-color=1f1d2e
-line-clear-color=1f1d2e
-ring-clear-color=9ccfd8
 text-clear-color=e0def4
+ring-clear-color=9ccfd8
+line-clear-color=1f1d2e
+line-wrong-color=1f1d2e
+bs-hl-color=31748f
+grace=1
+grace-no-mouse
+grace-no-touch
+fade-in=0.2
+ignore-empty-password
 
-caps-lock-bs-hl-color=ffffff
-caps-lock-key-hl-color=ffffff
-text-caps-lock-color=ffffff
-#disable-caps-lock-text
+

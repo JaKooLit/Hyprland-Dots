@@ -36,6 +36,9 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4c98fa74-0190-4a1d-96d
 
 - [v2-Changes](https://youtu.be/yaVurRoXc-s)
 
+### 📽️ A video coverage by other users. Pls watch and subscribe to their channel
+- [`Link`](https://github.com/JaKooLit/Hyprland-Dots/wiki/8.-Videos-and-Reviews)
+
 
 ## ✨ Copying instructions. 
 - Note! The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
@@ -62,6 +65,9 @@ chmod +x release.sh
 
 + More info [HERE](https://github.com/JaKooLit/Hyprland-Dots/wiki/2.-Installations-&-Copying-dots)
 
+### 🛎️ a small note on wallpapers
+- by default, only few wallpapers will be copied (1 each dark and light plus 2 more). You will be offered to download more wallpapers. You can preview/check the additional wallpapers on [`THIS`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
+
 
 ### ⚠️⚠️⚠️ A MUST! after copying these dots
 
@@ -73,6 +79,7 @@ chmod +x release.sh
 
 ### 📖 Known issues and possible solutions
 - check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/4.-FAQ) and [UNSOLVED ISSUES](https://github.com/JaKooLit/Hyprland-Dots/wiki/6.-Known-Issues)
+
 
 ### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
