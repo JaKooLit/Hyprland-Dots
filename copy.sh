@@ -146,7 +146,7 @@ fi
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} - copying dotfiles\n"
-  for DIR in btop cava dunst hypr kitty Kvantum rofi swappy swaylock wal waybar; do 
+  for DIR in btop cava dunst hypr kitty Kvantum qt5ct rofi swappy swaylock wal waybar; do 
     DIRPATH=~/.config/$DIR
     if [ -d "$DIRPATH" ]; then 
       echo -e "${NOTE} - Config for $DIR found, attempting to back up."
