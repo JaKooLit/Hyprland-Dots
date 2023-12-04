@@ -208,6 +208,10 @@ fi
 
 # initialize pywal to avoid config error on hyprland
 wal -i ~/Pictures/wallpapers/mecha-nostalgia.png 2>&1 | tee -a "$LOG"
+
+#initial symlink for Pywal Dark and Light for Rofi Themes
+ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+
 printf "\n\n"
 printf "\n${OK} Copy Completed!\n\n\n"
 printf "${ORANGE} ATTENTION!!!! \n"
