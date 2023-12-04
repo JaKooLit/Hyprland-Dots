@@ -1,113 +1,87 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* pywal-wlogout */
+
+/* Importing pywal colors */
+
+@import '../../.cache/wal/colors-waybar.css';
+
 window {
-    font-family: monospace;
-    font-size: 14pt;
+    font-family: Fira Code Medium;
+    font-size: 16pt;
     color: #cdd6f4; /* text */
-    background-color: rgba(30, 30, 46, 0.5);
+    background-color: rgba(30, 30, 46, 0.6);
 }
 
 button {
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 25%;
-    border: none;
-    background-color: rgba(30, 30, 46, 0);
-    margin: 5px;
-	animation: gradient_f 20s ease-in infinite;
-    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
-}
-
-button:hover#lock {
-	/*background-color: rgba(49, 50, 68, 0.2);*/
-	background-size: 25%;
-	margin-right : 30px;
-	margin-bottom : 30px;
-	border-radius: 20px;
+    background-size: 20%;
+    background-color: rgba(200, 220, 255, 0);
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
-}
-
-button:hover#logout {
-	/*background-color: rgba(49, 50, 68, 0.2);*/
-	background-size: 25%;
-	margin-right : 30px;
-	margin-top : 30px;
-	border-radius: 20px;
-    animation: gradient_f 20s ease-in infinite;
-	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
-}
-
-button:hover#shutdown {
-	/*background-color: rgba(49, 50, 68, 0.2);*/
-	background-size: 25%;
-	margin-left : 20px;
-	margin-bottom : 30px;
-	border-radius: 20px;
-    animation: gradient_f 20s ease-in infinite;
-	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
-}
-
-button:hover#reboot {
-	/*background-color: rgba(49, 50, 68, 0.2);*/
-	background-size: 25%;
-	margin-left : 30px;
-	margin-top : 30px;
-	border-radius: 20px;
-    	animation: gradient_f 20s ease-in infinite;
-	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
-}
-
-button:hover#suspend {
-	/*background-color: rgba(49, 50, 68, 0.2);*/
-	background-size: 25%;
-	margin-left : 30px;
-	margin-top : 30px;
-	border-radius: 20px;
-    	animation: gradient_f 20s ease-in infinite;
-	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+    border-radius: 80px; /* Increased border radius for a more rounded look */
 }
 
 button:focus {
-    background-color: rgba(180, 190, 254, 0.3);
-    color: #1e1e2e;
-	background-size: 25%;
-	margin-left : 30px;
-	margin-top : 30px;
-	border-radius: 20px;
-    animation: gradient_f 20s ease-in infinite;
-	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+    background-size: 25%;
+	border: 0px;
+
 }
 
-#lock {
-    background-image: image(url("./lock.png"));
+button:hover {
+    background-color: @color2; 
+    color: #1e1e2e;
+    background-size: 50%;
+    margin: 30px;
+    border-radius: 80px; 
+    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    box-shadow: 0 0 20px @color7; 
+	
 }
-#lock:focus {
-    background-image: image(url("./lock-hover.png"));
+
+/* Adjust the size of the icon or content inside the button */
+button span {
+    font-size: 1.2em; /* Increase the font size */
+}
+
+
+#lock {
+    background-image: image(url("./icons/lock.png"));
+}
+#lock:hover {
+    background-image: image(url("./icons/lock-hover.png"));
 }
 
 #logout {
-    background-image: image(url("./logout.png"));
+    background-image: image(url("./icons/logout.png"));
 }
-#logout:focus {
-    background-image: image(url("./logout-hover.png"));
+#logout:hover {
+    background-image: image(url("./icons/logout-hover.png"));
 }
 
 #suspend {
-    background-image: image(url("./sleep.png"));
+    background-image: image(url("./icons/sleep.png"));
 }
-#suspend:focus {
-    background-image: image(url("./sleep-hover.png"));
+#suspend:hover {
+    background-image: image(url("./icons/sleep-hover.png"));
 }
 
 #shutdown {
-    background-image: image(url("./power.png"));
+    background-image: image(url("./icons/power.png"));
 }
-#shutdown:focus {
-    background-image: image(url("./power-hover.png"));
+#shutdown:hover {
+    background-image: image(url("./icons/power-hover.png"));
 }
 
 #reboot {
-    background-image: image(url("./restart.png"));
+    background-image: image(url("./icons/restart.png"));
 }
-#reboot:focus {
-    background-image: image(url("./restart-hover.png"));
+#reboot:hover {
+    background-image: image(url("./icons/restart-hover.png"));
+}
+
+#hibernate {
+    background-image: image(url("./icons/hibernate.png"));
+}
+#hibernate:hover {
+    background-image: image(url("./icons/hibernate-hover.png"));
 }
