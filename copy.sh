@@ -173,10 +173,7 @@ cp -r config/* ~/.config/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR
 mkdir -p ~/Pictures/wallpapers
 cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR} Failed to copy wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
 
-# Initial Symlinks to avoid errors
-# symlinks for waybar
-ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" && \
-ln -sf "$HOME/.config/waybar/style/Golden Noir.css" "$HOME/.config/waybar/style.css" && \
+
 
   
 # Set some files as executable
@@ -205,6 +202,23 @@ if [[ $WALL =~ ^[Yy]$ ]]; then
     echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
   fi
 fi
+
+# Initial Symlinks to avoid errors
+
+# Detect machine type and set Waybar configurations accordingly, logging the output
+if hostnamectl | grep -q 'Chassis: desktop'; then
+    # Configurations for a desktop
+    ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/Def[TOP]-Laptop" "$HOME/.config/waybar/configs/Def[Bottom]-Laptop" 2>&1 | tee -a "$LOG"
+else
+    # Configurations for a laptop or any system other than desktop
+    ln -sf "$HOME/.config/waybar/configs/Def[TOP]-Laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/configs/Default [Bottom]" 2>&1 | tee -a "$LOG"
+fi
+
+
+# symlinks for waybar style
+ln -sf "$HOME/.config/waybar/style/Golden Noir.css" "$HOME/.config/waybar/style.css" && \
 
 # initialize pywal to avoid config error on hyprland
 wal -i ~/Pictures/wallpapers/mecha-nostalgia.png 2>&1 | tee -a "$LOG"
