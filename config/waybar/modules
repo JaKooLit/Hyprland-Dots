@@ -11,7 +11,7 @@
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent_workspaces": {
+    "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
@@ -32,7 +32,7 @@
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent_workspaces":{
+    "persistent-workspaces":{
         "1": [],
         "2": [],
         "3": [],
@@ -62,7 +62,7 @@
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
     "show-special": false,
-    "persistent_workspaces":{
+    "persistent-workspaces":{
         "1": [],
         "2": [],
         "3": [],
@@ -81,7 +81,7 @@
     "disable-scroll": true,
     "all-outputs": true,
     "format": "{icon}",
-    "persistent_workspaces": {
+    "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
@@ -465,6 +465,7 @@
 	"on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
 	"tooltip": false,
   },
+
     
   "custom/light_dark": {
     "format": "",
