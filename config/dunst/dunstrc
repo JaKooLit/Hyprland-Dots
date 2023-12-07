@@ -281,7 +281,7 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#00000080"
+    background = "#00000095"
     foreground = "#fafafa"
     frame_color = "#3C27C7"
     timeout = 2
@@ -289,7 +289,7 @@
     icon = $HOME/.config/dunst/images/bell.png
 
 [urgency_normal]
-    background = "#00000080"
+    background = "#00000095"
     foreground = "#fafafa"
     frame_color = "#3C27C7"
     timeout = 5
@@ -297,7 +297,7 @@
     icon = $HOME/.config/dunst/images/bell.png
 
 [urgency_critical]
-    background = "#00000080"
+    background = "#00000095"
     foreground = "#fafafa"
     frame_color = "#3C27C7"
     timeout = 0
