@@ -446,7 +446,7 @@
   "custom/cycle_wall":{
     "format":" ",
     "on-click": "~/.config/hypr/scripts/WallpaperSelect.sh",
-    "on-click-right": "~/.config/hypr/scripts/Wallpaper.sh swww",
+    "on-click-right": "~/.config/hypr/scripts/Wallpaper.sh",
     "on-click-middle": "~/.config/hypr/scripts/WaybarStyles.sh",
     "tooltip": true,
     "tooltip-format": "Change wallpaper or style"
@@ -471,7 +471,7 @@
     "format": "",
     "on-click": "~/.config/hypr/scripts/DarkLight.sh",
     "on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh",
-    "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh swww",
+    "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh",
     "tooltip": false,
   },
       

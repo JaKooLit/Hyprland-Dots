@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### DEFAULT ### //
+// ### DEFAULT - Top ### //
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
