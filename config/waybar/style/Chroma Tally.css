@@ -16,7 +16,7 @@ padding: 1px;
 window#waybar {
     background: rgba (0, 0, 0, 0.5);
     border-radius: 12px;
-	border-bottom: 3px;
+	border-bottom: 2px;
     border-style: solid;
 	border-color: @color2; 
 }

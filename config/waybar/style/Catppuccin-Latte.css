@@ -17,7 +17,7 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   /*background: transparent;*/
-  border-bottom: 3px solid @sapphire;
+  border-bottom: 2px solid @sapphire;
   background: @theme_base_color;
   border-radius: 10px;
 }
