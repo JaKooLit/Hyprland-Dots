@@ -6,7 +6,7 @@
 # not necessary to do since this script is only designed to ran only once as long as the marker exist
 
 # Set swww options
-wallpaper=$HOME/Pictures/wallpapers/mecha-nostalgia.png
+wallpaper=$HOME/Pictures/wallpapers/anime-girl-abyss.png
 
 swww="swww img"
 effect="--transition-bezier .43,1.19,1,.4 --transition-fps 60 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"

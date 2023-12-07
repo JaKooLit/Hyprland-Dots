@@ -221,7 +221,7 @@ fi
 ln -sf "$HOME/.config/waybar/style/Golden Noir.css" "$HOME/.config/waybar/style.css" && \
 
 # initialize pywal to avoid config error on hyprland
-wal -i ~/Pictures/wallpapers/mecha-nostalgia.png 2>&1 | tee -a "$LOG"
+wal -i ~/Pictures/wallpapers/anime-girl-abyss.png 2>&1 | tee -a "$LOG"
 
 #initial symlink for Pywal Dark and Light for Rofi Themes
 ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
