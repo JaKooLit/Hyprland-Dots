@@ -49,9 +49,10 @@ tooltip {
 tooltip label{
 	color: #cdd6f4;
 }
+
 #workspaces button {
-	color: #7984a4;
-	background-color: transparent;
+    background-color: transparent;
+    color: grey;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
@@ -62,17 +63,20 @@ tooltip label{
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#workspace button.hover {
-	background-color: transparent;
-    padding-left: 2px;
-    padding-right: 2px;
+#workspaces button.active {
+    background-color: transparent;
+    color: #D3D3D3;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
-#workspaces button.active {
-	color: white;
-    padding-left: 8px;
-    padding-right: 8px;
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+	color: #D3D3D3;
+    padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -163,6 +167,7 @@ tooltip label{
 	background-color: rgba(50, 50, 50, 0.1);
 }
 
+#custom-keyboard,
 #memory {
 	color: #ebcb8b;
 }

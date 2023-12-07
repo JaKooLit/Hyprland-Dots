@@ -43,6 +43,7 @@ window#waybar {
 }
 
 #workspaces button:hover {
+	color: @color2;
 	background-color: rgba(0,153,153,0);
     padding-left: 2px;
     padding-right: 2px;
@@ -146,6 +147,8 @@ window#waybar {
 #disk {
 	color: #94e2d5;
 }
+
+#custom-keyboard,
 #memory {
     color: #d3869b;
 }

@@ -138,6 +138,7 @@ window#waybar.hidden {
   color: @green;
 }
 
+#custom-keyboard,
 #memory {
   color: @sky;
 }
@@ -177,7 +178,7 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-	border-radius: 8px;
+	border-radius: 10px;
 	color: @overlay0;
 	background-color: @surface0;
  	padding-left: 2px;
@@ -187,13 +188,13 @@ window#waybar.hidden {
 }
 
 #workspaces button.persistent {
-  	color: @surface1;
-  	border-radius: 10px;
+	color: @surface1;
+	border-radius: 10px;
 }
 
 #workspaces button.active {
-  	color: @peach;
-  	border-radius: 8px;
+	color: @peach;
+  	border-radius: 10px;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
@@ -201,8 +202,8 @@ window#waybar.hidden {
 }
 
 #workspaces button.urgent {
-  color: @red;
-  border-radius: 0px;
+	color: @red;
+ 	border-radius: 0px;
 }
 
 #taskbar button.active {

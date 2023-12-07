@@ -132,6 +132,7 @@ window#waybar.hidden {
   color: @green;
 }
 
+#custom-keyboard,
 #memory {
   color: @sky;
 }

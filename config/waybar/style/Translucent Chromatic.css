@@ -76,7 +76,7 @@ tooltip label{
 
 #workspaces button.active {
     background-color: transparent;
-    color: #D3D3D3;
+    color: @accent1;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
@@ -85,6 +85,7 @@ tooltip label{
 
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
+	color: @accent3;
     padding-left: 2px;
     padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
@@ -93,7 +94,7 @@ tooltip label{
 
 #workspaces button.focused {
     background-color: #bbccdd;
-    color: #323232;
+    color: @accent2;
     /* box-shadow: inset 0 -3px #ffffff; */
 }
 
@@ -211,6 +212,7 @@ label:focus {
     /*padding: 3px;*/
 }
 
+#custom-keyboard,
 #cpu {
     color: @accent1;
 }
@@ -278,6 +280,7 @@ label:focus {
     color: #ffa000;
 }
 
+#keyboard-state,
 #temperature {
     color: @accent6;
     /* background-color: #f0932b; */
