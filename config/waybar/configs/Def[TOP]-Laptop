@@ -1,17 +1,17 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### DEFAULT Bottom ### //
+// ### DEFAULT Top -Laptop ### //
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
 //"mode": "dock",
 "exclusive": true,
 "passthrough": false,
-"position": "bottom",
+"position": "top",
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-//"margin-top": 6,
+"margin-top": 3,
 "margin-left": 8,
 "margin-right": 8,
 
@@ -50,6 +50,10 @@
 	"custom/separator#dot-line",
 	"network#speed",
 	"custom/separator#dot-line", 
+	"battery",
+	"custom/separator#dot-line", 
+	"backlight",
+	"custom/separator#dot-line",
 	"pulseaudio",
 	"custom/separator#dot-line",
 	"pulseaudio#microphone",

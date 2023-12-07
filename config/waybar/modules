@@ -11,7 +11,7 @@
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent_workspaces": {
+    "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
@@ -32,7 +32,7 @@
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent_workspaces":{
+    "persistent-workspaces":{
         "1": [],
         "2": [],
         "3": [],
@@ -62,7 +62,7 @@
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
     "show-special": false,
-    "persistent_workspaces":{
+    "persistent-workspaces":{
         "1": [],
         "2": [],
         "3": [],
@@ -81,7 +81,7 @@
     "disable-scroll": true,
     "all-outputs": true,
     "format": "{icon}",
-    "persistent_workspaces": {
+    "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
@@ -446,7 +446,7 @@
   "custom/cycle_wall":{
     "format":" ",
     "on-click": "~/.config/hypr/scripts/WallpaperSelect.sh",
-    "on-click-right": "~/.config/hypr/scripts/Wallpaper.sh swww",
+    "on-click-right": "~/.config/hypr/scripts/Wallpaper.sh",
     "on-click-middle": "~/.config/hypr/scripts/WaybarStyles.sh",
     "tooltip": true,
     "tooltip-format": "Change wallpaper or style"
@@ -457,12 +457,21 @@
     "tooltip": false,
     "on-click": "~/.config/hypr/scripts/KeyHints.sh",
   },
+
+  "custom/keyboard": {
+	"exec": "cat ~/.cache/kb_layout",
+	"interval": 1,
+	"format": " {}",
+	"on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
+	"tooltip": false,
+  },
+
     
   "custom/light_dark": {
     "format": "",
     "on-click": "~/.config/hypr/scripts/DarkLight.sh",
     "on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh",
-    "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh swww",
+    "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh",
     "tooltip": false,
   },
       
@@ -640,7 +649,7 @@
   "temperature#vertical": {
     "interval": 10,
     "tooltip": true,
-    "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "hwmon-path": ["/sys/class/hwmon/hwmon6/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
     //"thermal-zone": 0,
     "critical-threshold": 80,
     "format-critical": "{icon}\n{temperatureC}°C",

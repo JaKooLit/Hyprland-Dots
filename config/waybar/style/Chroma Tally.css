@@ -15,8 +15,8 @@ padding: 1px;
 
 window#waybar {
     background: rgba (0, 0, 0, 0.5);
-    border-radius: 20px 20px 20px 20px;
-	border-bottom: 3px;
+    border-radius: 12px;
+	border-bottom: 2px;
     border-style: solid;
 	border-color: @color2; 
 }
@@ -43,6 +43,7 @@ window#waybar {
 }
 
 #workspaces button:hover {
+	color: @color2;
 	background-color: rgba(0,153,153,0);
     padding-left: 2px;
     padding-right: 2px;
@@ -59,8 +60,6 @@ window#waybar {
 #cpu,
 #disk,
 #idle_inhibitor,
-#keyboard-state label,
-#keyboard-state label.locked,
 #keyboard-state,
 #memory,
 #mode,
@@ -78,6 +77,7 @@ window#waybar {
 #custom-backlight,
 #custom-cycle_wall,
 #custom-keybinds,
+#custom-keyboard,
 #custom-light_dark,
 #custom-lock,
 #custom-menu,
@@ -147,6 +147,8 @@ window#waybar {
 #disk {
 	color: #94e2d5;
 }
+
+#custom-keyboard,
 #memory {
     color: #d3869b;
 }

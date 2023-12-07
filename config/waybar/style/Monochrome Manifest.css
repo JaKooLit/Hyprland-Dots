@@ -85,7 +85,7 @@ tooltip label{
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 #workspaces button:hover {
-	color: grey;
+	color: white;
 	background-color: rgba(0,153,153,0.2);
     padding-left: 2px;
     padding-right: 2px;
@@ -114,8 +114,6 @@ tooltip label{
 #cpu,
 #disk,
 #idle_inhibitor,
-#keyboard-state label,
-#keyboard-state label.locked,
 #keyboard-state,
 #memory,
 #mode,
@@ -133,6 +131,7 @@ tooltip label{
 #custom-backlight,
 #custom-cycle_wall,
 #custom-keybinds,
+#custom-keyboard,
 #custom-light_dark,
 #custom-lock,
 #custom-menu,
