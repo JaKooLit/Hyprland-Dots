@@ -40,7 +40,7 @@ tooltip label{
 .modules-right {
 	background-color: white;
 	color: black;
-	border-bottom: 4px;
+	border-bottom: 2px;
 	border-style: solid;
 	border-color: black;
 	border-radius: 10px;
@@ -52,7 +52,7 @@ tooltip label{
 .modules-center {
 	background-color: white;
 	color: black;
-	border-bottom: 4px;
+	border-bottom: 2px;
 	border-style: solid;
 	border-color: black;
 	border-radius: 10px;
@@ -64,7 +64,7 @@ tooltip label{
 .modules-left {
 	background-color: white;
 	color: black;
-	border-bottom: 4px;
+	border-bottom: 2px;
 	border-style: solid;
 	border-color: black;
 	border-radius: 10px;
