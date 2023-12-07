@@ -459,11 +459,11 @@
   },
 
   "custom/keyboard": {
-	"exec": "cat /tmp/kb_layout",
-	"interval": 3,
+	"exec": "cat ~/.cache/kb_layout",
+	"interval": 1,
 	"format": " {}",
-	"on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh", 
-	"tooltip": false,	 
+	"on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
+	"tooltip": false,
   },
     
   "custom/light_dark": {

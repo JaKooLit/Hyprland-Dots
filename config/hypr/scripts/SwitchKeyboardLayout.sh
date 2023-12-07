@@ -1,13 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-layout_f="/tmp/kb_layout"
+layout_f="$HOME/.cache/kb_layout"
+settings_file="$HOME/.config/hypr/configs/Settings.conf"
+
+# Check if ~/.cache/kb_layout exists and create it with a default layout from Settings.conf if not found
+if [ ! -f "$layout_f" ]; then
+  default_layout=$(grep 'kb_layout=' "$settings_file" | cut -d '=' -f 2 | cut -d ',' -f 1 2>/dev/null)
+  if [ -z "$default_layout" ]; then
+    default_layout="us" # Default to 'us' layout if Settings.conf or 'kb_layout' is not found
+  fi
+  echo "$default_layout" > "$layout_f"
+fi
+
 current_layout=$(cat "$layout_f")
 
 # Read keyboard layout settings from Settings.conf
-settings_file="$HOME/.config/hypr/configs/Settings.conf"
-
 if [ -f "$settings_file" ]; then
-  # Extract the value of kb_layout from Settings.conf
   kb_layout_line=$(grep 'kb_layout=' "$settings_file" | cut -d '=' -f 2)
   IFS=',' read -ra layout_mapping <<< "$kb_layout_line"
 fi
