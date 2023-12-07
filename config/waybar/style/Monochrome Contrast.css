@@ -40,7 +40,7 @@ tooltip label{
 .modules-right {
 	background-color: white;
 	color: black;
-	border-bottom: 2px;
+	border-bottom: 4px;
 	border-style: solid;
 	border-color: black;
 	border-radius: 10px;
@@ -52,7 +52,7 @@ tooltip label{
 .modules-center {
 	background-color: white;
 	color: black;
-	border-bottom: 2px;
+	border-bottom: 4px;
 	border-style: solid;
 	border-color: black;
 	border-radius: 10px;
@@ -64,7 +64,7 @@ tooltip label{
 .modules-left {
 	background-color: white;
 	color: black;
-	border-bottom: 2px;
+	border-bottom: 4px;
 	border-style: solid;
 	border-color: black;
 	border-radius: 10px;
@@ -115,8 +115,6 @@ tooltip label{
 #cpu,
 #disk,
 #idle_inhibitor,
-#keyboard-state label,
-#keyboard-state label.locked,
 #keyboard-state,
 #memory,
 #mode,
@@ -134,6 +132,7 @@ tooltip label{
 #custom-backlight,
 #custom-cycle_wall,
 #custom-keybinds,
+#custom-keyboard,
 #custom-light_dark,
 #custom-lock,
 #custom-menu,
