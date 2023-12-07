@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### DEFAULT Bottom ### //
+// ### DEFAULT Bottom - Laptop### //
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
@@ -50,6 +50,10 @@
 	"custom/separator#dot-line",
 	"network#speed",
 	"custom/separator#dot-line", 
+	"battery",
+	"custom/separator#dot-line", 
+	"backlight",
+	"custom/separator#dot-line",
 	"pulseaudio",
 	"custom/separator#dot-line",
 	"pulseaudio#microphone",

@@ -46,7 +46,7 @@ notify_user "$next_mode"
 
 # Change background for dunst
 if [ "$next_mode" = "dark" ]; then
-    sed -i '/background = /s/.*/    background = "#00000080"/' "${dunst_config}/dunstrc"
+    sed -i '/background = /s/.*/    background = "#00000095"/' "${dunst_config}/dunstrc"
 	sed -i '/foreground = /s/.*/    foreground = "#fafafa"/' "${dunst_config}/dunstrc"
 else
     sed -i '/background = /s/.*/    background = "#FFFFFF80"/' "${dunst_config}/dunstrc"

@@ -17,7 +17,7 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   /*background: transparent;*/
-  border-bottom: 3px solid @sapphire;
+  border-bottom: 2px solid @sapphire;
   background: @theme_base_color;
   border-radius: 10px;
 }
@@ -53,8 +53,6 @@ window#waybar.hidden {
 #cpu,
 #disk,
 #idle_inhibitor,
-#keyboard-state label,
-#keyboard-state label.locked,
 #keyboard-state,
 #memory,
 #mode,
@@ -72,6 +70,7 @@ window#waybar.hidden {
 #custom-backlight,
 #custom-cycle_wall,
 #custom-keybinds,
+#custom-keyboard,
 #custom-light_dark,
 #custom-lock,
 #custom-menu,
@@ -133,6 +132,7 @@ window#waybar.hidden {
   color: @green;
 }
 
+#custom-keyboard,
 #memory {
   color: @sky;
 }
