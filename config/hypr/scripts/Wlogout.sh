@@ -18,7 +18,7 @@ if [[ $x_mon =~ ^[0-9]+$ && $y_mon =~ ^[0-9]+$ && $(echo "$hypr_scale > 0" | bc 
     echo "Detected Resolution: $resolution"
 
     if ((resolution >= 2160)); then
-        wlogout --protocol layer-shell -b 6 -T $(echo "600 * 2160 / $resolution * $hypr_scale" | bc -l) -B $(echo "600 * 2160 / $resolution * $hypr_scale" | bc -l) &
+        wlogout --protocol layer-shell -b 6 -T $(echo "600 * 2160 / $resolution * $hypr_scale" | bc -l) -B $(echo "700 * 2160 / $resolution * $hypr_scale" | bc -l) &
         echo "Setting parameters for resolution >= 2160p"
     elif ((resolution >= 1440)); then
         wlogout --protocol layer-shell -b 6 -T $(echo "500 * 1440 / $resolution * $hypr_scale" | bc -l) -B $(echo "550 * 1440 / $resolution * $hypr_scale" | bc -l) &
@@ -26,13 +26,14 @@ if [[ $x_mon =~ ^[0-9]+$ && $y_mon =~ ^[0-9]+$ && $(echo "$hypr_scale > 0" | bc 
     elif ((resolution >= 1080)); then
         wlogout --protocol layer-shell -b 6 -T $(echo "400 * 1080 / $resolution * $hypr_scale" | bc -l) -B $(echo "400 * 1080 / $resolution * $hypr_scale" | bc -l) &
         echo "Setting parameters for resolution >= 1080p"
-    elif ((resolution >= 720)); then
+    elif ((resolution > 720)); then
         wlogout --protocol layer-shell -b 3 -T $(echo "50 * 720 / $resolution * $hypr_scale" | bc -l) -B $(echo "50 * 720 / $resolution * $hypr_scale" | bc -l) &
         echo "Setting parameters for resolution >= 720p"
+    else
+        wlogout &
+        echo "Setting default parameters for resolution <= 720p"
     fi
 fi
-
-exit
 
 # Give some time for wlogout to start and exit
 #sleep 30
