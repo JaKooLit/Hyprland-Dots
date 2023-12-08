@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set variables for parameters
-A_2160=1000
-B_2160=1000
+A_2160=2500
+B_2160=2700
 A_1440=500
 B_1440=550
 A_1080=300
@@ -24,7 +24,7 @@ echo "Detected Resolution: $resolution"
 
 # Set parameters based on screen resolution and scaling factor
 if ((resolution >= 2160)); then
-    wlogout --protocol layer-shell -b 3 -T $(awk "BEGIN {printf \"%.0f\", $A_2160 * 2160 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_2160 * 2160 * $hypr_scale / $resolution}") &
+    wlogout --protocol layer-shell -b 6 -T $(awk "BEGIN {printf \"%.0f\", $A_2160 * 2160 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_2160 * 2160 * $hypr_scale / $resolution}") &
     echo "Setting parameters for resolution >= 2160p"
 elif ((resolution >= 1440)); then
     wlogout --protocol layer-shell -b 6 -T $(awk "BEGIN {printf \"%.0f\", $A_1440 * 1440 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_1440 * 1440 * $hypr_scale / $resolution}") &
