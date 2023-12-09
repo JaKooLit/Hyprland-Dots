@@ -62,7 +62,7 @@
 },
 
 "backlight#gar": {
-  "device": "intel_backlight",
+  //"device": "intel_backlight",
   "format": "{icon} {percent}%",
   "format-icons": ["", ""]
 },
