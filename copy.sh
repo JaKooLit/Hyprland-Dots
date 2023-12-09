@@ -178,10 +178,6 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
-#printf "\n\n"
-# adding user to input group
-#printf " adding user to input group...\n"
-#sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
 
 #printf "\n\n"
 # Additional wallpaper
