@@ -20,7 +20,8 @@
 
 "modules-right": [
 	"custom/menu", 
-	"tray", 
+	"tray",
+	"mpris", 
 	"network", 
 	"bluetooth", 
 	"backlight", 

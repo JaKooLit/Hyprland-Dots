@@ -43,8 +43,8 @@
 	], 
 
 "modules-right": [
-	//"hyprland/window", 
 	"tray",
+	"mpris", 
 	"custom/separator#dot-line",
 	"bluetooth",
 	"custom/separator#dot-line",

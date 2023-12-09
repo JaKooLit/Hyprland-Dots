@@ -25,6 +25,7 @@
 ],
 
 "modules-right": [
+	"mpris",
 	"tray",
 	//"network",
 	"backlight#vertical",
