@@ -16,7 +16,6 @@ configuration {
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
 	dpi:						1;
-    
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -91,7 +90,7 @@ inputbar {
 
 textbox-prompt-colon {
     enabled:                    true;
-	padding:					10px 0px 10px 10px;
+	padding:					8px 0px 8px 0px;
     expand:                     false;
     str:                        "🐧";
     text-color:                 inherit;
@@ -100,10 +99,11 @@ textbox-prompt-colon {
 
 entry {
     enabled:                    true;
+	font:                       "Fira Code SemiBold 12";
 	padding:					10px 0px 10px 0px;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Search";
+    placeholder:                "Search...(ctrl+tab to select mode)";
     placeholder-color:          inherit;
 	background-color:			transparent;
 }
@@ -117,7 +117,7 @@ mode-switcher{
 }
 
 button {
-    padding:                   2px 24px 2px 24px;
+    padding:                   2px 14px 2px 14px;
     border-radius:             12px;
     background-color:          @background;
     text-color:                inherit;
