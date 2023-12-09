@@ -3,7 +3,7 @@
 
 /* ---- Configuration ---- */
 configuration {
-    modi:                       "drun,run";
+    modi:                       "drun,run,filebrowser";
     font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
@@ -84,7 +84,7 @@ inputbar {
     border-radius:              12px;
     border-color:               @foreground;
 	background-color:		    @background;
-    children:                   [ "mode-switcher", "textbox-prompt-colon", "entry" ];
+    children:                   [ "mode-switcher", "entry" ];
     border:                     1px;
     border-color:               @active-background;
 }
