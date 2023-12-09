@@ -178,12 +178,12 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
-printf "\n\n"
+#printf "\n\n"
 # adding user to input group
-printf " adding user to input group...\n"
-sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
+#printf " adding user to input group...\n"
+#sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
 
-printf "\n\n"
+#printf "\n\n"
 # Additional wallpaper
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
 read -n1 -rep "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
