@@ -162,9 +162,9 @@
     "align": 0,
     "rotate": 0,
     //"format": "{icon} {percent}%",
-    //"format-icons": ["󰃞", "󰃟", "󰃠"],
+    "format-icons": ["", "", "", "󰃝", "󰃞", "󰃟", "󰃠"],
     "format": "{icon}",
-    "format-icons": ["","","","","","","","","","","","","","",""],
+    //"format-icons": ["","","","","","","","","","","","","","",""],
     "tooltip-format": "backlight {percent}%",
     "icon-size": 10,
     "on-click": "",
@@ -459,13 +459,12 @@
   },
 
   "custom/keyboard": {
-	"exec": "cat ~/.cache/kb_layout",
-	"interval": 1,
-	"format": " {}",
-	"on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
-	"tooltip": false,
-  },
-
+    "exec": "cat ~/.cache/kb_layout",
+    "interval": 1,
+    "format": " {}",
+    "on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
+    "tooltip": false,
+    },
     
   "custom/light_dark": {
     "format": "",
@@ -570,7 +569,8 @@
       "align": 0.35,
       "rotate": 1,
       "format": "{icon}",
-      "format-icons": ["󰃞", "󰃟", "󰃠"],
+      //"format-icons": ["󰃞", "󰃟", "󰃠"],
+	  "format-icons": ["","","","","","","","","","","","","","",""],
       "on-click": "",
       "on-click-middle": "",
       "on-click-right": "",
@@ -649,7 +649,7 @@
   "temperature#vertical": {
     "interval": 10,
     "tooltip": true,
-    "hwmon-path": ["/sys/class/hwmon/hwmon6/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
     //"thermal-zone": 0,
     "critical-threshold": 80,
     "format-critical": "{icon}\n{temperatureC}°C",
