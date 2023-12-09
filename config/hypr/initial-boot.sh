@@ -29,6 +29,10 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 &
     "$scriptsDir/Refresh.sh" > /dev/null 2>&1 &
     
+    # initiate GTK dark mode and apply icon theme
+    gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-B > /dev/null 2>&1 &
+    gsettings set org.gnome.desktop.interface icon-theme TokyoNight-SE > /dev/null 2>&1 &
+    
     # initiate the kb_layout (for some reason) waybar cant launch it
     "$scriptsDir/SwitchKeyboardLayout.sh" > /dev/null 2>&1 &
 
