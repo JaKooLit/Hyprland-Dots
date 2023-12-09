@@ -7,15 +7,16 @@ configuration {
     font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
-	display-run:                "";
-    display-filebrowser:        "";
-    display-window:             "";
+	display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "󱂬";
 	drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
 	dpi:						1;
+    
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -90,7 +91,7 @@ inputbar {
 
 textbox-prompt-colon {
     enabled:                    true;
-	padding:					8px 0px 8px 0px;
+	padding:					10px 0px 10px 10px;
     expand:                     false;
     str:                        "🐧";
     text-color:                 inherit;
@@ -99,11 +100,10 @@ textbox-prompt-colon {
 
 entry {
     enabled:                    true;
-	font:                       "Fira Code SemiBold 12";
 	padding:					10px 0px 10px 0px;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Search...(ctrl+tab to select mode)";
+    placeholder:                "Search (ctrl tab to choose mode)";
     placeholder-color:          inherit;
 	background-color:			transparent;
 }
@@ -117,7 +117,7 @@ mode-switcher{
 }
 
 button {
-    padding:                   2px 14px 2px 14px;
+    padding:                   1px 12px 1px 12px;
     border-radius:             12px;
     background-color:          @background;
     text-color:                inherit;
