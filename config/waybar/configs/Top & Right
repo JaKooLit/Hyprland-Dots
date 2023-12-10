@@ -64,6 +64,7 @@
     ],
     
 "modules-right": [
+	"mpris",
     "tray",
     "custom/light_dark",
     ],

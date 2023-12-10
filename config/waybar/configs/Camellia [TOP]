@@ -20,7 +20,13 @@
 //"margin-left": 0,
 //"margin-right": 0,
 	
-"modules-left": ["hyprland/workspaces#cam","custom/separator#line","tray#cam", "wlr/taskbar"],
+"modules-left": [
+	"hyprland/workspaces#cam",
+	"custom/separator#line", 
+	"mpris", 
+	"tray#cam", 
+	"wlr/taskbar"
+	],
 
 "modules-center": ["hyprland/window#cam"], 
 	
@@ -31,7 +37,8 @@
 	"pulseaudio/slider",
 	"battery#cam",
 	"clock#cam", 
-	"network#cam"],
+	"network#cam"
+	],
 
 // Additional modules //
 

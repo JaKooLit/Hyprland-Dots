@@ -3,13 +3,13 @@
 
 /* ---- Configuration ---- */
 configuration {
-    modi:                       "drun,run";
+    modi:                       "drun,run,filebrowser";
     font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
-	display-run:                "";
-    display-filebrowser:        "";
-    display-window:             "";
+	display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "󱂬";
 	drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
@@ -84,7 +84,7 @@ inputbar {
     border-radius:              12px;
     border-color:               @foreground;
 	background-color:		    @background;
-    children:                   [ "mode-switcher", "textbox-prompt-colon", "entry" ];
+    children:                   [ "mode-switcher", "entry" ];
     border:                     1px;
     border-color:               @active-background;
 }
@@ -103,7 +103,7 @@ entry {
 	padding:					10px 0px 10px 0px;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Search";
+    placeholder:                "Search (ctrl tab to choose mode)";
     placeholder-color:          inherit;
 	background-color:			transparent;
 }
@@ -117,7 +117,7 @@ mode-switcher{
 }
 
 button {
-    padding:                   2px 24px 2px 24px;
+    padding:                   1px 12px 1px 12px;
     border-radius:             12px;
     background-color:          @background;
     text-color:                inherit;

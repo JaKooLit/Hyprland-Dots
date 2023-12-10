@@ -8,16 +8,12 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-echo " 
+printf "\n%.0s" {1..3}  
+echo "                                   _   _ ___ __ "
+echo "   |  _.   |/  _   _  |  o _|_ __ | \ / \ | (_  "
+echo " \_| (_| o |\ (_) (_) |_ |  |_    |_/ \_/ | __) "
+printf "\n%.0s" {1..2} 
 
-     ██╗ █████╗    ██╗  ██╗ ██████╗  ██████╗ ██╗     ██╗████████╗      ██████╗  ██████╗ ████████╗███████╗
-     ██║██╔══██╗   ██║ ██╔╝██╔═══██╗██╔═══██╗██║     ██║╚══██╔══╝      ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
-     ██║███████║   █████╔╝ ██║   ██║██║   ██║██║     ██║   ██║   █████╗██║  ██║██║   ██║   ██║   ███████╗
-██   ██║██╔══██║   ██╔═██╗ ██║   ██║██║   ██║██║     ██║   ██║   ╚════╝██║  ██║██║   ██║   ██║   ╚════██║
-╚█████╔╝██║  ██║██╗██║  ██╗╚██████╔╝╚██████╔╝███████╗██║   ██║         ██████╔╝╚██████╔╝   ██║   ███████║
- ╚════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝   ╚═╝         ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝
-                                                                                                         
-"
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -182,12 +178,8 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
-printf "\n\n"
-# adding user to input group
-printf " adding user to input group...\n"
-sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
 
-printf "\n\n"
+#printf "\n\n"
 # Additional wallpaper
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
 read -n1 -rep "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
