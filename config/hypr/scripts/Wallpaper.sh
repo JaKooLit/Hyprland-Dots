@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="$HOME/Pictures/wallpapers/"
-SCRIPTSDIR="$HOME/.config/hypr/scripts"
+SCRIPTSDIR="$HOME/00-Shared-Drives/Common-nvme/common-wallpapers"
 
 PICS=($(find ${DIR} -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \)))
 RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
@@ -9,9 +9,10 @@ RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
 
 # Transition config
 FPS=30
-TYPE="any"
-DURATION=3
-SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
+TYPE="random"
+DURATION=1
+BEZIER=".43,1.19,1,.4"
+SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --transition-bezier $BEZIER"
 
 
 swww query || swww init && swww img ${RANDOMPICS} $SWWW_PARAMS

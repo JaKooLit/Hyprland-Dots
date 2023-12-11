@@ -16,11 +16,10 @@ fi
 
 # Edit below to control the images transition
 export SWWW_TRANSITION_FPS=60
-export SWWW_TRANSITION_STEP=2
-export SWWW_TRANSITION_TYPE=random
+export SWWW_TRANSITION_TYPE=simple
 
 # This controls (in seconds) when to switch to the next image
-INTERVAL=900
+INTERVAL=1800
 
 while true; do
 	find "$1" \
