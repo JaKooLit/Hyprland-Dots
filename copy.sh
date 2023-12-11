@@ -201,10 +201,10 @@ fi
 if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
     ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/Def[TOP]-Laptop" "$HOME/.config/waybar/configs/Def[Bottom]-Laptop" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/Default [TOP]-Laptop" "$HOME/.config/waybar/configs/Default [Bottom]-Laptop" 2>&1 | tee -a "$LOG"
 else
     # Configurations for a laptop or any system other than desktop
-    ln -sf "$HOME/.config/waybar/configs/Def[TOP]-Laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    ln -sf "$HOME/.config/waybar/configs/Default [TOP]-Laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/configs/Default [Bottom]" 2>&1 | tee -a "$LOG"
 fi
 

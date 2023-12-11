@@ -82,7 +82,7 @@ inputbar {
     padding:                    8px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:			@backrgound90;
+	background-color:			@background;
     children:                   [ "textbox-prompt-colon", "entry" ];
     border:                     1px;
     border-color:               @active-background;
