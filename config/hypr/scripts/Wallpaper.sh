@@ -1,14 +1,14 @@
 #!/bin/bash
 
 DIR="$HOME/Pictures/wallpapers/"
-SCRIPTSDIR="$HOME/00-Shared-Drives/Common-nvme/common-wallpapers"
+SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
 PICS=($(find ${DIR} -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \)))
 RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
 
 
 # Transition config
-FPS=30
+FPS=60
 TYPE="random"
 DURATION=1
 BEZIER=".43,1.19,1,.4"
