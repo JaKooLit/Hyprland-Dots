@@ -8,8 +8,6 @@
 </div>
 
 ### Some preview
-https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4c98fa74-0190-4a1d-96d6-2df304ed1aa2
-
 https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5c-38f16d63a9fa
 
 ## 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
