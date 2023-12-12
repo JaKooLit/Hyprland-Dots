@@ -168,18 +168,14 @@ cp -r config/* ~/.config/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR
 # copying Wallpapers
 mkdir -p ~/Pictures/wallpapers
 cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR} Failed to copy wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
-
-
-
-  
+ 
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
-
-#printf "\n\n"
+printf "\n%.0s" {1..3}
 # Additional wallpaper
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
 read -n1 -rep "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
@@ -194,8 +190,6 @@ if [[ $WALL =~ ^[Yy]$ ]]; then
     echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
   fi
 fi
-
-# Initial Symlinks to avoid errors
 
 # Detect machine type and set Waybar configurations accordingly, logging the output
 if hostnamectl | grep -q 'Chassis: desktop'; then
