@@ -26,7 +26,7 @@ notification() {
 
 # Main function
 main() {
-  choice=$(printf "%s\n" "${!menu_options[@]}" | rofi -dmenu -i -p "Choose a music option:")
+  choice=$(printf "%s\n" "${!menu_options[@]}" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi -i -p "")
 
   link="${menu_options[$choice]}"
 
