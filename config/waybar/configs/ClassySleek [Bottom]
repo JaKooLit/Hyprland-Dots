@@ -13,8 +13,9 @@
 	
 "modules-left": [
 	"custom/menu",
+	"custom/separator#blank_2",
+	"mpris", 
 	"hyprland/window"
-
 ],
 
 "modules-center": [		
