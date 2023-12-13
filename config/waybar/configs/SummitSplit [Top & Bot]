@@ -44,7 +44,7 @@
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
-"mode": "dock",
+//"mode": "dock",
 "exclusive": true,
 "passthrough": false,
 "position": "bottom",
