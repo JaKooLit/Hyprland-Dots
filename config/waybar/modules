@@ -344,7 +344,7 @@
 },
 
 "mpris": {
-	"format": "{player_icon}",
+	"format": "{player_icon} ",
 	"format-paused": "{status_icon} <i>{dynamic}</i>",
 	"on-click-middle": "playerctl play-pause",
     "on-click": "playerctl previous",
@@ -358,8 +358,8 @@
 		"default": "",
         "firefox": "",
         "kdeconnect": "",
-        "mopidy": " ",
-		"mpv": "󰐹 ",
+        "mopidy": "",
+		"mpv": "󰐹",
         "spotify": "",
 		"vlc": "󰕼",
 	},

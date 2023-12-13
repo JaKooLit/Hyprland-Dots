@@ -1,0 +1,46 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+// ClassySleek
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+"position": "top",
+"height": 14,
+"margin-left": 10,
+"margin-right": 10,
+"margin-top": 2,
+	
+"modules-left": [
+	"custom/menu",
+	"hyprland/window"
+
+],
+
+"modules-center": [		
+	"hyprland/workspaces"	
+],
+		
+"modules-right": [
+	"tray",
+	"pulseaudio",
+	"clock",
+	"custom/power"
+				
+	],
+
+
+// Additional format / customize modules
+
+"custom/power": {
+	"format": " ",
+	"icon-size": 20,
+	"tooltip": false,
+},
+	
+"clock": {
+	//"format": "{:%I:%M %p - %d/%b}", //for AM/PM
+    "format": "{:%H:%M - %d/%b}", // 24H
+	"tooltip": false
+},
+}
