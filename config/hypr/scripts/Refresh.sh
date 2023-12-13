@@ -10,6 +10,7 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
+sleep 0.5
 # Relaunch waybar
 waybar &
 
@@ -17,7 +18,7 @@ waybar &
 ${SCRIPTSDIR}/PywalDunst.sh &
 
 # Relaunching rainbow borders
-sleep 1
+sleep 0.5
 ${SCRIPTSDIR}/RainbowBorders.sh &
 
 # for cava-pywal (note, need to manually restart cava once wallpaper changes)
