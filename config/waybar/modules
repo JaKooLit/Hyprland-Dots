@@ -354,11 +354,18 @@
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
     "smooth-scrolling-threshold": 1,
 	"player-icons": {
+        "chromium": "",
 		"default": "▶",
+        "firefox": "",
+        "kdeconnect": "",
+        "mopidy": "",
 		"mpv": "📻",
+        "spotify": ""
 	},
 	"status-icons": {
-		"paused": "󰐎"
+		"paused": "󰐎",
+        "playing": "",
+        "stopped": ""
 	},
 	// "ignored-players": ["firefox"]
 	"max-length": 30,
