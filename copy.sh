@@ -178,20 +178,38 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
 printf "\n%.0s" {1..3}
-# Additional wallpaper
-echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
-read -n1 -rep "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
-sleep 1
 
-if [[ $WALL =~ ^[Yy]$ ]]; then
-  printf "${NOTE} Downloading additional wallpapers...\n"
-  if git clone https://github.com/JaKooLit/Wallpaper-Bank.git 2>&1 | tee -a "$LOG"; then
-    cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/
-    rm -rf Wallpaper-Bank # Remove cloned repository after copying wallpapers
-  else
-    echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
-  fi
-fi
+# additional wallpapers
+echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
+printf "\n%.0s" {1..2}
+
+while true; do
+    read -rp "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
+    case $WALL in
+        [Yy])
+            echo "${NOTE} Downloading additional wallpapers..."
+            if git clone https://github.com/JaKooLit/Wallpaper-Bank.git 2>&1 | tee -a "$LOG"; then
+                if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/; then 2>&1 | tee -a "$LOG"
+                    rm -rf Wallpaper-Bank 2>&1 | tee -a "$LOG" # Remove cloned repository after copying wallpapers
+                    break
+                else
+                    echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
+                fi
+            else
+                echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
+            fi
+            ;;
+        [Nn])
+            echo "You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
+            break
+            ;;
+        *)
+            echo "Please enter 'y' or 'n' to proceed."
+            ;;
+    esac
+done
+
+printf "\n%.0s" {1..3}
 
 # Detect machine type and set Waybar configurations accordingly, logging the output
 if hostnamectl | grep -q 'Chassis: desktop'; then
