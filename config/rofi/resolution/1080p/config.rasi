@@ -24,7 +24,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						800px;
+    width:						700px;
 	/*height:						450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
@@ -47,7 +47,7 @@ mainbox {
     enabled:                    true;
     orientation:                vertical;
 	padding:					8px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    background-image:           url("~/.config/rofi/.current_wallpaper", height);
     children:                   [ "inputbar", "listbox" ];
     border-radius:              12px;
 }

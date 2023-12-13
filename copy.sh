@@ -138,6 +138,8 @@ elif [ "$resolution" == "≥ 1440p" ]; then
     cp -r config/rofi/resolution/1440p/* config/rofi/
 fi
 
+printf "\n%.0s" {1..2}
+
 ### Copy Config Files ###
 set -e # Exit immediately if a command exits with a non-zero status.
 
@@ -168,18 +170,14 @@ cp -r config/* ~/.config/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR
 # copying Wallpapers
 mkdir -p ~/Pictures/wallpapers
 cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR} Failed to copy wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
-
-
-
-  
+ 
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
-
-#printf "\n\n"
+printf "\n%.0s" {1..3}
 # Additional wallpaper
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
 read -n1 -rep "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
@@ -194,8 +192,6 @@ if [[ $WALL =~ ^[Yy]$ ]]; then
     echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
   fi
 fi
-
-# Initial Symlinks to avoid errors
 
 # Detect machine type and set Waybar configurations accordingly, logging the output
 if hostnamectl | grep -q 'Chassis: desktop'; then
@@ -218,7 +214,7 @@ wal -i ~/Pictures/wallpapers/anime-girl-abyss.png 2>&1 | tee -a "$LOG"
 #initial symlink for Pywal Dark and Light for Rofi Themes
 ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 
-printf "\n\n"
+printf "\n%.0s" {1..2}
 printf "\n${OK} Copy Completed!\n\n\n"
 printf "${ORANGE} ATTENTION!!!! \n"
 printf "${ORANGE} YOU NEED to logout and re-login or reboot to avoid issues\n\n"
