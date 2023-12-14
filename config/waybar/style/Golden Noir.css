@@ -7,8 +7,7 @@
 
 * {
     font-family: "JetBrainsMono Nerd Font";
-    font-weight: bold;
-    min-height: 0;
+    font-weight: bold;   
     /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
     font-size: 97%;
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
@@ -135,7 +134,6 @@ tooltip {
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,

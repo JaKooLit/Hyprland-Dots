@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* MonoChrome Contrast */
+/* Aurora Blossom */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -23,50 +23,29 @@ window#waybar.empty #window {
 }
 
 tooltip {
-	color: white;
-	background: #1e1e2e;
+	color: black;
+    background-image: linear-gradient(45deg, #7287fd 10%, #209fb5 54%, #8839ef 90%);
 	opacity: 0.8;
 	border-radius: 10px;
-	border-width: 2px;
-	border-style: solid;
-	border-color: white;
 }
 
 tooltip label{
-	color: #cdd6f4;
+	color: black;
 }
 /*-----module groups----*/
 .modules-right {
-	background-color: white;
-	color: black;
-	border-bottom: 2px;
-	border-style: solid;
-	border-color: black;
-	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 }
 .modules-center {
-	background-color: white;
-	color: black;
-	border-bottom: 2px;
-	border-style: solid;
-	border-color: black;
-	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 }
 .modules-left {
-	background-color: white;
-	color: black;
-	border-bottom: 2px;
-	border-style: solid;
-	border-color: black;
-	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
@@ -149,13 +128,15 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
-}
-#custom-power {
-	padding: 1px 3px;
+    background-image: linear-gradient(45deg, #14e81e 10%, #017ed5 54%, #8d00c4 90%);
+	color: black;
+	border: 1px;
+	border-style: solid;
+	border-radius: 4px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
 }
 /*-----Indicators----*/
 #idle_inhibitor.activated {
@@ -184,6 +165,7 @@ tooltip label{
 }
 
 #taskbar button.active {
+	color: black;
 	background-color: #7f849c;
     padding-left: 6px;
     padding-right: 6px;
@@ -191,7 +173,9 @@ tooltip label{
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button,
 #taskbar button:hover {
+	color:	black;
     padding-left: 2px;
     padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
@@ -208,6 +192,7 @@ tooltip label{
 }
 
 #pulseaudio-slider trough {
+	background-color: #7f849c;
 	min-width: 80px;
 	min-height: 5px;
 	border-radius: 5px;
@@ -228,6 +213,7 @@ tooltip label{
 }
 
 #backlight-slider trough {
+	background-color: #7f849c;
 	min-width: 80px;
 	min-height: 10px;
 	border-radius: 5px;
