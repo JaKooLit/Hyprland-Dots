@@ -215,7 +215,7 @@ tooltip {
 	min-width: 80px;
 	min-height: 5px;
 	border-radius: 5px;
-	background-color: #22252a;
+	background-color: #6E6A86;
 }
 
 #pulseaudio-slider highlight {
@@ -237,7 +237,7 @@ tooltip {
 	min-width: 80px;
 	min-height: 10px;
 	border-radius: 5px;
-	background-color: #22252a;
+	background-color: #6E6A86;
 }
 
 #backlight-slider highlight {

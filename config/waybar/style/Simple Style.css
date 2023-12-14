@@ -26,47 +26,19 @@ window#waybar {
 
 #workspaces button {
   padding: 0 10px;
-  background: transparent;
   color: @foreground;
-  border-top: 3px solid @background;
 }
 
 #workspaces button.active {
-  border-bottom: 3px solid @green;
+  border-bottom: 1px solid @green;
 }
 
 #workspaces button.urgent {
-  border-bottom: 3px solid @yellow;
+  border-bottom: 2px solid @yellow;
 }
 
 #submap {
-  border-bottom: 3px solid @red;
-}
-
-#battery.warning,
-#disk.warning,
-#memory.warning,
-#cpu.warning {
-  border-top: 3px solid @background;
-  border-bottom: 3px solid @yellow;
-}
-
-#battery.critical,
-#disk.critical,
-#memory.critical,
-#cpu.critical,
-#custom-recording {
-  border-top: 3px solid @background;
-  border-bottom: 3px solid @red;
-}
-
-#battery.charging {
-  border-top: 3px solid @background;
-  border-bottom: 3px solid @green;
-}
-
-#tray {
-  margin-left: -1000000px;
+  border-bottom: 1px solid @red;
 }
 
 #backlight,
@@ -116,5 +88,69 @@ window#waybar {
 #custom-weather.sunnyDay {
   color: @foreground;
   padding: 0 6px;
-  margin: 0 6px;
+}
+
+#battery.warning,
+#disk.warning,
+#memory.warning,
+#cpu.warning {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @yellow;
+}
+
+#battery.critical,
+#disk.critical,
+#memory.critical,
+#cpu.critical {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @red;
+}
+
+#battery.charging {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @green;
+}
+
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+	
+#pulseaudio-slider trough {
+	min-width: 80px;  
+	min-height: 5px; 
+	border-radius: 5px;
+	background-color: @dim;
+}
+	
+#pulseaudio-slider highlight {
+	min-height: 10px; 
+	border-radius: 5px;
+	background-color: @green;
+}
+
+#backlight-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+	
+#backlight-slider trough {
+	min-width: 80px;  
+	min-height: 10px; 
+	border-radius: 5px;
+	background-color: @dim;
+}
+	
+#backlight-slider highlight {
+	min-width: 10px; 
+	border-radius: 5px;
+	background-color: @green;
 }

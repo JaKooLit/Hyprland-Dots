@@ -211,6 +211,7 @@ tooltip label{
 	min-width: 80px;
 	min-height: 5px;
 	border-radius: 5px;
+	background-color: grey;
 }
 
 #pulseaudio-slider highlight {

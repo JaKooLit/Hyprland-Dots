@@ -24,13 +24,14 @@
 "modules-center": ["clock#peony"], 
 	
 "modules-right": [
-	"pulseaudio",
-	"custom/separator#line",
-	"backlight#peony",
-	"custom/separator#line",
-	"temperature",
-	"custom/separator#line",
 	"battery#peony",
+	"custom/separator#blank",
+	"backlight#peony",
+	"custom/separator#blank",
+	"pulseaudio",
+	"custom/separator#blank",
+	"temperature",
+	"custom/separator#blank",	
 	"network#peony"],
 
 

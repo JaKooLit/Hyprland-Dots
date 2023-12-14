@@ -180,7 +180,7 @@ tooltip label {
 	min-width: 80px;  
 	min-height: 5px; 
 	border-radius: 5px;
-	background-color: #22252a;
+	background-color: grey;
 }
 	
 #pulseaudio-slider highlight {
@@ -202,7 +202,7 @@ tooltip label {
 	min-width: 80px;  
 	min-height: 10px; 
 	border-radius: 5px;
-	background-color: #22252a;
+	background-color: grey;
 }
 	
 #backlight-slider highlight {
