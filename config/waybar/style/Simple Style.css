@@ -1,3 +1,7 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Simple Style */
+
+
 @define-color background #1d2021;
 @define-color foreground #ebdbb2;
 @define-color dim        #928374;
@@ -9,7 +13,7 @@
   background: @background;
   border: none;
   border-radius: 0;
- font-family: "JetBrainsMono Nerd Font";
+  font-family: "JetBrainsMono Nerd Font";
   font-size: 97%;
 }
 
@@ -25,7 +29,6 @@ window#waybar {
   background: transparent;
   color: @foreground;
   border-top: 3px solid @background;
-  border-bottom: 3px solid transparent;
 }
 
 #workspaces button.active {
