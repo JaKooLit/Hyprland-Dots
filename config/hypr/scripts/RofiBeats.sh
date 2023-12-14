@@ -28,6 +28,10 @@ notification() {
 main() {
   choice=$(printf "%s\n" "${!menu_options[@]}" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi -i -p "")
 
+  if [ -z "$choice" ]; then
+    exit 1
+  fi
+
   link="${menu_options[$choice]}"
 
   notification "$choice"
