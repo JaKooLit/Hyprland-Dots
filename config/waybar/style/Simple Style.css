@@ -12,6 +12,7 @@
 * {
   background: @background;
   border: none;
+  min-height: 0;
   border-radius: 0;
   font-family: "JetBrainsMono Nerd Font";
   font-size: 97%;
@@ -87,7 +88,7 @@ window#waybar {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
   color: @foreground;
-  padding: 0 6px;
+  padding: 6px;
 }
 
 #battery.warning,
