@@ -47,7 +47,7 @@ mainbox {
     enabled:                    true;
     orientation:                vertical;
 	padding:					8px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    background-image:           url("~/.config/rofi/.current_wallpaper", height);
     children:                   [ "inputbar", "imagebox" ];
     border-radius:              12px;
 }
