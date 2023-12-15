@@ -12,7 +12,6 @@
 * {
   background: @background;
   border: none;
-  min-height: 0;
   border-radius: 0;
   font-family: "JetBrainsMono Nerd Font";
   font-size: 97%;
