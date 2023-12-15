@@ -128,7 +128,6 @@ tooltip label {
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,
@@ -158,11 +157,11 @@ tooltip label {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
     color: @foreground;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
     border-radius: 8px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
 }
 
 #temperature.critical {

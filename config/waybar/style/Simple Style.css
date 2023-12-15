@@ -1,0 +1,159 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Simple Style */
+
+
+@define-color background #1d2021;
+@define-color foreground #ebdbb2;
+@define-color dim        #928374;
+@define-color yellow     #fabd2f;
+@define-color red        #fb4934;
+@define-color green      #b8bb26;
+
+* {
+  background: @background;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 97%;
+}
+
+window#waybar {
+  background: @background;
+  color: @foreground;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+#workspaces button {
+  padding: 0 10px;
+  color: @foreground;
+}
+
+#workspaces button.active {
+  border-bottom: 1px solid @green;
+}
+
+#workspaces button.urgent {
+  border-bottom: 2px solid @yellow;
+}
+
+#submap {
+  border-bottom: 1px solid @red;
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#cava,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar button,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-cycle_wall,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-speaker,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+  color: @foreground;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
+}
+
+#battery.warning,
+#disk.warning,
+#memory.warning,
+#cpu.warning {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @yellow;
+}
+
+#battery.critical,
+#disk.critical,
+#memory.critical,
+#cpu.critical {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @red;
+}
+
+#battery.charging {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @green;
+}
+
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+	
+#pulseaudio-slider trough {
+	min-width: 80px;  
+	min-height: 5px; 
+	border-radius: 5px;
+	background-color: @dim;
+}
+	
+#pulseaudio-slider highlight {
+	min-height: 10px; 
+	border-radius: 5px;
+	background-color: @green;
+}
+
+#backlight-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+	
+#backlight-slider trough {
+	min-width: 80px;  
+	min-height: 10px; 
+	border-radius: 5px;
+	background-color: @dim;
+}
+	
+#backlight-slider highlight {
+	min-width: 10px; 
+	border-radius: 5px;
+	background-color: @green;
+}

@@ -10,9 +10,11 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
+sleep 0.1
 # Relaunch waybar
 waybar &
 
+sleep 0.1
 # Relaunch dunst with pywal-borders
 ${SCRIPTSDIR}/PywalDunst.sh &
 
