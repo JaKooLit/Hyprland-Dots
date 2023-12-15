@@ -94,10 +94,7 @@ window#waybar {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 3px;
-	padding-bottom: 3px;
-    padding-left: 4px;
-	padding-right: 4px;
+	padding: 6px;
 }
  
 /* -----------------------------------------------------------------------------

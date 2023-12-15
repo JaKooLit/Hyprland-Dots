@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### BOTTOM and LEFT PANEL
+// ### BOTTOM and RIGHT PANEL
 
 [{
 "include": "~/.config/waybar/modules",
@@ -46,12 +46,12 @@
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
-"position": "left",
+"position": "right",
 "height": 650,
 "margin-top": 8,
 "margin-bottom": 8,
-"margin-left": 3,
-//"margin-right": 3,
+//"margin-left": 3,
+"margin-right": 3,
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,

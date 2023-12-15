@@ -94,10 +94,7 @@ window#waybar.hidden {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
+	padding: 5px;
 }
 
 #idle_inhibitor {

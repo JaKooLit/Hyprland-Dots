@@ -39,7 +39,7 @@ tooltip label{
 .modules-right {
 	background-color: black;
 	color: white;
-	border-bottom: 2px;
+	border-bottom: 1px;
 	border-style: solid;
 	border-color: white;
 	border-radius: 10px;
@@ -51,7 +51,7 @@ tooltip label{
 .modules-center {
 	background-color: black;
 	color: white;
-	border-bottom: 2px;
+	border-bottom: 1px;
 	border-style: solid;
 	border-color: white;
 	border-radius: 10px;
@@ -63,7 +63,7 @@ tooltip label{
 .modules-left {
 	background-color: black;
 	color: white;
-	border-bottom: 2px;
+	border-bottom: 1px;
 	border-style: solid;
 	border-color: white;
 	border-radius: 10px;
@@ -148,10 +148,7 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
+	padding: 5px;
 }
 #custom-power {
 	padding: 1px 3px;

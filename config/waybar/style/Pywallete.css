@@ -145,10 +145,7 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: @color2;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 6px;
-	padding-left: 6px;
+	padding: 5px;
 }
 
 #mode {
@@ -181,6 +178,7 @@ tooltip {
 }
 
 #taskbar button.active {
+	color: @foreground;
     background-color: @color2;
 	border-radius: 30px;
     animation: gradient_f 20s ease-in infinite;
