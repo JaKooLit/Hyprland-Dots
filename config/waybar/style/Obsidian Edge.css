@@ -157,7 +157,10 @@ tooltip label {
 #custom-weather.sunnyDay {
     color: @foreground;
     border-radius: 8px;
-	padding: 5px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
 }
 
 #temperature.critical {
