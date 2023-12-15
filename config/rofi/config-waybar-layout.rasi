@@ -4,7 +4,7 @@
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
-    font:                       "Fira Code SemiBold 12";
+    font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
@@ -82,7 +82,7 @@ inputbar {
     padding:                    8px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:			@background;
+	background-color:			@backrgound90;
     children:                   [ "textbox-prompt-colon", "entry" ];
     border:                     1px;
     border-color:               @active-background;

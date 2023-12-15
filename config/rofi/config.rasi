@@ -4,7 +4,7 @@
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run,filebrowser";
-    font:                       "Fira Code SemiBold 12";
+    font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
@@ -24,7 +24,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						600px;
+    width:						650px;
 	/*height:						450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
@@ -140,7 +140,7 @@ listview {
 	enabled:					true;
 	columns:					2;
 	lines:						6;
-	spacing:                    2px;
+	spacing:                    5px;
 	padding:					6px;
 	dynamic:                    true;
 	cycle:                      true;
