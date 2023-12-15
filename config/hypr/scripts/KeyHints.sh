@@ -38,15 +38,15 @@ yad --width=$dynamic_width --height=$dynamic_height \
     --timeout-indicator=bottom \
 "ESC" "close this app" "" "=" "SUPER KEY" "(SUPER KEY)" \
 " enter" "Terminal" "(kitty)" \
-" or  D" "App Launcher" "(rofi)" \
+" SPACE" "App Launcher" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
 " Q or  Shift Q  " "close focused app" "(kill)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
-" W" "Choose wallpaper" "(swww)" \
-"CTRL ALT W" "Random wallpaper" "(swww)" \
-"CTRL W" "Choose waybar styles" "(waybar styles)" \
-"ALT W" "Choose waybar layout" "(waybar layout)" \
-"CTRL SHIFT W" "Reload Waybar and Dunst" "" \
+" ALT W" "Choose wallpaper" "(swww)" \
+" W" "Random wallpaper" "(swww)" \
+" CTRL W" "Choose waybar styles" "(waybar styles)" \
+" CTRL ALT W" "Choose waybar layout" "(waybar layout)" \
+" CTRL SHIFT W" "Reload Waybar and Dunst" "" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
 " Shift S" "screenshot region" "(swappy)" \
@@ -54,7 +54,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 "CTRL ALT L" "screen lock" "(swaylock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
 " F" "Fullscreen" "Toggles to full screen" \
-" Spacebar" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
+" CTRL Spacebar" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
 " Shift F" "Toggle float" "single window" \
 " ALT F" "Toggle all windows to float" "all windows" \
 " SHIFT G" "Gamemode! All animations off" "" \
