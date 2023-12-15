@@ -24,7 +24,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						700px;
+    width:						650px;
 	/*height:						450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
@@ -48,23 +48,23 @@ mainbox {
     orientation:                vertical;
 	padding:					8px;
     background-image:           url("~/.config/rofi/.current_wallpaper", height);
-    children:                   [ "inputbar", "listbox" ];
+    children:                   [ "inputbar", "imagebox" ];
     border-radius:              12px;
 }
 
 /* ---- Imagebox ---- */
 imagebox {
     background-color:           transparent;
-    orientation:                vertical;
-    /*children:                   [ "inputbar"];*/
+    orientation:                horizontal;
+    children:                   [ "mode-switcher",  "listbox"];
 }
 
 /* ---- Listbox ---- */
 listbox {
     spacing:                    4px;
     orientation:                vertical;
-    children:                   [ "listview" ];
-	padding:					10px;
+    children:                   ["listview" ];
+	padding:					6px;
     border-radius:              12px;
     border:                     1px;
     border-color:               @active-background;
@@ -84,23 +84,23 @@ inputbar {
     border-radius:              12px;
     border-color:               @foreground;
 	background-color:		    @background;
-    children:                   [ "mode-switcher", "entry" ];
+    children:                   [ "textbox-prompt-colon","entry" ];
     border:                     1px;
     border-color:               @active-background;
 }
 
 textbox-prompt-colon {
     enabled:                    true;
-	padding:					10px 0px 10px 10px;
+	padding:					6px 0px 6px 10px;
     expand:                     false;
-    str:                        "🐧";
+    str:                           "🐧";
     text-color:                 inherit;
 	background-color:			transparent;
 }
 
 entry {
     enabled:                    true;
-	padding:					10px 0px 10px 0px;
+	padding:					6px 0px 0px 0px;
     text-color:                 inherit;
     cursor:                     text;
     placeholder:                "Search (ctrl tab to choose mode)";
@@ -110,14 +110,15 @@ entry {
 
 /* ---- Mode Switcher ---- */
 mode-switcher{
+	orientation:				vertical;
     enabled:                    true;
-    spacing:                    10px;
+    spacing:                    12px;
     background-color:          	transparent;
     text-color:                 @foreground;
 }
 
 button {
-    padding:                   1px 12px 1px 12px;
+    padding:                   0px 10px 0px 10px;
     border-radius:             12px;
     background-color:          @background;
     text-color:                inherit;
