@@ -67,7 +67,6 @@ window#waybar {
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,
@@ -98,8 +97,8 @@ window#waybar {
 #custom-weather.sunnyDay {
 	padding-top: 3px;
 	padding-bottom: 3px;
-    padding-left: 4px;
-	padding-right: 4px;
+	padding-right: 6px;
+	padding-left: 6px;
 }
  
 /* -----------------------------------------------------------------------------

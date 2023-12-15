@@ -7,7 +7,7 @@
 *{
 	font-family: "JetBrains Mono Nerd Font";
 	font-weight: bold;
-	min-height: 0;
+	min-height: 0;	
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
 	font-size: 97%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
@@ -108,7 +108,6 @@ tooltip {
 #mpris,
 #network,
 #pulseaudio,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,
@@ -136,10 +135,10 @@ tooltip {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 2px;
-	padding-bottom: 2px;
-    padding-left: 4px;
-	padding-right: 4px;	
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
 }
 	 
 #temperature.critical {
