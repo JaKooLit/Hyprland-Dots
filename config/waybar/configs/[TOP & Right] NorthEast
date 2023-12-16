@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### TOP and LEFT PANEL ## //
+// ### TOP and Right PANEL ## //
 
 [{
 "include": "~/.config/waybar/modules",

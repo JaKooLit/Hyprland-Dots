@@ -1,5 +1,6 @@
 /* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
 /* ....Chroma Fusion Edge .... */
+/* Pywal & Catppuccin - Bordered */
 
 @define-color white      	#F2F2F2;
 @define-color black      	#000000;
@@ -22,7 +23,7 @@
 * {
 	font-family: "JetBrains Mono Nerd Font";
 	font-weight: bold;
-	min-height: 0;
+	min-height: 0;	
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
 	font-size: 97%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
@@ -37,6 +38,7 @@ window#waybar {
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    border:2px solid black;
 }
 
 window#waybar.empty #window {    
@@ -94,6 +96,8 @@ window#waybar.empty #window {
     padding: 0px 10px 0px 10px;
     margin: 3px 3px 3px 3px;
     opacity:0.8;
+    border:2px solid @border-color;
+
 }
 #custom-power {
     color: @red;
@@ -148,6 +152,7 @@ window#waybar.empty #window {
     margin: 3px 3px 3px 3px;
     padding: 0px 1px;
     border-radius: 25px;
+    border:2px solid @border-color;
     font-weight: bold;
     font-style: normal;
     opacity:0.8;
@@ -172,6 +177,7 @@ window#waybar.empty #window {
     color: #FFFFFF;
     background: @button-color;
     border-radius: 15px;
+    border: 1px solid @border-color;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
@@ -187,6 +193,7 @@ window#waybar.empty #window {
 #workspaces button:hover {
     color: #FFFFFF;
     background: @button-hover;
+    border: 1px solid @border-color;
     border-radius: 15px;
     opacity:1.0;
     padding-left: 2px;
