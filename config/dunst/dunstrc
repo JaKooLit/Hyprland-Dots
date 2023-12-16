@@ -54,7 +54,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#6C89AE"
+    frame_color = "#838383"
 
     # Define a color for the separator.
     # possible values are:
@@ -76,7 +76,7 @@
 
     ### Text ###
 
-    font = Fira Code Medium 12
+    font = Fira Code Medium 13
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -170,7 +170,7 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    # dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -p dunst:
 
     # Browser for opening urls in context menu.
     browser = /usr/bin/firefox -new-tab
@@ -232,7 +232,7 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#00000095"
     foreground = "#fafafa"
-    frame_color = "#6C89AE"
+    frame_color = "#838383"
     timeout = 2
     # Icon for notifications with low urgency, uncomment to enable
     icon = $HOME/.config/dunst/images/bell.png
@@ -240,7 +240,7 @@
 [urgency_normal]
     background = "#00000095"
     foreground = "#fafafa"
-    frame_color = "#6C89AE"
+    frame_color = "#838383"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     icon = $HOME/.config/dunst/images/bell.png
@@ -248,7 +248,7 @@
 [urgency_critical]
     background = "#00000095"
     foreground = "#fafafa"
-    frame_color = "#6C89AE"
+    frame_color = "#838383"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     icon = $HOME/.config/dunst/images/bell.png

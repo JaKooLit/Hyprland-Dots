@@ -11,7 +11,7 @@
 
 [ -f "$HOME/.cache/wal/colors.sh" ] && . "$HOME/.cache/wal/colors.sh"
 
-pidof dunst && pkill dunst
+pkill dunst
 
 DUNST_FILE=~/.config/dunst/dunstrc
 
@@ -20,4 +20,5 @@ DUNST_FILE=~/.config/dunst/dunstrc
 #sed -i '/foreground = /s/.*/    foreground = "'$color7'"/' $DUNST_FILE
 sed -i '/frame_color = /s/.*/    frame_color = "'$color2'"/' $DUNST_FILE
 
+sleep 0.3
 dunst -config ~/.config/dunst/dunstrc > /dev/null 2>&1 &
