@@ -1,15 +1,15 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ClassySleek
+// Sleek 
 
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
-"position": "top",
+"position": "bottom",
 "height": 14,
 "margin-left": 10,
 "margin-right": 10,
-"margin-top": 2,
+"margin-bottom": 2,
 	
 "modules-left": [
 	"custom/menu",

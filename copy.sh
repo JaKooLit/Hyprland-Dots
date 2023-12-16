@@ -214,17 +214,17 @@ printf "\n%.0s" {1..3}
 # Detect machine type and set Waybar configurations accordingly, logging the output
 if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
-    ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/Default [TOP]-Laptop" "$HOME/.config/waybar/configs/Default [Bottom]-Laptop" 2>&1 | tee -a "$LOG"
+    ln -sf "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/configs/[BOT] Default Laptop" 2>&1 | tee -a "$LOG"
 else
     # Configurations for a laptop or any system other than desktop
-    ln -sf "$HOME/.config/waybar/configs/Default [TOP]-Laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/configs/Default [Bottom]" 2>&1 | tee -a "$LOG"
+    ln -sf "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
 fi
 
 
 # symlinks for waybar style
-ln -sf "$HOME/.config/waybar/style/Golden Noir.css" "$HOME/.config/waybar/style.css" && \
+ln -sf "$HOME/.config/waybar/style/[Pywal] Chroma Fusion.css" "$HOME/.config/waybar/style.css" && \
 
 # initialize pywal to avoid config error on hyprland
 wal -i ~/Pictures/wallpapers/anime-girl-abyss.png 2>&1 | tee -a "$LOG"
