@@ -73,13 +73,14 @@ fi
 
 # Set Dynamic Wallpaper for Dark Mode
 if [ "$next_mode" = "Dark" ]; then
-    next_wallpaper="$(find "${dark_wallpapers}" -type f -iname "*.jpg" -print0 | shuf -n1 -z | xargs -0)"
+    next_wallpaper="$(find "${dark_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
 fi
 
 # Set Dynamic Wallpaper for Light Mode
 if [ "$next_mode" = "Light" ]; then
-    next_wallpaper="$(find "${light_wallpapers}" -type f -iname "*.jpg" -print0 | shuf -n1 -z | xargs -0)"
+    next_wallpaper="$(find "${light_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
 fi
+
 
 $swww "${next_wallpaper}" $effect
 
