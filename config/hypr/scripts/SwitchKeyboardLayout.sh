@@ -2,6 +2,7 @@
 
 layout_f="$HOME/.cache/kb_layout"
 settings_file="$HOME/.config/hypr/configs/Settings.conf"
+dunst_notif="$HOME/.config/dunst/images/bell.png"
 
 # Check if ~/.cache/kb_layout exists and create it with a default layout from Settings.conf if not found
 if [ ! -f "$layout_f" ]; then
@@ -37,3 +38,6 @@ new_layout="${layout_mapping[next_index]}"
 # Update the keyboard layout
 hyprctl keyword input:kb_layout "$new_layout"
 echo "$new_layout" > "$layout_f"
+
+# Notification for the new keyboard layout
+dunstify  -u low -i "$dunst_notif" "Keyboard layout set to $new_layout"

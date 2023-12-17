@@ -99,8 +99,13 @@ if [ "$confirm" = "y" ]; then
   mv temp.conf config/hypr/configs/Settings.conf
 else
   # If the detected layout is not correct, prompt the user to enter the correct layout
-  printf "${YELLOW} Ensure to type in the proper keyboard layout else Hyprland will crash and might not start!!!\n\n"
-  printf "${WARN} - Sample Keyboard layouts are us, kr, es, gb, de, pl, etc.\n\n"
+	printf "\n%.0s" {1..2}
+	echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT!!!! $(tput sgr0)" 
+	echo "$(tput bold)$(tput setaf 7)Setting a wrong value here will result in Hyprland not starting $(tput sgr0)"
+	echo "$(tput bold)$(tput setaf 7)If you are not sure, keep it in us layout. You can change later on! $(tput sgr0)"
+	echo "$(tput bold)$(tput setaf 7)You can also set more than 2 layouts!$(tput sgr0)"
+	echo "$(tput bold)$(tput setaf 7)ie: us,kr,es $(tput sgr0)"
+	printf "\n%.0s" {1..2}
   read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
   # Update the 'kb_layout=' line with the correct layout in the file
   awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/configs/Settings.conf > temp.conf
@@ -192,19 +197,22 @@ while true; do
     case $WALL in
         [Yy])
             echo "${NOTE} Downloading additional wallpapers..."
-            if git clone https://github.com/JaKooLit/Wallpaper-Bank.git 2>&1 | tee -a "$LOG"; then
-                if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/; then 2>&1 | tee -a "$LOG"
+            if git clone --progress "https://github.com/JaKooLit/Wallpaper-Bank.git" 2>&1 | tee -a "$LOG"; then
+                echo "${NOTE} Wallpapers downloaded successfully."
+
+                if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ 2>&1 | tee -a "$LOG"; then
+                    echo "${NOTE} Wallpapers copied successfully."
                     rm -rf Wallpaper-Bank 2>&1 | tee -a "$LOG" # Remove cloned repository after copying wallpapers
                     break
                 else
-                    echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
+                    echo "${ERROR} Copying wallpapers failed" >&2 | tee -a "$LOG"
                 fi
             else
-                echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
+                echo "${ERROR} Downloading additional wallpapers failed" >&2 | tee -a "$LOG"
             fi
             ;;
         [Nn])
-            echo "You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
+            echo "You chose not to download additional wallpapers." >&2 | tee -a "$LOG"
             break
             ;;
         *)

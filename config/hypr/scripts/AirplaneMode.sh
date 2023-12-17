@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dunstify -u low -i "$dunst_notif"
+dunst_notif="$HOME/.config/dunst/images/bell.png"
 
 wifi="$(nmcli r wifi | awk 'FNR = 2 {print $1}')"
 if [ "$wifi" == "enabled" ]; then
