@@ -1,6 +1,7 @@
 #!/bin/bash
-
 ### https://github.com/JaKooLit/JaKooLit
+
+clear 
 
 wallpaper=$HOME/Pictures/wallpapers/Cute-Cat_ja.png
 
