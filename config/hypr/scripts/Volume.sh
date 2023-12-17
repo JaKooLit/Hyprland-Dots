@@ -29,9 +29,9 @@ get_icon() {
 # Notify
 notify_user() {
     if [[ "$(get_volume)" == "Muted" ]]; then
-        dunstify -h string:x-dunst-stack-tag:volume_notif -u low -i "$(get_icon)" "Volume : Muted"
+        dunstify -h string:x-dunst-stack-tag:volume_notif -u low -i "$(get_icon)" "Volume: Muted"
     else
-        dunstify -h int:value:"$(get_volume | sed 's/%//')" -h string:x-dunst-stack-tag:volume_notif -u low -i "$(get_icon)" "Volume : $(get_volume)"
+        dunstify -h int:value:"$(get_volume | sed 's/%//')" -h string:x-dunst-stack-tag:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
     fi
 }
 
