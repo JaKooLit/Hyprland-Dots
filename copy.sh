@@ -2,7 +2,7 @@
 
 ### https://github.com/JaKooLit/JaKooLit
 
-wallpaper=$HOME/Pictures/wallpapers/CuteCat.png
+wallpaper=$HOME/Pictures/wallpapers/Cute-Cat_ja.png
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then

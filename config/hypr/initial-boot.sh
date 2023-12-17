@@ -7,7 +7,7 @@
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
-wallpaper=$HOME/Pictures/wallpapers/CuteCat.png
+wallpaper=$HOME/Pictures/wallpapers/Cute-Cat_ja.png
 
 swww="swww img"
 effect="--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"
@@ -23,7 +23,7 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 
     # Initial scripts to load in order to have a proper wallpaper waybar and pywal themes
-    pkill swww && swww init || swww query && $swww "$wallpaper" $effect
+    swww init || swww query && $swww "$wallpaper" $effect
 
     # Refreshing waybar, dunst, rofi etc. 
     "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 &

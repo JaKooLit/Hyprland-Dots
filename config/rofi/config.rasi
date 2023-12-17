@@ -47,7 +47,7 @@ mainbox {
     enabled:                    true;
     orientation:                vertical;
 	padding:					8px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", height);
+    background-image:           url("~/.config/rofi/.current_wallpaper", width);
     children:                   [ "inputbar", "imagebox" ];
     border-radius:              12px;
 }
@@ -139,7 +139,7 @@ button selected {
 listview {
 	enabled:					true;
 	columns:					2;
-	lines:						6;
+	lines:						5;
 	spacing:                    2px;
 	padding:					6px;
 	dynamic:                    true;
