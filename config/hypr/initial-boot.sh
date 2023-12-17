@@ -17,7 +17,7 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 
     # Initialize pywal
     printf " Initializing pywal........\n\n"
-    wal -i "$wallpaper"
+    wal -i $wallpaper -s -t
 
     # Initial symlink for Pywal Dark and Light for Rofi Themes
     ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
