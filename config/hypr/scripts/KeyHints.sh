@@ -36,7 +36,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
     --column=Command: \
     --timeout=60 \
     --timeout-indicator=bottom \
-"ESC" "close this app" "" "=" "SUPER KEY" "(SUPER KEY)" \
+"ESC" "close this app" "" "=" "SUPER KEY (Windows Key)" "(SUPER KEY)" \
 " enter" "Terminal" "(kitty)" \
 " or  D" "App Launcher" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
@@ -45,8 +45,9 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " W" "Choose wallpaper" "(swww)" \
 "CTRL ALT W" "Random wallpaper" "(swww)" \
 "CTRL W" "Choose waybar styles" "(waybar styles)" \
+" B" "Hide/UnHide Waybar" "waybar" \
 "ALT W" "Choose waybar layout" "(waybar layout)" \
-"CTRL SHIFT W" "Reload Waybar and Dunst" "" \
+"CTRL SHIFT W" "Reload Waybar Dunst Rofi" "" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
 " Shift S" "screenshot region" "(swappy)" \
@@ -57,6 +58,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " Spacebar" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
 " Shift F" "Toggle float" "single window" \
 " ALT F" "Toggle all windows to float" "all windows" \
+" Shift B" "Toggle Blur" "normal or less blur" \
 " SHIFT G" "Gamemode! All animations off" "" \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \

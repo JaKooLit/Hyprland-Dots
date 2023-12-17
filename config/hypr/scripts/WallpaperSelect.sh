@@ -80,6 +80,5 @@ fi
 
 main
 
-${SCRIPTSDIR}/PywalSwww.sh &
 sleep 1
 ${SCRIPTSDIR}/Refresh.sh
