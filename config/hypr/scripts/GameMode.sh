@@ -15,13 +15,13 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword general:border_size 1;\
         keyword decoration:rounding 0"
     swww kill 
-    dunstify -u low -i "$dunst_notif" "animations off"
+    dunstify -u low -i "$dunst_notif" "gamemode enabled. All animations off"
     exit
 else
 	swww init && swww img "$HOME/.config/rofi/.current_wallpaper"
 	sleep 0.5
 	${SCRIPTSDIR}/RefreshNoWaybar.sh	 
-    dunstify -u low -i "$dunst_notif" "Animations turned on"
+    dunstify -u low -i "$dunst_notif" "gamemode disabled. All animations normal"
     exit
 fi
 hyprctl reload
