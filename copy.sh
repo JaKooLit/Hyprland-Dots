@@ -2,6 +2,8 @@
 
 ### https://github.com/JaKooLit/JaKooLit
 
+wallpaper=$HOME/Pictures/wallpapers/CuteCat.png
+
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
     echo "This script should not be executed as root! Exiting......."
@@ -162,6 +164,8 @@ printf "${NOTE} - copying dotfiles\n"
     fi
   done
 
+printf "\n%.0s" {1..2}
+
 # Copying config files
 printf " Copying config files...\n"
 mkdir -p ~/.config
@@ -222,12 +226,11 @@ else
     rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
 fi
 
-
 # symlinks for waybar style
 ln -sf "$HOME/.config/waybar/style/[Pywal] Chroma Fusion.css" "$HOME/.config/waybar/style.css" && \
 
 # initialize pywal to avoid config error on hyprland
-wal -i ~/Pictures/wallpapers/anime-girl-abyss.png 2>&1 | tee -a "$LOG"
+wal -i $wallpaper -s -t 2>&1 | tee -a "$LOG"
 
 #initial symlink for Pywal Dark and Light for Rofi Themes
 ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
