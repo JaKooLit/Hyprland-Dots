@@ -20,7 +20,7 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
 else
 	swww init && swww img "$HOME/.config/rofi/.current_wallpaper"
 	sleep 0.5
-	${SCRIPTSDIR}/RefreshNoWaybar.sh	 
+	${SCRIPTSDIR}/Refresh.sh	 
     dunstify -u low -i "$dunst_notif" "gamemode disabled. All animations normal"
     exit
 fi
