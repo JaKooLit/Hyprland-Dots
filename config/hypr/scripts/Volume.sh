@@ -4,28 +4,35 @@ iDIR="$HOME/.config/dunst/icons"
 
 # Get Volume
 get_volume() {
-	volume=$(pamixer --get-volume)
-	echo "$volume"
+    volume=$(pamixer --get-volume)
+    if [[ "$volume" -eq "0" ]]; then
+        echo "Muted"
+    else
+        echo "$volume%"
+    fi
 }
 
 # Get icons
 get_icon() {
-	current=$(get_volume)
-	if [[ "$current" -eq "0" ]]; then
-		echo "$iDIR/volume-mute.png"
-	elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
-		echo "$iDIR/volume-low.png"
-	elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
-		echo "$iDIR/volume-mid.png"
-	elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
-		echo "$iDIR/volume-high.png"
-	fi
+    current=$(get_volume)
+    if [[ "$current" == "Muted" ]]; then
+        echo "$iDIR/volume-mute.png"
+    elif [[ "${current%\%}" -le 30 ]]; then
+        echo "$iDIR/volume-low.png"
+    elif [[ "${current%\%}" -le 60 ]]; then
+        echo "$iDIR/volume-mid.png"
+    else
+        echo "$iDIR/volume-high.png"
+    fi
 }
 
 # Notify
 notify_user() {
-	dunstify -h int:value:$(get_volume) -h "string:x-dunst-stack-tag:volume_notif" -u low -i "$(get_icon)" "Volume : $(get_volume) %"
-
+    if [[ "$(get_volume)" == "Muted" ]]; then
+        dunstify -h string:x-dunst-stack-tag:volume_notif -u low -i "$(get_icon)" "Volume : Muted"
+    else
+        dunstify -h int:value:"$(get_volume | sed 's/%//')" -h string:x-dunst-stack-tag:volume_notif -u low -i "$(get_icon)" "Volume : $(get_volume)"
+    fi
 }
 
 # Increase Volume
@@ -61,22 +68,31 @@ toggle_mic() {
 		pamixer -u --default-source u && dunstify -u low -i "$iDIR/microphone.png" "Microphone Switched ON"
 	fi
 }
-# Get icons
+# Get Mic Icon
 get_mic_icon() {
-	current=$(pamixer --default-source --get-volume)
-	if [[ "$current" -eq "0" ]]; then
-		echo "$iDIR/microphone.png"
-	elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
-		echo "$iDIR/microphone.png"
-	elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
-		echo "$iDIR/microphone.png"
-	elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
-		echo "$iDIR/microphone.png"
-	fi
+    current=$(pamixer --default-source --get-volume)
+    if [[ "$current" -eq "0" ]]; then
+        echo "$iDIR/microphone-mute.png"
+    else
+        echo "$iDIR/microphone.png"
+    fi
 }
-# Notify
+
+# Get Microphone Volume
+get_mic_volume() {
+    volume=$(pamixer --default-source --get-volume)
+    if [[ "$volume" -eq "0" ]]; then
+        echo "Muted"
+    else
+        echo "$volume%"
+    fi
+}
+
+# Notify for Microphone
 notify_mic_user() {
-	dunstify -h int:value:$(pamixer --default-source --get-volume) -h "string:x-dunst-stack-tag:volume_notif" -u low -i "$(get_mic_icon)" "Mic-Level : $(pamixer --default-source --get-volume) %"
+    volume=$(get_mic_volume)
+    icon=$(get_mic_icon)
+    dunstify -h int:value:"$volume" -h "string:x-dunst-stack-tag:volume_notif" -u low -i "$icon" "Mic-Level: $volume"
 }
 
 # Increase MIC Volume
