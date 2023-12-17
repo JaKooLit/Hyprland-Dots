@@ -19,9 +19,11 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
     exit
 else
 	swww init && swww img "$HOME/.config/rofi/.current_wallpaper"
+	sleep 0.1
+	${SCRIPTSDIR}/PywalSwww.sh
 	sleep 0.5
 	${SCRIPTSDIR}/Refresh.sh	 
-    dunstify -u low -i "$dunst_notif" "gamemode disabled. All animations normal"
+    dunstify -u normal -i "$dunst_notif" "gamemode disabled. All animations normal"
     exit
 fi
 hyprctl reload
