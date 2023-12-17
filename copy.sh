@@ -1,7 +1,7 @@
 #!/bin/bash
 ### https://github.com/JaKooLit/JaKooLit
 
-clear 
+clear
 
 wallpaper=$HOME/Pictures/wallpapers/Cute-Cat_ja.png
 
@@ -92,26 +92,33 @@ echo "Keyboard layout: $layout"
 printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n\n"
 
 # Prompt the user to confirm whether the detected layout is correct
-read -p "$ORANGE Detected keyboard layout or keymap: $layout. Is this correct? [y/n] " confirm
+while true; do
+    read -p "$ORANGE Detected keyboard layout or keymap: $layout. Is this correct? [y/n] " confirm
 
-if [ "$confirm" = "y" ]; then
-  # If the detected layout is correct, update the 'kb_layout=' line in the file
-  awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/configs/Settings.conf > temp.conf
-  mv temp.conf config/hypr/configs/Settings.conf
-else
-  # If the detected layout is not correct, prompt the user to enter the correct layout
-	printf "\n%.0s" {1..2}
-	echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT!!!! $(tput sgr0)" 
-	echo "$(tput bold)$(tput setaf 7)Setting a wrong value here will result in Hyprland not starting $(tput sgr0)"
-	echo "$(tput bold)$(tput setaf 7)If you are not sure, keep it in us layout. You can change later on! $(tput sgr0)"
-	echo "$(tput bold)$(tput setaf 7)You can also set more than 2 layouts!$(tput sgr0)"
-	echo "$(tput bold)$(tput setaf 7)ie: us,kr,es $(tput sgr0)"
-	printf "\n%.0s" {1..2}
-  read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
-  # Update the 'kb_layout=' line with the correct layout in the file
-  awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/configs/Settings.conf > temp.conf
-  mv temp.conf config/hypr/configs/Settings.conf
-fi
+    case $confirm in
+        [yY])
+            # If the detected layout is correct, update the 'kb_layout=' line in the file
+            awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/configs/Settings.conf > temp.conf
+            mv temp.conf config/hypr/configs/Settings.conf
+            break ;;
+        [nN])
+            printf "\n%.0s" {1..2}
+            echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT!!!! $(tput sgr0)" 
+            echo "$(tput bold)$(tput setaf 7)Setting a wrong value here will result in Hyprland not starting $(tput sgr0)"
+            echo "$(tput bold)$(tput setaf 7)If you are not sure, keep it in us layout. You can change later on! $(tput sgr0)"
+            echo "$(tput bold)$(tput setaf 7)You can also set more than 2 layouts!$(tput sgr0)"
+            echo "$(tput bold)$(tput setaf 7)ie: us,kr,es $(tput sgr0)"
+            printf "\n%.0s" {1..2}
+            read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+            # Update the 'kb_layout=' line with the correct layout in the file
+            awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/configs/Settings.conf > temp.conf
+            mv temp.conf config/hypr/configs/Settings.conf
+            break ;;
+        *)
+            echo "Please enter either 'y' or 'n'." ;;
+    esac
+done
+
 printf "\n"
 
 # Action to do for better rofi appearance
@@ -152,28 +159,36 @@ printf "\n%.0s" {1..2}
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} - copying dotfiles\n"
-  for DIR in btop cava dunst hypr kitty Kvantum qt5ct qt6ct rofi swappy swaylock wal waybar wlogout; do 
-    DIRPATH=~/.config/$DIR
-    if [ -d "$DIRPATH" ]; then 
-      echo -e "${NOTE} - Config for $DIR found, attempting to back up."
-      mv $DIRPATH $DIRPATH-back-up 2>&1 | tee -a "$LOG"
-      echo -e "${NOTE} - Backed up $DIR to $DIRPATH-back-up."
-    fi
-  done
+# Function to create a unique backup directory name with month, day, hours, and minutes
+get_backup_dirname() {
+  local timestamp
+  timestamp=$(date +"%m%d_%H%M")
+  echo "back-up_${timestamp}"
+}
 
-  for DIRw in wallpapers; do 
-    DIRPATH=~/Pictures/$DIRw
-    if [ -d "$DIRPATH" ]; then 
-      echo -e "${NOTE} - wallpapers in $DIRw found, attempting to back up."
-      mv $DIRPATH $DIRPATH-back-up 2>&1 | tee -a "$LOG"
-      echo -e "${NOTE} - Backed up $DIRw to $DIRPATH-back-up."
-    fi
-  done
+for DIR in btop cava dunst hypr kitty Kvantum qt5ct qt6ct rofi swappy swaylock wal waybar wlogout; do 
+  DIRPATH=~/.config/"$DIR"
+  if [ -d "$DIRPATH" ]; then 
+    echo -e "${NOTE} - Config for $DIR found, attempting to back up."
+    BACKUP_DIR=$(get_backup_dirname)
+    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+    echo -e "${NOTE} - Backed up $DIR to $DIRPATH-backup-$BACKUP_DIR."
+  fi
+done
+
+for DIRw in wallpapers; do 
+  DIRPATH=~/Pictures/"$DIRw"
+  if [ -d "$DIRPATH" ]; then 
+    echo -e "${NOTE} - Wallpapers in $DIRw found, attempting to back up."
+    BACKUP_DIR=$(get_backup_dirname)
+    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+    echo -e "${NOTE} - Backed up $DIRw to $DIRPATH-backup-$BACKUP_DIR."
+  fi
+done
 
 printf "\n%.0s" {1..2}
 
 # Copying config files
-printf " Copying config files...\n"
 mkdir -p ~/.config
 cp -r config/* ~/.config/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR} Failed to copy config files."; exit 1; } 2>&1 | tee -a "$LOG"
 
@@ -198,22 +213,22 @@ while true; do
     case $WALL in
         [Yy])
             echo "${NOTE} Downloading additional wallpapers..."
-            if git clone --progress "https://github.com/JaKooLit/Wallpaper-Bank.git" 2>&1 | tee -a "$LOG"; then
+            if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
                 echo "${NOTE} Wallpapers downloaded successfully."
 
-                if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ 2>&1 | tee -a "$LOG"; then
+                if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
                     echo "${NOTE} Wallpapers copied successfully."
-                    rm -rf Wallpaper-Bank 2>&1 | tee -a "$LOG" # Remove cloned repository after copying wallpapers
+                    rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
                     break
                 else
-                    echo "${ERROR} Copying wallpapers failed" >&2 | tee -a "$LOG"
+                    echo "${ERROR} Copying wallpapers failed" >&2
                 fi
             else
-                echo "${ERROR} Downloading additional wallpapers failed" >&2 | tee -a "$LOG"
+                echo "${ERROR} Downloading additional wallpapers failed" >&2
             fi
             ;;
         [Nn])
-            echo "You chose not to download additional wallpapers." >&2 | tee -a "$LOG"
+            echo "You chose not to download additional wallpapers." >&2
             break
             ;;
         *)
@@ -221,6 +236,7 @@ while true; do
             ;;
     esac
 done
+
 
 printf "\n%.0s" {1..3}
 
