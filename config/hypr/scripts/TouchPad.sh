@@ -1,8 +1,9 @@
 #!/bin/bash
 
+dunst_notif="$HOME/.config/dunst/images/bell.png"
+
 # NOTE: find the right device using hyprctl devices
- 
-HYPRLAND_DEVICE="asue1209:00-04f3:319f-touchpad"
+ HYPRLAND_DEVICE="asue1209:00-04f3:319f-touchpad"
 
 if [ -z "$XDG_RUNTIME_DIR" ]; then
   export XDG_RUNTIME_DIR=/run/user/$(id -u)
@@ -13,7 +14,7 @@ export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
 enable_touchpad() {
   printf "true" > "$STATUS_FILE"
 
-  notify-send -u normal "Enabling Touchpad"
+  dunstify -u low -i "$dunst_notif" "Enabling Touchpad"
 
   hyprctl keyword "device:$HYPRLAND_DEVICE:enabled" true
 }
@@ -21,7 +22,7 @@ enable_touchpad() {
 disable_touchpad() {
   printf "false" > "$STATUS_FILE"
 
-  notify-send -u normal "Disabling Touchpad"
+  dunstify -u low -i "$dunst_notif" "Disabling Touchpad"
 
   hyprctl keyword "device:$HYPRLAND_DEVICE:enabled" false
 }

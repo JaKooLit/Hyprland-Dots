@@ -149,8 +149,8 @@ ${SCRIPTSDIR}/PywalSwww.sh &
 sleep 2
 ${SCRIPTSDIR}/Refresh.sh 
 
-notify-send "GTK theme set to $selected_theme"
-notify-send "Icon theme set to $selected_icon"
+dunstify -u low -i "$dunst_notif" "GTK theme set to $selected_theme"
+dunstify -u low -i "$dunst_notif" "Icon theme set to $selected_icon"
 
 exit 0
 
