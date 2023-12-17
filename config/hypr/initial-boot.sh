@@ -7,10 +7,10 @@
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
-wallpaper=$HOME/Pictures/wallpapers/anime-girl-abyss.png
+wallpaper=$HOME/Pictures/wallpapers/CuteCat.png
 
 swww="swww img"
-effect="--transition-bezier .43,1.19,1,.4 --transition-fps 60 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"
+effect="--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"
 
 # Check if a marker file exists.
 if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
@@ -30,8 +30,8 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     "$scriptsDir/Refresh.sh" > /dev/null 2>&1 &
     
     # initiate GTK dark mode and apply icon and cursor theme
-    gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-B > /dev/null 2>&1 &
-    gsettings set org.gnome.desktop.interface icon-theme TokyoNight-SE > /dev/null 2>&1 &
+    gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-BL-LB > /dev/null 2>&1 &
+    gsettings set org.gnome.desktop.interface icon-theme TokyoNight-Dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface cursor-size 24 > /dev/null 2>&1 &
     
