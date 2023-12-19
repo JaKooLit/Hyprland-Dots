@@ -40,14 +40,15 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " enter" "Terminal" "(kitty)" \
 " or  D" "App Launcher" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
-" Q or  Shift Q  " "close focused app" "(kill)" \
+" Q" "close active window" "(not kill)" \
+" Shift Q " "closes a specified window" "(window)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
 " W" "Choose wallpaper" "(swww)" \
 "CTRL ALT W" "Random wallpaper" "(swww)" \
-"CTRL W" "Choose waybar styles" "(waybar styles)" \
+" CTRL B" "Choose waybar styles" "(waybar styles)" \
 " B" "Hide/UnHide Waybar" "waybar" \
-"ALT W" "Choose waybar layout" "(waybar layout)" \
-"CTRL SHIFT W" "Reload Waybar Dunst Rofi" "" \
+" ALT B" "Choose waybar layout" "(waybar layout)" \
+" ALT R" "Reload Waybar Dunst Rofi" "" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
 " Shift S" "screenshot region" "(swappy)" \
