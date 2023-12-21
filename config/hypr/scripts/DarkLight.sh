@@ -47,11 +47,13 @@ if [ "$(cat ~/.cache/.wallpaper_mode)" = "Light" ]; then
     wallpaper_path="$dark_wallpapers"
 	kvantum_mode="Tokyo-Night"
  	qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Night.conf"
+	qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Tokyo-Night.conf"
 else
     next_mode="Light"
     wallpaper_path="$light_wallpapers"
 	kvantum_mode="Tokyo-Day"
 	qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Day.conf"
+	qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Tokyo-Day.conf"
 fi
 
 # Call the function after determining the mode
@@ -72,7 +74,7 @@ fi
 # QT Icons at below with GTK Icons
 kvantummanager --set "$kvantum_mode"
 sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt5ct_color_scheme|" "$HOME/.config/qt5ct/qt5ct.conf"
-
+sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt6ct_color_scheme|" "$HOME/.config/qt6ct/qt6ct.conf"
 
 # Set Rofi Themes
 if [ "$next_mode" = "Dark" ]; then
@@ -149,6 +151,7 @@ set_custom_gtk_theme() {
 		
 		## QT5ct icon_theme
 		sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt5ct/qt5ct.conf"
+		sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt6ct/qt6ct.conf"
     else
         echo "No $mode icon theme found"
     fi
