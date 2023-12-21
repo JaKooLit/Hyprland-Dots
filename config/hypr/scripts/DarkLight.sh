@@ -45,9 +45,13 @@ set_waybar_style() {
 if [ "$(cat ~/.cache/.wallpaper_mode)" = "Light" ]; then
     next_mode="Dark"
     wallpaper_path="$dark_wallpapers"
+	kvantum_mode="Tokyo-Night"
+ 	qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Night.conf"
 else
     next_mode="Light"
     wallpaper_path="$light_wallpapers"
+	kvantum_mode="Tokyo-Day"
+	qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Day.conf"
 fi
 
 # Call the function after determining the mode
@@ -63,6 +67,12 @@ else
     sed -i '/background = /s/.*/    background = "#ffffff99"/' "${dunst_config}/dunstrc"
     sed -i '/foreground = /s/.*/    foreground = "#00000095"/' "${dunst_config}/dunstrc"
 fi
+
+# QT APPS Change Kvantum Manager theme & QT5CT Settings
+# QT Icons at below with GTK Icons
+kvantummanager --set "$kvantum_mode"
+sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt5ct_color_scheme|" "$HOME/.config/qt5ct/qt5ct.conf"
+
 
 # Set Rofi Themes
 if [ "$next_mode" = "Dark" ]; then
@@ -136,10 +146,14 @@ set_custom_gtk_theme() {
         fi
         echo "Selected icon theme for $mode mode: $selected_icon"
         gsettings set $icon_setting "$selected_icon"
+		
+		## QT5ct icon_theme
+		sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt5ct/qt5ct.conf"
     else
         echo "No $mode icon theme found"
     fi
 }
+
 
 # Call the function to set GTK theme and icon theme based on mode
 set_custom_gtk_theme "$next_mode"
