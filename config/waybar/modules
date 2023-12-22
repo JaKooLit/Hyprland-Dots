@@ -344,6 +344,7 @@
 },
 
 "mpris": {
+    "interval": 1,
 	"format": "{player_icon} ",
 	"format-paused": "{status_icon} <i>{dynamic}</i>",
 	"on-click-middle": "playerctl play-pause",
@@ -447,7 +448,7 @@
 },
       
 "tray": {
-    "icon-size": 14,
+    "icon-size": 13,
     "spacing": 8,
 },
       
@@ -463,7 +464,7 @@
       
 "wlr/taskbar": {
     "format": "{icon} {name} ",
-    "icon-size": 16,
+    "icon-size": 14,
     "all-outputs": false,
     "tooltip-format": "{title}",
     "on-click": "activate",

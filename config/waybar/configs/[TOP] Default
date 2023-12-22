@@ -43,12 +43,12 @@
 	], 
 
 "modules-right": [
+	"network#speed",
+	"custom/separator#dot-line",
 	"tray",
 	"mpris", 
 	"custom/separator#dot-line",
 	"bluetooth",
-	"custom/separator#dot-line",
-	"network#speed",
 	"custom/separator#dot-line", 
 	"pulseaudio",
 	"custom/separator#dot-line",
