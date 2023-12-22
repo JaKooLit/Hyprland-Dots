@@ -6,11 +6,11 @@ SCRIPTSDIR="$HOME/.config/hypr/scripts"
 DIR="$HOME/Pictures/wallpapers"
 
 # Transition config
-FPS=60
-TYPE="any"
+FPS=30
+TYPE="wipe"
 DURATION=1
-BEZIER="0,.53,1,.48"
-SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --transition-bezier $BEZIER"
+BEZIER=".43,1.19,1,.4"
+SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
 # Check if swaybg is running
 if pidof swaybg > /dev/null; then
@@ -80,6 +80,7 @@ fi
 
 main
 
+sleep 0.5
 ${SCRIPTSDIR}/PywalSwww.sh
-sleep 1
+sleep 0.2
 ${SCRIPTSDIR}/Refresh.sh
