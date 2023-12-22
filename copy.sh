@@ -3,7 +3,7 @@
 
 clear
 
-wallpaper=$HOME/Pictures/wallpapers/Cute-Cat_ja.png
+wallpaper=$HOME/Pictures/wallpapers/Cute-Cat_ja.jpg
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
