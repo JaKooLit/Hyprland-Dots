@@ -28,7 +28,7 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
 
     # Initial scripts to load in order to have a proper wallpaper waybar and pywal themes
-    swww query && $swww "$wallpaper" $effect
+    swww query || swww init && $swww "$wallpaper" $effect
 
     # Refreshing waybar, dunst, rofi etc. 
     "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 &
