@@ -450,7 +450,7 @@
 },
       
 "tray": {
-    "icon-size": 13,
+    "icon-size": 14,
     "spacing": 8,
 },
       
@@ -466,7 +466,7 @@
       
 "wlr/taskbar": {
     "format": "{icon} {name} ",
-    "icon-size": 14,
+    "icon-size": 15,
     "all-outputs": false,
     "tooltip-format": "{title}",
     "on-click": "activate",
