@@ -20,12 +20,28 @@ swww query || swww init
 swww="swww img"
 effect="--transition-bezier .43,1.19,1,.4 --transition-fps 60 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"
 
+# Determine current theme mode
+if [ "$(cat $HOME/.cache/.theme_mode)" = "Light" ]; then
+    next_mode="Dark"
+    # Logic for Dark mode
+    wallpaper_path="$dark_wallpapers"
+else
+    next_mode="Light"
+    # Logic for Light mode
+    wallpaper_path="$light_wallpapers"
+fi
+
+# Function to update theme mode for the next cycle
+update_theme_mode() {
+    echo "$next_mode" > ~/.cache/.theme_mode
+}
+
 # Function to notify user
 notify_user() {
     dunstify -u low -i "$dunst_notif" "Switching to $1 mode"
 }
 
-# Function to set Waybar style
+# Function to set Waybar style (example with placeholder command)
 set_waybar_style() {
     theme="$1"
     waybar_styles="$HOME/.config/waybar/style"
@@ -41,24 +57,8 @@ set_waybar_style() {
     fi
 }
 
-# Determine current wallpaper mode
-if [ "$(cat ~/.cache/.wallpaper_mode)" = "Light" ]; then
-    next_mode="Dark"
-    wallpaper_path="$dark_wallpapers"
-	kvantum_theme="Tokyo-Night"
- 	qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Night.conf"
-	qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Tokyo-Night.conf"
-else
-    next_mode="Light"
-    wallpaper_path="$light_wallpapers"
-	kvantum_theme="Tokyo-Day"
-	qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Day.conf"
-	qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Tokyo-Day.conf"
-fi
-
 # Call the function after determining the mode
 set_waybar_style "$next_mode"
-
 notify_user "$next_mode"
 
 # Change background for dunst
@@ -70,35 +70,38 @@ else
     sed -i '/foreground = /s/.*/    foreground = "#00000095"/' "${dunst_config}/dunstrc"
 fi
 
-# QT APPS Change Kvantum Manager theme & QT5CT Settings
-# QT Icons at below with GTK Icons
+# Set Dynamic Wallpaper for Dark or Light Mode
+if [ "$next_mode" = "Dark" ]; then
+    next_wallpaper="$(find "${dark_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
+else
+    next_wallpaper="$(find "${light_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
+fi
+
+# Update wallpaper using swww command
+$swww "${next_wallpaper}" $effect
+
+
+# Set Kvantum Manager theme & QT5/QT6 settings
+if [ "$next_mode" = "Dark" ]; then
+    kvantum_theme="Tokyo-Night"
+    qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Night.conf"
+    qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Tokyo-Night.conf"
+else
+    kvantum_theme="Tokyo-Day"
+    qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Day.conf"
+    qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Tokyo-Day.conf"
+fi
+
 kvantummanager --set "$kvantum_theme"
 sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt5ct_color_scheme|" "$HOME/.config/qt5ct/qt5ct.conf"
 sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt6ct_color_scheme|" "$HOME/.config/qt6ct/qt6ct.conf"
 
 # Set Rofi Themes
 if [ "$next_mode" = "Dark" ]; then
-    ln -sf $dark_rofi_pywal "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+    ln -sf "$dark_rofi_pywal" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 else
-    ln -sf $light_rofi_pywal "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+    ln -sf "$light_rofi_pywal" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 fi
-
-# Set Dynamic Wallpaper for Dark Mode
-if [ "$next_mode" = "Dark" ]; then
-    next_wallpaper="$(find "${dark_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
-fi
-
-# Set Dynamic Wallpaper for Light Mode
-if [ "$next_mode" = "Light" ]; then
-    next_wallpaper="$(find "${light_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
-fi
-
-
-$swww "${next_wallpaper}" $effect
-
-# This is a referrence point for next cycle
-echo "$next_mode" > ~/.cache/.wallpaper_mode
-echo "$next_wallpaper" > ~/.cache/.current_wallpaper
 
 # GTK themes and icons switching
 set_custom_gtk_theme() {
@@ -161,13 +164,19 @@ set_custom_gtk_theme() {
 # Call the function to set GTK theme and icon theme based on mode
 set_custom_gtk_theme "$next_mode"
 
-# Run remaining scripts
-${SCRIPTSDIR}/PywalSwww.sh &
-sleep 2
+# Update theme mode for the next cycle
+update_theme_mode
+
+sleep 0.5
+
+# Run remaining scripts (placeholders)
+${SCRIPTSDIR}/PywalSwww.sh
+sleep 1
 ${SCRIPTSDIR}/Refresh.sh 
 
-dunstify -u low -i "$dunst_notif" "GTK theme set to $selected_theme"
-dunstify -u low -i "$dunst_notif" "Icon theme set to $selected_icon"
+# Display notifications for theme and icon changes
+dunstify -u normal -i "$dunst_notif" "Themes are set to $selected_theme"
+dunstify -u normal -i "$dunst_notif" "Icon themes set to $selected_icon"
 
 exit 0
 
