@@ -45,13 +45,13 @@ set_waybar_style() {
 if [ "$(cat ~/.cache/.wallpaper_mode)" = "Light" ]; then
     next_mode="Dark"
     wallpaper_path="$dark_wallpapers"
-	kvantum_mode="Tokyo-Night"
+	kvantum_theme="Tokyo-Night"
  	qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Night.conf"
 	qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Tokyo-Night.conf"
 else
     next_mode="Light"
     wallpaper_path="$light_wallpapers"
-	kvantum_mode="Tokyo-Day"
+	kvantum_theme="Tokyo-Day"
 	qt5ct_color_scheme="$HOME/.config/qt5ct/colors/Tokyo-Day.conf"
 	qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Tokyo-Day.conf"
 fi
@@ -72,7 +72,7 @@ fi
 
 # QT APPS Change Kvantum Manager theme & QT5CT Settings
 # QT Icons at below with GTK Icons
-kvantummanager --set "$kvantum_mode"
+kvantummanager --set "$kvantum_theme"
 sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt5ct_color_scheme|" "$HOME/.config/qt5ct/qt5ct.conf"
 sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt6ct_color_scheme|" "$HOME/.config/qt6ct/qt6ct.conf"
 
