@@ -41,7 +41,7 @@ notify_user() {
     dunstify -u low -i "$dunst_notif" "Switching to $1 mode"
 }
 
-# Function to set Waybar style (example with placeholder command)
+# Function to set Waybar style
 set_waybar_style() {
     theme="$1"
     waybar_styles="$HOME/.config/waybar/style"
@@ -169,7 +169,7 @@ update_theme_mode
 
 sleep 0.5
 
-# Run remaining scripts (placeholders)
+# Run remaining scripts
 ${SCRIPTSDIR}/PywalSwww.sh
 sleep 1
 ${SCRIPTSDIR}/Refresh.sh 
