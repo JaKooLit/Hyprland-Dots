@@ -344,7 +344,7 @@
 },
 
 "mpris": {
-    "interval": 1,
+    "interval": 10,
 	"format": "{player_icon} ",
 	"format-paused": "{status_icon} <i>{dynamic}</i>",
 	"on-click-middle": "playerctl play-pause",
@@ -421,6 +421,7 @@
     "on-click-right": "pavucontrol -t 3",
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
+	"tooltip-format": "{icon} {desc} | {volume}%",
     "smooth-scrolling-threshold": 1,
 },
       
@@ -432,6 +433,7 @@
     "on-click-right": "pavucontrol -t 4",
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --mic-inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --mic-dec",
+	"tooltip-format": "{source_desc} | {source_volume}%",
     "scroll-step": 5,
 },
     
@@ -655,7 +657,8 @@
         "phone": "",
         "portable": "",
         "car": "",
-    "default": ["", "", "󰕾", ""], 
+    "default": ["", "", "󰕾", ""],
+	"tooltip-format": "{icon} {desc} | {volume}%", 
     "ignored-sinks": ["Easy Effects Sink"],
 	},
     "scroll-step": 5.0,
@@ -676,7 +679,7 @@
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --mic-dec",
     "max-volume": 100,
     "tooltip": true,
-    "tooltip-format": "{icon} {desc} {volume}%",
+	"tooltip-format": "{source_desc} | {source_volume}%",
 },
   
 "temperature#vertical": {
