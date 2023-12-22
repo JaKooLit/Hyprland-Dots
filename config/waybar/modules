@@ -164,7 +164,7 @@
     "align": 0,
     "rotate": 0,
     //"format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "󰃝", "󰃞", "󰃟", "󰃠"],
+    "format-icons": [" ", " ", " ", "󰃝 ", "󰃞 ", "󰃟 ", "󰃠 "],
     "format": "{icon}",
     //"format-icons": ["","","","","","","","","","","","","","",""],
     "tooltip-format": "backlight {percent}%",
@@ -179,7 +179,7 @@
 },
       
 "battery": {
-    "interval": 60,
+    //"interval": 5,
     "align": 0,
     "rotate": 0,
     //"bat": "BAT1",
@@ -191,17 +191,18 @@
       "warning": 30,
       "critical": 15
              },
-    "format": "{icon}  {capacity}%",
-    "format-charging": " {capacity}%",
+    "format": "{icon} {capacity}%",
+    "format-charging": "{capacity}%",
     "format-plugged": "󱘖 {capacity}%",
+	"format-alt-click": "click",
     "format-full": "{icon} Full",
     "format-alt": "{icon} {time}",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-time": "{H}h {M}min",
     "tooltip": true,
     "tooltip-format": "{timeTo} {power}w",
     "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
-    "on-click": "~/.config/hypr/scripts/Wlogout.sh",
+    "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
 },
       
 "bluetooth": {
@@ -240,7 +241,7 @@
    
 "clock": {
     "interval": 1,
-    //"format": " {:%I:%M %p}",
+    //"format": " {:%I:%M %p}", // AM PM format
     "format": " {:%H:%M:%S}",
     "format-alt": " {:%H:%M   %Y, %d %B, %A}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -439,8 +440,8 @@
     
 "temperature": {
     "interval": 10,
-    "tooltip": false,
-    "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "tooltip": true,
+    "hwmon-path": ["/sys/class/hwmon/hwmon6/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
     //"thermal-zone": 0,
     "critical-threshold": 82,
     "format-critical": "{temperatureC}°C {icon}",
@@ -450,7 +451,7 @@
 },
       
 "tray": {
-    "icon-size": 13,
+    "icon-size": 14,
     "spacing": 8,
 },
       
@@ -466,7 +467,7 @@
       
 "wlr/taskbar": {
     "format": "{icon} {name} ",
-    "icon-size": 14,
+    "icon-size": 15,
     "all-outputs": false,
     "tooltip-format": "{title}",
     "on-click": "activate",
@@ -479,17 +480,20 @@
       
 "custom/cycle_wall":{
     "format":" ",
+    "exec": "echo ; echo 󰸉 wallpaper select",
     "on-click": "~/.config/hypr/scripts/WallpaperSelect.sh",
     "on-click-right": "~/.config/hypr/scripts/Wallpaper.sh",
     "on-click-middle": "~/.config/hypr/scripts/WaybarStyles.sh",
+    "interval" : 86400, // once every day
     "tooltip": true,
-    "tooltip-format": "Change wallpaper or style"
 },
       
 "custom/keybinds": {
     "format":"󰺁 HINT!",
-    "tooltip": false,
+    "exec": "echo ; echo  Key Hints",
     "on-click": "~/.config/hypr/scripts/KeyHints.sh",
+    "interval" : 86400, // once every day
+    "tooltip": true,
 },
 
 "custom/keyboard": {
@@ -497,26 +501,31 @@
     "interval": 1,
     "format": " {}",
     "on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
-    "tooltip": false,
     },
     
 "custom/light_dark": {
-    "format": "",
+    "format": "{}",
+    "exec": "echo ; echo 󰔎 Dark-Light switcher",
     "on-click": "~/.config/hypr/scripts/DarkLight.sh",
     "on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh",
     "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh",
-    "tooltip": false,
+    "interval" : 86400, // once every day
+    "tooltip": true
 },
       
 "custom/lock": {
-    "format": "",
+    "format": "󰌾{}",
+    "exec": "echo ; echo 󰷛  screen lock",
+    "interval" : 86400, // once every day
+    "tooltip": true,
     "on-click": "~/.config/hypr/scripts/LockScreen.sh",
-    "tooltip": false,
 },
     
 "custom/menu": {
-    "format": "",
-    "tooltip": false,
+    "format": "{}",
+    "exec": "echo ; echo 󱓟 app launcher",
+    "interval" : 86400, // once every day
+    "tooltip": true,
     "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser",
     "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",
     "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
@@ -537,10 +546,12 @@
 },
       
 "custom/power": {
-    "format": "⏻ ",
-    "tooltip": false,
+    "format": "⏻{}",
+    "exec": "echo ; echo 󰟡 power // blur",
 	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
     "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
+    "interval" : 86400, // once every day
+    "tooltip": true,
 },
   
 // NOTE:! This is only for Arch and Arch Based Distros  
@@ -612,7 +623,7 @@
     "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
     "smooth-scrolling-threshold": 1,
-	//"tooltip-format": "{percent}%",
+	"tooltip-format": "{percent}%",
 },
   
 "clock#vertical": {
@@ -666,6 +677,7 @@
     "on-click-right": "pavucontrol -t 3",
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
+	"tooltip-format": "{icon} {desc} | {volume}%",
     "smooth-scrolling-threshold": 1,
 },
   
@@ -685,7 +697,7 @@
 "temperature#vertical": {
     "interval": 10,
     "tooltip": true,
-    "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "hwmon-path": ["/sys/class/hwmon/hwmon6/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
     //"thermal-zone": 0,
     "critical-threshold": 80,
     "format-critical": "{icon}\n{temperatureC}°C",
@@ -696,9 +708,11 @@
   
 "custom/power_vertical": {
     "format": "⏻",
-    "tooltip": false,
-    "on-click": "~/.config/hypr/scripts/Wlogout.sh",
+    "exec": "echo ; echo 󰟡 power // blur",
+	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
     "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
+    "interval" : 86400, // once every day
+    "tooltip": true,
 },
   
   
