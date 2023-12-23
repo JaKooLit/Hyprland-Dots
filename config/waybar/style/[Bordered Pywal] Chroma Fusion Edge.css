@@ -63,12 +63,10 @@ window#waybar.empty #window {
 #pulseaudio,
 #pulseaudio-slider,
 #taskbar button,
-#taskbar,
 #temperature,
 #tray,
 #window,
 #wireplumber,
-#workspaces,
 #custom-backlight,
 #custom-cycle_wall,
 #custom-keybinds,
@@ -78,7 +76,6 @@ window#waybar.empty #window {
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
-#custom-speaker,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -101,10 +98,13 @@ window#waybar.empty #window {
 }
 #custom-power {
     color: @red;
-    padding: 0px 0px 0px 6px;
+    padding: 0px 0px 0px 7px;
     opacity:1.0;
 }
-
+#backlight {
+	padding: 0px 2px 0px 6px;
+}
+#custom-light_dark,
 #custom-menu{
     color: @flamingo;
     padding: 0px 8px 0px 4px;
@@ -149,7 +149,7 @@ window#waybar.empty #window {
 }
 
 #workspaces {
-    margin: 3px 3px 3px 3px;
+    margin: 1px 1px 1px 1px;
     padding: 0px 1px;
     border-radius: 25px;
     border:2px solid @border-color;
@@ -165,8 +165,8 @@ window#waybar.empty #window {
     border-radius: 15px;
     border:0px;
     color: @color13;
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
     opacity:0.8;
@@ -178,8 +178,8 @@ window#waybar.empty #window {
     background: @button-color;
     border-radius: 15px;
     border: 1px solid @border-color;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
     opacity:1.0;
