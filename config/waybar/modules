@@ -451,7 +451,7 @@
 },
       
 "tray": {
-    "icon-size": 14,
+    "icon-size": 15,
     "spacing": 8,
 },
       
@@ -490,7 +490,7 @@
       
 "custom/keybinds": {
     "format":"󰺁 HINT!",
-    "exec": "echo ; echo  Key Hints",
+    "exec": "echo ; echo  Key Hints SUPER H",
     "on-click": "~/.config/hypr/scripts/KeyHints.sh",
     "interval" : 86400, // once every day
     "tooltip": true,
@@ -546,7 +546,7 @@
 },
       
 "custom/power": {
-    "format": "⏻{}",
+    "format": "⏻ ",
     "exec": "echo ; echo 󰟡 power // blur",
 	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
     "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",

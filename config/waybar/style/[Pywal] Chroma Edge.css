@@ -134,7 +134,7 @@ tooltip label{
 	/* color: #bf616a; */
 	border-radius: 12px;
 	background-color: rgba(50, 50, 50, 0.1);
-	border: 2px solid @color2;
+	border: 1px solid @color2;
 	padding: 5px;
 }
 
@@ -171,6 +171,7 @@ tooltip label{
 
 #custom-power {
 	color: #cc3436;
+	padding: 0px 0px 0px 6px;
 }
 
 #custom-launcher {

@@ -24,17 +24,19 @@ window#waybar {
   transition-duration: 0.5s;
 }
 
+#taskbar button,
 #workspaces button {
-  padding: 0 10px;
   color: @foreground;
 }
 
+#taskbar button.active,
 #workspaces button.active {
   border-bottom: 1px solid @green;
 }
 
+#taskbar button.urgent,
 #workspaces button.urgent {
-  border-bottom: 2px solid @yellow;
+  border-bottom: 2px solid @red;
 }
 
 #submap {
@@ -87,10 +89,7 @@ window#waybar {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
   color: @foreground;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	padding-right: 6px;
-	padding-left: 6px;
+  padding: 5px 8px 5px 8px;
 }
 
 #battery.warning,

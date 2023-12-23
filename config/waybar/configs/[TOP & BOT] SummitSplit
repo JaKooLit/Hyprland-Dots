@@ -25,7 +25,7 @@
   
 "modules-center": [
 	"idle_inhibitor", 
-	"clock",
+	"hyprland/workspaces#4", 
 	"custom/light_dark",
 	], 
 
@@ -51,6 +51,7 @@
 "spacing": 5,
 "fixed-center": true,
 "ipc": true,
+"height": 0,
 "margin-left": 8,
 "margin-right": 8,
 //"margin-bottom": 0,
@@ -61,7 +62,7 @@
 	 ],
 
 "modules-center": [
-	"hyprland/workspaces#4", 
+	"clock", 
 	],
 
 "modules-right": [
