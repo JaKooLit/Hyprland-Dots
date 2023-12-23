@@ -94,14 +94,14 @@ window#waybar.empty #window {
 	background-color: @background-module;
     border-radius: 25px;
     padding: 0px 10px 0px 10px;
-    margin: 3px 3px 3px 3px;
+    margin: 5px 5px 5px 5px;
     opacity:0.8;
     border:2px solid @border-color;
 
 }
 #custom-power {
     color: @red;
-    padding: 0px 4px 0px 8px;
+    padding: 0px 0px 0px 6px;
     opacity:1.0;
 }
 

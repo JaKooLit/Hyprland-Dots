@@ -113,8 +113,8 @@ tooltip label{
 #custom-light_dark,
 #custom-lock,
 #custom-menu,
-#custom-power_vertical,
 #custom-power,
+#custom-power_vertical,
 #custom-speaker,
 #custom-updater,
 #custom-weather,
@@ -138,6 +138,12 @@ tooltip label{
 	padding-right: 6px;
 	padding-left: 6px;
 }
+
+#custom-power {
+	padding-left: 10px;
+	padding-right: 2px;
+}
+
 /*-----Indicators----*/
 #idle_inhibitor.activated {
 	color: #2dcc36;

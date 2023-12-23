@@ -156,6 +156,9 @@ tooltip {
   background-color: @red;
 }
 
+#custom-power {
+	padding-right: 1px;
+}
 #group-motherboard,
 #group-laptop,
 #group-audio {
