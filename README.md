@@ -65,7 +65,7 @@ chmod +x release.sh
 - by default, only few wallpapers will be copied (1 each dark and light plus 2 more). You will be offered to download more wallpapers. You can preview/check the additional wallpapers on [`THIS`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
 
 
-### ⚠️⚠️⚠️ A MUST! after copying  / Installing the dots
+### ⚠️⚠️⚠️ A MUST! after copying  / Installing these dots
 
 + By default I have not set a wallpaper. Press SUPER W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
 
@@ -87,8 +87,8 @@ chmod +x release.sh
 - Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
 
 ### 🤷‍♂️ TO DO!
-- [ ] Tweak waybar layouts and Themes
-- [ ] Tweak rofi layouts and Themes
+- [ ] Tweak waybar layouts and Themes - in constant progress
+- [ ] Tweak rofi layouts and Themes in constant progress
 - ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
 
 ### 🔮 Discord Server
