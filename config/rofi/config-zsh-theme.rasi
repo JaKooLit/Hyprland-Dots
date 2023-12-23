@@ -1,5 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config wallpaper */
+/* zsh theme switch */
+/* -- submitted by https://github.com/hyprhex -- */  
 
 /* ---- Configuration ---- */
 configuration {
@@ -111,8 +112,8 @@ entry {
 /* ---- Listview ---- */
 listview {
 	enabled:					 true;
-	columns:					 2;
-	lines:						 8;
+	columns:					 3;
+	lines:						 5;
 	spacing:                     4px;
 	dynamic:                     true;
 	cycle:                       true;
