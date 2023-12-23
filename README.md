@@ -40,36 +40,32 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 - [`Link`](https://github.com/JaKooLit/Hyprland-Dots/wiki/8.-Videos-and-Reviews)
 
 
-## ✨ Copying instructions. 
+## 💥 Copying / Installation / Update instructions 💥
+- [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/2.-Install-&-update) 
 - Note! The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
-
 - ~/.config (btop cava dunst hypr kitty rofi swappy swaylock waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
-
-### 🔔 Automatic copy of configurations
-clone this repo by using git. Change directory, make executable and run the script
+- clone this repo by using git. Change directory, make executable and run the script
 ```bash
 git clone https://github.com/JaKooLit/Hyprland-Dots.git
 cd Hyprland-Dots
 ```
-to copy from upstream (possible bugs)
+- to copy/install/update from upstream (possible bugs)
 ```bash
 chmod +x copy.sh
 ./copy.sh
 ```
-to copy from releases (more "stable")
+- to copy/install/update from releases (more "stable")
 ```bash
 chmod +x release.sh
 ./release.sh
 ```
 
-+ More info [HERE](https://github.com/JaKooLit/Hyprland-Dots/wiki/2.-Installations-&-Copying-dots)
-
 ### 🛎️ a small note on wallpapers
 - by default, only few wallpapers will be copied (1 each dark and light plus 2 more). You will be offered to download more wallpapers. You can preview/check the additional wallpapers on [`THIS`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
 
 
-### ⚠️⚠️⚠️ A MUST! after copying these dots
+### ⚠️⚠️⚠️ A MUST! after copying  / Installing the dots
 
 + By default I have not set a wallpaper. Press SUPER W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
 
