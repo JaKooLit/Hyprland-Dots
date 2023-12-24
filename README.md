@@ -42,7 +42,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 
 ### 💥 Copying / Installation / Update instructions 💥
 - [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/2.-Install-&-update) 
-> [!Note] The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
+> [!Note] 
+> The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
 - ~/.config (btop cava dunst hypr kitty rofi swappy swaylock waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
 - clone this repo by using git. Change directory, make executable and run the script
