@@ -35,6 +35,7 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     "$scriptsDir/Refresh.sh" > /dev/null 2>&1 &
     
     # initiate GTK dark mode and apply icon and cursor theme
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-BL-LB > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface icon-theme Tokyonight-Dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice > /dev/null 2>&1 &
