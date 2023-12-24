@@ -24,17 +24,11 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     # Initial symlink for Pywal Dark and Light for Rofi Themes
     ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 
-    # Initial waybar style
-    ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
-
     # Initial scripts to load in order to have a proper wallpaper waybar and pywal themes
-    swww query || swww init && $swww "$wallpaper" $effect
-
-    # Refreshing waybar, dunst, rofi etc. 
-    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 &
-    "$scriptsDir/Refresh.sh" > /dev/null 2>&1 &
+   	swww init && $swww "$wallpaper" $effect
     
     # initiate GTK dark mode and apply icon and cursor theme
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-BL-LB > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface icon-theme Tokyonight-Dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice > /dev/null 2>&1 &
@@ -45,6 +39,13 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 
     # initiate the kb_layout (for some reason) waybar cant launch it
     "$scriptsDir/SwitchKeyboardLayout.sh" > /dev/null 2>&1 &
+
+    # Initial waybar style
+    ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
+	
+	# Refreshing waybar, dunst, rofi etc. 
+    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 &
+    "$scriptsDir/Refresh.sh" > /dev/null 2>&1 &
 
     # Create a marker file to indicate that the script has been executed.
     touch ~/.config/hypr/.initial_startup_done

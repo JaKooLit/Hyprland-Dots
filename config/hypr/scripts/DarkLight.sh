@@ -108,13 +108,16 @@ set_custom_gtk_theme() {
     mode=$1
     gtk_themes_directory="$HOME/.themes"
     icon_directory="$HOME/.icons"
+    color_setting="org.gnome.desktop.interface color-scheme"
     theme_setting="org.gnome.desktop.interface gtk-theme"
     icon_setting="org.gnome.desktop.interface icon-theme"
 
     if [ "$mode" == "Light" ]; then
         search_keywords="*Light*"
+        gsettings set $color_setting 'prefer-light'
     elif [ "$mode" == "Dark" ]; then
         search_keywords="*Dark*"
+        gsettings set $color_setting 'prefer-dark'
     else
         echo "Invalid mode provided."
         return 1
@@ -139,6 +142,11 @@ set_custom_gtk_theme() {
         fi
         echo "Selected GTK theme for $mode mode: $selected_theme"
         gsettings set $theme_setting "$selected_theme"
+
+        # Flatpak GTK apps
+        if command -v flatpak &> /dev/null; then
+            flatpak --user override --env=GTK_THEME="$selected_theme"
+        fi
     else
         echo "No $mode GTK theme found"
     fi
@@ -151,15 +159,19 @@ set_custom_gtk_theme() {
         fi
         echo "Selected icon theme for $mode mode: $selected_icon"
         gsettings set $icon_setting "$selected_icon"
-		
-		## QT5ct icon_theme
-		sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt5ct/qt5ct.conf"
-		sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt6ct/qt6ct.conf"
+        
+        ## QT5ct icon_theme
+        sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt5ct/qt5ct.conf"
+        sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt6ct/qt6ct.conf"
+
+        # Flatpak GTK apps
+        if command -v flatpak &> /dev/null; then
+            flatpak --user override --env=ICON_THEME="$selected_icon"
+        fi
     else
         echo "No $mode icon theme found"
     fi
 }
-
 
 # Call the function to set GTK theme and icon theme based on mode
 set_custom_gtk_theme "$next_mode"
@@ -168,7 +180,6 @@ set_custom_gtk_theme "$next_mode"
 update_theme_mode
 
 sleep 0.5
-
 # Run remaining scripts
 ${SCRIPTSDIR}/PywalSwww.sh
 sleep 1
