@@ -27,7 +27,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
 #### 📦 Whats new?
-- To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/7.-CHANGELOGS)  Screenshots will be included if worth it!
+- To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth it!
 
 #### 📹 A video walkthroughs
 - [Walkthough](https://youtu.be/fO-RBHvVEcc)
@@ -37,11 +37,11 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 - [v2-Changes](https://youtu.be/yaVurRoXc-s)
 
 #### 📽️ A video coverage by other users. Pls watch and subscribe to their channel
-- [`Link`](https://github.com/JaKooLit/Hyprland-Dots/wiki/8.-Videos-and-Reviews)
+- [`Link`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Videos_and_Reviews)
 
 
 ### 💥 Copying / Installation / Update instructions 💥
-- [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/2.-Install-&-update) 
+- [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_Update) 
 > [!Note] 
 > The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
 - ~/.config (btop cava dunst hypr kitty rofi swappy swaylock waybar wlogout) - These are folders to be copied.
@@ -75,7 +75,7 @@ chmod +x release.sh
 + If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 
 #### 📖 Known issues and possible solutions
-- check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/4.-FAQ) and [UNSOLVED ISSUES](https://github.com/JaKooLit/Hyprland-Dots/wiki/6.-Known-Issues)
+- check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [UNSOLVED ISSUES](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known_Issues)
 
 
 #### 🙋 QUESTIONS ?!?! ⁉️
