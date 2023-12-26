@@ -16,7 +16,10 @@ waybar &
 
 sleep 0.1
 # Relaunch dunst with pywal-borders
-${SCRIPTSDIR}/PywalDunst.sh &
+# ${SCRIPTSDIR}/PywalDunst.sh &
+
+# Relaunch swaync with pywal-borders
+${SCRIPTSDIR}/PywalSwaync.sh
 
 # Relaunching rainbow borders
 sleep 1

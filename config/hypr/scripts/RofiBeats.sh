@@ -21,7 +21,7 @@ declare -A menu_options=(
 
 # Function for displaying notifications
 notification() {
-  dunstify -u normal -i "$iDIR/music.png" "Playing now: $@"
+  notify-send -u normal -i "$iDIR/music.png" "Playing now: $@"
 }
 
 # Main function
@@ -45,4 +45,4 @@ main() {
 }
 
 # Check if an online music process is running and send a notification, otherwise run the main function
-pkill -f http && dunstify -u low -i "$iDIR/music.png" "Online Music stopped" || main
+pkill -f http && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || main
