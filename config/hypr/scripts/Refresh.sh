@@ -3,7 +3,7 @@
 SCRIPTSDIR=$HOME/.config/hypr/scripts
 
 # Kill already running processes
-_ps=(waybar rofi)
+_ps=(waybar rofi swaync)
 for _prs in "${_ps[@]}"; do
     if pidof "${_prs}" >/dev/null; then
         pkill "${_prs}"
@@ -14,12 +14,9 @@ sleep 0.1
 # Relaunch waybar
 waybar &
 
-sleep 0.1
-# Relaunch dunst with pywal-borders
-# ${SCRIPTSDIR}/PywalDunst.sh &
-
-# Relaunch swaync with pywal-borders
-${SCRIPTSDIR}/PywalSwaync.sh
+# relaunch swaync
+sleep 0.3
+swaync > /dev/null 2>&1 &
 
 # Relaunching rainbow borders
 sleep 1

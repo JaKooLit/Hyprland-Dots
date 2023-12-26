@@ -124,7 +124,7 @@ tooltip label{
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
-#custom-speaker,
+#custom-swaync,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -223,6 +223,7 @@ label:focus {
     color: #df3320;
 }
 
+#custom-swaync,
 #custom-keybinds {
 	color: #1e66f5;	
 }

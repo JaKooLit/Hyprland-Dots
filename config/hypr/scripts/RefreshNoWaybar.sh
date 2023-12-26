@@ -19,7 +19,7 @@ ${SCRIPTSDIR}/PywalSwww.sh &
 
 sleep 0.5
 # Relaunch dunst with pywal-borders
-${SCRIPTSDIR}/PywalDunst.sh &
+#${SCRIPTSDIR}/PywalDunst.sh &
 
 # Relaunching rainbow borders
 sleep 1

@@ -76,6 +76,7 @@ window#waybar.empty #window {
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
+#custom-swaync,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -125,6 +126,7 @@ window#waybar.empty #window {
     color: @rosewater;
 }
 
+#custom-swaync,
 #custom-keybinds,
 #tray {
 	color: aliceblue;

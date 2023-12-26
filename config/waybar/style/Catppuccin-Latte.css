@@ -75,6 +75,7 @@ window#waybar.hidden {
 #custom-lock,
 #custom-menu,
 #custom-power,
+#custom-speaker,
 #custom-power_vertical,
 #custom-updater,
 #custom-weather,
@@ -121,6 +122,10 @@ window#waybar.hidden {
   animation-iteration-count: infinite;
   animation-direction: alternate;
   box-shadow: inset 0 -3px transparent;
+}
+
+#bluetooth {
+	color: @blue;
 }
 
 #clock {

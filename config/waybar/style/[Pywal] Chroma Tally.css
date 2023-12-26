@@ -82,7 +82,7 @@ window#waybar {
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
-#custom-speaker,
+#custom-swaync,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -189,6 +189,7 @@ window#waybar {
 #tray {
 }
 
+#custom-swaync,
 #custom-menu {
 	color: yellow;
 }

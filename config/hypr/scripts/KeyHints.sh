@@ -45,13 +45,15 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " Alt V" "Clipboard Manager" "(cliphist)" \
 " W" "Choose wallpaper" "(swww)" \
 "CTRL ALT W" "Random wallpaper" "(swww)" \
-" CTRL B" "Choose waybar styles" "(waybar styles)" \
 " B" "Hide/UnHide Waybar" "waybar" \
+" CTRL B" "Choose waybar styles" "(waybar styles)" \
 " ALT B" "Choose waybar layout" "(waybar layout)" \
-" ALT R" "Reload Waybar Dunst Rofi" "" \
+" ALT R" "Reload Waybar swaync Rofi" "CHECK NOTIFICATION FIRST!!!" \
+" SHIFT N" "Launch Notification Pannel" "SwayNC Control Center" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
 " Shift S" "screenshot region" "(swappy)" \
+"ALT Print" "Screenshot active window" "active window only" \
 "CTRL ALT P" "power-menu" "(wlogout)" \
 "CTRL ALT L" "screen lock" "(swaylock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
