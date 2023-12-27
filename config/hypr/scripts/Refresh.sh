@@ -10,12 +10,12 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
-sleep 0.1
+sleep 0.3
 # Relaunch waybar
 waybar &
 
 # relaunch swaync
-sleep 0.3
+sleep 0.5
 swaync > /dev/null 2>&1 &
 
 # Relaunching rainbow borders
