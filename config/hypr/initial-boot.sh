@@ -43,7 +43,7 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     # Initial waybar style
     ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
 	
-	# Refreshing waybar, dunst, rofi etc. 
+	# Refreshing waybar, swaync, rofi etc. 
     "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 &
     "$scriptsDir/Refresh.sh" > /dev/null 2>&1 &
 

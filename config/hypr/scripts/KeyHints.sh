@@ -65,8 +65,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
-"" "More tips on Hyprland-Dots github wiki page" ""\
-"" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
-"" "" "" \
+"More tips:" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
+
 
 
