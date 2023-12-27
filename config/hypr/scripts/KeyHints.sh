@@ -34,7 +34,6 @@ yad --width=$dynamic_width --height=$dynamic_height \
     --column=Key: \
     --column=Description: \
     --column=Command: \
-    --timeout=60 \
     --timeout-indicator=bottom \
 "ESC" "close this app" "" "=" "SUPER KEY (Windows Key)" "(SUPER KEY)" \
 " enter" "Terminal" "(kitty)" \
@@ -67,7 +66,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
 "" "More tips on Hyprland-Dots github wiki page" ""\
+"" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
 "" "" "" \
-"" "" "This window will auto-close in 60 secs" ""\
 
 
