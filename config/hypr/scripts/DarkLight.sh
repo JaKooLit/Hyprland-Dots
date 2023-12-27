@@ -1,10 +1,11 @@
 #!/bin/bash
-#set -x
+set -x
 # Paths
 wallpaper_base_path="$HOME/Pictures/wallpapers/Dynamic-Wallpapers"
 dark_wallpapers="$wallpaper_base_path/Dark"
 light_wallpapers="$wallpaper_base_path/Light"
 hypr_config_path="$HOME/.config/hypr"
+swaync_style="$HOME/.config/swaync/style.css"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 notif="$HOME/.config/swaync/images/bell.png"
 dark_rofi_pywal="$HOME/.cache/wal/colors-rofi-dark.rasi"
@@ -60,6 +61,15 @@ set_waybar_style() {
 set_waybar_style "$next_mode"
 notify_user "$next_mode"
 
+
+# swaync color change
+if [ "$next_mode" = "Dark" ]; then
+    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.8);/' "${swaync_style}"
+	sed -i '/@define-color noti-bg-alt/s/#.*;/#111111;/' "${swaync_style}"
+else
+    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.9);/' "${swaync_style}"
+	sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' "${swaync_style}"
+fi
 
 # Set Dynamic Wallpaper for Dark or Light Mode
 if [ "$next_mode" = "Dark" ]; then
@@ -177,8 +187,7 @@ sleep 1
 ${SCRIPTSDIR}/Refresh.sh 
 
 # Display notifications for theme and icon changes
-notify-send -u normal -i "$notif" "Themes are set to $selected_theme"
-notify-send -u normal -i "$notif" "Icon themes set to $selected_icon"
+notify-send -u normal -i "$notif" "Themes in $next_mode Mode"
 
 exit 0
 

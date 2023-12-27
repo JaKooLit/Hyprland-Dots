@@ -6,7 +6,7 @@
   	"control-center-layer": "top",
   	"layer-shell": true,
  	"cssPriority": "application",
-    "control-center-margin-top": 0,
+    "control-center-margin-top": 10,
     "control-center-margin-bottom": 0,
     "control-center-margin-right": 0,
     "control-center-margin-left": 0,
@@ -31,9 +31,9 @@
     "widgets": [
        	"dnd",
         "buttons-grid",
-		/*	"mpris", */
-    	/*	"volume", */
-   	 	/*	"backlight",*/
+		"mpris",
+    	"volume", 
+   	 	"backlight",
         "title",
         "notifications"
     ],
@@ -51,7 +51,7 @@
             "text": "Notification"
         },
         "mpris": {
-            "image-size": 20,
+            "image-size": 10,
             "image-radius": 0
         },
         "volume": {
