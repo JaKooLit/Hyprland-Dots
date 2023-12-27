@@ -19,7 +19,7 @@
 //"margin-bottom": 5,
 "width": 768,
 	
-"modules-left": ["clock#gar", "mpris", "tray"],
+"modules-left": ["clock#gar", "mpris", "tray", "custom/swaync"],
 	  
 "modules-center": ["hyprland/workspaces#kanji"], 
 	

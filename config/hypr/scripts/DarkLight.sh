@@ -5,9 +5,8 @@ wallpaper_base_path="$HOME/Pictures/wallpapers/Dynamic-Wallpapers"
 dark_wallpapers="$wallpaper_base_path/Dark"
 light_wallpapers="$wallpaper_base_path/Light"
 hypr_config_path="$HOME/.config/hypr"
-dunst_config="$HOME/.config/dunst"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
-dunst_notif="$HOME/.config/dunst/images/bell.png"
+notif="$HOME/.config/swaync/images/bell.png"
 dark_rofi_pywal="$HOME/.cache/wal/colors-rofi-dark.rasi"
 light_rofi_pywal="$HOME/.cache/wal/colors-rofi-light.rasi"
 
@@ -38,7 +37,7 @@ update_theme_mode() {
 
 # Function to notify user
 notify_user() {
-    dunstify -u low -i "$dunst_notif" "Switching to $1 mode"
+    notify-send -u low -i "$notif" "Switching to $1 mode"
 }
 
 # Function to set Waybar style
@@ -61,14 +60,6 @@ set_waybar_style() {
 set_waybar_style "$next_mode"
 notify_user "$next_mode"
 
-# Change background for dunst
-if [ "$next_mode" = "Dark" ]; then
-    sed -i '/background = /s/.*/    background = "#00000095"/' "${dunst_config}/dunstrc"
-    sed -i '/foreground = /s/.*/    foreground = "#fafafa"/' "${dunst_config}/dunstrc"
-else
-    sed -i '/background = /s/.*/    background = "#ffffff99"/' "${dunst_config}/dunstrc"
-    sed -i '/foreground = /s/.*/    foreground = "#00000095"/' "${dunst_config}/dunstrc"
-fi
 
 # Set Dynamic Wallpaper for Dark or Light Mode
 if [ "$next_mode" = "Dark" ]; then
@@ -186,8 +177,8 @@ sleep 1
 ${SCRIPTSDIR}/Refresh.sh 
 
 # Display notifications for theme and icon changes
-dunstify -u normal -i "$dunst_notif" "Themes are set to $selected_theme"
-dunstify -u normal -i "$dunst_notif" "Icon themes set to $selected_icon"
+notify-send -u normal -i "$notif" "Themes are set to $selected_theme"
+notify-send -u normal -i "$notif" "Icon themes set to $selected_icon"
 
 exit 0
 

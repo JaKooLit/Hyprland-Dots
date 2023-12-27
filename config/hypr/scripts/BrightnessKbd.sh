@@ -1,6 +1,6 @@
 #!/bin/bash
 
-iDIR="$HOME/.config/dunst/icons"
+iDIR="$HOME/.config/swaync/icons"
 
 # Get keyboard brightness
 get_kbd_backlight() {

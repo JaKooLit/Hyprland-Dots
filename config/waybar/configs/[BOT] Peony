@@ -32,7 +32,8 @@
 	"custom/separator#blank",
 	"temperature",
 	"custom/separator#blank",	
-	"network#peony"],
+	"network#peony",
+	"custom/swaync"],
 
 
 //M O D U L E S //

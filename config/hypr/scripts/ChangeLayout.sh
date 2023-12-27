@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dunst_notif="$HOME/.config/dunst/images/bell.png"
+notif="$HOME/.config/swaync/images/bell.png"
 
 LAYOUT=$(hyprctl -j getoption general:layout | jq '.str' | sed 's/"//g')
 
@@ -12,7 +12,7 @@ case $LAYOUT in
 	hyprctl keyword bind SUPER,J,cyclenext
 	hyprctl keyword bind SUPER,K,cyclenext,prev
 	hyprctl keyword bind SUPER,O,togglesplit
-  notify-send -e -u low -i "$dunst_notif" "Dwindle Layout"
+  notify-send -e -u low -i "$notif" "Dwindle Layout"
 	;;
 "dwindle")
 	hyprctl keyword general:layout master
@@ -21,7 +21,7 @@ case $LAYOUT in
 	hyprctl keyword unbind SUPER,O
 	hyprctl keyword bind SUPER,J,layoutmsg,cyclenext
 	hyprctl keyword bind SUPER,K,layoutmsg,cycleprev
-  notify-send -e -u low -i "$dunst_notif" "Master Layout"
+  notify-send -e -u low -i "$notif" "Master Layout"
 	;;
 *) ;;
 

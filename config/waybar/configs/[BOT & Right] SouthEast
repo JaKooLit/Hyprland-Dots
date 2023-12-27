@@ -67,7 +67,8 @@
     ],
     
 "modules-right": [
-	"mpris",
+		"mpris",
+		"custom/swaync",
     "tray",
     "custom/light_dark",
     ],

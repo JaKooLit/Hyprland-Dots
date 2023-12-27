@@ -1,6 +1,6 @@
 #!/bin/bash
 
-iDIR="$HOME/.config/dunst/icons"
+iDIR="$HOME/.config/swaync/icons"
 notification_timeout=1000
 
 # Get brightness

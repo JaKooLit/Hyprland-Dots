@@ -1,38 +1,45 @@
 {
-    "$schema": "/etc/xdg/swaync/configSchema.json",
-    "positionX": "right",
-    "positionY": "top",
-    "control-center-margin-top": 10,
-    "control-center-margin-bottom": 10,
-    "control-center-margin-right": 10,
-    "control-center-margin-left": 10,
+  	"$schema": "/etc/xdg/swaync/configSchema.json",
+  	"positionX": "center",
+  	"positionY": "top",
+  	"layer": "overlay",
+  	"control-center-layer": "top",
+  	"layer-shell": true,
+ 	"cssPriority": "application",
+    "control-center-margin-top": 0,
+    "control-center-margin-bottom": 0,
+    "control-center-margin-right": 0,
+    "control-center-margin-left": 0,
+  	"notification-2fa-action": true,
+  	"notification-inline-replies": false,
     "notification-icon-size": 24,
-    "notification-body-image-height": 60,
-    "notification-body-image-width": 300,
+    "notification-body-image-height": 100,
+    "notification-body-image-width": 200,
     "timeout": 6,
     "timeout-low": 3,
     "timeout-critical": 0,
     "fit-to-screen": false,
-    "control-center-width": 400,
+    "control-center-width": 350,
     "control-center-height": 800,
-    "notification-window-width": 300,
+    "notification-window-width": 400,
     "keyboard-shortcuts": true,
-    "image-visibility": "when-available",
+    "image-visibility": "when available",
     "transition-time": 200,
     "hide-on-clear": false,
     "hide-on-action": true,
     "script-fail-notify": true,
     "widgets": [
-        "title",
+       	"dnd",
         "buttons-grid",
-        "dnd",
-    		"volume",
-   	 		"backlight",
+		/*	"mpris", */
+    	/*	"volume", */
+   	 	/*	"backlight",*/
+        "title",
         "notifications"
     ],
     "widget-config": {
         "title": {
-            "text": "Control Center",
+            "text": "Notifications",
             "clear-all-button": true,
             "button-text": "Clear"
         },
@@ -41,11 +48,11 @@
         },
         "label": {
             "max-lines": 1,
-            "text": "Control Center"
+            "text": "Notification"
         },
         "mpris": {
-            "image-size": 60,
-            "image-radius": 7
+            "image-size": 20,
+            "image-radius": 0
         },
         "volume": {
             "label": "󰕾"

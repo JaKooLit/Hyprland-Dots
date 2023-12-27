@@ -1,7 +1,7 @@
 #!/bin/bash
 
-iDIR="$HOME/.config/dunst/icons"
-notify_cmd_shot="dunstify -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
+iDIR="$HOME/.config/swaync/icons"
+notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
 
 time=$(date "+%d-%b_%H-%M-%S")
 dir="$(xdg-user-dir)/Pictures/Screenshots"
@@ -15,16 +15,16 @@ active_window_path="${dir}/${active_window_file}"
 notify_view() {
     if [[ "$1" == "active" ]]; then
         if [[ -e "${active_window_path}" ]]; then
-            ${notify_cmd_shot} "Screenshot of '${active_window_class}' is saved."
+            ${notify_cmd_shot} "Screenshot of '${active_window_class}' Saved."
         else
-            ${notify_cmd_shot} "Screenshot of '${active_window_class}' is deleted or not available."
+            ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
         fi
     else
         local check_file="$dir/$file"
         if [[ -e "$check_file" ]]; then
             ${notify_cmd_shot} "Screenshot Saved."
         else
-            ${notify_cmd_shot} "Screenshot Deleted."
+            ${notify_cmd_shot} "Screenshot NOT Saved."
         fi
     fi
 }
@@ -34,7 +34,7 @@ notify_view() {
 # countdown
 countdown() {
 	for sec in $(seq $1 -1 1); do
-		dunstify -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png "Taking shot in : $sec"
+		notify-send -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png "Taking shot in : $sec"
 		sleep 1
 	done
 }

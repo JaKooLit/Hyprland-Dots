@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dunst_notif="$HOME/.config/dunst/images/bell.png"
+notif="$HOME/.config/swaync/images/bell.png"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
 
@@ -15,7 +15,7 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword general:border_size 1;\
         keyword decoration:rounding 0"
     swww kill 
-    notify-send -e -u low -i "$dunst_notif" "gamemode enabled. All animations off"
+    notify-send -e -u low -i "$notif" "gamemode enabled. All animations off"
     exit
 else
 	swww init && swww img "$HOME/.config/rofi/.current_wallpaper"
@@ -23,7 +23,7 @@ else
 	${SCRIPTSDIR}/PywalSwww.sh
 	sleep 0.5
 	${SCRIPTSDIR}/Refresh.sh	 
-    notify-send -e -u normal -i "$dunst_notif" "gamemode disabled. All animations normal"
+    notify-send -e -u normal -i "$notif" "gamemode disabled. All animations normal"
     exit
 fi
 hyprctl reload

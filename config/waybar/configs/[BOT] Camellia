@@ -24,6 +24,7 @@
 	"hyprland/workspaces#cam",
 	"custom/separator#line",
 	"mpris",
+	"custom/swaync",
 	"tray#cam", 
 	"wlr/taskbar"],
 

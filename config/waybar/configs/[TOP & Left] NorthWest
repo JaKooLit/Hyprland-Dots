@@ -18,25 +18,25 @@
 "margin-right": 8,
     
 "modules-left": [
-    "custom/menu",
+	"custom/menu",
 	"custom/separator#blank_2",
 	"group/motherboard",
     ],
     
 "modules-center": [
-    //"hyprland/window",
-    "hyprland/workspaces#pacman",
+  	//"hyprland/window",
+ 	"hyprland/workspaces#pacman",
 	],
     
 "modules-right": [
-    "network",
-    "bluetooth",
+  	"network",
+  	"bluetooth",
 	"custom/weather",
 	"custom/separator#blank_2",
 	"group/audio",
 	"custom/separator#blank_2",
-    "keyboard-state",
-    "custom/power",
+  	"keyboard-state",
+  	"custom/power",
     ],
 },
 
@@ -64,6 +64,7 @@
     
 "modules-right": [
 	"mpris",
+	"custom/swaync",
     "tray",
     "custom/light_dark",
     ],

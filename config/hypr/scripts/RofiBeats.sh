@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory for icons
-iDIR="$HOME/.config/dunst/icons"
+iDIR="$HOME/.config/swaync/icons"
 
 # Note: You can add more options below with the following format:
 # ["TITLE"]="link"

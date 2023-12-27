@@ -24,10 +24,10 @@
 		
 "modules-right": [
 	"tray",
+	"custom/swaync",
 	"pulseaudio",
 	"clock",
-	"custom/power"
-				
+	"custom/power"				
 	],
 
 

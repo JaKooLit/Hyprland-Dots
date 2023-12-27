@@ -13,7 +13,8 @@
 "modules-left": [
 	"custom/menu",
 	"custom/separator#blank_2",
-	"mpris", 
+	"clock",
+	"custom/separator#blank_2",
 	"hyprland/window"
 ],
 
@@ -22,11 +23,15 @@
 ],
 		
 "modules-right": [
+	"custom/swaync",
+	"custom/separator#blank",
 	"tray",
+	"custom/separator#blank",
+	"mpris",
+	"custom/separator#blank", 
 	"pulseaudio",
-	"clock",
-	"custom/power"
-				
+	"custom/separator#blank",
+	"custom/power",					
 	],
 
 
