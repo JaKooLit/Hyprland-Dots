@@ -99,8 +99,8 @@ while true; do
     case $confirm in
         [yY])
             # If the detected layout is correct, update the 'kb_layout=' line in the file
-            awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/UserConfigs/Settings.conf > temp.conf
-            mv temp.conf config/hypr/UserConfigs/Settings.conf
+            awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
+            mv temp.conf config/hypr/UserConfigs/UserSettings.conf
             break ;;
         [nN])
             printf "\n%.0s" {1..2}
@@ -112,8 +112,8 @@ while true; do
             printf "\n%.0s" {1..2}
             read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
             # Update the 'kb_layout=' line with the correct layout in the file
-            awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/UserConfigs/Settings.conf > temp.conf
-            mv temp.conf config/hypr/UserConfigs/Settings.conf
+            awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
+            mv temp.conf config/hypr/UserConfigs/UserSettings.conf
             break ;;
         *)
             echo "Please enter either 'y' or 'n'." ;;
@@ -253,7 +253,7 @@ else
 fi
 
 # symlinks for waybar style
-ln -sf $Waybar_Style "$HOME/.config/waybar/style.css" && \
+ln -sf "$Waybar_Style" "$HOME/.config/waybar/style.css" && \
 
 # initialize pywal to avoid config error on hyprland
 wal -i $wallpaper -s -t 2>&1 | tee -a "$LOG"
