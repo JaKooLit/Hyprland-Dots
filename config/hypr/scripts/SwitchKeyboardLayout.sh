@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 layout_f="$HOME/.cache/kb_layout"
-settings_file="$HOME/.config/hypr/configs/Settings.conf"
+settings_file="$HOME/.config/hypr/UserConfigs/UserSettings.conf"
 notif="$HOME/.config/swaync/images/bell.png"
 
 # Check if ~/.cache/kb_layout exists and create it with a default layout from Settings.conf if not found
@@ -40,4 +40,4 @@ hyprctl keyword input:kb_layout "$new_layout"
 echo "$new_layout" > "$layout_f"
 
 # Notification for the new keyboard layout
-notify-send -u low -i "$notif" "Keyboard layout set to $new_layout"
+notify-send -u low -i "$notif" "new KB_Layout: $new_layout"
