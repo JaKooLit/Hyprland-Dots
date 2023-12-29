@@ -27,7 +27,7 @@
 "modules-right": [
 	"mpris",
 	"tray",
-	//"network",
+	"custom/swaync",
 	"backlight#vertical",
 	"pulseaudio#microphone_vertical",
 	"pulseaudio#vertical",

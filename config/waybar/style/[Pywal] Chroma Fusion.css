@@ -76,6 +76,7 @@ window#waybar.empty #window {
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
+#custom-swaync,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -109,6 +110,7 @@ window#waybar.empty #window {
     opacity:1.0;
 }
 
+#custom-swaync,
 #custom-weather,
 #custom-updater {
     color: @yellow;

@@ -68,6 +68,7 @@
 "modules-right": [
 	"hyprland/window",
 	"tray",
+	"custom/swaync",
 	"mpris",
 	"keyboard-state",
 	"pulseaudio",

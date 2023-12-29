@@ -117,7 +117,7 @@ tooltip label{
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
-#custom-speaker,
+#custom-swaync,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -207,7 +207,8 @@ tooltip label{
 	color: #d6e7e5;
 }
 
-#custom-weather.default {
+#custom-swaync,
+#custom-weather {
 	color: #ebecf0;
 }
 

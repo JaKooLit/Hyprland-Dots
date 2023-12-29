@@ -1,13 +1,13 @@
 #!/bin/bash
-#set -x
+set -x
 # Paths
 wallpaper_base_path="$HOME/Pictures/wallpapers/Dynamic-Wallpapers"
 dark_wallpapers="$wallpaper_base_path/Dark"
 light_wallpapers="$wallpaper_base_path/Light"
 hypr_config_path="$HOME/.config/hypr"
-dunst_config="$HOME/.config/dunst"
+swaync_style="$HOME/.config/swaync/style.css"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
-dunst_notif="$HOME/.config/dunst/images/bell.png"
+notif="$HOME/.config/swaync/images/bell.png"
 dark_rofi_pywal="$HOME/.cache/wal/colors-rofi-dark.rasi"
 light_rofi_pywal="$HOME/.cache/wal/colors-rofi-light.rasi"
 
@@ -38,7 +38,7 @@ update_theme_mode() {
 
 # Function to notify user
 notify_user() {
-    dunstify -u low -i "$dunst_notif" "Switching to $1 mode"
+    notify-send -u low -i "$notif" "Switching to $1 mode"
 }
 
 # Function to set Waybar style
@@ -61,13 +61,14 @@ set_waybar_style() {
 set_waybar_style "$next_mode"
 notify_user "$next_mode"
 
-# Change background for dunst
+
+# swaync color change
 if [ "$next_mode" = "Dark" ]; then
-    sed -i '/background = /s/.*/    background = "#00000095"/' "${dunst_config}/dunstrc"
-    sed -i '/foreground = /s/.*/    foreground = "#fafafa"/' "${dunst_config}/dunstrc"
+    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.8);/' "${swaync_style}"
+	sed -i '/@define-color noti-bg-alt/s/#.*;/#111111;/' "${swaync_style}"
 else
-    sed -i '/background = /s/.*/    background = "#ffffff99"/' "${dunst_config}/dunstrc"
-    sed -i '/foreground = /s/.*/    foreground = "#00000095"/' "${dunst_config}/dunstrc"
+    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.9);/' "${swaync_style}"
+	sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' "${swaync_style}"
 fi
 
 # Set Dynamic Wallpaper for Dark or Light Mode
@@ -186,8 +187,7 @@ sleep 1
 ${SCRIPTSDIR}/Refresh.sh 
 
 # Display notifications for theme and icon changes
-dunstify -u normal -i "$dunst_notif" "Themes are set to $selected_theme"
-dunstify -u normal -i "$dunst_notif" "Icon themes set to $selected_icon"
+notify-send -u normal -i "$notif" "Themes in $next_mode Mode"
 
 exit 0
 

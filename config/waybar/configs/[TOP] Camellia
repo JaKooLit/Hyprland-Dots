@@ -23,7 +23,8 @@
 "modules-left": [
 	"hyprland/workspaces#cam",
 	"custom/separator#line", 
-	"mpris", 
+	"mpris",
+	"custom/swaync", 
 	"tray#cam", 
 	"wlr/taskbar"
 	],

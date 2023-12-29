@@ -34,7 +34,6 @@ yad --width=$dynamic_width --height=$dynamic_height \
     --column=Key: \
     --column=Description: \
     --column=Command: \
-    --timeout=60 \
     --timeout-indicator=bottom \
 "ESC" "close this app" "" "=" "SUPER KEY (Windows Key)" "(SUPER KEY)" \
 " enter" "Terminal" "(kitty)" \
@@ -45,13 +44,15 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " Alt V" "Clipboard Manager" "(cliphist)" \
 " W" "Choose wallpaper" "(swww)" \
 "CTRL ALT W" "Random wallpaper" "(swww)" \
-" CTRL B" "Choose waybar styles" "(waybar styles)" \
 " B" "Hide/UnHide Waybar" "waybar" \
+" CTRL B" "Choose waybar styles" "(waybar styles)" \
 " ALT B" "Choose waybar layout" "(waybar layout)" \
-" ALT R" "Reload Waybar Dunst Rofi" "" \
+" ALT R" "Reload Waybar swaync Rofi" "CHECK NOTIFICATION FIRST!!!" \
+" SHIFT N" "Launch Notification Panel" "swaync Notification Center" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
 " Shift S" "screenshot region" "(swappy)" \
+"ALT Print" "Screenshot active window" "active window only" \
 "CTRL ALT P" "power-menu" "(wlogout)" \
 "CTRL ALT L" "screen lock" "(swaylock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
@@ -64,8 +65,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
-"" "More tips on Hyprland-Dots github wiki page" ""\
-"" "" "" \
-"" "" "This window will auto-close in 60 secs" ""\
+"More tips:" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
+
 
 

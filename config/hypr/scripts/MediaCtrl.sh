@@ -1,6 +1,6 @@
 #!/bin/bash
 
-music_icon="$HOME/.config/dunst/icons/music.png"
+music_icon="$HOME/.config/swaync/icons/music.png"
 
 # Play the next track
 play_next() {
@@ -23,18 +23,18 @@ toggle_play_pause() {
 # Stop playback
 stop_playback() {
     playerctl stop
-    dunstify -r 123 -i "$music_icon" "Playback Stopped"
+    notify-send -e -u low -i "$music_icon" "Playback Stopped"
 }
 
-# Display Dunst notification with song information
+# Display notification with song information
 show_music_notification() {
     status=$(playerctl status)
     if [[ "$status" == "Playing" ]]; then
         song_title=$(playerctl metadata title)
         song_artist=$(playerctl metadata artist)
-        dunstify -r 123 -i "$music_icon" "Now Playing:" "$song_title\nby $song_artist"
+        notify-send -e -u low -i "$music_icon" "Now Playing:" "$song_title\nby $song_artist"
     elif [[ "$status" == "Paused" ]]; then
-        dunstify -r 123 -i "$music_icon" "Playback Paused"
+        notify-send -e -u low -i "$music_icon" "Playback Paused"
     fi
 }
 

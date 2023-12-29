@@ -75,7 +75,7 @@ window#waybar {
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
-#custom-speaker,
+#custom-swaync,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -89,7 +89,7 @@ window#waybar {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
   color: @foreground;
-  padding: 5px 8px 5px 8px;
+  padding: 3px 6px 3px 6px;
 }
 
 #battery.warning,

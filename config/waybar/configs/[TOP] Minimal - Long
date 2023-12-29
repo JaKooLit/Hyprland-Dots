@@ -22,6 +22,7 @@
 	"hyprland/workspaces#pacman",
 	"custom/separator#blank_2",
 	"mpris",
+	"custom/swaync",
 	"tray",
 	],
 "modules-center": [

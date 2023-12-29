@@ -1,12 +1,14 @@
 #!/bin/bash
 
-dunst_notif="$HOME/.config/dunst/images/bell.png"
+notif="$HOME/.config/swaync/images/bell.png"
 
-wifi="$(nmcli r wifi | awk 'FNR = 2 {print $1}')"
-if [ "$wifi" == "enabled" ]; then
-    rfkill block all &
-    dunstify -u normal -i "$dunst_notif" -t 1000 'airplane mode: active'
+# Check if any wireless device is blocked
+wifi_blocked=$(rfkill list wifi | grep -o "Soft blocked: yes")
+
+if [ -n "$wifi_blocked" ]; then
+    rfkill unblock wifi
+    notify-send -u low -i "$notif" 'Airplane mode: OFF'
 else
-    rfkill unblock all &
-    dunstify -u normal -i "$dunst_notif" -t 1000 'airplane mode: inactive'
+    rfkill block wifi
+    notify-send -u low -i "$notif" 'Airplane mode: ON'
 fi

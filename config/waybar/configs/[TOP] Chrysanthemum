@@ -18,7 +18,7 @@
 "margin-right": 5,
 "margin-top": 0,
 	
-"modules-left": ["clock#gar", "mpris", "tray"],
+"modules-left": ["clock#gar", "mpris", "tray", "custom/swaync"],
   
 "modules-center": ["hyprland/workspaces"], 
 	

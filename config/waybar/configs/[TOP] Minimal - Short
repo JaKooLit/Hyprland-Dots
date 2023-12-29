@@ -21,6 +21,7 @@
 "modules-right": [
 	"custom/menu", 
 	"tray",
+	"custom/swaync",
 	"mpris", 
 	"network", 
 	"bluetooth", 

@@ -1,9 +1,9 @@
 #!/bin/bash
-
 # A bash script designed to run only once dotfiles installed
 
-# THIS SCRIPT CAN BE DELETED ONCE SUCCESSFULLY BOOTED!! And also, edit ~/.config/hypr/configs/Execs.conf
+# THIS SCRIPT CAN BE DELETED ONCE SUCCESSFULLY BOOTED!! And also, edit ~/.config/hypr/configs/Settings.conf
 # not necessary to do since this script is only designed to run only once as long as the marker exists
+# However, I do highly suggest not to touch it since again, as long as the marker exist, script wont run
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
@@ -17,16 +17,16 @@ effect="--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type 
 # Check if a marker file exists.
 if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 
-    # Initialize pywal
-    #printf " Initializing pywal........\n\n"
-    wal -i $wallpaper -s -t
-
+    # Initialize pywal and wallpaper
+	if [ -f "$wallpaper" ]; then
+		wal -i $wallpaper -s -t > /dev/null 
+		swww init && $swww $wallpaper $effect
+	    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 & 
+	fi
+     
     # Initial symlink for Pywal Dark and Light for Rofi Themes
-    ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+    ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi" > /dev/null 2>&1 &
 
-    # Initial scripts to load in order to have a proper wallpaper waybar and pywal themes
-   	swww init && $swww "$wallpaper" $effect
-    
     # initiate GTK dark mode and apply icon and cursor theme
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-BL-LB > /dev/null 2>&1 &
@@ -41,11 +41,12 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     "$scriptsDir/SwitchKeyboardLayout.sh" > /dev/null 2>&1 &
 
     # Initial waybar style
-    ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
-	
-	# Refreshing waybar, dunst, rofi etc. 
-    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 &
-    "$scriptsDir/Refresh.sh" > /dev/null 2>&1 &
+	if [ -f "$waybar_style" ]; then
+    	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
+
+		# Refreshing waybar, swaync, rofi etc. 
+		"$scriptsDir/Refresh.sh" > /dev/null 2>&1 & 
+	fi
 
     # Create a marker file to indicate that the script has been executed.
     touch ~/.config/hypr/.initial_startup_done

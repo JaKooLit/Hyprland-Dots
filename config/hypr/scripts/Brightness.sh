@@ -1,6 +1,6 @@
 #!/bin/bash
 
-iDIR="$HOME/.config/dunst/icons"
+iDIR="$HOME/.config/swaync/icons"
 notification_timeout=1000
 
 # Get brightness
@@ -26,7 +26,7 @@ get_icon() {
 
 # Notify
 notify_user() {
-	dunstify -h string:x-dunst-stack-tag:brightness_notif -h int:value:$current -u low -i "$icon" "Brightness : $current%"
+	notify-send -e -h string:x-canonical-private-synchronous:brightness_notif -h int:value:$current -u low -i "$icon" "Brightness : $current%"
 }
 
 # Change brightness

@@ -19,7 +19,7 @@
 //"margin-bottom": 5,
 "width": 1444,
 	
-"modules-left": ["hyprland/workspaces#roman", "mpris", "tray#peony"],
+"modules-left": ["hyprland/workspaces#roman", "mpris", "custom/swaync", "tray#peony"],
   
 "modules-center": ["clock#peony"], 
 	
