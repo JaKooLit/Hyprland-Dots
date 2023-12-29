@@ -52,9 +52,9 @@ Thank you for your interest in contributing to Community Standards! We welcome a
 - Follow the code style of the project.
 - Update the **documentation** if necessary.
 - Add tests if applicable.
-- Make sure all tests pass before submitting your changes.
+- Make sure all tests pass or fully tested before submitting your changes.
 - Keep your pull request focused and avoid including unrelated changes.
-- Remeber to follow the given files before submitting your changes.
+- Remember to follow the following files before submitting your changes.
   - [bug_report.md](https://github.com/JaKooLit/Hyprland-Dots/blob/main/.github/ISSUE_TEMPLATE/bug_report.md) - Use this template to create a report to help us improve.
   - [feature_request.md](https://github.com/JaKooLit/Hyprland-Dots/blob/main/.github/ISSUE_TEMPLATE/feature_request.md) - Use this template to suggest a feature for this project.
   - [documentation_update.md](https://github.com/JaKooLit/Hyprland-Dots/blob/main/.github/ISSUE_TEMPLATE/documentation_update.md) - Use this template to propose a change to the documentation.
