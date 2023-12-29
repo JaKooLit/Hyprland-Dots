@@ -25,6 +25,8 @@
 	"memory",
 	"custom/separator#dot-line",
 	"custom/weather",
+	"custom/separator#dot-line",
+	"custom/mviz",
 	],
 
 "modules-center": [

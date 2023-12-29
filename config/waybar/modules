@@ -574,6 +574,11 @@
     "interval" : 86400, // once every day
     "tooltip": true,
 },
+
+"custom/mviz": {
+    "exec": "~/.config/hypr/scripts/waybar_cava.sh",
+    "format": "{}"
+  },
   
 // NOTE:! This is only for Arch and Arch Based Distros  
 "custom/updater":{
