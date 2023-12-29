@@ -7,8 +7,8 @@
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
-wallpaper=$HOME/Pictures/wallpapers/Cute-Cat_ja.jpg
-waybar_style="$HOME/.config/waybar/style/[Pywal] Chroma Fusion.css"
+wallpaper=$HOME/Pictures/wallpapers/Fantasy-Landscape.png
+waybar_style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
 kvantum_theme="Tokyo-Night"
 
 swww="swww img"
