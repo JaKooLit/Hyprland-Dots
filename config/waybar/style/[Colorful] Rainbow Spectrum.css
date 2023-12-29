@@ -52,7 +52,6 @@ tooltip label{
 #backlight-slider,
 #battery,
 #bluetooth,
-#cava,
 #clock,
 #cpu,
 #disk,
@@ -138,6 +137,10 @@ tooltip label{
 	background-color: #a6e3a1;
 }
 
+#mpris {
+	background-color: #fab387;
+	color: black;
+}
 #custom-keyboard,
 #keyboard-state,
 #keyboard-state label,

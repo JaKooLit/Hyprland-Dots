@@ -117,7 +117,6 @@ tooltip {
 #backlight-slider,
 #battery,
 #bluetooth,
-#cava,
 #clock,
 #cpu,
 #disk,
@@ -136,6 +135,7 @@ tooltip {
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-cava_mviz,
 #custom-cycle_wall,
 #custom-keybinds,
 #custom-keyboard,
@@ -236,4 +236,8 @@ tooltip {
 #backlight-slider highlight {
 	min-width: 10px;
 	border-radius: 5px;
+}
+
+#custom-cava_mviz {
+	padding-right: 10px;
 }

@@ -51,7 +51,6 @@ window#waybar.empty #window {
 #backlight-slider,
 #battery,
 #bluetooth,
-#cava,
 #clock,
 #cpu,
 #disk,
@@ -150,6 +149,9 @@ window#waybar.empty #window {
     color: @teal;
 }
 
+#custom-cava_mviz{
+	color: @color2;
+}
 #workspaces {
     margin: 1px 1px 1px 1px;
     padding: 0px 1px;
