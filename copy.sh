@@ -3,8 +3,8 @@
 
 clear
 
-wallpaper=$HOME/Pictures/wallpapers/Cute-Cat_ja.jpg
-Waybar_Style="$HOME/.config/waybar/style/[Pywal] Chroma Fusion.css"
+wallpaper=$HOME/Pictures/wallpapers/Fantasy-Landscape.png
+Waybar_Style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
