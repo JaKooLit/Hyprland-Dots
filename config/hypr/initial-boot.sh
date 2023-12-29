@@ -2,8 +2,9 @@
 
 # A bash script designed to run only once dotfiles installed
 
-# THIS SCRIPT CAN BE DELETED ONCE SUCCESSFULLY BOOTED!! And also, edit ~/.config/hypr/configs/Execs.conf
+# THIS SCRIPT CAN BE DELETED ONCE SUCCESSFULLY BOOTED!! And also, edit ~/.config/hypr/configs/Settings.conf
 # not necessary to do since this script is only designed to run only once as long as the marker exists
+# However, I do highly suggest not to touch it since again, as long as the marker exist, script wont run
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts

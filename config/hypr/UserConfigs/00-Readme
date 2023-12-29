@@ -1,0 +1,9 @@
+Hyprland-Dots v2.2.2
+
+1.) Suggest not to rename files in this folder. As this is connected and being sourced from hyprland.conf in ~/.config/hypr
+
+2.) This folder, along with UserScripts folder will NOT be touch during update.
+
+3.) However, if hyprland has a big change in settings, i.e., blur section is moved into another group, you should managed the change.
+
+I will update the Hyprland-Dots wiki for guidance. Make sure to check out changelogs as well
