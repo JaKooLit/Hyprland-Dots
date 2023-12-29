@@ -28,6 +28,12 @@
     "hide-on-clear": false,
     "hide-on-action": true,
     "script-fail-notify": true,
+    "scripts": {
+        "sound-script": {
+          "exec": "play -v 0.5 ~/.config/swaync/tone/notification.ogg",
+          "app-name": "^(?!.*\\b(volume|brightness)\\b).*"
+        }
+    },
     "widgets": [
        	"dnd",
         "buttons-grid",
