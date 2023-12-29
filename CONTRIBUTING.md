@@ -45,7 +45,7 @@ Thank you for your interest in contributing to Community Standards! We welcome a
      1. Go to your forked repository.
      2. Click the **Compare & pull request** button next to your `your-branch-name` branch.
      3. Add a title and description for your pull request.
-     4. Click **Create pull request** and remember to add the relevant labels with using the [pull request template](https://github.com/JaKooLit/Hyprland-Dots/blob/templates/.github/PULL_REQUEST_TEMPLATE.md).
+     4. Click **Create pull request** and remember to add the relevant labels with using the [pull request template](https://github.com/JaKooLit/Hyprland-Dots/blob/main/.github/PULL_REQUEST_TEMPLATE.md).
 
 ## Guidelines
 
@@ -62,7 +62,7 @@ Thank you for your interest in contributing to Community Standards! We welcome a
   - [PULL_REQUEST_TEMPLATE.md](https://github.com/JaKooLit/Hyprland-Dots/blob/main/.github/PULL_REQUEST_TEMPLATE.md) - Use this template to submit a pull request.
   - [COMMIT_MESSAGE_GUIDELINES.md](https://github.com/JaKooLit/Hyprland-Dots/blob/main/COMMIT_MESSAGE_GUIDELINES.md) - Read this file to learn about the commit message guidelines.
   - [CONTRIBUTING.md](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CONTRIBUTING.md) - Read this file to learn about the contributing guidelines.
-  - [LICENSE](https://github.com/JaKooLit/Hyprland-Dots/blob/main/LICENSE) - Read this file to learn about the license.
+  - [LICENSE](https://github.com/JaKooLit/Hyprland-Dots/blob/main/LICENSE.md) - Read this file to learn about the license.
   - [README.md](https://github.com/JaKooLit/Hyprland-Dots/blob/main/README.md) - Read this file to learn about the project.
 
 ## Contact
