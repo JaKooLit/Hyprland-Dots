@@ -110,26 +110,26 @@ entry {
 
 /* ---- Listview ---- */
 listview {
-	enabled:					 true;
-	columns:					 2;
-	lines:						 8;
-	spacing:                     4px;
-	dynamic:                     true;
-	cycle:                       true;
-	scrollbar:                   true;
-	layout:                      vertical;
-	reverse:                     false;
-	fixed-height:                true;
-	fixed-columns:               false;
-	background-color:            transparent;
-	border-radius:             	 10px;
+	enabled:		true;
+	columns:		2;
+	lines:			3;
+	spacing:                4px;
+	dynamic:                true;
+	cycle:                  true;
+	scrollbar:              true;
+	layout:                 vertical;
+	reverse:                false;
+	fixed-height:           true;
+	fixed-columns:          false;
+	background-color:       transparent;
+	border-radius:          10px;
 }
 
 /* ---- Element ---- */
 element {
     enabled:                    true;
     padding:                    5px;
-    margin:                     2px;
+    margin:                     5px;
     cursor:                     pointer;
     background-color:         transparent;
     border-radius:              10px;
@@ -184,7 +184,7 @@ element alternate.active {
 element-icon {
     background-color:           transparent;
     text-color:                 inherit;
-    size:                       32px;
+    size:                       100px;
     cursor:                     inherit;
 }
 
@@ -199,19 +199,19 @@ element-text {
 /*****----- Message -----*****/
 message {
     background-color:           @background;
-    margin:						20px 0px 0px 0px;
-    border-radius: 				10px;
+    margin:			20px 0px 0px 0px;
+    border-radius: 		10px;
 }
 
 textbox {
-    padding:                    15px;
+    padding:               15px;
     background-color:      @background;
-    text-color:                 @foreground;
+    text-color:            @foreground;
 }
 
 error-message {
-    padding:                    15px;
-    border-radius:            20px;
+    padding:               15px;
+    border-radius:         20px;
     background-color:      @background;
-    text-color:                 @foreground;
+    text-color:            @foreground;
 }
