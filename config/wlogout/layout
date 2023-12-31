@@ -30,7 +30,7 @@
 }
 {
     "label" : "hibernate",
-    "action" : "systemctl hibernate",
+    "action" : "swaylock -f && systemctl hibernate",
     "text" : "Hibernate",
     "keybind" : "h"
 }
