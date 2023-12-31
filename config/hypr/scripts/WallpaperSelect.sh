@@ -23,13 +23,13 @@ RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 RANDOM_PIC_NAME="${#PICS[@]}. random"
 
 # Rofi command
-rofi_command="rofi -dmenu -config ~/.config/rofi/config-wallpaper.rasi"
+rofi_command="rofi -show -dmenu -config ~/.config/rofi/config-wallpaper.rasi"
 
 menu() {
   for i in "${!PICS[@]}"; do
     # Displaying .gif to indicate animated images
     if [[ -z $(echo "${PICS[$i]}" | grep .gif$) ]]; then
-      printf "$(echo "${PICS[$i]}" | cut -d. -f1)\n"
+      printf "$(echo "${PICS[$i]}" | cut -d. -f1)\x00icon\x1f${DIR}/${PICS[$i]}\n"
     else
       printf "${PICS[$i]}\n"
     fi

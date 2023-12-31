@@ -24,7 +24,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						800px;
+    width:						700px;
 	/*height:						450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
@@ -48,10 +48,10 @@ mainbox {
     enabled:                    true;
     orientation:                horizontal;
 	padding:					8px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    /*background-image:           url("~/.config/rofi/.current_wallpaper", width);*/
     children:                   [ "imagebox"];
     border-radius:              12px;
-    background-color:      		@background;
+    background-color:      		@active-background;
 }
 
 /* ---- Imagebox ---- */
@@ -111,8 +111,8 @@ entry {
 /* ---- Listview ---- */
 listview {
 	enabled:					 true;
-	columns:					 2;
-	lines:						 8;
+	columns:					 4;
+	lines:						 3;
 	spacing:                     4px;
 	dynamic:                     true;
 	cycle:                       true;
@@ -182,18 +182,18 @@ element alternate.active {
 }
 
 element-icon {
-    background-color:           transparent;
-    text-color:                 inherit;
-    size:                       32px;
-    cursor:                     inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        150px;
+    cursor:                      inherit;
+    horizontal-align:              0.5;
 }
+
 
 element-text {
     background-color:           transparent;
-    text-color:                 inherit;
+    text-color:                 transparent;
     cursor:                     inherit;
-    vertical-align:             0.5;
-    horizontal-align:           0.0;
 }
 
 /*****----- Message -----*****/
