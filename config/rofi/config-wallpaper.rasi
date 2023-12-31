@@ -24,7 +24,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						800px;
+    width:						700px;
 	/*height:						450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
@@ -48,10 +48,10 @@ mainbox {
     enabled:                    true;
     orientation:                horizontal;
 	padding:					8px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    /*background-image:           url("~/.config/rofi/.current_wallpaper", width);*/
     children:                   [ "imagebox"];
     border-radius:              12px;
-    background-color:      		@background;
+    background-color:      		@active-background;
 }
 
 /* ---- Imagebox ---- */
@@ -110,26 +110,26 @@ entry {
 
 /* ---- Listview ---- */
 listview {
-	enabled:		true;
-	columns:		2;
-	lines:			3;
-	spacing:                4px;
-	dynamic:                true;
-	cycle:                  true;
-	scrollbar:              true;
-	layout:                 vertical;
-	reverse:                false;
-	fixed-height:           true;
-	fixed-columns:          false;
-	background-color:       transparent;
-	border-radius:          10px;
+	enabled:					 true;
+	columns:					 4;
+	lines:						 3;
+	spacing:                     4px;
+	dynamic:                     true;
+	cycle:                       true;
+	scrollbar:                   true;
+	layout:                      vertical;
+	reverse:                     false;
+	fixed-height:                true;
+	fixed-columns:               false;
+	background-color:            transparent;
+	border-radius:             	 10px;
 }
 
 /* ---- Element ---- */
 element {
     enabled:                    true;
     padding:                    5px;
-    margin:                     5px;
+    margin:                     2px;
     cursor:                     pointer;
     background-color:         transparent;
     border-radius:              10px;
@@ -182,36 +182,36 @@ element alternate.active {
 }
 
 element-icon {
-    background-color:           transparent;
-    text-color:                 inherit;
-    size:                       100px;
-    cursor:                     inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        150px;
+    cursor:                      inherit;
+    horizontal-align:              0.5;
 }
+
 
 element-text {
     background-color:           transparent;
-    text-color:                 inherit;
+    text-color:                 transparent;
     cursor:                     inherit;
-    vertical-align:             0.5;
-    horizontal-align:           0.0;
 }
 
 /*****----- Message -----*****/
 message {
     background-color:           @background;
-    margin:			20px 0px 0px 0px;
-    border-radius: 		10px;
+    margin:						20px 0px 0px 0px;
+    border-radius: 				10px;
 }
 
 textbox {
-    padding:               15px;
+    padding:                    15px;
     background-color:      @background;
-    text-color:            @foreground;
+    text-color:                 @foreground;
 }
 
 error-message {
-    padding:               15px;
-    border-radius:         20px;
+    padding:                    15px;
+    border-radius:            20px;
     background-color:      @background;
-    text-color:            @foreground;
+    text-color:                 @foreground;
 }
