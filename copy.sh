@@ -50,10 +50,16 @@ if hostnamectl | grep -q 'Chassis: vm'; then
   sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
 fi
 
-# Preparing hyprland.conf to check for current keyboard layout
-# Function to detect keyboard layout in an X server environment
-detect_x_layout() {
-  if command -v setxkbmap >/dev/null 2>&1; then
+# Function to detect keyboard layout using localectl or setxkbmap
+detect_layout() {
+  if command -v localectl >/dev/null 2>&1; then
+    layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
+    if [ -n "$layout" ]; then
+      echo "$layout"
+    else
+      echo "unknown"
+    fi
+  elif command -v setxkbmap >/dev/null 2>&1; then
     layout=$(setxkbmap -query | grep layout | awk '{print $2}')
     if [ -n "$layout" ]; then
       echo "$layout"
@@ -65,36 +71,14 @@ detect_x_layout() {
   fi
 }
 
-# Function to detect keyboard layout in a tty environment
-detect_tty_layout() {
-  if command -v localectl >/dev/null 2>&1; then
-    layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
-    if [ -n "$layout" ]; then
-      echo "$layout"
-    else
-      echo "unknown"
-    fi
-  else
-    echo "unknown"
-  fi
-}
-
-# Detect the current keyboard layout based on the environment
-if [ -n "$DISPLAY" ]; then
-  # System is in an X server environment
-  layout=$(detect_x_layout)
-else
-  # System is in a tty environment
-  layout=$(detect_tty_layout)
-fi
-
-echo "Keyboard layout: $layout"
+# Detect the current keyboard layout
+layout=$(detect_layout)
 
 printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n\n"
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
-    read -p "$ORANGE Detected keyboard layout or keymap: $layout. Is this correct? [y/n] " confirm
+    read -p "$ORANGE Detected current keyboard layout is: $layout. Is this correct? [y/n] " confirm
 
     case $confirm in
         [yY])
