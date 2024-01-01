@@ -199,15 +199,6 @@ else
     rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
 fi
 
-# symlinks for waybar style
-ln -sf "$Waybar_Style" "$HOME/.config/waybar/style.css" && \
-
-# initialize pywal to avoid config error on hyprland
-wal -i $wallpaper -s -t 2>&1 | tee -a "$LOG"
-
-#initial symlink for Pywal Dark and Light for Rofi Themes
-ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
-
 printf "\n%.0s" {1..3}
 
 # additional wallpapers
@@ -242,6 +233,16 @@ while true; do
             ;;
     esac
 done
+
+# symlinks for waybar style
+ln -sf "$Waybar_Style" "$HOME/.config/waybar/style.css" && \
+
+# initialize pywal to avoid config error on hyprland
+wal -i $wallpaper -s -t 2>&1 | tee -a "$LOG"
+
+#initial symlink for Pywal Dark and Light for Rofi Themes
+ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+
 
 printf "\n%.0s" {1..2}
 printf "\n${OK} Copy Completed!\n\n\n"
