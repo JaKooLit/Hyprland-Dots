@@ -1,4 +1,6 @@
 #!/bin/bash
+## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+## Script for changing blurs on the fly
 
 notif="$HOME/.config/swaync/images/bell.png"
 

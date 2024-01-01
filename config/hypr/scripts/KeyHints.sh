@@ -1,4 +1,6 @@
 #!/bin/bash
+## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# Keyhints. Idea got from Garuda Hyprland
 
 # Detect monitor resolution and scale
 x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
@@ -42,8 +44,8 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " Q" "close active window" "(not kill)" \
 " Shift Q " "closes a specified window" "(window)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
-" W" "Choose wallpaper" "(swww)" \
-"CTRL ALT W" "Random wallpaper" "(swww)" \
+" W" "Choose wallpaper" "(Wallpaper Menu)" \
+"CTRL ALT W" "Random wallpaper" "(via swww)" \
 " B" "Hide/UnHide Waybar" "waybar" \
 " CTRL B" "Choose waybar styles" "(waybar styles)" \
 " ALT B" "Choose waybar layout" "(waybar layout)" \
@@ -61,7 +63,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " Shift F" "Toggle float" "single window" \
 " ALT F" "Toggle all windows to float" "all windows" \
 " Shift B" "Toggle Blur" "normal or less blur" \
-" SHIFT G" "Gamemode! All animations off" "" \
+" SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
