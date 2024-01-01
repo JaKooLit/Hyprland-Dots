@@ -50,7 +50,6 @@ window#waybar.empty #window {
 #backlight-slider,
 #battery,
 #bluetooth,
-#cava,
 #clock,
 #cpu,
 #disk,
@@ -141,6 +140,10 @@ window#waybar.empty #window {
 #custom-keyboard,
 #custom-light_dark {
     color: @lavender;
+}
+
+#custom-cava_mviz {
+	color: @color2;
 }
 
 #custom-lock,

@@ -55,7 +55,6 @@ window#waybar {
 #backlight-slider,
 #battery,
 #bluetooth,
-#cava,
 #clock,
 #cpu,
 #disk,
@@ -203,11 +202,15 @@ window#waybar {
 
 #custom-lock,    
 #bluetooth{
-   color:#d08770;
+	color:#d08770;
 }
-   
+
+#custom-cava_mviz{
+	color: @color2;
+} 
+  
 #custom-weather{
-   color:#d08770;
+	color:#d08770;
 }
 
 #taskbar button.active {

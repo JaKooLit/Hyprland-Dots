@@ -215,30 +215,7 @@
     "tooltip": true,
     "on-click": "blueman-manager",
 },
-  
-"cava": {
-    //"cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
-    "framerate": 30,
-    "autosens": 1,
-    "sensitivity": 100,
-    "bars": 14,
-    "lower_cutoff_freq": 50,
-    "higher_cutoff_freq": 10000,
-    "method": "pulse",
-    "source": "auto",
-    "stereo": true,
-    "reverse": false,
-    "bar_delimiter": 0,
-    "monstercat": false,
-    "waves": false,
-    "noise_reduction": 0.77,
-    "input_delay": 2,
-    "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-    "actions": {
-        "on-click-right": "mode"
-               }
-},
-   
+     
 "clock": {
     "interval": 1,
     //"format": " {:%I:%M %p}", // AM PM format
@@ -530,6 +507,12 @@
     "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",
     "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
 },
+
+// This is a custom cava visualizer
+"custom/cava_mviz": {
+    "exec": "~/.config/hypr/scripts/WaybarCava.sh",
+    "format": "{}"
+},
   
 "custom/playerctl": {
     "format": "<span>{}</span>",
@@ -543,6 +526,15 @@
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
     "smooth-scrolling-threshold": 1,
+},
+
+"custom/power": {
+    "format": "⏻ ",
+    "exec": "echo ; echo 󰟡 power // blur",
+	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
+    "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
+    "interval" : 86400, // once every day
+    "tooltip": true,
 },
 
 "custom/swaync": {
@@ -565,16 +557,7 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true,
 },
-      
-"custom/power": {
-    "format": "⏻ ",
-    "exec": "echo ; echo 󰟡 power // blur",
-	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
-    "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
-    "interval" : 86400, // once every day
-    "tooltip": true,
-},
-  
+    
 // NOTE:! This is only for Arch and Arch Based Distros  
 "custom/updater":{
     "format": " {}",
@@ -624,6 +607,12 @@
   
 "custom/separator#blank_2": {
 	"format": "  ",
+    "interval": "once",
+    "tooltip": false
+},
+
+"custom/separator#blank_3": {
+	"format": "   ",
     "interval": "once",
     "tooltip": false
 },

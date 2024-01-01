@@ -48,7 +48,6 @@ window#waybar.hidden {
 #backlight-slider,
 #battery,
 #bluetooth,
-#cava,
 #clock,
 #cpu,
 #disk,
@@ -96,15 +95,15 @@ window#waybar.hidden {
 }
 
 #idle_inhibitor {
-  color: @blue;
+  	color: @blue;
 }
 
 #backlight {
-  color: @blue;
+  	color: @blue;
 }
 
 #battery {
-  color: @green;
+  	color: @green;
 }
 
 @keyframes blink {
@@ -114,14 +113,14 @@ window#waybar.hidden {
 }
 
 #battery.critical:not(.charging) {
-  background-color: @red;
-  color: @theme_text_color;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  box-shadow: inset 0 -3px transparent;
+  	background-color: @red;
+  	color: @theme_text_color;
+  	animation-name: blink;
+  	animation-duration: 0.5s;
+  	animation-timing-function: linear;
+  	animation-iteration-count: infinite;
+  	animation-direction: alternate;
+  	box-shadow: inset 0 -3px transparent;
 }
 
 #bluetooth {
@@ -129,28 +128,28 @@ window#waybar.hidden {
 }
 
 #clock {
-  color: @yellow;
+  	color: @yellow;
 }
 
 #cpu {
-  color: @green;
+  	color: @green;
 }
 
 #custom-keyboard,
 #memory {
-  color: @sky;
+  	color: @sky;
 }
 
 #disk {
-  color: @sapphire;
+  	color: @sapphire;
 }
 
 #temperature {
-  color: @teal;
+  	color: @teal;
 }
 
 #temperature.critical {
-  background-color: @red;
+  	background-color: @red;
 }
 
 #tray > .passive {
@@ -161,7 +160,7 @@ window#waybar.hidden {
 }
 
 #keyboard-state {
-  color: @flamingo;
+  	color: @flamingo;
 }
 
 #workspaces button {
@@ -217,57 +216,60 @@ window#waybar.hidden {
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
+#custom-cava_mviz {
+	color: @pink;
+}
 
 #custom-menu {
-  color: @rosewater;
+  	color: @rosewater;
 }
 
 #custom-power {
-  color: @red;
+  	color: @red;
 }
 
 #custom-updater {
-  color: @red;
+  	color: @red;
 }
 
 #custom-light_dark {
-  color: @blue;
+  	color: @blue;
 }
 
 #custom-weather {
-  color: @lavender;
+  	color: @lavender;
 }
 
 #custom-lock {
-  color: @maroon;
+  	color: @maroon;
 }
 
 #pulseaudio {
-  color: @sapphire;
+  	color: @sapphire;
 }
 
 #pulseaudio.bluetooth {
-  color: @pink;
+  	color: @pink;
 }
 #pulseaudio.muted {
-  color: @red;
+  	color: @red;
 }
 
 #window {
-  color: @mauve;
+  	color: @mauve;
 }
 
 #custom-waybar-mpris {
-  color:@lavender;
+  	color:@lavender;
 }
 
 #network {
-  color: @teal;
+  	color: @teal;
 }
 #network.disconnected,
 #network.disabled {
-  background-color: @surface0;
-  color: @text;
+  	background-color: @surface0;
+  	color: @text;
 }
 #pulseaudio-slider slider {
 	min-width: 0px;

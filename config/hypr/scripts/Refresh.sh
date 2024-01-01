@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
+## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# Scripts for refreshing waybar, rofi, swaync, pywal colors
 
 SCRIPTSDIR=$HOME/.config/hypr/scripts
-UserSCRIPTSDIR=$HOME/.config/hypr/UserScripts
+UserScripts=$HOME/.config/hypr/UserScripts
 
 # Define file_exists function
 file_exists() {
@@ -30,8 +32,8 @@ swaync > /dev/null 2>&1 &
 
 # Relaunching rainbow borders if the script exists
 sleep 1
-if file_exists "${UserSCRIPTSDIR}/RainbowBorders.sh"; then
-    ${UserSCRIPTSDIR}/RainbowBorders.sh &
+if file_exists "${UserScripts}/RainbowBorders.sh"; then
+    ${UserScripts}/RainbowBorders.sh &
 fi
 
 # for cava-pywal (note, need to manually restart cava once wallpaper changes)

@@ -1,7 +1,8 @@
 #!/bin/bash
+# Rofi menu for Quick Edit / View of Settings (SUPER E)
 
-defaultDir="$HOME/.config/hypr/configs"
-userDir="$HOME/.config/hypr/UserConfigs"
+configs="$HOME/.config/hypr/configs"
+UserConfigs="$HOME/.config/hypr/UserConfigs"
 
 menu(){
   printf "1. view Env-variables\n"
@@ -19,31 +20,31 @@ main() {
     choice=$(menu | rofi -dmenu -config ~/.config/rofi/config-compact.rasi | cut -d. -f1)
     case $choice in
         1)
-            kitty -e nano "$userDir/ENVariables.conf"
+            kitty -e nano "$UserConfigs/ENVariables.conf"
             ;;
         2)
-            kitty -e nano "$userDir/WindowRules.conf"
+            kitty -e nano "$UserConfigs/WindowRules.conf"
             ;;
         3)
-            kitty -e nano "$userDir/Startup_Apps.conf"
+            kitty -e nano "$UserConfigs/Startup_Apps.conf"
             ;;
         4)
-            kitty -e nano "$userDir/UserKeybinds.conf"
+            kitty -e nano "$UserConfigs/UserKeybinds.conf"
             ;;
         5)
-            kitty -e nano "$userDir/Monitors.conf"
+            kitty -e nano "$UserConfigs/Monitors.conf"
             ;;
         6)
-            kitty -e nano "$userDir/Laptops.conf"
+            kitty -e nano "$UserConfigs/Laptops.conf"
             ;;
         7)
-            kitty -e nano "$userDir/UserSettings.conf"
+            kitty -e nano "$UserConfigs/UserSettings.conf"
             ;;
         8)
-            kitty -e nano "$defaultDir/Settings.conf"
+            kitty -e nano "$configs/Settings.conf"
             ;;
         9)
-            kitty -e nano "$defaultDir/Keybinds.conf"
+            kitty -e nano "$configs/Keybinds.conf"
             ;;
         *)
             ;;

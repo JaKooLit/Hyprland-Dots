@@ -1,4 +1,6 @@
 #!/bin/bash
+## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# Pywal Colors for current wallpaper
 
 # Define the path to the swww cache directory
 cache_dir="$HOME/.cache/swww/"

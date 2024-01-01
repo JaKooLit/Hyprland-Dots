@@ -1,11 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/bash
+## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 
 # Modified version of Refresh but no waybar refresh
 # Used by automatic wallpaper change
-# Modified inorder to refresh rofi background, Pywal
+# Modified inorder to refresh rofi background, Pywal, SwayNC
 
 SCRIPTSDIR=$HOME/.config/hypr/scripts
-UserSCRIPTSDIR=$HOME/.config/hypr/UserScripts
+UserScripts=$HOME/.config/hypr/UserScripts
 
 # Define file_exists function
 file_exists() {
@@ -29,8 +30,8 @@ ${SCRIPTSDIR}/PywalSwww.sh &
 
 # Relaunching rainbow borders if the script exists
 sleep 1
-if file_exists "${UserSCRIPTSDIR}/RainbowBorders.sh"; then
-    ${UserSCRIPTSDIR}/RainbowBorders.sh &
+if file_exists "${UserScripts}/RainbowBorders.sh"; then
+    ${UserScripts}/RainbowBorders.sh &
 fi
 
 # for cava-pywal (note, need to manually restart cava once wallpaper changes)
