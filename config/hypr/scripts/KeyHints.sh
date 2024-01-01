@@ -57,7 +57,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 "CTRL ALT L" "screen lock" "(swaylock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
 " F" "Fullscreen" "Toggles to full screen" \
-" Spacebar" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
+" ALT L" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
 " Shift F" "Toggle float" "single window" \
 " ALT F" "Toggle all windows to float" "all windows" \
 " Shift B" "Toggle Blur" "normal or less blur" \
