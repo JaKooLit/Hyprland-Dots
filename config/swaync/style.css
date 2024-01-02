@@ -162,6 +162,7 @@
 .control-center {
     background: @noti-bg;
     border: 2px solid @noti-border-color;
+	color: @text-color;
     border-radius: 10px;
 }
 
