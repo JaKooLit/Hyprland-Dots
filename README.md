@@ -10,6 +10,21 @@
 #### Some preview
 https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5c-38f16d63a9fa
 
+#### 📹 A video walkthroughs
+<details>
+  <summary>YT Videos</summary>
+
+- [Walkthough](https://youtu.be/fO-RBHvVEcc)
+
+- [V1-Changes](https://youtu.be/upDl1ns05eg)
+
+- [v2-Changes](https://youtu.be/yaVurRoXc-s)
+
+#### 📽️ A video coverage by other users. Pls watch and subscribe to their channel
+- [`Link`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Videos_and_Reviews)
+
+</details>
+
 ## 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
 - You can install Hyprland using Scripts below:
 
@@ -28,21 +43,6 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 
 #### 📦 Whats new?
 - To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth it!
-
-
-<details>
-  <summary>Video walkthroughs</summary>
-#### 📹 A video walkthroughs
-- [Walkthough](https://youtu.be/fO-RBHvVEcc)
-
-- [V1-Changes](https://youtu.be/upDl1ns05eg)
-
-- [v2-Changes](https://youtu.be/yaVurRoXc-s)
-
-#### 📽️ A video coverage by other users. Pls watch and subscribe to their channel
-- [`Link`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Videos_and_Reviews)
-
-</details>
 
 ### 💥 Copying / Installation / Update instructions 💥
 - [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_Update) 
