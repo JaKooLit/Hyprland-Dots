@@ -41,7 +41,7 @@ declare -A exclusions=(
     ["config/hypr/"]="--exclude=UserConfigs/ --exclude=UserScripts/"
     ["config/waybar/"]="--exclude=config --exclude=style.css"
     ["config/rofi/"]="--exclude=pywal-color/ --exclude=.current_wallpaper"
-    ["config/waybar/"]="--exclude=config --exclude=style.css"
+    ["config/waybar/"]="--exclude=config --exclude=style.css --exclude=modules"
     # Add more exclusions as needed
 )
 
@@ -130,7 +130,7 @@ if version_gt "$latest_version" "$stored_version"; then
     	fi
 		done
 		printf "\n%.0s" {1..2}
-        echo "$NOTE Files updated successfully to version $latest_version" 2>&1 | tee -a "$LOG"
+        echo "$NOTE Files or Folders updated successfully to version $latest_version" 2>&1 | tee -a "$LOG"
 
 		# Set some files as executable
 		chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
@@ -143,3 +143,11 @@ if version_gt "$latest_version" "$stored_version"; then
 else
     echo "$OK No upgrade found. The installed version ($stored_version) is up to date with the Hyprland-Dots version ($latest_version)." 2>&1 | tee -a "$LOG"
 fi
+
+printf "\n%.0s" {1..3}
+echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT NOTICE!!!! $(tput sgr0)" 
+echo "$(tput bold)$(tput setaf 7)If you updated waybar folder, and you have your own waybar layout and styles $(tput sgr0)"
+echo "$(tput bold)$(tput setaf 7)Copy those files from the created backup ~/.config/waybar-b4-upgrade $(tput sgr0)"
+echo "$(tput bold)$(tput setaf 7)Make sure to set your waybar and style before logout or reboot $(tput sgr0)"
+echo "$(tput bold)$(tput setaf 7)SUPER CTRL B for Waybar Styles and SUPER ALT B for Waybar Layout $(tput sgr0)"
+printf "\n%.0s" {1..3}
