@@ -40,7 +40,6 @@ window {
     enabled:                true;
     border-radius:          12px;
     border-radius:          12px;
- 	background-color:     	transparent;
 	background-image:   	url("~/.config/rofi/.current_wallpaper", height);
 }
 
