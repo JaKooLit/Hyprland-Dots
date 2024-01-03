@@ -55,15 +55,27 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
 cd Hyprland-Dots
 ```
-- to copy/install/update from upstream (possible bugs)
+- to copy/install from upstream (possible bugs)
 ```bash
 chmod +x copy.sh
 ./copy.sh
 ```
-- to copy/install/update from releases (more "stable")
+- to copy/install from releases (more "stable")
 ```bash
 chmod +x release.sh
 ./release.sh
+```
+
+- to update from releases
+> [!IMPORTANT]
+> You should atleast v2.2.3 in your hyprland dots (ls ~/.config/hypr) to check version
+> You need rsync for it to work
+
+> [!CAUTION]
+> you should have already up and running Hyprland before using this function
+```bash
+chmod +x upgrade.sh
+./upgrade.sh
 ```
 
 #### 🛎️ a small note on wallpapers
