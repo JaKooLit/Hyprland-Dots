@@ -45,7 +45,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 - To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth it!
 
 ### 💥 Copying / Installation / Update instructions 💥
-- [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_Update) 
+- [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
 > [!Note] 
 > The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
 - ~/.config (btop cava hypr kitty rofi swappy swaylock swaync waybar wlogout) - These are folders to be copied.
@@ -105,8 +105,7 @@ chmod +x upgrade.sh
 - Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
 
 #### 🤷‍♂️ TO DO!
-- [ ] Tweak waybar layouts and Themes - in constant progress
-- [ ] Tweak rofi layouts and Themes in constant progress
+- [ ] Tweak dots - 🚧 in constant progress 
 - ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
 
 #### 🔮 Discord Server
