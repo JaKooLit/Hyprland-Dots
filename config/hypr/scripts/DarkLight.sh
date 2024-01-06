@@ -147,8 +147,10 @@ set_custom_gtk_theme() {
         echo "Selected GTK theme for $mode mode: $selected_theme"
         gsettings set $theme_setting "$selected_theme"
 
-        # Flatpak GTK apps
+        # Flatpak GTK apps (themes)
         if command -v flatpak &> /dev/null; then
+            flatpak --user override --filesystem=$HOME/.themes
+            sleep 0.5
             flatpak --user override --env=GTK_THEME="$selected_theme"
         fi
     else
@@ -168,8 +170,10 @@ set_custom_gtk_theme() {
         sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt5ct/qt5ct.conf"
         sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt6ct/qt6ct.conf"
 
-        # Flatpak GTK apps
+        # Flatpak GTK apps (icons)
         if command -v flatpak &> /dev/null; then
+            flatpak --user override --filesystem=$HOME/.icons
+            sleep 0.5
             flatpak --user override --env=ICON_THEME="$selected_icon"
         fi
     else
