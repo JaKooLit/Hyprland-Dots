@@ -45,7 +45,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 - To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth it!
 
 ### 💥 Copying / Installation / Update instructions 💥
-- [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_Update) 
+- [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
 > [!Note] 
 > The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
 - ~/.config (btop cava hypr kitty rofi swappy swaylock swaync waybar wlogout) - These are folders to be copied.
@@ -55,15 +55,27 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
 cd Hyprland-Dots
 ```
-- to copy/install/update from upstream (possible bugs)
+- to copy/install from upstream (possible bugs)
 ```bash
 chmod +x copy.sh
 ./copy.sh
 ```
-- to copy/install/update from releases (more "stable")
+- to copy/install from releases (more "stable")
 ```bash
 chmod +x release.sh
 ./release.sh
+```
+
+- to update from releases
+> [!IMPORTANT]
+> You should atleast v2.2.3 in your hyprland dots (ls ~/.config/hypr) to check version
+> You need rsync for it to work
+
+> [!CAUTION]
+> you should have already up and running Hyprland before using this function
+```bash
+chmod +x upgrade.sh
+./upgrade.sh
 ```
 
 #### 🛎️ a small note on wallpapers
@@ -93,8 +105,7 @@ chmod +x release.sh
 - Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
 
 #### 🤷‍♂️ TO DO!
-- [ ] Tweak waybar layouts and Themes - in constant progress
-- [ ] Tweak rofi layouts and Themes in constant progress
+- [ ] Tweak dots - 🚧 in constant progress 
 - ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
 
 #### 🔮 Discord Server

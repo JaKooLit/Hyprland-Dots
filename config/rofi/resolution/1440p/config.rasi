@@ -39,7 +39,8 @@ window {
     fullscreen:                 false;
     enabled:                    true;
     border-radius:              12px;
- 	background-color:           @background-color;
+	background-image:           url("~/.config/rofi/.current_wallpaper", width);
+ 	
 }
 
 /* ---- Mainbox ---- */
@@ -47,7 +48,7 @@ mainbox {
     enabled:                    true;
     orientation:                vertical;
 	padding:					8px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    background-color:           transparent;
     children:                   [ "inputbar", "imagebox" ];
     border-radius:              12px;
 }
@@ -118,7 +119,7 @@ mode-switcher{
 }
 
 button {
-    padding:                   0px 10px 0px 10px;
+    padding:                   0px 12px 0px 8px;
     border-radius:             12px;
     background-color:          @background;
     text-color:                inherit;

@@ -3,18 +3,18 @@
 
 /* ---- Configuration ---- */
 configuration {
-    modi:                   "drun,run,filebrowser";
-    font:                   "Fira Code SemiBold 12";
-    show-icons:             true;
-    display-drun:           "";
-	display-run:            "";
-    display-filebrowser:   	"";
-    display-window:        	"";
-	drun-display-format: 	"{name}";
-    hover-select:           true;
-    me-select-entry:        "MouseSecondary";
-    me-accept-entry:        "MousePrimary";
-    window-format:          "{w} · {c} · {t}";
+    modi:                  "drun,run,filebrowser";
+    font:                  "Fira Code SemiBold 12";
+    show-icons:            true;
+    display-drun:          "";
+	display-run:           "";
+    display-filebrowser:   "";
+    display-window:        "";
+	drun-display-format:   "{name}";
+    hover-select:          true;
+    me-select-entry:       "MouseSecondary";
+    me-accept-entry:       "MousePrimary";
+    window-format:         "{w} · {c} · {t}";
 	dpi:					1;
     
 }
@@ -25,7 +25,7 @@ configuration {
 /* ---- Window ---- */
 window {
     width:					700px;
-	/*height:				 450px;*/
+	/*height:				450px;*/
     x-offset:               0px;
     y-offset:               0px;
     spacing:                0px;
@@ -40,7 +40,6 @@ window {
     enabled:                true;
     border-radius:          12px;
     border-radius:          12px;
- 	background-color:     	transparent;
 	background-image:   	url("~/.config/rofi/.current_wallpaper", height);
 }
 
@@ -143,66 +142,64 @@ element normal.normal {
 }
 
 element normal.urgent {
-    background-color:       inherit;
-    text-color:             @foreground;
+    background-color:      inherit;
+    text-color:            @foreground;
 }
 
 element normal.active {
-    background-color:       inherit;
-    text-color:             @foreground;
+    background-color:      inherit;
+    text-color:            @foreground;
 }
 
 element selected.normal {
-    background-color:       @selected-normal-background;
-    text-color:             @foreground;
+    background-color:      @selected-normal-background;
+    text-color:            @foreground;
 }
 
 element selected.urgent {
-    background-color:       inherit;
-    text-color:             @foreground;
+    background-color:      inherit;
+    text-color:            @foreground;
 }
 
 element selected.active {
-    background-color:       inherit;
-    text-color:             @foreground;
+    background-color:      inherit;
+    text-color:            @foreground;
 }
 
 element alternate.normal {
-    background-color:       inherit;
-    text-color:             @foreground;
+    background-color:      inherit;
+    text-color:            @foreground;
 }
 
 element alternate.urgent {
-    background-color:       inherit;
-    text-color:             @foreground;
+    background-color:      inherit;
+    text-color:            @foreground;
 }
 
 element alternate.active {
-    background-color:       inherit;
-    text-color:             @foreground;
+    background-color:      inherit;
+    text-color:            @foreground;
 }
 
 element-icon {
-    background-color:       transparent;
-    text-color:             inherit;
-    size:                   130px;
-    cursor:                 inherit;
+    background-color:      transparent;
+    text-color:            inherit;
+    size:                  130px;
+    cursor:                inherit;
 }
 
 
 element-text {
-	font:                   "Fira Code SemiBold 8";
-    background-color:       transparent;
-    text-color:             inherit;
-    cursor:                 inherit;
-    vertical-align:         0.5;
-    horizontal-align:       0.5;
+	font:                  "Fira Code SemiBold 8";
+    background-color:      transparent;
+    text-color:            inherit;
+    cursor:                inherit;
 }
 
 /*****----- Message -----*****/
 message {
     background-color:       @background;
-    margin:					20px 0px 0px 0px;
+    margin:				    20px 0px 0px 0px;
     border-radius: 			10px;
 }
 

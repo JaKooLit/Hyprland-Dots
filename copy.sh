@@ -28,8 +28,13 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
+# Create Directory for Copy Logs
+if [ ! -d Copy-Logs ]; then
+    mkdir Copy-Logs
+fi
+
 # Set the name of the log file to include the current date and time
-LOG="install-$(date +%d-%H%M%S)_dotfiles.log"
+LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 
 # update home folders
 xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
@@ -85,6 +90,7 @@ while true; do
             # If the detected layout is correct, update the 'kb_layout=' line in the file
             awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
             mv temp.conf config/hypr/UserConfigs/UserSettings.conf
+            echo "${NOTE} kb_layout $layout configured in settings.  " 2>&1 | tee -a "$LOG"
             break ;;
         [nN])
             printf "\n%.0s" {1..2}
@@ -98,6 +104,7 @@ while true; do
             # Update the 'kb_layout=' line with the correct layout in the file
             awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
             mv temp.conf config/hypr/UserConfigs/UserSettings.conf
+            echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
             break ;;
         *)
             echo "Please enter either 'y' or 'n'." ;;
@@ -129,7 +136,7 @@ while true; do
 done
 
 # Use the selected resolution in your existing script
-echo "You chose $resolution resolution for better Rofi appearance."
+echo "You chose $resolution resolution for better Rofi appearance." 2>&1 | tee -a "$LOG"
 
 # Add your commands based on the resolution choice
 if [ "$resolution" == "≤ 1080p" ]; then
@@ -211,21 +218,21 @@ while true; do
         [Yy])
             echo "${NOTE} Downloading additional wallpapers..."
             if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
-                echo "${NOTE} Wallpapers downloaded successfully."
+                echo "${NOTE} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
                 if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
-                    echo "${NOTE} Wallpapers copied successfully."
+                    echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
                     rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
                     break
                 else
-                    echo "${ERROR} Copying wallpapers failed" >&2
+                    echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
                 fi
             else
-                echo "${ERROR} Downloading additional wallpapers failed" >&2
+                echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
             fi
             ;;
         [Nn])
-            echo "You chose not to download additional wallpapers." >&2
+            echo "You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
             break
             ;;
         *)
