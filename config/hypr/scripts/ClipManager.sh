@@ -1,9 +1,40 @@
 #!/bin/bash
 ## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Clipboard Manager. This needed cliphist & wl-copy and of course rofi
+# Clipboard Manager. This script uses cliphist, rofi, and wl-copy.
 
-if [[ ! $(pidof rofi) ]]; then
-	cliphist list | rofi -dmenu -config ~/.config/rofi/config-long.rasi | cliphist decode | wl-copy
-else
-	pkill rofi
-fi
+# Actions:
+# CTRL Del to delete an entry
+# ALT Del to wipe clipboard contents
+
+while true; do
+    result=$(
+        rofi -dmenu \
+            -kb-custom-1 "Control-Delete" \
+            -kb-custom-2 "Alt-Delete" \
+            -config ~/.config/rofi/config-clipboard.rasi < <(cliphist list)
+    )
+
+    case "$?" in
+        1)
+            exit
+            ;;
+        0)
+            case "$result" in
+                "")
+                    continue
+                    ;;
+                *)
+                    cliphist decode <<<"$result" | wl-copy
+                    exit
+                    ;;
+            esac
+            ;;
+        10)
+            cliphist delete <<<"$result"
+            ;;
+        11)
+            cliphist wipe
+            ;;
+    esac
+done
+
