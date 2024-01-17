@@ -66,7 +66,7 @@ chmod +x release.sh
 ./release.sh
 ```
 
-- to update from releases
+- UPGRADE.sh (Experimental)
 > [!IMPORTANT]
 > You should atleast v2.2.3 in your hyprland dots (ls ~/.config/hypr) to check version
 > You need rsync for it to work
