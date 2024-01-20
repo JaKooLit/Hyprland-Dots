@@ -21,6 +21,10 @@ cat >"$config_file" <<EOF
 [general]
 bars = 10
 
+[input]
+method = pulse
+source = auto
+
 [output]
 method = raw
 raw_target = /dev/stdout
