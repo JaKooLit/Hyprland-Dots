@@ -38,11 +38,11 @@ main() {
   
   # Check if the link is a playlist
   if [[ $link == *playlist* ]]; then
-    mpv --shuffle --vid=no "$link"
+    mpv --input-ipc-server=$HOME/.cache/mpvsocket --shuffle --vid=no  "$link"
   else
-    mpv "$link"
+    mpv --input-ipc-server=$HOME/.cache/mpvsocket "$link"
   fi
 }
 
 # Check if an online music process is running and send a notification, otherwise run the main function
-pkill -f http && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || main
+echo stop | socat - $HOME/.cache/mpvsocket && notify-send -u low  -i "$iDIR/music.png" "Online Music stopped" || main
