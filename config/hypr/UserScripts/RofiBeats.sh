@@ -45,4 +45,4 @@ main() {
 }
 
 # Check if an online music process is running and send a notification, otherwise run the main function
-pkill -f http && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || main
+pkill mpv && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || main
