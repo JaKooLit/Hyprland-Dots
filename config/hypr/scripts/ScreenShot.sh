@@ -19,19 +19,22 @@ notify_view() {
     if [[ "$1" == "active" ]]; then
         if [[ -e "${active_window_path}" ]]; then
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' Saved."
+            paplay "${sDIR}/camera-shutter.oga"
         else
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
         fi
+    elif [[ "$1" == "swappy" ]]; then
+		${notify_cmd_shot} "Screenshot Captured."
     else
         local check_file="$dir/$file"
         if [[ -e "$check_file" ]]; then
             ${notify_cmd_shot} "Screenshot Saved."
+            paplay "${sDIR}/camera-shutter.oga"
         else
             ${notify_cmd_shot} "Screenshot NOT Saved."
         fi
     fi
-	elif [[ "$1" == "swappy" ]]; then
-		${notify_cmd_shot} "Screenshot Captured."
+	
 }
 
 
@@ -77,13 +80,6 @@ shotarea() {
 	notify_view
 }
 
-shotswappy() {
-	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile" && paplay "${sDIR}/camera-shutter.oga" && notify_view "swappy"
-	swappy -f - <"$tmpfile"
-	rm "$tmpfile"
-}
-
 shotactive() {
     active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
     active_window_file="Screenshot_${time}_${active_window_class}.png"
@@ -92,6 +88,13 @@ shotactive() {
     hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -g - "${active_window_path}"
 	sleep 1
     notify_view "active"  
+}
+
+shotswappy() {
+	tmpfile=$(mktemp)
+	grim -g "$(slurp)" - >"$tmpfile" && paplay "${sDIR}/camera-shutter.oga" && notify_view "swappy"
+	swappy -f - <"$tmpfile"
+	rm "$tmpfile"
 }
 
 
