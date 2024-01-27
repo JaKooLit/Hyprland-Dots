@@ -3,6 +3,7 @@
 # Screenshots scripts
 
 iDIR="$HOME/.config/swaync/icons"
+sDIR="/usr/share/sounds/freedesktop/stereo"
 notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
 
 time=$(date "+%d-%b_%H-%M-%S")
@@ -29,6 +30,8 @@ notify_view() {
             ${notify_cmd_shot} "Screenshot NOT Saved."
         fi
     fi
+	elif [[ "$1" == "swappy" ]]; then
+		${notify_cmd_shot} "Screenshot Captured."
 }
 
 
@@ -74,6 +77,13 @@ shotarea() {
 	notify_view
 }
 
+shotswappy() {
+	tmpfile=$(mktemp)
+	grim -g "$(slurp)" - >"$tmpfile" && paplay "${sDIR}/camera-shutter.oga" && notify_view "swappy"
+	swappy -f - <"$tmpfile"
+	rm "$tmpfile"
+}
+
 shotactive() {
     active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
     active_window_file="Screenshot_${time}_${active_window_class}.png"
@@ -101,8 +111,10 @@ elif [[ "$1" == "--area" ]]; then
 	shotarea
 elif [[ "$1" == "--active" ]]; then
 	shotactive
+elif [[ "$1" == "--swappy" ]]; then
+	shotswappy
 else
-	echo -e "Available Options : --now --in5 --in10 --win --area --active"
+	echo -e "Available Options : --now --in5 --in10 --win --area --active --swappy"
 fi
 
 exit 0
