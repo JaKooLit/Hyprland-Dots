@@ -10,6 +10,16 @@ if [[ "$muted" = true ]]; then
     exit 0
 fi
 
+# Choose the sound to play.
+if [[ "$1" == "--shutter" ]]; then
+    soundoption="camera-shutter.*"
+elif [[ "$1" == "--volume" ]]; then
+    soundoption="audio-volume-change.*"
+else
+    echo -e "Available sounds: --shutter, --volume"
+    exit 0
+fi
+
 # Set the directory defaults for system sounds.
 userDIR="$HOME/.local/share/sounds"
 systemDIR="/usr/share/sounds"
@@ -26,16 +36,6 @@ fi
 # Get the theme that it inherits.
 iTheme=$(cat "$sDIR/index.theme" | grep -i "inherits" | cut -d "=" -f 2)
 iDIR="$sDIR/../$iTheme"
-
-# Choose the sound to play.
-if [[ "$1" == "--shutter" ]]; then
-    soundoption="camera-shutter.*"
-elif [[ "$1" == "--volume" ]]; then
-    soundoption="audio-volume-change.*"
-else
-    echo -e "Available sounds: --shutter, --volume"
-    exit 0
-fi
 
 # Find the sound file and play it.
 sound_file=$(find $sDIR/stereo -name "$soundoption" -print -quit)
