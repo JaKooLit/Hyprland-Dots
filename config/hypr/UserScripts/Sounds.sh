@@ -3,20 +3,20 @@
 # This script is used to play system sounds.
 
 theme="freedesktop" # Set the theme for the system sounds.
-muted=false         # Set to true to mute the system sounds.
+mute=false          # Set to true to mute the system sounds.
 
 # Mute individual sounds here.
-mutedScreenshots=false
+muteScreenshots=false
 muteVolume=false
 
 # Exit if the system sounds are muted.
-if [[ "$muted" = true ]]; then
+if [[ "$mute" = true ]]; then
     exit 0
 fi
 
 # Choose the sound to play.
 if [[ "$1" == "--screenshot" ]]; then
-    if [[ "$mutedScreenshots" = true ]]; then
+    if [[ "$muteScreenshots" = true ]]; then
         exit 0
     fi
     soundoption="screen-capture.*"
