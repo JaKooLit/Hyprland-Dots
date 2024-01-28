@@ -19,7 +19,7 @@ notify_view() {
     if [[ "$1" == "active" ]]; then
         if [[ -e "${active_window_path}" ]]; then
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' Saved."
-            "${sDIR}/Sounds.sh" --shutter
+            "${sDIR}/Sounds.sh" --screenshot
         else
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
         fi
@@ -29,7 +29,7 @@ notify_view() {
         local check_file="$dir/$file"
         if [[ -e "$check_file" ]]; then
             ${notify_cmd_shot} "Screenshot Saved."
-            "${sDIR}/Sounds.sh" --shutter
+            "${sDIR}/Sounds.sh" --screenshot
         else
             ${notify_cmd_shot} "Screenshot NOT Saved."
         fi
@@ -91,7 +91,7 @@ shotactive() {
 
 shotswappy() {
 	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile" && "${sDIR}/Sounds.sh" --shutter && notify_view "swappy"
+	grim -g "$(slurp)" - >"$tmpfile" && "${sDIR}/Sounds.sh" --screenshot && notify_view "swappy"
 	swappy -f - <"$tmpfile"
 	rm "$tmpfile"
 }

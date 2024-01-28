@@ -15,18 +15,18 @@ if [[ "$muted" = true ]]; then
 fi
 
 # Choose the sound to play.
-if [[ "$1" == "--shutter" ]]; then
+if [[ "$1" == "--screenshot" ]]; then
     if [[ "$mutedScreenshots" = true ]]; then
         exit 0
     fi
-    soundoption="camera-shutter.*"
+    soundoption="screen-capture.*"
 elif [[ "$1" == "--volume" ]]; then
     if [[ "$muteVolume" = true ]]; then
         exit 0
     fi
     soundoption="audio-volume-change.*"
 else
-    echo -e "Available sounds: --shutter, --volume"
+    echo -e "Available sounds: --screenshot, --volume"
     exit 0
 fi
 
