@@ -5,6 +5,10 @@
 theme="freedesktop" # Set the theme for the system sounds.
 muted=false         # Set to true to mute the system sounds.
 
+# Mute individual sounds here.
+mutedScreenshots=false
+muteVolume=false
+
 # Exit if the system sounds are muted.
 if [[ "$muted" = true ]]; then
     exit 0
@@ -12,8 +16,14 @@ fi
 
 # Choose the sound to play.
 if [[ "$1" == "--shutter" ]]; then
+    if [[ "$mutedScreenshots" = true ]]; then
+        exit 0
+    fi
     soundoption="camera-shutter.*"
 elif [[ "$1" == "--volume" ]]; then
+    if [[ "$muteVolume" = true ]]; then
+        exit 0
+    fi
     soundoption="audio-volume-change.*"
 else
     echo -e "Available sounds: --shutter, --volume"
