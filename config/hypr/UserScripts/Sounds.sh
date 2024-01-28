@@ -49,20 +49,17 @@ iDIR="$sDIR/../$iTheme"
 
 # Find the sound file and play it.
 sound_file=$(find $sDIR/stereo -name "$soundoption" -print -quit)
-if test -f "$sound_file"; then
-    pw-play "$sound_file"
-else
+if ! test -f "$sound_file"; then
     sound_file=$(find $iDIR/stereo -name "$soundoption" -print -quit)
-    if test -f "$sound_file"; then
-        pw-play "$sound_file"
-    elif test -f "$userDIR/$defaultTheme/$soundoption"; then
-        pw-play "$userDIR/$defaultTheme/$soundoption"
-    else
-        if test -f "$systemDIR/$defaultTheme/$soundoption"; then
-            pw-play "$systemDIR/$defaultTheme/$soundoption"
-        else
-            echo "Error: Sound file not found."
-            exit 1
+    if ! test -f "$sound_file"; then
+        sound_file=$(find $userDIR/$defaultTheme/stereo -name "$soundoption" -print -quit)
+        if ! test -f "$sound_file"; then
+            sound_file=$(find $systemDIR/$defaultTheme/stereo -name "$soundoption" -print -quit)
+            if ! test -f "$sound_file"; then
+                echo "Error: Sound file not found."
+                exit 1
+            fi
         fi
     fi
 fi
+pw-play "$sound_file"
