@@ -45,6 +45,11 @@ else
     elif test -f "$userDIR/$defaultTheme/$soundoption"; then
         pw-play "$userDIR/$defaultTheme/$soundoption"
     else
-        pw-play "$systemDIR/$defaultTheme/$soundoption"
+        if test -f "$systemDIR/$defaultTheme/$soundoption"; then
+            pw-play "$systemDIR/$defaultTheme/$soundoption"
+        else
+            echo "Error: Sound file not found."
+            exit 1
+        fi
     fi
 fi
