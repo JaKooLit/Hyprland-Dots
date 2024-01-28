@@ -34,7 +34,6 @@ notify_view() {
             ${notify_cmd_shot} "Screenshot NOT Saved."
         fi
     fi
-	
 }
 
 
