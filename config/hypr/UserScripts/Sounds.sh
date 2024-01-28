@@ -32,6 +32,9 @@ if [[ "$1" == "--shutter" ]]; then
     soundoption="camera-shutter.*"
 elif [[ "$1" == "--volume" ]]; then
     soundoption="audio-volume-change.*"
+else
+    echo -e "Available sounds: --shutter, --volume"
+    exit 0
 fi
 
 # Find the sound file and play it.
