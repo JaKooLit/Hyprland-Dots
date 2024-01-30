@@ -31,7 +31,7 @@ fi
 if [ "$ln_success" = true ]; then
     # execute pywal
     # wal -i "$wallpaper_path"
-	echo 'about to execute wal'
+	
     # execute pywal skipping tty and terminal changes
     wal -i "$wallpaper_path" -s -t &
 fi
