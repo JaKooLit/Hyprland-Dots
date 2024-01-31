@@ -3,6 +3,7 @@
 # Screenshots scripts
 
 iDIR="$HOME/.config/swaync/icons"
+sDIR="$HOME/.config/hypr/UserScripts"
 notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
 
 time=$(date "+%d-%b_%H-%M-%S")
@@ -18,13 +19,17 @@ notify_view() {
     if [[ "$1" == "active" ]]; then
         if [[ -e "${active_window_path}" ]]; then
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' Saved."
+            "${sDIR}/Sounds.sh" --screenshot
         else
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
         fi
+    elif [[ "$1" == "swappy" ]]; then
+		${notify_cmd_shot} "Screenshot Captured."
     else
         local check_file="$dir/$file"
         if [[ -e "$check_file" ]]; then
             ${notify_cmd_shot} "Screenshot Saved."
+            "${sDIR}/Sounds.sh" --screenshot
         else
             ${notify_cmd_shot} "Screenshot NOT Saved."
         fi
@@ -84,6 +89,13 @@ shotactive() {
     notify_view "active"  
 }
 
+shotswappy() {
+	tmpfile=$(mktemp)
+	grim -g "$(slurp)" - >"$tmpfile" && "${sDIR}/Sounds.sh" --screenshot && notify_view "swappy"
+	swappy -f - <"$tmpfile"
+	rm "$tmpfile"
+}
+
 
 if [[ ! -d "$dir" ]]; then
 	mkdir -p "$dir"
@@ -101,8 +113,10 @@ elif [[ "$1" == "--area" ]]; then
 	shotarea
 elif [[ "$1" == "--active" ]]; then
 	shotactive
+elif [[ "$1" == "--swappy" ]]; then
+	shotswappy
 else
-	echo -e "Available Options : --now --in5 --in10 --win --area --active"
+	echo -e "Available Options : --now --in5 --in10 --win --area --active --swappy"
 fi
 
 exit 0
