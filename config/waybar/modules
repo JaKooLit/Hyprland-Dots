@@ -568,16 +568,12 @@
 },
     
 "custom/weather": {
-    "format": "{}",
-    "format-alt": "{alt}: {}",
-    "format-alt-click": "click",
-    "interval": 3600,
+    "exec": "~/.config/hypr/UserScripts/Weather.py",
+    // "exec": "~/.config/hypr/UserScripts/Weather.sh",
+    "restart-interval": 300,
     "return-type": "json",
-    "exec": "~/.config/hypr/UserScripts/Weather.sh",
-    //"exec": "~/.config/hypr/UserScripts/Weather.py",
-    "exec-if": "ping wttr.in -c1",
-    "tooltip" : true,
-},
+    // "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/$(location_id)"
+    "format-alt": "{alt}",
   
   
 // Separators

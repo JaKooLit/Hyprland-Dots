@@ -1,122 +1,126 @@
-#!/usr/bin/env python3
-# From https://raw.githubusercontent.com/rxyhn/dotfiles/main/home/rxyhn/modules/desktop/waybar/scripts/waybar-wttr.py
+#!/usr/bin/env python
 
-## ensure to insert city inside ""
-city = ""
+import subprocess
+from pyquery import PyQuery  # install using `pip install pyquery`
 import json
-import requests
-from datetime import datetime
 
-WEATHER_CODES = {
-    '113': '',
-    '116': '󰖕',
-    '119': '',
-    '122': '',
-    '143': '',
-    '176': '',
-    '179': '',
-    '182': '',
-    '185': '',
-    '200': '⛈️',
-    '227': '🌨️',
-    '230': '🌨️',
-    '248': '☁️ ',
-    '260': '☁️',
-    '263': '🌧️',
-    '266': '🌧️',
-    '281': '🌧️',
-    '284': '🌧️',
-    '293': '🌧️',
-    '296': '🌧️',
-    '299': '🌧️',
-    '302': '🌧️',
-    '305': '🌧️',
-    '308': '🌧️',
-    '311': '🌧️',
-    '314': '🌧️',
-    '317': '🌧️',
-    '320': '🌨️',
-    '323': '🌨️',
-    '326': '🌨️',
-    '329': '❄️',
-    '332': '❄️',
-    '335': '❄️',
-    '338': '❄️',
-    '350': '🌧️',
-    '353': '🌧️',
-    '356': '🌧️',
-    '359': '🌧️',
-    '362': '🌧️',
-    '365': '🌧️',
-    '368': '🌧️',
-    '371': '❄️',
-    '374': '🌨️',
-    '377': '🌨️',
-    '386': '🌨️',
-    '389': '🌨️',
-    '392': '🌧️',
-    '395': '❄️'
+# Original Credit https://gist.github.com/Surendrajat/ff3876fd2166dd86fb71180f4e9342d7
+# weather icons
+weather_icons = {
+    "sunnyDay": "滛",
+    "clearNight": "望",
+    "cloudyFoggyDay": "",
+    "cloudyFoggyNight": "",
+    "rainyDay": "",
+    "rainyNight": "",
+    "snowyIcyDay": "",
+    "snowyIcyNight": "",
+    "severe": "",
+    "default": "",
 }
 
-data = {}
+# get location_id
+# to get your own location_id, go to https://weather.com & search your location.
+# once you choose your location, you can see the location_id in the URL(64 chars long hex string)
+# like this: https://weather.com/en-IN/weather/today/l/c3e96d6cc4965fc54f88296b54449571c4107c73b9638c16aafc83575b4ddf2e
+location_id = "8139363e05edb302e2d8be35101e400084eadcecdfce5507e77d832ac0fa57ae"  # TODO
+# location_id = "8139363e05edb302e2d8be35101e400084eadcecdfce5507e77d832ac0fa57ae"
 
+# priv_env_cmd = 'cat $PRIV_ENV_FILE | grep weather_location | cut -d "=" -f 2'
+# location_id = subprocess.run(
+#     priv_env_cmd, shell=True, capture_output=True).stdout.decode('utf8').strip()
 
-weather = requests.get(f"https://wttr.in/{city}?format=j1").json()
+# get html page
+url = "https://weather.com/en-IN/weather/today/l/" + location_id
+html_data = PyQuery(url=url)
 
+# current temperature
+temp = html_data("span[data-testid='TemperatureValue']").eq(0).text()
+# print(temp)
 
-def format_time(time):
-    return time.replace("00", "").zfill(2)
+# current status phrase
+status = html_data("div[data-testid='wxPhrase']").text()
+status = f"{status[:16]}.." if len(status) > 17 else status
+# print(status)
 
+# status code
+status_code = html_data("#regionHeader").attr("class").split(" ")[2].split("-")[2]
+# print(status_code)
 
-def format_temp(temp):
-    return (hour['FeelsLikeC']+"°").ljust(3)
+# status icon
+icon = (
+    weather_icons[status_code]
+    if status_code in weather_icons
+    else weather_icons["default"]
+)
+# print(icon)
 
+# temperature feels like
+temp_feel = html_data(
+    "div[data-testid='FeelsLikeSection'] > span > span[data-testid='TemperatureValue']"
+).text()
+temp_feel_text = f"Feels like {temp_feel}c"
+# print(temp_feel_text)
 
-def format_chances(hour):
-    chances = {
-        "chanceoffog": "Fog",
-        "chanceoffrost": "Frost",
-        "chanceofovercast": "Overcast",
-        "chanceofrain": "Rain",
-        "chanceofsnow": "Snow",
-        "chanceofsunshine": "Sunshine",
-        "chanceofthunder": "Thunder",
-        "chanceofwindy": "Wind"
-    }
+# min-max temperature
+temp_min = (
+    html_data("div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
+    .eq(0)
+    .text()
+)
+temp_max = (
+    html_data("div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
+    .eq(1)
+    .text()
+)
+temp_min_max = f"  {temp_min}\t\t  {temp_max}"
+# print(temp_min_max)
 
-    conditions = []
-    for event in chances.keys():
-        if int(hour[event]) > 0:
-            conditions.append(chances[event]+" "+hour[event]+"%")
-    return ", ".join(conditions)
+# wind speed
+wind_speed = html_data("span[data-testid='Wind']").text().split("\n")[1]
+wind_text = f"煮  {wind_speed}"
+# print(wind_text)
 
-tempint = int(weather['current_condition'][0]['FeelsLikeC'])
-extrachar = ''
-if tempint > 0 and tempint < 10:
-    extrachar = '+'
+# humidity
+humidity = html_data("span[data-testid='PercentageValue']").text()
+humidity_text = f"  {humidity}"
+# print(humidity_text)
 
+# visibility
+visbility = html_data("span[data-testid='VisibilityValue']").text()
+visbility_text = f"  {visbility}"
+# print(visbility_text)
 
-data['text'] = ' '+WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
-    " "+extrachar+weather['current_condition'][0]['FeelsLikeC']+"°"
+# air quality index
+air_quality_index = html_data("text[data-testid='DonutChartValue']").text()
+# print(air_quality_index)
 
-data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_C']}°</b>\n"
-data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeC']}°\n"
-data['tooltip'] += f"Wind: {weather['current_condition'][0]['windspeedKmph']}Km/h\n"
-data['tooltip'] += f"Humidity: {weather['current_condition'][0]['humidity']}%\n"
-for i, day in enumerate(weather['weather']):
-    data['tooltip'] += f"\n<b>"
-    if i == 0:
-        data['tooltip'] += "Today, "
-    if i == 1:
-        data['tooltip'] += "Tomorrow, "
-    data['tooltip'] += f"{day['date']}</b>\n"
-    data['tooltip'] += f"⬆️{day['maxtempC']}° ⬇️{day['mintempC']}° "
-    data['tooltip'] += f"🌅{day['astronomy'][0]['sunrise']} 🌇{day['astronomy'][0]['sunset']}\n"
-    for hour in day['hourly']:
-        if i == 0:
-            if int(format_time(hour['time'])) < datetime.now().hour-2:
-                continue
-        data['tooltip'] += f"{format_time(hour['time'])} {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeC'])} {hour['weatherDesc'][0]['value']}, {format_chances(hour)}\n"
+# hourly rain prediction
+prediction = html_data("section[aria-label='Hourly Forecast']")(
+    "div[data-testid='SegmentPrecipPercentage'] > span"
+).text()
+prediction = prediction.replace("Chance of Rain", "")
+prediction = f"\n\n (hourly) {prediction}" if len(prediction) > 0 else prediction
+# print(prediction)
 
+# tooltip text
+tooltip_text = str.format(
+    "\t\t{}\t\t\n{}\n{}\n{}\n\n{}\n{}\n{}{}",
+    f'<span size="xx-large">{temp}</span>',
+    f"<big>{icon}</big>",
+    f"<big>{status}</big>",
+    f"<small>{temp_feel_text}</small>",
+    f"<b>{temp_min_max}</b>",
+    f"{wind_text}\t{humidity_text}",
+    f"{visbility_text}\tAQI {air_quality_index}",
+    f"<i>{prediction}</i>",
+)
 
-print(json.dumps(data))
+# print waybar module data
+out_data = {
+    "text": f"{icon}   {temp}",
+    "alt": status,
+    "tooltip": tooltip_text,
+    "class": status_code,
+}
+print(json.dumps(out_data))
