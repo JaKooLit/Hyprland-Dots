@@ -4,6 +4,7 @@
 
 # Define the path to the swww cache directory
 cache_dir="$HOME/.cache/swww/"
+laptop_display_file="$HOME/.config/hypr/UserConfigs/LaptopDisplay.conf"
 
 # Get a list of monitor outputs
 monitor_outputs=($(ls "$cache_dir"))
@@ -26,7 +27,10 @@ for output in "${monitor_outputs[@]}"; do
             ln_success=true  # Set the flag to true upon successful execution
         fi
 
-        break  # Exit the loop after processing the first found monitor output
+        # Check if the laptop display is not disabled
+		if grep -q "preffered" $laptop_display_file; then
+			break
+		fi
     fi
 done
 
