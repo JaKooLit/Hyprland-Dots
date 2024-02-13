@@ -75,7 +75,13 @@ shotwin() {
 }
 
 shotarea() {
-	cd ${dir} && grim -g "$(slurp)" - | tee "$file" | wl-copy
+	tmpfile=$(mktemp)
+	grim -g "$(slurp)" - >"$tmpfile"
+	if [[ -s "$tmpfile" ]]; then
+		wl-copy <"$tmpfile"
+		mv "$tmpfile" "$dir/$file"
+	fi
+	rm "$tmpfile"
 	notify_view
 }
 
