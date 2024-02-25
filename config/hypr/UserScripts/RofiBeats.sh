@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Directory for icons
 iDIR="$HOME/.config/swaync/icons"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 themes_dir="$HOME/.oh-my-zsh/themes"
 file_extension=".zsh-theme"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ### https://github.com/JaKooLit/JaKooLit
 
 # Set some colors for output messages

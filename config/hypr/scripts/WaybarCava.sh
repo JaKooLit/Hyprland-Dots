@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 
 # Not my own work. This was added through Github PR. Credit to original author

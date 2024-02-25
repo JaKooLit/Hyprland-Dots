@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Rofi menu for Quick Edit / View of Settings (SUPER E)
 
 configs="$HOME/.config/hypr/configs"

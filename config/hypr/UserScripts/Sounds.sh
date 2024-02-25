@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # This script is used to play system sounds.
 

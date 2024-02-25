@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # A bash script designed to run only once dotfiles installed
 
 # THIS SCRIPT CAN BE DELETED ONCE SUCCESSFULLY BOOTED!! And also, edit ~/.config/hypr/configs/Settings.conf

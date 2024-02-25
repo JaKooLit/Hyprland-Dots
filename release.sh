@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"

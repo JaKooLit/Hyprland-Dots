@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # This is for polkits, it will start from top and will stop if the top is executed
 

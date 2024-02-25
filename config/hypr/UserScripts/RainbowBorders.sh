@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function random_hex() {
     random_hex=("0xff$(openssl rand -hex 3)")
