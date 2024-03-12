@@ -1,5 +1,5 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # Script for waybar layout or configs
 
 set -euo pipefail
@@ -31,7 +31,7 @@ apply_config() {
 restart_waybar_if_needed() {
     if pgrep -x "waybar" >/dev/null; then
         pkill waybar
-        sleep 0.1  # Delay for Waybar to completely terminate
+        sleep 0.1 # Delay for Waybar to completely terminate
     fi
     "${SCRIPTSDIR}/Refresh.sh" &
 }
@@ -46,12 +46,12 @@ main() {
     fi
 
     case $choice in
-        "no panel")
-            pgrep -x "waybar" && pkill waybar || true
-            ;;
-        *)
-            apply_config "$choice"
-            ;;
+    "no panel")
+        pgrep -x "waybar" && pkill waybar || true
+        ;;
+    *)
+        apply_config "$choice"
+        ;;
     esac
 }
 

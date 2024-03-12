@@ -1,5 +1,5 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # Screenshots scripts
 
 iDIR="$HOME/.config/swaync/icons"
@@ -24,7 +24,7 @@ notify_view() {
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
         fi
     elif [[ "$1" == "swappy" ]]; then
-		${notify_cmd_shot} "Screenshot Captured."
+        ${notify_cmd_shot} "Screenshot Captured."
     else
         local check_file="$dir/$file"
         if [[ -e "$check_file" ]]; then
@@ -36,53 +36,51 @@ notify_view() {
     fi
 }
 
-
-
 # countdown
 countdown() {
-	for sec in $(seq $1 -1 1); do
-		notify-send -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png "Taking shot in : $sec"
-		sleep 1
-	done
+    for sec in $(seq $1 -1 1); do
+        notify-send -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png "Taking shot in : $sec"
+        sleep 1
+    done
 }
 
 # take shots
 shotnow() {
-	cd ${dir} && grim - | tee "$file" | wl-copy
-	sleep 2
-	notify_view
+    cd ${dir} && grim - | tee "$file" | wl-copy
+    sleep 2
+    notify_view
 }
 
 shot5() {
-	countdown '5'
-	sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
-	sleep 1
-	notify_view
-	
+    countdown '5'
+    sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
+    sleep 1
+    notify_view
+
 }
 
 shot10() {
-	countdown '10'
-	sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
-	notify_view
+    countdown '10'
+    sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
+    notify_view
 }
 
 shotwin() {
-	w_pos=$(hyprctl activewindow | grep 'at:' | cut -d':' -f2 | tr -d ' ' | tail -n1)
-	w_size=$(hyprctl activewindow | grep 'size:' | cut -d':' -f2 | tr -d ' ' | tail -n1 | sed s/,/x/g)
-	cd ${dir} && grim -g "$w_pos $w_size" - | tee "$file" | wl-copy
-	notify_view
+    w_pos=$(hyprctl activewindow | grep 'at:' | cut -d':' -f2 | tr -d ' ' | tail -n1)
+    w_size=$(hyprctl activewindow | grep 'size:' | cut -d':' -f2 | tr -d ' ' | tail -n1 | sed s/,/x/g)
+    cd ${dir} && grim -g "$w_pos $w_size" - | tee "$file" | wl-copy
+    notify_view
 }
 
 shotarea() {
-	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile"
-	if [[ -s "$tmpfile" ]]; then
-		wl-copy <"$tmpfile"
-		mv "$tmpfile" "$dir/$file"
-	fi
-	rm "$tmpfile"
-	notify_view
+    tmpfile=$(mktemp)
+    grim -g "$(slurp)" - >"$tmpfile"
+    if [[ -s "$tmpfile" ]]; then
+        wl-copy <"$tmpfile"
+        mv "$tmpfile" "$dir/$file"
+    fi
+    rm "$tmpfile"
+    notify_view
 }
 
 shotactive() {
@@ -91,38 +89,37 @@ shotactive() {
     active_window_path="${dir}/${active_window_file}"
 
     hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -g - "${active_window_path}"
-	sleep 1
-    notify_view "active"  
+    sleep 1
+    notify_view "active"
 }
 
 shotswappy() {
-	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile" && "${sDIR}/Sounds.sh" --screenshot && notify_view "swappy"
-	swappy -f - <"$tmpfile"
-	rm "$tmpfile"
+    tmpfile=$(mktemp)
+    grim -g "$(slurp)" - >"$tmpfile" && "${sDIR}/Sounds.sh" --screenshot && notify_view "swappy"
+    swappy -f - <"$tmpfile"
+    rm "$tmpfile"
 }
 
-
 if [[ ! -d "$dir" ]]; then
-	mkdir -p "$dir"
+    mkdir -p "$dir"
 fi
 
 if [[ "$1" == "--now" ]]; then
-	shotnow
+    shotnow
 elif [[ "$1" == "--in5" ]]; then
-	shot5
+    shot5
 elif [[ "$1" == "--in10" ]]; then
-	shot10
+    shot10
 elif [[ "$1" == "--win" ]]; then
-	shotwin
+    shotwin
 elif [[ "$1" == "--area" ]]; then
-	shotarea
+    shotarea
 elif [[ "$1" == "--active" ]]; then
-	shotactive
+    shotactive
 elif [[ "$1" == "--swappy" ]]; then
-	shotswappy
+    shotswappy
 else
-	echo -e "Available Options : --now --in5 --in10 --win --area --active --swappy"
+    echo -e "Available Options : --now --in5 --in10 --win --area --active --swappy"
 fi
 
 exit 0

@@ -1,5 +1,5 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 
 # Not my own work. This was added through Github PR. Credit to original author
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # Script for waybar styles
 
 set -euo pipefail
@@ -19,7 +19,7 @@ menu() {
             options+=("$(basename "$file" .css)")
         fi
     done < <(find "$waybar_styles" -maxdepth 1 -type f -name '*.css' -exec basename {} \; | sort)
-    
+
     printf '%s\n' "${options[@]}"
 }
 
@@ -33,7 +33,7 @@ apply_style() {
 restart_waybar_if_needed() {
     if pgrep -x "waybar" >/dev/null; then
         pkill waybar
-        sleep 0.1  # Delay for Waybar to completely terminate
+        sleep 0.1 # Delay for Waybar to completely terminate
     fi
     "${SCRIPTSDIR}/Refresh.sh" &
 }

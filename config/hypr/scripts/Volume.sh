@@ -1,6 +1,6 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Scripts for volume controls for audio and mic 
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
+# Scripts for volume controls for audio and mic
 
 iDIR="$HOME/.config/swaync/icons"
 sDIR="$HOME/.config/hypr/UserScripts"
@@ -57,20 +57,20 @@ dec_volume() {
 
 # Toggle Mute
 toggle_mute() {
-	if [ "$(pamixer --get-mute)" == "false" ]; then
-		pamixer -m && notify-send -e -u low -i "$iDIR/volume-mute.png" "Volume Switched OFF"
-	elif [ "$(pamixer --get-mute)" == "true" ]; then
-		pamixer -u && notify-send -e -u low -i "$(get_icon)" "Volume Switched ON"
-	fi
+    if [ "$(pamixer --get-mute)" == "false" ]; then
+        pamixer -m && notify-send -e -u low -i "$iDIR/volume-mute.png" "Volume Switched OFF"
+    elif [ "$(pamixer --get-mute)" == "true" ]; then
+        pamixer -u && notify-send -e -u low -i "$(get_icon)" "Volume Switched ON"
+    fi
 }
 
 # Toggle Mic
 toggle_mic() {
-	if [ "$(pamixer --default-source --get-mute)" == "false" ]; then
-		pamixer --default-source -m && notify-send -e -u low -i "$iDIR/microphone-mute.png" "Microphone Switched OFF"
-	elif [ "$(pamixer --default-source --get-mute)" == "true" ]; then
-		pamixer -u --default-source u && notify-send -e -u low -i "$iDIR/microphone.png" "Microphone Switched ON"
-	fi
+    if [ "$(pamixer --default-source --get-mute)" == "false" ]; then
+        pamixer --default-source -m && notify-send -e -u low -i "$iDIR/microphone-mute.png" "Microphone Switched OFF"
+    elif [ "$(pamixer --default-source --get-mute)" == "true" ]; then
+        pamixer -u --default-source u && notify-send -e -u low -i "$iDIR/microphone.png" "Microphone Switched ON"
+    fi
 }
 # Get Mic Icon
 get_mic_icon() {
@@ -117,23 +117,23 @@ dec_mic_volume() {
 
 # Execute accordingly
 if [[ "$1" == "--get" ]]; then
-	get_volume
+    get_volume
 elif [[ "$1" == "--inc" ]]; then
-	inc_volume
+    inc_volume
 elif [[ "$1" == "--dec" ]]; then
-	dec_volume
+    dec_volume
 elif [[ "$1" == "--toggle" ]]; then
-	toggle_mute
+    toggle_mute
 elif [[ "$1" == "--toggle-mic" ]]; then
-	toggle_mic
+    toggle_mic
 elif [[ "$1" == "--get-icon" ]]; then
-	get_icon
+    get_icon
 elif [[ "$1" == "--get-mic-icon" ]]; then
-	get_mic_icon
+    get_mic_icon
 elif [[ "$1" == "--mic-inc" ]]; then
-	inc_mic_volume
+    inc_mic_volume
 elif [[ "$1" == "--mic-dec" ]]; then
-	dec_mic_volume
+    dec_mic_volume
 else
-	get_volume
+    get_volume
 fi

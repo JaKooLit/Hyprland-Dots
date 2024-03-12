@@ -1,5 +1,5 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # For Dark and Light switching
 # Note: Scripts are looking for keywords Light or Dark except for wallpapers as the are in a separate folders
 
@@ -36,7 +36,7 @@ fi
 
 # Function to update theme mode for the next cycle
 update_theme_mode() {
-    echo "$next_mode" > ~/.cache/.theme_mode
+    echo "$next_mode" >~/.cache/.theme_mode
 }
 
 # Function to notify user
@@ -64,14 +64,13 @@ set_waybar_style() {
 set_waybar_style "$next_mode"
 notify_user "$next_mode"
 
-
 # swaync color change
 if [ "$next_mode" = "Dark" ]; then
     sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.8);/' "${swaync_style}"
-	sed -i '/@define-color noti-bg-alt/s/#.*;/#111111;/' "${swaync_style}"
+    sed -i '/@define-color noti-bg-alt/s/#.*;/#111111;/' "${swaync_style}"
 else
     sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.9);/' "${swaync_style}"
-	sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' "${swaync_style}"
+    sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' "${swaync_style}"
 fi
 
 # Set Dynamic Wallpaper for Dark or Light Mode
@@ -83,7 +82,6 @@ fi
 
 # Update wallpaper using swww command
 $swww "${next_wallpaper}" $effect
-
 
 # Set Kvantum Manager theme & QT5/QT6 settings
 if [ "$next_mode" = "Dark" ]; then
@@ -148,7 +146,7 @@ set_custom_gtk_theme() {
         gsettings set $theme_setting "$selected_theme"
 
         # Flatpak GTK apps (themes)
-        if command -v flatpak &> /dev/null; then
+        if command -v flatpak &>/dev/null; then
             flatpak --user override --filesystem=$HOME/.themes
             sleep 0.5
             flatpak --user override --env=GTK_THEME="$selected_theme"
@@ -165,13 +163,13 @@ set_custom_gtk_theme() {
         fi
         echo "Selected icon theme for $mode mode: $selected_icon"
         gsettings set $icon_setting "$selected_icon"
-        
-        ## QT5ct icon_theme
+
+        # QT5ct icon_theme
         sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt5ct/qt5ct.conf"
         sed -i "s|^icon_theme=.*$|icon_theme=$selected_icon|" "$HOME/.config/qt6ct/qt6ct.conf"
 
         # Flatpak GTK apps (icons)
-        if command -v flatpak &> /dev/null; then
+        if command -v flatpak &>/dev/null; then
             flatpak --user override --filesystem=$HOME/.icons
             sleep 0.5
             flatpak --user override --env=ICON_THEME="$selected_icon"
@@ -191,10 +189,9 @@ sleep 0.5
 # Run remaining scripts
 ${SCRIPTSDIR}/PywalSwww.sh
 sleep 1
-${SCRIPTSDIR}/Refresh.sh 
+${SCRIPTSDIR}/Refresh.sh
 
 # Display notifications for theme and icon changes
 notify-send -u normal -i "$notif" "Themes in $next_mode Mode"
 
 exit 0
-
