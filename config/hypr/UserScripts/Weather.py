@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # From https://raw.githubusercontent.com/rxyhn/dotfiles/main/home/rxyhn/modules/desktop/waybar/scripts/waybar-wttr.py
 
-## ensure to insert city inside ""
+# ensure to insert city inside ""
 city = ""
 import json
 import requests
