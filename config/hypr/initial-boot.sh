@@ -20,7 +20,7 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     # Initialize pywal and wallpaper
 	if [ -f "$wallpaper" ]; then
 		wal -i $wallpaper -s -t > /dev/null 
-		swww init && $swww $wallpaper $effect
+		swww-daemon && $swww $wallpaper $effect
 	    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 & 
 	fi
      
