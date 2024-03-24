@@ -2,6 +2,9 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # For Swaylock
 
-CONFIG="$HOME/.config/swaylock/config"
+# CONFIG="$HOME/.config/swaylock/config"
 
-sleep 0.5s; swaylock --config ${CONFIG} & disown
+# sleep 0.5s; swaylock --config ${CONFIG} & disown
+
+# For Hyprlock
+hyprlock -q
