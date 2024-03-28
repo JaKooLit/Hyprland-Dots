@@ -637,9 +637,9 @@
 },
   
 "clock#vertical": {
-	"format": "{:\n%H\n%M\n%S\n\n \n%d\n%m\n%y}",
+	"format": "\n{:%H\n%M\n%S\n\n \n%d\n%m\n%y}",
 	"interval": 1,
-     //"format": "{:\n%I\n%M\n%p\n\n \n%d\n%m\n%y}",
+     //"format": "\n{:%I\n%M\n%p\n\n \n%d\n%m\n%y}",
      "tooltip": true,
      "tooltip-format": "{calendar}",
      "calendar": {
