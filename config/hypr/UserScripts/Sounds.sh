@@ -33,6 +33,7 @@ fi
 # Set the directory defaults for system sounds.
 userDIR="$HOME/.local/share/sounds"
 systemDIR="/usr/share/sounds"
+systemRuntimeDIR="/run/current-system/sw/share/sounds"
 defaultTheme="freedesktop"
 
 # Prefer the user's theme, but use the system's if it doesn't exist.
@@ -41,6 +42,8 @@ if [ -d "$userDIR/$theme" ]; then
     sDIR="$userDIR/$theme"
 elif [ -d "$systemDIR/$theme" ]; then
     sDIR="$systemDIR/$theme"
+elif [ -d "$systemRuntimeDIR/$theme" ]; then
+    sDIR="$systemRuntimeDIR/$theme"
 fi
 
 # Get the theme that it inherits.
