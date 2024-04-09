@@ -31,8 +31,12 @@ else
 fi
 
 # Set the directory defaults for system sounds.
+if [ -d "/run/current-system/sw/share/sounds" ]; then
+    systemDIR="/run/current-system/sw/share/sounds" # NixOS
+else
+    systemDIR="/usr/share/sounds"
+fi
 userDIR="$HOME/.local/share/sounds"
-systemDIR="/usr/share/sounds"
 defaultTheme="freedesktop"
 
 # Prefer the user's theme, but use the system's if it doesn't exist.
