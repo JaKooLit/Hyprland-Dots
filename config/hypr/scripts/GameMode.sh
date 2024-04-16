@@ -16,7 +16,14 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword general:gaps_out 0;\
         keyword general:border_size 1;\
         keyword decoration:rounding 0"
-    swww kill 
+    swww kill
+    
+    _ps=(waybar rofi swaync cava)
+for _prs in "${_ps[@]}"; do
+    if pidof "${_prs}" >/dev/null; then
+        pkill "${_prs}"
+    fi
+done
     notify-send -e -u low -i "$notif" "gamemode enabled. All animations off"
     exit
 else
@@ -24,7 +31,7 @@ else
 	sleep 0.1
 	${SCRIPTSDIR}/PywalSwww.sh
 	sleep 0.5
-	${SCRIPTSDIR}/Refresh.sh	 
+	${SCRIPTSDIR}/Refresh.sh	
     notify-send -e -u normal -i "$notif" "gamemode disabled. All animations normal"
     exit
 fi
