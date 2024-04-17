@@ -18,7 +18,7 @@ toggle_touchpad() {
   fi
 
   notify-send -u low -i "$notif" "Touchpad $action"
-  hyprctl keyword "device:$Touchpad_Device:enabled" "$(cat "$STATUS_FILE")"
+  hyprctl keyword "device[$Touchpad_Device]:enabled" "$(cat "$STATUS_FILE")"
 }
 
 toggle_touchpad
