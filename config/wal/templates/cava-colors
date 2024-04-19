@@ -86,7 +86,7 @@ source = auto
 # 'raw' defaults to 200 bars, which can be adjusted in the 'bars' option above.
 #
 # 'sdl' uses the Simple DirectMedia Layer to render in a graphical context.
-; method = ncurses
+method = ncurses
 
 # Visual channels. Can be 'stereo' or 'mono'.
 # 'stereo' mirrors both channels with low frequencies in center.
