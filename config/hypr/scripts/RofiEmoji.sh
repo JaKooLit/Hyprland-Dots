@@ -2,12 +2,12 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Rofi Emoticons. Not my own. Cant remember the source
 
-sed '1,/^### DATA ###$/d' $0 | 
+sed '1,/^# # DATA # #$/d' $0 | 
 rofi -dmenu -config ~/.config/rofi/config-long.rasi| 
 cut -d ' ' -f 1 | tr -d '\n' | wl-copy
 
 exit
-#  DATA #
+# # DATA # #
 😀 grinning face face smile happy joy :D grin
 😃 grinning face with big eyes face happy joy haha :D :) smile funny
 😄 grinning face with smiling eyes face happy joy funny haha laugh like :D :) smile
