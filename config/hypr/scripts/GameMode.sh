@@ -18,11 +18,6 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword decoration:rounding 0"
     swww kill
     
-    _ps=(waybar rofi swaync cava)
-for _prs in "${_ps[@]}"; do
-    if pidof "${_prs}" >/dev/null; then
-        pkill "${_prs}"
-    fi
 done
     notify-send -e -u low -i "$notif" "gamemode enabled. All animations off"
     exit
