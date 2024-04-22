@@ -7,7 +7,7 @@
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
-wallpaper=$HOME/Pictures/wallpapers/Fantasy-Landscape.png
+wallpaper=$HOME/Pictures/wallpapers/Dark_Nature.png
 waybar_style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
 kvantum_theme="Catppuccin-Mocha"
 
@@ -20,7 +20,7 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     # Initialize pywal and wallpaper
 	if [ -f "$wallpaper" ]; then
 		wal -i $wallpaper -s -t > /dev/null 
-		swww init && $swww $wallpaper $effect
+		swww-daemon --format xrgb && $swww $wallpaper $effect
 	    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 & 
 	fi
      
