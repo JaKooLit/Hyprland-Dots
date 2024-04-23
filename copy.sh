@@ -113,6 +113,36 @@ done
 
 printf "\n"
 
+# Ask whether 12 or 24hr clock is preffered
+while true; do
+    echo "$ORANGE Do you prefer a 12hr or 24hr clock?"
+    echo "$YELLOW 1. 12hr clock (AM/PM)"
+    echo "$YELLOW 2. 24hr clock"
+    read -p "$CAT Enter the number of your choice: " choice
+
+    case $choice in
+        1)
+            clockformat="12"
+            break
+            ;;
+        2)
+            clockformat="24"
+            break
+            ;;
+        *)
+            echo "Invalid choice. Please enter 1 for 12hr clock or 2 for 24hr"
+            ;;
+    esac
+done
+
+# Provide feedback for chosen clock format
+echo "You Chose a $clockformat hour clock" 2>&1 | tee -a "$LOG"
+
+# modify waybar config if 12hr is selected
+if [ "$clockformat" == "12" ]; then
+    sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules
+    sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules 
+
 # Action to do for better rofi appearance
 while true; do
     echo "$ORANGE Select monitor resolution for better Rofi appearance:"
