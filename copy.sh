@@ -113,35 +113,35 @@ done
 
 printf "\n"
 
-# Ask whether 12 or 24hr clock is preffered
+# Ask whether to change to 12hr format
 while true; do
-    echo "$ORANGE Do you prefer a 12hr or 24hr clock?"
-    echo "$YELLOW 1. 12hr clock (AM/PM)"
-    echo "$YELLOW 2. 24hr clock"
-    read -p "$CAT Enter the number of your choice: " choice
+    # Ask whether to change to 12hr format
+    echo -e "$ORANGE By default, configs are in 24H format."
+    read -p "$CAT Do you want to change to 12H format (AM/PM)? (y/n): " answer
 
-    case $choice in
-        1)
-            clockformat="12"
-            break
-            ;;
-        2)
-            clockformat="24"
-            break
-            ;;
-        *)
-            echo "Invalid choice. Please enter 1 for 12hr clock or 2 for 24hr"
-            ;;
-    esac
-done
+    # Convert the answer to lowercase for comparison
+    answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 
-# Provide feedback for chosen clock format
-echo "You Chose a $clockformat hour clock" 2>&1 | tee -a "$LOG"
+    # Check if the answer is valid
+    if [[ "$answer" == "y" ]]; then
+        # Modify waybar config if 12hr is selected
+        # waybar
+        sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules
+        sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules
+        # hyprlock
+		sed -i 's|^    # text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|    text = cmd[update:1000] echo "<b><big> $(date +"%I:%M:%S %p") <\/big><\/b>" # AM\/PM|' ./config/hypr/hyprlock.conf
+		sed -i 's|^    text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|    # text = cmd[update:1000] echo "<b><big> $(date +"%H:%M:%S") <\/big><\/b>" # 24H|' ./config/hypr/hyprlock.conf
 
-# modify waybar config if 12hr is selected
-if [ "$clockformat" == "12" ]; then
-    sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules
-    sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules 
+        break
+    elif [[ "$answer" == "n" ]]; then
+        echo "You chose not to change to 12H format."
+        break
+    else
+        echo "Invalid choice. Please enter y for yes or n for no."
+    fi
+done	
+
+printf "\n"
 
 # Action to do for better rofi appearance
 while true; do
