@@ -115,32 +115,40 @@ printf "\n"
 
 # Ask whether to change to 12hr format
 while true; do
-    # Ask whether to change to 12hr format
-    echo -e "$ORANGE By default, configs are in 24H format."
-    read -p "$CAT Do you want to change to 12H format (AM/PM)? (y/n): " answer
+  echo -e "$ORANGE By default, configs are in 24H format."
+  read -p "$CAT Do you want to change to 12H format (AM/PM)? (y/n): " answer
 
-    # Convert the answer to lowercase for comparison
-    answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
+  # Convert the answer to lowercase for comparison
+  answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 
-    # Check if the answer is valid
-    if [[ "$answer" == "y" ]]; then
-        # Modify waybar config if 12hr is selected
-        # waybar
-        sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules
-        sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules
-		
-		# for hyprlock
-		sed -i 's|^# text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|' ./config/hypr/hyprlock.conf
-		sed -i 's|^text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|# text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|' ./config/hypr/hyprlock.conf
+  # Check if the answer is valid
+  if [[ "$answer" == "y" ]]; then
+    # Modify waybar config if 12hr is selected
+    sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules
+    sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules
+    
+    # for hyprlock
+    sed -i 's|^# text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|' ./config/hypr/hyprlock.conf
+    sed -i 's|^text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|# text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|' ./config/hypr/hyprlock.conf
 
-        break
-    elif [[ "$answer" == "n" ]]; then
-        echo "You chose not to change to 12H format."
-        break
-    else
-        echo "Invalid choice. Please enter y for yes or n for no."
+    # for SDDM (custom theme)
+    sddm_folder="/usr/share/sddm/themes/simple-sddm"
+    if [ -d "$sddm_folder" ]; then
+      echo "Simple sddm exists. Editing to 12H format"
+
+      sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_folder/theme.conf"
+      sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_folder/theme.conf"
+
+      echo "12H format set to SDDM theme successfully."
     fi
-done	
+    break
+  elif [[ "$answer" == "n" ]]; then
+    echo "You chose not to change to 12H format."
+    break
+  else
+    echo "Invalid choice. Please enter y for yes or n for no."
+  fi
+done
 
 printf "\n"
 
