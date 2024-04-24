@@ -129,7 +129,7 @@ while true; do
         sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules
         sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules
         # hyprlock
-		sed -i 's|^    # text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|    text = cmd[update:1000] echo "<b><big> $(date +"%I:%M:%S %p") <\/big><\/b>" # AM\/PM|' ./config/hypr/hyprlock.conf
+		sed -i 's|^    #text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|    text = cmd[update:1000] echo "<b><big> $(date +"%I:%M:%S %p") <\/big><\/b>" # AM\/PM|' ./config/hypr/hyprlock.conf
 		sed -i 's|^    text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|    # text = cmd[update:1000] echo "<b><big> $(date +"%H:%M:%S") <\/big><\/b>" # 24H|' ./config/hypr/hyprlock.conf
 
         break
