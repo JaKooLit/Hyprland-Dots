@@ -24,13 +24,15 @@
 }
 {
     "label" : "suspend",
-    "action" : "swaylock -f && systemctl suspend",
+    // "action" : "swaylock -f && systemctl suspend",
+    "action" : "hyprlock --immediate && systemctl suspend",
     "text" : "Suspend",
     "keybind" : "u"
 }
 {
     "label" : "hibernate",
-    "action" : "swaylock -f && systemctl hibernate",
+    // "action" : "swaylock -f && systemctl hibernate",
+    "action" : "hyprlock --immediate && systemctl hibernate",
     "text" : "Hibernate",
     "keybind" : "h"
 }
