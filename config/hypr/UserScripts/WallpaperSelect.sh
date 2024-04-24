@@ -1,5 +1,5 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # This script for selecting wallpapers (SUPER W)
 
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
@@ -40,7 +40,7 @@ menu() {
   printf "$RANDOM_PIC_NAME\n"
 }
 
-swww query || swww init
+swww query || swww-daemon --format xrgb
 
 main() {
   choice=$(menu | ${rofi_command})

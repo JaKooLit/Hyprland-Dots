@@ -1,5 +1,5 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Keyhints. Idea got from Garuda Hyprland
 
 # Detect monitor resolution and scale
@@ -41,6 +41,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " enter" "Terminal" "(kitty)" \
 " or  D" "App Launcher" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
+" S" "Google Search" "(rofi)" \
 " Q" "close active window" "(not kill)" \
 " Shift Q " "closes a specified window" "(window)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
@@ -68,6 +69,3 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
 "More tips:" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
-
-
-

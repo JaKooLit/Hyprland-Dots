@@ -1,6 +1,9 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # For disabling touchpad.
+# Edit the Touchpad_Device according to your system
+# use hyprctl devices to get your system touchpad device name
+
 
 Touchpad_Device="asue1209:00-04f3:319f-touchpad"
 notif="$HOME/.config/swaync/images/bell.png"
@@ -18,7 +21,7 @@ toggle_touchpad() {
   fi
 
   notify-send -u low -i "$notif" "Touchpad $action"
-  hyprctl keyword "device:$Touchpad_Device:enabled" "$(cat "$STATUS_FILE")"
+  hyprctl keyword "device[$Touchpad_Device]:enabled" "$(cat "$STATUS_FILE")"
 }
 
 toggle_touchpad

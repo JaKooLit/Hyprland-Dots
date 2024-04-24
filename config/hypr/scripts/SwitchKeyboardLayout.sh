@@ -1,5 +1,5 @@
 #!/bin/bash
-## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # This is for changing kb_layouts. Set kb_layouts in $settings_file
 
 layout_f="$HOME/.cache/kb_layout"
@@ -38,7 +38,7 @@ next_index=$(( (current_index + 1) % layout_count ))
 new_layout="${layout_mapping[next_index]}"
 
 # Update the keyboard layout
-hyprctl keyword input:kb_layout "$new_layout"
+hyprctl switchxkblayout "at-translated-set-2-keyboard" "$new_layout"
 echo "$new_layout" > "$layout_f"
 
 # Notification for the new keyboard layout

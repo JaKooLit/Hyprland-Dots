@@ -1,0 +1,258 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* ..........................................*/
+/* .......Mauve....................... */
+/* ......................................... */
+/* --- 👍 designed by https://github.com/CelestiaKai  👍 --- */
+
+* {
+	font-family: "FiraCode Mono Nerd Font";
+	font-weight: bold;
+	min-height: 0;		
+	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+	font-size: 97%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+	padding: 2px;
+}
+
+window#waybar {
+	background: #11111b;
+	color: #cba6f7;
+	/* background-color: transparent; */
+}
+
+window#waybar.hidden {
+	opacity: 0.5;
+}
+
+window#waybar.empty {
+	background-color: transparent;
+	background: #11111b;
+}
+
+window#waybar.empty #window {
+	padding: 0px;
+	border: 0px;
+	/*  background-color: rgba(66,66,66,0.5); */
+	/* transparent */
+	background-color: transparent;
+}
+
+tooltip {
+	background: #1e1e2e;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #11111b;
+	color: #cba6f7;
+}
+
+/*-----module groups----*/
+.modules-right {
+	border: 3px solid #11111b;
+	border-radius: 10px 10px 10px 10px;
+	background-color: #1e1e2e;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
+}
+
+.modules-center {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
+}
+
+.modules-left {
+	/*background-color: #1e1e2e;*/
+	border: 3px solid #11111b;
+	border-radius: 10px 10px 10px 10px;
+	background-color: #1e1e2e;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
+}
+
+#workspaces button {
+	color: #6E6A86;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    padding-left: 4px;
+    padding-right: 4px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.active {
+	color: #1e1e1e;
+	border-radius: 30%;
+	background-color: #cba6f7;
+    padding-left: 6px;
+    padding-right: 8px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.active:hover {
+	color: #1e1e1e;
+	border-radius: 30%;
+	background-color: #cba6f7;
+	border: 0px solid #1e1e2e;
+    padding-left: 6px;
+    padding-right: 8px;
+}
+
+#workspaces button.focused {
+	color: #d8dee9;
+}
+
+#workspaces button.urgent {
+	border-radius: 30%;
+	background-color: #cba6f7;
+	color: #1e1e1e;
+}
+
+#workspaces button:hover {
+	color: #1e1e1e;
+	border: 3px solid #1e1e2e;
+	background-color: #cba6f7;
+    border-radius: 30%;
+ 	padding-left: 4px;
+    padding-right: 4px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-cava_mviz,
+#custom-cycle_wall,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-swaync,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+	color: whitesmoke;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-right: 6px;
+	padding-left: 6px;
+
+}
+
+#temperature.critical {
+	background-color: #ff0000;
+}
+
+@keyframes blink {
+	to {
+		color: #000000;
+	}
+}
+
+#taskbar button.active {
+	background-color: purple;
+    padding-left: 12px;
+    padding-right: 12px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#battery.critical:not(.charging) {
+	color: #f53c3c;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+	min-width: 80px;
+	min-height: 5px;
+	border-radius: 5px;
+	background-color: #6E6A86;
+}
+
+#pulseaudio-slider highlight {
+	min-height: 10px;
+	border-radius: 5px;
+	background-color: purple;
+}
+
+#backlight-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#backlight-slider trough {
+	min-width: 80px;
+	min-height: 10px;
+	border-radius: 5px;
+	background-color: #6E6A86;
+}
+
+#backlight-slider highlight {
+	min-width: 10px;
+	border-radius: 5px;
+	background-color: purple;
+}
