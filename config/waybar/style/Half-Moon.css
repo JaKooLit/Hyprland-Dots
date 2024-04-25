@@ -1,0 +1,201 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* ....................................*/
+/* ..........Half Moon.................. */
+/* NOTE: This is only for some waybar configs */
+/* --- 👍 shared by https://github.com/TomekBobrowicz  👍 --- */
+
+* {
+font-size: 97%;
+font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
+font-weight: bold;
+}
+window#waybar {
+  background-color: rgba(26,27,38,0);
+  border-bottom: 1px solid rgba(26,27,38,0);
+  border-radius: 0px;
+  color: #E6B673;
+
+  }
+#workspaces {
+  background: #0F1419;
+  margin: 5px;
+  padding: 0px 1px;
+  border-radius: 15px;
+  border: 0px;
+  font-style: normal;
+  color: #0F1419;
+
+  }
+#workspaces button {
+	  padding: 0px 5px;
+  margin: 4px 3px;
+  border-radius: 15px;
+  border: 0px;
+  color: #0F1419;
+  background: linear-gradient(45deg, #95E6CB, #59C2FF, #D2A6FF);
+  opacity: 0.5;
+  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+
+  }
+#workspaces button.active {
+  padding: 0px 5px;
+  margin: 4px 3px;
+  border-radius: 15px;
+  border: 0px;
+  color: #0F1419;
+  background: linear-gradient(45deg, #59C2FF, #D2A6FF);
+  opacity: 1.0;
+  min-width: 40px;
+  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+  }
+#workspaces button:hover {
+  border-radius: 15px;
+  color: #0F1419;
+  background: linear-gradient(45deg, #59C2FF, #D2A6FF);
+  opacity: 0.8;
+  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+
+  }
+@keyframes gradient_horizontal {
+0% {
+  background-position: 0% 50%;
+}
+50% {
+  background-position: 100% 50%;
+}
+100% {
+  background-position: 0% 50%;
+}
+  }
+  @keyframes swiping {
+    0% {
+  background-position: 0% 200%;
+}
+100% {
+  background-position: 200% 200%;
+}
+  }
+  tooltip {
+background: #0F1419;
+border: 1px solid #D2A6FF;
+border-radius: 10px;
+  }
+  tooltip label {
+color: #F3F4F5;
+  }
+  #window {
+	  color: #E6E1CF;
+  background: #0F1419;
+  border-radius: 50px 15px 50px 15px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #temperature,
+  #memory {
+color: #E6B673;
+	  background: #0F1419;
+  border-radius: 50px 15px 50px 15px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+
+  #custom-swaync,
+  #idle_inhibitor,
+  #clock {
+	color: #B8CC52;
+	  background: #0F1419;
+  border-radius: 15px 50px 15px 50px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #cpu {
+	color: #F3F4F5;
+	  background: #0F1419;
+  border-radius: 50px 15px 50px 15px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #disk {
+	color: #B8CC52;
+	  background: #0F1419;
+  border-radius: 50px 15px 50px 15px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #battery {
+	color: #F07178;
+	  background: #0F1419;
+  border-radius: 15px 50px 15px 50px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #network {
+	color: #FF8F40;
+	  background: #0F1419;
+  border-radius: 50px 15px 50px 15px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #custom-hyprbindings {
+  color: #D2A6FF;
+	  background: #0F1419;
+  border-radius: 15px 50px 15px 50px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #tray {
+	color: #E6E1CF;
+	  background: #0F1419;
+  border-radius: 15px 30px 30px 50px;
+  margin: 5px 0px 5px 5px;
+  padding: 2px 20px;
+
+  }
+  #pulseaudio {
+	color: #59C2FF;
+	  background: #0F1419;
+  border-radius: 50px 15px 50px 15px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #custom-notification {
+	color: #95E6CB;
+	  background: #0F1419;
+  border-radius: 15px 50px 15px 50px;
+  margin: 5px;
+  padding: 2px 20px;
+
+  }
+  #custom-weather {
+	color: #59C2FF;
+	  background: #0F1419;
+  border-radius: 0px 50px 15px 0px;
+  margin: 5px 0px;
+  padding: 2px 15px 2px 5px;
+
+  }
+  #custom-menu {
+	color: #59C2FF;
+	  background: #0F1419;
+  border-radius: 0px 15px 50px 0px;
+  margin: 5px 5px 5px 0px;
+  padding: 1px 15px;
+
+  }
+  #custom-power {
+	color: #D2A6FF;
+	  background: #0F1419;
+  border-radius: 15px 0px 0px 50px;
+  margin: 5px 0px;
+  padding: 2px 5px 2px 15px;
+
+  } 

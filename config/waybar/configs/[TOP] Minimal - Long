@@ -27,6 +27,7 @@
 	],
 "modules-center": [
 	"clock",
+	"idle_inhibitor",
 	],
 "modules-right": [
 	"group/motherboard",
