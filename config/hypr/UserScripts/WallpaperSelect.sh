@@ -40,7 +40,7 @@ menu() {
   printf "$RANDOM_PIC_NAME\n"
 }
 
-swww query || swww-daemon --format xrgb
+swww query || swww-daemon
 
 main() {
   choice=$(menu | ${rofi_command})
