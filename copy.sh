@@ -124,26 +124,38 @@ while true; do
   # Check if the answer is valid
   if [[ "$answer" == "y" ]]; then
     # Modify waybar config if 12hr is selected
-    sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules
-    sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules
+    sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules 2>&1 | tee -a "$LOG" || true
+    sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules 2>&1 | tee -a "$LOG" || true
     
     # for hyprlock
-    sed -i 's|^# text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|' ./config/hypr/hyprlock.conf
+    sed -i 's|^# text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|' ./config/hypr/hyprlock.conf 
     sed -i 's|^text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|# text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|' ./config/hypr/hyprlock.conf
 
-    # for SDDM (custom theme)
+    # for SDDM (simple-sddm)
     sddm_folder="/usr/share/sddm/themes/simple-sddm"
     if [ -d "$sddm_folder" ]; then
-      echo "Simple sddm exists. Editing to 12H format"
+      echo "Simple sddm exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
 
-      sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_folder/theme.conf"
-      sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_folder/theme.conf"
+      sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_folder/theme.conf" 2>&1 | tee -a "$LOG" || true
+      sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_folder/theme.conf" 2>&1 | tee -a "$LOG" || true
 
-      echo "12H format set to SDDM theme successfully."
+      echo "12H format set to SDDM theme successfully." 2>&1 | tee -a "$LOG"
     fi
+
+        # for SDDM (simple-sddm-2)
+    sddm_folder_2="/usr/share/sddm/themes/simple-sddm-2"
+    if [ -d "$sddm_folder_2" ]; then
+      echo "Simple sddm 2 exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
+
+      sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_folder_2/theme.conf" 2>&1 | tee -a "$LOG" || true
+      sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_folder_2/theme.conf" 2>&1 | tee -a "$LOG" || true
+
+      echo "12H format set to SDDM theme successfully." 2>&1 | tee -a "$LOG"
+    fi
+
     break
   elif [[ "$answer" == "n" ]]; then
-    echo "You chose not to change to 12H format."
+    echo "You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
     break
   else
     echo "Invalid choice. Please enter y for yes or n for no."
