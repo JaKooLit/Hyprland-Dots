@@ -120,6 +120,15 @@ color: #F3F4F5;
 	padding: 2px 15px;
 }
 
+#bluetooth {
+	color: blue;
+	background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding: 2px 15px;
+}
+
+#custom-cycle_wall,
 #cpu {
 	color: #F3F4F5;
 	background: #0F1419;
@@ -217,6 +226,22 @@ color: #F3F4F5;
 	margin: 5px 0px;
 	padding: 2px 5px 2px 15px;
 } 
+
+#custom-lock {
+	color: red;
+	background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding: 2px 15px;
+}
+
+#keyboard-state {
+	color: green;
+	background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding: 2px 15px;
+}
 
 #battery.critical:not(.charging) {
 	color: #f53c3c;
