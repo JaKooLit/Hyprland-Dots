@@ -5,7 +5,7 @@ file_extension=".zsh-theme"
 
 themes_array=($(find "$themes_dir" -type f -name "*$file_extension" -exec basename {} \; | sed -e "s/$file_extension//"))
 
-rofi_command="rofi -dmenu -config ~/.config/rofi/config-zsh-theme.rasi"
+rofi_command="rofi -i -dmenu -config ~/.config/rofi/config-zsh-theme.rasi"
 
 menu() {
     for theme in "${themes_array[@]}"; do
