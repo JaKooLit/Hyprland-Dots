@@ -12,3 +12,8 @@ entry {
 textbox-prompt-colon {
   str: "📻";
 }
+
+/* ---- Listview ---- */
+listview {
+  lines: 7;
+}

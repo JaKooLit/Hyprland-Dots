@@ -50,7 +50,7 @@ entry {
 /* ---- Listview ---- */
 listview {
   columns: 1;
-  lines: 7;
+  lines: 10;
   spacing: 4px;
   scrollbar: true;
   border-radius: 10px;
