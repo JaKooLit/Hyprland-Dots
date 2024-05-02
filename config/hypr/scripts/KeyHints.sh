@@ -40,7 +40,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 "ESC" "close this app" "" "=" "SUPER KEY (Windows Key)" "(SUPER KEY)" \
 " enter" "Terminal" "(kitty)" \
 " SHIFT enter" "DropDown Terminal" "(kitty-pyprland)" \
-" or  D" "App Launcher" "(rofi)" \
+" D" "App Launcher" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
 " S" "Google Search" "(rofi)" \
 " Q" "close active window" "(not kill)" \
