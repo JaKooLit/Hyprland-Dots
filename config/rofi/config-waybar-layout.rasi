@@ -8,7 +8,3 @@ entry {
   placeholder: "Choose Waybar Layout";
 }
 
-/* ---- Listview ---- */
-listview {
-  columns: 2;
-}
