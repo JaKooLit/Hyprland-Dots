@@ -39,7 +39,7 @@ window {
     enabled:                    true;
     border-radius:              15px;
     border-radius:              15px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", height);	
+    background-image:           url("~/.config/rofi/.current_wallpaper", height);
 }
 
 /* ---- Mainbox ---- */
@@ -110,7 +110,7 @@ entry {
 listview {
 	enabled:					 true;
 	columns:					 1;
-	lines:						 7;
+	lines:						 10;
 	spacing:                     4px;
 	dynamic:                     true;
 	cycle:                       true;
