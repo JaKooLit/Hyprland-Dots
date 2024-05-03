@@ -9,18 +9,21 @@ window {
     location: north;
 }
 
+/* ---- Inputbar ---- */
+inputbar {
+    enabled: true;
+    padding: 2px;
+    margin: 2px;
+}
+
 /* ---- Mainbox ---- */
 mainbox {
-	padding:					2px;
-    children:                   [ "inputbar" ];
+	padding: 2px;
+    children: [ "entry"];
 }
 
 /* ---- Entry ---- */ 
 entry {
-	placeholder: "Google Search";
+	placeholder: "🔎 Google Search";
 }
 
-/* ---- Inputbar ---- */
-textbox-prompt-colon {
-	str: "🔎";
-}

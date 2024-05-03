@@ -14,37 +14,15 @@ window {
   border-radius: 15px;
 }
 
-/* ---- Mainbox ---- */
-mainbox {
-  orientation: horizontal;
-  children: [ "imagebox"];
-}
-
 /* ---- Imagebox ---- */
 imagebox {
   orientation: vertical;
   children:
-    [ "inputbar",
-    "listbox"];
-}
-
-/* ---- Listbox ---- */
-listbox {
-  border-radius: 10px;
-}
-
-/* ---- Inputbar ---- */
-inputbar {
-  padding: 14px;
-  border-radius: 10px;
-}
-
-textbox-prompt-colon {
-  str: " ";
+    [ "entry", "listview"];
 }
 
 entry {
-  placeholder: "View / Edit Hyprland Configs";
+  placeholder: "  View / Edit Hyprland Configs";
 }
 
 /* ---- Listview ---- */
@@ -52,20 +30,11 @@ listview {
   columns: 1;
   lines: 10;
   spacing: 4px;
-  scrollbar: true;
+  scrollbar: false;
   border-radius: 10px;
 }
 
 /* ---- Element ---- */
 element {
   border-radius: 10px;
-}
-
-/*****----- Message -----*****/
-message {
-  border-radius: 10px;
-}
-
-textbox {
-  padding: 15px;
 }

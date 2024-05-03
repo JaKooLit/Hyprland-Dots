@@ -13,33 +13,15 @@ window {
   width: 700px;
 }
 
-/* ---- Mainbox ---- */
-mainbox {
-  children: [ "imagebox"];
-}
-
-/* ---- Imagebox ---- */
-imagebox {
-  orientation: vertical;
-  children:
-    [ "inputbar",
-    "listbox"];
-}
-
 /* ---- Inputbar ---- */
 inputbar {
   children:
-    [ "textbox-prompt-colon",
-    "entry"];
-}
-
-textbox-prompt-colon {
-  str: "🔎 ";
+    ["entry"];
 }
 
 entry {
-  placeholder: "Search";
-  background-color: transparent;
+  placeholder: "🔎 Search";
+  width: 22%;
 }
 
 /* ---- Listview ---- */
@@ -47,9 +29,9 @@ listview {
   columns: 1;
   lines: 9;
   spacing: 4px;
-  scrollbar: true;
   fixed-columns: true;
   border-radius: 10px;
+  scrollbar: false;
 }
 
 /*****----- Message -----*****/

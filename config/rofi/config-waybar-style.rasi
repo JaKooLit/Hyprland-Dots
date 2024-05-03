@@ -11,21 +11,17 @@ configuration {
 /* ---- Mainbox ---- */
 mainbox {
   children:
-    [ "inputbar",
-    "listbox"];
-}
-
-textbox-prompt-colon {
-  str: "󰮫 ";
+    [ "inputbar", "listview"];
 }
 
 entry {
-  placeholder: "Choose Waybar Style";
+  expand: true;
+  placeholder: "󰮫  Choose Waybar Style";
 }
 
 /* ---- Listview ---- */
 listview {
   columns: 2;
   lines: 8;
-  scrollbar: true;
+  scrollbar: false;
 }

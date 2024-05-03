@@ -5,12 +5,7 @@
 
 /* ---- Entry ---- */ 
 entry {
-  placeholder: "Choose Online Music Station";
-}
-
-/* ---- Inputbar ---- */
-textbox-prompt-colon {
-  str: "📻";
+  placeholder: "📻 Choose Online Music Station";
 }
 
 /* ---- Listview ---- */

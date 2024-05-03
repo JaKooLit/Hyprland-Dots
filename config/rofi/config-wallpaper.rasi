@@ -8,33 +8,23 @@ configuration {
   modi: "drun";
 }
 
-/* ---- Mainbox ---- */
-mainbox {
-  orientation: horizontal;
-  children: [ "imagebox"];
-}
-
 /* ---- Imagebox ---- */
 imagebox {
   orientation: vertical;
   children:
-    [ "inputbar",
-    "listbox"];
+    [ "entry", "listbox"];
 }
 
-textbox-prompt-colon {
-  str: "󰸉 ";
-}
 
 entry {
-  placeholder: "Choose Wallpaper";
+  expand: true;
+  placeholder: "󰸉 Choose Wallpaper";
 }
 
 /* ---- Listview ---- */
 listview {
   columns: 4;
   lines: 3;
-  scrollbar: true;
 }
 
 /* ---- Element ---- */
@@ -43,7 +33,7 @@ element {
 }
 
 element-icon {
-  size: 130px;
+  size: 150px;
 }
 
 element-text {
