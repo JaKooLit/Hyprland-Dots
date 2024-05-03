@@ -82,7 +82,7 @@ entry {
     padding:                     10px;
     border-radius:               12px;
     background-color:            @background-alt;
-    text-color:                  inherit;
+    text-color:                  @text-selected;
     cursor:                      text;
     placeholder:                 "  Search "; // << Search symbol
     placeholder-color:           inherit;
