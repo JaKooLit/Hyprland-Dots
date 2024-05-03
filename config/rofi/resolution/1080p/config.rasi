@@ -1,11 +1,11 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config 1440p */
+/* Main Config 1080p */
 
 /* ---- Configuration ---- */
 
 configuration {
 	modi:                       "drun,run,filebrowser";
-	font:                       "Fira Code SemiBold 9";
+	font:                       "Fira Code SemiBold 10";
     show-icons:                 true;
     display-drun:               "Apps";
     display-run:                "Run";

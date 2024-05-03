@@ -21,7 +21,7 @@ inputbar {
 
 entry {
   placeholder: "🔎 Search";
-  width: 22%;
+  width: 600px;
 }
 
 /* ---- Listview ---- */
