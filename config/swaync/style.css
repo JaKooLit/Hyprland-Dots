@@ -3,8 +3,8 @@
 @import '../../.cache/wal/colors-waybar.css';
 
 @define-color noti-border-color @color2;
-@define-color noti-bg rgba(255, 255, 255, 0.9);
-@define-color noti-bg-alt #F0F0F0;
+@define-color noti-bg rgba(0, 0, 0, 0.8);
+@define-color noti-bg-alt #111111;
 @define-color noti-bg-hover @color2;
 @define-color text-color @color7;
 @define-color text-color-alt @color2;
