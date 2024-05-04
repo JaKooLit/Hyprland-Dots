@@ -28,7 +28,7 @@ entry {
 /* ---- Listview ---- */
 listview {
   columns: 4;
-  lines: 4;
+  lines: 3;
 }
 
 /* ---- Element ---- */
