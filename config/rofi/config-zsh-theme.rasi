@@ -10,7 +10,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-  width: 900px;
+  width: 40%;
   border-radius: 15px;
 }
 

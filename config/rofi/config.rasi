@@ -49,7 +49,7 @@ window {
     anchor:                     center;
 
     // Style Values
-    width:                      1100px;
+    width:                      40%;
     background-color:           #00000099;
 }
 
@@ -218,7 +218,6 @@ textbox {
     background-color:            @background-alt;
     text-color:                  @foreground;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
 }
 error-message {
     padding:                     12px;

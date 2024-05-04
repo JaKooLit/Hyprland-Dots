@@ -1,10 +1,10 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Clipboard Config (long) */
+/* Clipboard Config (long) - Clipboard */
 
 @import "~/.config/rofi/config-long.rasi" 
 
 /* ---- Entry ---- */
 entry {
-  width: 600px;
-  placeholder: "CTRL Del - Cliphist del || Alt Del - cliphist wipe";
+  width: 45%;
+  placeholder: "🔎 Search Clipboard **note** 👀 CTRL Del - Cliphist del or Alt Del - cliphist wipe";
 }

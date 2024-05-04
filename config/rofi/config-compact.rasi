@@ -10,8 +10,13 @@ configuration {
 
 /* ---- Window ---- */
 window {
-  width: 500px;
+  width: 20%;
   border-radius: 15px;
+}
+
+/* ---- Inputbar ---- */
+inputbar {
+    background-image: url("~/.config/rofi/.current_wallpaper", height);
 }
 
 /* ---- Imagebox ---- */
@@ -21,8 +26,9 @@ imagebox {
     [ "entry", "listview"];
 }
 
+/* ---- Entry input ---- */
 entry {
-  width: 400px;
+  width: 16%;
   placeholder: "  View / Edit Hyprland Configs";
 }
 
@@ -32,7 +38,7 @@ listview {
   lines: 10;
   spacing: 4px;
   scrollbar: false;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 /* ---- Element ---- */
