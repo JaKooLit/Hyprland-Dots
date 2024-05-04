@@ -5,7 +5,7 @@
 
 configuration {
 	modi:                       "drun,run,filebrowser";
-	font:                       "Fira Code SemiBold 10";
+	font:                       "Fira Code SemiBold 12";
     show-icons:                 true;
     display-drun:               "Apps";
     display-run:                "Run";
@@ -129,7 +129,7 @@ mode-switcher{
     background-color:            transparent;
 }
 button {
-    width:                       80px;
+    width:                       95px;
     padding:                     12px;
     border-radius:               12px;
     background-color:            @background-alt;
@@ -199,7 +199,7 @@ element-icon {
 }
 element-text {
     background-color:            transparent;
-    font:                       "Fira Code SemiBold 12";
+    font:                       "Fira Code SemiBold 14";
     text-color:                  inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
