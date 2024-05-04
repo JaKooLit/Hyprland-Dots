@@ -3,44 +3,18 @@
 
 @import "~/.config/rofi/config.rasi" 
 
-/* ---- Configuration ---- */ 
-configuration {
-  modi: "drun";
-}
-
 /* ---- Window ---- */
 window {
-  width: 700px;
+    width: 50%;
 }
 
-/* ---- Inputbar ---- */
-inputbar {
-  children:
-    ["entry"];
-}
-
+/* ---- Entry ---- */
 entry {
-  placeholder: "🔎 Search";
-  width: 600px;
+  placeholder: "🔎 Search       ";
 }
 
 /* ---- Listview ---- */
 listview {
   columns: 1;
-  lines: 9;
-  spacing: 4px;
-  fixed-columns: true;
-  border-radius: 10px;
-  scrollbar: false;
-}
-
-/*****----- Message -----*****/
-message {
-  background-color: transparent;
-  border-radius: 10px;
-}
-
-textbox {
-  padding: 6px;
-  background-color: transparent;
+  lines: 10;
 }

@@ -17,11 +17,11 @@
 
 "modules-left": [
 	"custom/menu",
+	"custom/light_dark",
 	"custom/separator#dot-line",
-	"clock",
 	"group/motherboard",
-	"custom/separator#blank"
-	"group/laptop"
+	"custom/separator#blank",
+	"group/laptop",
 	"custom/separator#line",
 	"custom/weather",
 	],
@@ -29,7 +29,8 @@
 "modules-center": [
 	"custom/swaync",
 	"custom/cava_mviz",
-	"custom/light_dark",
+	"custom/separator#dot-line",
+	"clock",
 	"custom/separator#line",
 	"hyprland/workspaces#roman",
 	"custom/separator#line",

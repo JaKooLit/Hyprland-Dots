@@ -49,7 +49,7 @@ window {
     anchor:                     center;
 
     // Style Values
-    width:                      800px;
+    width:                      50%;
     background-color:           #00000099;
 }
 
@@ -82,7 +82,7 @@ entry {
     padding:                     10px;
     border-radius:               12px;
     background-color:            @background-alt;
-    text-color:                  @text-selected;
+    text-color:                  inherit;
     cursor:                      text;
     placeholder:                 "  Search "; // << Search symbol
     placeholder-color:           inherit;
@@ -129,7 +129,7 @@ mode-switcher{
     background-color:            transparent;
 }
 button {
-    width:                       95px;
+    width:                       5%;
     padding:                     12px;
     border-radius:               12px;
     background-color:            @background-alt;

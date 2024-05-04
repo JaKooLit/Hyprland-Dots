@@ -5,7 +5,7 @@
 
 /* ---- Window ---- */
 window {
-	width: 700px;
+	width: 40%;
     location: north;
 }
 

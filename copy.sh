@@ -3,7 +3,7 @@
 
 clear
 
-wallpaper=$HOME/Pictures/wallpapers/Anime-Landscape2.png
+wallpaper=$HOME/Pictures/wallpapers/Lofi-Urban-Nightscape.png
 Waybar_Style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
 
 # Check if running as root. If root, script will exit
@@ -209,7 +209,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync swaylock wal waybar wlogout; do 
+for DIR in btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wal waybar wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -259,7 +259,7 @@ else
     rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" 2>&1 | tee -a "$LOG"
 fi
 
-printf "\n%.0s" {1..3}
+printf "\n%.0s" {1..2}
 
 # additional wallpapers
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
