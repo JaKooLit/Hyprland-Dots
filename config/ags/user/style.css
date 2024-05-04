@@ -23,16 +23,16 @@ widget {
   border-left: 1px solid @color7;
   border-right: 1px solid @color7;
   border-bottom: 1px solid @color7;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.45);
+  /* box-shadow: 0px 2px 3px alpha(@color0, 0.45); */
   margin: 0.476rem;
   min-width: 13.636rem;
   min-height: 3.409rem;
   padding: 0rem 1.364rem;
   padding-right: 2.864rem;
   background-color: alpha(@color0, 0.5);
-  /* color: #EBDFED; */
   color: alpha(@color7, 0.9);
   caret-color: transparent;
+  font-weight: bold;
 }
 .overview-search-box selection {
   background-color: #DEBCDF;
@@ -45,7 +45,6 @@ widget {
 }
 
 .overview-search-prompt {
-  /* color: #988D9D; */
   color: alpha(@color7, 0.9);
 }
 
@@ -70,12 +69,13 @@ widget {
   border-left: 1px solid @color7;
   border-right: 1px solid @color7;
   border-bottom: 1px solid @color7;
-  box-shadow: 0px 2px 3px @color8;
+  box-shadow: 0px 2px 3px @color9;
   margin: 0.476rem;
   min-width: 28.773rem;
   padding: 0.682rem;
-  background-color: @color2;
-  color: #EBDFED;
+  background-color: alpha(@color2, 0.5);
+  color: alpha(@color7, 1.5);
+  font-weight: bold;
 }
 
 .overview-search-results-icon {
@@ -106,11 +106,13 @@ widget {
 
 .overview-search-result-btn:hover,
 .overview-search-result-btn:focus {
-  background-color: #2E2832;
+  background-color: alpha(@color7, 0.4);
+  color: alpha(@color0, 0.7);
 }
 
 .overview-search-result-btn:active {
-  background-color: #39323D;
+  background-color: alpha(@color7, 0.4);
+  color: @color4;
 }
 
 .overview-tasks {
@@ -124,7 +126,7 @@ widget {
   margin: 0.476rem;
   padding: 0.341rem;
   /* background-color: rgba(49, 50, 68, 0.8); */
-  background-color: alpha(@color9, 0.4);
+  background-color: alpha(@color0, 0.6);
   color: #EBDFED;
 }
 
@@ -157,15 +159,15 @@ widget {
 
 .overview-tasks-window:hover,
 .overview-tasks-window:focus {
-  background-color: @color9;
+  background-color: alpha(@color9, 0.8);
 }
 
 .overview-tasks-window:active {
-  background-color: @color9;
+  background-color: alpha(@color9, 0.8);
 }
 
 .overview-tasks-window-selected {
-  background-color: @color9;
+  background-color: alpha(@color9, 0.8);
 }
 
 .overview-tasks-window-dragging {
