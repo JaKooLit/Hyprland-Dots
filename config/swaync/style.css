@@ -3,16 +3,16 @@
 @import '../../.cache/wal/colors-waybar.css';
 
 @define-color noti-border-color @color2;
-@define-color noti-bg rgba(0, 0, 0, 0.8);
-@define-color noti-bg-alt #111111;
+@define-color noti-bg rgba(255, 255, 255, 0.9);
+@define-color noti-bg-alt #F0F0F0;
 @define-color noti-bg-hover @color2;
-@define-color text-color @color2;
-@define-color text-color-alt @color7;
+@define-color text-color @color7;
+@define-color text-color-alt @color2;
 @define-color text-color-disabled rgba(150, 150, 150, 0.8);
 
 * {
-    font-family: FiraCode;
-    font-weight: Bolder;
+    font-family: "JetBrains Mono Nerd Font";
+    font-weight: bold;
 }
 
 .control-center .notification-row:focus,
@@ -36,7 +36,7 @@
     background: @noti-bg;
     padding: 3px 10px 3px 6px;
     border-radius: 10px;
-    border: 2px solid @noti-border-color;
+    border: 1px solid @noti-border-color;
     margin: 0px;
 }
 
@@ -136,7 +136,7 @@
 
 .summary {
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: bold;
     background: transparent;
     color: @text-color-alt;
     text-shadow: none
@@ -144,7 +144,7 @@
 
 .time {
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: bold;
     background: transparent;
     color: @text-color;
     text-shadow: none;
@@ -153,7 +153,7 @@
 
 .body {
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: bold;
     background: transparent;
     color: @text-color;
     text-shadow: none

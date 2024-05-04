@@ -22,43 +22,43 @@ window#waybar {
 }
 
 #workspaces {
-  background: #0F1419;
-  padding: 0px 1px;
-  border-radius: 15px;
-  border: 0px;
-  font-style: normal;
-  color: #0F1419;
+	background: #0F1419;
+	padding: 0px 1px;
+	border-radius: 15px;
+	border: 0px;
+	font-style: normal;
+	color: #0F1419;
 }
 
 #taskbar button,
 #workspaces button {
-  padding: 0px 5px;
-  border-radius: 15px;
-  border: 0px;
-  color: #0F1419;
-  background: linear-gradient(45deg, #95E6CB, #59C2FF, #D2A6FF);
-  opacity: 0.5;
-  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+	padding: 0px 5px;
+	border-radius: 15px;
+	border: 0px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #95E6CB, #59C2FF, #D2A6FF);
+	opacity: 0.5;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #taskbar button.active,
 #workspaces button.active {
-  padding: 0px 5px;
-  border-radius: 15px;
-  border: 0px;
-  color: #0F1419;
-  background: linear-gradient(45deg, #59C2FF, #D2A6FF);
-  opacity: 1.0;
-  min-width: 40px;
-  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+	padding: 0px 5px;
+	border-radius: 15px;
+	border: 0px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #59C2FF, #D2A6FF);
+	opacity: 1.0;
+	min-width: 40px;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
-  border-radius: 15px;
-  color: #0F1419;
-  background: linear-gradient(45deg, #59C2FF, #D2A6FF);
-  opacity: 0.8;
-  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+	border-radius: 15px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #59C2FF, #D2A6FF);
+	opacity: 0.8;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 
 }
 
