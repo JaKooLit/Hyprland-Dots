@@ -17,7 +17,7 @@ light_rofi_pywal="$HOME/.cache/wal/colors-rofi-light.rasi"
 pkill swaybg
 
 # Initialize swww if needed
-swww query || swww init
+swww query || swww-daemon
 
 # Set swww options
 swww="swww img"

@@ -48,7 +48,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5
 - [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
 > [!Note] 
 > The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
-- ~/.config (btop cava hypr kitty rofi swappy swaylock swaync waybar wlogout) - These are folders to be copied.
+- ~/.config (btop cava hypr kitty rofi swappy swaync waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
 - clone this repo by using git. Change directory, make executable and run the script
 ```bash
@@ -88,6 +88,7 @@ chmod +x upgrade.sh
 
 + Nvidia Owners. Make sure to edit your `~/.config/hypr/UserConfigs/ENVariables.conf` (recommended). Below env's will be activated if automatic copy is used
 > WLR_NO_CURSORS,1 , LIBVA_DRIVER_NAME,nvidia ,  __GLX_VENDOR_LIBRARY_NAME,nvidia 
+- NVIDIA users / owners, after installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
 + If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
 

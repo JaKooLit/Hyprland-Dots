@@ -3,7 +3,7 @@
 
 clear
 
-wallpaper=$HOME/Pictures/wallpapers/Fantasy-Landscape.png
+wallpaper=$HOME/Pictures/wallpapers/Lofi-Urban-Nightscape.png
 Waybar_Style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
 
 # Check if running as root. If root, script will exit
@@ -209,7 +209,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync swaylock wal waybar wlogout; do 
+for DIR in btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wal waybar wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -249,15 +249,17 @@ printf "\n%.0s" {1..3}
 # Detect machine type and set Waybar configurations accordingly, logging the output
 if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
-    ln -sf "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    ln -sf "$HOME/.config/waybar/configs/[TOP] Default_v2" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/configs/[BOT] Default Laptop" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" 2>&1 | tee -a "$LOG"
 else
     # Configurations for a laptop or any system other than desktop
-    ln -sf "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    ln -sf "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" 2>&1 | tee -a "$LOG"
 fi
 
-printf "\n%.0s" {1..3}
+printf "\n%.0s" {1..2}
 
 # additional wallpapers
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
@@ -296,7 +298,7 @@ done
 ln -sf "$Waybar_Style" "$HOME/.config/waybar/style.css" && \
 
 # initialize pywal to avoid config error on hyprland
-wal -i $wallpaper -s -t 2>&1 | tee -a "$LOG"
+wal -i $wallpaper -s -t -n -e 2>&1 | tee -a "$LOG"
 
 #initial symlink for Pywal Dark and Light for Rofi Themes
 ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"

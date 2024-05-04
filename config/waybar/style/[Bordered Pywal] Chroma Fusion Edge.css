@@ -68,7 +68,7 @@ window#waybar.empty #window {
 #wireplumber,
 #custom-backlight,
 #custom-cycle_wall,
-#custom-keybinds,
+#custom-hint,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -126,7 +126,7 @@ window#waybar.empty #window {
 }
 
 #custom-swaync,
-#custom-keybinds,
+#custom-hint,
 #tray {
 	color: aliceblue;
 }
