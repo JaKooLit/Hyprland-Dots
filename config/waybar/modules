@@ -465,7 +465,7 @@
     "tooltip": true,
 },
       
-"custom/keybinds": {
+"custom/hint": {
     "format":"󰺁 HINT!",
     "exec": "echo ; echo  Key Hints SUPER H",
     "on-click": "~/.config/hypr/scripts/KeyHints.sh",
@@ -499,7 +499,7 @@
 },
     
 "custom/menu": {
-    "format": "{}",
+    "format": "{}",
     "exec": "echo ; echo 󱓟 app launcher",
     "interval" : 86400, // once every day
     "tooltip": true,

@@ -249,12 +249,14 @@ printf "\n%.0s" {1..3}
 # Detect machine type and set Waybar configurations accordingly, logging the output
 if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
-    ln -sf "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    ln -sf "$HOME/.config/waybar/configs/[TOP] Default_v2" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/configs/[BOT] Default Laptop" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" 2>&1 | tee -a "$LOG"
 else
     # Configurations for a laptop or any system other than desktop
-    ln -sf "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    ln -sf "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" 2>&1 | tee -a "$LOG"
 fi
 
 printf "\n%.0s" {1..3}

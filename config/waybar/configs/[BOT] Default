@@ -41,7 +41,7 @@
 	"custom/lock",
 	//],
 	"custom/separator#dot-line",
-	"custom/keybinds",	
+	"custom/hint",	
 	], 
 
 "modules-right": [
