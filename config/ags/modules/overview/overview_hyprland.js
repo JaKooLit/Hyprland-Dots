@@ -52,7 +52,7 @@ export default () => {
 
     const Window = ({ address, at: [x, y], size: [w, h], workspace: { id, name }, class: c, title, xwayland }, screenCoords) => {
         const revealInfoCondition = (Math.min(w, h) * userOptions.overview.scale > 70);
-        if (w <= 0 || h <= 0 || (c === '' && title === '')) return null;
+        if (w <= 0 || h <= 0 || (c === '' && title === '') || c.endsWith('-dropterm')) return null;
         // Non-primary monitors
         if (screenCoords.x != 0) x -= screenCoords.x;
         if (screenCoords.y != 0) y -= screenCoords.y;
