@@ -35,9 +35,9 @@ widget {
   padding: 0rem 1.364rem;
   padding-right: 2.864rem;
   background-color: @noti-bg;
-  color: @color2a;
+  color: @color2;
   caret-color: transparent;
-  font-weight: bold;
+  font-weight: bolder;
 }
 .overview-search-box selection {
   background-color: @noti-bg;
@@ -78,7 +78,7 @@ widget {
   margin: 0.476rem;
   min-width: 28.773rem;
   padding: 0.682rem;
-background-color: @noti-bg;
+  background-color: @noti-bg;
   color: @color2;
   font-weight: bold;
 }
