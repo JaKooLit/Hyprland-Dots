@@ -5,6 +5,11 @@
 @import '../../../.cache/wal/colors-waybar.css';
 /* @import '../../../.cache/wal/colors-waybar-rgba.css'; */
 
+/* define some colors */
+@define-color border-color	@color2;
+@define-color border-color-alt	@color7;
+@define-color noti-bg rgba(0, 0, 0, 0.8);
+@define-color noti-bg-alt #111111;
 
 widget {
   border-radius: 0.818rem;
@@ -19,24 +24,24 @@ widget {
   transition: 300ms cubic-bezier(0, 0.55, 0.45, 1);
   border-radius: 1.705rem;
   -gtk-outline-radius: 1.705rem;
-  border-top: 1px solid @color7;
-  border-left: 1px solid @color7;
-  border-right: 1px solid @color7;
-  border-bottom: 1px solid @color7;
+  border-top: 1px solid @border-color;
+  border-left: 1px solid @border-color-alt;
+  border-right: 1px solid @border-color-alt;
+  border-bottom: 1px solid @border-color;
   /* box-shadow: 0px 2px 3px alpha(@color0, 0.45); */
   margin: 0.476rem;
   min-width: 13.636rem;
   min-height: 3.409rem;
   padding: 0rem 1.364rem;
   padding-right: 2.864rem;
-  background-color: alpha(@color0, 0.5);
-  color: alpha(@color7, 0.9);
+  background-color: @noti-bg;
+  color: @color2a;
   caret-color: transparent;
   font-weight: bold;
 }
 .overview-search-box selection {
-  background-color: #DEBCDF;
-  color: #402843;
+  background-color: @noti-bg;
+  color: @color2;
 }
 
 .overview-search-box-extended {
@@ -45,7 +50,7 @@ widget {
 }
 
 .overview-search-prompt {
-  color: alpha(@color7, 0.9);
+  color: @color2;
 }
 
 .overview-search-icon {
@@ -65,16 +70,16 @@ widget {
 .overview-search-results {
   border-radius: 1.705rem;
   -gtk-outline-radius: 1.705rem;
-  border-top: 1px solid @color7;
-  border-left: 1px solid @color7;
-  border-right: 1px solid @color7;
-  border-bottom: 1px solid @color7;
+  border-top: 1px solid @border-color;
+  border-left: 1px solid @border-color-alt;
+  border-right: 1px solid @border-color-alt;
+  border-bottom: 1px solid @border-color;
   box-shadow: 0px 2px 3px @color9;
   margin: 0.476rem;
   min-width: 28.773rem;
   padding: 0.682rem;
-  background-color: alpha(@color2, 0.5);
-  color: alpha(@color7, 1.5);
+background-color: @noti-bg;
+  color: @color2;
   font-weight: bold;
 }
 
@@ -106,22 +111,22 @@ widget {
 
 .overview-search-result-btn:hover,
 .overview-search-result-btn:focus {
-  background-color: alpha(@color7, 0.4);
+  background-color: alpha(@color7, 0.9);
   color: alpha(@color0, 0.7);
 }
 
 .overview-search-result-btn:active {
-  background-color: alpha(@color7, 0.4);
+  background-color: alpha(@color7, 0.9);
   color: @color4;
 }
 
 .overview-tasks {
   border-radius: 1.705rem;
   -gtk-outline-radius: 1.705rem;
-  border-top: 1px solid @color7;
-  border-left: 1px solid @color7;
-  border-right: 1px solid @color7;
-  border-bottom: 1px solid @color7;
+  border-top: 1px solid @border-color;
+  border-left: 1px solid @border-color-alt;
+  border-right: 1px solid @border-color-alt;
+  border-bottom: 1px solid @border-color;
   box-shadow: 0px 2px 3px @color5;
   margin: 0.476rem;
   padding: 0.341rem;
