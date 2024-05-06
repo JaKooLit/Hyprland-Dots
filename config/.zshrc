@@ -57,5 +57,5 @@ export LD_LIBRARY_PATH="."
 [ -f "/home/adrien/.ghcup/env" ] && source "/home/adrien/.ghcup/env" # ghcup-env
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
