@@ -41,7 +41,7 @@ widget {
 }
 .overview-search-box selection {
   background-color: @noti-bg;
-  color: @color2;
+  color: @border-color;
 }
 
 .overview-search-box-extended {
@@ -79,7 +79,7 @@ widget {
   min-width: 28.773rem;
   padding: 0.682rem;
   background-color: @noti-bg;
-  color: @color2;
+  color: @border-color;
   font-weight: bold;
 }
 
@@ -131,7 +131,7 @@ widget {
   margin: 0.476rem;
   padding: 0.341rem;
   /* background-color: rgba(49, 50, 68, 0.8); */
-  background-color: alpha(@color0, 0.6);
+  background-color: @noti-bg;
   color: #EBDFED;
 }
 
