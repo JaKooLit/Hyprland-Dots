@@ -25,6 +25,9 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
+# quit ags
+ags -q
+
 # Pywal refresh
 ${SCRIPTSDIR}/PywalSwww.sh &
 
