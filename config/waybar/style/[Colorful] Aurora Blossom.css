@@ -32,6 +32,7 @@ tooltip {
 tooltip label{
 	color: black;
 }
+
 /*-----module groups----*/
 .modules-right {
     background-image: linear-gradient(45deg, #7287fd 10%, #209fb5 54%, #8839ef 90%);

@@ -33,14 +33,6 @@ window#waybar.empty #window {
    background-color: transparent;
 }
 	   
-tooltip {
-	background: #1e1e2e;
-	border-radius: 10px;
-	border-width: 2px;
-	border-style: solid;
-	border-color: #11111b;
-	color: #cba6f7;
-}
 
 /*-----module groups----*/
 .modules-right {

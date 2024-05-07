@@ -62,6 +62,12 @@ window#waybar {
 
 }
 
+tooltip {
+	background: #1e1e2e;
+	opacity: 0.8;
+	border-radius: 6px;
+}
+
 #backlight,
 #backlight-slider,
 #battery,
