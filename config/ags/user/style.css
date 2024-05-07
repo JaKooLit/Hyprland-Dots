@@ -6,9 +6,10 @@
 /* @import '../../../.cache/wal/colors-waybar-rgba.css'; */
 
 /* define some colors */
-@define-color border-color	@color2;
-@define-color border-color-alt	@color7;
-@define-color noti-bg rgba(0, 0, 0, 0.8);
+@define-color border-color @color2;
+@define-color border-color-alt @color7;
+@define-color text-color rgba(255, 255, 255, 0.7);
+@define-color noti-bg rgba(0, 0, 0, 0.4);
 @define-color noti-bg-alt #111111;
 
 widget {
@@ -35,13 +36,13 @@ widget {
   padding: 0rem 1.364rem;
   padding-right: 2.864rem;
   background-color: @noti-bg;
-  color: @color2;
-  caret-color: transparent;
+  color: @text-color;
+  caret-color: inherit;
   font-weight: bolder;
 }
 .overview-search-box selection {
   background-color: @noti-bg;
-  color: @border-color;
+  color: @text-color;
 }
 
 .overview-search-box-extended {
@@ -50,7 +51,7 @@ widget {
 }
 
 .overview-search-prompt {
-  color: @color2;
+  color: @text-color;
 }
 
 .overview-search-icon {
@@ -79,7 +80,7 @@ widget {
   min-width: 28.773rem;
   padding: 0.682rem;
   background-color: @noti-bg;
-  color: @border-color;
+  color: @text-color;
   font-weight: bold;
 }
 

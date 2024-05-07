@@ -1,6 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Scripts for refreshing waybar, rofi, swaync, pywal colors
+# Scripts for refreshing ags waybar, rofi, swaync, pywal colors
 
 SCRIPTSDIR=$HOME/.config/hypr/scripts
 UserScripts=$HOME/.config/hypr/UserScripts
@@ -22,6 +22,7 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
+# quit ags
 ags -q
 
 sleep 0.3
