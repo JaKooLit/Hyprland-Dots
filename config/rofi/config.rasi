@@ -141,6 +141,14 @@ button selected {
     text-color:                  @text-selected;
 }
 
+/* ---- Scrollbar ---- */
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @border-color;
+    handle-width: 8px ;
+    padding:      0;
+}
 
 /* ---- Elements ---- */
 element {
@@ -151,7 +159,6 @@ element {
     background-color:            transparent;
     cursor:                      pointer;
 }
-
 
 element normal.normal {
     background-color:            inherit;

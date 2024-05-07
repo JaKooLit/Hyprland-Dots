@@ -5,7 +5,7 @@
 
 /* ---- Window ---- */
 window {
-    width: 50%;
+  width: 50%;
 }
 
 /* ---- Entry ---- */
@@ -16,5 +16,6 @@ entry {
 /* ---- Listview ---- */
 listview {
   columns: 1;
-  lines: 10;
+  lines: 8;
+  scrollbar: true;
 }
