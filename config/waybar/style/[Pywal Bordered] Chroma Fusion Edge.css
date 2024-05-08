@@ -47,6 +47,15 @@ window#waybar.empty #window {
 
 }
 
+tooltip {
+	background-color: transparent;
+	border-radius: 10px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #11111b;
+	color: @border-color;
+}
+
 #backlight,
 #backlight-slider,
 #battery,

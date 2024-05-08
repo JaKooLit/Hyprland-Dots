@@ -50,15 +50,11 @@ window#waybar.empty #window {
 
 tooltip {
     background: #1e1e2e;
-    opacity: 0.8;
+    opacity: 0.6;
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
     border-color: #11111b;
-}
-
-tooltip label{
-    color: #cdd6f4;
 }
 
 #workspaces button {

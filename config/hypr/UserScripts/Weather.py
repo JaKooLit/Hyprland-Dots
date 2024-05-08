@@ -3,7 +3,7 @@
 import subprocess
 from pyquery import PyQuery  # install using `pip install pyquery`
 import json
-
+import os
 
 # original code https://gist.github.com/Surendrajat/ff3876fd2166dd86fb71180f4e9342d7
 # weather icons
@@ -122,3 +122,15 @@ out_data = {
     "class": status_code,
 }
 print(json.dumps(out_data))
+
+simple_weather =f"{icon}  {status}\n" + \
+                f"  {temp} ({temp_feel_text})\n" + \
+                f"{wind_text}\n" + \
+                f"{humidity_text}\n" + \
+                f"{visbility_text}  AQI {air_quality_index}\n"
+
+try:
+    with open(os.path.expanduser("~/.cache/.weather_cache"), "w") as file:
+        file.write(simple_weather)
+except:
+    pass

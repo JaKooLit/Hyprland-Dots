@@ -34,12 +34,12 @@ window#waybar.empty #window {
 }	   
 
 tooltip {
-	background: #1e1e2e;
+	background: #240303;
 	border-radius: 10px;
 	border-width: 2px;
 	border-style: solid;
 	border-color: #11111b;
-	color: #cba6f7;
+	color: wheat;
 }
 
 /*-----module groups----*/
