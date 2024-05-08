@@ -4,12 +4,14 @@
 # wlogout (Power, Screen Lock, Suspend, etc)
 
 # Set variables for parameters
-A_2160=680
-B_2160=750
-A_1440=500
-B_1440=550
-A_1080=400
-B_1080=400
+A_2160=450
+B_2160=450
+A_1600=400
+B_1600=400
+A_1440=350
+B_1440=350
+A_1080=50
+B_1080=50
 A_720=50
 B_720=50
 
@@ -23,22 +25,33 @@ fi
 resolution=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .height / .scale' | awk -F'.' '{print $1}')
 hypr_scale=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .scale')
 
-echo "Detected Resolution: $resolution"
-
 # Set parameters based on screen resolution and scaling factor
 if ((resolution >= 2160)); then
-    wlogout --protocol layer-shell -b 3 -T $(awk "BEGIN {printf \"%.0f\", $A_2160 * 2160 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_2160 * 2160 * $hypr_scale / $resolution}") &
-    echo "Setting parameters for resolution >= 2160p"
-elif ((resolution >= 1440)); then
-    wlogout --protocol layer-shell -b 6 -T $(awk "BEGIN {printf \"%.0f\", $A_1440 * 1440 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_1440 * 1440 * $hypr_scale / $resolution}") &
-    echo "Setting parameters for resolution >= 1440p"
-elif ((resolution >= 1080)); then
-    wlogout --protocol layer-shell -b 6 -T $(awk "BEGIN {printf \"%.0f\", $A_1080 * 1080 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_1080 * 1080 * $hypr_scale / $resolution}") &
-    echo "Setting parameters for resolution >= 1080p"
-elif ((resolution > 720)); then
-    wlogout --protocol layer-shell -b 3 -T $(awk "BEGIN {printf \"%.0f\", $A_720 * 720 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_720 * 720 * $hypr_scale / $resolution}") &
-    echo "Setting parameters for resolution >= 720p"
+    T_val=$(awk "BEGIN {printf \"%.0f\", $A_2160 * 2160 * $hypr_scale / $resolution}")
+    B_val=$(awk "BEGIN {printf \"%.0f\", $B_2160 * 2160 * $hypr_scale / $resolution}")
+    echo "Setting parameters for resolution >= 4k"
+    wlogout --protocol layer-shell -b 6 -T $T_val -B $B_val &
+elif ((resolution >= 1600 && resolution < 2160)); then
+    T_val=$(awk "BEGIN {printf \"%.0f\", $A_1600 * 1600 * $hypr_scale / $resolution}")
+    B_val=$(awk "BEGIN {printf \"%.0f\", $B_1600 * 1600 * $hypr_scale / $resolution}")
+    echo "Setting parameters for resolution >= 2.5k and < 4k"
+    wlogout --protocol layer-shell -b 6 -T $T_val -B $B_val &
+elif ((resolution >= 1440 && resolution < 1600)); then
+    T_val=$(awk "BEGIN {printf \"%.0f\", $A_1440 * 1440 * $hypr_scale / $resolution}")
+    B_val=$(awk "BEGIN {printf \"%.0f\", $B_1440 * 1440 * $hypr_scale / $resolution}")
+    echo "Setting parameters for resolution >= 2k and < 2.5k"
+    wlogout --protocol layer-shell -b 6 -T $T_val -B $B_val &
+elif ((resolution >= 1080 && resolution < 1440)); then
+    T_val=$(awk "BEGIN {printf \"%.0f\", $A_1080 * 1080 * $hypr_scale / $resolution}")
+    B_val=$(awk "BEGIN {printf \"%.0f\", $B_1080 * 1080 * $hypr_scale / $resolution}")
+    echo "Setting parameters for resolution >= 1080p and < 2k"
+    wlogout --protocol layer-shell -b 3 -T $T_val -B $B_val &
+elif ((resolution >= 720 && resolution < 1080)); then
+    T_val=$(awk "BEGIN {printf \"%.0f\", $A_720 * 720 * $hypr_scale / $resolution}")
+    B_val=$(awk "BEGIN {printf \"%.0f\", $B_720 * 720 * $hypr_scale / $resolution}")
+    echo "Setting parameters for resolution >= 720p and < 1080p"
+    wlogout --protocol layer-shell -b 3 -T $T_val -B $B_val &
 else
+    echo "Setting default parameters"
     wlogout &
-    echo "Setting default parameters for resolution <= 720p"
 fi
