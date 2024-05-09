@@ -79,13 +79,13 @@ inputbar {
 entry {
     enabled:                     true;
     expand:                      false;
-    width:                       300px;
+    width:                       18%;
     padding:                     10px;
     border-radius:               12px;
     background-color:            @selected;
     text-color:                  @text-selected;
     cursor:                      text;
-    placeholder:                 "  Search "; // << Search symbol
+    placeholder:                 "🔍 Search "; // << Search symbol
     placeholder-color:           inherit;
 }
 
