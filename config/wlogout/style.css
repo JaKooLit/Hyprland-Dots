@@ -1,9 +1,9 @@
 /* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-/* pywal-wlogout */
+/* wallust-wlogout */
 
 /* Importing pywal colors */
 
-@import '../../.cache/wal/colors-waybar.css';
+@import '../../.config/waybar/wallust/colors-waybar.css';
 
 window {
     font-family: Fira Code Medium;
@@ -28,13 +28,13 @@ button:focus {
 }
 
 button:hover {
-    background-color: @color2; 
+    background-color: @color12; 
     color: #1e1e2e;
     background-size: 50%;
     margin: 30px;
     border-radius: 80px; 
     transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    box-shadow: 0 0 20px @color7; 
+    box-shadow: 0 0 50px @color15; 
 	
 }
 
