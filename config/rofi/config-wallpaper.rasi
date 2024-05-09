@@ -44,7 +44,7 @@ element-icon {
 }
 
 element-text {
-  font: "Fira Code SemiBold 8";
+  font: "Fira Code SemiBold 10";
   vertical-align: 0.5;
   horizontal-align: 0.5;
 }

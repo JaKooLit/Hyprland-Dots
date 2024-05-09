@@ -1,4 +1,4 @@
-# Configuration file for CAVA. Default values are commented out. Use either ';' or '#' for commenting.
+## Configuration file for CAVA. Default values are commented out. Use either ';' or '#' for commenting.
 
 
 [general]
@@ -142,17 +142,17 @@ source = auto
 
 gradient = 1
 
-gradient_color_1 = '#94e2d5'
-gradient_color_2 = '#89dceb'
-gradient_color_3 = '#74c7ec'
-gradient_color_4 = '#89b4fa'
-gradient_color_5 = '#cba6f7'
-gradient_color_6 = '#f5c2e7'
-gradient_color_7 = '#eba0ac'
-gradient_color_8 = '#f38ba8'
+gradient_count = 8
+gradient_color_1 = '#010102'
+gradient_color_2 = '#9E2517'
+gradient_color_3 = '#0E714C'
+gradient_color_4 = '#08BCB1'
+gradient_color_5 = '#CDF5B1'
+gradient_color_6 = '#0AE59C'
+gradient_color_7 = '#0AFAEC'
+gradient_color_8 = '#CDF5B1'
 
-
-
+[color]
 [smoothing]
 
 # Percentage value for integral smoothing. Takes values from 0 - 100.

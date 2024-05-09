@@ -1,69 +1,78 @@
 /* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-/* pywal - Simple */
+/* Wallust Colored*/
 
-*{
-font-family: "JetBrainsMono Nerd Font";
-font-weight: bold;
-min-height: 0;
-/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 97%;
-font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-padding-top: 1px;
-padding-bottom: 1px;
+@import '../../.config/waybar/wallust/colors-waybar.css';
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+	min-height: 0;	
+     /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+    font-size: 96%;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    padding: 1px;
 }
-
-@import '../../.cache/wal/colors-waybar.css';
 
 window#waybar {
-	background: transparent;
+    background: transparent;
 }
 
-#waybar.empty, #waybar.tiled, #waybar.floating {
-	background-color: transparent;
+window#waybar.hidden {
+    opacity: 0.5;
 }
+
+window#waybar.empty {
+    background-color: @background;
+}
+
+window#waybar.empty #window {
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+}
+
 
 tooltip {
-	color: @color2;
-	background: @color0;
-	opacity: 0.8;
-	border-radius: 10px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: @color15;
+    background: @background;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: @color15;
 }
 
 /*-----module groups----*/
 .modules-right {
-	background-color: @color0;
-	border: 0.5px solid @color15;
-	border-radius: 10px;
+	border: 3px solid @color14;
+	border-radius: 40px 0px 0px 0px;
+	background-color: @color1;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 }
+
 .modules-center {
-	background-color: @color0;
-	border: 0.5px solid @color15;
-	border-radius: 10px;
+	border: 3px solid @color14;
+	border-radius: 60px 0px 60px 0px;
+	background-color: @background;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 }
+
 .modules-left {
-	background-color: @color0;
-	border: 0.5px solid @color15;
-	border-radius: 10px;
+	border: 3px solid @color14;
+	border-radius: 0px 0px 40px 0px;
+	background-color: @color1;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 }
-/*-----modules indv----*/
 
 #workspaces button {
-    color: @color2;
+    color: @foreground;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
@@ -75,8 +84,8 @@ tooltip {
 }
 
 #workspaces button.active {
-    color: @foreground;
-    background-color: @color2;
+    color: @background;
+    background-color: @color7;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
@@ -100,6 +109,10 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#clock#2 {
+    color: @color6;
+}
+
 #backlight,
 #backlight-slider,
 #battery,
@@ -115,7 +128,6 @@ tooltip {
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,
@@ -145,32 +157,13 @@ tooltip {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	color: @color2;
-	padding-top: 3px;
-	padding-bottom: 3px;
+	color: @foreground;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	padding-right: 6px;
 	padding-left: 6px;
 }
 
-#mode {
-	color: #cc3436;
-	font-weight: bold;
-}
-#custom-power {
-	/*background-color: rgba(0,119,179,0.6);*/
-	/*border-radius: 50px;*/
-	padding: 1px 3px;
-}
-/*-----Indicators----*/
-#idle_inhibitor.activated {
-	color: #2dcc36;
-}
-#pulseaudio.muted {
-	color: #cc3436;
-}
-#pulseaudio-microphone.muted {
-	color: #cc3436;
-}
 #temperature.critical {
     background-color: #ff0000;
 }
@@ -182,8 +175,7 @@ tooltip {
 }
 
 #taskbar button.active {
-	color: @foreground;
-    background-color: @color2;
+    background-color: rgb(47, 46, 46);
 	border-radius: 30px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
@@ -244,4 +236,8 @@ tooltip {
 #backlight-slider highlight {
 	min-width: 10px;
 	border-radius: 5px;
+}
+
+#custom-cava_mviz {
+	padding-right: 10px;
 }

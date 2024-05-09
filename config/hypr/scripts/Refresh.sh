@@ -1,6 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Scripts for refreshing ags waybar, rofi, swaync, pywal colors
+# Scripts for refreshing ags waybar, rofi, swaync, wallust
 
 SCRIPTSDIR=$HOME/.config/hypr/scripts
 UserScripts=$HOME/.config/hypr/UserScripts
@@ -42,7 +42,5 @@ if file_exists "${UserScripts}/RainbowBorders.sh"; then
     ${UserScripts}/RainbowBorders.sh &
 fi
 
-# for cava-pywal (note, need to manually restart cava once wallpaper changes)
-ln -sf "$HOME/.cache/wal/cava-colors" "$HOME/.config/cava/config" || true
 
 exit 0

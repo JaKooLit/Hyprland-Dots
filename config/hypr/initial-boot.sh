@@ -8,7 +8,7 @@
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
 wallpaper=$HOME/Pictures/wallpapers/Lofi-Urban-Nightscape.png
-waybar_style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
+waybar_style="$HOME/.config/waybar/style/[Wallust] Chroma Tally.css"
 kvantum_theme="Catppuccin-Mocha"
 
 swww="swww img"
@@ -17,16 +17,13 @@ effect="--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type 
 # Check if a marker file exists.
 if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 
-    # Initialize pywal and wallpaper
+    # Initialize wallust and wallpaper
 	if [ -f "$wallpaper" ]; then
-		wal -i $wallpaper -s -t > /dev/null 
+		wallust run -s $wallpaper > /dev/null 
 		swww query || swww-daemon && $swww $wallpaper $effect
-	    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 & 
+	    "$scriptsDir/WallustSwww.sh" > /dev/null 2>&1 & 
 	fi
      
-    # Initial symlink for Pywal Dark and Light for Rofi Themes
-    ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi" > /dev/null 2>&1 &
-
     # initiate GTK dark mode and apply icon and cursor theme
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-BL-LB > /dev/null 2>&1 &
