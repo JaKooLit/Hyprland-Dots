@@ -9,6 +9,8 @@
 
 pywal_refresh=$HOME/.config/hypr/scripts/RefreshNoWaybar.sh
 
+focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+
 if [[ $# -lt 1 ]] || [[ ! -d $1   ]]; then
 	echo "Usage:
 	$0 <dir containing images>"
@@ -29,7 +31,7 @@ while true; do
 		done \
 		| sort -n | cut -d':' -f2- \
 		| while read -r img; do
-			swww img "$img" 
+			swww img -o $focused_monitor "$img" 
 			$pywal_refresh
 			sleep $INTERVAL
 			

@@ -4,6 +4,8 @@
 
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
+focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+
 # WALLPAPERS PATH
 wallDIR="$HOME/Pictures/wallpapers"
 
@@ -67,7 +69,7 @@ main() {
   done
 
   if [[ $pic_index -ne -1 ]]; then
-    swww img "${wallDIR}/${PICS[$pic_index]}" $SWWW_PARAMS
+    swww img -o $focused_monitor "${wallDIR}/${PICS[$pic_index]}" $SWWW_PARAMS
   else
     echo "Image not found."
     exit 1
