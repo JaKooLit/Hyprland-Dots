@@ -85,7 +85,7 @@ entry {
     background-color:            @selected;
     text-color:                  @text-selected;
     cursor:                      text;
-    placeholder:                 "🔍 Search "; // << Search symbol
+    placeholder:                 "🖥️ Search "; // << Search symbol
     placeholder-color:           inherit;
 }
 
@@ -134,7 +134,7 @@ button {
     padding:                     12px;
     border-radius:               12px;
     background-color:            @background-alt;
-    text-color:                  @selected;
+    text-color:                  @text-color;
     cursor:                      pointer;
 }
 button selected {

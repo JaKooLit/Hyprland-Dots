@@ -6,5 +6,5 @@
 /* ---- Entry ---- */
 entry {
   width: 45%;
-  placeholder: "🔎 Search Emoji's  **note** 👀 Click or Return to choose | Ctrl V to Paste";
+  placeholder: "💫 Search Emoji's  **note** 👀 Click or Return to choose | Ctrl V to Paste";
 }

@@ -22,7 +22,7 @@ imagebox {
 
 entry {
   expand: false;
-  placeholder: "󰸉 Choose Wallpaper";
+  placeholder: "🎞️ Choose Wallpaper";
 }
 
 /* ---- Listview ---- */

@@ -5,6 +5,6 @@
 
 /* ---- Entry ---- */ 
 entry {
-  placeholder: "󰮫 Choose Waybar Layout";
+  placeholder: "🖼️ Choose Waybar Layout";
 }
 

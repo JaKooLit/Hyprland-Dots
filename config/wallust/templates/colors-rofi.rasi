@@ -13,7 +13,7 @@ alternate-normal-foreground: {{foreground}};
 alternate-urgent-background: {{background}};
 alternate-urgent-foreground: {{foreground}};
 
-selected-active-background: {{color7}};
+selected-active-background: {{color5}};
 selected-active-foreground: {{foreground}};
 selected-normal-background: {{color9}};
 selected-normal-foreground: {{foreground}};
@@ -23,6 +23,6 @@ selected-urgent-foreground: {{foreground}};
 background-color: {{background}};
 background: rgba(0,0,0,0.7);
 foreground: {{color15}};
-border-color: {{color12}};
+border-color: {{color9}};
 }
 

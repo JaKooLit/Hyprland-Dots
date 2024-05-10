@@ -85,7 +85,7 @@ entry {
     background-color:            @selected;
     text-color:                  @text-selected;
     cursor:                      text;
-    placeholder:                 "🔎 Search "; // << Search symbol
+    placeholder:                 "🖥️ Search "; // << Search symbol
     placeholder-color:           inherit;
 }
 
