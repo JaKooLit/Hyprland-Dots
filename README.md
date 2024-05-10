@@ -7,8 +7,10 @@
 <br/>
 </div>
 
-#### Some preview
-https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/4bebe592-ca43-4962-9b5c-38f16d63a9fa
+## SHOW OFF
+https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/f5ac0261-dd1d-4b55-a1c2-993bb0d331df
+
+
 
 #### 📹 A video walkthroughs
 <details>
