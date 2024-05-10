@@ -1,21 +1,21 @@
 * {
-active-background: {{color2}};
+active-background: {{color9}};
 active-foreground: {{foreground}};
 normal-background: {{background}};
 normal-foreground: {{foreground}};
-urgent-background: {{color1}};
+urgent-background: {{color7}};
 urgent-foreground: {{foreground}};
 
-alternate-active-background: {{background}};
+alternate-active-background: {{color3}};
 alternate-active-foreground: {{foreground}};
 alternate-normal-background: {{background}};
 alternate-normal-foreground: {{foreground}};
 alternate-urgent-background: {{background}};
 alternate-urgent-foreground: {{foreground}};
 
-selected-active-background: {{color1}};
+selected-active-background: {{color7}};
 selected-active-foreground: {{foreground}};
-selected-normal-background: {{color7}};
+selected-normal-background: {{color9}};
 selected-normal-foreground: {{foreground}};
 selected-urgent-background: {{color12}};
 selected-urgent-foreground: {{foreground}};
@@ -23,6 +23,6 @@ selected-urgent-foreground: {{foreground}};
 background-color: {{background}};
 background: rgba(0,0,0,0.7);
 foreground: {{color15}};
-border-color: {{background}};
+border-color: {{color12}};
 }
 

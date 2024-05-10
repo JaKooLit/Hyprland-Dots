@@ -155,8 +155,8 @@ scrollbar {
 element {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     4px;
-    border-radius:               10px;
+    padding:                     10px;
+    border-radius:               12px;
     background-color:            transparent;
     cursor:                      pointer;
 }
