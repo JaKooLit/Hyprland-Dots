@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Pywal Chroma Edge */
+/* Wallust Chroma Edge */
 
-@import '../../.cache/wal/colors-waybar.css';
+@import '../../.config/waybar/wallust/colors-waybar.css';
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -43,7 +43,7 @@ tooltip {
 	border-radius: 12px;
 	border-width: 2px;
 	border-style: solid;
-	border-color: @color2;
+	border-color: @color12;
 }
 
 tooltip label{
@@ -133,7 +133,7 @@ tooltip label{
 	/* color: #bf616a; */
 	border-radius: 12px;
 	background-color: rgba(50, 50, 50, 0.1);
-	border: 1px solid @color2;
+	border: 1px solid @color12;
 	padding: 5px;
 }
 

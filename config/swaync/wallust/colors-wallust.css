@@ -1,0 +1,9 @@
+@define-color text #E2FECE;
+@define-color background rgba(1,1,2,0.25);
+@define-color background-alt #010102;
+@define-color cursor #E2FECE;
+@define-color hovered #0AE59C;
+@define-color button-background #81BC57;
+@define-color button-active #9E2517;
+@define-color border #776D19;
+@define-color urgent #CDF5B1;

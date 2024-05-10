@@ -1,13 +1,14 @@
 /* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* swaync colors - wallust from waybar.css */
 
-@import '../../.cache/wal/colors-waybar.css';
+@import '../../.config/waybar/wallust/colors-waybar.css';
 
-@define-color noti-border-color @color2;
+@define-color noti-border-color @color10;
 @define-color noti-bg rgba(0, 0, 0, 0.8);
 @define-color noti-bg-alt #111111;
 @define-color noti-bg-hover @color2;
-@define-color text-color @color7;
-@define-color text-color-alt @color2;
+@define-color text-color @color12;
+@define-color text-color-alt @color9;
 @define-color text-color-disabled rgba(150, 150, 150, 0.8);
 
 * {

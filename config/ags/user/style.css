@@ -2,11 +2,10 @@
   all: unset;
 }
 
-@import '../../../.cache/wal/colors-waybar.css';
-/* @import '../../../.cache/wal/colors-waybar-rgba.css'; */
+@import '../../../.config/waybar/wallust/colors-waybar.css';
 
 /* define some colors */
-@define-color border-color @color2;
+@define-color border-color @color12;
 @define-color border-color-alt @color7;
 @define-color text-color rgba(255, 255, 255, 0.7);
 @define-color noti-bg rgba(0, 0, 0, 0.4);

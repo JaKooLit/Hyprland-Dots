@@ -19,8 +19,8 @@ configuration {
 	dpi:						1;
 }
 
-/* ---- Load pywal colors ---- */
-@theme "~/.cache/wal/colors-rofi-dark.rasi"
+/* ---- Load wallust colors ---- */
+@theme "~/.config/rofi/wallust/colors-rofi.rasi"
 
 /* ---- Global Properties ---- */
 * {
@@ -50,11 +50,12 @@ window {
 
     // Style Values
     width:                      50%;
-    background-color:           #00000099;
+    background-color:           @background;
 }
 
 /* ----- Main Box ----- */
 mainbox {
+	padding:					 15px;
     enabled:                     true;
     orientation:                 vertical;
     children:                    [ "inputbar", "listbox" ];
@@ -78,13 +79,13 @@ inputbar {
 entry {
     enabled:                     true;
     expand:                      false;
-    width:                       300px;
+    width:                       20%;
     padding:                     10px;
     border-radius:               12px;
-    background-color:            @background-alt;
-    text-color:                  inherit;
+    background-color:            @selected;
+    text-color:                  @text-selected;
     cursor:                      text;
-    placeholder:                 "🔎  Search "; // << Search symbol
+    placeholder:                 "🔎 Search "; // << Search symbol
     placeholder-color:           inherit;
 }
 
@@ -133,7 +134,7 @@ button {
     padding:                     12px;
     border-radius:               12px;
     background-color:            @background-alt;
-    text-color:                  inherit;
+    text-color:                  @selected;
     cursor:                      pointer;
 }
 button selected {
@@ -154,8 +155,8 @@ scrollbar {
 element {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     4px;
-    border-radius:               10px;
+    padding:                     10px;
+    border-radius:               12px;
     background-color:            transparent;
     cursor:                      pointer;
 }

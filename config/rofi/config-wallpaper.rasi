@@ -36,15 +36,15 @@ element {
   orientation: vertical;
   padding: 0px;
   spacing: 0px;
-  border-radius: 12px;
+  border-radius: 15px;
 }
 
 element-icon {
-  size: 15%;
+  size: 20%;
 }
 
 element-text {
-  font: "Fira Code SemiBold 8";
+  font: "Fira Code SemiBold 12";
   vertical-align: 0.5;
   horizontal-align: 0.5;
 }
