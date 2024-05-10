@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Dark - Obsidian Edge */
 
-@import '../../.cache/wal/colors-waybar.css';
+@import '../../.config/waybar/wallust/colors-waybar.css';
 
 * {
 font-family: "JetBrainsMono Nerd Font";

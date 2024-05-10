@@ -133,7 +133,7 @@ button {
     width:                       110px;
     padding:                     12px;
     border-radius:               12px;
-    background-color:            @background-alt;
+    background-color:            @text-selected;
     text-color:                  @text-color;
     cursor:                      pointer;
 }
@@ -224,12 +224,12 @@ textbox {
     padding:                     12px;
     border-radius:               10px;
     background-color:            @background-alt;
-    text-color:                  @foreground;
+    text-color:                  @background;
     vertical-align:              0.5;
 }
 error-message {
     padding:                     12px;
     border-radius:               20px;
     background-color:            @background-alt;
-    text-color:                  @foreground;
+    text-color:                  @background;
 }
