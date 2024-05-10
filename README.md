@@ -7,8 +7,10 @@
 <br/>
 </div>
 
-## SHOW OFF
-https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/f5ac0261-dd1d-4b55-a1c2-993bb0d331df
+## SHOW CASE
+
+
+https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-9913-76039e84a2cd
 
 
 
