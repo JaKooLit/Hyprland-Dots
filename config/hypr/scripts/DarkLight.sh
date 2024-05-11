@@ -49,9 +49,6 @@ notify_user() {
     notify-send -u low -i "$notif" "Switching to $1 mode"
 }
 
-# Print a message indicating the mode change
-echo "Changing palette mode to $next_mode..."
-
 # Use sed to replace the palette setting in the wallust config file
 if [ "$next_mode" = "Dark" ]; then
     sed -i 's/^palette = .*/palette = "'"$pallete_dark"'"/' "$wallust_config" 
@@ -59,9 +56,6 @@ else
     sed -i 's/^palette = .*/palette = "'"$pallete_light"'"/' "$wallust_config" 
 fi
 
-
-# Print a message indicating the completion of the operation
-echo "Palette mode updated."
 # Function to set Waybar style
 set_waybar_style() {
     theme="$1"
@@ -125,9 +119,9 @@ else
     qt6ct_color_scheme="$HOME/.config/qt6ct/colors/Catppuccin-Latte.conf"
 fi
 
-kvantummanager --set "$kvantum_theme"
 sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt5ct_color_scheme|" "$HOME/.config/qt5ct/qt5ct.conf"
 sed -i "s|^color_scheme_path=.*$|color_scheme_path=$qt6ct_color_scheme|" "$HOME/.config/qt6ct/qt6ct.conf"
+kvantummanager --set "$kvantum_theme"
 
 
 # set the rofi color for background
@@ -224,6 +218,7 @@ ${SCRIPTSDIR}/WallustSwww.sh
 sleep 1
 ${SCRIPTSDIR}/Refresh.sh 
 
+sleep 0.3
 # Display notifications for theme and icon changes
 notify-send -u normal -i "$notif" "Themes in $next_mode Mode"
 
