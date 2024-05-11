@@ -68,6 +68,7 @@ let configOptions = {
     // Longer stuff
     'icons': {
         substitutions: {
+            'codium-url-handler': "vscodium",
             'code-url-handler': "visual-studio-code",
             'Code': "visual-studio-code",
             'GitHub Desktop': "github-desktop",
