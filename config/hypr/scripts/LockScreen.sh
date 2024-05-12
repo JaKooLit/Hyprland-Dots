@@ -2,4 +2,4 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 
 # For Hyprlock
-hyprlock -q
+hyprlock -q --immediate

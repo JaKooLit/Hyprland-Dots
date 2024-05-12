@@ -12,13 +12,11 @@ window {
 /* ---- Inputbar ---- */
 inputbar {
     enabled: true;
-    padding: 2px;
-    margin: 2px;
 }
 
 /* ---- Mainbox ---- */
 mainbox {
-	padding: 2px;
+	padding: 0px;
     children: [ "entry"];
 }
 

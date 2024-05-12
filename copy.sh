@@ -4,7 +4,7 @@
 clear
 
 wallpaper=$HOME/Pictures/wallpapers/Lofi-Urban-Nightscape.png
-Waybar_Style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
+Waybar_Style="$HOME/.config/waybar/style/[Wallust] Chroma Tally.css"
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -209,7 +209,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wal waybar wlogout; do 
+for DIR in ags btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wallust waybar wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -297,11 +297,8 @@ done
 # symlinks for waybar style
 ln -sf "$Waybar_Style" "$HOME/.config/waybar/style.css" && \
 
-# initialize pywal to avoid config error on hyprland
-wal -i $wallpaper -s -t -n -e 2>&1 | tee -a "$LOG"
-
-#initial symlink for Pywal Dark and Light for Rofi Themes
-ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
+# initialize wallust to avoid config error on hyprland
+wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
 
 printf "\n%.0s" {1..2}

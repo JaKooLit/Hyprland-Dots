@@ -1,0 +1,53 @@
+# wallust 3.0 beta.*
+
+backend = "resized"
+color_space = "lch"
+
+# NOTE: All filters will fill 16 colors (from color0 to color15), 16 color
+#       variations are the 'ilusion' of more colors by opaquing color1 to color5.
+# Use the most prominent colors in a way that makes sense, a scheme:
+#  * dark        - 8 dark colors, dark background and light contrast
+#  * dark16      - Same as `dark` but uses the 16 colors trick
+#  * harddark    - Same as `dark` with hard hue colors
+#  * harddark16  - Harddark with 16 color variation
+#  * light       - Light bg, dark fg
+#  * light16     - Same as `light` but uses the 16 color trick
+#  * softdark    - Variant of softlight, uses the lightest colors and a dark
+#                   background (could be interpreted as `dark` inversed)
+#  * softdark16  - softdark with 16 color variation
+#  * softlight   - Light with soft pastel colors, counterpart of `harddark`
+#  * softlight16 - softlight with 16 color variation
+palette = "dark16"
+
+# Difference between similar colors, used by the colorspace:
+#  1          Not perceptible by human eyes.
+#  1 - 2      Perceptible through close observation.
+#  2 - 10     Perceptible at a glance.
+#  11 - 49    Colors are more similar than opposite
+#  100        Colors are exact opposite
+threshold = 10
+
+[templates]
+cava.template = 'templates/colors-cava'
+cava.target = '~/.config/cava/config'
+
+hypr.template = 'templates/colors-hyprland.conf'
+hypr.target = '~/.config/hypr/wallust/wallust-hyprland.conf'
+
+rofi.template = 'templates/colors-rofi.rasi'
+rofi.target = '~/.config/rofi/wallust/colors-rofi.rasi'
+
+waybar.template = 'templates/colors-waybar.css'
+waybar.target = '~/.config/waybar/wallust/colors-waybar.css'
+
+#swaync.template = 'templates/colors-swaync.css'
+#swaync.target = '~/.config/swaync/wallust/colors-wallust.css'
+
+#macchina.template = 'templates/colors-macchina.toml'
+#macchina.target = '~/.config/macchina/themes/wallust.toml'
+
+#wezterm.template = 'templates/colors-wezterm.toml'
+#wezterm.target = '~/.config/wezterm/colors/wallust.toml'
+
+#zathura.template = 'templates/colors-zathura'
+#zathura.target = '~/.config/zathura/zathurarc'

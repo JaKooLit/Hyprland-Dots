@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Pywal - Chroma Tally */
+/* Wallust - Chroma Tally */
 
-@import '../../.cache/wal/colors-waybar.css';
+@import '../../.config/waybar/wallust/colors-waybar.css';
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -18,7 +18,7 @@ window#waybar {
     border-radius: 12px;
 	border-bottom: 2px;
     border-style: solid;
-	border-color: @color2; 
+	border-color: @color12; 
 }
 
 #workspaces {
