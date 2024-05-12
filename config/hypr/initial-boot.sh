@@ -7,8 +7,8 @@
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
-wallpaper=$HOME/Pictures/wallpapers/Lofi-Urban-Nightscape.png
-waybar_style="$HOME/.config/waybar/style/[Wallust] Chroma Tally.css"
+wallpaper=$HOME/Pictures/wallpapers/Fantasy-Waterfall.png
+waybar_style="$HOME/.config/waybar/style/[Dark] Latte-Wallust combined.css"
 kvantum_theme="Catppuccin-Mocha"
 
 swww="swww img"
@@ -26,8 +26,8 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
      
     # initiate GTK dark mode and apply icon and cursor theme
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark > /dev/null 2>&1 &
-    gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-BL-LB > /dev/null 2>&1 &
-    gsettings set org.gnome.desktop.interface icon-theme Tokyonight-Dark > /dev/null 2>&1 &
+    gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-Moon-BL-LB > /dev/null 2>&1 &
+    gsettings set org.gnome.desktop.interface icon-theme Flat-Remix-Blue-Dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface cursor-size 24 > /dev/null 2>&1 &
     

@@ -3,8 +3,8 @@
 
 clear
 
-wallpaper=$HOME/Pictures/wallpapers/Lofi-Urban-Nightscape.png
-Waybar_Style="$HOME/.config/waybar/style/[Wallust] Chroma Tally.css"
+wallpaper=$HOME/Pictures/wallpapers/Fantasy-Waterfall.png
+waybar_style="$HOME/.config/waybar/style/[Dark] Latte-Wallust combined.css"
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -295,7 +295,7 @@ while true; do
 done
 
 # symlinks for waybar style
-ln -sf "$Waybar_Style" "$HOME/.config/waybar/style.css" && \
+ln -sf "$waybar_Style" "$HOME/.config/waybar/style.css" && \
 
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
