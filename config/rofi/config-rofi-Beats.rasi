@@ -5,7 +5,7 @@
 
 /* ---- Entry ---- */ 
 entry {
-  placeholder: "📻 Choose Online Music Station";
+  placeholder: "📻 Choose Your Music Play Station";
 }
 
 /* ---- Listview ---- */
