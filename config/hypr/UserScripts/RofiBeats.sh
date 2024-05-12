@@ -6,10 +6,12 @@ iDIR="$HOME/.config/swaync/icons"
 # Define menu options as associative arrays for local and online music
 declare -A local_music
 
-# Populate the menu_options array with music files from the Music folder
-for file in ~/Music/*.mp3; do
-  filename=$(basename "$file")
-  local_music["$filename"]="$file"
+# Populate the menu_options array with music files from the Music folder with specified extensions
+for file in ~/Music/*.{mp3,ogg,wav,flac,m4a,wma,mp4}; do
+  if [ -f "$file" ]; then
+    filename=$(basename "$file")
+    local_music["$filename"]="$file"
+  fi
 done
 
 
@@ -67,7 +69,6 @@ play_online_music() {
 
 # Check if an online music process is running and send a notification, otherwise run the main function
 pkill mpv && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || {
-
   # Prompt the user to choose between local and online music
   user_choice=$(printf "Play from Music Folder\nOnline Streaming" | rofi -dmenu -p "Select music source")
 
@@ -83,4 +84,3 @@ pkill mpv && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || {
       ;;
   esac
 }
-
