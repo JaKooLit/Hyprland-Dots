@@ -244,7 +244,7 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 chmod +x ~/.config/hypr/UserScripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
-printf "\n%.0s" {1..3}
+printf "\n%.0s" {1..2}
 
 # Detect machine type and set Waybar configurations accordingly, logging the output
 if hostnamectl | grep -q 'Chassis: desktop'; then
@@ -258,8 +258,6 @@ else
     rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" 2>&1 | tee -a "$LOG"
 fi
-
-printf "\n%.0s" {1..2}
 
 # additional wallpapers
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
