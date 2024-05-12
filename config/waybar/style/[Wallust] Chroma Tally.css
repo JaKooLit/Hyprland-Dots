@@ -1,0 +1,273 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Wallust - Chroma Tally */
+
+@import '../../.config/waybar/wallust/colors-waybar.css';
+
+* {
+font-family: "JetBrainsMono Nerd Font";
+font-weight: bold;
+min-height: 0;
+/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+font-size: 97%;
+font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+padding: 1px;
+}
+
+window#waybar {
+    background: rgba (0, 0, 0, 0.5);
+    border-radius: 12px;
+	border-bottom: 2px;
+    border-style: solid;
+	border-color: @color12; 
+}
+
+#workspaces {
+	background: #0F1419;
+	padding: 0px 1px;
+	border-radius: 15px;
+	border: 0px;
+	font-style: normal;
+	color: #0F1419;
+}
+
+#taskbar button,
+#workspaces button {
+	padding: 0px 5px;
+	border-radius: 15px;
+	border: 0px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #95E6CB, #59C2FF, #D2A6FF);
+	opacity: 0.5;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button.active,
+#workspaces button.active {
+	padding: 0px 5px;
+	border-radius: 15px;
+	border: 0px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #59C2FF, #D2A6FF);
+	opacity: 1.0;
+	min-width: 40px;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button:hover {
+	border-radius: 15px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #59C2FF, #D2A6FF);
+	opacity: 0.8;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+
+}
+
+tooltip {
+	background: #1e1e2e;
+	opacity: 0.8;
+	border-radius: 6px;
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-cycle_wall,
+#custom-hint,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-swaync,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
+}
+ 
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+ 
+#clock {
+ color:#a3be8c;
+}
+
+#backlight {
+    color: #ebcb8b;
+}
+
+#battery {
+    color: #d8dee9;
+}
+
+#battery.charging {
+    color: #81a1c1;
+}
+
+@keyframes blink {
+    to {
+        color: #4c566a;
+        background-color: #eceff4;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background: #bf616a;
+    color: #eceff4;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    color: #a3be8c;
+}
+
+#disk {
+	color: #94e2d5;
+}
+
+#custom-keyboard,
+#memory {
+    color: #d3869b;
+}
+
+#network.disabled {
+    color:#bf616a;
+}
+
+#network{
+    color:#a3be8c;
+}
+
+#network.disconnected {
+    color: #bf616a;
+}
+
+#pulseaudio {
+    color: #04a5e5;
+}
+
+#pulseaudio.muted {
+    color: #9ca0b0;
+}
+
+#custom-light_dark,
+#temperature {
+    color: #7287fd;
+}
+
+#temperature.critical {
+    color: #bf616a;
+}
+
+#keyboard-state,
+#idle_inhibitor {
+   color: #ebcb8b;
+}
+
+#tray {
+}
+
+#custom-swaync,
+#custom-menu {
+	color: yellow;
+}
+#custom-power{
+    color: #eba0ac; 
+}
+
+#window{
+    border-style: hidden; 
+}
+
+#custom-lock,    
+#bluetooth{
+	color:#d08770;
+}
+
+#custom-cava_mviz{
+	color: @color2;
+} 
+  
+#custom-weather{
+	color:#d08770;
+}
+
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+	min-width: 80px;
+	min-height: 5px;
+	border-radius: 5px;
+}
+
+#pulseaudio-slider highlight {
+	min-height: 10px;
+	border-radius: 5px;
+}
+
+#backlight-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#backlight-slider trough {
+	min-width: 80px;
+	min-height: 10px;
+	border-radius: 5px;
+}
+
+#backlight-slider highlight {
+	min-width: 10px;
+	border-radius: 5px;
+}
+
+

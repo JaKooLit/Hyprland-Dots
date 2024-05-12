@@ -40,7 +40,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 "ESC" "close this app" "" "=" "SUPER KEY (Windows Key)" "(SUPER KEY)" \
 " enter" "Terminal" "(kitty)" \
 " SHIFT enter" "DropDown Terminal" "(kitty-pyprland)" \
-" D" "App Launcher" "(rofi)" \
+" D" "App Launcher" "(rofi-wayland)" \
 " T" "Open File Manager" "(Thunar)" \
 " S" "Google Search" "(rofi)" \
 " Q" "close active window" "(not kill)" \
@@ -59,7 +59,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " Shift S" "screenshot region" "(swappy)" \
 "ALT Print" "Screenshot active window" "active window only" \
 "CTRL ALT P" "power-menu" "(wlogout)" \
-"CTRL ALT L" "screen lock" "(swaylock)" \
+"CTRL ALT L" "screen lock" "(hyprlock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
 " F" "Fullscreen" "Toggles to full screen" \
 " ALT L" "Toggle Dwindle | Master Layout" "Hyprland Layout" \

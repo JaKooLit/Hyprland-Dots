@@ -1,0 +1,208 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* ..........................................*/
+/* ....Wallust - Clear Background........ */
+/* ......................................... */
+/* --- 👍 original designed by https://github.com/Krautt  👍 --- */
+
+@import '../../.config/waybar/wallust/colors-waybar.css';
+
+@define-color critical #ff0000; /* critical color */
+@define-color warning #f3f809;  /* warning color */
+@define-color text @color12;  /* text color */
+@define-color text-alt @color9;  /* text alternative color */
+@define-color bg @color7;  /* background color */
+
+*{
+	font-family: "JetBrains Mono Nerd Font";
+	font-weight: bold;
+	min-height: 0;	
+	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+	font-size: 97%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+	padding: 1px;
+}
+	
+window#waybar {
+	background:transparent;
+	border-radius: 1px;
+	color: @text;
+}
+	
+window#waybar.hidden {
+	opacity: 0.5;
+}
+window#waybar.empty {
+	background-color: transparent;
+}
+	
+window#waybar.empty #window {
+   padding: 0px;
+   border: 0px;
+   background-color: transparent;
+}
+	   
+
+/*-----module groups----*/
+.modules-right {
+	
+}
+
+.modules-center {
+		
+}
+
+.modules-left {
+	   
+}
+
+#workspaces button {
+	color: @text-alt;
+   	box-shadow: none;
+	text-shadow: none;
+   	padding: 0px;
+   	border-radius: 9px;
+   	padding-left: 4px;
+   	padding-right: 4px;
+   	animation: gradient_f 20s ease-in infinite;
+   	transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+   
+#taskbar button.active,
+#workspaces button.active {
+	color: @text;
+   	border-radius: 15px 15px 15px 15px;
+   	padding-left: 8px;
+   	padding-right: 8px;
+   	animation: gradient_f 20s ease-in infinite;
+   	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+  
+#workspaces button.focused {
+	color: @text-alt;
+}
+   
+#workspaces button.urgent {
+	color: @warning;
+	border-radius: 10px;
+}
+
+#taskbar button:hover,	   
+#workspaces button:hover {
+	color: @text;
+    border-radius: 15px;
+ 	padding-left: 2px;
+    padding-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+	
+#backlight,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#pulseaudio,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-cycle_wall,
+#custom-hint,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-swaync,
+#custom-spotify,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
+}
+	 
+#temperature.critical {
+	background-color: #ff0000;
+}
+   
+@keyframes blink {
+	to {
+	color: #000000;
+	   }
+}
+	   
+#battery.critical:not(.charging) {
+	color: @critical;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+	min-width: 80px;  
+	min-height: 10px; 
+	border-radius: 5px;
+	background-color: black;
+}
+
+#pulseaudio-slider highlight {
+	min-height: 10px; 
+	border-radius: 5px;
+	background-color: wheat;
+}
+
+#backlight-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#backlight-slider trough {
+	min-width: 80px;  
+	min-height: 10px;
+	border-radius: 5px;
+	background-color: black;
+}
+
+#backlight-slider highlight {
+	min-width: 10px; 
+	border-radius: 5px;
+	background-color: wheat;
+}
+	
+	
