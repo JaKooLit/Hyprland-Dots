@@ -5,10 +5,11 @@
 
 /* ---- Entry ---- */ 
 entry {
-  placeholder: "📻 Choose Your Music Play Station";
+  placeholder: "📻 Choose Media or Stations to play";
 }
 
 /* ---- Listview ---- */
 listview {
   lines: 6;
+  scrollbar: true;
 }
