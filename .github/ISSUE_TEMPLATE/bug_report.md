@@ -38,6 +38,7 @@ e.g.,
 - Linux Distro: [e.g., ArchLinux, Debian, Fedora 39, OpenSuse]
 - Linux Version, output of `uname -a`:
 - Hyprland Version, output of `hyprctl version`:
+- Hyprland-Dots version: `ls ~/.config/hypr` i.e. v2.2.1
 - Installation Environment: [e.g., On The Main Hardware, On A Virtual Machine]
 - Other info: [e.g., Display Resolution, Resolution, etc]
 
