@@ -5,13 +5,13 @@
 
 /* ---- Entry ---- */ 
 entry {
-  width: 17%;
+  width: 20%;
   placeholder: "📻 Choose Music Source";
 }
 
 /* ---- Window ---- */
 window {
-  width: 20%;
+  width: 24%;
 }
 
 /* ---- Listview ---- */
