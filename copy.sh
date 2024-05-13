@@ -293,7 +293,7 @@ while true; do
 done
 
 # symlinks for waybar style
-ln -sf "$waybar_Style" "$HOME/.config/waybar/style.css" && \
+ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
 
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
