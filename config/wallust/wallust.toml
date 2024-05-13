@@ -40,6 +40,9 @@ rofi.target = '~/.config/rofi/wallust/colors-rofi.rasi'
 waybar.template = 'templates/colors-waybar.css'
 waybar.target = '~/.config/waybar/wallust/colors-waybar.css'
 
+#kitty.template = 'templates/colors-kitty.conf'
+#kitty.target = '~/.config/kitty/kitty.conf'
+
 #swaync.template = 'templates/colors-swaync.css'
 #swaync.target = '~/.config/swaync/wallust/colors-wallust.css'
 
