@@ -196,17 +196,7 @@
 	"format-full": "{icon} Full",
 	"format-alt": "{icon} {time}",
 	"format-icons": [
-		"󰂎",
-		"󰁺",
-		"󰁻",
-		"󰁼",
-		"󰁽",
-		"󰁾",
-		"󰁿",
-		"󰂀",
-		"󰂁",
-		"󰂂",
-		"󰁹"
+		"󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
 	],
 	"format-time": "{H}h {M}min",
 	"tooltip": true,
@@ -257,14 +247,7 @@
 	"format-alt-click": "click",
 	"format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
 	"format-icons": [
-		"▁",
-		"▂",
-		"▃",
-		"▄",
-		"▅",
-		"▆",
-		"▇",
-		"█"
+		"▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
 	],
 	"on-click-right": "gnome-system-monitor",
 },
@@ -370,11 +353,7 @@
 	"tooltip-format-disconnected": "󰌙 Disconnected",
 	"max-length": 50,
 	"format-icons": [
-		"󰤯",
-		"󰤟",
-		"󰤢",
-		"󰤥",
-		"󰤨"
+		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	]
 },
 "network#speed": {
@@ -390,11 +369,7 @@
 	"tooltip-format-disconnected": "󰌙 Disconnected",
 	"max-length": 50,
 	"format-icons": [
-		"󰤯",
-		"󰤟",
-		"󰤢",
-		"󰤥",
-		"󰤨"
+		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	]
 },
 "pulseaudio": {
@@ -409,10 +384,7 @@
 		"portable": "",
 		"car": "",
 		"default": [
-			"",
-			"",
-			"󰕾",
-			""
+			"", "", "󰕾",  ""
 		],
 		"ignored-sinks": [
 			"Easy Effects Sink"
@@ -454,8 +426,8 @@
 	"on-click-right": "kitty --title nvtop sh -c 'nvtop'"
 },
 "tray": {
-	"icon-size": 15,
-	"spacing": 8,
+	"icon-size": 18,
+	"spacing": 4,
 },
 "wireplumber": {
 	"format": "{icon} {volume} %",
@@ -465,10 +437,7 @@
 	"on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
 	"on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
 	"format-icons": [
-		"",
-		"",
-		"󰕾",
-		""
+		"", "", "󰕾", ""
 	],
 },
 "wlr/taskbar": {
@@ -506,7 +475,7 @@
 	"on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
 },
 "custom/light_dark": {
-	"format": "{}",
+	"format": "󰔎{}",
 	"exec": "echo ; echo 󰔎 Dark-Light switcher",
 	"on-click": "~/.config/hypr/scripts/DarkLight.sh",
 	"on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh",
@@ -634,21 +603,7 @@
 	"format": "{icon}",
 	//"format-icons": ["󰃞", "󰃟", "󰃠"],
 	"format-icons": [
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		""
+		"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
 	],
 	"on-click": "",
 	"on-click-middle": "",
@@ -699,10 +654,7 @@
 		"portable": "",
 		"car": "",
 		"default": [
-			"",
-			"",
-			"󰕾",
-			""
+			"", "", "󰕾", ""
 		],
 		"tooltip-format": "{icon} {desc} | {volume}%",
 		"ignored-sinks": [
