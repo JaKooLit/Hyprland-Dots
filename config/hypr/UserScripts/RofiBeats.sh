@@ -1,12 +1,22 @@
 #!/bin/bash
 
-# Directory music folder
-mDIR="$HOME/Music/"
-
 # Directory for icons
 iDIR="$HOME/.config/swaync/icons"
 
-# Online Stations
+# Define menu options as associative arrays for local and online music
+declare -A local_music
+
+# Directory music folder
+mDIR="$HOME/Music/*"
+
+# Populate the menu_options array with music files from the Music folder with specified extensions
+for file in $mDIR; do
+  if [ -f "$file" ]; then
+    filename=$(basename "$file")
+    local_music["$filename"]="$file"
+  fi
+done
+
 declare -A online_music=(
   ["AfroBeatz 2024 🎧"]="https://www.youtube.com/watch?v=7uB-Eh9XVZQ"
   ["Lofi Girl ☕️🎶"]="https://play.streamafrica.net/lofiradio"
@@ -22,17 +32,6 @@ declare -A online_music=(
   ["Korean Drama OST 📻🎶"]="https://youtube.com/playlist?list=PLUge_o9AIFp4HuA-A3e3ZqENh63LuRRlQ"
 )
 
-# Local Music
-# Populate local_music array with files from music directory and subdirectories
-populate_local_music() {
-  local_music=()
-  filenames=()
-  while IFS= read -r file; do
-    local_music+=("$file")
-    filenames+=("$(basename "$file")")
-  done < <(find "$mDIR" -type f \( -iname "*.mp3" -o -iname "*.flac" -o -iname "*.wav" -o -iname "*.ogg" \))
-}
-
 # Function for displaying notifications
 notification() {
   notify-send -u normal -i "$iDIR/music.png" "Playing: $@"
@@ -40,29 +39,38 @@ notification() {
 
 # Main function for playing local music
 play_local_music() {
-  populate_local_music
+  # Prompt user to select play mode
+  mode=$(printf "Play in order\nShuffle" | rofi -dmenu -p "Select play mode")
 
-  # Prompt the user to select a song
-  choice=$(printf "%s\n" "${filenames[@]}" | rofi -i -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi -p "Local Music")
-
-  if [ -z "$choice" ]; then
+  if [ -z "$mode" ]; then
     exit 1
   fi
 
-  # Find the corresponding file path based on user's choice
-  for (( i=0; i<"${#filenames[@]}"; i++ )); do
-    if [ "${filenames[$i]}" = "$choice" ]; then
-      file="${local_music[$i]}"
-      break
-    fi
-  done
+  case "$mode" in
+    "Play in order")
+      # Play in order
+      for choice in "${!local_music[@]}"; do
+        file="${local_music[$choice]}"
+        notification "$choice"
+        mpv --vid=no "$file"
+      done
+      ;;
+    "Shuffle")
+      # Shuffle the keys of local_music array
+      shuffled_keys=($(printf "%s\n" "${!local_music[@]}" | shuf))
 
-  notification "$choice"
-
-  # Play the selected local music file using mpv
-  mpv --shuffle --vid=no "$file"
+      # Play shuffled
+      for choice in "${shuffled_keys[@]}"; do
+        file="${local_music[$choice]}"
+        notification "$choice"
+        mpv --vid=no "$file"
+      done
+      ;;
+    *)
+      echo "Invalid choice"
+      ;;
+  esac
 }
-
 
 # Main function for playing online music
 play_online_music() {
@@ -82,15 +90,14 @@ play_online_music() {
 
 # Check if an online music process is running and send a notification, otherwise run the main function
 pkill mpv && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || {
-
-# Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Music Folder\nPlay from Online Stations" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
+  # Prompt the user to choose between local and online music
+  user_choice=$(printf "Play from Music Folder\nOnline Streaming" | rofi -dmenu -p "Select music source")
 
   case "$user_choice" in
     "Play from Music Folder")
       play_local_music
       ;;
-    "Play from Online Stations")
+    "Online Streaming")
       play_online_music
       ;;
     *)
