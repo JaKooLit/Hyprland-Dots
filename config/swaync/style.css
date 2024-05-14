@@ -3,10 +3,10 @@
 
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
-@define-color noti-border-color @color9;
+@define-color noti-border-color @color12;
 @define-color noti-bg rgba(0, 0, 0, 0.8);
 @define-color noti-bg-alt #111111;
-@define-color noti-bg-hover @color2;
+@define-color noti-bg-hover @color9;
 @define-color text-color @foreground;
 @define-color text-color-alt @foreground;
 @define-color text-color-disabled rgba(150, 150, 150, 0.8);
