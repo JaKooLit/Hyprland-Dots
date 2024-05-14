@@ -74,7 +74,7 @@ tooltip label {
 }
 
 #workspaces button {
-    color: @color2;
+    color: @color12;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;

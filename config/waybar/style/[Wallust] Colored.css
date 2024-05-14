@@ -42,7 +42,7 @@ tooltip {
 
 /*-----module groups----*/
 .modules-right {
-	border: 3px solid @color14;
+	border: 3px solid @color12;
 	border-radius: 40px 0px 0px 0px;
 	background-color: @color1;
 	padding-top: 2px;
@@ -52,7 +52,7 @@ tooltip {
 }
 
 .modules-center {
-	border: 3px solid @color14;
+	border: 3px solid @color7;
 	border-radius: 60px 0px 60px 0px;
 	background-color: @background;
 	padding-top: 2px;
@@ -62,7 +62,7 @@ tooltip {
 }
 
 .modules-left {
-	border: 3px solid @color14;
+	border: 3px solid @color12;
 	border-radius: 0px 0px 40px 0px;
 	background-color: @color1;
 	padding-top: 2px;

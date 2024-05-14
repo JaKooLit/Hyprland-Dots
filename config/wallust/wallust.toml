@@ -1,6 +1,6 @@
 # wallust 3.0 beta.*
 
-backend = "resized"
+backend = "kmeans"
 color_space = "lch"
 
 # NOTE: All filters will fill 16 colors (from color0 to color15), 16 color
