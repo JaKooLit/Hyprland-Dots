@@ -2,6 +2,6 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 
 # For Hyprlock
-killall hyprlock
+killall hypridle
 hyprlock -q --immediate
 hypridle &
