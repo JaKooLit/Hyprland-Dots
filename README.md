@@ -55,22 +55,35 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - ~/.config (btop cava hypr kitty rofi swappy swaync waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
 - clone this repo by using git. Change directory, make executable and run the script
+
+> to download from Master branch (possible bugs)
 ```bash
 git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
 cd Hyprland-Dots
 ```
-- to copy/install from upstream (possible bugs)
+
+
+> to download from Development branch (development and testing)
+```bash
+git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
+cd Hyprland-Dots
+```
+
+
+- automatic copy of pre-configured dots
 ```bash
 chmod +x copy.sh
 ./copy.sh
 ```
-- to copy/install from releases (more "stable")
+
+- to copy/install from releases (stable)
 ```bash
 chmod +x release.sh
 ./release.sh
 ```
 
-- UPGRADE.sh (Experimental)
+
+- UPGRADE.sh function (Experimental)
 > [!IMPORTANT]
 > You should atleast v2.2.3 in your hyprland dots (ls ~/.config/hypr) to check version
 > You need rsync for it to work
@@ -82,19 +95,21 @@ chmod +x upgrade.sh
 ./upgrade.sh
 ```
 
+
 #### 🛎️ a small note on wallpapers
 - by default, only few wallpapers will be copied (1 each dark and light plus 2 more). You will be offered to download more wallpapers. You can preview/check the additional wallpapers on [`THIS`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
 
 
 #### ⚠️⚠️⚠️ A MUST! after copying  / Installing these dots
-
-+ By default I have not set a wallpaper. Press SUPER W and set a wallpaper. This is also to initiate pywal for waybar, kitty (tty) and rofi themes. If you use the copy.sh script, you wont need to do this.
++ By default I have not set a wallpaper. 
++ Press SUPER W and set a wallpaper. This is also to initiate wallust for waybar, kitty (tty) and rofi themes. However, If you use the copy.sh or the release.sh, there will be a preset initial Wallpaper and you dont have to do this
 
 + Nvidia Owners. Make sure to edit your `~/.config/hypr/UserConfigs/ENVariables.conf` (recommended). Below env's will be activated if automatic copy is used
 > WLR_NO_CURSORS,1 , LIBVA_DRIVER_NAME,nvidia ,  __GLX_VENDOR_LIBRARY_NAME,nvidia 
 - NVIDIA users / owners, after installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
 + If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
+
 
 #### 📖 Known issues and possible solutions
 - check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [UNSOLVED ISSUES](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known_Issues)
@@ -103,18 +118,22 @@ chmod +x upgrade.sh
 #### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
 - QUICK HINT! Click the HINT! Waybar module (note only available in Waybar default and Simple-L [TOP] layout). Can be launched by Keybind SUPER H
-- More question? click here [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/)
+- More question? click here browse through this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/)
+
 
 #### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
 - Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
 
+
 #### 🤷‍♂️ TO DO!
 - [ ] Tweak dots - 🚧 in constant progress 
 - ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
 
+
 #### 🔮 Discord Server
 - kindly join my [Discord](https://discord.gg/V2SJ92vbEN)
+
 
 ### 💖 Support
 - a Star on my Github repos would be nice 🌟
