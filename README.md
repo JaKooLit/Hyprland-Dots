@@ -1,3 +1,10 @@
+<p align="center">
+<a href="https://github.com/JaKooLit/Hyprland-Dots/issues"><img src="https://img.shields.io/github/issues/JaKooLit/Hyprland-Dots.svg"></a>
+<a href="https://img.shields.io/github/forks/JaKooLit/Hyprland-Dots.svg"><img src="https://img.shields.io/github/forks/JaKooLit/Hyprland-Dots.svg"></a>
+<a href="https://github.com/JaKooLit/Hyprland-Dots/stargazers"><img src="https://img.shields.io/github/stars/JaKooLit/Hyprland-Dots.svg"></a>
+<a href="https://github.com/JaKooLit/Hyprland-Dots/releases"><img src="https://img.shields.io/github/downloads/JaKooLit/Hyprland-Dots/total.svg"></a>
+</p>
+
 <div align="center">
 
 ## 💌 ** JaKooLit Hyprland Dot Files ** 💌
