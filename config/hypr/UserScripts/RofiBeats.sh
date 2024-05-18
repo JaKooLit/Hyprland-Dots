@@ -63,7 +63,6 @@ play_local_music() {
   mpv --shuffle --vid=no "$file"
 }
 
-
 # Main function for playing online music
 play_online_music() {
   choice=$(printf "%s\n" "${!online_music[@]}" | rofi -i -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi -p "Online Music")
@@ -84,7 +83,7 @@ play_online_music() {
 pkill mpv && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || {
 
 # Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Music Folder\nPlay from Online Stations" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
+user_choice=$(printf "Play from Online Stations\nPlay from Music Folder" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
 
   case "$user_choice" in
     "Play from Music Folder")
