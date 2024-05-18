@@ -33,7 +33,7 @@
 
 https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-9913-76039e84a2cd
 
-
+</div>
 
 #### 📹 A video walkthroughs
 <details>
