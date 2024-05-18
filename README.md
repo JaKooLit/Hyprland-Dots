@@ -7,6 +7,25 @@
 <br/>
 </div>
 
+
+<br>
+
+  <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
+  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
+  <a href="https://discord.gg/V2SJ92vbEN"><kbd> <br> Discord <br> </kbd></a>
+
+</div><br><br>
+
+
+<div align = center>
+    <a href="https://discord.gg/V2SJ92vbEN">
+        <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&label=KooLit's%20Tech%20World&labelColor=89b4fa&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%2V2SJ92vbEN">
+    </a>
+</div>
+<div align="center">
+
+
 ## SHOW CASE
 
 
@@ -29,7 +48,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 </details>
 
-## 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
+## Installation 
+### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
 - You can install Hyprland using Scripts below:
 
 - [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
@@ -42,14 +62,14 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
 
-## 🪧 Attention 🪧
+### 🪧 Attention 🪧
 - This repo does NOT contain or will NOT install any packages. These are only hyprland configs or dotfiles
 - This repo will be pulled by the Distro-Hyprland install scripts above if you opt to download pre-configured dots
 
 ### 👀 Screenshots 👀
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
-#### 📦 Whats new?
+### 📦 Whats new?
 - To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth it!
 
 ### 💥 Copying / Installation / Update instructions 💥
