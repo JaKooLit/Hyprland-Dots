@@ -42,6 +42,10 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
 
+## 🪧 Attention 🪧
+- This repo does NOT contain or will NOT install any packages. These are only hyprland configs or dotfiles
+- This repo will be pulled by the Distro-Hyprland install scripts above if you opt to download pre-configured dots
+
 ### 👀 Screenshots 👀
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
