@@ -7,7 +7,7 @@
 <br/>
 </div>
 
-
+<div align="center">
 <br>
 
   <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
@@ -23,6 +23,8 @@
         <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&label=KooLit's%20Tech%20World&labelColor=89b4fa&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%2V2SJ92vbEN">
     </a>
 </div>
+
+
 <div align="center">
 
 
