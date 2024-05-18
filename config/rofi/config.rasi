@@ -9,5 +9,6 @@ configuration {
 }
 
 element-text {
-    font: "Fira Code SemiBold 14";
+    font:	"Fira Code SemiBold 14";
 }
+

@@ -5,7 +5,6 @@
 
 configuration {
 	modi:                       "drun,run,filebrowser";
-	font:                       "Fira Code SemiBold 13";
     show-icons:                 true;
     display-drun:               "Apps";
     display-run:                "Run";
@@ -25,7 +24,7 @@ configuration {
 /* ---- Global Properties ---- */
 * {
 
-    background-alt:              @selected-active-background; // Buttons backgroundr
+    background-alt:              @selected-active-background; // Buttons background
     selected:                    @selected-urgent-background; // Button selected
     active:                      @selected-normal-background; // Window activated
     urgent:                      @selected; // When hovering the activated window (maybe more?)
@@ -105,7 +104,7 @@ listview {
     lines:                       6;
     cycle:                       true;
     dynamic:                     true;
-    scrollbar:                   false;
+    scrollbar:                   true;
     layout:                      vertical;
     reverse:                     false;
     fixed-height:                false;
@@ -207,7 +206,6 @@ element-icon {
 }
 element-text {
     background-color:            transparent;
-    font:                       "Fira Code SemiBold 16";
     text-color:                  inherit;
     cursor:                      inherit;
     vertical-align:              0.5;

@@ -1,0 +1,5 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Main Config (long) */
+
+@import "~/.config/rofi/config.rasi" 
+
