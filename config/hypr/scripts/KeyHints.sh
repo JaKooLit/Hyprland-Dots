@@ -68,6 +68,8 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " ALT F" "Toggle all windows to float" "all windows" \
 " Shift B" "Toggle Blur" "normal or less blur" \
 " SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
+" ALT E" "Rofi Emoticons" "Emoticon" \
+" ALT V" "Clipboard Manager" "cliphist" \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
