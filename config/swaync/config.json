@@ -64,15 +64,11 @@
             "actions": [
                 {
                     "label": "󰐥",
-                    "command": "systemctl poweroff"
-                },
-                {
-                    "label": "󰜉",
-                    "command": "systemctl reboot"
+                    "command": "bash -c $HOME/.config/hypr/scripts/Wlogout.sh"
                 },
                 {
                     "label": "󰌾",
-                    "command": "~/.config/hypr/scripts/LockScreen.sh"
+                    "command": "bash -c $HOME/.config/hypr/scripts/LockScreen.sh"
                 },
                 {
                     "label": "󰍃",
@@ -80,15 +76,11 @@
                 },
                 {
                     "label": "󰀝",
-                    "command": "~/.config/hypr/scripts/AirplaneMode.sh"
+                    "command": "bash -c $HOME/.config/hypr/scripts/AirplaneMode.sh"
                 },
                 {
-                    "label": "󰕾",
+                    "label": "󰝟",
                     "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-                },
-                {
-                    "label": "󰍬",
-                    "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
                 },
                 {
                     "label": "󰂯",
