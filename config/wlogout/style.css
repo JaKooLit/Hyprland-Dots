@@ -34,7 +34,7 @@ button:hover {
     margin: 30px;
     border-radius: 80px; 
     transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    box-shadow: 0 0 50px @color9; 
+    box-shadow: 0 0 50px @color7; 
 	
 }
 
