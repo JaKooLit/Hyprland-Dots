@@ -235,6 +235,7 @@ color: #F3F4F5;
 	padding: 2px 15px;
 }
 
+#custom-power_vertical,
 #keyboard-state {
 	color: green;
 	background: #0F1419;
