@@ -49,18 +49,24 @@ play_local_music() {
     exit 1
   fi
 
-  # Find the corresponding file path based on user's choice
-  for (( i=0; i<"${#filenames[@]}"; i++ )); do
+  # Find the corresponding file path based on user's choice and set that to play the song then continue on the list
+  for (( i=0; i<"${#filenames[@]}"; ++i )); do
     if [ "${filenames[$i]}" = "$choice" ]; then
-      file="${local_music[$i]}"
+
+      notification "$choice"
+      # For some reason wont start playlist at 0
+      if [[ $i -eq 0 ]]; then
+        # Play the selected local music file using mpv
+        mpv --loop-playlist --vid=no "$mDIR"
+      
+      else
+        file=$i
+        # Play the selected local music file using mpv
+        mpv --playlist-start="$file" --loop-playlist --vid=no "$mDIR"
+      fi
       break
     fi
   done
-
-  notification "$choice"
-
-  # Play the selected local music file using mpv
-  mpv --shuffle --vid=no "$file"
 }
 
 # Main function for playing online music
@@ -84,7 +90,7 @@ shuffle_local_music() {
   notification "Shuffle local music"
 
   # Play music in $mDIR on shuffle
-  mpv --shuffle --vid=no "$mDIR"
+  mpv --shuffle --loop-playlist --vid=no "$mDIR"
 }
 
 # Check if an online music process is running and send a notification, otherwise run the main function
