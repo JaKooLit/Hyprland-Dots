@@ -1,18 +1,18 @@
 #!/bin/bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */ 
 # This script for selecting wallpapers (SUPER W)
-
-SCRIPTSDIR="$HOME/.config/hypr/scripts"
-
-focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 
 # WALLPAPERS PATH
 wallDIR="$HOME/Pictures/wallpapers"
 
-# Transition config
-FPS=30
-TYPE="wipe"
-DURATION=1
+# variables
+SCRIPTSDIR="$HOME/.config/hypr/scripts"
+focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+
+# swww transition config
+FPS=60
+TYPE="any"
+DURATION=2
 BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
@@ -22,31 +22,36 @@ if pidof swaybg > /dev/null; then
 fi
 
 # Retrieve image files
-PICS=($(ls "${wallDIR}" | grep -E ".jpg$|.jpeg$|.png$|.gif$"))
+PICS=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
 RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
-RANDOM_PIC_NAME="${#PICS[@]}. random"
+RANDOM_PIC_NAME=". random"
 
 # Rofi command
 rofi_command="rofi -i -show -dmenu -config ~/.config/rofi/config-wallpaper.rasi"
 
+
+# Sorting Wallpapers
 menu() {
-  for i in "${!PICS[@]}"; do
+  sorted_options=($(printf '%s\n' "${PICS[@]}" | sort))
+  # Place ". random" at the beginning
+  printf "%s\n" "$RANDOM_PIC_NAME"
+  for pic_path in "${sorted_options[@]}"; do
+    pic_name=$(basename "$pic_path")
     # Displaying .gif to indicate animated images
-    if [[ -z $(echo "${PICS[$i]}" | grep .gif$) ]]; then
-      printf "$(echo "${PICS[$i]}" | cut -d. -f1)\x00icon\x1f${wallDIR}/${PICS[$i]}\n"
+    if [[ -z $(echo "$pic_name" | grep -i "\.gif$") ]]; then
+      printf "%s\x00icon\x1f%s\n" "$(echo "$pic_name" | cut -d. -f1)" "$pic_path"
     else
-      printf "${PICS[$i]}\n"
+      printf "%s\n" "$pic_name"
     fi
   done
-
-  printf "$RANDOM_PIC_NAME\n"
 }
 
+# initiate swww if not running
 swww query || swww-daemon --format xrgb
 
+# Choice of wallpapers
 main() {
   choice=$(menu | ${rofi_command})
-
   # No choice case
   if [[ -z $choice ]]; then
     exit 0
@@ -54,7 +59,8 @@ main() {
 
   # Random choice case
   if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
-    swww img "${wallDIR}/${RANDOM_PIC}" $SWWW_PARAMS
+    RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
+    swww img -o $focused_monitor "${RANDOM_PIC}" $SWWW_PARAMS
     exit 0
   fi
 
@@ -69,7 +75,7 @@ main() {
   done
 
   if [[ $pic_index -ne -1 ]]; then
-    swww img -o $focused_monitor "${wallDIR}/${PICS[$pic_index]}" $SWWW_PARAMS
+    swww img -o $focused_monitor "${PICS[$pic_index]}" $SWWW_PARAMS
   else
     echo "Image not found."
     exit 1
