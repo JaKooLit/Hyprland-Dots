@@ -97,66 +97,53 @@ tooltip {
 	padding-left: 4px;
 }
 
-#taskbar,
 #workspaces {
-  background: #0F1419;
-  padding: 0px 1px;
-  border-radius: 15px;
-  border: 0px;
-  font-style: normal;
-  color: #0F1419;
-}
-
-#taskbar button,
+    padding: 0px 1px;
+    border-radius: 15px;
+    border:2px solid @border-color;
+    font-weight: bold;
+    font-style: normal;
+    opacity:0.8;
+    color:#FFFFFF;
+}   
 #workspaces button {
-  padding: 0px 5px;
-  border-radius: 15px;
-  border: 0px;
-  color: #0F1419;
-  background: linear-gradient(45deg, #95E6CB, #59C2FF, #D2A6FF);
-  opacity: 0.5;
-  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    color: #6E6A86;
+    box-shadow: none;
+	text-shadow: none;
+    border-radius: 30px;
+    padding-left: 4px;
+    padding-right: 4px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#taskbar button.active,
 #workspaces button.active {
-  padding: 0px 5px;
-  border-radius: 15px;
-  border: 0px;
-  color: #0F1419;
-  background: linear-gradient(45deg, #59C2FF, #D2A6FF);
-  opacity: 1.0;
-  min-width: 40px;
-  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    color: #ffd700;
+    border-radius: 50%;
+    background-color: black;
+    border-radius: 15px 15px 15px 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.focused {
+    color: #d8dee9;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+    border-radius: 10px;
 }
 
 #workspaces button:hover {
-  border-radius: 15px;
-  color: #0F1419;
-  background: linear-gradient(45deg, #59C2FF, #D2A6FF);
-  opacity: 0.8;
-  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-
-}
-@keyframes gradient_horizontal {
-0% {
-  background-position: 0% 50%;
-	}
-50% {
-  background-position: 100% 50%;
-	}
-100% {
-  background-position: 0% 50%;
-	}
-}
-
-@keyframes swiping {
-0% {
-  background-position: 0% 200%;
-	}
-100% {
-  background-position: 200% 200%;
-	}
+    color: #ffd700;
+    border-radius: 10px;
+ 	padding-left: 2px;
+    padding-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #clock#2 {
