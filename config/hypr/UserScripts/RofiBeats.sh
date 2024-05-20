@@ -79,11 +79,19 @@ play_online_music() {
   mpv --shuffle --vid=no "$link"
 }
 
+# Main function for shuffling local music
+shuffle_local_music() {
+  notification "Shuffle local music"
+
+  # Play music in $mDIR on shuffle
+  mpv --shuffle --vid=no "$mDIR"
+}
+
 # Check if an online music process is running and send a notification, otherwise run the main function
-pkill mpv && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || {
+pkill mpv && notify-send -u low -i "$iDIR/music.png" "Music stopped" || {
 
 # Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Online Stations\nPlay from Music Folder" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
+user_choice=$(printf "Play from Online Stations\nPlay from Music Folder\nShuffle from Music Folder" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
 
   case "$user_choice" in
     "Play from Music Folder")
@@ -91,6 +99,9 @@ user_choice=$(printf "Play from Online Stations\nPlay from Music Folder" | rofi 
       ;;
     "Play from Online Stations")
       play_online_music
+      ;;
+    "Shuffle from Music Folder")
+      shuffle_local_music
       ;;
     *)
       echo "Invalid choice"
