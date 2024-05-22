@@ -1,0 +1,7 @@
+@import "~/.config/rofi/config-long.rasi" 
+
+/* ---- Entry ---- */
+entry {
+  width: 45%;
+  placeholder: "🧮 Calculate";
+}
