@@ -65,7 +65,7 @@ mainbox {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                     true;
-    padding:                     10px 10px 200px 10px;
+    padding:                     10px 10px 100px 10px;
     margin:                      10px;
     background-color:            transparent;
     border-radius:               25px;
