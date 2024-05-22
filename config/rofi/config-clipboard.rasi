@@ -5,7 +5,7 @@
 
 /* ---- Entry ---- */
 entry {
-  width: 45%;
+  width: 37%;
   placeholder: "📋 Search Clipboard **note** 👀 CTRL Del - Cliphist del or Alt Del - cliphist wipe";
 }
 
