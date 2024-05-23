@@ -37,8 +37,18 @@ tooltip {
     opacity: 0.9;
 }
 
+#workspaces {
+	border-radius: 20px;
+    background: @background;
+    opacity: 1;
+    padding: 0px 10px;
+    margin: 0;
+    margin-top: 5px;
+	border: 2px solid @color12;
+}
+
 #workspaces button {
-    color: @forground;
+    color: @color10;
     box-shadow: none;
 	text-shadow: none;
     padding-right: 12px;
@@ -51,13 +61,9 @@ tooltip {
 #workspaces button.active {
     color: @color12;
     padding-right: 12px;
-    background-color: @background;;
+    background-color: @background;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button.focused {
-    color: @color9;
 }
 
 #workspaces button.urgent {
@@ -67,7 +73,7 @@ tooltip {
 
 #taskbar button:hover,
 #workspaces button:hover {
-    color: @color11;
+    color: @color12;
     padding-left: 0px;
     padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
@@ -78,6 +84,7 @@ tooltip {
 #backlight-slider,
 #battery,
 #bluetooth,
+#clock,
 #cpu,
 #disk,
 #idle_inhibitor,
@@ -92,7 +99,6 @@ tooltip {
 #tray,
 #window,
 #wireplumber,
-#workspaces,
 #custom-backlight,
 #custom-cava_mviz,
 #custom-cycle_wall,
@@ -122,11 +128,16 @@ tooltip {
     padding: 0px 10px;
     margin: 0;
     margin-top: 5px;
-	border: 2px solid @color12;
+	border: 2px solid @color13;
 }
 
 #cpu {
     border: 2px solid @color5;
+	color: @color12;
+}
+
+#memory {
+	color: @color10;
 }
 
 #disk {
@@ -136,11 +147,11 @@ tooltip {
 
 #temperature{
 	color: @color11;
-    border: 2px solid @color11;
 }
 
 #temperature.critical {
-    color: #eba0ac;
+    color: red;
+	border: 2px solid red;
 }
 
 #custom-power {
@@ -173,13 +184,6 @@ tooltip {
     border: 0px;
 }
 
-#workspaces {
-    margin-left: 5px;
-    padding-right: 0px;
-    padding-left: 5px;
-    border: 2px solid @color8;
-}
-
 #window {
     margin-left: 5px;
     margin-right: 5px;
@@ -187,14 +191,7 @@ tooltip {
 }
 
 #clock {
-	border-radius: 20px;
     color: #fab387;
-    margin-left: 5px;
-    border-right: 0px;
-    transition: 0.3s;
-    padding-right: 13px;
-    padding-left: 13px;
-    border: 2px solid @color12;
 }
 
 #network {
@@ -235,6 +232,10 @@ tooltip {
 	border: 2px solid @color14;
 }
 
+#idle_inhibitor.activated {
+	color: @color12;
+	border: 2px solid @color12;
+}
 
 #battery.good {
     color: #ffd57a;
