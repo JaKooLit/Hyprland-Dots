@@ -14,3 +14,9 @@ entry {
 window {
     width:	30%;
 }
+
+/* ---- Message ---- */
+textbox {
+    background-color:            @selected;
+    text-color:                  @background;
+}
