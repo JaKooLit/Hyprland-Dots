@@ -1,7 +1,16 @@
-@import "~/.config/rofi/config-long.rasi" 
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Main Config Calculator */
+/* Submitted by: https://github.com/JosephArmas */
+
+@import "~/.config/rofi/config.rasi" 
 
 /* ---- Entry ---- */
 entry {
-  width: 45%;
+  width: 27%;
   placeholder: "🧮 Calculate";
+}
+
+/* ---- Window ---- */
+window {
+    width:	30%;
 }
