@@ -1,4 +1,7 @@
 #!/bin/bash
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+# /* Calculator (using qualculate) and rofi */
+# /* Submitted by: https://github.com/JosephArmas */
 
 rofi_config="$HOME/.config/rofi/config-calc.rasi"
 
