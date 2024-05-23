@@ -11,7 +11,7 @@ wallpaper=$HOME/Pictures/wallpapers/Fantasy-Waterfall.png
 waybar_style="$HOME/.config/waybar/style/[Dark] Latte-Wallust combined.css"
 kvantum_theme="Catppuccin-Mocha"
 color_scheme="prefer-dark"
-gtk_theme="Tokyonight-Dark-Moon-BL-LB"
+gtk_theme="Andromeda-dark"
 icon_theme="Flat-Remix-Blue-Dark"
 cursor_theme="Bibata-Modern-Ice"
 
