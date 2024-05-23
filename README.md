@@ -52,17 +52,21 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 ## Installation 
 ### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
-- You can install Hyprland using Scripts below:
-
-- [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
-
-- [Debian/Ubuntu-Linux](https://github.com/JaKooLit/Debian-Hyprland)
+- Automated Hyprland Scripts for Distro of choices:
 
 - [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
 
 - [OpenSUSE(Tumbleweed)](https://github.com/JaKooLit/OpenSuse-Hyprland)
 
+- [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
+
+- [Debian Trixie / SiD](https://github.com/JaKooLit/Debian-Hyprland)
+
+- [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Debian-Hyprland/tree/Ubuntu-24.04-LTS)
+
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
+- When using the install scripts above, it will pull the releases (stable) of this dotfiles
+
 
 ### 🪧 Attention 🪧
 - This repo does NOT contain or will NOT install any packages. These are only hyprland configs or dotfiles
@@ -78,7 +82,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
 > [!Note] 
 > The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
-- ~/.config (btop cava hypr kitty rofi swappy swaync waybar wlogout) - These are folders to be copied.
+- ~/.config (ags btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wallust waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
 - clone this repo by using git. Change directory, make executable and run the script
 
@@ -113,8 +117,6 @@ chmod +x release.sh
 > [!IMPORTANT]
 > You should atleast v2.2.3 in your hyprland dots (ls ~/.config/hypr) to check version
 > You need rsync for it to work
-
-> [!CAUTION]
 > you should have already up and running Hyprland before using this function
 ```bash
 chmod +x upgrade.sh
