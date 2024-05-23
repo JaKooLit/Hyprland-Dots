@@ -251,12 +251,12 @@ if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
     ln -sf "$HOME/.config/waybar/configs/[TOP] Default_v2" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/configs/[BOT] Default Laptop" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" "$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 2>&1 | tee -a "$LOG"
 else
     # Configurations for a laptop or any system other than desktop
     ln -sf "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" "$HOME/.config/waybar/configs/[TOP] Default_v3" 2>&1 | tee -a "$LOG"
 fi
 
 # additional wallpapers
@@ -264,7 +264,7 @@ echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)
 printf "\n%.0s" {1..2}
 
 while true; do
-    read -rp "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
+    read -rp "${CAT} Would you like to download additional wallpapers? Warning! This is more than >600mb (y/n)" WALL
     case $WALL in
         [Yy])
             echo "${NOTE} Downloading additional wallpapers..."
