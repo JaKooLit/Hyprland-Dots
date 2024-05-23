@@ -92,7 +92,6 @@ tooltip {
 #memory,
 #mode,
 #network,
-#power-profiles-daemon,
 #pulseaudio,
 #pulseaudio-slider,
 #taskbar,
@@ -134,24 +133,20 @@ tooltip {
 
 #cpu {
     border: 2px solid @color5;
-	color: @foreground;
-    background: @color12;
+	color: @color12;
 }
 
 #memory {
-	color: @foreground;
-    background: @color12;
+	color: @color10;
 }
 
 #disk {
-	color: @foreground;
-    background: @color12;
+	color: @color13;
     border: 2px solid @color13;
 }
 
 #temperature{
-	color: @foreground;
-    background: @color12;
+	color: @color11;
 }
 
 #temperature.critical {
@@ -199,6 +194,20 @@ tooltip {
     color: #fab387;
 }
 
+#network {
+    color: #a6adc8;
+    padding-right: 12px;
+    padding-left: 5px;
+    border: 2px solid @color10;
+}
+
+#network.disconnected {
+    color: #f5c2e7;
+    border-left: 2px solid #a6e3a1;
+    border-top: 2px solid #a6e3a1;
+    border-right: 0px;
+    border-bottom: 2px solid @color10;
+}
 
 #bluetooth {
     color: #b4befe;
@@ -207,7 +216,6 @@ tooltip {
 
 #pulseaudio.microphone,
 #pulseaudio {
-    background-color: @color12;
     color: #89b4fa;
 	border: 2px solid @color13;
 }

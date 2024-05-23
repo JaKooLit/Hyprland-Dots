@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### DEFAULT v2 (Laptop)  - Top ### //
+// ### DEFAULT v3  - Top ### //
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
@@ -22,7 +22,6 @@
 	"power-profiles-daemon",
 	"group/mobo_drawer",
 	"custom/separator#blank",
-	"group/laptop",
 	"custom/separator#line",
 	"custom/weather",
 	],

@@ -170,18 +170,49 @@
 		"disk",
 	]
 },
+"group/mobo_drawer": {
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 500,
+		"children-class": "cpu",
+		"transition-left-to-right": true
+        },
+	"modules": [
+		"temperature",		
+		"cpu",	
+		"memory",
+		"disk",
+	]
+},
 "group/laptop": {
-	"orientation": "horizontal",
+	"orientation": "inherit",
 	"modules": [
 		"backlight",
 		"battery",
 	]
 },
 "group/audio": {
-	"orientation": "horizontal",
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 500,
+		"children-class": "pulseaudio",
+		"transition-left-to-right": true
+        },
 	"modules": [
 		"pulseaudio",
 		"pulseaudio#microphone",
+	]
+},
+"group/connections": {
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 500,
+		"children-class": "bluetooth",
+		"transition-left-to-right": true
+        },
+	"modules": [
+		"network",
+		"bluetooth",
 	]
 },
 "backlight": {
@@ -413,6 +444,17 @@
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	]
+},
+"power-profiles-daemon": {
+  "format": "{icon}",
+  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  "tooltip": true,
+  "format-icons": {
+    "default": "",
+    "performance": "",
+    "balanced": "",
+    "power-saver": ""
+  }
 },
 "pulseaudio": {
 	"format": "{icon} {volume}%",

@@ -15,9 +15,10 @@
 
 "modules-left": [	
 	"idle_inhibitor",
+	"group/mobo_drawer",
 	"hyprland/workspaces#rw",
+	"tray",
 	"mpris", 
-	"hyprland/window"
 	],
     
 "modules-center": [
@@ -25,10 +26,9 @@
 	],
     
 "modules-right": [
-	"tray",  
-	"battery", 
-	"pulseaudio",
-	"pulseaudio#microphone",  
+	"hyprland/window",  
+	"battery",
+ 	"group/audio", 
 	"custom/power",
 	],
 }
