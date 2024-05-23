@@ -126,6 +126,40 @@
 		"default": "",
 	},
 },
+// NUMBERS and ICONS style with window rewrite
+"hyprland/workspaces#rw": {
+	"disable-scroll": true,
+	"all-outputs": true,
+	"warp-on-scroll": false,
+	"sort-by-number": true,
+	"show-special": true,
+	"on-click": "activate",
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"format": "{icon} {windows}",
+	"format-window-separator": " ",
+	"window-rewrite-default": " ",
+	"window-rewrite": {
+		"title<.*youtube.*>": " ",
+		"title<.*amazon.*>": " ",
+		"title<.*reddit.*>": " ",
+		"title<.*Picture-in-Picture.*>": " ",
+		"class<firefox>": " ",
+		"class<kitty>": " ",
+		"class<konsole>": " ",
+		"class<thunar>": "󰝰 ",
+		"class<discord>": " ",
+		"class<subl>": "󰅳 ",
+		"class<celluloid>": " ",
+		"class<Cider>": "󰎆 ",
+		"class<code-oss>": "󰨞 ",
+		"class<codium|codium-url-handler|VSCodium>": "󰨞 ",
+		"class<codeblocks>": "󰅩 ",
+		"class<mousepad>": " ",
+		"class<libreoffice-writer>": " ",
+		"class<libreoffice-startcenter>": "󰏆 "
+		}   
+},
 // GROUP
 "group/motherboard": {
 	"orientation": "horizontal",
@@ -241,6 +275,13 @@
 	"on-scroll-up": "shift_up",
 	"on-scroll-down": "shift_down"
 },
+"clock#2": {
+	// "timezone": "America/New_York",
+	//"format": " {:%I:%M %p}", // AM PM format
+	"format": "  {:%H:%M}",
+    "format-alt": "{:%A  |  %H:%M  |  %e %B}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+},
 "cpu": {
 	"format": "{usage}% 󰍛",
 	"interval": 1,
@@ -273,7 +314,7 @@
 },
 "hyprland/window": {
 	"format": "{}",
-	"max-length": 40,
+	"max-length": 20,
 	"separate-outputs": true,
 	"offscreen-css": true,
 	"offscreen-css-text": "(inactive)",
@@ -354,7 +395,8 @@
 	"max-length": 50,
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
-	]
+	],
+	"on-click-right": "kitty nmtui"
 },
 "network#speed": {
 	"interval": 1,
