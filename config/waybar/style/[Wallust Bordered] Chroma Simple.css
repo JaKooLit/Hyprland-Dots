@@ -27,8 +27,8 @@ window#waybar.empty #window {
 }
 
 tooltip {
-    background-color: transparent;
-    color: @color12;
+    background-color: @color12;
+    color: @foreground;
     border-radius: 10px;
     border-width: 1.5px;
     border-style: solid;
