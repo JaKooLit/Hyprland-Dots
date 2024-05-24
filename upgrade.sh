@@ -33,6 +33,9 @@ declare -A directories=(
     ["config/rofi/"]="$HOME/.config/rofi/"
     ["config/swaync/"]="$HOME/.config/swaync/"
     ["config/waybar/"]="$HOME/.config/waybar/"
+    ["config/cava/"]="$HOME/.config/cava/"
+    ["config/ags/"]="$HOME/.config/ags/"
+    ["config/fastfetch/"]="$HOME/.config/fastfetch/"
     # Add more directories to compare as needed
 )
 
