@@ -8,12 +8,12 @@ import os
 # original code https://gist.github.com/Surendrajat/ff3876fd2166dd86fb71180f4e9342d7
 # weather icons
 weather_icons = {
-    "sunnyDay": "",
-    "clearNight": "",
-    "cloudyFoggyDay": "",
-    "cloudyFoggyNight": "",
-    "rainyDay": "",
-    "rainyNight": "",
+    "sunnyDay": "󰖙",
+    "clearNight": "󰖔",
+    "cloudyFoggyDay": "",
+    "cloudyFoggyNight": "",
+    "rainyDay": "",
+    "rainyNight": "",
     "snowyIcyDay": "",
     "snowyIcyNight": "",
     "severe": "",
@@ -116,14 +116,14 @@ tooltip_text = str.format(
 
 # print waybar module data
 out_data = {
-    "text": f"{icon} {temp}",
+    "text": f"{icon}  {temp}",
     "alt": status,
     "tooltip": tooltip_text,
     "class": status_code,
 }
 print(json.dumps(out_data))
 
-simple_weather =f"{icon} {status}\n" + \
+simple_weather =f"{icon}  {status}\n" + \
                 f"  {temp} ({temp_feel_text})\n" + \
                 f"{wind_text} \n" + \
                 f"{humidity_text} \n" + \

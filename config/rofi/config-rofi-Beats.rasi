@@ -11,5 +11,4 @@ entry {
 /* ---- Listview ---- */
 listview {
   lines: 6;
-  scrollbar: true;
 }

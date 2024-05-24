@@ -23,5 +23,4 @@ entry {
 listview {
   columns: 2;
   lines: 6;
-  scrollbar: true;
 }

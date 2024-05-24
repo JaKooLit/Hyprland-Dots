@@ -13,21 +13,23 @@
 "modules-left": [
 	"custom/menu",
 	"custom/separator#blank_2",
-	"clock",
+	"hyprland/workspaces",
 	"custom/separator#blank_2",
-	"hyprland/window"
+	"mpris",
+	"tray"
 ],
 
-"modules-center": [		
-	"hyprland/workspaces"	
+"modules-center": [
+	"idle_inhibitor",
+	"custom/separator#blank",
+	"clock",
+	"custom/separator#blank",
+	"custom/swaync"
 ],
 		
 "modules-right": [
-	"custom/swaync",
+	"hyprland/window",
 	"custom/separator#blank",
-	"tray",
-	"custom/separator#blank",
-	"mpris",
 	"custom/separator#blank", 
 	"pulseaudio",
 	"custom/separator#blank",

@@ -24,8 +24,8 @@
 	],
   
 "modules-center": [
-	"idle_inhibitor", 
-	"hyprland/workspaces#4", 
+	"idle_inhibitor",
+	"clock",  
 	"custom/light_dark",
 	], 
 
@@ -35,7 +35,7 @@
 	"backlight",
 	"bluetooth",
 	"network",
-	//"custom/updater",
+	"custom/updater",
 	"custom/cycle_wall",
 	"custom/lock", 
 	],
@@ -54,6 +54,7 @@
 "height": 0,
 "margin-left": 8,
 "margin-right": 8,
+//"gtk-layer-shell": true,
 //"margin-bottom": 0,
 
 "modules-left": [
@@ -62,7 +63,7 @@
 	 ],
 
 "modules-center": [
-	"clock", 
+	"hyprland/workspaces#rw", 
 	],
 
 "modules-right": [
@@ -75,6 +76,5 @@
 	//"wireplumber", 
 	"pulseaudio#microphone",	  
 	"custom/power",
-	],
-
-}]
+	],  
+}],

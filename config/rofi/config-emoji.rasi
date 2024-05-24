@@ -1,10 +1,16 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config (long) - emoji */
+/* Main Config - emoji */
 
-@import "~/.config/rofi/config-long.rasi" 
+@import "~/.config/rofi/config.rasi" 
 
 /* ---- Entry ---- */
 entry {
-  width: 45%;
+  width: 37%;
   placeholder: "💫 Search Emoji's  **note** 👀 Click or Return to choose | Ctrl V to Paste";
+}
+
+/* ---- Listview ---- */
+listview {
+  columns: 1;
+  lines: 8;
 }

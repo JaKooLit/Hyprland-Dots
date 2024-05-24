@@ -5,6 +5,8 @@ clear
 
 wallpaper=$HOME/Pictures/wallpapers/Fantasy-Waterfall.png
 waybar_style="$HOME/.config/waybar/style/[Dark] Latte-Wallust combined.css"
+waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v3"
+waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -209,7 +211,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in ags btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wallust waybar wlogout; do 
+for DIR in ags btop cava fastfetch hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wallust waybar wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -246,17 +248,17 @@ chmod +x ~/.config/hypr/UserScripts/* 2>&1 | tee -a "$LOG"
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 printf "\n%.0s" {1..2}
 
-# Detect machine type and set Waybar configurations accordingly, logging the output
+# Detect machine type and set Waybar configurations accordingly
 if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
-    ln -sf "$HOME/.config/waybar/configs/[TOP] Default_v2" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    ln -sf "$waybar_config" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/configs/[BOT] Default Laptop" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" "$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 2>&1 | tee -a "$LOG"
 else
     # Configurations for a laptop or any system other than desktop
-    ln -sf "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+    ln -sf "$waybar_config_laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
     rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" 2>&1 | tee -a "$LOG"
+    rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" "$HOME/.config/waybar/configs/[TOP] Default_v3" 2>&1 | tee -a "$LOG"
 fi
 
 # additional wallpapers
@@ -264,7 +266,7 @@ echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)
 printf "\n%.0s" {1..2}
 
 while true; do
-    read -rp "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
+    read -rp "${CAT} Would you like to download additional wallpapers? Warning! This is more than >600mb (y/n)" WALL
     case $WALL in
         [Yy])
             echo "${NOTE} Downloading additional wallpapers..."

@@ -1,0 +1,35 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+// ### TOP Simple ## //
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top", 
+"position": "top", 
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"gtk-layer-shell": true,
+"margin-left": 6,
+"margin-right": 6,
+"margin-top": 2,
+
+"modules-left": [	
+	"idle_inhibitor",
+	"group/mobo_drawer",
+	"hyprland/workspaces#rw",
+	"tray",
+	"mpris", 
+	],
+    
+"modules-center": [
+	"clock#2"
+	],
+    
+"modules-right": [
+	"hyprland/window",  
+	"battery",
+ 	"group/audio", 
+	"custom/power",
+	],
+}
+

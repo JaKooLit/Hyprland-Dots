@@ -1,12 +1,14 @@
 #!/bin/bash
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# For Rofi Beats to play online Music or Locally save media files
 
-# Directory music folder
+# Directory local music folder
 mDIR="$HOME/Music/"
 
 # Directory for icons
 iDIR="$HOME/.config/swaync/icons"
 
-# Online Stations
+# Online Stations. Edit as required
 declare -A online_music=(
   ["AfroBeatz 2024 🎧"]="https://www.youtube.com/watch?v=7uB-Eh9XVZQ"
   ["Lofi Girl ☕️🎶"]="https://play.streamafrica.net/lofiradio"
@@ -22,7 +24,6 @@ declare -A online_music=(
   ["Korean Drama OST 📻🎶"]="https://youtube.com/playlist?list=PLUge_o9AIFp4HuA-A3e3ZqENh63LuRRlQ"
 )
 
-# Local Music
 # Populate local_music array with files from music directory and subdirectories
 populate_local_music() {
   local_music=()
@@ -49,18 +50,33 @@ play_local_music() {
     exit 1
   fi
 
-  # Find the corresponding file path based on user's choice
-  for (( i=0; i<"${#filenames[@]}"; i++ )); do
+  # Find the corresponding file path based on user's choice and set that to play the song then continue on the list
+  for (( i=0; i<"${#filenames[@]}"; ++i )); do
     if [ "${filenames[$i]}" = "$choice" ]; then
-      file="${local_music[$i]}"
+		
+	    notification "$choice"
+
+      # For some reason wont start playlist at 0
+      if [[ $i -eq 0 ]]; then
+        # Play the selected local music file using mpv
+        mpv --loop-playlist --vid=no "$mDIR" 
+      	
+      else
+        file=$i
+        # Play the selected local music file using mpv
+        mpv --playlist-start="$file" --loop-playlist --vid=no "$mDIR"
+      fi
       break
     fi
   done
+}
 
-  notification "$choice"
+# Main function for shuffling local music
+shuffle_local_music() {
+  notification "Shuffle local music"
 
-  # Play the selected local music file using mpv
-  mpv --shuffle --vid=no "$file"
+  # Play music in $mDIR on shuffle
+  mpv --shuffle --loop-playlist --vid=no "$mDIR"
 }
 
 # Main function for playing online music
@@ -80,10 +96,10 @@ play_online_music() {
 }
 
 # Check if an online music process is running and send a notification, otherwise run the main function
-pkill mpv && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || {
+pkill mpv && notify-send -u low -i "$iDIR/music.png" "Music stopped" || {
 
 # Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Online Stations\nPlay from Music Folder" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
+user_choice=$(printf "Play from Online Stations\nPlay from Music Folder\nShuffle Play from Music Folder" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
 
   case "$user_choice" in
     "Play from Music Folder")
@@ -91,6 +107,9 @@ user_choice=$(printf "Play from Online Stations\nPlay from Music Folder" | rofi 
       ;;
     "Play from Online Stations")
       play_online_music
+      ;;
+    "Shuffle Play from Music Folder")
+      shuffle_local_music
       ;;
     *)
       echo "Invalid choice"

@@ -5,7 +5,7 @@
 /* --- 👍 designed by https://github.com/CelestiaKai  👍 --- */
 
 * {
-	font-family: "FiraCode Mono Nerd Font";
+	font-family: "JetBrainsMono Nerd Font";
 	font-weight: bold;
 	min-height: 0;		
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
@@ -140,6 +140,7 @@ tooltip {
 #mode,
 #mpris,
 #network,
+#power-profiles-daemon,
 #pulseaudio,
 #pulseaudio-slider,
 #taskbar,
