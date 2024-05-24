@@ -32,6 +32,7 @@ declare -A directories=(
     ["config/qt6ct/"]="$HOME/.config/qt6ct/"
     ["config/rofi/"]="$HOME/.config/rofi/"
     ["config/swaync/"]="$HOME/.config/swaync/"
+    ["config/waybar/"]="$HOME/.config/waybar/"
     ["config/cava/"]="$HOME/.config/cava/"
     ["config/ags/"]="$HOME/.config/ags/"
     ["config/fastfetch/"]="$HOME/.config/fastfetch/"
