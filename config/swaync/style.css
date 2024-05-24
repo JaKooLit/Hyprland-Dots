@@ -89,12 +89,12 @@
 
 .notification-action:first-child {
     border-bottom-left-radius: 10px;
-    background: #1b1b2b
+    background: @noti-bg
 }
 
 .notification-action:last-child {
     border-bottom-right-radius: 10px;
-    background: #1b1b2b
+    background: @noti-bg-alt
 }
 
 .inline-reply {
@@ -161,7 +161,7 @@
 
 .control-center {
     background: @noti-bg;
-    border: 1px solid @noti-border-color;
+    border: 1.5px solid @noti-border-color;
 	color: @text-color;
     border-radius: 10px;
 }
@@ -286,8 +286,8 @@
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-    background: rgba(122, 162, 247, 0.1);
-    color: @text-color-alt
+    background: @noti-border-color;
+    color: @noti-bg-hover
 }
 
 .widget-menubar>box>.menu-button-bar>button {
@@ -310,7 +310,7 @@
 }
 
 .widget-volume>box>button {
-    background: #7aa2f7;
+    background: @noti-border-color;
     border: none
 }
 
