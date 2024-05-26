@@ -123,6 +123,10 @@ chmod +x upgrade.sh
 ./upgrade.sh
 ```
 
+## ⚠️⚠️⚠️ ATTENTION - BACKUPS CREATED by SCRIPT
+> [!NOTE]
+> copy.sh, release.sh and even upgrade.sh creates a backup!
+> Kindly investigate manually contents on your ~/.config & ~/Pictures . Especially the wallpapers as these are big files. on ~/.config are only text files. Delete manually all the backups which you dont need
 
 #### 🛎️ a small note on wallpapers
 - by default, only few wallpapers will be copied (1 each dark and light plus 2 more). You will be offered to download more wallpapers. You can preview/check the additional wallpapers on [`THIS`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
