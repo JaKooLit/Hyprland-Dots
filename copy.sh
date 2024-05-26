@@ -224,10 +224,9 @@ done
 for DIRw in wallpapers; do 
   DIRPATH=~/Pictures/"$DIRw"
   if [ -d "$DIRPATH" ]; then 
-    echo -e "${NOTE} - Wallpapers in $DIRw found, attempting to back up."
-    BACKUP_DIR=$(get_backup_dirname)
-    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-    echo -e "${NOTE} - Backed up $DIRw to $DIRPATH-backup-$BACKUP_DIR."
+    echo "${NOTE} - Wallpapers in $DIRw found, attempting to create back up."
+    cp -r "$DIRPATH" "$DIRPATH-backup" 2>&1 | tee -a "$LOG"
+    echo "${NOTE} - Backed up $DIRw to $DIRPATH-backup"
   fi
 done
 
