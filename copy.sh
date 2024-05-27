@@ -126,9 +126,25 @@ while true; do
   # Check if the answer is valid
   if [[ "$answer" == "y" ]]; then
     # Modify waybar config if 12hr is selected
-    sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' config/waybar/modules 2>&1 | tee -a "$LOG"
-    sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' config/waybar/modules 2>&1 | tee -a "$LOG"
+    # Clock 1
+    sed -i 's#^    \/\/"format": " {:%I:%M %p}", // AM PM format#    "format": " {:%I:%M %p}", // AM PM format#' config/waybar/modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^    "format": " {:%H:%M:%S}", // 24H#    \/\/"format": " {:%H:%M:%S}", // 24H#' config/waybar/modules 2>&1 | tee -a "$LOG"
     
+    # Clock 2
+    sed -i 's#^    "format": "  {:%H:%M}", // 24H#    \/\/"format": "  {:%H:%M}", // 24H#' config/waybar/modules 2>&1 | tee -a "$LOG"
+    
+    # Clock 3
+    sed -i 's#^    \/\/"format": "{:%I:%M %p - %d/%b}", //for AM/PM#    "format": "{:%I:%M %p - %d/%b}", //for AM/PM#' config/waybar/modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^    "format": "{:%H:%M - %d/%b}", // 24H#    \/\/"format": "{:%H:%M - %d/%b}", // 24H#' config/waybar/modules 2>&1 | tee -a "$LOG"
+    
+    # Clock 4
+    sed -i 's#^    \/\/"format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format#    "format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format#' config/waybar/modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^    "format": "{:%B | %a %d, %Y | %H:%M}", // 24H#    \/\/"format": "{:%B | %a %d, %Y | %H:%M}", // 24H#' config/waybar/modules 2>&1 | tee -a "$LOG"
+
+    # Clock 5
+    sed -i 's#^    \/\/"format": "{:%A, %I:%M %P}", // AM PM format#    "format": "{:%A, %I:%M %P}", // AM PM format#' config/waybar/modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^    "format": "{:%a %d | %H:%M}", // 24H#    \/\/"format": "{:%a %d | %H:%M}", // 24H#' config/waybar/modules 2>&1 | tee -a "$LOG"
+            
     # for hyprlock
     sed -i 's|^    #text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|    text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
     sed -i 's|^    text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|    #text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
