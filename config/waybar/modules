@@ -281,8 +281,8 @@
 },
 "clock": {
 	"interval": 1,
-	//"format": " {:%I:%M %p}", // AM PM format
-	"format": " {:%H:%M:%S}",
+    //"format": " {:%I:%M %p}", // AM PM format
+    "format": " {:%H:%M:%S}",
 	"format-alt": " {:%H:%M   %Y, %d %B, %A}",
 	"tooltip-format": "<tt><small>{calendar}</small></tt>",
 	"calendar": {

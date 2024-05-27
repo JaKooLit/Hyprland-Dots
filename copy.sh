@@ -126,12 +126,12 @@ while true; do
   # Check if the answer is valid
   if [[ "$answer" == "y" ]]; then
     # Modify waybar config if 12hr is selected
-    sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' ./config/waybar/modules 2>&1 | tee -a "$LOG" || true
-    sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' ./config/waybar/modules 2>&1 | tee -a "$LOG" || true
+    sed -i 's/^    \/\/"format": " {:%I:%M %p}"/    "format": " {:%I:%M %p}"/' config/waybar/modules 2>&1 | tee -a "$LOG"
+    sed -i 's/^    "format": " {:%H:%M:%S}"/    \/\/"format": " {:%H:%M:%S}"/' config/waybar/modules 2>&1 | tee -a "$LOG"
     
     # for hyprlock
-    sed -i 's|^# text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|' ./config/hypr/hyprlock.conf 
-    sed -i 's|^text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|# text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|' ./config/hypr/hyprlock.conf
+    sed -i 's|^    #text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|    text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's|^    text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|    #text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
 
     # for SDDM (simple-sddm)
     sddm_folder="/usr/share/sddm/themes/simple-sddm"
