@@ -18,78 +18,18 @@
 "margin-right": 5,
 "margin-top": 0,
 	
-"modules-left": ["clock#gar", "mpris", "tray", "custom/swaync"],
+"modules-left": [
+	"clock#5", 
+	"mpris", 
+	"tray", 
+	"custom/swaync"
+	],
   
 "modules-center": ["hyprland/workspaces"], 
 	
-"modules-right": ["pulseaudio#gar","backlight#gar", "battery#gar"],
-
-// M O D U L E S //
-
-"clock#gar": {
-  //"format": "{:%A, %I:%M %P}",
-	"format": "{:%a %d | %H:%M}",
-	"format-alt": "{:%A, %d %B, %Y (%R)}"
-},
-
-"hyprland/window#gar": {
-  "format": "{}",
-  "max-length": 60
-},
-
-"tray#gar": {
-  "icon-size": 15,
-  "spacing": 10
-},
-
-"pulseaudio#gar": {
-  "format": "{icon} {volume}%",
-  "format-bluetooth": "{icon} {volume}%",
-  "format-bluetooth-muted": " {icon}",
-  "format-muted": "󰸈",
-  "format-icons": {
-    "headphone": "",
-    "hands-free": "",
-    "headset": "",
-    "phone": "",
-    "portable": "",
-    "car": "",
-    "default": ["", "", ""]
-  },
-  "on-click": "pamixer --toggle-mute",
-  "on-click-right": "pavucontrol",
-  "tooltip": false
-},
-
-"backlight#gar": {
-  //"device": "intel_backlight",
-  "format": "{icon} {percent}%",
-  "format-icons": ["", ""]
-},
-
-"battery#gar": {
-  "interval": 60,
-  "align": 0,
-  "rotate": 0,
-  //"bat": "BAT1",
-  //"adapter": "ACAD",
-  "full-at": 100,
-  "design-capacity": false,
-  "states": {
-    "good": 95,
-    "warning": 30,
-    "critical": 15
-       },
-  "format": "{icon}  {capacity}%",
-  "format-charging": " {capacity}%",
-  "format-plugged": "󱘖 {capacity}%",
-  "format-full": "{icon} Full",
-  "format-alt": "{icon} {time}",
-  "format-icons": ["", "", "", "", ""],
-  "format-time": "{H}h {M}min",
-  "tooltip": true,
-  "tooltip-format": "{timeTo} {power}w",
-  "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
-  "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
-},    
+"modules-right": [
+	"pulseaudio#1",
+	"backlight#2", 
+	"battery"],
+   
 }

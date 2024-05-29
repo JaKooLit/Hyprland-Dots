@@ -12,7 +12,7 @@
 "exclusive": true,
 "passthrough": false,
 "position": "top",
-"spacing": 3,
+"spacing": 4,
 "fixed-center": true,
 "ipc": true,
 //"margin-top": 0,
@@ -22,100 +22,28 @@
 	
 "modules-left": [
 	"hyprland/workspaces#cam",
-	"custom/separator#line", 
+	"custom/separator#line",
 	"mpris",
-	"custom/swaync", 
-	"tray#cam", 
-	"wlr/taskbar"
-	],
+	"custom/swaync",
+	"tray", 
+	"wlr/taskbar"],
 
-"modules-center": ["hyprland/window#cam"], 
+"modules-center": ["hyprland/window"], 
 	
 "modules-right": [
 	"custom/backlight",
 	"backlight/slider",
 	"custom/speaker",
 	"pulseaudio/slider",
-	"battery#cam",
-	"clock#cam", 
-	"network#cam"
-	],
+	"battery",
+	"clock#3", 
+	"network"],
 
 // Additional modules //
-
-"hyprland/workspaces#cam": {
-	"active-only":false,
-	"all-outputs": true,
-	"format": "{icon}",
-	"show-special": false,
-	"on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
-	"persistent-workspaces":{
-		"1": [],
-		"2": [],
-		"3": [],
-		"4": [],
-		"5": []
-	},
-		"format-icons": {
-		"1": "Uno",
-		"2": "Due",
-		"3": "Tre",
-		"4": "Quattro",
-		"5": "Cinque",
-		"6":"Sei",
-		"7":"Sette",
-		"8":"Otto",
-		"9":"Nove",
-		"10":"Dieci"
-	}	
-},
-
-"hyprland/window#cam": {
-	"format": " {title}",
-	"max-length": 50,
-	"rewrite": {
-		"(.*) — Mozilla Firefox": " $1",
-		"(.*) - zsh": "> [$1]"
-},
-		"separate-outputs": true
-},
-
-"clock#cam": {
-	"interval": 60,
-	//"format": "{:%A, %I:%M %P}",
-	"format": "{:%A, %H:%M}",
-	"max-length": 25,
-	
-},
-
-"battery#cam": {
-	"interval": 60,
-	"align": 0,
-	"rotate": 0,
-	//"bat": "BAT1",
-	//"adapter": "ACAD",
-	"full-at": 100,
-	"design-capacity": false,
-	"states": {
-	  "critical": 15
-			 },
-	"format": "{capacity}% {icon}",
-	"format-charging": " {capacity}%",
-	"format-plugged": "󱘖 {capacity}%",
-	"format-full": "{icon} Full",
-	"format-alt": "{icon} {time}",
-	"format-icons": ["", "", "", "", ""],
-	"format-time": "{H}h {M}min",
-	"tooltip": true,
-	"tooltip-format": "{timeTo} {power}w"
-},
-
 "pulseaudio/slider": {
 	"min": 0,
 	"max": 100,
-	"orientation": "horizontal",
+	"orientation": "horizontal"
 	
 },
 
@@ -129,7 +57,7 @@
 	"min": 0,
 	"max": 100,
 	"orientation": "horizontal",
-	//"device": "intel_backlight"
+	"device": "intel_backlight"
 },
 
 "custom/backlight": {
@@ -137,42 +65,4 @@
 	"interval": 1,
 	"format": "{}"
 },
-
-"tray#cam": {
-	//"icon-size": 16,
-	"spacing": 10
-},
-
-"network#cam": {
-	"format": "{ifname}",
-	"format-wifi": "{icon}",
-	"format-ethernet": "󰌘",
-	"format-disconnected": "󰌙", 
-	"tooltip-format": "{ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-	"format-linked": "󰈁 {ifname} (No IP)",
-	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
-	"tooltip-format-ethernet": "{ifname} 󰌘",
-	"tooltip-format-disconnected": "󰌙 Disconnected",
-	"max-length": 50,
-	"format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"]
-},
-
-"wlr/taskbar": {
-	"format": "{icon}",
-	//"icon-size": 14,
-	//"icon-theme": "Numix-Circle",
-	"tooltip-format": "{title}",
-	"on-click": "activate",
-	"on-click-middle": "close",
-	"ignore-list": [
-	    "kitty"
-		],
-		"app_ids-mapping": {
-		  "firefoxdeveloperedition": "firefox-developer-edition"
-		},
-		"rewrite": {
-			"Firefox Web Browser": "Firefox",
-			"Foot Server": "Terminal"
-		}
-}
 }

@@ -37,19 +37,4 @@
 	"custom/power",					
 	],
 
-
-
-// Additional format / customize modules
-
-"custom/power": {
-	"format": " ",
-	"icon-size": 20,
-	"tooltip": false,
-},
-	
-"clock": {
-	//"format": "{:%I:%M %p - %d/%b}", //for AM/PM
-    "format": "{:%H:%M - %d/%b}", // 24H
-	"tooltip": false
-},
 }

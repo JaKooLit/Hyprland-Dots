@@ -160,6 +160,34 @@
 		"class<libreoffice-startcenter>": "󰏆 "
 		}   
 },
+"hyprland/workspaces#cam": {
+	"active-only":false,
+	"all-outputs": true,
+	"format": "{icon}",
+	"show-special": false,
+	"on-click": "activate",
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"persistent-workspaces":{
+		"1": [],
+		"2": [],
+		"3": [],
+		"4": [],
+		"5": []
+	},
+		"format-icons": {
+		"1": "Uno",
+		"2": "Due",
+		"3": "Tre",
+		"4": "Quattro",
+		"5": "Cinque",
+		"6":"Sei",
+		"7":"Sette",
+		"8":"Otto",
+		"9":"Nove",
+		"10":"Dieci"
+	}	
+},
 // GROUP
 "group/motherboard": {
 	"orientation": "horizontal",
@@ -241,6 +269,11 @@
 	"on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
 	"smooth-scrolling-threshold": 1,
 },
+"backlight#2": {
+  "device": "intel_backlight",
+  "format": "{icon} {percent}%",
+  "format-icons": ["", ""]
+},
 "battery": {
 	//"interval": 5,
 	"align": 0,
@@ -281,8 +314,8 @@
 },
 "clock": {
 	"interval": 1,
-	//"format": " {:%I:%M %p}", // AM PM format
-	"format": " {:%H:%M:%S}",
+    //"format": " {:%I:%M %p}", // AM PM format
+    "format": " {:%H:%M:%S}", // 24H
 	"format-alt": " {:%H:%M   %Y, %d %B, %A}",
 	"tooltip-format": "<tt><small>{calendar}</small></tt>",
 	"calendar": {
@@ -307,11 +340,27 @@
 	"on-scroll-down": "shift_down"
 },
 "clock#2": {
-	// "timezone": "America/New_York",
-	//"format": " {:%I:%M %p}", // AM PM format
-	"format": "  {:%H:%M}",
+    //"format": " {:%I:%M %p}", // AM PM format
+    "format": "  {:%H:%M}", // 24H
     "format-alt": "{:%A  |  %H:%M  |  %e %B}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+},
+"clock#3": {
+    //"format": "{:%I:%M %p - %d/%b}", //for AM/PM
+    "format": "{:%H:%M - %d/%b}", // 24H
+	"tooltip": false
+},
+"clock#4": {
+	"interval": 60,
+    //"format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format
+    "format": "{:%B | %a %d, %Y | %H:%M}", // 24H
+	"format-alt": "{:%a %b %d, %G}",
+	"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+},
+"clock#5": {
+    //"format": "{:%A, %I:%M %P}", // AM PM format
+    "format": "{:%a %d | %H:%M}", // 24H
+	"format-alt": "{:%A, %d %B, %Y (%R)}"
 },
 "cpu": {
 	"format": "{usage}% 󰍛",
@@ -482,6 +531,24 @@
 	"tooltip-format": "{icon} {desc} | {volume}%",
 	"smooth-scrolling-threshold": 1,
 },
+"pulseaudio#1": {
+  "format": "{icon} {volume}%",
+  "format-bluetooth": "{icon} {volume}%",
+  "format-bluetooth-muted": " {icon}",
+  "format-muted": "󰸈",
+  "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+  "on-click": "pamixer --toggle-mute",
+  "on-click-right": "pavucontrol",
+  "tooltip": false
+},
 "pulseaudio#microphone": {
 	"format": "{format_source}",
 	"format-source": " {volume}%",
@@ -525,7 +592,7 @@
 	],
 },
 "wlr/taskbar": {
-	"format": "{icon} {name} ",
+	"format": "{icon}",
 	"icon-size": 15,
 	"all-outputs": false,
 	"tooltip-format": "{title}",
@@ -534,7 +601,8 @@
 	"ignore-list": [
 		"wofi",
 		"rofi",
-	]
+		"kitty"
+		],
 },
 "custom/cycle_wall": {
 	"format": " ",
