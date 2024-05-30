@@ -71,11 +71,12 @@
 	},
 	"format": "{icon}",
 	"format-icons": {
-		"active": " 󰮯 ",
-		"default": "󰊠",
-		"persistent": "󰊠",
+            "active": "<span font='12'>󰮯</span>",
+            "empty": "<span font='8'></span>",
+            "default": "󰊠",
 	},
 },
+// Kanji / Japanese style
 "hyprland/workspaces#kanji": {
 	"disable-scroll": true,
 	"all-outputs": true,
@@ -160,6 +161,7 @@
 		"class<libreoffice-startcenter>": "󰏆 "
 		}   
 },
+// for Camilla or Spanish
 "hyprland/workspaces#cam": {
 	"active-only":false,
 	"all-outputs": true,
