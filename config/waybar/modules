@@ -594,8 +594,8 @@
 	],
 },
 "wlr/taskbar": {
-	"format": "{icon}",
-	"icon-size": 15,
+	"format": "{icon} {name}",
+	"icon-size": 16,
 	"all-outputs": false,
 	"tooltip-format": "{title}",
 	"on-click": "activate",
