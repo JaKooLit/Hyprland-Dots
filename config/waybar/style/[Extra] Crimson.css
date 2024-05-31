@@ -151,8 +151,8 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: wheat;
-	padding-top: 4px;
-	padding-bottom: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	padding-right: 6px;
 	padding-left: 6px;
 }

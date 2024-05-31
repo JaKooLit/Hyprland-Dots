@@ -1,5 +1,5 @@
 /* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-/* ....Chroma Fusion Edge .... */
+/* ....Chroma Fusion .... */
 /* Wallust - Catpuccin */
 
 @define-color white      	#F2F2F2;
@@ -27,7 +27,6 @@
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
 	font-size: 97%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-
 }
 
 window#waybar {
@@ -100,9 +99,12 @@ tooltip {
 #custom-weather.sunnyDay {
 	background-color: @background-module;
     border-radius: 25px;
-    padding: 0px 10px 0px 10px;
     margin: 5px 5px 5px 5px;
     opacity:0.8;
+   	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 6px;
+	padding-left: 6px;
 }
 #backlight {
 	padding: 0px 2px 0px 6px;
