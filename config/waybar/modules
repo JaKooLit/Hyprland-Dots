@@ -133,7 +133,7 @@
 	"all-outputs": true,
 	"warp-on-scroll": false,
 	"sort-by-number": true,
-	"show-special": true,
+	"show-special": false,
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
