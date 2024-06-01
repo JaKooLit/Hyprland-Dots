@@ -79,6 +79,7 @@
 // Kanji / Japanese style
 "hyprland/workspaces#kanji": {
 	"disable-scroll": true,
+	"show-special": false,
 	"all-outputs": true,
 	"format": "{icon}",
 	"persistent-workspaces": {
