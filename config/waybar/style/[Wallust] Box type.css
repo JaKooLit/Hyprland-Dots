@@ -53,8 +53,8 @@ window#waybar.empty #window {
 
 #taskbar button.active,
 #workspaces button.active {
-    color: @background;
-    background-color: @color7;
+    color: @color12;
+    background-color: @foreground;
     padding-left: 4px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
