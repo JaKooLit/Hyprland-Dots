@@ -236,15 +236,6 @@ for DIR in ags btop cava fastfetch hypr kitty Kvantum qt5ct qt6ct rofi swappy sw
   fi
 done
 
-for DIRw in wallpapers; do 
-  DIRPATH=~/Pictures/"$DIRw"
-  if [ -d "$DIRPATH" ]; then 
-    echo "${NOTE} - Wallpapers in $DIRw found, attempting to create back up."
-    cp -r "$DIRPATH" "$DIRPATH-backup" 2>&1 | tee -a "$LOG"
-    echo "${NOTE} - Backed up $DIRw to $DIRPATH-backup"
-  fi
-done
-
 printf "\n%.0s" {1..2}
 
 # Copying config files
