@@ -515,7 +515,7 @@
 	"format-icons": {
 		"headphone": "",
 		"hands-free": "",
-		"headset": "",
+		"headset": "",
 		"phone": "",
 		"portable": "",
 		"car": "",
@@ -540,8 +540,8 @@
   "format-bluetooth-muted": " {icon}",
   "format-muted": "󰸈",
   "format-icons": {
-      "headphone": "",
-      "hands-free": "",
+      "headphone": "",
+      "hands-free": "",
       "headset": "",
       "phone": "",
       "portable": "",
@@ -549,8 +549,9 @@
       "default": ["", "", ""]
     },
   "on-click": "pamixer --toggle-mute",
-  "on-click-right": "pavucontrol",
-  "tooltip": false
+  "on-click-right": "pavucontrol -t 3",
+  "tooltip": true,
+  "tooltip-format": "{icon} {desc} | {volume}%",
 },
 "pulseaudio#microphone": {
 	"format": "{format_source}",
@@ -609,19 +610,17 @@
 },
 "custom/cycle_wall": {
 	"format": " ",
-	"exec": "echo ; echo 󰸉 wallpaper select",
 	"on-click": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
 	"on-click-right": "~/.config/hypr/UserScripts/WallpaperRandom.sh",
 	"on-click-middle": "~/.config/hypr/scripts/WaybarStyles.sh",
-	"interval": 86400, // once every day
 	"tooltip": true,
+	"tooltip-format": "Left Click: Wallpaper Menu\nMiddle Click: Random wallpaper\nRight Click: Waybar Styles Menu",
 },
 "custom/hint": {
 	"format": "󰺁 HINT!",
-	"exec": "echo ; echo  Key Hints SUPER H",
 	"on-click": "~/.config/hypr/scripts/KeyHints.sh",
-	"interval": 86400, // once every day
 	"tooltip": true,
+	"tooltip-format": "󱧣 Quick Tips",
 },
 "custom/keyboard": {
 	"exec": "cat ~/.cache/kb_layout",
@@ -630,29 +629,27 @@
 	"on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
 },
 "custom/light_dark": {
-	"format": "󰔎{}",
-	"exec": "echo ; echo 󰔎 Dark-Light switcher",
+	"format": "󰔎",
 	"on-click": "~/.config/hypr/scripts/DarkLight.sh",
 	"on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh",
 	"on-click-middle": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
-	"interval": 86400, // once every day
-	"tooltip": true
+	"tooltip": true,
+	"tooltip-format": "Left Click: Switch Dark-Light Themes\nMiddle Click: Wallpaper Menu\nRight Click: Waybar Styles Menu",
 },
 "custom/lock": {
-	"format": "󰌾{}",
-	"exec": "echo ; echo 󰷛  screen lock",
-	"interval": 86400, // once every day
-	"tooltip": true,
+	"format": "󰌾",
 	"on-click": "~/.config/hypr/scripts/LockScreen.sh",
+	"tooltip": true,
+	"tooltip-format": "󰷛 Screen Lock",
+
 },
 "custom/menu": {
-	"format": "{}",
-	"exec": "echo ; echo 󱓟 app launcher",
-	"interval": 86400, // once every day
-	"tooltip": true,
+	"format": "",
 	"on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser,window",
 	"on-click-middle": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
 	"on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Rofi Menu\nMiddle Click: Wallpaper Menu\nRight Click: Waybar Layout Menu",
 },
 // This is a custom cava visualizer
 "custom/cava_mviz": {
@@ -674,14 +671,14 @@
 },
 "custom/power": {
 	"format": "⏻ ",
-	"exec": "echo ; echo 󰟡 power // blur",
 	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
 	"on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
-	"interval": 86400, // once every day
 	"tooltip": true,
+	"tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur",
 },
 "custom/swaync": {
 	"tooltip": true,
+	"tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
 	"format": "{icon} {}",
 	"format-icons": {
 		"notification": "<span foreground='red'><sup></sup></span>",
@@ -707,6 +704,8 @@
 	"exec-if": "[[ $(checkupdates | wc -l) ]]",
 	"interval": 15,
 	"on-click": "kitty -T update paru -Syu || yay -Syu && notify-send 'The system has been updated'",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Update System\nArch Linux Only",
 },
 "custom/weather": {
 	"format": "{}",
