@@ -71,13 +71,15 @@
 	},
 	"format": "{icon}",
 	"format-icons": {
-		"active": " 󰮯 ",
-		"default": "󰊠",
-		"persistent": "󰊠",
+            "active": "<span font='12'>󰮯</span>",
+            "empty": "<span font='8'></span>",
+            "default": "󰊠",
 	},
 },
+// Kanji / Japanese style
 "hyprland/workspaces#kanji": {
 	"disable-scroll": true,
+	"show-special": false,
 	"all-outputs": true,
 	"format": "{icon}",
 	"persistent-workspaces": {
@@ -132,7 +134,7 @@
 	"all-outputs": true,
 	"warp-on-scroll": false,
 	"sort-by-number": true,
-	"show-special": true,
+	"show-special": false,
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
@@ -159,6 +161,35 @@
 		"class<libreoffice-writer>": " ",
 		"class<libreoffice-startcenter>": "󰏆 "
 		}   
+},
+// for Camilla or Spanish
+"hyprland/workspaces#cam": {
+	"active-only":false,
+	"all-outputs": true,
+	"format": "{icon}",
+	"show-special": false,
+	"on-click": "activate",
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"persistent-workspaces":{
+		"1": [],
+		"2": [],
+		"3": [],
+		"4": [],
+		"5": []
+	},
+		"format-icons": {
+		"1": "Uno",
+		"2": "Due",
+		"3": "Tre",
+		"4": "Quattro",
+		"5": "Cinque",
+		"6":"Sei",
+		"7":"Sette",
+		"8":"Otto",
+		"9":"Nove",
+		"10":"Dieci"
+	}	
 },
 // GROUP
 "group/motherboard": {
@@ -241,6 +272,11 @@
 	"on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
 	"smooth-scrolling-threshold": 1,
 },
+"backlight#2": {
+  "device": "intel_backlight",
+  "format": "{icon} {percent}%",
+  "format-icons": ["", ""]
+},
 "battery": {
 	//"interval": 5,
 	"align": 0,
@@ -281,8 +317,8 @@
 },
 "clock": {
 	"interval": 1,
-	//"format": " {:%I:%M %p}", // AM PM format
-	"format": " {:%H:%M:%S}",
+    //"format": " {:%I:%M %p}", // AM PM format
+    "format": " {:%H:%M:%S}", // 24H
 	"format-alt": " {:%H:%M   %Y, %d %B, %A}",
 	"tooltip-format": "<tt><small>{calendar}</small></tt>",
 	"calendar": {
@@ -307,11 +343,27 @@
 	"on-scroll-down": "shift_down"
 },
 "clock#2": {
-	// "timezone": "America/New_York",
-	//"format": " {:%I:%M %p}", // AM PM format
-	"format": "  {:%H:%M}",
+    //"format": " {:%I:%M %p}", // AM PM format
+    "format": "  {:%H:%M}", // 24H
     "format-alt": "{:%A  |  %H:%M  |  %e %B}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+},
+"clock#3": {
+    //"format": "{:%I:%M %p - %d/%b}", //for AM/PM
+    "format": "{:%H:%M - %d/%b}", // 24H
+	"tooltip": false
+},
+"clock#4": {
+	"interval": 60,
+    //"format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format
+    "format": "{:%B | %a %d, %Y | %H:%M}", // 24H
+	"format-alt": "{:%a %b %d, %G}",
+	"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+},
+"clock#5": {
+    //"format": "{:%A, %I:%M %P}", // AM PM format
+    "format": "{:%a %d | %H:%M}", // 24H
+	"format-alt": "{:%A, %d %B, %Y (%R)}"
 },
 "cpu": {
 	"format": "{usage}% 󰍛",
@@ -463,7 +515,7 @@
 	"format-icons": {
 		"headphone": "",
 		"hands-free": "",
-		"headset": "",
+		"headset": "",
 		"phone": "",
 		"portable": "",
 		"car": "",
@@ -481,6 +533,25 @@
 	"on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
 	"tooltip-format": "{icon} {desc} | {volume}%",
 	"smooth-scrolling-threshold": 1,
+},
+"pulseaudio#1": {
+  "format": "{icon} {volume}%",
+  "format-bluetooth": "{icon} {volume}%",
+  "format-bluetooth-muted": " {icon}",
+  "format-muted": "󰸈",
+  "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+  "on-click": "pamixer --toggle-mute",
+  "on-click-right": "pavucontrol -t 3",
+  "tooltip": true,
+  "tooltip-format": "{icon} {desc} | {volume}%",
 },
 "pulseaudio#microphone": {
 	"format": "{format_source}",
@@ -525,8 +596,8 @@
 	],
 },
 "wlr/taskbar": {
-	"format": "{icon} {name} ",
-	"icon-size": 15,
+	"format": "{icon} {name}",
+	"icon-size": 16,
 	"all-outputs": false,
 	"tooltip-format": "{title}",
 	"on-click": "activate",
@@ -534,23 +605,22 @@
 	"ignore-list": [
 		"wofi",
 		"rofi",
-	]
+		"kitty"
+		],
 },
 "custom/cycle_wall": {
 	"format": " ",
-	"exec": "echo ; echo 󰸉 wallpaper select",
 	"on-click": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
 	"on-click-right": "~/.config/hypr/UserScripts/WallpaperRandom.sh",
 	"on-click-middle": "~/.config/hypr/scripts/WaybarStyles.sh",
-	"interval": 86400, // once every day
 	"tooltip": true,
+	"tooltip-format": "Left Click: Wallpaper Menu\nMiddle Click: Random wallpaper\nRight Click: Waybar Styles Menu",
 },
 "custom/hint": {
 	"format": "󰺁 HINT!",
-	"exec": "echo ; echo  Key Hints SUPER H",
 	"on-click": "~/.config/hypr/scripts/KeyHints.sh",
-	"interval": 86400, // once every day
 	"tooltip": true,
+	"tooltip-format": "󱧣 Quick Tips",
 },
 "custom/keyboard": {
 	"exec": "cat ~/.cache/kb_layout",
@@ -559,29 +629,27 @@
 	"on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
 },
 "custom/light_dark": {
-	"format": "󰔎{}",
-	"exec": "echo ; echo 󰔎 Dark-Light switcher",
+	"format": "󰔎",
 	"on-click": "~/.config/hypr/scripts/DarkLight.sh",
 	"on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh",
 	"on-click-middle": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
-	"interval": 86400, // once every day
-	"tooltip": true
+	"tooltip": true,
+	"tooltip-format": "Left Click: Switch Dark-Light Themes\nMiddle Click: Wallpaper Menu\nRight Click: Waybar Styles Menu",
 },
 "custom/lock": {
-	"format": "󰌾{}",
-	"exec": "echo ; echo 󰷛  screen lock",
-	"interval": 86400, // once every day
-	"tooltip": true,
+	"format": "󰌾",
 	"on-click": "~/.config/hypr/scripts/LockScreen.sh",
+	"tooltip": true,
+	"tooltip-format": "󰷛 Screen Lock",
+
 },
 "custom/menu": {
-	"format": "{}",
-	"exec": "echo ; echo 󱓟 app launcher",
-	"interval": 86400, // once every day
-	"tooltip": true,
+	"format": "",
 	"on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser,window",
 	"on-click-middle": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
 	"on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Rofi Menu\nMiddle Click: Wallpaper Menu\nRight Click: Waybar Layout Menu",
 },
 // This is a custom cava visualizer
 "custom/cava_mviz": {
@@ -603,14 +671,14 @@
 },
 "custom/power": {
 	"format": "⏻ ",
-	"exec": "echo ; echo 󰟡 power // blur",
 	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
 	"on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
-	"interval": 86400, // once every day
 	"tooltip": true,
+	"tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur",
 },
 "custom/swaync": {
 	"tooltip": true,
+	"tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
 	"format": "{icon} {}",
 	"format-icons": {
 		"notification": "<span foreground='red'><sup></sup></span>",
@@ -636,6 +704,8 @@
 	"exec-if": "[[ $(checkupdates | wc -l) ]]",
 	"interval": 15,
 	"on-click": "kitty -T update paru -Syu || yay -Syu && notify-send 'The system has been updated'",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Update System\nArch Linux Only",
 },
 "custom/weather": {
 	"format": "{}",

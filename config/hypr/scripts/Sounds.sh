@@ -26,8 +26,13 @@ elif [[ "$1" == "--volume" ]]; then
         exit 0
     fi
     soundoption="audio-volume-change.*"
+elif [[ "$1" == "--error" ]]; then
+    if [[ "$muteScreenshots" = true ]]; then
+        exit 0
+    fi
+    soundoption="dialog-error.*"
 else
-    echo -e "Available sounds: --screenshot, --volume"
+    echo -e "Available sounds: --screenshot, --volume, --error"
     exit 0
 fi
 

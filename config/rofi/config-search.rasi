@@ -6,6 +6,7 @@
 /* ---- Window ---- */
 window {
 	width: 40%;
+    y-offset: 6px;
     location: north;
 }
 

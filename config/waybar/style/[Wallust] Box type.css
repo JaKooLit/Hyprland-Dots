@@ -1,5 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Light - Obsidian Glow */
+/* Wallust - Box type */
+
+@import '../../.config/waybar/wallust/colors-waybar.css';
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -10,39 +12,35 @@ font-size: 97%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
+
 window#waybar {
-	background: white;
-	border-radius: 12px;
+	background: transparent;
 }
 
 window#waybar.hidden {
-	opacity: 0.7;
+	opacity: 0.2;
 }
 
-window#waybar.empty {
-	background-color: transparent;
+
+window#waybar.empty #window {  
+ background:none;  
+ border-bottom-width: 5px;
+ border-bottom-color: transparent;
+ border-bottom-style: solid;
 }
 
-window#waybar.empty #window {
-	padding: 0px;
-	border: 0px;
-	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
-	background-color: transparent;
-}
-
-tooltip {
-	background: white;
+#window {
+	padding-left: 10px;
+	padding-right: 10px;
 	border-radius: 10px;
+	transition: none;
+    color: transparent;
+	background: transparent;
 }
 
-tooltip label {
-	color: #373737;
-	padding-right: 2px;
-	padding-left: 2px;
-}
-
+#taskbar button,
 #workspaces button {
-	color: #585b70;
+    color: @foreground;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
@@ -53,29 +51,31 @@ tooltip label {
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button.active,
 #workspaces button.active {
-	color: #000000;
-    border-radius: 15px 15px 15px 15px;
-    padding-left: 8px;
+    color: @color12;
+    background-color: @foreground;
+    padding-left: 4px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button.focused,
 #workspaces button.focused {
-	color: #000000;
+    color: @color4;
 }
 
 #workspaces button.urgent {
-	color: #000000;
-	border-radius: 10px;
+    color: #11111b;
+    border-radius: 10px;
 }
 
+#taskbar button:hover,
 #workspaces button:hover {
-	color: #000000;
-    border-radius: 15px;
- 	padding-left: 2px;
-    padding-right: 2px;
+    color: @color4;
+    padding-left: 2px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -91,11 +91,10 @@ tooltip label {
 #keyboard-state,
 #memory,
 #mode,
-#mpris,
 #network,
 #power-profiles-daemon,
 #pulseaudio,
-#pulseaudio-slider,
+#pulseaudio-slider,	
 #taskbar,
 #temperature,
 #tray,
@@ -103,7 +102,6 @@ tooltip label {
 #wireplumber,
 #workspaces,
 #custom-backlight,
-#custom-cava_mviz,
 #custom-cycle_wall,
 #custom-hint,
 #custom-keyboard,
@@ -124,70 +122,70 @@ tooltip label {
 #custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
-#custom-weather.sunnyDay {
-	color: #000000;
-	border-radius: 8px;
+#custom-weather.sunnyDay{
 	padding-top: 4px;
 	padding-bottom: 4px;
-	padding-right: 6px;
-	padding-left: 6px;
+	padding-left: 8px;
+	padding-right: 10px;
+	border-radius: 10px;
+	transition: none;
+	color: @foreground;
+	background: @color0;
+    border-bottom-width: 5px;
+    border-bottom-color: @color12;
+    border-bottom-style: solid;
 }
 
-#temperature.critical {
-	background-color: #ff0000;
+#custom-power {
+	padding-right: 2px;
+}
+
+#network {
+	padding-right: 12px;
+}
+
+#mpris {
+	padding-right: 8px;
+	padding-left: 8px;
+}
+#battery.critical:not(.charging) {
+    background-color: #ffffff;
+    color: #000000;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    border-bottom-width: 5px;
+    border-bottom-color: @color12;
+    border-bottom-style: solid;
 }
 
 @keyframes blink {
-	to {
-		color: #000000;
-	}
-}
-
-#taskbar button.active {
-	background-color: #585b70;
-	color: #cdd6f4;
-    padding-left: 12px;
-    padding-right: 12px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#battery.critical:not(.charging) {
-	color: #f53c3c;
-	animation-name: blink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
 }
 
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;
-	opacity: 0;
+	opacity: 10;
 	background-image: none;
 	border: none;
 	box-shadow: none;
 }
-	
+
 #pulseaudio-slider trough {
-	min-width: 80px;  
-	min-height: 5px; 
+	min-width: 80px;
+	min-height: 5px;
 	border-radius: 5px;
-	background-color: grey;
 }
-	
+
 #pulseaudio-slider highlight {
-	min-height: 10px; 
+	min-height: 10px;
 	border-radius: 5px;
-	background-color: #ba5663;
 }
 
 #backlight-slider slider {
@@ -196,18 +194,16 @@ tooltip label {
 	opacity: 0;
 	background-image: none;
 	border: none;
-	box-shadow: none;
+	box-shadow: @color12;
 }
-	
+
 #backlight-slider trough {
-	min-width: 80px;  
-	min-height: 10px; 
+	min-width: 80px;
+	min-height: 10px;
 	border-radius: 5px;
-	background-color: grey;
 }
-	
+
 #backlight-slider highlight {
-	min-width: 10px; 
+	min-width: 10px;
 	border-radius: 5px;
-	background-color: #ba5663;
 }

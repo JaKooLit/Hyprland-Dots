@@ -33,7 +33,7 @@ notify_user() {
 
 # Change brightness
 change_backlight() {
-	brightnessctl set "$1" && get_icon && notify_user
+	brightnessctl set "$1" -n && get_icon && notify_user
 }
 
 # Execute accordingly
