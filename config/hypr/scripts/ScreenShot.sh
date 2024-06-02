@@ -22,6 +22,7 @@ notify_view() {
             "${sDIR}/Sounds.sh" --screenshot
         else
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
+            "${sDIR}/Sounds.sh" --error
         fi
     elif [[ "$1" == "swappy" ]]; then
 		${notify_cmd_shot} "Screenshot Captured."
@@ -32,6 +33,7 @@ notify_view() {
             "${sDIR}/Sounds.sh" --screenshot
         else
             ${notify_cmd_shot} "Screenshot NOT Saved."
+            "${sDIR}/Sounds.sh" --error
         fi
     fi
 }
