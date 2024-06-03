@@ -29,6 +29,13 @@ declare -A effects=(
 ["Sepia Tone"]="magick $current_wallpaper -sepia-tone 65% $wallpaper_output"
 ["Negate"]="magick $current_wallpaper -negate $wallpaper_output"
 ["Charcoal"]="magick $current_wallpaper -charcoal 0x5 $wallpaper_output"
+["Edge Detect"]="magick $current_wallpaper -edge 1 $wallpaper_output"
+["Emboss"]="magick $current_wallpaper -emboss 0x5 $wallpaper_output"
+["Sharpen"]="magick $current_wallpaper -sharpen 0x5 $wallpaper_output"
+["Oil Paint"]="magick $current_wallpaper -paint 4 $wallpaper_output"
+["Vignette"]="magick $current_wallpaper -vignette 0x5 $wallpaper_output"
+["Posterize"]="magick $current_wallpaper -posterize 4 $wallpaper_output"
+["Polaroid"]="magick $current_wallpaper -polaroid 0 $wallpaper_output"
 ["No Effects"]="no-effects"
 )
 
@@ -52,10 +59,10 @@ no_effects() {
 # Function to run rofi menu
 main() {
     # Populate rofi menu options
-    options="No Effects\n"
+    options="No Effects"
     for effect in "${!effects[@]}"; do
         if [ "$effect" != "No Effects" ]; then
-            options+="$effect\n"
+            options+="\n$effect"
         fi
     done
 
