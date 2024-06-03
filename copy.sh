@@ -4,7 +4,7 @@
 clear
 
 wallpaper=$HOME/Pictures/wallpapers/Lofi-Anime-Room.png
-waybar_style="$HOME/.config/waybar/[Wallust] Box type.css"
+waybar_style="$HOME/.config/waybar/style/[Wallust] Box type.css"
 waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v3"
 waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 
 
