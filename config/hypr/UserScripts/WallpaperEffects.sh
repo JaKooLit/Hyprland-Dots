@@ -23,12 +23,12 @@ SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration
 # https://imagemagick.org/script/magick.php
 
 declare -A effects=(
-["Black & White"]="magick $current_wallpaper -set colorspace Gray -separate -average $wallpaper_output"
-["Blurred"]="magick $current_wallpaper -blur "20x30" $wallpaper_output"
+["Black & White"]="magick $current_wallpaper -colorspace gray -sigmoidal-contrast 10,40% $wallpaper_output"
+["Blurred"]="magick $current_wallpaper -blur 0x5 $wallpaper_output"
 ["Solarize"]="magick $current_wallpaper -solarize 80% $wallpaper_output"
 ["Sepia Tone"]="magick $current_wallpaper -sepia-tone 65% $wallpaper_output"
 ["Negate"]="magick $current_wallpaper -negate $wallpaper_output"
-["Charcoal"]="magick $current_wallpaper -charcoal "10x10" $wallpaper_output"
+["Charcoal"]="magick $current_wallpaper -charcoal 0x5 $wallpaper_output"
 ["No Effects"]="no-effects"
 )
 
