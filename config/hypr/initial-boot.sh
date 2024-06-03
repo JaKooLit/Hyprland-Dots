@@ -7,8 +7,8 @@
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
-wallpaper=$HOME/Pictures/wallpapers/Lofi-Computer.png
-waybar_style="$HOME/.config/waybar/style/[Colored] Chroma Glow.css"
+wallpaper=$HOME/Pictures/wallpapers/Lofi-Anime-Room.png
+waybar_style="$HOME/.config/waybar/[Wallust] Box type.css"
 kvantum_theme="Catppuccin-Mocha"
 color_scheme="prefer-dark"
 gtk_theme="Andromeda-dark"
