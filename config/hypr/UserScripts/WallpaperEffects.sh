@@ -59,10 +59,10 @@ no_effects() {
 # Function to run rofi menu
 main() {
     # Populate rofi menu options
-    options="No Effects\n"
+    options="No Effects"
     for effect in "${!effects[@]}"; do
         if [ "$effect" != "No Effects" ]; then
-            options+="$effect\n"
+            options+="\n$effect"
         fi
     done
 
