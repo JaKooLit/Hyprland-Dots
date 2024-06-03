@@ -22,10 +22,12 @@ if [ -f "$cache_file" ]; then
     # Get the wallpaper path from the cache file
     wallpaper_path=$(cat "$cache_file")
     echo $wallpaper_path
-    # Copy the wallpaper to the location Rofi can access
+    # symlink the wallpaper to the location Rofi can access
     if ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"; then
         ln_success=true  # Set the flag to true upon successful execution
     fi
+    # copy the wallpaper for wallpaper effects
+	cp -r "$wallpaper_path" "$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 fi
 
 # Check the flag before executing further commands
