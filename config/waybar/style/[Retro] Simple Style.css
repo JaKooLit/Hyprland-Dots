@@ -31,16 +31,16 @@ window#waybar {
 
 #taskbar button.active,
 #workspaces button.active {
-  border-bottom: 1px solid @green;
+  border-bottom: 1px solid green;
 }
 
 #taskbar button.urgent,
 #workspaces button.urgent {
-  border-bottom: 2px solid @red;
+  border-bottom: 2px solid red;
 }
 
 #submap {
-  border-bottom: 1px solid @red;
+  border-bottom: 1px solid red;
 }
 
 #backlight,
@@ -97,7 +97,7 @@ window#waybar {
 #memory.warning,
 #cpu.warning {
   border-top: 3px solid @background;
-  border-bottom: 3px solid @yellow;
+  border-bottom: 3px solid yellow;
 }
 
 #battery.critical,
@@ -105,12 +105,16 @@ window#waybar {
 #memory.critical,
 #cpu.critical {
   border-top: 3px solid @background;
-  border-bottom: 3px solid @red;
+  border-bottom: 3px solid red;
+}
+
+#temperature.critical {
+	background-color: red;
 }
 
 #battery.charging {
   border-top: 3px solid @background;
-  border-bottom: 3px solid @green;
+  border-bottom: 3px solid green;
 }
 
 #pulseaudio-slider slider {

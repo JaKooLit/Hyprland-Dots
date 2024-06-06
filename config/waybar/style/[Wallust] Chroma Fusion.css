@@ -110,7 +110,7 @@ tooltip {
 	padding: 0px 2px 0px 6px;
 }
 #custom-power {
-    color: @red;
+    color: red;
     padding: 0px 0px 0px 6px;
     opacity:1.0;
 }
@@ -240,7 +240,7 @@ tooltip {
 }
 
 #temperature.critical {
-    background-color: @red;
+    background-color: red;
 }
 
 @keyframes blink {
