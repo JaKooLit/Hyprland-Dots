@@ -18,7 +18,6 @@
   <a href="https://discord.gg/V2SJ92vbEN" style="background-color: #bd33ff;"><kbd> <br> Discord <br> </kbd></a>
 </div><br>
 
-
 <div align = center>
     
 </div>
