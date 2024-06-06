@@ -160,7 +160,8 @@
 		"class<codeblocks>": "󰅩 ",
 		"class<mousepad>": " ",
 		"class<libreoffice-writer>": " ",
-		"class<libreoffice-startcenter>": "󰏆 "
+		"class<libreoffice-startcenter>": "󰏆 ",
+		"class<com.obsproject.Studio>": " "
 		}   
 },
 // for Camilla or Spanish
