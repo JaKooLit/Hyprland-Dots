@@ -21,7 +21,7 @@ window#waybar {
 }
 
 #workspaces {
-	background: #0F1419;
+	background: transparent;
 	padding: 0px 1px;
 	border-radius: 15px;
 	border: 0px;
