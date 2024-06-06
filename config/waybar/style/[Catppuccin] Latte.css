@@ -26,22 +26,8 @@ window#waybar.hidden {
 }
 
 #waybar.empty #window {
-  background: none;
+  background: transparent;
 }
-
-/* This section can be use if you want to separate waybar modules*/
-/* Remember to set transparent on waybar above */
-/*.modules-left, .modules-center, .modules-right { */
-/*  background: @theme_base_color; */
-/*  border: 0.5px solid @overlay0; */
-/*  padding: 0px 5px; */
-/*  border-radius: 10px; */
-/*} */
-
-/* .modules-left, .modules-right { */
-/*   border: 1px solid @blue; */
-/*   margin: 0px 5px;*/ 
-/*}*/
 
 #backlight,
 #backlight-slider,

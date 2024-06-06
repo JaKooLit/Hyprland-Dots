@@ -208,6 +208,7 @@ tooltip {
 #custom-swaync,
 #custom-menu {
 	color: yellow;
+	padding-left: 8px;
 }
 #custom-power{
     color: #eba0ac; 

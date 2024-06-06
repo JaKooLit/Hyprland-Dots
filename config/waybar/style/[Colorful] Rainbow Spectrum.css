@@ -296,6 +296,7 @@ tooltip label{
 
 #network {
 	background-color: #89b4fa;
+	padding-right: 12px;
 }
 #network.disconnected,#network.disabled {
 	background-color: #313244;

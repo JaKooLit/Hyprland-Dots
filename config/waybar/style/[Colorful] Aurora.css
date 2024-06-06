@@ -138,12 +138,22 @@ tooltip label{
 	padding-right: 6px;
 	padding-left: 6px;
 }
-
+#backlight {
+	padding-right: 2px;
+}
 #custom-power {
 	padding-left: 10px;
 	padding-right: 2px;
 }
-
+#custom-menu {
+	padding-right: 8px;
+}
+#custom-cycle_wall {
+	padding-right: 2px;
+}
+#network {
+	padding-right: 12px;
+}
 /*-----Indicators----*/
 #idle_inhibitor.activated {
 	color: #2dcc36;
@@ -152,7 +162,8 @@ tooltip label{
 	color: #cc3436;
 }
 #temperature.critical {
-	color: #cc3436;
+	background: red;
+	color: black;
 }
 
 @keyframes blink {

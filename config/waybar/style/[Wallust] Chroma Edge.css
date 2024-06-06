@@ -84,7 +84,6 @@ tooltip label{
 	background-color: #eb4d4b;
 }
 
-
 #backlight,
 #backlight-slider,
 #battery,
@@ -222,8 +221,8 @@ tooltip label{
 	color: #FFD580;
 }
 #backlight {
-	/* color: #EBCB8B; */
 	color: #8fbcbb;
+	padding-right: 2px;
 }
 
 #clock {

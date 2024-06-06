@@ -148,6 +148,9 @@ window#waybar.empty #window {
 	padding-right: 8px;
 	padding-left: 8px;
 }
+#backlight {
+	padding-right: 2px;
+}
 #battery.critical:not(.charging) {
     background-color: #ffffff;
     color: #000000;

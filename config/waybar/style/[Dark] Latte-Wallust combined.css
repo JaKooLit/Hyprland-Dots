@@ -40,18 +40,14 @@ window#waybar.hidden {
 }
 
 window#waybar.empty {
-    /*background-color: #040406;*/
     background-color: transparent;
 }
 
 window#waybar.empty #window {
     padding: 0px;
     border: 0px;
-    /*  background-color: rgba(66,66,66,0.5); */
-    /* transparent */
     background-color: transparent;
 }
-
 
 tooltip {
     background: #1e1e2e;
