@@ -245,7 +245,7 @@ window#waybar.hidden {
   	color: @mauve;
 }
 
-#custom-waybar-mpris {
+#mpris {
   	color:@lavender;
 }
 

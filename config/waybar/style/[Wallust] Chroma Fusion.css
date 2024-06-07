@@ -65,6 +65,7 @@ tooltip {
 #keyboard-state,
 #memory,
 #mode,
+#mpris,
 #network,
 #power-profiles-daemon,
 #pulseaudio,
@@ -119,6 +120,11 @@ tooltip {
     color: @flamingo;
     padding: 0px 8px 0px 4px;
     opacity:1.0;
+}
+
+#mpris {
+	color: @sapphire;
+	padding-right: 0px;
 }
 
 #custom-swaync,

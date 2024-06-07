@@ -66,6 +66,7 @@ tooltip {
 #keyboard-state,
 #memory,
 #mode,
+#mpris,
 #network,
 #power-profiles-daemon,
 #pulseaudio,
@@ -123,6 +124,10 @@ tooltip {
 #custom-weather,
 #custom-updates {
     color: @yellow;
+}
+
+#mpris {
+	padding-right: 2px;
 }
 
 #keyboard-state,

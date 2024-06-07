@@ -17,6 +17,10 @@ window#waybar {
   color: #E6B673;
 }
 
+#waybar.empty, #waybar.tiled, #waybar.floating {
+	background-color: transparent;
+}
+
 #taskbar,
 #workspaces {
   background: #0F1419;
@@ -153,6 +157,15 @@ color: #F3F4F5;
 	border-radius: 50px 50px;
 	margin: 5px;
 	padding: 2px 15px;
+}
+
+#mpris {
+	color: #F07178;
+	background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding-left: 8px;
+	padding-right: 2px;
 }
 
 #backlight {
