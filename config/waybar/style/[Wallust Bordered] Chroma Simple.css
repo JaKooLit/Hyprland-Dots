@@ -19,11 +19,11 @@ window#waybar {
     padding-right: 15px;
 }
 
+window#waybar.empty,
 window#waybar.empty #window {
     background-color: transparent;
-    border-color: transparent;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 0px;
+    border: 0px;
 }
 
 tooltip {
@@ -91,6 +91,7 @@ tooltip {
 #keyboard-state,
 #memory,
 #mode,
+#mpris,
 #network,
 #power-profiles-daemon,
 #pulseaudio,
@@ -181,7 +182,7 @@ tooltip {
 }
 
 #mpris {
-    padding-left: 15px;	
+    padding-left: 16px;	
 }
 #tray.empty {
     background-color: transparent;

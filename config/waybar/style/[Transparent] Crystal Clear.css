@@ -22,30 +22,14 @@ window#waybar {
 window#waybar.hidden {
 	opacity: 0.5;
 }
-window#waybar.empty {
-	background-color: transparent;
-}
-	
+
+window#waybar.empty	
 window#waybar.empty #window {
    padding: 0px;
    border: 0px;
    background-color: transparent;
 }
 	   
-
-/*-----module groups----*/
-.modules-right {
-	
-}
-
-.modules-center {
-		
-}
-
-.modules-left {
-	   
-}
-
 #workspaces button {
 	color: #6E6A86;
    	box-shadow: none;

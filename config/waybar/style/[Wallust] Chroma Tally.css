@@ -20,6 +20,13 @@ window#waybar {
 	border-color: @color12; 
 }
 
+window#waybar.empty,
+window#waybar.empty #window {
+    background-color: transparent;
+    padding: 0px;
+    border: 0px;
+}
+
 #workspaces {
 	background: transparent;
 	padding: 0px 1px;

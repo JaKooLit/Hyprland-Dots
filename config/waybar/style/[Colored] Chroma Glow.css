@@ -2,12 +2,12 @@
 /* Chroma Glow */
 
 * {
-font-family: "JetBrainsMono Nerd Font";
-font-weight: bold;
-min-height: 0;
-/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 97%;
-font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+	font-family: "JetBrainsMono Nerd Font";
+	font-weight: bold;
+	min-height: 0;
+	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+	font-size: 97%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
 window#waybar {
@@ -22,10 +22,7 @@ window#waybar.hidden {
     opacity: 0.1;
 }
 
-window#waybar.empty {
-    background-color: transparent;
-}
-
+window#waybar.empty,
 window#waybar.empty #window {
     padding: 0px;
     border: 0px;
@@ -46,6 +43,7 @@ tooltip label{
     color: #cdd6f4;
 }
 
+#taskbar button,
 #workspaces button {
     background-color: transparent;
     color: grey;
@@ -59,6 +57,7 @@ tooltip label{
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button.active,
 #workspaces button.active {
     background-color: transparent;
     color: #D3D3D3;
@@ -68,6 +67,7 @@ tooltip label{
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button:hover,
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
 	color: #D3D3D3;
@@ -80,7 +80,6 @@ tooltip label{
 #workspaces button.focused {
     background-color: #bbccdd;
     color: #323232;
-    /* box-shadow: inset 0 -3px #ffffff; */
 }
 
 #workspaces button.urgent {
@@ -140,10 +139,6 @@ tooltip label{
 	padding-bottom: 4px;
 	padding-right: 6px;
 	padding-left: 6px;
-}
-
-#window,
-#workspaces {
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -278,21 +273,6 @@ label:focus {
     /*background-color: #ecf0f1;*/
     color: #2dcc36;
     /*color: #2d3436;*/
-}
-
-#taskbar button.active {
-    background-color: #7f849c;
-    padding-left: 12px;
-    padding-right: 12px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #mpd {

@@ -10,16 +10,12 @@ font-size: 97%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
-window#waybar {
-	background: transparent;
-}
-
-window#waybar.empty {
-	background-color: transparent;
-}
-
+window#waybar,
+window#waybar.empty,
 window#waybar.empty #window {
-	background-color: transparent;
+    background-color: transparent;
+    padding: 0px;
+    border: 0px;
 }
 
 tooltip {
@@ -73,6 +69,7 @@ tooltip label{
 	padding-left: 4px;
 }
 /*-----modules indv----*/
+#taskbar button,
 #workspaces button {
 	color: black;
     box-shadow: none;
@@ -84,6 +81,7 @@ tooltip label{
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
+#taskbar button:hover,
 #workspaces button:hover {
 	color: grey;
 	background-color: rgba(0,153,153,0.2);
@@ -93,8 +91,10 @@ tooltip label{
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button.active,
 #workspaces button.active {
-	color: grey;
+	background-color: grey;
+	color: black;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
@@ -181,21 +181,6 @@ tooltip label{
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
-}
-
-#taskbar button.active {
-	background-color: #7f849c;
-    padding-left: 6px;
-    padding-right: 6px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #pulseaudio-slider slider {

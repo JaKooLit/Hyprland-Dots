@@ -12,12 +12,16 @@ font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
-window#waybar {
-	background: transparent;
-}
-
 #waybar.empty, #waybar.tiled, #waybar.floating {
 	background-color: transparent;
+}
+
+window#waybar,
+window#waybar.empty,
+window#waybar.empty #window {
+    background-color: transparent;
+    padding: 0px;
+    border: 0px;
 }
 
 tooltip {

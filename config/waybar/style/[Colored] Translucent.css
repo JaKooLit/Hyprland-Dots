@@ -36,14 +36,10 @@ window#waybar.hidden {
     opacity: 0.1;
 }
 
-window#waybar.empty {
-    background-color: transparent;
-}
-
+window#waybar.empty,
 window#waybar.empty #window {
     padding: 0px;
     border: 0px;
-    /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
     background-color: transparent;
 }
 
@@ -69,6 +65,7 @@ tooltip {
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button.active,
 #workspaces button.active {
     background-color: transparent;
     color: @accent1;
@@ -78,6 +75,7 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button:hover,
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
 	color: @accent3;
@@ -185,7 +183,7 @@ tooltip {
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
+    color: @critical;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -293,21 +291,6 @@ label:focus {
     /*background-color: #ecf0f1;*/
     color: #2dcc36;
     /*color: #2d3436;*/
-}
-
-#taskbar button.active {
-    background-color: #7f849c;
-    padding-left: 12px;
-    padding-right: 12px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #mpd {

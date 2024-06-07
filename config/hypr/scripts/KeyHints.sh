@@ -45,7 +45,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " T" "Open File Manager" "(Thunar)" \
 " S" "Google Search" "(rofi)" \
 " Q" "close active window" "(not kill)" \
-" Shift Q " "closes a specified window" "(window)" \
+" Shift Q " "kills an active window" "(kill)" \
 " Z" "Desktop Zoom" "(pyprland)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
 " W" "Choose wallpaper" "(Wallpaper Menu)" \

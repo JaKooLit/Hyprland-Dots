@@ -39,10 +39,7 @@ window#waybar.hidden {
     opacity: 0;
 }
 
-window#waybar.empty {
-    background-color: transparent;
-}
-
+window#waybar.empty,
 window#waybar.empty #window {
     padding: 0px;
     border: 0px;
@@ -74,8 +71,6 @@ tooltip {
     background-color: @background-module;
     border-radius:15px;
     border-bottom:2px solid @border-color;
-    /*border-right: 2px solid #ffd700;*/
-    /*border:@teal-trans;*/
 	padding-top: 2px;
 	padding-bottom: 0px;
 	padding-right: 4px;

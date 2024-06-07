@@ -22,14 +22,10 @@ window#waybar {
 window#waybar.hidden {
 	opacity: 0.5;
 }
-window#waybar.empty {
-	
-}
-	
+window#waybar.empty,	
 window#waybar.empty #window {
     padding: 0px;
     border: 0px;
-    /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
     background-color: transparent;
 }	   
 
@@ -75,7 +71,8 @@ tooltip {
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
-	   
+
+#taskbar button.active,	   
 #workspaces button.active {
 	color: rgb(108, 18, 18);
 	background-color: #000000;
@@ -95,7 +92,8 @@ tooltip {
 	color: #11111b;
 	border-radius: 10px;
 }
-		   
+
+#taskbar button:hover,		   
 #workspaces button:hover {
 	color: rgb(71, 14, 14);
 	background-color: #000000;
@@ -166,24 +164,7 @@ tooltip {
 	color: #000000;
 	   }
 }
-	   
-#taskbar button.active {
-	background-color: rgb(128, 31, 31);
-	border-radius: 8px;
-	border: 1px solid grey;
-    padding-left: 12px;
-    padding-right: 12px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-		   
+	   	   
 #battery.critical:not(.charging) {
 	color: #f53c3c;
 	animation-name: blink;
