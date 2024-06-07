@@ -14,6 +14,8 @@ SCRIPTSDIR="$HOME/.config/hypr/scripts"
 notif="$HOME/.config/swaync/images/bell.png"
 wallust_rofi="$HOME/.config/wallust/templates/colors-rofi.rasi"
 
+kitty_conf="$HOME/.config/kitty/kitty.conf"
+
 wallust_config="$HOME/.config/wallust/wallust.toml"
 pallete_dark="dark16"
 pallete_light="light16"
@@ -96,6 +98,20 @@ else
     sed -i '/@define-color text-color/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.7);/' "${ags_style}"
 	sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' "${ags_style}"
 fi
+
+# kitty background color change
+if [ "$next_mode" = "Dark" ]; then
+    sed -i '/^foreground /s/^foreground .*/foreground #dddddd/' "${kitty_conf}"
+	sed -i '/^background /s/^background .*/background #000000/' "${kitty_conf}"
+	sed -i '/^cursor /s/^cursor .*/cursor #dddddd/' "${kitty_conf}"
+else
+	sed -i '/^foreground /s/^foreground .*/foreground #000000/' "${kitty_conf}"
+	sed -i '/^background /s/^background .*/background #dddddd/' "${kitty_conf}"
+	sed -i '/^cursor /s/^cursor .*/cursor #000000/' "${kitty_conf}"
+fi
+
+
+
 
 # Set Dynamic Wallpaper for Dark or Light Mode
 if [ "$next_mode" = "Dark" ]; then
