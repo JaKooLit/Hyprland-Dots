@@ -14,11 +14,12 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-printf "\n%.0s" {1..3}  
-echo "                                   _   _ ___ __ "
-echo "   |  _.   |/  _   _  |  o _|_ __ | \ / \ | (_  "
-echo " \_| (_| o |\ (_) (_) |_ |  |_    |_/ \_/ | __) "
+printf "\n%.0s" {1..2}  
+echo '  ╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐  ╔╦╗┌─┐┌┬┐┌─┐ '
+echo '  ╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  ├─┤│││ ││───║║│ │ │ └─┐ '
+echo '  ╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘  ═╩╝└─┘ ┴ └─┘ '
 printf "\n%.0s" {1..2} 
+ 
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -51,10 +52,17 @@ fi
 
 # uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
 if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "This script is running in a virtual machine."
+  echo "System is running in a virtual machine."
   sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
+fi
+
+# Proper Polkit for NixOS
+if hostnamectl | grep -q 'Operating System: NixOS'; then
+  echo "You Distro is NixOS. Setting up properly."
+  sed -i -E '/^#?exec-once = \$scriptsDir\/Polkit-NixOS\.sh/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
 # Function to detect keyboard layout using localectl or setxkbmap
@@ -81,28 +89,54 @@ detect_layout() {
 # Detect the current keyboard layout
 layout=$(detect_layout)
 
-printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n\n"
+if [ "$layout" = "(unset)" ]; then
+    while true; do
+        printf "\n%.0s" {1..1}
+        echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT!!!! $(tput sgr0)" 
+        echo "$(tput bold)$(tput setaf 1)The keyboard layout could not be detected properly. $(tput sgr0)"
+        echo "$(tput bold)$(tput setaf 7)You need to set it manually. $(tput sgr0)"
+        echo "$(tput bold)$(tput setaf 2)If you are not sure, type us. You can change later on! $(tput sgr0)"
+        printf "\n%.0s" {1..1}
+        echo "$(tput bold)$(tput setaf 5)You can also set more than 2 layouts!$(tput sgr0)"
+        echo "$(tput bold)$(tput setaf 5)ie: us,kr,es $(tput sgr0)"
+        printf "\n%.0s" {1..1}
+        read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+
+        if [ -n "$new_layout" ]; then
+            layout="$new_layout"
+            break
+        else
+            echo "Please enter a keyboard layout."
+        fi
+    done
+fi
+
+printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n\n"
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
-    read -p "$ORANGE Detected current keyboard layout is: $layout. Is this correct? [y/n] " confirm
+    read -p "$ORANGE Current keyboard layout is: $layout. Is this correct? [y/n] " confirm
 
     case $confirm in
         [yY])
             # If the detected layout is correct, update the 'kb_layout=' line in the file
             awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
             mv temp.conf config/hypr/UserConfigs/UserSettings.conf
+            
             echo "${NOTE} kb_layout $layout configured in settings.  " 2>&1 | tee -a "$LOG"
             break ;;
         [nN])
             printf "\n%.0s" {1..2}
             echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT!!!! $(tput sgr0)" 
-            echo "$(tput bold)$(tput setaf 7)Setting a wrong value here will result in Hyprland not starting $(tput sgr0)"
-            echo "$(tput bold)$(tput setaf 7)If you are not sure, keep it in us layout. You can change later on! $(tput sgr0)"
-            echo "$(tput bold)$(tput setaf 7)You can also set more than 2 layouts!$(tput sgr0)"
-            echo "$(tput bold)$(tput setaf 7)ie: us,kr,es $(tput sgr0)"
-            printf "\n%.0s" {1..2}
+            echo "$(tput bold)$(tput setaf 1)Setting a wrong value here will result in Hyprland not starting $(tput sgr0)"
+         		echo "$(tput bold)$(tput setaf 2)If you are not sure, type us. You can change later on! $(tput sgr0)"
+        		printf "\n%.0s" {1..1}
+        		echo "$(tput bold)$(tput setaf 5)You can also set more than 2 layouts!$(tput sgr0)"
+        		echo "$(tput bold)$(tput setaf 5)ie: us,kr,es $(tput sgr0)"
+            printf "\n%.0s" {1..1}
+            
             read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+            
             # Update the 'kb_layout=' line with the correct layout in the file
             awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
             mv temp.conf config/hypr/UserConfigs/UserSettings.conf
@@ -114,6 +148,11 @@ while true; do
 done
 
 printf "\n"
+
+# Check if asusctl is installed and add rog-control-center on Startup
+if command -v asusctl >/dev/null 2>&1; then
+    sed -i '/exec-once = rog-control-center &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+fi
 
 # Ask whether to change to 12hr format
 while true; do
@@ -278,6 +317,12 @@ while true; do
             echo "${NOTE} Downloading additional wallpapers..."
             if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
                 echo "${NOTE} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
+
+                # Check if wallpapers directory exists and create it if not
+                if [ ! -d ~/Pictures/wallpapers ]; then
+                    mkdir -p ~/Pictures/wallpapers
+                    echo "${NOTE} Created wallpapers directory." 2>&1 | tee -a "$LOG"
+                fi
 
                 if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
                     echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
