@@ -472,12 +472,12 @@
 	"format-wifi": "{icon}",
 	"format-ethernet": "󰌘",
 	"format-disconnected": "󰌙",
-	"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits",
+	"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
 	"format-linked": "󰈁 {ifname} (No IP)",
 	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
 	"tooltip-format-ethernet": "{ifname} 󰌘",
 	"tooltip-format-disconnected": "󰌙 Disconnected",
-	"max-length": 30,
+	"max-length": 50,
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	],
@@ -486,15 +486,15 @@
 "network#speed": {
 	"interval": 1,
 	"format": "{ifname}",
-	"format-wifi": "{icon}  {bandwidthUpBits}  {bandwidthDownBits",
-	"format-ethernet": "󰌘   {bandwidthUpBits}  {bandwidthDownBits",
+	"format-wifi": " {bandwidthUpBits}  {bandwidthDownBits} {icon}",
+	"format-ethernet": " {bandwidthUpBits}  {bandwidthDownBits} 󰌘 ",
 	"format-disconnected": "󰌙",
 	"tooltip-format": "{ipaddr}",
 	"format-linked": "󰈁 {ifname} (No IP)",
 	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
 	"tooltip-format-ethernet": "{ifname} 󰌘",
 	"tooltip-format-disconnected": "󰌙 Disconnected",
-	"max-length": 30,
+	"max-length": 20,
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	]
