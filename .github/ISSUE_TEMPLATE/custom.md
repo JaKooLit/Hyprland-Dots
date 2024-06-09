@@ -36,3 +36,12 @@ labels: "custom"
 ### Additional Information
 
 [Add any other information about the issue or request here. For example, you might include links to similar features in other projects, or screenshots or diagrams to help explain your idea.]
+
+### show output of `inxi -CGIsSMnr` install package `inxi` if not exist
+show output here
+```
+
+
+```
+
+or you can also run `inxi -CGIsSMnr >diag.txt` and attach diag.txt 
