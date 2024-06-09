@@ -44,7 +44,7 @@ xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 
 # uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-  # NVIDIA GPU detected, uncomment line 23 in ENVariables.conf
+  echo "Nvidia GPU detected. Setting up proper env's" 2>&1 | tee -a "$LOG" || true
   sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
@@ -52,7 +52,7 @@ fi
 
 # uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
 if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "System is running in a virtual machine."
+  echo "System is running in a virtual machine." 2>&1 | tee -a "$LOG" || true
   sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
@@ -60,9 +60,16 @@ fi
 
 # Proper Polkit for NixOS
 if hostnamectl | grep -q 'Operating System: NixOS'; then
-  echo "You Distro is NixOS. Setting up properly."
+  echo "You Distro is NixOS. Setting up properly." 2>&1 | tee -a "$LOG" || true
   sed -i -E '/^#?exec-once = \$scriptsDir\/Polkit-NixOS\.sh/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
   sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
+fi
+
+# Check if dpkg is installed (use to check if Debian or Ubuntu or based distros
+if command -v dpkg &> /dev/null; then
+	echo "Debian/Ubuntu based distro. Disabling pyprland" 2>&1 | tee -a "$LOG" || true
+  # disabling pyprland as causing issues
+  sed -i '/^exec-once = pypr &/ s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
 # Function to detect keyboard layout using localectl or setxkbmap
@@ -71,18 +78,12 @@ detect_layout() {
     layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
     if [ -n "$layout" ]; then
       echo "$layout"
-    else
-      echo "unknown"
     fi
   elif command -v setxkbmap >/dev/null 2>&1; then
     layout=$(setxkbmap -query | grep layout | awk '{print $2}')
     if [ -n "$layout" ]; then
       echo "$layout"
-    else
-      echo "unknown"
     fi
-  else
-    echo "unknown"
   fi
 }
 
