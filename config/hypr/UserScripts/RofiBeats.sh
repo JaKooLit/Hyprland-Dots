@@ -3,7 +3,7 @@
 # For Rofi Beats to play online Music or Locally save media files
 
 # Directory local music folder
-mDIR="$HOME/Music/"
+mDIR="$HOME/Music"
 
 # Directory for icons
 iDIR="$HOME/.config/swaync/icons"
@@ -59,12 +59,12 @@ play_local_music() {
       # For some reason wont start playlist at 0
       if [[ $i -eq 0 ]]; then
         # Play the selected local music file using mpv
-        mpv --loop-playlist --vid=no "$mDIR" 
+        mpv --loop-playlist --vid=no "$mDIR/$choice" 
       	
       else
         file=$i
         # Play the selected local music file using mpv
-        mpv --playlist-start="$file" --loop-playlist --vid=no "$mDIR"
+        mpv --playlist-start="$file" --loop-playlist --vid=no "$mDIR/$choice"
       fi
       break
     fi
