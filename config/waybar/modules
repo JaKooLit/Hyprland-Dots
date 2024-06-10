@@ -120,7 +120,7 @@
 		"4": " ",
 		"5": " ",
 		"6": " ",
-		"7": "",
+		"7": "",
 		"8": " ",
 		"9": "",
 		"10": "10",
@@ -150,7 +150,8 @@
 		"class<kitty>": " ",
 		"class<konsole>": " ",
 		"class<thunar>": "󰝰 ",
-		"class<discord>": " ",
+		"class<discord>": " ",
+		"class<WebCord>": " ",
 		"class<subl>": "󰅳 ",
 		"class<celluloid>": " ",
 		"class<Cider>": "󰎆 ",
@@ -159,7 +160,8 @@
 		"class<codeblocks>": "󰅩 ",
 		"class<mousepad>": " ",
 		"class<libreoffice-writer>": " ",
-		"class<libreoffice-startcenter>": "󰏆 "
+		"class<libreoffice-startcenter>": "󰏆 ",
+		"class<com.obsproject.Studio>": " "
 		}   
 },
 // for Camilla or Spanish
@@ -368,6 +370,7 @@
 "cpu": {
 	"format": "{usage}% 󰍛",
 	"interval": 1,
+	"min-length": 5,
 	"format-alt-click": "click",
 	"format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
 	"format-icons": [
@@ -470,12 +473,12 @@
 	"format-wifi": "{icon}",
 	"format-ethernet": "󰌘",
 	"format-disconnected": "󰌙",
-	"tooltip-format": "{ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+	"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
 	"format-linked": "󰈁 {ifname} (No IP)",
 	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
 	"tooltip-format-ethernet": "{ifname} 󰌘",
 	"tooltip-format-disconnected": "󰌙 Disconnected",
-	"max-length": 50,
+	"max-length": 30,
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	],
@@ -484,15 +487,16 @@
 "network#speed": {
 	"interval": 1,
 	"format": "{ifname}",
-	"format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-	"format-ethernet": "󰌘   {bandwidthUpBytes}  {bandwidthDownBytes}",
+	"format-wifi": "{icon}  {bandwidthUpBits}  {bandwidthDownBits}",
+	"format-ethernet": "󰌘  {bandwidthUpBits}  {bandwidthDownBits}",
 	"format-disconnected": "󰌙",
 	"tooltip-format": "{ipaddr}",
 	"format-linked": "󰈁 {ifname} (No IP)",
 	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
 	"tooltip-format-ethernet": "{ifname} 󰌘",
 	"tooltip-format-disconnected": "󰌙 Disconnected",
-	"max-length": 50,
+	"min-length": 24,
+	"max-length": 24,
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	]

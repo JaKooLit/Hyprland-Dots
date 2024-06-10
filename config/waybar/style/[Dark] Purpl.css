@@ -22,16 +22,10 @@ window#waybar.hidden {
 	opacity: 0.5;
 }
 
-window#waybar.empty {
-	background-color: transparent;
-	background: #100214;
-}
-
+window#waybar.empty,
 window#waybar.empty #window {
 	padding: 0px;
 	border: 0px;
-	/*  background-color: rgba(66,66,66,0.5); */
-	/* transparent */
 	background-color: transparent;
 }
 
@@ -60,8 +54,6 @@ tooltip {
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
-
-
 }
 
 .modules-left {
@@ -165,7 +157,6 @@ tooltip {
 	padding-bottom: 4px;
 	padding-right: 6px;
 	padding-left: 6px;
-
 }
 
 #temperature.critical {

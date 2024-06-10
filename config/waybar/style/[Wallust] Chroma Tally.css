@@ -20,8 +20,15 @@ window#waybar {
 	border-color: @color12; 
 }
 
+window#waybar.empty,
+window#waybar.empty #window {
+    background-color: transparent;
+    padding: 0px;
+    border: 0px;
+}
+
 #workspaces {
-	background: #0F1419;
+	background: transparent;
 	padding: 0px 1px;
 	border-radius: 15px;
 	border: 0px;
@@ -208,6 +215,7 @@ tooltip {
 #custom-swaync,
 #custom-menu {
 	color: yellow;
+	padding-left: 8px;
 }
 #custom-power{
     color: #eba0ac; 

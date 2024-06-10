@@ -40,10 +40,11 @@ window#waybar {
     border:2px solid black;
 }
 
-window#waybar.empty #window {    
+window#waybar.empty,
+window#waybar.empty #window {
     background-color: transparent;
+    padding: 0px;
     border: 0px;
-
 }
 
 tooltip {
@@ -66,6 +67,7 @@ tooltip {
 #keyboard-state,
 #memory,
 #mode,
+#mpris,
 #network,
 #power-profiles-daemon,
 #pulseaudio,
@@ -100,13 +102,13 @@ tooltip {
 	background-color: @background-module;
     border-radius: 25px;
     padding: 0px 10px 0px 10px;
-    margin: 5px 5px 5px 5px;
+    margin: 5px;
     opacity:0.8;
     border:2px solid @border-color;
 
 }
 #custom-power {
-    color: @red;
+    color: red;
     padding: 0px 0px 0px 7px;
     opacity:1.0;
 }
@@ -125,13 +127,22 @@ tooltip {
     color: @yellow;
 }
 
+#mpris {
+	padding-right: 2px;
+}
+
 #keyboard-state,
 #clock {
 	color: @sapphire;
 }
-#network,
+
 #temperature {
     color: @rosewater;
+}
+
+#network {
+	padding-left: 2px;
+	color: @rosewater;
 }
 
 #custom-swaync,
@@ -162,19 +173,15 @@ tooltip {
 	color: @color2;
 }
 #workspaces {
-    margin: 1px 1px 1px 1px;
-    padding: 0px 1px;
     border-radius: 25px;
     border:2px solid @border-color;
-    font-weight: bold;
-    font-style: normal;
     opacity:0.8;
     color:#FFFFFF;
+    margin: 6px;
     
 }
 
 #workspaces button {
-    margin: 1px 1px;
     border-radius: 15px;
     border:0px;
     color: @color13;
@@ -185,12 +192,10 @@ tooltip {
     opacity:0.8;
 }
 
-#workspaces button.active,
-#workspaces button.visible {
+#workspaces button.active {
     color: #FFFFFF;
     background: @button-color;
-    border-radius: 15px;
-    border: 1px solid @border-color;
+    border-radius: 25px;
     padding-left: 4px;
     padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
@@ -206,7 +211,6 @@ tooltip {
 #workspaces button:hover {
     color: #FFFFFF;
     background: @button-hover;
-    border: 1px solid @border-color;
     border-radius: 15px;
     opacity:1.0;
     padding-left: 2px;
@@ -241,7 +245,7 @@ tooltip {
 }
 
 #temperature.critical {
-    background-color: @red;
+    background-color: red;
 }
 
 @keyframes blink {

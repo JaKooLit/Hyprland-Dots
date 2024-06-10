@@ -5,16 +5,29 @@
 /* --- 👍 shared by https://github.com/TomekBobrowicz  👍 --- */
 
 * {
-font-size: 97%;
-font-family: "JetBrainsMono Nerd Font", "Font Awesome", sans-serif;
-font-weight: bold;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+	min-height: 0;  
+    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+    font-size: 97%;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
+
 
 window#waybar {
   background-color: rgba(26,27,38,0);
   border-bottom: 1px solid rgba(26,27,38,0);
   border-radius: 0px;
   color: #E6B673;
+}
+
+#waybar.empty, #waybar.tiled, #waybar.floating {
+	background-color: transparent;
+}
+
+window#waybar.empty,
+window#waybar.empty #window {
+    background-color: transparent;
 }
 
 #taskbar,
@@ -153,6 +166,15 @@ color: #F3F4F5;
 	border-radius: 50px 50px;
 	margin: 5px;
 	padding: 2px 15px;
+}
+
+#mpris {
+	color: #F07178;
+	background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding-left: 8px;
+	padding-right: 2px;
 }
 
 #backlight {

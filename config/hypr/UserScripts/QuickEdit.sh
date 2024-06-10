@@ -1,6 +1,10 @@
 #!/bin/bash
 # Rofi menu for Quick Edit / View of Settings (SUPER E)
 
+# define your preferred text editor and terminal to use
+editor=nano
+tty=kitty
+
 configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
 
@@ -21,34 +25,34 @@ main() {
     choice=$(menu | rofi -i -dmenu -config ~/.config/rofi/config-compact.rasi | cut -d. -f1)
     case $choice in
         1)
-            kitty -e nano "$UserConfigs/ENVariables.conf"
+            $tty $editor "$UserConfigs/ENVariables.conf"
             ;;
         2)
-            kitty -e nano "$UserConfigs/WindowRules.conf"
+            $tty $editor "$UserConfigs/WindowRules.conf"
             ;;
         3)
-            kitty -e nano "$UserConfigs/Startup_Apps.conf"
+            $tty $editor "$UserConfigs/Startup_Apps.conf"
             ;;
         4)
-            kitty -e nano "$UserConfigs/UserKeybinds.conf"
+            $tty $editor "$UserConfigs/UserKeybinds.conf"
             ;;
         5)
-            kitty -e nano "$UserConfigs/Monitors.conf"
+            $tty $editor "$UserConfigs/Monitors.conf"
             ;;
         6)
-            kitty -e nano "$UserConfigs/Laptops.conf"
+            $tty $editor "$UserConfigs/Laptops.conf"
             ;;
         7)
-            kitty -e nano "$UserConfigs/UserSettings.conf"
+            $tty $editor "$UserConfigs/UserSettings.conf"
             ;;
         8)
-            kitty -e nano "$UserConfigs/WorkspaceRules.conf"
+            $tty $editor "$UserConfigs/WorkspaceRules.conf"
             ;;
 		9)
-            kitty -e nano "$configs/Settings.conf"
+            $tty $editor "$configs/Settings.conf"
             ;;
         10)
-            kitty -e nano "$configs/Keybinds.conf"
+            $tty $editor "$configs/Keybinds.conf"
             ;;
         *)
             ;;

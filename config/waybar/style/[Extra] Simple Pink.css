@@ -11,7 +11,6 @@
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
 	font-size: 97%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-
 }
 
 window#waybar {
@@ -24,15 +23,10 @@ window#waybar.hidden {
 	opacity: 0.5;
 }
 
-window#waybar.empty {
-	background-color: black;
-}
-
+window#waybar.empty,
 window#waybar.empty #window {
 	padding: 0px;
 	border: 0px;
-	/*  background-color: rgba(66,66,66,0.5); */
-	/* transparent */
 	background-color: transparent;
 }
 
@@ -63,8 +57,6 @@ tooltip {
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
-
-
 }
 
 .modules-left {

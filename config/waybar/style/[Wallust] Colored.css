@@ -12,18 +12,11 @@
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
-window#waybar {
-    background: transparent;
-}
-
 window#waybar.hidden {
     opacity: 0.5;
 }
 
-window#waybar.empty {
-    background-color: @background;
-}
-
+window#waybar,
 window#waybar.empty #window {
     padding: 0px;
     border: 0px;

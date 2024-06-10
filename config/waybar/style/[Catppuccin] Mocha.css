@@ -2,31 +2,76 @@
 /* Catppuccin Mocha */
 
 * {
-font-family: "JetBrainsMono Nerd Font";
-font-weight: bold;
-min-height: 0;
-/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 97%;
-font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+	font-family: "JetBrainsMono Nerd Font";
+	font-weight: bold;
+	min-height: 0;
+	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+	font-size: 97%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
 @import "../waybar/style/catppuccin-themes/mocha.css";
 
 window#waybar {
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  background: transparent;
-  /*border: 2px solid @overlay0;*/
-  /*background: @theme_base_color;*/
-  border-radius: 10px;
+  	transition-property: background-color;
+  	transition-duration: 0.5s;
+  	background: transparent;
+  	border-radius: 10px;
 }
 
 window#waybar.hidden {
-  opacity: 0.2;
+  	opacity: 0.2;
 }
 
-#waybar.empty #window {
-  background: none;
+window#waybar.empty,
+window#waybar.empty #window {
+    background-color: transparent;
+    padding: 0px;
+    border: 0px;
+}
+
+#taskbar button,
+#workspaces button {
+	color: @overlay1;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    padding-left: 4px;
+    padding-right: 4px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover,
+#workspaces button:hover {
+	border-radius: 10px;
+	color: @peach;
+	background-color: @surface0;
+ 	padding-left: 2px;
+    padding-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.persistent {
+	color: @surface1;
+	border-radius: 10px;
+}
+
+#taskbar button.active,
+#workspaces button.active {
+	color: @mauve;
+  	border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.urgent {
+	color: @red;
+ 	border-radius: 0px;
 }
 
 /* This section can be use if you want to separate waybar modules */
@@ -166,60 +211,6 @@ window#waybar.hidden {
   color: @flamingo;
 }
 
-#workspaces button {
-    box-shadow: none;
-	text-shadow: none;
-    padding: 0px;
-    border-radius: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button:hover {
-	border-radius: 10px;
-	color: @overlay0;
-	background-color: @surface0;
- 	padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button.persistent {
-	color: @surface1;
-	border-radius: 10px;
-}
-
-#workspaces button.active {
-	color: @peach;
-  	border-radius: 10px;
-    padding-left: 8px;
-    padding-right: 8px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button.urgent {
-	color: @red;
- 	border-radius: 0px;
-}
-
-#taskbar button.active {
-    padding-left: 8px;
-    padding-right: 8px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
 #custom-cava_mviz {
 	color: @pink;
 }
@@ -263,7 +254,7 @@ window#waybar.hidden {
   color: @mauve;
 }
 
-#custom-waybar-mpris {
+#mpris {
   color:@lavender;
 }
 

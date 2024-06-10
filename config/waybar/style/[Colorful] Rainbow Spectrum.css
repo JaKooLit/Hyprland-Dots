@@ -11,10 +11,7 @@ font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
 window#waybar {
-	/* Transparent waybar. Make sure to comment out background-color: and border: */
   	background-color: rgba(0,0,0,0);
-  	/* background-color: #1e1e2e; */
-  	/* border: 2px solid #313244; */
   	transition-property: background-color;
   	transition-duration: .5s;
 }
@@ -23,14 +20,10 @@ window#waybar.hidden {
   	opacity: 0.5;
 }
 
-window#waybar.empty {
-	background-color: transparent;
-}
-
+window#waybar.empty,
 window#waybar.empty #window {
 	padding: 0px;
 	border: 0px;
-	/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
 	background-color: transparent;
 }
 
@@ -45,6 +38,40 @@ tooltip {
 
 tooltip label{
 	color: #cdd6f4;
+}
+
+#taskbar button,
+#workspaces button {
+  	background-color: #d9e0ee;
+  	color: #3A3B3C;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    padding-left: 4px;
+    padding-right: 4px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button.active,
+#workspaces button.active {
+  	background-color: #eba0ac;
+  	color: #3A3B3C;
+    padding-left: 8px;
+    padding-right: 8px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover,
+#workspaces button:hover {
+    background: #eb6f92;
+    color: #f6c177;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #backlight,
@@ -105,14 +132,6 @@ tooltip label{
 	background-color: #cba6f7;
 }
 
-#taskbar {
-	color: #ffffff;
-}
-
-#taskbar button.active {
-	background-color: #7f849c;
-}
-
 #battery {
 	background-color: #f9e2af;
 }
@@ -165,59 +184,6 @@ tooltip label{
 }
 #tray > .needs-attention {
 		-gtk-icon-effect: highlight;
-}
-
-#workspaces button {
-  	background-color: #d9e0ee;
-  	color: #3A3B3C;
-    box-shadow: none;
-	text-shadow: none;
-    padding: 0px;
-    border-radius: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button.active {
-  	background-color: #eba0ac;
-  	color: #3A3B3C;
-    padding-left: 8px;
-    padding-right: 8px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button:hover {
-    background: #eb6f92;
-    color: #f6c177;
-    padding-left: 3px;
-    padding-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button {
-  	border-radius: 8px;
-  	background-color: #74c7ec;
-  	color: #3A3B3C;
-}
-
-#taskbar button.active {
-  	background-color: #b4befe;
-  	color: #3A3B3C;
-    padding-left: 8px;
-    padding-right: 8px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #custom-menu {
@@ -296,6 +262,7 @@ tooltip label{
 
 #network {
 	background-color: #89b4fa;
+	padding-right: 12px;
 }
 #network.disconnected,#network.disabled {
 	background-color: #313244;
