@@ -120,8 +120,8 @@ while true; do
 
     case $confirm in
         [yY])
-            # If the detected layout is correct, update the 'kb_layout=' line in the file
-            awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
+            # If the detected layout is correct, update the 'kb_layout =' line in the file
+            awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
             mv temp.conf config/hypr/UserConfigs/UserSettings.conf
             
             echo "${NOTE} kb_layout $layout configured in settings.  " 2>&1 | tee -a "$LOG"
@@ -138,8 +138,8 @@ while true; do
             
             read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
             
-            # Update the 'kb_layout=' line with the correct layout in the file
-            awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
+            # Update the 'kb_layout =' line with the correct layout in the file
+            awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
             mv temp.conf config/hypr/UserConfigs/UserSettings.conf
             echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
             break ;;
