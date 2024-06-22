@@ -163,7 +163,7 @@ chmod +x upgrade.sh
 
 
 #### 🔮 Discord Server
-- kindly join my [Discord](https://discord.gg/V2SJ92vbEN)
+- kindly join my [Discord](https://discord.com/invite/9JEgZsfhex)
 
 
 ### 💖 Support
