@@ -91,6 +91,7 @@
         {
             "type": "gpu",
             "key": "│ ├󰻑",
+            "format": "{2}",
             "keyColor": "green"
         },
 		{
@@ -122,6 +123,7 @@
         {
             "type": "sound",
             "key": "  AUDIO",
+            "format": "{2}",
             "keyColor": "cyan"
         },
         {
