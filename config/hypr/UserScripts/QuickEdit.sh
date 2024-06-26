@@ -9,16 +9,16 @@ configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
 
 menu(){
-  printf "1. view Env-variables\n"
-  printf "2. view Window-Rules\n"
-  printf "3. view Startup_Apps\n"
-  printf "4. view User-Keybinds\n"
-  printf "5. view Monitors\n"
-  printf "6. view Laptop-Keybinds\n"
-  printf "7. view User-Settings\n"
-  printf "8. view Workspace-Rules\n"
-  printf "9. view Default-Settings\n"
-  printf "10. view Default-Keybinds\n"
+  printf "1. edit Env-variables\n"
+  printf "2. edit Window-Rules\n"
+  printf "3. edit Startup_Apps\n"
+  printf "4. edit User-Keybinds\n"
+  printf "5. edit Monitors\n"
+  printf "6. edit Laptop-Keybinds\n"
+  printf "7. edit User-Settings\n"
+  printf "8. edit Workspace-Rules\n"
+  printf "9. edit Default-Settings\n"
+  printf "10. edit Default-Keybinds\n"
 }
 
 main() {
