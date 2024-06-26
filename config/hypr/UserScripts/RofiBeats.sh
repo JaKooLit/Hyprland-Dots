@@ -56,16 +56,9 @@ play_local_music() {
 		
 	    notification "$choice"
 
-      # For some reason wont start playlist at 0
-      if [[ $i -eq 0 ]]; then
-        # Play the selected local music file using mpv
-        mpv --loop-playlist --vid=no "$mDIR/$choice" 
-      	
-      else
-        file=$i
-        # Play the selected local music file using mpv
-        mpv --playlist-start="$file" --loop-playlist --vid=no "$mDIR/$choice"
-      fi
+      # Play the selected local music file using mpv
+      mpv --playlist-start="$i" --loop-playlist --vid=no  "${local_music[@]}"
+
       break
     fi
   done
