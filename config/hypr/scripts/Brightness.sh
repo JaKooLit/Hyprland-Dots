@@ -45,8 +45,8 @@ change_backlight() {
 	fi
 
 	# Ensure new brightness is within valid range
-	if (( new_brightness < 0 )); then
-		new_brightness=0
+	if (( new_brightness < 5 )); then
+		new_brightness=5
 	elif (( new_brightness > 100 )); then
 		new_brightness=100
 	fi
