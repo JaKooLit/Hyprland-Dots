@@ -2,7 +2,7 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 
 # Modified version of Refresh but no waybar refresh
-# Used by automatic wallpaper change
+# Used by automatic wallpaper change and random wallpaper
 # Modified inorder to refresh rofi background, Wallust, SwayNC
 
 SCRIPTSDIR=$HOME/.config/hypr/scripts
