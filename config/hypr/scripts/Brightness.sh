@@ -7,12 +7,12 @@ notification_timeout=1000
 
 # Get brightness
 get_backlight() {
-	echo $(brightnessctl -m | cut -d, -f4)
+	brightnessctl -m | cut -d, -f4 | sed 's/%//'
 }
 
 # Get icons
 get_icon() {
-	current=$(get_backlight | sed 's/%//')
+	current=$(get_backlight)
 	if   [ "$current" -le "20" ]; then
 		icon="$iDIR/brightness-20.png"
 	elif [ "$current" -le "40" ]; then
@@ -33,7 +33,27 @@ notify_user() {
 
 # Change brightness
 change_backlight() {
-	brightnessctl set "$1" -n && get_icon && notify_user
+	local current_brightness
+	current_brightness=$(get_backlight)
+
+	# Calculate new brightness
+	if [[ "$1" == "+5%" ]]; then
+		new_brightness=$((current_brightness + 5))
+	elif [[ "$1" == "5%-" ]]; then
+		new_brightness=$((current_brightness - 5))
+	fi
+
+	# Ensure new brightness is within valid range
+	if (( new_brightness < 0 )); then
+		new_brightness=0
+	elif (( new_brightness > 100 )); then
+		new_brightness=100
+	fi
+
+	brightnessctl set "${new_brightness}%"
+	get_icon
+	current=$new_brightness
+	notify_user
 }
 
 # Execute accordingly
@@ -42,10 +62,10 @@ case "$1" in
 		get_backlight
 		;;
 	"--inc")
-		change_backlight "+10%"
+		change_backlight "+5%"
 		;;
 	"--dec")
-		change_backlight "10%-"
+		change_backlight "5%-"
 		;;
 	*)
 		get_backlight
