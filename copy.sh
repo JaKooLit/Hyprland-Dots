@@ -292,7 +292,7 @@ printf "\n%.0s" {1..2}
 # Check if the user wants to disable Rainbow borders
 # Print message about Rainbow Borders
 printf "${NOTE} - By default, Rainbow Borders animation is enabled.\n"
-printf "${NOTE} -  However, this uses a bit more CPU and Memory resources.\n
+printf "${NOTE} - However, this uses a bit more CPU and Memory resources.\n"
 
 # Prompt user to disable Rainbow Borders
 read -p "Do you want to disable Rainbow Borders animation? (Y/N): " choice
