@@ -36,6 +36,11 @@ if [ ! -d Copy-Logs ]; then
     mkdir Copy-Logs
 fi
 
+# Function to print colorful text
+print_color() {
+    printf "%b%s%b\n" "$1" "$2" "$CLEAR"
+}
+
 # Set the name of the log file to include the current date and time
 LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 
@@ -91,61 +96,88 @@ detect_layout() {
 layout=$(detect_layout)
 
 if [ "$layout" = "(unset)" ]; then
-    while true; do
-        printf "\n%.0s" {1..1}
-        echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT!!!! $(tput sgr0)" 
-        echo "$(tput bold)$(tput setaf 1)The keyboard layout could not be detected properly. $(tput sgr0)"
-        echo "$(tput bold)$(tput setaf 7)You need to set it manually. $(tput sgr0)"
-        echo "$(tput bold)$(tput setaf 2)If you are not sure, type us. You can change later on! $(tput sgr0)"
-        printf "\n%.0s" {1..1}
-        echo "$(tput bold)$(tput setaf 5)You can also set more than 2 layouts!$(tput sgr0)"
-        echo "$(tput bold)$(tput setaf 5)ie: us,kr,es $(tput sgr0)"
-        printf "\n%.0s" {1..1}
-        read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+  while true; do
+    printf "\n%.0s" {1..1}
+print_color $RED "
+█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+        STOP AND READ
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-        if [ -n "$new_layout" ]; then
-            layout="$new_layout"
-            break
-        else
-            echo "Please enter a keyboard layout."
-        fi
-    done
+    !!! IMPORTANT WARNING !!!
+
+The Default Keyboard Layout could not be detected
+
+You need to set it Manually
+
+!!! WARNING !!!
+Setting a wrong Keyboard Layout will cause Hyprland to crash
+
+If you are not sure, just type us
+
+NOTE:
+•  You can also set more than 2 keyboard layouts
+•  For example us,kr,gb,ru
+"
+    printf "\n%.0s" {1..1}
+    read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+
+    if [ -n "$new_layout" ]; then
+        layout="$new_layout"
+        break
+    else
+        echo "Please enter a keyboard layout."
+    fi
+  done
 fi
 
 printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n\n"
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
-    read -p "$ORANGE Current keyboard layout is: $layout. Is this correct? [y/n] " confirm
+  read -p "$ORANGE Current keyboard layout is: $layout. Is this correct? [y/n] " confirm
 
-    case $confirm in
-        [yY])
-            # If the detected layout is correct, update the 'kb_layout =' line in the file
-            awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
-            mv temp.conf config/hypr/UserConfigs/UserSettings.conf
-            
-            echo "${NOTE} kb_layout $layout configured in settings.  " 2>&1 | tee -a "$LOG"
-            break ;;
-        [nN])
-            printf "\n%.0s" {1..2}
-            echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT!!!! $(tput sgr0)" 
-            echo "$(tput bold)$(tput setaf 1)Setting a wrong value here will result in Hyprland not starting $(tput sgr0)"
-         		echo "$(tput bold)$(tput setaf 2)If you are not sure, type us. You can change later on! $(tput sgr0)"
-        		printf "\n%.0s" {1..1}
-        		echo "$(tput bold)$(tput setaf 5)You can also set more than 2 layouts!$(tput sgr0)"
-        		echo "$(tput bold)$(tput setaf 5)ie: us,kr,es $(tput sgr0)"
-            printf "\n%.0s" {1..1}
-            
-            read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
-            
-            # Update the 'kb_layout =' line with the correct layout in the file
-            awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
-            mv temp.conf config/hypr/UserConfigs/UserSettings.conf
-            echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
-            break ;;
-        *)
-            echo "Please enter either 'y' or 'n'." ;;
-    esac
+  case $confirm in
+    [yY])
+        # If the detected layout is correct, update the 'kb_layout =' line in the file
+        awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
+        mv temp.conf config/hypr/UserConfigs/UserSettings.conf
+        
+        echo "${NOTE} kb_layout $layout configured in settings.  " 2>&1 | tee -a "$LOG"
+        break ;;
+    [nN])
+        printf "\n%.0s" {1..2}
+print_color $RED "
+█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+        STOP AND READ
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+
+    !!! IMPORTANT WARNING !!!
+
+The Default Keyboard Layout could not be detected
+
+You need to set it Manually
+
+!!! WARNING !!!
+Setting a wrong Keyboard Layout will cause Hyprland to crash
+
+If you are not sure, just type us
+
+NOTE:
+•  You can also set more than 2 keyboard layouts
+•  For example us,kr,gb,ru
+"
+    printf "\n%.0s" {1..1}
+    
+    read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+    
+    # Update the 'kb_layout =' line with the correct layout in the file
+    awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
+    mv temp.conf config/hypr/UserConfigs/UserSettings.conf
+    echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
+    break ;;
+    *)
+    echo "Please enter either 'y' or 'n'." ;;
+  esac
 done
 
 printf "\n"
@@ -186,8 +218,11 @@ while true; do
     sed -i 's#^    "format": "{:%a %d | %H:%M}", // 24H#    \/\/"format": "{:%a %d | %H:%M}", // 24H#' config/waybar/modules 2>&1 | tee -a "$LOG"
             
     # for hyprlock
-    sed -i 's|^    #text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|    text = cmd\[update:1000\] echo "<b><big> $(date +"%I:%M:%S %p") </big></b>" # AM/PM|' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's|^    text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|    #text = cmd\[update:1000\] echo "<b><big> $(date +"%H:%M:%S") </big></b>" # 24H|' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^    text = cmd\[update:1000\] echo -e "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^# *text = cmd\[update:1000\] echo -e "\$(date +"%I")" #AM\/PM/    text = cmd\[update:1000\] echo -e "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+
+    sed -i 's/^    text = cmd\[update:1000\] echo -e "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^# *text = cmd\[update:1000\] echo -e "\$(date +"%S %p")" #AM\/PM/    text = cmd\[update:1000\] echo -e "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
 
     # for SDDM (simple-sddm)
     sddm_folder="/usr/share/sddm/themes/simple-sddm"
@@ -224,24 +259,24 @@ printf "\n"
 
 # Action to do for better rofi appearance
 while true; do
-    echo "$ORANGE Select monitor resolution for better Rofi appearance:"
-    echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
-    echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
-    read -p "$CAT Enter the number of your choice: " choice
+  echo "$ORANGE Select monitor resolution for better Rofi appearance:"
+  echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
+  echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
+  read -p "$CAT Enter the number of your choice: " choice
 
-    case $choice in
-        1)
-            resolution="≤ 1080p"
-            break
-            ;;
-        2)
-            resolution="≥ 1440p"
-            break
-            ;;
-        *)
-            echo "Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
-            ;;
-    esac
+  case $choice in
+    1)
+        resolution="≤ 1080p"
+        break
+        ;;
+    2)
+        resolution="≥ 1440p"
+        break
+        ;;
+    *)
+        echo "Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
+        ;;
+  esac
 done
 
 # Use the selected resolution in your existing script
@@ -256,7 +291,31 @@ fi
 
 printf "\n%.0s" {1..2}
 
-### Copy Config Files ###
+# Rainbow Borders
+# Check if the user wants to disable Rainbow borders
+# Print message about Rainbow Borders
+printf "${NOTE} - By default, Rainbow Borders animation is enabled.\n"
+printf "${NOTE} - However, this uses a bit more CPU and Memory resources.\n"
+
+# Prompt user to disable Rainbow Borders
+read -p "Do you want to disable Rainbow Borders animation? (Y/N): " choice
+if [[ "$choice" =~ ^[Yy]$ ]]; then
+    # Move RainbowBorders.sh script to backup location
+    mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
+    
+    # Comment out the line exec-once = $UserScripts/RainbowBorders.sh &
+    sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh \&/s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
+    
+    # Comment out the line animation = borderangle, 1, 180, liner, loop
+    sed -i '/  animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserSettings.conf
+    
+    echo "Rainbow borders is now disabled." 2>&1 | tee -a "$LOG"
+else
+    echo "No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$LOG"
+fi
+
+
+# Copy Config Files #
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} - copying dotfiles\n"
@@ -312,38 +371,38 @@ echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)
 printf "\n%.0s" {1..2}
 
 while true; do
-    read -rp "${CAT} Would you like to download additional wallpapers? Warning! This is more than >600mb (y/n)" WALL
-    case $WALL in
-        [Yy])
-            echo "${NOTE} Downloading additional wallpapers..."
-            if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
-                echo "${NOTE} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
+  read -rp "${CAT} Would you like to download additional wallpapers? Warning! This is more than >600mb (y/n)" WALL
+  case $WALL in
+    [Yy])
+      echo "${NOTE} Downloading additional wallpapers..."
+      if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
+          echo "${NOTE} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
-                # Check if wallpapers directory exists and create it if not
-                if [ ! -d ~/Pictures/wallpapers ]; then
-                    mkdir -p ~/Pictures/wallpapers
-                    echo "${NOTE} Created wallpapers directory." 2>&1 | tee -a "$LOG"
-                fi
+          # Check if wallpapers directory exists and create it if not
+          if [ ! -d ~/Pictures/wallpapers ]; then
+              mkdir -p ~/Pictures/wallpapers
+              echo "${NOTE} Created wallpapers directory." 2>&1 | tee -a "$LOG"
+          fi
 
-                if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
-                    echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
-                    rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
-                    break
-                else
-                    echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
-                fi
-            else
-                echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
-            fi
-            ;;
-        [Nn])
-            echo "You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
-            break
-            ;;
-        *)
-            echo "Please enter 'y' or 'n' to proceed."
-            ;;
-    esac
+          if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
+              echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
+              rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
+              break
+          else
+              echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
+          fi
+      else
+          echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
+      fi
+      ;;
+  [Nn])
+      echo "You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
+      break
+      ;;
+  *)
+      echo "Please enter 'y' or 'n' to proceed."
+      ;;
+  esac
 done
 
 # symlinks for waybar style
