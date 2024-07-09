@@ -218,11 +218,11 @@ while true; do
     sed -i 's#^    "format": "{:%a %d | %H:%M}", // 24H#    \/\/"format": "{:%a %d | %H:%M}", // 24H#' config/waybar/modules 2>&1 | tee -a "$LOG"
             
     # for hyprlock
-    sed -i 's/^    text = cmd\[update:1000\] echo -e "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^# *text = cmd\[update:1000\] echo -e "\$(date +"%I")" #AM\/PM/    text = cmd\[update:1000\] echo -e "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^    text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
 
-    sed -i 's/^    text = cmd\[update:1000\] echo -e "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^# *text = cmd\[update:1000\] echo -e "\$(date +"%S %p")" #AM\/PM/    text = cmd\[update:1000\] echo -e "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^    text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
 
     # for SDDM (simple-sddm)
     sddm_folder="/usr/share/sddm/themes/simple-sddm"
