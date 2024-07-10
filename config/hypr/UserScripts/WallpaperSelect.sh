@@ -21,20 +21,23 @@ if pidof swaybg > /dev/null; then
   pkill swaybg
 fi
 
-# Retrieve image files
-PICS=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
+# Retrieve image files using null delimiter to handle spaces in filenames
+mapfile -d '' PICS < <(find "${wallDIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) -print0)
+
 RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 RANDOM_PIC_NAME=". random"
 
 # Rofi command
 rofi_command="rofi -i -show -dmenu -config ~/.config/rofi/config-wallpaper.rasi"
 
-
 # Sorting Wallpapers
 menu() {
-  sorted_options=($(printf '%s\n' "${PICS[@]}" | sort))
+  # Sort the PICS array
+  IFS=$'\n' sorted_options=($(sort <<<"${PICS[*]}"))
+  
   # Place ". random" at the beginning with the random picture as an icon
   printf "%s\x00icon\x1f%s\n" "$RANDOM_PIC_NAME" "$RANDOM_PIC"
+  
   for pic_path in "${sorted_options[@]}"; do
     pic_name=$(basename "$pic_path")
     # Displaying .gif to indicate animated images
