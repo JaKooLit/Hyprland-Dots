@@ -326,7 +326,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in ags btop cava fastfetch hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wallust waybar wlogout; do 
+for DIR in ags btop cava fastfetch hypr kitty Kvantum nvim qt5ct qt6ct rofi swappy swaync wallust waybar wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
