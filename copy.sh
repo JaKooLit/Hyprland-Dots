@@ -260,9 +260,9 @@ done
 
 printf "\n"
 
-# Action to do for better rofi appearance
+# Action to do for better rofi and kitty appearance
 while true; do
-  echo "$ORANGE Select monitor resolution for better Rofi appearance:"
+  echo "$ORANGE Select monitor resolution for better Rofi and kitty appearance:"
   echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
   echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
   read -p "$CAT Enter the number of your choice: " choice
@@ -283,13 +283,16 @@ while true; do
 done
 
 # Use the selected resolution in your existing script
-echo "You chose $resolution resolution for better Rofi appearance." 2>&1 | tee -a "$LOG"
+echo "You chose $resolution resolution." 2>&1 | tee -a "$LOG"
 
 # Add your commands based on the resolution choice
 if [ "$resolution" == "≤ 1080p" ]; then
-    cp -r config/rofi/resolution/1080p/* config/rofi/
+  cp -r config/rofi/resolution/1080p/* config/rofi/
+  sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
+  sed -i 's/font_size 16.0/font_size 12.0/' config/wallust/templates/colors-kitty.conf
+
 elif [ "$resolution" == "≥ 1440p" ]; then
-    cp -r config/rofi/resolution/1440p/* config/rofi/
+  cp -r config/rofi/resolution/1440p/* config/rofi/
 fi
 
 printf "\n%.0s" {1..2}
