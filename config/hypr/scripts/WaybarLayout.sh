@@ -24,15 +24,7 @@ menu() {
 # Apply selected configuration
 apply_config() {
     ln -sf "$waybar_layouts/$1" "$waybar_config"
-    restart_waybar_if_needed
-}
-
-# Restart Waybar
-restart_waybar_if_needed() {
-    if pgrep -x "waybar" >/dev/null; then
-        pkill waybar
-        sleep 0.1  # Delay for Waybar to completely terminate
-    fi
+    #restart_waybar_if_needed
     "${SCRIPTSDIR}/Refresh.sh" &
 }
 

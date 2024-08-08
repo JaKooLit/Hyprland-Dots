@@ -28,6 +28,7 @@ declare -A directories=(
     ["config/hypr/"]="$HOME/.config/hypr/"
     ["config/kitty/"]="$HOME/.config/kitty/"
     ["config/Kvantum/"]="$HOME/.config/Kvantum/"
+    ["config/nvim/"]="$HOME/.config/nvim/"
     ["config/qt5ct/"]="$HOME/.config/qt5ct"
     ["config/qt6ct/"]="$HOME/.config/qt6ct/"
     ["config/rofi/"]="$HOME/.config/rofi/"

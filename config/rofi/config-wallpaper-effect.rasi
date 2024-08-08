@@ -18,7 +18,7 @@ window {
 listview {
   fixed-columns: false;
   colums: 2;
-  lines: 7;
+  lines: 8;
 }
 
 /* ---- Inputbar ---- */

@@ -4,7 +4,7 @@
 clear
 
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified
-waybar_style="$HOME/.config/waybar/style/[Wallust] Box type.css"
+waybar_style="$HOME/.config/waybar/style/[Dark] Half-Moon.css"
 waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v3"
 waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 
 
@@ -47,17 +47,22 @@ LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 # update home folders
 xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 
-# uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
+# setting up for nvidia
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-  echo "Nvidia GPU detected. Setting up proper env's" 2>&1 | tee -a "$LOG" || true
+  echo "Nvidia GPU detected. Setting up proper env's and configs" 2>&1 | tee -a "$LOG" || true
   sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  sed -i '/env = NVD_BACKEND,direct/s/^#//' config/hypr/UserConfigs/ENVariables.conf  
+  sed -i '/env = NVD_BACKEND,direct/s/^#//' config/hypr/UserConfigs/ENVariables.conf
+  # enabling no hardware cursors if nvidia detected
+  sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)false/\1true/' config/hypr/UserConfigs/UserSettings.conf  
+  # disabling explicit sync for nvidia for now (Hyprland 0.42.0)
+  sed -i 's/  explicit_sync = 2/  explicit_sync = 0/' config/hypr/UserConfigs/UserSettings.conf
 fi
 
 # uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
 if hostnamectl | grep -q 'Chassis: vm'; then
   echo "System is running in a virtual machine." 2>&1 | tee -a "$LOG" || true
+  # enabling no hardware cursors if VM detected
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)false/\1true/' config/hypr/UserConfigs/UserSettings.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
@@ -218,11 +223,11 @@ while true; do
     sed -i 's#^    "format": "{:%a %d | %H:%M}", // 24H#    \/\/"format": "{:%a %d | %H:%M}", // 24H#' config/waybar/modules 2>&1 | tee -a "$LOG"
             
     # for hyprlock
-    sed -i 's/^    text = cmd\[update:1000\] echo -e "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^# *text = cmd\[update:1000\] echo -e "\$(date +"%I")" #AM\/PM/    text = cmd\[update:1000\] echo -e "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^    text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
 
-    sed -i 's/^    text = cmd\[update:1000\] echo -e "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^# *text = cmd\[update:1000\] echo -e "\$(date +"%S %p")" #AM\/PM/    text = cmd\[update:1000\] echo -e "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^    text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
 
     # for SDDM (simple-sddm)
     sddm_folder="/usr/share/sddm/themes/simple-sddm"
@@ -257,9 +262,9 @@ done
 
 printf "\n"
 
-# Action to do for better rofi appearance
+# Action to do for better rofi and kitty appearance
 while true; do
-  echo "$ORANGE Select monitor resolution for better Rofi appearance:"
+  echo "$ORANGE Select monitor resolution for better Rofi and kitty appearance:"
   echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
   echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
   read -p "$CAT Enter the number of your choice: " choice
@@ -280,13 +285,16 @@ while true; do
 done
 
 # Use the selected resolution in your existing script
-echo "You chose $resolution resolution for better Rofi appearance." 2>&1 | tee -a "$LOG"
+echo "You chose $resolution resolution." 2>&1 | tee -a "$LOG"
 
 # Add your commands based on the resolution choice
 if [ "$resolution" == "≤ 1080p" ]; then
-    cp -r config/rofi/resolution/1080p/* config/rofi/
+  cp -r config/rofi/resolution/1080p/* config/rofi/
+  sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
+  sed -i 's/font_size 16.0/font_size 12.0/' config/wallust/templates/colors-kitty.conf
+
 elif [ "$resolution" == "≥ 1440p" ]; then
-    cp -r config/rofi/resolution/1440p/* config/rofi/
+  cp -r config/rofi/resolution/1440p/* config/rofi/
 fi
 
 printf "\n%.0s" {1..2}
@@ -326,7 +334,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in ags btop cava fastfetch hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wallust waybar wlogout; do 
+for DIR in ags btop cava fastfetch hypr kitty Kvantum nvim qt5ct qt6ct rofi swappy swaync wallust waybar wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
