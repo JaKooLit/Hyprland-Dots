@@ -49,12 +49,14 @@ xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 
 # setting up for nvidia
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-  echo "Nvidia GPU detected. Setting up proper env's" 2>&1 | tee -a "$LOG" || true
+  echo "Nvidia GPU detected. Setting up proper env's and configs" 2>&1 | tee -a "$LOG" || true
   sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = NVD_BACKEND,direct/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   # enabling no hardware cursors if nvidia detected
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)false/\1true/' config/hypr/UserConfigs/UserSettings.conf  
+  # disabling explicit sync for nvidia for now (Hyprland 0.42.0)
+  sed -i 's/  explicit_sync = 2/  explicit_sync = 0/' config/hypr/UserConfigs/UserSettings.conf
 fi
 
 # uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
