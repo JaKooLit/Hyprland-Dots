@@ -192,6 +192,49 @@ if command -v asusctl >/dev/null 2>&1; then
     sed -i '/exec-once = rog-control-center &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
+printf "\n"
+
+# Action to do for better rofi and kitty appearance
+while true; do
+  echo "$ORANGE Select monitor resolution for better config appearance and fonts:"
+  echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
+  echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
+  read -p "$CAT Enter the number of your choice: " choice
+
+  case $choice in
+    1)
+        resolution="≤ 1080p"
+        break
+        ;;
+    2)
+        resolution="≥ 1440p"
+        break
+        ;;
+    *)
+        echo "Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
+        ;;
+  esac
+done
+
+# Use the selected resolution in your existing script
+echo "You chose $resolution resolution." 2>&1 | tee -a "$LOG"
+
+# Add your commands based on the resolution choice
+if [ "$resolution" == "≤ 1080p" ]; then
+  cp -r config/rofi/resolution/1080p/* config/rofi/
+  sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
+  sed -i 's/font_size 16.0/font_size 12.0/' config/wallust/templates/colors-kitty.conf
+
+  # hyprlock matters
+  mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf
+  mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
+
+elif [ "$resolution" == "≥ 1440p" ]; then
+  cp -r config/rofi/resolution/1440p/* config/rofi/
+fi
+
+printf "\n%.0s" {1..2}
+
 # Ask whether to change to 12hr format
 while true; do
   echo -e "$ORANGE By default, configs are in 24H format."
@@ -261,47 +304,6 @@ while true; do
 done
 
 printf "\n"
-
-# Action to do for better rofi and kitty appearance
-while true; do
-  echo "$ORANGE Select monitor resolution for better Rofi and kitty appearance:"
-  echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
-  echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
-  read -p "$CAT Enter the number of your choice: " choice
-
-  case $choice in
-    1)
-        resolution="≤ 1080p"
-        break
-        ;;
-    2)
-        resolution="≥ 1440p"
-        break
-        ;;
-    *)
-        echo "Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
-        ;;
-  esac
-done
-
-# Use the selected resolution in your existing script
-echo "You chose $resolution resolution." 2>&1 | tee -a "$LOG"
-
-# Add your commands based on the resolution choice
-if [ "$resolution" == "≤ 1080p" ]; then
-  cp -r config/rofi/resolution/1080p/* config/rofi/
-  sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
-  sed -i 's/font_size 16.0/font_size 12.0/' config/wallust/templates/colors-kitty.conf
-
-  # hyprlock matters
-  mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf
-  mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
-
-elif [ "$resolution" == "≥ 1440p" ]; then
-  cp -r config/rofi/resolution/1440p/* config/rofi/
-fi
-
-printf "\n%.0s" {1..2}
 
 # Rainbow Borders
 # Check if the user wants to disable Rainbow borders
