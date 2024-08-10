@@ -62,9 +62,10 @@ fi
 # uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
 if hostnamectl | grep -q 'Chassis: vm'; then
   echo "System is running in a virtual machine." 2>&1 | tee -a "$LOG" || true
-  # enabling no hardware cursors if VM detected
+  # enabling proper ENV's for Virtual Environment which should help
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)false/\1true/' config/hypr/UserConfigs/UserSettings.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
+  sed -i '/env = LIBGL_ALWAYS_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
 fi
 
