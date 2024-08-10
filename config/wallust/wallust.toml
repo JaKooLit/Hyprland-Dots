@@ -1,4 +1,4 @@
-# wallust 3.0 beta.*
+# wallust 3.0*
 
 backend = "kmeans"
 color_space = "lch"
@@ -28,29 +28,29 @@ palette = "dark16"
 threshold = 10
 
 [templates]
-cava.template = 'templates/colors-cava'
+cava.template = 'colors-cava'
 cava.target = '~/.config/cava/config'
 
-hypr.template = 'templates/colors-hyprland.conf'
+hypr.template = 'colors-hyprland.conf'
 hypr.target = '~/.config/hypr/wallust/wallust-hyprland.conf'
 
-rofi.template = 'templates/colors-rofi.rasi'
+rofi.template = 'colors-rofi.rasi'
 rofi.target = '~/.config/rofi/wallust/colors-rofi.rasi'
 
-waybar.template = 'templates/colors-waybar.css'
+waybar.template = 'colors-waybar.css'
 waybar.target = '~/.config/waybar/wallust/colors-waybar.css'
 
-#kitty.template = 'templates/colors-kitty.conf'
+#kitty.template = 'colors-kitty.conf'
 #kitty.target = '~/.config/kitty/kitty.conf'
 
-#swaync.template = 'templates/colors-swaync.css'
+#swaync.template = 'colors-swaync.css'
 #swaync.target = '~/.config/swaync/wallust/colors-wallust.css'
 
-#macchina.template = 'templates/colors-macchina.toml'
+#macchina.template = 'colors-macchina.toml'
 #macchina.target = '~/.config/macchina/themes/wallust.toml'
 
-#wezterm.template = 'templates/colors-wezterm.toml'
+#wezterm.template = 'colors-wezterm.toml'
 #wezterm.target = '~/.config/wezterm/colors/wallust.toml'
 
-#zathura.template = 'templates/colors-zathura'
+#zathura.template = 'colors-zathura'
 #zathura.target = '~/.config/zathura/zathurarc'
