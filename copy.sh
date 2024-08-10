@@ -293,6 +293,10 @@ if [ "$resolution" == "≤ 1080p" ]; then
   sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
   sed -i 's/font_size 16.0/font_size 12.0/' config/wallust/templates/colors-kitty.conf
 
+  # hyprlock matters
+  mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf
+  mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
+
 elif [ "$resolution" == "≥ 1440p" ]; then
   cp -r config/rofi/resolution/1440p/* config/rofi/
 fi
