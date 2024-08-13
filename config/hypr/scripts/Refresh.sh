@@ -26,7 +26,7 @@ done
 ags -q
 
 sleep 0.3
-# Relaunch waybar
+#Restart waybar
 waybar &
 
 # relaunch swaync

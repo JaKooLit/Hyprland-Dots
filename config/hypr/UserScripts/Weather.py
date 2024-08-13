@@ -63,12 +63,12 @@ temp_feel_text = f"Feels like {temp_feel}c"
 # min-max temperature
 temp_min = (
     html_data("div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
-    .eq(0)
+    .eq(1)
     .text()
 )
 temp_max = (
     html_data("div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
-    .eq(1)
+    .eq(0)
     .text()
 )
 temp_min_max = f"  {temp_min}\t\t  {temp_max}"
