@@ -39,6 +39,7 @@ declare -A directories=(
     ["config/fastfetch/"]="$HOME/.config/fastfetch/"
     ["config/wallust/"]="$HOME/.config/wallust/"
     ["config/wlogout/"]="$HOME/.config/wlogout/"
+    ["config/nvim/"]="$HOME/.config/nvim/"
     # Add more directories to compare as needed
 )
 
