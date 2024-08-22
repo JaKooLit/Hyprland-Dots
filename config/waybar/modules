@@ -609,7 +609,8 @@
 	"ignore-list": [
 		"wofi",
 		"rofi",
-		"kitty"
+		"kitty",
+    "kitty-dropterm"
 		],
 },
 "custom/cycle_wall": {
