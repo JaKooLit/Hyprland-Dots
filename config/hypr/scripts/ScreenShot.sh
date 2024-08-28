@@ -83,7 +83,6 @@ shotarea() {
 		wl-copy <"$tmpfile"
 		mv "$tmpfile" "$dir/$file"
 	fi
-	rm "$tmpfile"
 	notify_view
 }
 
