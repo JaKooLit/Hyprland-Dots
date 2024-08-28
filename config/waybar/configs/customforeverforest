@@ -1,0 +1,58 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+// ### Minimal - Long ### //
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+//"spacing": 6,
+"fixed-center": true,
+"ipc": true,
+//"margin-top": 3,
+//"margin-left": 8,
+//"margin-right": 8,
+
+"modules-left": [
+  "custom/arch",
+	"custom/separator#blank_2", 
+	"hyprland/workspaces#rw",
+	"custom/separator#blank_2",
+//	"mpris",
+	"custom/swaync",
+	"tray",
+	],
+"modules-center": [
+	"clock",
+	"idle_inhibitor",
+	],
+"modules-right": [
+	"group/motherboard",
+	"custom/separator#blank_2",
+	"group/laptop",
+	"custom/separator#blank_2",
+	"group/audio",
+	],
+  "custom/arch": {
+      "format":" ",
+      "tooltip": false,
+      "on-click": "rofi -show drun"
+  },
+  "clock": {
+      "format": "{:%A %d.%m.%Y - %H:%M}",
+      "tooltip-format": "<span color='#D3C6AA' size='larger'>{:%Y %B}</span>\n<tt>{calendar}</tt>",
+      "calendar-weeks-pos": "right",
+      "today-format": "<span color='#E67E80' weight='ultrabold'>{}</span>",
+      "format-calendar": "<span color='#D3C6AA' weight='normal'>{}</span>",
+      "format-calendar-weeks": "<span color='#7FBBB3'><b>W{:%V}</b></span>",
+      "format-calendar-weekdays": "<span color='#A7C080'><b>{}</b></span>",
+      "on-scroll": {
+                  "calendar": 1
+                   }
+  },
+
+}
+
