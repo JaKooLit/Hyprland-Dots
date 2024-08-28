@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
-// ### Minimal - Long ### //
+/* -- designed by https://github.com/DevNChill */
+// ### Everforest ### //
 
 {
 "include": "~/.config/waybar/modules",
@@ -26,13 +26,17 @@
 	"tray",
 	],
 "modules-center": [
-	"clock",
+	"clock#forest",
 	"idle_inhibitor",
 	],
 "modules-right": [
-	"group/motherboard",
+	"cpu#forest",
+	"memory#forest",
+	"temperature",
+	"disk#forest",
 	"custom/separator#blank_2",
-	"group/laptop",
+	"backlight",
+  ""battery#forest"",
 	"custom/separator#blank_2",
 	"group/audio",
 	],
@@ -41,7 +45,7 @@
       "tooltip": false,
       "on-click": "rofi -show drun"
   },
-  "clock": {
+  "clock#forest": {
       "format": "{:%A %d.%m.%Y - %H:%M}",
       "tooltip-format": "<span color='#D3C6AA' size='larger'>{:%Y %B}</span>\n<tt>{calendar}</tt>",
       "calendar-weeks-pos": "right",
@@ -53,6 +57,63 @@
                   "calendar": 1
                    }
   },
-
+"battery#forest": {
+	//"interval": 5,
+	"align": 0,
+	"rotate": 0,
+	//"bat": "BAT1",
+	//"adapter": "ACAD",
+	"full-at": 100,
+	"design-capacity": false,
+	"states": {
+		"good": 95,
+		"warning": 30,
+		"critical": 15
+	},
+	"format": "Battery {icon}  {capacity}%",
+	"format-charging": "Battery  {capacity}%",
+	"format-plugged": "Battery 󱘖 {capacity}%",
+	"format-alt-click": "click",
+	"format-full": "Battery {icon} Full",
+	"format-alt": "Battery {icon} {time}",
+	"format-icons": [
+		"󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+	],
+	"format-time": "{H}h {M}min",
+	"tooltip": true,
+	"tooltip-format": "{timeTo} {power}w",
+	"on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
+	"on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
+},
+"cpu#forest": {
+	"format": "Cpu  󰍛  {usage}%",
+	"interval": 1,
+	"min-length": 5,
+	"format-alt-click": "click",
+	"format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
+	"format-icons": [
+		"▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
+	],
+	"on-click-right": "gnome-system-monitor",
+},
+"disk#forest": {
+	"interval": 30,
+	//"format": "Disk    󰋊",
+	"path": "/",
+	//"format-alt-click": "click",
+	"format": "Disk 󰋊  {used}",
+  "on-click-right": "baobab",
+//	"tooltip": true,
+//	"tooltip-format": "Disk    {used} used out of {total} on {path} ({percentage_used}%)",
+},
+"memory#forest": {
+	"interval": 10,
+	"format": "Ram  󰾆  {used:0.1f}G",
+	"format-alt": "Ram    {percentage}%    󰾆",
+	"format-alt-click": "click",
+	"tooltip": true,
+	"tooltip-format": "Ram    {used:0.1f}GB/{total:0.1f}G",
+	"on-click-right": "kitty --title btop sh -c 'btop'"
+},
 }
 
