@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Wallpaper Effects */
 
-@import "~/.config/rofi/config.rasi" 
+@import "~/.config/rofi/master-config.rasi" 
 
 /* ---- Entry ---- */ 
 entry {

@@ -2,7 +2,7 @@
 /* Main Config Calculator */
 /* Submitted by: https://github.com/JosephArmas */
 
-@import "~/.config/rofi/config.rasi" 
+@import "~/.config/rofi/master-config.rasi" 
 
 /* ---- Entry ---- */
 entry {

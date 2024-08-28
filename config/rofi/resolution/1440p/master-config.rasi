@@ -1,10 +1,10 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Master Config */
+/* Master Config 1440p*/
 
 /* ---- Configuration ---- */
 
 configuration {
-	font:						"Fira Code SemiBold 12";
+	font:						"Fira Code SemiBold 13";
 	modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     display-drun:               "Apps";
@@ -206,7 +206,7 @@ element-icon {
     cursor:                      inherit;
 }
 element-text {
-    font:						"Fira Code SemiBold 12";
+    font:						"Fira Code SemiBold 16";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
