@@ -1,3 +1,8 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* --- Designed by https://github.com/DevNChill --- */
+
+/* Extra - EverForest*/
+
 @define-color bg_dim      #232A2E;
 @define-color black       #000000;
 @define-color white       #FFFFFF;
@@ -23,6 +28,7 @@
 @define-color grey0       #7A8478;
 @define-color grey1       #859289;
 @define-color grey2       #9DA9A0;
+
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-weight: bold;
