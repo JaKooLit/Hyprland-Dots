@@ -4,6 +4,7 @@
 /* ---- Configuration ---- */
 
 configuration {
+	font:						"Fira Code SemiBold 12";
 	modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     display-drun:               "Apps";
@@ -205,6 +206,7 @@ element-icon {
     cursor:                      inherit;
 }
 element-text {
+    font:						"Fira Code SemiBold 12";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;

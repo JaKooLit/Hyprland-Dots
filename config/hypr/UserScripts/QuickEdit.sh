@@ -16,9 +16,10 @@ menu(){
   printf "5. edit Monitors\n"
   printf "6. edit Laptop-Keybinds\n"
   printf "7. edit User-Settings\n"
-  printf "8. edit Workspace-Rules\n"
-  printf "9. edit Default-Settings\n"
-  printf "10. edit Default-Keybinds\n"
+  printf "8. edit Decorations & Animations\n"
+  printf "9. edit Workspace-Rules\n"
+  printf "10. edit Default-Settings\n"
+  printf "11. edit Default-Keybinds\n"
 }
 
 main() {
@@ -46,12 +47,15 @@ main() {
             $tty $editor "$UserConfigs/UserSettings.conf"
             ;;
         8)
-            $tty $editor "$UserConfigs/WorkspaceRules.conf"
+            $tty $editor "$UserConfigs/UserDecorAnimations.conf"
             ;;
-		9)
+        9)
+            $tty $editor "$UserConfigs/WorkspaceRules.conf"
+            ;;            
+		10)
             $tty $editor "$configs/Settings.conf"
             ;;
-        10)
+        11)
             $tty $editor "$configs/Keybinds.conf"
             ;;
         *)

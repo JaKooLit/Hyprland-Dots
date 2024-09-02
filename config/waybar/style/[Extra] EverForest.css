@@ -1,0 +1,332 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* --- Designed by https://github.com/DevNChill --- */
+
+/* Extra - EverForest*/
+
+@define-color bg_dim      #232A2E;
+@define-color black       #000000;
+@define-color white       #FFFFFF;
+@define-color bg0         #2D353B;
+@define-color bg1         #343F44;
+@define-color bg2         #3D484D;
+@define-color bg3         #475258;
+@define-color bg4         #4F585E;
+@define-color bg5         #56635f;
+@define-color bg_visual   #543A48;
+@define-color bg_red      #514045;
+@define-color bg_green    #425047;
+@define-color bg_blue     #3A515D;
+@define-color bg_yellow   #4D4C43;
+@define-color fg          #D3C6AA;
+@define-color red         #E67E80;
+@define-color orange      #E69875;
+@define-color yellow      #DBBC7F;
+@define-color green       #A7C080;
+@define-color aqua        #83C092;
+@define-color blue        #7FBBB3;
+@define-color purple      #D699B6;
+@define-color grey0       #7A8478;
+@define-color grey1       #859289;
+@define-color grey2       #9DA9A0;
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: bold;
+  min-height: 0;
+  /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+  font-size: 97%;
+  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+  border: 1px solid transparent;
+  border-radius: 0px;
+  margin: 0px 1px;
+}
+
+window#waybar {
+  border: none;
+  /*background-color: @bg_green;*/
+  background-color: @bg_green;
+  color: @fg;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+	opacity: 0.5;
+}
+
+#window {
+  padding: 0px 10px;
+  margin: 0px 10px;
+  border-radius: 5px;
+  background-color: @bg0;
+}
+
+window#waybar.empty,
+window#waybar.empty #window {
+  background: none;
+}
+
+.modules-left button:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-left: 5px;
+}
+
+.modules-left button:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-right: 5px;
+}
+
+#custom-menu,
+#custom-arch {
+  background-color: @bg;
+  color: @red;
+}
+
+#custom-swaync {
+  color: @yellow;
+}
+#workspaces button {
+  padding: 0px 5px;
+  background-color: @orange;
+  color: @black;
+}
+
+#taskbar button.active,
+#workspaces button.active {
+  background-color: @grey0;
+  color: @black;
+  animation: gradient_f 20s ease-in infinite;
+  /*transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);*/
+}
+
+#taskbar button:hover,
+#workspaces button:hover {
+  background-color: @purple;
+  color: @black;
+}
+
+#workspaces button.focused {
+  background-color: @green;
+  color: @bg0;
+}
+
+#workspaces button.urgent {
+  background-color: @red; /* Keeps the original color */
+  color: @white; /* Sets text color to white for better contrast */
+  border: 2px solid @red; /* Adds a border with the same color */
+  box-shadow: 0 0 10px @red; /* Adds a glow effect */
+  font-weight: bold; /* Makes text bold for more emphasis */
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s; /* Smooth transition for hover effect */
+}
+
+#cpu {
+  border-radius: 5px 0px 0px 5px;
+  padding: 0px 5px;
+  background-color: @yellow;
+  color: @bg_yellow;
+}
+
+#memory {
+  padding: 0px 5px;
+  background-color: @yellow;
+  color: @bg_yellow;
+}
+
+#temperature {
+  padding: 0px 5px;
+  background-color: @green;
+  color: @bg_yellow;
+}
+#temperature.critical {
+  background-color: @red;
+}
+
+#disk {
+  border-radius: 0px 5px 5px 0px;
+  padding: 0px 5px;
+  margin-right: 5px;
+  background-color: @green;
+  color: @bg_yellow;
+}
+
+#battery.bat2 {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.modules-left :last-child {
+  border-radius: 0px 5px 5px 0px;
+}
+#battery {
+  border-radius: 5px 0px 0px 5px;
+  padding: 0px 5px;
+  background-color: @aqua;
+  color: @bg_yellow;
+}
+#battery.plugged {
+  color: @fg;
+  background-color: @bg_green;
+}
+#battery.charging {
+  color: @fg;
+  background-color: @bg_green;
+}
+#battery.critical:not(.charging) {
+  background-color: @red;
+  color: @fg;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes blink {
+  to {
+    background-color: @fg;
+    color: @bg_dim;
+  }
+}
+
+#backlight {
+  border-radius: 5px 0px 0px 5px;
+  padding: 0px 5px;
+  margin-left: 5px;
+  background-color: @red;
+  color: @black;
+}
+
+#network,
+#pulseaudio {
+  padding: 0px 5px;
+  border-radius: 0px 5px 5px 0px;
+  background-color: @blue;
+  color: @bg_yellow;
+}
+
+#pulseaudio.muted {
+  background-color: @grey1;
+  color: @bg_yellow;
+}
+
+#tray {
+  padding: 0px 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+  color: @fg;
+  background-color: @bg0;
+}
+
+#idle_inhibitor {
+  padding: 0px 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: @blue;
+  color: @black;
+}
+#idle_inhibitor.activated {
+  background-color: @fg;
+  color: @bg0;
+}
+
+#clock {
+  padding: 0px 5px;
+  border-radius: 5px;
+  margin: 0px 5px;
+  color: @bg_yellow;
+  background-color: @aqua;
+}
+
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+	
+#pulseaudio-slider trough {
+	min-width: 80px;  
+	min-height: 5px; 
+	border-radius: 5px;
+	background-color: #22252a;
+}
+	
+#pulseaudio-slider highlight {
+	min-height: 10px; 
+	border-radius: 5px;
+	background-color: #ba5663;
+}
+
+#backlight-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+	
+#backlight-slider trough {
+	min-width: 80px;  
+	min-height: 10px; 
+	border-radius: 5px;
+	background-color: #22252a;
+}
+	
+#backlight-slider highlight {
+	min-width: 10px; 
+	border-radius: 5px;
+	background-color: #ba5663;
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#power-profiles-daemon,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-cycle_wall,
+#custom-hint,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-swaync,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+	padding-right: 5px;
+	padding-left: 5px;
+}

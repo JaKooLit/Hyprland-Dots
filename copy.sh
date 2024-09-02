@@ -4,7 +4,7 @@
 clear
 
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified
-waybar_style="$HOME/.config/waybar/style/[Dark] Half-Moon.css"
+waybar_style="$HOME/.config/waybar/style/[Colored] Chroma Glow.css"
 waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v3"
 waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 
 
@@ -322,7 +322,7 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
     sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh \&/s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
     
     # Comment out the line animation = borderangle, 1, 180, liner, loop
-    sed -i '/  animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserSettings.conf
+    sed -i '/  animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserDecorAnimations.conf
     
     echo "Rainbow borders is now disabled." 2>&1 | tee -a "$LOG"
 else

@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Main Config (compact) */
 
-@import "~/.config/rofi/config.rasi" 
+@import "~/.config/rofi/master-config.rasi"  
 
 /* ---- Configuration ---- */ 
 configuration {
@@ -34,7 +34,7 @@ entry {
 /* ---- Listview ---- */
 listview {
   columns: 2;
-  lines: 5;
+  lines: 6;
   spacing: 4px;
   scrollbar: false;
   border-radius: 12px;

@@ -10,5 +10,5 @@ entry {
 
 /* ---- Listview ---- */
 listview {
-  lines: 6;
+  lines: 7;
 }
