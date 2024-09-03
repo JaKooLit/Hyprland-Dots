@@ -194,6 +194,7 @@
 		"title<.*reddit.*>": " ",
 		"title<.*Picture-in-Picture.*>": " ",
 		"class<firefox>": " ",
+		"class<org.mozilla.firefox>": " ",
 		"class<kitty>": " ",
 		"class<kitty-dropterm>": " ",
 		"class<konsole>": " ",
