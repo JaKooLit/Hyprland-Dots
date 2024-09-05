@@ -203,6 +203,7 @@
 		"class<[Ss]potify>": "<span font='12'> </span>",
 		"class<VSCode|code-url-handler>": "<span font='12'>󰨞</span>",
 		"class<thunar>": "󰝰 ",
+		"class<[Tt]hunderbird>": " ",
 		"class<discord>": " ",
 		"class<WebCord>": " ",
 		"class<subl>": "󰅳 ",
