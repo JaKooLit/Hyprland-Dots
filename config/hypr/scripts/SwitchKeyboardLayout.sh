@@ -61,7 +61,8 @@ change_layout() {
 
     while read -r name; do
         echo "Switching layout for $name to $new_layout..."
-        hyprctl switchxkblayout "$name" "$new_layout"
+        #hyprctl switchxkblayout "$name" "$new_layout"
+        hyprctl switchxkblayout "$name" next
         if [[ $? -eq 0 ]]; then
             echo "Switched the layout for $name."
         else
