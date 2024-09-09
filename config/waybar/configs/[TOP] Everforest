@@ -24,6 +24,7 @@
 //	"mpris",
 	"custom/swaync",
 	"tray",
+	"mpris",
 	],
 "modules-center": [
 	"clock#forest",

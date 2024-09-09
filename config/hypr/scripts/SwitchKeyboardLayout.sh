@@ -2,32 +2,37 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # This is for changing kb_layouts. Set kb_layouts in $settings_file
 
-layout_f="$HOME/.cache/kb_layout"
+layout_file="$HOME/.cache/kb_layout"
 settings_file="$HOME/.config/hypr/UserConfigs/UserSettings.conf"
-notif="$HOME/.config/swaync/images/bell.png"
+notif_icon="$HOME/.config/swaync/images/bell.png"
 
-echo "Starting script..."
+# Refined ignore list with patterns or specific device names
+ignore_patterns=(
+  "--(avrcp)" 
+  "Bluetooth Speaker" 
+  "Other Device 
+  Name"
+  )
 
-# Check if ~/.cache/kb_layout exists and create it with a default layout from Settings.conf if not found
-if [ ! -f "$layout_f" ]; then
-  echo "Creating layout file as it does not exist..."
-  default_layout=$(grep 'kb_layout = ' "$settings_file" | cut -d '=' -f 2 | cut -d ',' -f 1 2>/dev/null)
-  if [ -z "$default_layout" ]; then
-    default_layout="us" # Default to 'us' layout if Settings.conf or 'kb_layout' is not found
-  fi
-  echo "$default_layout" > "$layout_f"
+
+# Create layout file with default layout if it does not exist
+if [ ! -f "$layout_file" ]; then
+  echo "Creating layout file..."
+  default_layout=$(grep 'kb_layout = ' "$settings_file" | cut -d '=' -f 2 | tr -d '[:space:]' | cut -d ',' -f 1 2>/dev/null)
+  default_layout=${default_layout:-"us"} # Default to 'us' layout
+  echo "$default_layout" > "$layout_file"
   echo "Default layout set to $default_layout"
 fi
 
-current_layout=$(cat "$layout_f")
+current_layout=$(cat "$layout_file")
 echo "Current layout: $current_layout"
 
-# Read keyboard layout settings from Settings.conf
+# Read available layouts from settings file
 if [ -f "$settings_file" ]; then
-  echo "Reading keyboard layout settings from $settings_file..."
   kb_layout_line=$(grep 'kb_layout = ' "$settings_file" | cut -d '=' -f 2)
-  IFS=',' read -ra layout_mapping <<< "$kb_layout_line"
-  echo "Available layouts: ${layout_mapping[@]}"
+  # Remove leading and trailing spaces around each layout
+  kb_layout_line=$(echo "$kb_layout_line" | tr -d '[:space:]')
+  IFS=',' read -r -a layout_mapping <<< "$kb_layout_line"
 else
   echo "Settings file not found!"
   exit 1
@@ -36,56 +41,64 @@ fi
 layout_count=${#layout_mapping[@]}
 echo "Number of layouts: $layout_count"
 
-# Find the index of the current layout in the mapping
+# Find current layout index and calculate next layout
 for ((i = 0; i < layout_count; i++)); do
   if [ "$current_layout" == "${layout_mapping[i]}" ]; then
     current_index=$i
-    echo "Current layout index: $current_index"
     break
   fi
 done
 
-# Calculate the index of the next layout
 next_index=$(( (current_index + 1) % layout_count ))
 new_layout="${layout_mapping[next_index]}"
 echo "Next layout: $new_layout"
 
-# Created by T-Crypt
-
+# Function to get keyboard names
 get_keyboard_names() {
     hyprctl devices -j | jq -r '.keyboards[].name'
 }
 
+# Function to check if a device matches any ignore pattern
+is_ignored() {
+    local device_name=$1
+    for pattern in "${ignore_patterns[@]}"; do
+        if [[ "$device_name" == *"$pattern"* ]]; then
+            return 0 # Device matches ignore pattern
+        fi
+    done
+    return 1 # Device does not match any ignore pattern
+}
+
+# Function to change keyboard layout
 change_layout() {
-    local got_error=false
+    local error_found=false
 
     while read -r name; do
+        if is_ignored "$name"; then
+            echo "Skipping ignored device: $name"
+            continue
+        fi
+        
         echo "Switching layout for $name to $new_layout..."
-        hyprctl switchxkblayout "$name" "$new_layout"
-        if [[ $? -eq 0 ]]; then
-            echo "Switched the layout for $name."
-        else
-            >&2 echo "Error while switching the layout for $name."
-            got_error=true
+        hyprctl switchxkblayout "$name" next
+        if [ $? -ne 0 ]; then
+            echo "Error while switching layout for $name." >&2
+            error_found=true
         fi
     done <<< "$(get_keyboard_names)"
 
-    if [ "$got_error" = true ]; then
-        >&2 echo "Some errors were found during the process..."
-        return 1
-    fi
-
-    return 0 # All layouts had been cycled successfully
+    $error_found && return 1
+    return 0
 }
 
+# Execute layout change and notify
 if ! change_layout; then
-    notify-send -u low -t 2000 'Keyboard layout' 'Error: Layout change failed'
-    >&2 echo "Layout change failed."
+    notify-send -u low -t 2000 'kb_layout' 'Error: Layout change failed'
+    echo "Layout change failed." >&2
     exit 1
 else
-    # Notification for the new keyboard layout
-    notify-send -u low -i "$notif" "new KB_Layout: $new_layout"
+    notify-send -u low -i "$notif_icon" "New kb_layout: $new_layout"
     echo "Layout change notification sent."
 fi
 
-echo "$new_layout" > "$layout_f"
+echo "$new_layout" > "$layout_file"
