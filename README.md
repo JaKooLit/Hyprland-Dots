@@ -1,3 +1,8 @@
+<h3 align="center">
+<img align="center" width="80%" src=https://github.com/user-attachments/assets/bc18bd4d-944b-4d5f-a119-7578fa38f9b4 />
+</h3>
+
+
 <div align="center">
 <br>
   <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
@@ -11,8 +16,7 @@
 
 <div align="center">
 
-## 💌 ** KooL-Dotfiles ** 💌
-#### Hyprland Configurations / Dotfiles
+## Hyprland Configurations / Dotfiles
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Hyprland-Dots?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Hyprland-Dots?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Hyprland-Dots?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
@@ -21,7 +25,7 @@
 
 <h3 align="center">
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
-	KooL Hyprland-Dotfiles Showcase 
+	KooL's Hyprland-Dotfiles Showcase 
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
 </h3>
 
@@ -58,7 +62,13 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 - [Debian Trixie / SiD](https://github.com/JaKooLit/Debian-Hyprland)
 
-- [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Debian-Hyprland/tree/Ubuntu-24.04-LTS)
+- [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
+
+- [NixOS](https://github.com/JaKooLit/NixOS-Hyprland)
+
+#### Hyprland Install scripts on alpha/beta stage
+
+- [Ubuntu 24.10)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
 
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
 - When using the install scripts above, it will pull the releases (stable) of this dotfiles
@@ -88,13 +98,11 @@ git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
 cd Hyprland-Dots
 ```
 
-
 > to download from Development branch (development and testing)
 ```bash
 git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
 cd Hyprland-Dots
 ```
-
 
 - automatic copy of pre-configured dots
 ```bash
@@ -108,12 +116,10 @@ chmod +x release.sh
 ./release.sh
 ```
 
-
-- UPGRADE.sh function (Experimental)
+- UPGRADE.sh function
 > [!IMPORTANT]
-> You should atleast v2.2.3 in your hyprland dots (ls ~/.config/hypr) to check version
 > You need rsync for it to work
-> you should have already up and running Hyprland before using this function
+> you should have already up and running KooL's Hyprland before using this function
 ```bash
 chmod +x upgrade.sh
 ./upgrade.sh
@@ -130,7 +136,6 @@ chmod +x upgrade.sh
 
 
 #### ⚠️⚠️⚠️ A MUST! after copying  / Installing these dots
-+ By default I have not set a wallpaper. 
 + Press SUPER W and set a wallpaper. This is also to initiate wallust for waybar, kitty (tty) and rofi themes. However, If you use the copy.sh or the release.sh, there will be a preset initial Wallpaper and you dont have to do this
 
 + Nvidia Owners. Make sure to edit your `~/.config/hypr/UserConfigs/ENVariables.conf` (recommended). Below env's will be activated if automatic copy is used
