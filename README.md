@@ -25,7 +25,7 @@
 
 <h3 align="center">
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
-	KooL Hyprland-Dotfiles Showcase 
+	KooL's Hyprland-Dotfiles Showcase 
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
 </h3>
 
