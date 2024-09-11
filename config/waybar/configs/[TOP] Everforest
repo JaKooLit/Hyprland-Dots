@@ -3,7 +3,10 @@
 // ### Everforest ### //
 
 {
-"include": "~/.config/waybar/modules",
+"include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  ],
 "layer": "top",
 //"mode": "dock",
 "exclusive": true,
@@ -24,7 +27,6 @@
 //	"mpris",
 	"custom/swaync",
 	"tray",
-	"mpris",
 	],
 "modules-center": [
 	"clock#forest",
