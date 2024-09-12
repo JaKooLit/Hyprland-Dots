@@ -1,4 +1,4 @@
-<h3 align="center">
+8<h3 align="center">
 <img align="center" width="80%" src=https://github.com/user-attachments/assets/bc18bd4d-944b-4d5f-a119-7578fa38f9b4 />
 </h3>
 
@@ -72,7 +72,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - [Ubuntu 24.10)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
 
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
-- When using the install scripts above, it will pull the releases (stable) of this dotfiles
+- When using the install scripts above, it will pull the releases (stable) of this dotfiles, except for Nixos where it pulls from main
 
 
 ### 🪧 Attention 🪧
