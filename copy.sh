@@ -234,7 +234,7 @@ elif [ "$resolution" == "≥ 1440p" ]; then
   cp -r config/rofi/resolution/1440p/* config/rofi/
 fi
 
-printf "\n%.0s" {1..2}
+printf "\n"
 
 # Ask whether to change to 12hr format
 while true; do
@@ -328,7 +328,7 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
 else
     echo "No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$LOG"
 fi
-
+printf "\n"
 
 # Copy Config Files #
 set -e # Exit immediately if a command exits with a non-zero status.
@@ -366,7 +366,7 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 chmod +x ~/.config/hypr/UserScripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
-printf "\n%.0s" {1..2}
+printf "\n"
 
 # Detect machine type and set Waybar configurations accordingly
 if hostnamectl | grep -q 'Chassis: desktop'; then
@@ -383,7 +383,7 @@ fi
 
 # additional wallpapers
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
-printf "\n%.0s" {1..2}
+printf "\n"
 
 while true; do
   read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is more than >600mb (y/n)" WALL
