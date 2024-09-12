@@ -36,7 +36,6 @@ listview {
   columns: 2;
   lines: 6;
   spacing: 4px;
-  scrollbar: false;
   border-radius: 12px;
 }
 
