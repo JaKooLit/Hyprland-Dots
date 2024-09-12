@@ -1,4 +1,4 @@
-<h3 align="center">
+8<h3 align="center">
 <img align="center" width="80%" src=https://github.com/user-attachments/assets/bc18bd4d-944b-4d5f-a119-7578fa38f9b4 />
 </h3>
 
@@ -18,14 +18,6 @@
 
 
 ## Hyprland Configurations / Dotfiles
-
-<img src="https://raw.githubusercontent.com/JaKooLit/Telegram-Animated-Emojis/main/Symbols/Double%20Exclamation%20Mark.webp" alt="Double Exclamation Mark" width="40" height="40" />  This is a Simple Branch of KooL's Hyprland-Dots
-
-> WHY?
-#### No extra bling bling. Put it simply as stripped version of KooL's Hyprland-Dots
-
-> What's the catch?
-#### Won't be maintained much.
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/Hyprland-Dots?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/Hyprland-Dots?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/Hyprland-Dots?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
 
@@ -80,7 +72,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - [Ubuntu 24.10)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
 
 - refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
-- When using the install scripts above, it will pull the releases (stable) of this dotfiles
+- When using the install scripts above, it will pull the releases (stable) of this dotfiles, except for Nixos where it pulls from main
 
 
 ### 🪧 Attention 🪧
