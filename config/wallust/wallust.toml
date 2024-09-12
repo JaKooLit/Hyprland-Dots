@@ -1,4 +1,5 @@
-# wallust 3.0*
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
+# wallust configuration - for wallust version 3.0
 
 backend = "kmeans"
 color_space = "lch"
