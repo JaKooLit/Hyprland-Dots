@@ -14,12 +14,8 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-	"persistent-workspaces": {
-		"1": [],
-		"2": [],
-		"3": [],
-		"4": [],
-		"5": [],
+    "persistent-workspaces": {
+      "*": 5
 	},
 	"format-icons": {
 		"active": "",
@@ -35,12 +31,8 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-	"persistent-workspaces": {
-		"1": [],
-		"2": [],
-		"3": [],
-		"4": [],
-		"5": [],
+    "persistent-workspaces": {
+      "*": 5
 	},
 	"format-icons": {
 		"1": "I",
@@ -64,12 +56,8 @@
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
 	"show-special": false,
-	"persistent-workspaces": {
-		"1": [],
-		"2": [],
-		"3": [],
-		"4": [],
-		"5": [],
+    "persistent-workspaces": {
+      "*": 5
 	},
 	"format": "{icon}",
 	"format-icons": {
@@ -84,12 +72,8 @@
 	"show-special": false,
 	"all-outputs": true,
 	"format": "{icon}",
-	"persistent-workspaces": {
-		"1": [],
-		"2": [],
-		"3": [],
-		"4": [],
-		"5": [],
+    "persistent-workspaces": {
+      "*": 5
 	},
 	"format-icons": {
 		"1": "一",
@@ -113,12 +97,8 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-	"persistent-workspaces":{
-		"1": [],
-		"2": [],
-		"3": [],
-		"4": [],
-		"5": []
+    "persistent-workspaces": {
+      "*": 5
 	},
 		"format-icons": {
 		"1": "Uno",
@@ -201,7 +181,9 @@
 		"class<mousepad>": " ",
 		"class<libreoffice-writer>": " ",
 		"class<libreoffice-startcenter>": "󰏆 ",
-		"class<com.obsproject.Studio>": " "
+		"class<com.obsproject.Studio>": " ",
+		"class<polkit-gnome-authentication-agent-1>": "󰒃 ",
+		"class<nwg-look>": " "
 		}   
 	},
 
