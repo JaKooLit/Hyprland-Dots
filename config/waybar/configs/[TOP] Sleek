@@ -23,7 +23,7 @@
 ],
 
 "modules-center": [
-	"idle_inhibitor",
+	"custom/hypridle",
 	"custom/separator#blank",
 	"clock#3",
 	"custom/separator#blank",

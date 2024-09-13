@@ -2,7 +2,6 @@
 /* Waybar Modules */
 
 {
-
 /* NOTE: hyprland-workspaces on a separate file */
 // Weather and Temperature Modules as this is most like to change always. 
 // Result is of course easier to edit
@@ -21,7 +20,7 @@
 	"interval": 10,
 	"tooltip": true,
 	"hwmon-path": [
-		"/sys/class/hwmon/hwmon1/temp1_input",
+		"/sys/class/hwmon/hwmon1/temp2_input",
 		"/sys/class/thermal/thermal_zone0/temp"
 	],
 	//"thermal-zone": 0,
@@ -37,7 +36,7 @@
 	"interval": 10,
 	"tooltip": true,
 	"hwmon-path": [
-		"/sys/class/hwmon/hwmon1/temp1_input",
+		"/sys/class/hwmon/hwmon1/temp2_input",
 		"/sys/class/thermal/thermal_zone0/temp"
 	],
 	//"thermal-zone": 0,
@@ -469,6 +468,17 @@
 	"tooltip": true,
 	"tooltip-format": "󱧣 Quick Tips",
 },
+// Hypridle inhibitor
+"custom/hypridle": {
+    "format": " 󰷛 ",
+    "return-type": "json",
+    "escape": true,
+    "exec-on-event": true,
+    "interval": 60,
+    "exec": "$HOME/.config/hypr/scripts/Hypridle.sh status",
+    "on-click": "$HOME/.config/hypr/scripts/Hypridle.sh toggle",
+    "on-click-right": "hyprlock"
+  },
 "custom/keyboard": {
 	"exec": "cat ~/.cache/kb_layout",
 	"interval": 1,

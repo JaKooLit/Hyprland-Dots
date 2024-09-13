@@ -137,6 +137,7 @@ tooltip label {
 #custom-cava_mviz,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -172,6 +173,12 @@ tooltip label {
     to {
         color: #000000;
     }
+}
+
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #ffd700;
 }
 
 #battery.critical:not(.charging) {

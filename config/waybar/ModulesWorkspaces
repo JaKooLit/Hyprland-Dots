@@ -2,7 +2,6 @@
 /* Waybar Workspaces modules */
 
 /* Generally, this is a potential expanding of choices for hyprland/workspace */
-
 {
 
 // HYPRLAND WORKSPACES. CHOOSE as desired and place on waybar configs

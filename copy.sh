@@ -104,7 +104,7 @@ layout=$(detect_layout)
 if [ "$layout" = "(unset)" ]; then
   while true; do
     printf "\n%.0s" {1..1}
-print_color $RED "
+print_color $ORANGE "
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
         STOP AND READ
 █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
@@ -152,7 +152,7 @@ while true; do
         break ;;
     [nN])
         printf "\n%.0s" {1..2}
-print_color $RED "
+print_color $ORANGE "
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
         STOP AND READ
 █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█

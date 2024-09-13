@@ -219,6 +219,7 @@ window#waybar.empty #window {
   background-color: @bg0;
 }
 
+#custom-hypridle,
 #idle_inhibitor {
   padding: 0px 5px;
   border-radius: 5px;
@@ -226,6 +227,8 @@ window#waybar.empty #window {
   background-color: @blue;
   color: @black;
 }
+/*-----Indicators----*/
+#custom-hypridle.notactive,
 #idle_inhibitor.activated {
   background-color: @fg;
   color: @bg0;
@@ -308,6 +311,7 @@ window#waybar.empty #window {
 #custom-backlight,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,

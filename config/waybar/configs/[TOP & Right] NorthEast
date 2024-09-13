@@ -62,7 +62,7 @@
    
 "modules-left": [
     "custom/lock",
-    "idle_inhibitor",   
+    "custom/hypridle",   
     ],
     
 "modules-center": [
