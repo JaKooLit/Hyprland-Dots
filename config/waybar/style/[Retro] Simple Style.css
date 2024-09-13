@@ -105,7 +105,8 @@ window#waybar {
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
-	color: #ffd700;
+	color: #39FF14;
+	font-size: 100%;
 }
 
 #battery.critical,

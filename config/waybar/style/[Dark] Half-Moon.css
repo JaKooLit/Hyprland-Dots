@@ -137,7 +137,8 @@ color: #F3F4F5;
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
-	color: #ffd700;
+	color: #39FF14;
+	font-size: 100%;
 }
 
 #bluetooth {
