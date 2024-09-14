@@ -27,7 +27,7 @@
 	],
   
 "modules-center": [
-	"custom/hypridle",
+	"idle_inhibitor",
 	"clock",  
 	"custom/light_dark",
 	], 

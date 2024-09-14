@@ -35,7 +35,7 @@
 "modules-center": [
 	"custom/menu",
 	"custom/separator#dot-line",
-	"custom/hypridle", 
+	"idle_inhibitor", 
 	"custom/separator#dot-line",
 	"clock",
 	"custom/separator#dot-line",

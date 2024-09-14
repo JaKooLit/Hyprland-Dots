@@ -30,7 +30,7 @@
 	],
 "modules-center": [
 	"clock",
-	"custom/hypridle",
+	"idle_inhibitor",
 	],
 "modules-right": [
 	"group/mobo_drawer",

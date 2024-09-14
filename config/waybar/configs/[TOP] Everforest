@@ -30,7 +30,7 @@
 	],
 "modules-center": [
 	"clock#forest",
-	"custom/hypridle",
+	"idle_inhibitor",
 	],
 "modules-right": [
 	"cpu#forest",
