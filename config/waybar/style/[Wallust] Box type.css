@@ -147,7 +147,7 @@ window#waybar.empty #window {
 #idle_inhibitor.activated {
 	color: #39FF14;
 	font-size: 100%;
-}}
+}
 
 #network {
 	padding-right: 12px;
