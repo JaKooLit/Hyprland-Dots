@@ -133,6 +133,7 @@ tooltip {
 #custom-cava_mviz,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -167,6 +168,13 @@ tooltip {
 	to {
 		color: #000000;
 	}
+}
+
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #39FF14;
+	font-size: 100%;
 }
 
 #taskbar button.active {

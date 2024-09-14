@@ -1,3 +1,6 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */  
+ /* wallust template - colors-swaync */
+
 @define-color text {{foreground}};
 @define-color background rgba({{background | rgb}},0.25);
 @define-color background-alt {{background}};

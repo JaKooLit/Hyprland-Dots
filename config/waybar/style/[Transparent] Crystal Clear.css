@@ -91,6 +91,7 @@ window#waybar.empty #window {
 #workspaces,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -126,6 +127,14 @@ window#waybar.empty #window {
 	color: #000000;
 	   }
 }
+
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #39FF14;
+	font-size: 100%;
+}
+
 #taskbar button:hover {
     padding-left: 3px;
     padding-right: 3px;

@@ -3,7 +3,10 @@
 // ### Minimal -SHORT ### //
 
 {
-"include": "~/.config/waybar/modules",
+"include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  ],
 "layer": "top",
 "position": "top",
 "width": 1050,

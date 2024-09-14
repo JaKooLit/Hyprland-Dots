@@ -120,6 +120,7 @@ window#waybar.empty #window {
 #custom-backlight,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -144,9 +145,11 @@ window#waybar.empty #window {
 	padding-right: 6px;
 	padding-left: 6px;
 }
-
-#idle_inhibitor {
-  color: @blue;
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #39FF14;
+	font-size: 100%;
 }
 
 #bluetooth,

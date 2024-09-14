@@ -124,6 +124,7 @@ color: #F3F4F5;
 
 #custom-light_dark,
 #custom-swaync,
+#custom-hypridle,
 #idle_inhibitor,
 #clock {
 	color: #B8CC52;
@@ -131,6 +132,13 @@ color: #F3F4F5;
 	border-radius: 50px 50px;
 	margin: 5px;
 	padding: 2px 15px;
+}
+
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #39FF14;
+	font-size: 100%;
 }
 
 #bluetooth {

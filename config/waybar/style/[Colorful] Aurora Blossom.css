@@ -118,6 +118,7 @@ tooltip label{
 #custom-backlight,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -146,9 +147,12 @@ tooltip label{
 	padding: 1px 3px;
 }
 /*-----Indicators----*/
+#custom-hypridle.notactive,
 #idle_inhibitor.activated {
-	color: #2dcc36;
+	color: #39FF14;
+	font-size: 100%;
 }
+
 #pulseaudio.muted {
 	color: #cc3436;
 }

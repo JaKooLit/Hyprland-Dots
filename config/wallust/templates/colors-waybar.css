@@ -1,3 +1,6 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */  
+ /* wallust template - colors-waybar */
+
 @define-color foreground {{foreground}};
 @define-color background rgba({{background | rgb}},0.25);
 @define-color cursor {{cursor}};

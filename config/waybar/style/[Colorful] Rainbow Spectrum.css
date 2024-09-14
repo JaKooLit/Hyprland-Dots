@@ -100,6 +100,7 @@ tooltip label{
 #custom-backlight,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -236,8 +237,16 @@ tooltip label{
 
 #custom-power_vertical,
 #custom-light_dark,
+#custom-hypridle,
 #idle_inhibitor {
   	background-color: #86b4fa;
+}
+
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #39FF14;
+	font-size: 100%;
 }
 
 #bluetooth {

@@ -105,6 +105,7 @@ tooltip {
 #custom-cava_mviz,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -225,9 +226,11 @@ tooltip {
 	border: 2px solid @color14;
 }
 
+/*-----Indicators----*/
+#custom-hypridle.notactive,
 #idle_inhibitor.activated {
-	color: @color12;
-	border: 2px solid @color12;
+	color: #39FF14;
+	font-size: 100%;
 }
 
 #battery.good {

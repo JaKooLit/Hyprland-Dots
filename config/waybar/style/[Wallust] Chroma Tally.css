@@ -99,6 +99,7 @@ tooltip {
 #custom-backlight,
 #custom-cycle_wall,
 #custom-hint,
+#custom-hypridle,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
@@ -205,8 +206,16 @@ tooltip {
 }
 
 #keyboard-state,
+#custom-hypridle,
 #idle_inhibitor {
    color: #ebcb8b;
+}
+
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #39FF14;
+	font-size: 100%;
 }
 
 #tray {

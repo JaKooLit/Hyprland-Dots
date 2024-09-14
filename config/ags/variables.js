@@ -6,8 +6,8 @@ const { exec, execAsync } = Utils;
 Gtk.IconTheme.get_default().append_search_path(`${App.configDir}/assets/icons`);
 
 // Screen size
-export const SCREEN_WIDTH = Number(exec(`bash -c "hyprctl monitors -j | jq '.[0].width'"`));
-export const SCREEN_HEIGHT = Number(exec(`bash -c "hyprctl monitors -j | jq '.[0].height'"`));
+export const SCREEN_WIDTH = Number(exec(`bash -c "hyprctl monitors -j | jq '.[0].width / .[0].scale'"`));
+export const SCREEN_HEIGHT = Number(exec(`bash -c "hyprctl monitors -j | jq '.[0].height / .[0].scale'"`));
 
 // Mode switching
 export const currentShellMode = Variable('normal', {}) // normal, focus

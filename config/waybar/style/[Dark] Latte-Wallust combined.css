@@ -169,6 +169,8 @@ tooltip {
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
+#custom-hint,
+#custom-hypridle,
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
@@ -340,10 +342,20 @@ tooltip {
 	min-width: 10px;
 	border-radius: 5px;
 }
+
+#custom-hypridle,
 #custom-lock,
 #idle_inhibitor {
     color: @teal;
 }
+
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+	color: #39FF14;
+	font-size: 100%;
+}
+
 #clock {
 	color: @sapphire;
     border-radius: 15px;
