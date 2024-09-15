@@ -4,12 +4,12 @@
 # wlogout (Power, Screen Lock, Suspend, etc)
 
 # Set variables for parameters
-A_2160=450
-B_2160=450
-A_1600=400
-B_1600=400
-A_1440=350
-B_1440=350
+A_2160=700
+B_2160=700
+A_1600=480
+B_1600=480
+A_1440=450
+B_1440=450
 A_1080=350
 B_1080=350
 A_720=50
