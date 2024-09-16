@@ -146,7 +146,6 @@ tooltip label {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
-	font-size: 100%;
 }
 
 #taskbar button.active {
