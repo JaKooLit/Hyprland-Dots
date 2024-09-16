@@ -342,7 +342,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in ags btop cava fastfetch hypr Kvantum qt5ct qt6ct rofi swappy wallust wlogout; do 
+for DIR in btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -373,7 +373,7 @@ printf "\n%.0s" {1..1}
 printf "${NOTE} - copying dotfiles second part\n"
 
 # Config directories which will ask the user whether to replace or not
-DIRS="kitty nvim rofi swaync waybar"
+DIRS="ags fastfetch kitty nvim rofi swaync waybar"
 for DIR2 in $DIRS; do
   DIRPATH=~/.config/"$DIR2"
   
