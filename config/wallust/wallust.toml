@@ -1,8 +1,13 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # wallust configuration - for wallust version 3.0
 
+# How the image is parse, in order to get the colors:
+# full - resized - wal - thumb -  fastresize - kmeans
 backend = "kmeans"
-color_space = "lch"
+
+# What color space to use to produce and select the most prominent colors:
+# lab - labmixed - lch - lchmixed
+color_space = "lab"
 
 # NOTE: All filters will fill 16 colors (from color0 to color15), 16 color
 #       variations are the 'ilusion' of more colors by opaquing color1 to color5.

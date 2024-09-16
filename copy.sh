@@ -334,6 +334,7 @@ printf "\n"
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} - copying dotfiles\n"
+
 # Function to create a unique backup directory name with month, day, hours, and minutes
 get_backup_dirname() {
   local timestamp
@@ -341,25 +342,93 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in ags btop cava fastfetch hypr kitty Kvantum nvim qt5ct qt6ct rofi swappy swaync wallust waybar wlogout; do 
+for DIR in btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
     BACKUP_DIR=$(get_backup_dirname)
+    
+    # Backup the existing directory
     mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-    echo -e "${NOTE} - Backed up $DIR to $DIRPATH-backup-$BACKUP_DIR."
+    if [ $? -eq 0 ]; then
+      echo -e "${NOTE} - Backed up $DIR to $DIRPATH-backup-$BACKUP_DIR."
+      
+      # Copy new config
+      cp -r config/"$DIR" ~/.config/"$DIR" 2>&1 | tee -a "$LOG"
+      if [ $? -eq 0 ]; then
+        echo "${OK} - Copy of config for $DIR completed!"
+      else
+        echo "${ERROR} - Failed to copy $DIR."
+        exit 1
+      fi
+    else
+      echo "${ERROR} - Failed to back up $DIR."
+      exit 1
+    fi
   fi
 done
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
-# Copying config files
-mkdir -p ~/.config
-cp -r config/* ~/.config/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR} Failed to copy config files."; exit 1; } 2>&1 | tee -a "$LOG"
+printf "${NOTE} - copying dotfiles second part\n"
+
+# Config directories which will ask the user whether to replace or not
+DIRS="ags fastfetch kitty nvim rofi swaync waybar"
+for DIR2 in $DIRS; do
+  DIRPATH=~/.config/"$DIR2"
+  
+  if [ -d "$DIRPATH" ]; then
+    while true; do
+      read -p "${CAT} Config directory $DIR2 already exists. Do you want to replace it? (Y/N): " CHOICE
+      case "$CHOICE" in
+        [Yy]* )
+          BACKUP_DIR=$(get_backup_dirname)
+          echo -e "${NOTE} - Config for $DIR2 found, attempting to back up."
+          
+          mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+          if [ $? -eq 0 ]; then
+            echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
+            
+            cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
+            if [ $? -eq 0 ]; then
+              echo -e "${OK} - Replaced $DIR2 with new configuration."
+            else
+              echo "${ERROR} - Failed to copy $DIR2." 2>&1 | tee -a "$LOG"
+              exit 1
+            fi
+          else
+            echo "${ERROR} - Failed to back up $DIR2." 2>&1 | tee -a "$LOG"
+            exit 1
+          fi
+          break
+          ;;
+        [Nn]* )
+          # Skip the directory
+          echo -e "${NOTE} - Skipping $DIR2." 2>&1 | tee -a "$LOG"
+          break
+          ;;
+        * )
+          echo -e "${WARN} - Invalid choice. Please enter Y or N."
+          ;;
+      esac
+    done
+  else
+    # Copy new config if directory does not exist
+    cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
+    if [ $? -eq 0 ]; then
+      echo "${OK} - Copy completed for $DIR2." 2>&1 | tee -a "$LOG"
+    else
+      echo "${ERROR} - Failed to copy $DIR2." 2>&1 | tee -a "$LOG"
+      exit 1
+    fi
+  fi
+done
+
+printf "\n%.0s" {1..1}
 
 # copying Wallpapers
 mkdir -p ~/Pictures/wallpapers
-cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR} Failed to copy wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
+cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy of wallpapers completed!"; } || { echo "${ERROR} Failed to copy wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
  
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
@@ -372,13 +441,19 @@ printf "\n"
 if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
     ln -sf "$waybar_config" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/configs/[BOT] Default Laptop" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" "$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 2>&1 | tee -a "$LOG"
+    # Remove old configurations for desktop
+    rm -rf "$HOME/.config/waybar/configs/[TOP] Default Laptop" \
+           "$HOME/.config/waybar/configs/[BOT] Default Laptop" \
+           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" \
+           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 2>&1 | tee -a "$LOG" || true
 else
     # Configurations for a laptop or any system other than desktop
     ln -sf "$waybar_config_laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default_v2" "$HOME/.config/waybar/configs/[TOP] Default_v3" 2>&1 | tee -a "$LOG"
+    # Remove old configurations for laptop
+    rm -rf "$HOME/.config/waybar/configs/[TOP] Default" \
+           "$HOME/.config/waybar/configs/[BOT] Default" \
+           "$HOME/.config/waybar/configs/[TOP] Default_v2" \
+           "$HOME/.config/waybar/configs/[TOP] Default_v3" 2>&1 | tee -a "$LOG" || true
 fi
 
 # additional wallpapers
@@ -428,6 +503,6 @@ wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
 
 printf "\n%.0s" {1..2}
-printf "\n${OK} Copy Completed!\n\n\n"
+printf "\n${OK} KooL's Hyprland-Dots Loaded & Ready!!!\n\n\n"
 printf "${ORANGE} ATTENTION!!!! \n"
 printf "${ORANGE} YOU NEED to logout and re-login or reboot to avoid issues\n\n"
