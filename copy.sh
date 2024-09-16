@@ -182,7 +182,7 @@ NOTE:
     echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
     break ;;
     *)
-    echo "Please enter either 'y' or 'n'." ;;
+    echo "${ERROR} Please enter either 'y' or 'n'." ;;
   esac
 done
 
@@ -212,7 +212,7 @@ while true; do
         break
         ;;
     *)
-        echo "Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
+        echo "${ERROR} Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
         ;;
   esac
 done
@@ -292,7 +292,7 @@ while true; do
       sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_folder_2/theme.conf" 2>&1 | tee -a "$LOG" || true
       sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_folder_2/theme.conf" 2>&1 | tee -a "$LOG" || true
 
-      echo "12H format set to SDDM theme successfully." 2>&1 | tee -a "$LOG"
+      echo "${OK} 12H format set to SDDM theme successfully." 2>&1 | tee -a "$LOG"
     fi
 
     break
@@ -300,7 +300,7 @@ while true; do
     echo "You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
     break
   else
-    echo "Invalid choice. Please enter y for yes or n for no."
+    echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
   fi
 done
 
@@ -379,19 +379,19 @@ for DIR2 in $DIRS; do
   
   if [ -d "$DIRPATH" ]; then
     while true; do
-      read -p "${CAT} Config directory $DIR2 already exists. Do you want to replace it? (Y/N): " CHOICE
+      read -p "${CAT} ${ORANGE}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${ORANGE}$DIR2${RESET} config? (Y/N): " CHOICE
       case "$CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
-          echo -e "${NOTE} - Config for $DIR2 found, attempting to back up."
+          echo -e "${NOTE} - Config for ${YELLOW}$DIR2${RESET} found, attempting to back up."
           
           mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
           if [ $? -eq 0 ]; then
             echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
             
-            cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
+            cp -r config/"$DIR2" ~/.config/"$DIR2"
             if [ $? -eq 0 ]; then
-              echo -e "${OK} - Replaced $DIR2 with new configuration."
+              echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
             else
               echo "${ERROR} - Failed to copy $DIR2." 2>&1 | tee -a "$LOG"
               exit 1
@@ -404,7 +404,7 @@ for DIR2 in $DIRS; do
           ;;
         [Nn]* )
           # Skip the directory
-          echo -e "${NOTE} - Skipping $DIR2." 2>&1 | tee -a "$LOG"
+          echo -e "${NOTE} - Skipping ${ORANGE}$DIR2${RESET} " 2>&1 | tee -a "$LOG"
           break
           ;;
         * )
@@ -416,9 +416,9 @@ for DIR2 in $DIRS; do
     # Copy new config if directory does not exist
     cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
     if [ $? -eq 0 ]; then
-      echo "${OK} - Copy completed for $DIR2." 2>&1 | tee -a "$LOG"
+      echo "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
     else
-      echo "${ERROR} - Failed to copy $DIR2." 2>&1 | tee -a "$LOG"
+      echo "${ERROR} - Failed to copy ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
       exit 1
     fi
   fi
@@ -428,7 +428,7 @@ printf "\n%.0s" {1..1}
 
 # copying Wallpapers
 mkdir -p ~/Pictures/wallpapers
-cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy of wallpapers completed!"; } || { echo "${ERROR} Failed to copy wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
+cp -r wallpapers ~/Pictures/ && { echo "${OK} some wallpapers compied!"; } || { echo "${ERROR} Failed to copy some wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
  
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
@@ -486,7 +486,7 @@ while true; do
       fi
       ;;
   [Nn])
-      echo "You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
+      echo "${NOTE} You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
       break
       ;;
   *)
