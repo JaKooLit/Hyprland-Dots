@@ -333,7 +333,7 @@ printf "\n"
 # Copy Config Files #
 set -e # Exit immediately if a command exits with a non-zero status.
 
-printf "${NOTE} - copying dotfiles\n"
+printf "${NOTE} - Copying dotfiles first part\n"
 
 # Function to create a unique backup directory name with month, day, hours, and minutes
 get_backup_dirname() {
@@ -342,9 +342,17 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout; do 
+# Check if the config directory exists
+if [ ! -d "config" ]; then
+  echo "${ERROR} - The 'config' directory does not exist."
+  exit 1
+fi
+
+for DIR in btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout; do
   DIRPATH=~/.config/"$DIR"
-  if [ -d "$DIRPATH" ]; then 
+  
+  # Backup the existing directory if it exists
+  if [ -d "$DIRPATH" ]; then
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
     BACKUP_DIR=$(get_backup_dirname)
     
@@ -352,23 +360,28 @@ for DIR in btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout; do
     mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
     if [ $? -eq 0 ]; then
       echo -e "${NOTE} - Backed up $DIR to $DIRPATH-backup-$BACKUP_DIR."
-      
-      # Copy new config
-      cp -r config/"$DIR" ~/.config/"$DIR" 2>&1 | tee -a "$LOG"
-      if [ $? -eq 0 ]; then
-        echo "${OK} - Copy of config for $DIR completed!"
-      else
-        echo "${ERROR} - Failed to copy $DIR."
-        exit 1
-      fi
     else
       echo "${ERROR} - Failed to back up $DIR."
       exit 1
     fi
   fi
+  
+  # Copy the new config
+  if [ -d "config/$DIR" ]; then
+    cp -r "config/$DIR" ~/.config/"$DIR" 2>&1 | tee -a "$LOG"
+    if [ $? -eq 0 ]; then
+      echo "${OK} - Copy of config for $DIR completed!"
+    else
+      echo "${ERROR} - Failed to copy $DIR."
+      exit 1
+    fi
+  else
+    echo "${ERROR} - Directory config/$DIR does not exist to copy."
+    exit 1
+  fi
 done
 
-printf "\n%.0s" {1..1}
+printf "\n"
 
 printf "${NOTE} - copying dotfiles second part\n"
 
