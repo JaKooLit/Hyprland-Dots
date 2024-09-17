@@ -175,9 +175,13 @@ element normal.active {
 }
 
 element selected.normal {
-    background-color:            @selected;
-    text-color:                  @text-selected;
+    border:                      0px 5px 0px 5px;
+    border-radius:               16px;
+    border-color:                @selected;
+    background-color:            transparent;
+    text-color:                  @selected;
 }
+
 element selected.urgent {
     background-color:            @urgent;
     text-color:                  @text-selected;
@@ -202,7 +206,6 @@ element alternate.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        36px;
     cursor:                      inherit;
 }
 element-text {
