@@ -22,9 +22,9 @@ listview {
 /* ---- Element ---- */
 element {
   orientation: vertical;
-  padding: 12px;
+  padding: 12px 0px 0px 0px;
   spacing: 6px;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
 element-icon {
