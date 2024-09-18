@@ -386,7 +386,7 @@ printf "\n"
 printf "${NOTE} - copying dotfiles second part\n"
 
 # Config directories which will ask the user whether to replace or not
-DIRS="ags fastfetch kitty nvim rofi swaync waybar"
+DIRS="ags fastfetch kitty rofi swaync waybar"
 for DIR2 in $DIRS; do
   DIRPATH=~/.config/"$DIR2"
   
