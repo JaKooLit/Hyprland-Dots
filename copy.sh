@@ -348,35 +348,47 @@ if [ ! -d "config" ]; then
   exit 1
 fi
 
-for DIR in btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout; do
-  DIRPATH=~/.config/"$DIR"
+DIR="
+  btop
+  cava
+  hypr
+  Kvantum
+  qt5ct
+  qt6ct
+  swappy
+  wallust
+  wlogout
+"
+
+for DIR_NAME in $DIR; do
+  DIRPATH=~/.config/"$DIR_NAME"
   
   # Backup the existing directory if it exists
   if [ -d "$DIRPATH" ]; then
-    echo -e "${NOTE} - Config for $DIR found, attempting to back up."
+    echo -e "${NOTE} - Config for $DIR_NAME found, attempting to back up."
     BACKUP_DIR=$(get_backup_dirname)
     
     # Backup the existing directory
     mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
     if [ $? -eq 0 ]; then
-      echo -e "${NOTE} - Backed up $DIR to $DIRPATH-backup-$BACKUP_DIR."
+      echo -e "${NOTE} - Backed up $DIR_NAME to $DIRPATH-backup-$BACKUP_DIR."
     else
-      echo "${ERROR} - Failed to back up $DIR."
+      echo "${ERROR} - Failed to back up $DIR_NAME."
       exit 1
     fi
   fi
   
   # Copy the new config
-  if [ -d "config/$DIR" ]; then
-    cp -r "config/$DIR" ~/.config/"$DIR" 2>&1 | tee -a "$LOG"
+  if [ -d "config/$DIR_NAME" ]; then
+    cp -r "config/$DIR_NAME" ~/.config/"$DIR_NAME" 2>&1 | tee -a "$LOG"
     if [ $? -eq 0 ]; then
-      echo "${OK} - Copy of config for $DIR completed!"
+      echo "${OK} - Copy of config for $DIR_NAME completed!"
     else
-      echo "${ERROR} - Failed to copy $DIR."
+      echo "${ERROR} - Failed to copy $DIR_NAME."
       exit 1
     fi
   else
-    echo "${ERROR} - Directory config/$DIR does not exist to copy."
+    echo "${ERROR} - Directory config/$DIR_NAME does not exist to copy."
     exit 1
   fi
 done
@@ -386,7 +398,14 @@ printf "\n"
 printf "${NOTE} - copying dotfiles second part\n"
 
 # Config directories which will ask the user whether to replace or not
-DIRS="ags fastfetch kitty rofi swaync waybar"
+DIRS="
+  ags 
+  fastfetch 
+  kitty 
+  rofi 
+  swaync 
+  waybar
+"
 for DIR2 in $DIRS; do
   DIRPATH=~/.config/"$DIR2"
   
