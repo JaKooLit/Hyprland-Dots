@@ -333,8 +333,15 @@ printf "\n"
 # Copy Config Files #
 set -e # Exit immediately if a command exits with a non-zero status.
 
-printf "${NOTE} - copying dotfiles first part\n"
+# Function to create a unique backup directory name with month, day, hours, and minutes
+get_backup_dirname() {
+  local timestamp
+  timestamp=$(date +"%m%d_%H%M")
+  echo "back-up_${timestamp}"
+}
 
+
+printf "${NOTE} - copying dotfiles first part\n"
 # Config directories which will ask the user whether to replace or not
 DIRS="
   ags 
@@ -397,13 +404,6 @@ done
 printf "\n%.0s" {1..1}
 
 printf "${NOTE} - Copying dotfiles second part\n"
-
-# Function to create a unique backup directory name with month, day, hours, and minutes
-get_backup_dirname() {
-  local timestamp
-  timestamp=$(date +"%m%d_%H%M")
-  echo "back-up_${timestamp}"
-}
 
 # Check if the config directory exists
 if [ ! -d "config" ]; then
