@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Master Config */
+/* Master Config 1080p*/
 
 /* ---- Configuration ---- */
 
@@ -175,7 +175,7 @@ element normal.active {
 }
 
 element selected.normal {
-    border:                      0px 5px 0px 5px;
+    border:                      1px 6px 1px 6px;
     border-radius:               16px;
     border-color:                @selected;
     background-color:            transparent;
