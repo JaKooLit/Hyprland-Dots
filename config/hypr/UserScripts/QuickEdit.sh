@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Rofi menu for Quick Edit/View of Settings (SUPER E)
 
 # Define preferred text editor and terminal

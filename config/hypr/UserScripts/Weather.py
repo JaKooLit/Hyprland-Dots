@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
+# weather using python
+
 import subprocess
 from pyquery import PyQuery  # install using `pip install pyquery`
 import json
