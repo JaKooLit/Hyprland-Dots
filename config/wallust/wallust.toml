@@ -31,7 +31,7 @@ palette = "dark16"
 #  2 - 10     Perceptible at a glance.
 #  11 - 49    Colors are more similar than opposite
 #  100        Colors are exact opposite
-threshold = 10
+threshold = 11
 
 [templates]
 cava.template = 'colors-cava'
