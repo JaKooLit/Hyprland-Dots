@@ -104,17 +104,23 @@ tooltip label{
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
-#custom-hint,
-#custom-hypridle,
+#custom-file_manager,
+#custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
+#custom-hint,
+#custom-hypridle,
 #custom-menu,
-#custom-power,
 #custom-power_vertical,
+#custom-power,
+#custom-settings,
+#custom-spotify,
 #custom-swaync,
+#custom-tty,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -127,11 +133,11 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-    background-image: linear-gradient(45deg, #14e81e 10%, #017ed5 54%, #8d00c4 90%);
+    background-image: linear-gradient(45deg, #95E6CB, #59C2FF, #D2A6FF);
 	color: black;
 	border: 1px;
 	border-style: solid;
-	border-radius: 4px;
+	border-radius: 6px;
 	padding-top: 4px;
 	padding-bottom: 4px;
 	padding-right: 6px;

@@ -1,0 +1,198 @@
+//* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
+/* Waybar Modules - Custom Modules */
+/* Basically created to reduce the lines in Waybar Modules bank */
+/* NOTE: This is only for Custom Modules */
+/* Custom Modules like weather browser, tty, file manager at the beginning */
+
+{
+"custom/weather": {
+	"format": "{}",
+	"format-alt": "{alt}: {}",
+	"format-alt-click": "click",
+	"interval": 3600,
+	"return-type": "json",
+	"exec": "$HOME/.config/hypr/UserScripts/Weather.sh",
+	//"exec": "$HOME/.config/hypr/UserScripts/Weather.py",
+	"exec-if": "ping wttr.in -c1",
+	"tooltip": true,
+},
+
+"custom/file_manager": {
+	"format": " ",
+	"on-click": "thunar",
+	"tooltip": true,
+	"tooltip-format": "File Manager",
+},
+
+"custom/tty": {
+	"format": " ",
+	"on-click": "kitty",
+	"tooltip": true,
+	"tooltip-format": "Launch Terminal",
+},
+
+"custom/browser": {
+	"format": " ",
+	"on-click": "firefox",
+	"tooltip": true,
+	"tooltip-format": "Launch Browser",
+},
+
+"custom/settings": {
+	"format": " ",
+	"on-click": "$HOME/.config/hypr/UserScripts/QuickEdit.sh",
+	"tooltip": true,
+	"tooltip-format": "Launch Quick Edit",
+},
+
+"custom/cycle_wall": {
+	"format": " ",
+	"on-click": "$HOME/.config/hypr/UserScripts/WallpaperSelect.sh",
+	"on-click-right": "$HOME/.config/hypr/UserScripts/WallpaperRandom.sh",
+	"on-click-middle": "$HOME/.config/hypr/scripts/WaybarStyles.sh",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Wallpaper Menu\nMiddle Click: Random wallpaper\nRight Click: Waybar Styles Menu",
+},
+
+"custom/hint": {
+	"format": "󰺁 HINT!",
+	"on-click": "$HOME/.config/hypr/scripts/KeyHints.sh",
+	"on-click-right": "$HOME/.config/hypr/scripts/KeyBinds.sh",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Quick Tips\nRight Click: Keybinds",
+},
+
+// Hypridle inhibitor
+"custom/hypridle": {
+	"format": "󱫗 ",
+	"return-type": "json",
+	"escape": true,
+	"exec-on-event": true,
+	"interval": 60,
+	"exec": "$HOME/.config/hypr/scripts/Hypridle.sh status",
+	"on-click": "$HOME/.config/hypr/scripts/Hypridle.sh toggle",
+	"on-click-right": "hyprlock"
+},
+
+"custom/keyboard": {
+	"exec": "cat $HOME/.cache/kb_layout",
+	"interval": 1,
+	"format": " {}",
+	"on-click": "$HOME/.config/hypr/scripts/SwitchKeyboardLayout.sh",
+},
+
+"custom/light_dark": {
+	"format": "󰔎 ",
+	"on-click": "$HOME/.config/hypr/scripts/DarkLight.sh",
+	"on-click-right": "$HOME/.config/hypr/scripts/WaybarStyles.sh",
+	"on-click-middle": "$HOME/.config/hypr/UserScripts/WallpaperSelect.sh",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Switch Dark-Light Themes\nMiddle Click: Wallpaper Menu\nRight Click: Waybar Styles Menu",
+},
+
+"custom/lock": {
+	"format": "󰌾",
+	"on-click": "$HOME/.config/hypr/scripts/LockScreen.sh",
+	"tooltip": true,
+	"tooltip-format": "󰷛 Screen Lock",
+},
+
+"custom/menu": {
+	"format": "",
+	"on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser,window",
+	"on-click-middle": "$HOME/.config/hypr/UserScripts/WallpaperSelect.sh",
+	"on-click-right": "$HOME/.config/hypr/scripts/WaybarLayout.sh",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Rofi Menu\nMiddle Click: Wallpaper Menu\nRight Click: Waybar Layout Menu",
+},
+// This is a custom cava visualizer
+"custom/cava_mviz": {
+	"exec": "$HOME/.config/hypr/scripts/WaybarCava.sh",
+	"format": "{}"
+},
+
+"custom/playerctl": {
+	"format": "<span>{}</span>",
+	"return-type": "json",
+	"max-length": 35,
+	"exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} $HOME {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+	"on-click-middle": "playerctl play-pause",
+	"on-click": "playerctl previous",
+	"on-click-right": "playerctl next",
+	"scroll-step": 5.0,
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+	"smooth-scrolling-threshold": 1,
+},
+
+"custom/power": {
+	"format": "⏻ ",
+	"on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
+	"on-click-right": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur",
+},
+
+"custom/swaync": {
+	"tooltip": true,
+	"tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
+	"format": "{} {icon}",
+	"format-icons": {
+		"notification": "<span foreground='red'><sup></sup></span>",
+		"none": "",
+		"dnd-notification": "<span foreground='red'><sup></sup></span>",
+		"dnd-none": "",
+		"inhibited-notification": "<span foreground='red'><sup></sup></span>",
+		"inhibited-none": "",
+		"dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+		"dnd-inhibited-none": ""
+	},
+	"return-type": "json",
+	"exec-if": "which swaync-client",
+	"exec": "swaync-client -swb",
+	"on-click": "sleep 0.1 && swaync-client -t -sw",
+	"on-click-right": "swaync-client -d -sw",
+	"escape": true,
+},
+// NOTE:! This is only for Arch and Arch Based Distros  depend: pacman-contrib
+"custom/updater": {
+	"format": " {}",
+	"exec": "checkupdates | wc -l",
+	"exec-if": "[[ $(checkupdates | wc -l) ]]",
+	"interval": 15,
+	"on-click": "if command -v paru &> /dev/null; then kitty -T update paru -Syu; else kitty -T update yay -Syu; fi && notify-send 'The system has been updated'",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Update System\nArch Linux Only",
+},
+// Separators
+"custom/separator#dot": {
+	"format": "",
+	"interval": "once",
+	"tooltip": false
+},
+"custom/separator#dot-line": {
+	"format": "",
+	"interval": "once",
+	"tooltip": false
+},
+"custom/separator#line": {
+	"format": "|",
+	"interval": "once",
+	"tooltip": false
+},
+"custom/separator#blank": {
+	"format": "",
+	"interval": "once",
+	"tooltip": false
+},
+"custom/separator#blank_2": {
+	"format": "  ",
+	"interval": "once",
+	"tooltip": false
+},
+"custom/separator#blank_3": {
+	"format": "   ",
+	"interval": "once",
+	"tooltip": false
+},
+}

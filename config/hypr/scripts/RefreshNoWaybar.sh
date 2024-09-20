@@ -1,9 +1,9 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 
-# Modified version of Refresh but no waybar refresh
+# Modified version of Refresh.sh but no waybar refreshing
 # Used by automatic wallpaper change
-# Modified inorder to refresh rofi background, Wallust, SwayNC
+# Modified inorder to refresh rofi background, Wallust, SwayNC only
 
 SCRIPTSDIR=$HOME/.config/hypr/scripts
 UserScripts=$HOME/.config/hypr/UserScripts

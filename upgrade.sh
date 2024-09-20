@@ -1,11 +1,14 @@
 #!/bin/bash
-### https://github.com/JaKooLit/JaKooLit
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
+# for Semi-Manual upgrading your system.
+# NOTE: requires rsync 
+
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
@@ -17,7 +20,7 @@ if [ ! -d Upgrade-Logs ]; then
     mkdir Upgrade-Logs
 fi
 
-LOG="Upgrade-Logs/upgrade-$(date +%d-%H%M%S)_dotfiles.log"
+LOG="Upgrade-Logs/upgrade-$(date +%d-%H%M%S)_upgrade_dotfiles.log"
 
 # source and target versions
 source_dir="config"

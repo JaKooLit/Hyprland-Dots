@@ -1,12 +1,12 @@
 #!/bin/bash
-### https://github.com/JaKooLit/JaKooLit
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 
 clear
 
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified
 waybar_style="$HOME/.config/waybar/style/[Dark] Latte-Wallust combined.css"
-waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v3"
-waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 
+waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v4"
+waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v4" 
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -122,7 +122,7 @@ If you are not sure, just type us
 
 NOTE:
 •  You can also set more than 2 keyboard layouts
-•  For example us,kr,gb,ru
+•  For example us, kr, gb, ru
 "
     printf "\n%.0s" {1..1}
     read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
@@ -140,7 +140,7 @@ printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n\
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
-  read -p "$ORANGE Current keyboard layout is: $layout. Is this correct? [y/n] " confirm
+  read -p "$ORANGE Current keyboard layout is: $layout ${CAT} Is this correct? [y/n] " confirm
 
   case $confirm in
     [yY])
@@ -170,7 +170,7 @@ If you are not sure, just type us
 
 NOTE:
 •  You can also set more than 2 keyboard layouts
-•  For example us,kr,gb,ru
+•  For example us, kr, gb, ru
 "
     printf "\n%.0s" {1..1}
     
@@ -218,7 +218,7 @@ while true; do
 done
 
 # Use the selected resolution in your existing script
-echo "You chose $resolution resolution." 2>&1 | tee -a "$LOG"
+echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 
 # Add your commands based on the resolution choice
 if [ "$resolution" == "≤ 1080p" ]; then
@@ -244,34 +244,35 @@ while true; do
   # Convert the answer to lowercase for comparison
   answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 
-  # Check if the answer is valid
-  if [[ "$answer" == "y" ]]; then
+# Check if the answer is valid
+if [[ "$answer" == "y" ]]; then
     # Modify waybar config if 12hr is selected
     # Clock 1
-    sed -i 's#^    \/\/"format": " {:%I:%M %p}", // AM PM format#    "format": " {:%I:%M %p}", // AM PM format#' config/waybar/Modules 2>&1 | tee -a "$LOG"
-    sed -i 's#^    "format": " {:%H:%M:%S}", // 24H#    \/\/"format": " {:%H:%M:%S}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\)//"format": " {:%I:%M %p}", // AM PM format#\1"format": " {:%I:%M %p}", // AM PM format#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\) "format": " {:%H:%M:%S}", // 24H#\1// "format": " {:%H:%M:%S}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
     
     # Clock 2
-    sed -i 's#^    "format": "  {:%H:%M}", // 24H#    \/\/"format": "  {:%H:%M}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\) "format": "  {:%H:%M}", // 24H#\1// "format": "  {:%H:%M}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
     
     # Clock 3
-    sed -i 's#^    \/\/"format": "{:%I:%M %p - %d/%b}", //for AM/PM#    "format": "{:%I:%M %p - %d/%b}", //for AM/PM#' config/waybar/Modules 2>&1 | tee -a "$LOG"
-    sed -i 's#^    "format": "{:%H:%M - %d/%b}", // 24H#    \/\/"format": "{:%H:%M - %d/%b}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\)//"format": "{:%I:%M %p - %d/%b}", //for AM/PM#\1"format": "{:%I:%M %p - %d/%b}", //for AM/PM#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\) "format": "{:%H:%M - %d/%b}", // 24H#\1// "format": "{:%H:%M - %d/%b}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
     
     # Clock 4
-    sed -i 's#^    \/\/"format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format#    "format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format#' config/waybar/Modules 2>&1 | tee -a "$LOG"
-    sed -i 's#^    "format": "{:%B | %a %d, %Y | %H:%M}", // 24H#    \/\/"format": "{:%B | %a %d, %Y | %H:%M}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\)//"format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format#\1"format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\) "format": "{:%B | %a %d, %Y | %H:%M}", // 24H#\1// "format": "{:%B | %a %d, %Y | %H:%M}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
 
     # Clock 5
-    sed -i 's#^    \/\/"format": "{:%A, %I:%M %P}", // AM PM format#    "format": "{:%A, %I:%M %P}", // AM PM format#' config/waybar/Modules 2>&1 | tee -a "$LOG"
-    sed -i 's#^    "format": "{:%a %d | %H:%M}", // 24H#    \/\/"format": "{:%a %d | %H:%M}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\)//"format": "{:%A, %I:%M %P}", // AM PM format#\1"format": "{:%A, %I:%M %P}", // AM PM format#' config/waybar/Modules 2>&1 | tee -a "$LOG"
+    sed -i 's#^\(\s*\) "format": "{:%a %d | %H:%M}", // 24H#\1// "format": "{:%a %d | %H:%M}", // 24H#' config/waybar/Modules 2>&1 | tee -a "$LOG"
             
     # for hyprlock
-    sed -i 's/^    text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
 
-    sed -i 's/^    text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+
 
     # for SDDM (simple-sddm)
     sddm_folder="/usr/share/sddm/themes/simple-sddm"
@@ -281,7 +282,7 @@ while true; do
       sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_folder/theme.conf" 2>&1 | tee -a "$LOG" || true
       sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_folder/theme.conf" 2>&1 | tee -a "$LOG" || true
 
-      echo "12H format set to SDDM theme successfully." 2>&1 | tee -a "$LOG"
+      echo "${OK} 12H format set to SDDM theme successfully." 2>&1 | tee -a "$LOG"
     fi
 
         # for SDDM (simple-sddm-2)
@@ -297,7 +298,7 @@ while true; do
 
     break
   elif [[ "$answer" == "n" ]]; then
-    echo "You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
+    echo "${NOTE} You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
     break
   else
     echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
@@ -313,7 +314,7 @@ printf "${NOTE} - By default, Rainbow Borders animation is enabled.\n"
 printf "${NOTE} - However, this uses a bit more CPU and Memory resources.\n"
 
 # Prompt user to disable Rainbow Borders
-read -p "Do you want to disable Rainbow Borders animation? (Y/N): " choice
+read -p "${CAT} Do you want to disable Rainbow Borders animation? (Y/N): " choice
 if [[ "$choice" =~ ^[Yy]$ ]]; then
     # Move RainbowBorders.sh script to backup location
     mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
@@ -324,9 +325,9 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
     # Comment out the line animation = borderangle, 1, 180, liner, loop
     sed -i '/  animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserDecorAnimations.conf
     
-    echo "Rainbow borders is now disabled." 2>&1 | tee -a "$LOG"
+    echo "${OK} Rainbow borders is now disabled." 2>&1 | tee -a "$LOG"
 else
-    echo "No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$LOG"
+    echo "${NOTE} No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$LOG"
 fi
 printf "\n"
 
@@ -473,19 +474,21 @@ printf "\n"
 if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
     ln -sf "$waybar_config" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    # Remove old configurations for desktop
+    # Remove waybar configs for laptop
     rm -rf "$HOME/.config/waybar/configs/[TOP] Default Laptop" \
            "$HOME/.config/waybar/configs/[BOT] Default Laptop" \
            "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" \
-           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 2>&1 | tee -a "$LOG" || true
+           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" \
+           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v4" 2>&1 | tee -a "$LOG" || true
 else
     # Configurations for a laptop or any system other than desktop
     ln -sf "$waybar_config_laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    # Remove old configurations for laptop
+    # Remove waybar configs for desktop
     rm -rf "$HOME/.config/waybar/configs/[TOP] Default" \
            "$HOME/.config/waybar/configs/[BOT] Default" \
            "$HOME/.config/waybar/configs/[TOP] Default_v2" \
-           "$HOME/.config/waybar/configs/[TOP] Default_v3" 2>&1 | tee -a "$LOG" || true
+           "$HOME/.config/waybar/configs/[TOP] Default_v3" \
+           "$HOME/.config/waybar/configs/[TOP] Default_v4" 2>&1 | tee -a "$LOG" || true
 fi
 
 # additional wallpapers
@@ -493,7 +496,7 @@ echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)
 printf "\n"
 
 while true; do
-  read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is more than >600mb (y/n)" WALL
+  read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is more than >700mb (y/n)" WALL
   case $WALL in
     [Yy])
       echo "${NOTE} Downloading additional wallpapers..."

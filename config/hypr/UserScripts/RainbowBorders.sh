@@ -1,4 +1,6 @@
 #!/bin/bash
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# for rainbow borders animation
 
 function random_hex() {
     random_hex=("0xff$(openssl rand -hex 3)")

@@ -233,6 +233,17 @@ color: #F3F4F5;
 	padding: 2px 15px;
 }
 
+#custom-browser,
+#custom-file_manager,
+#custom-tty,
+#custom-settings {
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding: 2px 15px;
+	color: #0F1419;
+    background: linear-gradient(45deg, #95E6CB, #59C2FF, #D2A6FF);
+}
+
 #custom-weather {
 	color: #59C2FF;
 	background: #0F1419;
