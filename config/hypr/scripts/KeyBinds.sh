@@ -3,6 +3,11 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Searchable enabled keybinds using rofi
 
+# Check if yad is running and kill it if it is
+if pgrep -x "yad" > /dev/null; then
+    pkill yad
+fi
+
 # Define the config files
 KEYBINDS_CONF="$HOME/.config/hypr/configs/Keybinds.conf"
 USER_KEYBINDS_CONF="$HOME/.config/hypr/UserConfigs/UserKeybinds.conf"

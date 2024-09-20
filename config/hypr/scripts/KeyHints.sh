@@ -5,6 +5,11 @@
 # GDK BACKEND. Change to either wayland or x11 if having issues
 BACKEND=wayland
 
+# Check if rofi is running and kill it if it is
+if pgrep -x "rofi" > /dev/null; then
+    pkill rofi
+fi
+
 # Detect monitor resolution and scale
 x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
 y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')

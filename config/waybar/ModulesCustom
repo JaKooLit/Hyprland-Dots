@@ -57,20 +57,21 @@
 "custom/hint": {
 	"format": "󰺁 HINT!",
 	"on-click": "$HOME/.config/hypr/scripts/KeyHints.sh",
+	"on-click-right": "$HOME/.config/hypr/scripts/KeyBinds.sh",
 	"tooltip": true,
-	"tooltip-format": "󱧣 Quick Tips",
+	"tooltip-format": "Left Click: Quick Tips\nRight Click: Keybinds",
 },
 
 // Hypridle inhibitor
 "custom/hypridle": {
-    "format": "󱫗 ",
-    "return-type": "json",
-    "escape": true,
-    "exec-on-event": true,
-    "interval": 60,
-    "exec": "$HOME/.config/hypr/scripts/Hypridle.sh status",
-    "on-click": "$HOME/.config/hypr/scripts/Hypridle.sh toggle",
-    "on-click-right": "hyprlock"
+	"format": "󱫗 ",
+	"return-type": "json",
+	"escape": true,
+	"exec-on-event": true,
+	"interval": 60,
+	"exec": "$HOME/.config/hypr/scripts/Hypridle.sh status",
+	"on-click": "$HOME/.config/hypr/scripts/Hypridle.sh toggle",
+	"on-click-right": "hyprlock"
 },
 
 "custom/keyboard": {

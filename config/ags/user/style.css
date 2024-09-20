@@ -6,7 +6,7 @@
 
 /* define some colors */
 @define-color border-color @color12;
-@define-color border-color-alt @color1;
+@define-color border-color-alt @color9;
 @define-color text-color rgba(255, 255, 255, 0.7);
 @define-color noti-bg rgba(0, 0, 0, 0.4);
 @define-color noti-bg-alt #111111;
@@ -24,11 +24,11 @@ widget {
   transition: 300ms cubic-bezier(0, 0.55, 0.45, 1);
   border-radius: 1.705rem;
   -gtk-outline-radius: 1.705rem;
-  border-top: 2px solid @border-color;
+  border-top: 4px solid @border-color;
   border-left: 1px solid @border-color-alt;
   border-right: 1px solid @border-color-alt;
-  border-bottom: 2px solid @border-color;
-  /*box-shadow: 0px 2px 3px alpha(@color0, 0.45); */
+  border-bottom: 4px solid @border-color;
+  box-shadow: 0px 2px 3px alpha(@color12, 0.45);
   margin: 0.476rem;
   min-width: 13.636rem;
   min-height: 3.409rem;
@@ -70,10 +70,10 @@ widget {
 .overview-search-results {
   border-radius: 1.705rem;
   -gtk-outline-radius: 1.705rem;
-  border-top: 2px solid @border-color;
+  border-top: 4px solid @border-color;
   border-left: 1px solid @border-color-alt;
   border-right: 1px solid @border-color-alt;
-  border-bottom: 2px solid @border-color;
+  border-bottom: 4px solid @border-color;
   box-shadow: 0px 2px 3px @color9;
   margin: 0.476rem;
   min-width: 28.773rem;
@@ -123,10 +123,10 @@ widget {
 .overview-tasks {
   border-radius: 1.705rem;
   -gtk-outline-radius: 1.705rem;
-  border-top: 2px solid @border-color;
+  border-top: 4px solid @border-color;
   border-left: 1px solid @border-color-alt;
   border-right: 1px solid @border-color-alt;
-  border-bottom: 2px solid @border-color;
+  border-bottom: 4px solid @border-color;
   box-shadow: 0px 2px 3px @color5;
   margin: 0.476rem;
   padding: 0.341rem;
