@@ -3,7 +3,6 @@
 # Script for Oh my ZSH theme ( CTRL SHIFT O)
 
 # preview of theme can be view here: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-
 # after choosing theme, TTY need to be closed and re-open
 
 themes_dir="$HOME/.oh-my-zsh/themes"

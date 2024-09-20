@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Searchable enabled keybinds using rofi
 

@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Rofi Beats Config (compact) */
+/* Main config Rofi Beats Config (compact) */
 
 @import "~/.config/rofi/master-config.rasi"  
 

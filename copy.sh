@@ -1,5 +1,5 @@
 #!/bin/bash
-### https://github.com/JaKooLit/JaKooLit
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 
 clear
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # weather using python
 
