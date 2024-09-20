@@ -5,8 +5,8 @@ clear
 
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified
 waybar_style="$HOME/.config/waybar/style/[Dark] Latte-Wallust combined.css"
-waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v3"
-waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" 
+waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v4"
+waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v4" 
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -474,7 +474,7 @@ printf "\n"
 if hostnamectl | grep -q 'Chassis: desktop'; then
     # Configurations for a desktop
     ln -sf "$waybar_config" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    # Remove old configurations for desktop
+    # Remove waybar configs for laptop
     rm -rf "$HOME/.config/waybar/configs/[TOP] Default Laptop" \
            "$HOME/.config/waybar/configs/[BOT] Default Laptop" \
            "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" \
@@ -483,7 +483,7 @@ if hostnamectl | grep -q 'Chassis: desktop'; then
 else
     # Configurations for a laptop or any system other than desktop
     ln -sf "$waybar_config_laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    # Remove old configurations for laptop
+    # Remove waybar configs for desktop
     rm -rf "$HOME/.config/waybar/configs/[TOP] Default" \
            "$HOME/.config/waybar/configs/[BOT] Default" \
            "$HOME/.config/waybar/configs/[TOP] Default_v2" \
