@@ -352,7 +352,7 @@ printf "\n"
 # Rainbow Borders
 # Check if the user wants to disable Rainbow borders
 # Print message about Rainbow Borders
-printf "${INFO} - By default, Rainbow Borders animation is enabled.\n"
+printf "${ORANGE} By default, Rainbow Borders animation is enabled.\n"
 printf "${WARN} - However, this uses a bit more CPU and Memory resources.\n"
 
 # Prompt user to disable Rainbow Borders
@@ -638,14 +638,70 @@ while true; do
   esac
 done
 
+# CLeaning up of ~/.config/ backups
+cleanup_backups() {
+  CONFIG_DIR=~/.config
+  BACKUP_PREFIX="-backup"
+
+  # Loop through directories in ~/.config
+  for DIR in "$CONFIG_DIR"/*; do
+    if [ -d "$DIR" ]; then
+      BACKUP_DIRS=()
+
+      # Check for backup directories
+      for BACKUP in "$DIR"$BACKUP_PREFIX*; do
+        if [ -d "$BACKUP" ]; then
+          BACKUP_DIRS+=("$BACKUP")
+        fi
+      done
+
+      # If more than one backup found
+      if [ ${#BACKUP_DIRS[@]} -gt 1 ]; then
+		printf "\n\n ${INFO} Performing clean up for ${ORANGE}${DIR##*/}${RESET}\n"
+
+        echo -e "${NOTE} Found multiple backups for: ${ORANGE}${DIR##*/}${RESET}"
+        echo "${YELLOW}Backups: ${RESET}"
+
+        # List the backups
+        for BACKUP in "${BACKUP_DIRS[@]}"; do
+          echo "  - ${BACKUP##*/}"
+        done
+
+        read -p "${CAT} Do you want to delete the older backups of ${ORANGE}${DIR##*/}${RESET} and keep the latest backup only? (y/n): " back_choice
+        if [[ "$back_choice" == [Yy]* ]]; then
+          # Sort backups by modification time
+          latest_backup="${BACKUP_DIRS[0]}"
+          for BACKUP in "${BACKUP_DIRS[@]}"; do
+            if [ "$BACKUP" -nt "$latest_backup" ]; then
+              latest_backup="$BACKUP"
+            fi
+          done
+
+          for BACKUP in "${BACKUP_DIRS[@]}"; do
+            if [ "$BACKUP" != "$latest_backup" ]; then
+              echo "Deleting: ${BACKUP##*/}"
+              rm -rf "$BACKUP"
+            fi
+          done
+          echo "Old backups of ${ORANGE}${DIR##*/}${RESET} deleted, keeping: ${YELLOW}${latest_backup##*/}${RESET}"
+        fi
+      fi
+    fi
+  done
+}
+
+# Execute the cleanup function
+cleanup_backups
+
+printf "\n%.0s" {1..1}
+
 # symlinks for waybar style
 ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
 
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
-
 printf "\n%.0s" {1..2}
-printf "${OK} GREAT! KooL's Hyprland-Dots Loaded & Ready!!!\n\n\n"
+printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready!!!"
 printf "\n%.0s" {1..1}
 printf "${ORANGE} BUT SUGGEST to logout and re-login or reboot to avoid anyissues\n\n"
