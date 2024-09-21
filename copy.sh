@@ -201,22 +201,23 @@ printf "\n"
 update_editor() {
     local editor=$1
     sed -i "s/#env = EDITOR,.*/env = EDITOR,$editor #default editor/" config/hypr/UserConfigs/ENVariables.conf
-    echo "${OK} Default editor set to $editor." 2>&1 | tee -a "$LOG"
+    echo "${OK} Default editor set to ${ORANGE}$editor${RESET}." 2>&1 | tee -a "$LOG"
 }
 
 # Check for neovim if installed
 if command -v nvim &> /dev/null; then
-    printf "${NOTE} neovim is detected as installed\n"
-    read -p "${CAT} Do you want to make neovim the default editor? (y/n): " EDITOR_CHOICE
+    printf "${NOTE} ${ORANGE}neovim${RESET} is detected as installed\n"
+    read -p "${CAT} Do you want to make ${ORANGE}neovim${RESET} the default editor? (y/n): " EDITOR_CHOICE
     if [[ "$EDITOR_CHOICE" == "y" ]]; then
         update_editor "nvim"
+        exit 0
     fi
 fi
 
 # Check for vim if installed
 if command -v vim &> /dev/null; then
-    printf "${NOTE} vim is detected as installed\n"
-    read -p "${CAT} Do you want to make vim the default editor? (y/n): " EDITOR_CHOICE
+    printf "${NOTE} ${ORANGE}vim${RESET} is detected as installed\n"
+    read -p "${CAT} Do you want to make ${ORANGE}vim${RESET} the default editor? (y/n): " EDITOR_CHOICE
     if [[ "$EDITOR_CHOICE" == "y" ]]; then
         update_editor "vim"
     fi
