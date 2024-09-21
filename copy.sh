@@ -104,7 +104,7 @@ layout=$(detect_layout)
 if [ "$layout" = "(unset)" ]; then
   while true; do
     printf "\n%.0s" {1..1}
-print_color $ORANGE "
+    print_color $ORANGE "
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
         STOP AND READ
 █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
@@ -131,7 +131,7 @@ NOTE:
         layout="$new_layout"
         break
     else
-        echo "Please enter a keyboard layout."
+        echo "${CAT} Please enter a keyboard layout."
     fi
   done
 fi
@@ -140,19 +140,20 @@ printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n\
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
-  read -p "$ORANGE Current keyboard layout is: $layout ${CAT} Is this correct? [y/n] " confirm
+  printf "${NOTE} Current keyboard layout is ${ORANGE}$layout${RESET}\n"
+  read -p "${CAT} Is this correct? [y/n] " keyboard_layout
 
-  case $confirm in
+  case $keyboard_layout in
     [yY])
         # If the detected layout is correct, update the 'kb_layout =' line in the file
         awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
         
-        echo "${NOTE} kb_layout $layout configured in settings.  " 2>&1 | tee -a "$LOG"
+        echo "${NOTE} kb_layout ${ORANGE}$layout${RESET} configured in settings." 2>&1 | tee -a "$LOG"
         break ;;
     [nN])
         printf "\n%.0s" {1..2}
-print_color $ORANGE "
+        print_color $ORANGE "
 █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
         STOP AND READ
 █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
@@ -172,17 +173,17 @@ NOTE:
 •  You can also set more than 2 keyboard layouts
 •  For example us, kr, gb, ru
 "
-    printf "\n%.0s" {1..1}
-    
-    read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
-    
-    # Update the 'kb_layout =' line with the correct layout in the file
-    awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
-    mv temp.conf config/hypr/UserConfigs/UserSettings.conf
-    echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
-    break ;;
+        printf "\n%.0s" {1..1}
+        
+        read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+        
+        # Update the 'kb_layout =' line with the correct layout in the file
+        awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
+        mv temp.conf config/hypr/UserConfigs/UserSettings.conf
+        echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
+        break ;;
     *)
-    echo "${ERROR} Please enter either 'y' or 'n'." ;;
+        echo "${ERROR} Please enter either 'y' or 'n'." ;;
   esac
 done
 
@@ -191,6 +192,36 @@ printf "\n"
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
     sed -i '/exec-once = rog-control-center &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+fi
+
+printf "\n"
+
+# Checking if neovim or vim is installed and offer user if they want to make as default editor
+# Function to modify the ENVariables.conf file
+update_editor() {
+    local editor=$1
+    sed -i "s/#env = EDITOR,.*/env = EDITOR,$editor #default editor/" config/hypr/UserConfigs/ENVariables.conf
+    echo "${OK} Default editor set to $editor." 2>&1 | tee -a "$LOG"
+}
+
+# Check for neovim if installed
+if command -v nvim &> /dev/null; then
+    printf "${NOTE} neovim is detected as installed\n"
+    read -p "${CAT} Do you want to make neovim the default editor? (y/n): " EDITOR_CHOICE
+    if [[ "$EDITOR_CHOICE" == "y" ]]; then
+        update_editor "nvim"
+    fi
+fi
+
+# Check for vim if installed
+if command -v vim &> /dev/null; then
+    printf "${NOTE} vim is detected as installed\n"
+    read -p "${CAT} Do you want to make vim the default editor? (y/n): " EDITOR_CHOICE
+    if [[ "$EDITOR_CHOICE" == "y" ]]; then
+        update_editor "vim"
+    fi
+else
+    echo "${ORANGE} Neither neovim nor vim is installed."
 fi
 
 printf "\n"
