@@ -501,7 +501,6 @@ done
 
 printf "\n"
 
-
 printf "${INFO} - Copying dotfiles ${BLUE}hypr directory${RESET} part\n"
 
 # Check if the config directory exists
@@ -514,6 +513,7 @@ DIR="hypr"
 FILES_TO_RESTORE=(
   "Monitors.conf" 
   "Laptops.conf"
+  "UserKeybinds.conf"
   )  
 for DIR_NAME in $DIR; do
   DIRPATH=~/.config/"$DIR_NAME"
@@ -543,15 +543,14 @@ for DIR_NAME in $DIR; do
       for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
         BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
         if [ -f "$BACKUP_FILE" ]; then
-          echo -e "${INFO} - Found in backup ${YELLOW}$FILE_NAME${RESET}..."
+          printf "\n"
+          echo -e "${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup..."
           read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/n): " file_restore
           if [[ "$file_restore" == [Yy]* ]]; then
-            cp "$BACKUP_FILE" ~/.config/"$DIR_NAME"/UserConfigs/"$FILE_NAME" && echo "${OK} - $FILE_NAME restored!"
+            cp "$BACKUP_FILE" ~/.config/"$DIR_NAME"/UserConfigs/"$FILE_NAME" && echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
           else
             echo "${NOTE} - Skipped restoring $FILE_NAME."
           fi
-        else
-          echo "${NOTE} - No $FILE_NAME found in backup."
         fi
       done
 
@@ -563,6 +562,7 @@ for DIR_NAME in $DIR; do
     echo "${ERROR} - Directory config/$DIR_NAME does not exist to copy."
     exit 1
   fi
+
 done
 
 printf "\n"
