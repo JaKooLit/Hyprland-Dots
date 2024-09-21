@@ -675,6 +675,8 @@ cleanup_backups
 # symlinks for waybar style
 ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
 
+printf "\n%.0s" {1..2}
+
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
