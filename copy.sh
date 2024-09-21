@@ -589,16 +589,16 @@ while true; do
     [Yy])
       echo "${NOTE} Downloading additional wallpapers..."
       if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
-          echo "${NOTE} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
+          echo "${OK} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
           # Check if wallpapers directory exists and create it if not
           if [ ! -d ~/Pictures/wallpapers ]; then
               mkdir -p ~/Pictures/wallpapers
-              echo "${NOTE} Created wallpapers directory." 2>&1 | tee -a "$LOG"
+              echo "${OK} Created wallpapers directory." 2>&1 | tee -a "$LOG"
           fi
 
           if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
-              echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
+              echo "${OK} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
               rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
               break
           else
@@ -681,6 +681,6 @@ printf "\n%.0s" {1..2}
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
 printf "\n%.0s" {1..4}
-printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready!!!"
+printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!!"
 printf "\n%.0s" {1..1}
-printf "${ORANGE} BUT SUGGEST to logout and re-login or reboot to avoid anyissues\n\n"
+printf "${ORANGE}HOWEVER I HIGHLY SUGGEST to logout and re-login or better reboot to avoid any issues\n\n"
