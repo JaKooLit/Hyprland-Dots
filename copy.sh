@@ -207,25 +207,32 @@ update_editor() {
     echo "${OK} Default editor set to ${ORANGE}$editor${RESET}." 2>&1 | tee -a "$LOG"
 }
 
+EDITOR_SET=0
+
 # Check for neovim if installed
 if command -v nvim &> /dev/null; then
     printf "${INFO} ${ORANGE}neovim${RESET} is detected as installed\n"
     read -p "${CAT} Do you want to make ${ORANGE}neovim${RESET} the default editor? (y/n): " EDITOR_CHOICE
     if [[ "$EDITOR_CHOICE" == "y" ]]; then
         update_editor "nvim"
-        exit 0
+        EDITOR_SET=1
     fi
 fi
 
-# Check for vim if installed
-if command -v vim &> /dev/null; then
+printf "\n"
+
+# Check for vim if installed, but only if neovim wasn't chosen
+if [[ "$EDITOR_SET" -eq 0 ]] && command -v vim &> /dev/null; then
     printf "${INFO} ${ORANGE}vim${RESET} is detected as installed\n"
     read -p "${CAT} Do you want to make ${ORANGE}vim${RESET} the default editor? (y/n): " EDITOR_CHOICE
     if [[ "$EDITOR_CHOICE" == "y" ]]; then
         update_editor "vim"
+        EDITOR_SET=1
     fi
-else
-    echo "${ORANGE} Neither neovim nor vim is installed."
+fi
+
+if [[ "$EDITOR_SET" -eq 0 ]]; then
+    echo "${ORANGE} Neither neovim nor vim is installed or selected as default."
 fi
 
 printf "\n"
