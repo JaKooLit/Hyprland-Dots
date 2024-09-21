@@ -25,11 +25,14 @@ printf "\n%.0s" {1..2}
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
 WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
+BLUE=$(tput setaf 4) 
 RESET=$(tput sgr0)
+
 
 # Create Directory for Copy Logs
 if [ ! -d Copy-Logs ]; then
@@ -140,7 +143,7 @@ printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n\
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
-  printf "${NOTE} Current keyboard layout is ${ORANGE}$layout${RESET}\n"
+  printf "${INFO} Current keyboard layout is ${ORANGE}$layout${RESET}\n"
   read -p "${CAT} Is this correct? [y/n] " keyboard_layout
 
   case $keyboard_layout in
@@ -180,7 +183,7 @@ NOTE:
         # Update the 'kb_layout =' line with the correct layout in the file
         awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
-        echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
+        echo "${OK} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
         break ;;
     *)
         echo "${ERROR} Please enter either 'y' or 'n'." ;;
@@ -204,25 +207,32 @@ update_editor() {
     echo "${OK} Default editor set to ${ORANGE}$editor${RESET}." 2>&1 | tee -a "$LOG"
 }
 
+EDITOR_SET=0
+
 # Check for neovim if installed
 if command -v nvim &> /dev/null; then
-    printf "${NOTE} ${ORANGE}neovim${RESET} is detected as installed\n"
+    printf "${INFO} ${ORANGE}neovim${RESET} is detected as installed\n"
     read -p "${CAT} Do you want to make ${ORANGE}neovim${RESET} the default editor? (y/n): " EDITOR_CHOICE
     if [[ "$EDITOR_CHOICE" == "y" ]]; then
         update_editor "nvim"
-        exit 0
+        EDITOR_SET=1
     fi
 fi
 
-# Check for vim if installed
-if command -v vim &> /dev/null; then
-    printf "${NOTE} ${ORANGE}vim${RESET} is detected as installed\n"
+printf "\n"
+
+# Check for vim if installed, but only if neovim wasn't chosen
+if [[ "$EDITOR_SET" -eq 0 ]] && command -v vim &> /dev/null; then
+    printf "${INFO} ${ORANGE}vim${RESET} is detected as installed\n"
     read -p "${CAT} Do you want to make ${ORANGE}vim${RESET} the default editor? (y/n): " EDITOR_CHOICE
     if [[ "$EDITOR_CHOICE" == "y" ]]; then
         update_editor "vim"
+        EDITOR_SET=1
     fi
-else
-    echo "${ORANGE} Neither neovim nor vim is installed."
+fi
+
+if [[ "$EDITOR_SET" -eq 0 ]]; then
+    echo "${ORANGE} Neither neovim nor vim is installed or selected as default."
 fi
 
 printf "\n"
@@ -232,9 +242,9 @@ while true; do
   echo "$ORANGE Select monitor resolution for better config appearance and fonts:"
   echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
   echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
-  read -p "$CAT Enter the number of your choice: " choice
+  read -p "$CAT Enter the number of your choice: " res_choice
 
-  case $choice in
+  case $res_choice in
     1)
         resolution="≤ 1080p"
         break
@@ -342,12 +352,12 @@ printf "\n"
 # Rainbow Borders
 # Check if the user wants to disable Rainbow borders
 # Print message about Rainbow Borders
-printf "${NOTE} - By default, Rainbow Borders animation is enabled.\n"
-printf "${NOTE} - However, this uses a bit more CPU and Memory resources.\n"
+printf "${INFO} - By default, Rainbow Borders animation is enabled.\n"
+printf "${WARN} - However, this uses a bit more CPU and Memory resources.\n"
 
 # Prompt user to disable Rainbow Borders
-read -p "${CAT} Do you want to disable Rainbow Borders animation? (Y/N): " choice
-if [[ "$choice" =~ ^[Yy]$ ]]; then
+read -p "${CAT} Do you want to disable Rainbow Borders animation? (Y/N): " border_choice
+if [[ "$border_choice" =~ ^[Yy]$ ]]; then
     # Move RainbowBorders.sh script to backup location
     mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
     
@@ -374,7 +384,7 @@ get_backup_dirname() {
 }
 
 
-printf "${NOTE} - copying dotfiles first part\n"
+printf "${INFO} - copying dotfiles ${BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
 DIRS="
   ags 
@@ -389,8 +399,8 @@ for DIR2 in $DIRS; do
   
   if [ -d "$DIRPATH" ]; then
     while true; do
-      read -p "${CAT} ${ORANGE}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${ORANGE}$DIR2${RESET} config? (Y/N): " CHOICE
-      case "$CHOICE" in
+      read -p "${CAT} ${ORANGE}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${ORANGE}$DIR2${RESET} config? (Y/N): " DIR1_CHOICE
+      case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
           echo -e "${NOTE} - Config for ${YELLOW}$DIR2${RESET} found, attempting to back up."
@@ -436,7 +446,7 @@ done
 
 printf "\n%.0s" {1..1}
 
-printf "${NOTE} - Copying dotfiles second part\n"
+printf "${INFO} - Copying dotfiles ${BLUE}second${RESET} part\n"
 
 # Check if the config directory exists
 if [ ! -d "config" ]; then
@@ -461,7 +471,7 @@ for DIR_NAME in $DIR; do
   
   # Backup the existing directory if it exists
   if [ -d "$DIRPATH" ]; then
-    echo -e "${NOTE} - Config for $DIR_NAME found, attempting to back up."
+    echo -e "${NOTE} - Config for ${ORANGE}$DIR_NAME${RESET} found, attempting to back up."
     BACKUP_DIR=$(get_backup_dirname)
     
     # Backup the existing directory
@@ -478,7 +488,73 @@ for DIR_NAME in $DIR; do
   if [ -d "config/$DIR_NAME" ]; then
     cp -r "config/$DIR_NAME" ~/.config/"$DIR_NAME" 2>&1 | tee -a "$LOG"
     if [ $? -eq 0 ]; then
-      echo "${OK} - Copy of config for $DIR_NAME completed!"
+      echo "${OK} - Copy of config for ${YELLOW}$DIR_NAME${RESET} completed!"
+    else
+      echo "${ERROR} - Failed to copy $DIR_NAME."
+      exit 1
+    fi
+  else
+    echo "${ERROR} - Directory config/$DIR_NAME does not exist to copy."
+    exit 1
+  fi
+done
+
+printf "\n"
+
+
+printf "${INFO} - Copying dotfiles ${BLUE}hypr directory${RESET} part\n"
+
+# Check if the config directory exists
+if [ ! -d "config" ]; then
+  echo "${ERROR} - The 'config' directory does not exist."
+  exit 1
+fi
+
+DIR="hypr"
+FILES_TO_RESTORE=(
+  "Monitors.conf" 
+  "Laptops.conf"
+  )  
+for DIR_NAME in $DIR; do
+  DIRPATH=~/.config/"$DIR_NAME"
+  
+  # Backup the existing directory if it exists
+  if [ -d "$DIRPATH" ]; then
+    echo -e "${NOTE} - Config for $DIR_NAME found, attempting to back up."
+    BACKUP_DIR=$(get_backup_dirname)
+    
+    # Backup the existing directory
+    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+    if [ $? -eq 0 ]; then
+      echo -e "${NOTE} - Backed up $DIR_NAME to $DIRPATH-backup-$BACKUP_DIR."
+    else
+      echo "${ERROR} - Failed to back up ${ORANGE}$DIR_NAME${RESET}."
+      exit 1
+    fi
+  fi
+  
+  # Copy the new config
+  if [ -d "config/$DIR_NAME" ]; then
+    cp -r "config/$DIR_NAME" ~/.config/"$DIR_NAME" 2>&1 | tee -a "$LOG"
+    if [ $? -eq 0 ]; then
+      echo "${OK} - Copy of config for ${ORANGE}$DIR_NAME${RESET} completed!"
+      
+      # Loop through the files to check and offer restoration
+      for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
+        BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
+        if [ -f "$BACKUP_FILE" ]; then
+          echo -e "${INFO} - Found in backup ${YELLOW}$FILE_NAME${RESET}..."
+          read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/n): " file_restore
+          if [[ "$file_restore" == [Yy]* ]]; then
+            cp "$BACKUP_FILE" ~/.config/"$DIR_NAME"/UserConfigs/"$FILE_NAME" && echo "${OK} - $FILE_NAME restored!"
+          else
+            echo "${NOTE} - Skipped restoring $FILE_NAME."
+          fi
+        else
+          echo "${NOTE} - No $FILE_NAME found in backup."
+        fi
+      done
+
     else
       echo "${ERROR} - Failed to copy $DIR_NAME."
       exit 1
@@ -570,6 +646,6 @@ wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
 
 printf "\n%.0s" {1..2}
-printf "\n${OK} KooL's Hyprland-Dots Loaded & Ready!!!\n\n\n"
-printf "${ORANGE} ATTENTION!!!! \n"
-printf "${ORANGE} YOU NEED to logout and re-login or reboot to avoid issues\n\n"
+printf "${OK} GREAT! KooL's Hyprland-Dots Loaded & Ready!!!\n\n\n"
+printf "\n%.0s" {1..1}
+printf "${ORANGE} BUT SUGGEST to logout and re-login or reboot to avoid anyissues\n\n"
