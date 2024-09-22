@@ -1,11 +1,9 @@
 //* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
 /* Waybar Modules */
 
-{
-/* NOTE: hyprland-workspaces and Custom Modules on a separate files */
-/* Weather Temperature Modules as this is most like to change always. */
-// Result is of course easier to edit
+/* NOTE: hyprland-workspaces, Custom Modules & Groups on a separate files */
 
+{
 "temperature": {
 	"interval": 10,
 	"tooltip": true,
