@@ -120,9 +120,9 @@ elif [ "$next_mode" = "Light" ] && [ -f "$dark_wallpapers/$current_wallpaper" ];
     next_wallpaper="$light_wallpapers/$current_wallpaper"
 else
     if [ "$next_mode" = "Dark" ]; then
-        next_wallpaper="$(find "${dark_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -pri>
+        next_wallpaper="$(find "${dark_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
     else
-        next_wallpaper="$(find "${light_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -pr>
+        next_wallpaper="$(find "${light_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
     fi
 fi
 
