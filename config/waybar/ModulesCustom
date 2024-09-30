@@ -160,7 +160,7 @@
 	"exec": "checkupdates | wc -l",
 	"exec-if": "[[ $(checkupdates | wc -l) ]]",
 	"interval": 15,
-	"on-click": "kitty -T update $(command -v paru || command -v yay) && notify-send 'The system has been updated'",
+	"on-click": "kitty -T update sh -c 'eval $(command -v paru || command -v yay) -Syu'", 
 	"tooltip": true,
 	"tooltip-format": "Left Click: Update System\nArch Linux Only",
 },
