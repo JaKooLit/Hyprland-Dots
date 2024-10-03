@@ -2,7 +2,6 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 
 clear
-
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified
 waybar_style="$HOME/.config/waybar/style/[Dark] Latte-Wallust combined.css"
 waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v4"
@@ -20,7 +19,6 @@ echo '  ╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  �
 echo '  ╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘  ═╩╝└─┘ ┴ └─┘ '
 printf "\n%.0s" {1..2} 
  
-
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -32,7 +30,6 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 BLUE=$(tput setaf 4) 
 RESET=$(tput sgr0)
-
 
 # Create Directory for Copy Logs
 if [ ! -d Copy-Logs ]; then
@@ -208,7 +205,6 @@ update_editor() {
 }
 
 EDITOR_SET=0
-
 # Check for neovim if installed
 if command -v nvim &> /dev/null; then
     printf "${INFO} ${ORANGE}neovim${RESET} is detected as installed\n"
@@ -315,7 +311,6 @@ if [[ "$answer" == "y" ]]; then
     sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
     sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
 
-
     # for SDDM (simple-sddm)
     sddm_folder="/usr/share/sddm/themes/simple-sddm"
     if [ -d "$sddm_folder" ]; then
@@ -349,22 +344,15 @@ done
 
 printf "\n"
 
-# Rainbow Borders
 # Check if the user wants to disable Rainbow borders
-# Print message about Rainbow Borders
-printf "${INFO} - By default, Rainbow Borders animation is enabled.\n"
+printf "${ORANGE} By default, Rainbow Borders animation is enabled.\n"
 printf "${WARN} - However, this uses a bit more CPU and Memory resources.\n"
 
-# Prompt user to disable Rainbow Borders
 read -p "${CAT} Do you want to disable Rainbow Borders animation? (Y/N): " border_choice
 if [[ "$border_choice" =~ ^[Yy]$ ]]; then
-    # Move RainbowBorders.sh script to backup location
     mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
     
-    # Comment out the line exec-once = $UserScripts/RainbowBorders.sh &
     sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh \&/s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
-    
-    # Comment out the line animation = borderangle, 1, 180, liner, loop
     sed -i '/  animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserDecorAnimations.conf
     
     echo "${OK} Rainbow borders is now disabled." 2>&1 | tee -a "$LOG"
@@ -382,7 +370,6 @@ get_backup_dirname() {
   timestamp=$(date +"%m%d_%H%M")
   echo "back-up_${timestamp}"
 }
-
 
 printf "${INFO} - copying dotfiles ${BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
@@ -501,7 +488,6 @@ done
 
 printf "\n"
 
-
 printf "${INFO} - Copying dotfiles ${BLUE}hypr directory${RESET} part\n"
 
 # Check if the config directory exists
@@ -510,62 +496,57 @@ if [ ! -d "config" ]; then
   exit 1
 fi
 
-DIR="hypr"
+DIRH="hypr"
 FILES_TO_RESTORE=(
-  "Monitors.conf" 
+  "Monitors.conf"
   "Laptops.conf"
-  )  
-for DIR_NAME in $DIR; do
-  DIRPATH=~/.config/"$DIR_NAME"
-  
-  # Backup the existing directory if it exists
-  if [ -d "$DIRPATH" ]; then
-    echo -e "${NOTE} - Config for $DIR_NAME found, attempting to back up."
-    BACKUP_DIR=$(get_backup_dirname)
-    
-    # Backup the existing directory
-    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-    if [ $? -eq 0 ]; then
-      echo -e "${NOTE} - Backed up $DIR_NAME to $DIRPATH-backup-$BACKUP_DIR."
-    else
-      echo "${ERROR} - Failed to back up ${ORANGE}$DIR_NAME${RESET}."
-      exit 1
-    fi
-  fi
-  
-  # Copy the new config
-  if [ -d "config/$DIR_NAME" ]; then
-    cp -r "config/$DIR_NAME" ~/.config/"$DIR_NAME" 2>&1 | tee -a "$LOG"
-    if [ $? -eq 0 ]; then
-      echo "${OK} - Copy of config for ${ORANGE}$DIR_NAME${RESET} completed!"
-      
-      # Loop through the files to check and offer restoration
-      for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
-        BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
-        if [ -f "$BACKUP_FILE" ]; then
-          echo -e "${INFO} - Found in backup ${YELLOW}$FILE_NAME${RESET}..."
-          read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/n): " file_restore
-          if [[ "$file_restore" == [Yy]* ]]; then
-            cp "$BACKUP_FILE" ~/.config/"$DIR_NAME"/UserConfigs/"$FILE_NAME" && echo "${OK} - $FILE_NAME restored!"
-          else
-            echo "${NOTE} - Skipped restoring $FILE_NAME."
-          fi
-        else
-          echo "${NOTE} - No $FILE_NAME found in backup."
-        fi
-      done
+  "UserKeybinds.conf"
+)
 
-    else
-      echo "${ERROR} - Failed to copy $DIR_NAME."
-      exit 1
-    fi
+DIRPATH=~/.config/"$DIRH"
+# Backup the existing directory if it exists
+if [ -d "$DIRPATH" ]; then
+  echo -e "${NOTE} - Config for $DIRH found, attempting to back up."
+  BACKUP_DIR=$(get_backup_dirname)
+  
+  mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+  if [ $? -eq 0 ]; then
+    echo -e "${NOTE} - Backed up $DIRH to $DIRPATH-backup-$BACKUP_DIR."
   else
-    echo "${ERROR} - Directory config/$DIR_NAME does not exist to copy."
+    echo "${ERROR} - Failed to back up ${ORANGE}$DIRH${RESET}."
     exit 1
   fi
-done
+fi
 
-printf "\n"
+# Copy the new config
+if [ -d "config/$DIRH" ]; then
+  cp -r "config/$DIRH" "$DIRPATH" 2>&1 | tee -a "$LOG"
+  if [ $? -eq 0 ]; then
+    echo "${OK} - Copy of config for ${ORANGE}$DIRH${RESET} completed!"
+
+    # Loop through files to check and offer restoration
+    for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
+      BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
+      if [ -f "$BACKUP_FILE" ]; then
+        printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
+        read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/n): " file_restore
+        if [[ "$file_restore" == [Yy]* ]]; then
+          cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME" && echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
+        else
+          echo "${NOTE} - Skipped restoring $FILE_NAME."
+        fi
+      fi
+    done
+  else
+    echo "${ERROR} - Failed to copy $DIRH."
+    exit 1
+  fi
+else
+  echo "${ERROR} - Directory config/$DIRH does not exist to copy."
+  exit 1
+fi
+
+printf "\n%.0s" {1..2}
 
 # copying Wallpapers
 mkdir -p ~/Pictures/wallpapers
@@ -576,7 +557,6 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 chmod +x ~/.config/hypr/UserScripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
-printf "\n"
 
 # Detect machine type and set waybar configurations accordingly
 if hostnamectl | grep -q 'Chassis: desktop'; then
@@ -609,16 +589,16 @@ while true; do
     [Yy])
       echo "${NOTE} Downloading additional wallpapers..."
       if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
-          echo "${NOTE} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
+          echo "${OK} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
           # Check if wallpapers directory exists and create it if not
           if [ ! -d ~/Pictures/wallpapers ]; then
               mkdir -p ~/Pictures/wallpapers
-              echo "${NOTE} Created wallpapers directory." 2>&1 | tee -a "$LOG"
+              echo "${OK} Created wallpapers directory." 2>&1 | tee -a "$LOG"
           fi
 
           if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
-              echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
+              echo "${OK} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
               rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
               break
           else
@@ -638,14 +618,69 @@ while true; do
   esac
 done
 
+# CLeaning up of ~/.config/ backups
+cleanup_backups() {
+  CONFIG_DIR=~/.config
+  BACKUP_PREFIX="-backup"
+
+  # Loop through directories in ~/.config
+  for DIR in "$CONFIG_DIR"/*; do
+    if [ -d "$DIR" ]; then
+      BACKUP_DIRS=()
+
+      # Check for backup directories
+      for BACKUP in "$DIR"$BACKUP_PREFIX*; do
+        if [ -d "$BACKUP" ]; then
+          BACKUP_DIRS+=("$BACKUP")
+        fi
+      done
+
+      # If more than one backup found
+      if [ ${#BACKUP_DIRS[@]} -gt 1 ]; then
+		printf "\n\n ${INFO} Performing clean up for ${ORANGE}${DIR##*/}${RESET}\n"
+
+        echo -e "${NOTE} Found multiple backups for: ${ORANGE}${DIR##*/}${RESET}"
+        echo "${YELLOW}Backups: ${RESET}"
+
+        # List the backups
+        for BACKUP in "${BACKUP_DIRS[@]}"; do
+          echo "  - ${BACKUP##*/}"
+        done
+
+        read -p "${CAT} Do you want to delete the older backups of ${ORANGE}${DIR##*/}${RESET} and keep the latest backup only? (y/n): " back_choice
+        if [[ "$back_choice" == [Yy]* ]]; then
+          # Sort backups by modification time
+          latest_backup="${BACKUP_DIRS[0]}"
+          for BACKUP in "${BACKUP_DIRS[@]}"; do
+            if [ "$BACKUP" -nt "$latest_backup" ]; then
+              latest_backup="$BACKUP"
+            fi
+          done
+
+          for BACKUP in "${BACKUP_DIRS[@]}"; do
+            if [ "$BACKUP" != "$latest_backup" ]; then
+              echo "Deleting: ${BACKUP##*/}"
+              rm -rf "$BACKUP"
+            fi
+          done
+          echo "Old backups of ${ORANGE}${DIR##*/}${RESET} deleted, keeping: ${YELLOW}${latest_backup##*/}${RESET}"
+        fi
+      fi
+    fi
+  done
+}
+# Execute the cleanup function
+cleanup_backups
+
 # symlinks for waybar style
 ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
+
+printf "\n%.0s" {1..2}
 
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
-
-printf "\n%.0s" {1..2}
-printf "${OK} GREAT! KooL's Hyprland-Dots Loaded & Ready!!!\n\n\n"
+printf "\n%.0s" {1..4}
+printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!!"
 printf "\n%.0s" {1..1}
-printf "${ORANGE} BUT SUGGEST to logout and re-login or reboot to avoid anyissues\n\n"
+printf "${ORANGE}HOWEVER I HIGHLY SUGGEST to logout and re-login or better reboot to avoid any issues\n\n"

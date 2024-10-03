@@ -79,19 +79,19 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
 ### 📦 Whats new?
-- To easily track changes, I will be updating the changelogs. [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth it!
+- To easily track changes, I will be updating the [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth it!
 
 ### 💥 Copying / Installation / Update instructions 💥
 - [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
 > [!Note] 
-> The auto copy script will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
+> The auto copy script "copy.sh" will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
 - ~/.config (ags btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wallust waybar wlogout) - These are folders to be copied.
 - ~/Pictures/wallpapers - Will be backed up
 - clone this repo by using git. Change directory, make executable and run the script
 
-> to download from Master branch (possible bugs)
+> to download from Master branch
 ```bash
-git clone --depth=1 -b Simple https://github.com/JaKooLit/Hyprland-Dots.git
+git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
 cd Hyprland-Dots
 ```
 
@@ -129,7 +129,7 @@ chmod +x upgrade.sh
 > Delete manually all the backups which you dont need
 
 #### 🛎️ a small note on wallpapers
-- by default, only few wallpapers will be copied (1 each dark and light plus 3 more). You will be offered to download more wallpapers. You can preview/check the additional wallpapers on [`THIS`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
+- by default, only few wallpapers will be copied (1 each dark and light plus 3 more). You will be offered to download more wallpapers. You can preview/check the additional wallpapers from [`THIS`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
 
 
 #### ⚠️⚠️⚠️ A MUST! after copying  / Installing these dots

@@ -1,7 +1,7 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 
-# Modified version of Refresh.sh but no waybar refreshing
+# Modified version of Refresh.sh but waybar wont refresh
 # Used by automatic wallpaper change
 # Modified inorder to refresh rofi background, Wallust, SwayNC only
 

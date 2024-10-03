@@ -2,7 +2,6 @@
 /* wallust-wlogout */
 
 /* Importing wallust colors */
-
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
 window {

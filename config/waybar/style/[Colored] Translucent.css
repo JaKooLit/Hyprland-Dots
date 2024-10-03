@@ -1,3 +1,6 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Translucent */
+
 @define-color critical #ff0000; /* critical color */
 @define-color warning #f3f809;  /* warning color */
 @define-color fgcolor #ffffff;  /* foreground color */
@@ -11,9 +14,6 @@
 @define-color accent4 #bb9af7;
 @define-color accent5 #7da6ff;
 @define-color accent6 #0db9d7;
-
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Translucent */
 
 * {
 font-family: "JetBrainsMono Nerd Font";

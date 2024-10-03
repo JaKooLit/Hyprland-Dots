@@ -5,7 +5,6 @@
 # Kill yad to not interfere with this binds
 pkill yad || true
 
-
 # Define the config files
 KEYBINDS_CONF="$HOME/.config/hypr/configs/Keybinds.conf"
 USER_KEYBINDS_CONF="$HOME/.config/hypr/UserConfigs/UserKeybinds.conf"
@@ -20,7 +19,7 @@ if [[ -f "$LAPTOP_CONF" ]]; then
     KEYBINDS+=$'\n'"$LAPTOP_BINDS"
 fi
 
-# Check if we have any keybinds to display
+# check for any keybinds to display
 if [[ -z "$KEYBINDS" ]]; then
     echo "No keybinds found."
     exit 1
