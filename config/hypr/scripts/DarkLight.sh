@@ -110,14 +110,20 @@ else
 	sed -i '/^cursor /s/^cursor .*/cursor #000000/' "${kitty_conf}"
 fi
 
-
-
+#Get current wallpaper name
+current_wallpaper=$(swww query | awk -F'/' '{print $NF}' | awk '{print $1}')
 
 # Set Dynamic Wallpaper for Dark or Light Mode
-if [ "$next_mode" = "Dark" ]; then
-    next_wallpaper="$(find "${dark_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
+if [ "$next_mode" = "Dark" ] && [ -f "$light_wallpapers/$current_wallpaper" ]; then
+    next_wallpaper="$dark_wallpapers/${current_wallpaper/Light/Dark}"
+elif [ "$next_mode" = "Light" ] && [ -f "$dark_wallpapers/$current_wallpaper" ]; then
+    next_wallpaper="$light_wallpapers/${current_wallpaper/Dark/Light}"
 else
-    next_wallpaper="$(find "${light_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
+    if [ "$next_mode" = "Dark" ]; then
+        next_wallpaper="$(find "${dark_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
+    else
+        next_wallpaper="$(find "${light_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
+    fi
 fi
 
 # Update wallpaper using swww command
