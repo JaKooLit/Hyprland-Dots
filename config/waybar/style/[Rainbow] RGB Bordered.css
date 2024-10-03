@@ -1,5 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Catppuccin Mocha */
+/* Catppuccin Mocha - Rainbow Bordered */
+/* Designed by https://github.com/0xl30 */
 
 * {
 	font-family: "JetBrainsMono Nerd Font";
@@ -16,7 +17,7 @@ window#waybar {
   	transition-property: background-color;
   	transition-duration: 0.5s;
   	background: transparent;
-  	border-radius: 10px;
+  	border-radius: 2px;
 }
 
 window#waybar.hidden {
@@ -76,29 +77,17 @@ window#waybar.empty #window {
 
 /* This section can be use if you want to separate waybar modules */
 .modules-left, .modules-center, .modules-right {
-	background: @theme_base_color; 
- 	border: 0.5px solid @overlay0;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
-	border-radius: 10px;
-
-} 
-
-.modules-left, .modules-center, .modules-right {
   background: @theme_base_color;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   padding-top: 2px;
   padding-bottom: 2px;
   padding-right: 4px;
   padding-left: 4px;
-  border-radius: 10px;
+  border-radius: 0px;
 
   border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1;
-  animation: rainbow-gradient 10s ease-in-out infinite;  /* Adjust timing as needed */
+  animation: rainbow-gradient 20s ease-in-out infinite;  /* Adjust timing as needed */
 }
-
 
 
 #backlight,
