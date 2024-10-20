@@ -1,0 +1,348 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fira Code', monospace;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1000px;  /* Reduced width */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Fade-in Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Header Section */
+.header {
+    margin-bottom: 40px;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 200px;  /* Reduced profile picture size */
+    margin-bottom: 0px;
+    transition: transform 0.5s ease; /* Smooth scale on hover */
+}
+
+.profile-pic:hover {
+    transform: scale(1.05); /* Slight hover effect */
+}
+
+h1 {
+    color: #58a6ff;
+    font-size: 2.5rem; /* Reduced font size */
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem; /* Reduced subtitle size */
+    margin-top: 5px;
+}
+
+/* Rainbow Animation */
+.rainbow-text {
+    font-weight: bold;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 400%; /* Make background larger to allow scrolling effect */
+    animation: rainbow 5s infinite linear; /* Slowed down for smoother animation */
+}
+
+/* Keyframes for the rainbow animation */
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%; /* Start position */
+    }
+    100% {
+        background-position: 100% 50%; /* End position */
+    }
+}
+
+/* Green Highlight for Security Researcher */
+.highlight-green {
+    color: #4ade80;
+}
+
+/* About Section */
+.about {
+    background-color: #161b22;
+    padding: 20px;  /* Reduced padding */
+    border-radius: 10px;
+    margin: 10px 0;
+    text-align: center;
+    max-width: 700px; /* Reduced width */
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+}
+
+h2 {
+    color: #58a6ff;
+    font-size: 1.8rem;  /* Reduced font size */
+    margin-bottom: 15px;
+}
+
+.about p {
+    color: #c9d1d9;
+    font-size: 1.1rem; /* Reduced font size */
+    line-height: 1.6;
+}
+
+/* Technologies & Tools Section */
+.skills {
+    margin-bottom: 40px;
+}
+
+.tech-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #21262d;
+    padding: 10px;  /* Reduced padding */
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 100px;  /* Reduced width for the card */
+    text-align: center;
+}
+
+.icon-card img {
+    width: 40px;  /* Decreased icon size */
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.icon-card:hover {
+    transform: scale(1.1);
+    background-color: #58a6ff;
+}
+
+.icon-card p {
+    color: #c9d1d9;
+    margin-top: 8px;
+    font-size: 0.9rem; /* Reduced text size for icons */
+}
+
+/* Footer Section */
+.footer {
+    margin-top: 40px;
+}
+
+.footer p {
+    font-size: 1rem; /* Reduced footer text size */
+    color: #c9d1d9;
+}
+
+.footer a {
+    color: #58a6ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    color: #1f6feb;
+}
+
+/* Animation for Fade-in Effect */
+@keyframes rainbow {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Keybinds section styling */
+.keybinds {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 40px auto;
+    text-align: center;
+    max-width: 900px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.keybinds h2 {
+    color: #58a6ff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.keybinds table {
+    width: 100%;
+    color: #c9d1d9;
+    font-size: 1rem;
+}
+
+.keybinds table td {
+    padding: 8px 10px;
+    text-align: left;
+}
+
+.keybinds table td:nth-child(3) {
+    text-align: right;
+}
+
+.keybinds a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+.keybinds a:hover {
+    text-decoration: underline;
+}
+/* Social Links Section */
+.social-links {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.social-btn {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 2rem; /* Adjust icon size */
+    color: #c9d1d9;
+    transition: color 0.3s ease;
+}
+
+.social-btn:hover {
+    color: #58a6ff; /* Hover effect color */
+}
+
+.github {
+    color: #6e5494;
+}
+
+.facebook {
+    color: #3b5998;
+}
+
+.linkedin {
+    color: #0077b5;
+}
+
+.twitter {
+    color: #1da1f2;
+}
+#version-history-section {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#version-container {
+    color: #c9d1d9;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+
+/* Update Notification Styles */
+.update-notification {
+    background-color: #ffcc00;
+    color: #000;
+    padding: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.update-notification button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.update-notification button:hover {
+    background-color: #333;
+}
+
+/* Version Popup Styles */
+.version-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.version-popup-content {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 10px;
+    position: relative;
+}
+
+#close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffcc00;
+    color: #000;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#close-popup:hover {
+    background-color: #ff9900;
+}
