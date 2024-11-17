@@ -20,7 +20,7 @@ echo $cache_file
 # Check if the cache file exists for the current monitor output
 if [ -f "$cache_file" ]; then
     # Get the wallpaper path from the cache file
-    wallpaper_path=$(cat "$cache_file")
+    wallpaper_path=$(grep -v 'Lanczos3' "$cache_file" | head -n 1)
     echo $wallpaper_path
     # symlink the wallpaper to the location Rofi can access
     if ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"; then
