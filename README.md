@@ -123,7 +123,7 @@ chmod +x upgrade.sh
 ```
 
 ## ⚠️⚠️⚠️ ATTENTION - BACKUPS CREATED by SCRIPT
-> [!NOTE]
+> [!CAUTION]
 > copy.sh, release.sh and even upgrade.sh creates a backup!
 > Kindly investigate manually contents on your ~/.config
 > Delete manually all the backups which you dont need
