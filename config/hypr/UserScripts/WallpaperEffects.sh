@@ -7,7 +7,7 @@
 current_wallpaper="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 wallpaper_output="$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
-focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+monitors=$(hyprctl monitors | grep 'Monitor' | awk '{ print $2 }')
 
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
@@ -40,7 +40,9 @@ declare -A effects=(
 
 # Function to apply no effects
 no-effects() {
-    swww img -o "$focused_monitor" "$current_wallpaper" $SWWW_PARAMS &
+    for monitor in $monitors; do
+      swww img -o "$monitor" "$current_wallpaper" $SWWW_PARAMS &
+    done
     # Wait for swww command to complete
     wait $!
     # Run other commands after swww
@@ -76,7 +78,9 @@ main() {
             # Wait for effects to be applied
             sleep 1
             # Execute swww command after image conversion
-            swww img -o "$focused_monitor" "$wallpaper_output" $SWWW_PARAMS &
+            for monitor in $monitors; do
+              swww img -o "$monitor" "$wallpaper_output" $SWWW_PARAMS &
+            done
             # Wait for swww command to complete
             sleep 1.5
             # Wait for other commands to finish
