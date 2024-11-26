@@ -445,6 +445,7 @@ DIR="
   cava
   hypr
   Kvantum
+  nvim
   qt5ct
   qt6ct
   swappy
