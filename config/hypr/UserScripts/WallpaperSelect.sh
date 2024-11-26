@@ -7,7 +7,7 @@ wallDIR="$HOME/Pictures/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
 # variables
-focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+monitors=$(hyprctl monitors | grep 'Monitor' | awk '{ print $2 }')
 # swww transition config
 FPS=60
 TYPE="any"
@@ -68,7 +68,9 @@ main() {
 
   # Random choice case
   if [[ "$choice" == "$RANDOM_PIC_NAME" ]]; then
-	swww img -o "$focused_monitor" "$RANDOM_PIC" $SWWW_PARAMS;
+    for monitor in $monitors; do
+	    swww img -o "$monitor" "$RANDOM_PIC" $SWWW_PARAMS;
+    done
     sleep 1.5
     "$SCRIPTSDIR/WallustSwww.sh"
     sleep 0.5
@@ -87,7 +89,9 @@ main() {
   done
 
   if [[ $pic_index -ne -1 ]]; then
-    swww img -o "$focused_monitor" "${PICS[$pic_index]}" $SWWW_PARAMS
+    for monitor in $monitors; do
+      swww img -o "$monitor" "${PICS[$pic_index]}" $SWWW_PARAMS
+    done
   else
     echo "Image not found."
     exit 1
