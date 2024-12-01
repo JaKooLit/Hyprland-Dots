@@ -71,6 +71,10 @@ button span {
     background-image: image(url("./icons/power-hover.png"));
 }
 
+#windows {
+    background-image: image(url("./icons/windows.png"));
+}
+
 #reboot {
     background-image: image(url("./icons/restart.png"));
 }
