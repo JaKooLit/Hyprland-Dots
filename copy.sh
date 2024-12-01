@@ -208,7 +208,7 @@ EDITOR_SET=0
 # Check for neovim if installed
 if command -v nvim &> /dev/null; then
     printf "${INFO} ${ORANGE}neovim${RESET} is detected as installed\n"
-    read -p "${CAT} Do you want to make ${ORANGE}neovim${RESET} the default editor? (y/n): " EDITOR_CHOICE
+    read -p "${CAT} Do you want to make ${ORANGE}neovim${RESET} the default editor? (y/N): " EDITOR_CHOICE
     if [[ "$EDITOR_CHOICE" == "y" ]]; then
         update_editor "nvim"
         EDITOR_SET=1
@@ -220,7 +220,7 @@ printf "\n"
 # Check for vim if installed, but only if neovim wasn't chosen
 if [[ "$EDITOR_SET" -eq 0 ]] && command -v vim &> /dev/null; then
     printf "${INFO} ${ORANGE}vim${RESET} is detected as installed\n"
-    read -p "${CAT} Do you want to make ${ORANGE}vim${RESET} the default editor? (y/n): " EDITOR_CHOICE
+    read -p "${CAT} Do you want to make ${ORANGE}vim${RESET} the default editor? (y/N): " EDITOR_CHOICE
     if [[ "$EDITOR_CHOICE" == "y" ]]; then
         update_editor "vim"
         EDITOR_SET=1
@@ -347,7 +347,7 @@ printf "\n"
 printf "${ORANGE} By default, Rainbow Borders animation is enabled.\n"
 printf "${WARN} - However, this uses a bit more CPU and Memory resources.\n"
 
-read -p "${CAT} Do you want to disable Rainbow Borders animation? (Y/N): " border_choice
+read -p "${CAT} Do you want to disable Rainbow Borders animation? (y/N): " border_choice
 if [[ "$border_choice" =~ ^[Yy]$ ]]; then
     mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
     
@@ -385,7 +385,7 @@ for DIR2 in $DIRS; do
   
   if [ -d "$DIRPATH" ]; then
     while true; do
-      read -p "${CAT} ${ORANGE}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${ORANGE}$DIR2${RESET} config? (Y/N): " DIR1_CHOICE
+      read -p "${CAT} ${ORANGE}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${ORANGE}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
       case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
@@ -528,7 +528,7 @@ if [ -d "config/$DIRH" ]; then
       BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
       if [ -f "$BACKUP_FILE" ]; then
         printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
-        read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/n): " file_restore
+        read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/N): " file_restore
         if [[ "$file_restore" == [Yy]* ]]; then
           cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME" && echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
         else
@@ -646,7 +646,7 @@ cleanup_backups() {
           echo "  - ${BACKUP##*/}"
         done
 
-        read -p "${CAT} Do you want to delete the older backups of ${ORANGE}${DIR##*/}${RESET} and keep the latest backup only? (y/n): " back_choice
+        read -p "${CAT} Do you want to delete the older backups of ${ORANGE}${DIR##*/}${RESET} and keep the latest backup only? (y/N): " back_choice
         if [[ "$back_choice" == [Yy]* ]]; then
           # Sort backups by modification time
           latest_backup="${BACKUP_DIRS[0]}"
