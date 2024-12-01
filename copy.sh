@@ -236,13 +236,13 @@ printf "\n"
 # Action to do for better rofi and kitty appearance
 while true; do
   echo "$ORANGE Select monitor resolution for better config appearance and fonts:"
-  echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
+  echo "$YELLOW 1. less than 1440p (< 1440p)"
   echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
   read -p "$CAT Enter the number of your choice: " res_choice
 
   case $res_choice in
     1)
-        resolution="≤ 1080p"
+        resolution="< 1440p"
         break
         ;;
     2)
@@ -250,7 +250,7 @@ while true; do
         break
         ;;
     *)
-        echo "${ERROR} Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
+        echo "${ERROR} Invalid choice. Please enter 1 for < 1440p or 2 for ≥ 1440p."
         ;;
   esac
 done
@@ -259,7 +259,7 @@ done
 echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 
 # Add your commands based on the resolution choice
-if [ "$resolution" == "≤ 1080p" ]; then
+if [ "$resolution" == "< 1440p" ]; then
   cp -r config/rofi/resolution/1080p/* config/rofi/
   sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
 
