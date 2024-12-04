@@ -222,4 +222,11 @@ return {
       require("dapui").setup()
     end,
   },
+
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    build = false,
+    opts = {},
+  },
 }
