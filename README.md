@@ -49,7 +49,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 ## Installation 
 ### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
-- Automated Hyprland Scripts for Distro of choices:
+- Automated Hyprland Scripts for Distro of choice which will pull this dotfiles if opted to install these configurations
 
 - [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
 
