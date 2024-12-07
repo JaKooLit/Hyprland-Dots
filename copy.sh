@@ -391,7 +391,7 @@ for DIR2 in $DIRS; do
   
   if [ -d "$DIRPATH" ]; then
     while true; do
-      read -p "${CAT} ${ORANGE}$DIR2${RESET} config found in ~/.config/. Do you want to replace ${ORANGE}$DIR2${RESET} config? (Y/N): " DIR1_CHOICE
+      read -p "${CAT} ${ORANGE}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${ORANGE}$DIR2${RESET} config? (Y/N): " DIR1_CHOICE
       case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
@@ -517,8 +517,6 @@ if [ -d "$DIRPATH/UserConfigs" ]; then
       else
         echo "${NOTE} - Skipped restoring $FILE_NAME."
       fi
-    else
-      echo "${WARNING} - No backup found for $FILE_NAME."
     fi
   done
 else
