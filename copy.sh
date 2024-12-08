@@ -370,6 +370,12 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
+# Check if the ~/.config/ directory exists
+if [ ! -d "$HOME/.config" ]; then
+  echo "${ERROR} - The ~/.config directory does not exist."
+  exit 1
+fi
+
 printf "${INFO} - copying dotfiles ${BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
 DIRS="
@@ -472,7 +478,7 @@ for DIR_NAME in $DIR; do
   
   # Copy the new config
   if [ -d "config/$DIR_NAME" ]; then
-    cp -r "config/$DIR_NAME" ~/.config/"$DIR_NAME" 2>&1 | tee -a "$LOG"
+    cp -r "config/$DIR_NAME/" ~/.config/"$DIR_NAME" 2>&1 | tee -a "$LOG"
     if [ $? -eq 0 ]; then
       echo "${OK} - Copy of config for ${YELLOW}$DIR_NAME${RESET} completed!"
     else
@@ -481,20 +487,12 @@ for DIR_NAME in $DIR; do
     fi
   else
     echo "${ERROR} - Directory config/$DIR_NAME does not exist to copy."
-    exit 1
   fi
 done
 
 printf "\n"
 
-printf "${INFO} - Copying dotfiles ${BLUE}hypr directory${RESET} part\n"
-
-# Check if the config directory exists
-if [ ! -d "config" ]; then
-  echo "${ERROR} - The 'config' directory does not exist."
-  exit 1
-fi
-
+# restoration of old configs
 DIRH="hypr"
 FILES_TO_RESTORE=(
   "Monitors.conf"
@@ -503,46 +501,27 @@ FILES_TO_RESTORE=(
 )
 
 DIRPATH=~/.config/"$DIRH"
-# Backup the existing directory if it exists
-if [ -d "$DIRPATH" ]; then
-  echo -e "${NOTE} - Config for $DIRH found, attempting to back up."
-  BACKUP_DIR=$(get_backup_dirname)
-  
-  mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-  if [ $? -eq 0 ]; then
-    echo -e "${NOTE} - Backed up $DIRH to $DIRPATH-backup-$BACKUP_DIR."
-  else
-    echo "${ERROR} - Failed to back up ${ORANGE}$DIRH${RESET}."
-    exit 1
-  fi
-fi
+BACKUP_DIR=$(get_backup_dirname)
 
-# Copy the new config
-if [ -d "config/$DIRH" ]; then
-  cp -r "config/$DIRH" "$DIRPATH" 2>&1 | tee -a "$LOG"
-  if [ $? -eq 0 ]; then
-    echo "${OK} - Copy of config for ${ORANGE}$DIRH${RESET} completed!"
 
-    # Loop through files to check and offer restoration
-    for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
-      BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
-      if [ -f "$BACKUP_FILE" ]; then
-        printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
-        read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/N): " file_restore
-        if [[ "$file_restore" == [Yy]* ]]; then
-          cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME" && echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
-        else
-          echo "${NOTE} - Skipped restoring $FILE_NAME."
-        fi
+# Check if the UserConfigs directory exists in ~/.config/hypr
+if [ -d "$DIRPATH/UserConfigs" ]; then
+  # Loop through files to check and offer restoration
+  for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
+    BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
+    
+    if [ -f "$BACKUP_FILE" ]; then
+      printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
+      read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/N): " file_restore
+      if [[ "$file_restore" == [Yy]* ]]; then
+        cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME" && echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
+      else
+        echo "${NOTE} - Skipped restoring $FILE_NAME."
       fi
-    done
-  else
-    echo "${ERROR} - Failed to copy $DIRH."
-    exit 1
-  fi
+    fi
+  done
 else
-  echo "${ERROR} - Directory config/$DIRH does not exist to copy."
-  exit 1
+  echo "${ERROR} - UserConfigs directory does not exist in $DIRPATH. Skipping restoration."
 fi
 
 printf "\n%.0s" {1..2}
