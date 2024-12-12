@@ -109,8 +109,9 @@ else
 	sed -i '/^background /s/^background .*/background #dddddd/' "${kitty_conf}"
 	sed -i '/^cursor /s/^cursor .*/cursor #000000/' "${kitty_conf}"
 fi
-
-
+for pid in $(pidof kitty); do
+    kill -SIGUSR1 "$pid"
+done
 
 
 # Set Dynamic Wallpaper for Dark or Light Mode
