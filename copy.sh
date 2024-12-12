@@ -235,10 +235,10 @@ printf "\n"
 
 # Action to do for better rofi and kitty appearance
 while true; do
-  echo "$ORANGE Select monitor resolution for better config appearance and fonts:"
-  echo "$YELLOW 1. less than 1440p (< 1440p)"
-  echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
-  read -p "$CAT Enter the number of your choice: " res_choice
+  echo "$ORANGE Select monitor resolution to properly configure appearance and fonts:"
+  echo "$YELLOW   -- Enter 1. for monitor res 1440p or less (< 1440p)"
+  echo "$YELLOW   -- Enter 2. for monitors res higher than 1440p (≥ 1440p)"
+  read -p "$CAT Enter the number of your choice (1 or 2): " res_choice
 
   case $res_choice in
     1)
