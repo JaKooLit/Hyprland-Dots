@@ -140,7 +140,7 @@
 		"default": "",
 	},
 },
-// NUMBERS and ICONS style with window rewrite
+// NUMBERS and ICONS style with window rewrite 
 "hyprland/workspaces#rw": {
 	"disable-scroll": true,
 	"all-outputs": true,
@@ -158,19 +158,19 @@
 		"title<.*amazon.*>": " ",
 		"title<.*reddit.*>": " ",
 		"title<.*Picture-in-Picture.*>": " ",
-		"class<firefox|org.mozilla.firefox>": " ",
+		"class<firefox|org.mozilla.firefox|librewolf|floorp|mercury-browser>": " ",
 		"class<kitty|konsole>": " ",
 		"class<kitty-dropterm>": " ",
-		"class<Chromium>": " ",
+		"class<Chromium|Thorium>": " ",
 		"class<org.telegram.desktop|io.github.tdesktop_x64.TDesktop>": " ",
 		"class<[Ss]potify>": " ",
 		"class<VSCode|code-url-handler|code-oss|codium|codium-url-handler|VSCodium>": "󰨞 ",
 		"class<thunar>": "󰝰 ",
 		"class<[Tt]hunderbird|[Tt]hunderbird-esr>": " ",
-		"class<discord|[Ww]ebcord>": " ",
+		"class<discord|[Ww]ebcord|Vesktop>": " ",
 		"class<subl>": "󰅳 ",
 		"class<mpv>": " ",
-		"class<celluloid>": " ",
+		"class<celluloid|Zoom>": " ",
 		"class<Cider>": "󰎆 ",
 		"class<virt-manager>": " ",
 		"class<codeblocks>": "󰅩 ",
@@ -179,7 +179,11 @@
 		"class<libreoffice-startcenter>": "󰏆 ",
 		"class<com.obsproject.Studio>": " ",
 		"class<polkit-gnome-authentication-agent-1>": "󰒃 ",
-		"class<nwg-look>": " "
+		"class<nwg-look>": " ",
+		"class<zen-alpha>": "󰰷 ", //Zen Browser
+		"class<waterfox|waterfox-bin>": " ",
+		"class<microsoft-edge>": " ",
+		"class<vlc>": "󰕼 "
 		}   
 	},
 
