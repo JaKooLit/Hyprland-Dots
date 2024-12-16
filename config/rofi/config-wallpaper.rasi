@@ -29,6 +29,7 @@ entry {
 listview {
   columns: 4;
   lines: 3;
+  flow: horizontal;
 }
 
 /* ---- Element ---- */
