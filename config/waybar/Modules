@@ -155,7 +155,8 @@
 "clock#5": {
     //"format": "{:%A, %I:%M %P}", // AM PM format
     "format": "{:%a %d | %H:%M}", // 24H
-	"format-alt": "{:%A, %d %B, %Y (%R)}"
+	"format-alt": "{:%A, %d %B, %Y (%R)}",
+	"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
 },
 "cpu": {
 	"format": "{usage}% 󰍛",
