@@ -25,7 +25,7 @@ done
 # quit ags
 ags -q
 
-sleep 0.3
+sleep 1
 #Restart waybar
 waybar &
 
