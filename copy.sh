@@ -83,6 +83,15 @@ if command -v dpkg &> /dev/null; then
   sed -i '/^exec-once = pypr &/ s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
+# activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
+if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
+    # Define the config file path
+    HYPRCURSOR_ENV_FILE="config/hypr/UserConfigs/ENVariables.conf"
+
+    sed -i 's/^#env = HYPRCURSOR_THEME,Bibata-Modern-Ice/env = HYPRCURSOR_THEME,Bibata-Modern-Ice/' "$HYPRCURSOR_ENV_FILE"
+    sed -i 's/^#env = HYPRCURSOR_SIZE,24/env = HYPRCURSOR_SIZE,24/' "$HYPRCURSOR_ENV_FILE"
+fi
+
 # Function to detect keyboard layout using localectl or setxkbmap
 detect_layout() {
   if command -v localectl >/dev/null 2>&1; then
