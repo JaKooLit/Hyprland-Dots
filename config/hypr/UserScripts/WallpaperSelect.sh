@@ -11,7 +11,7 @@ monitors=$(hyprctl monitors | grep 'Monitor' | awk '{ print $2 }')
 # swww transition config
 FPS=60
 TYPE="any"
-DURATION=1.5
+DURATION=2
 BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
@@ -71,7 +71,7 @@ main() {
     for monitor in $monitors; do
 	    swww img -o "$monitor" "$RANDOM_PIC" $SWWW_PARAMS;
     done
-    sleep 1.5
+    sleep 2
     "$SCRIPTSDIR/WallustSwww.sh"
     sleep 0.5
     "$SCRIPTSDIR/Refresh.sh"

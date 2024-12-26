@@ -12,7 +12,7 @@ RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
 
 
 # Transition config
-FPS=60
+FPS=30
 TYPE="random"
 DURATION=1
 BEZIER=".43,1.19,1,.4"
@@ -23,8 +23,9 @@ for monitor in $monitors; do
   swww query || swww-daemon --format xrgb && swww img -o $monitor ${RANDOMPICS} $SWWW_PARAMS
 done
 
-sleep 1
+sleep 1.5
 ${scriptsDir}/WallustSwww.sh
+
 sleep 0.5
 ${scriptsDir}/Refresh.sh 
 

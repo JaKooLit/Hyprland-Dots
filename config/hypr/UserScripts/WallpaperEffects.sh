@@ -15,7 +15,7 @@ iDIR="$HOME/.config/swaync/images"
 # swww transition config
 FPS=60
 TYPE="wipe"
-DURATION=1.5
+DURATION=2
 BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
@@ -82,7 +82,7 @@ main() {
               swww img -o "$monitor" "$wallpaper_output" $SWWW_PARAMS &
             done
             # Wait for swww command to complete
-            sleep 1.5
+            sleep 2
             # Wait for other commands to finish
             wallust run "$wallpaper_output" -s &
             # Wait for other commands to finish
