@@ -51,22 +51,22 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 ### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
 - Automated Hyprland Scripts for Distro of choice which will pull this dotfiles if opted to install these configurations
 
-- [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
+- [`Arch-Linux`](https://github.com/JaKooLit/Arch-Hyprland)
 
-- [OpenSUSE(Tumbleweed)](https://github.com/JaKooLit/OpenSuse-Hyprland)
+- [`OpenSUSE(Tumbleweed)`](https://github.com/JaKooLit/OpenSuse-Hyprland)
 
-- [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
+- [`Fedora-Linux`](https://github.com/JaKooLit/Fedora-Hyprland)
 
-- [Debian Trixie / SiD](https://github.com/JaKooLit/Debian-Hyprland)
+- [`Debian-Linux (Trixie & SID)`](https://github.com/JaKooLit/Debian-Hyprland)
 
-- [NixOS](https://github.com/JaKooLit/NixOS-Hyprland)
+- [`NixOS`](https://github.com/JaKooLit/NixOS-Hyprland)
 
 <details>
-  <summary>Ubuntu Linux - Click to see versions</summary>
+  <summary> [`Ubuntu Linux - Click to see versions`] </summary>
 
-- [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
-- [Ubuntu 24.10](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
-- [Ubuntu 25.04 - ALPHA STAGE)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04)
+- [`Ubuntu 24.04 LTS`](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
+- [`Ubuntu 24.10`](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
+- [`Ubuntu 25.04 - ALPHA STAGE`)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04)
 
 </details>
 
