@@ -57,36 +57,30 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 - [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
 
-- [Debian Trixie / SiD](https://github.com/JaKooLit/Debian-Hyprland)
-
-- [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
+- [Debian-Linux (Trixie & SID)](https://github.com/JaKooLit/Debian-Hyprland)
 
 - [NixOS](https://github.com/JaKooLit/NixOS-Hyprland)
 
-#### Hyprland Install scripts on alpha/beta stage
-
-- [Ubuntu 24.10)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
-
-- refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
-- When using the install scripts above, it will pull the releases (stable) of this dotfiles, except for Nixos where it pulls from main
+- [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
+- [Ubuntu 24.10](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
+- [Ubuntu 25.04 - (ALPHA STAGE)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04)
 
 
 ### 🪧 Attention 🪧
-- This repo does NOT contain or will NOT install any packages. These are only hyprland configs or dotfiles
+- This repo does NOT contain or will NOT install any packages. These are only pre-configured-hyprland configs or dotfiles
+- refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
 - This repo will be pulled by the Distro-Hyprland install scripts above if you opt to download pre-configured dots
 
 ### 👀 Screenshots 👀
 - All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
 ### 📦 Whats new?
-- To easily track changes, I will be updating the [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth it!
+- To easily track changes, I will be updating the [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth mentioning the changes!
 
 ### 💥 Copying / Installation / Update instructions 💥
 - [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
 > [!Note] 
 > The auto copy script "copy.sh" will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
-- ~/.config (ags btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync wallust waybar wlogout) - These are folders to be copied.
-- ~/Pictures/wallpapers - Will be backed up
 - clone this repo by using git. Change directory, make executable and run the script
 
 > to download from Master branch
@@ -101,7 +95,7 @@ git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
 cd Hyprland-Dots
 ```
 
-- automatic copy of pre-configured dots
+- automatic copy/install of pre-configured dots
 ```bash
 chmod +x copy.sh
 ./copy.sh
@@ -135,8 +129,7 @@ chmod +x upgrade.sh
 #### ⚠️⚠️⚠️ A MUST! after copying  / Installing these dots
 + Press SUPER W and set a wallpaper. This is also to initiate wallust for waybar, kitty (tty) and rofi themes. However, If you use the copy.sh or the release.sh, there will be a preset initial Wallpaper and you dont have to do this
 
-+ Nvidia Owners. Make sure to edit your `~/.config/hypr/UserConfigs/ENVariables.conf` (recommended). Below env's will be activated if automatic copy is used
-> WLR_NO_CURSORS,1 , LIBVA_DRIVER_NAME,nvidia ,  __GLX_VENDOR_LIBRARY_NAME,nvidia 
++ Nvidia Owners. Make sure to edit your `~/.config/hypr/UserConfigs/ENVariables.conf` (highly recommended).
 - NVIDIA users / owners, after installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
 + If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
@@ -147,8 +140,8 @@ chmod +x upgrade.sh
 
 
 #### 🙋 QUESTIONS ?!?! ⁉️
-- FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo and NixOS :)
-- QUICK HINT! Click the HINT! Waybar module (note only available in Waybar default and Simple-L [TOP] layout). Can be launched by Keybind SUPER H
+- FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo:)
+- QUICK HINT! Click the HINT! Waybar module (note only available in Waybar default and Simple-L [TOP] layout). Can be launched by Keybind `SUPER H`
 - More question? click here browse through this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/)
 - If you want the old configs, it is collected on my "Archive" repo. See [HERE](https://github.com/JaKooLit/Hyprland-Dots-releases-Archive)
 
