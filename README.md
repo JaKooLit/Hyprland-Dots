@@ -59,19 +59,21 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 - [Debian Trixie / SiD](https://github.com/JaKooLit/Debian-Hyprland)
 
+- [NixOS](https://github.com/JaKooLit/NixOS-Hyprland)
+
+<details>
+  <summary>Ubuntu Linux - Click to see versions</summary>
+
 - [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
 - [Ubuntu 24.10](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
 - [Ubuntu 25.04 - ALPHA STAGE)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04)
 
-- [NixOS](https://github.com/JaKooLit/NixOS-Hyprland)
-
-
-- refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
-- If you opted to install dots on each of scripts above, it will pull from this Repository.
+</details>
 
 
 ### 🪧 Attention 🪧
 - This repo does NOT contain or will NOT install any packages. These are only pre-configured-hyprland configs or dotfiles
+- refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
 - This repo will be pulled by the Distro-Hyprland install scripts above if you opt to download pre-configured dots
 
 ### 👀 Screenshots 👀
