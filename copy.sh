@@ -504,9 +504,16 @@ printf "\n"
 # restoration of old configs
 DIRH="hypr"
 FILES_TO_RESTORE=(
-  "Monitors.conf"
+  "ENVariables.conf"
+  "LaptopDisplay.conf"
   "Laptops.conf"
+  "Monitors.conf"
+  "Startup_Apps.conf"
+  "UserDecorAnimations.conf"
   "UserKeybinds.conf"
+  "UserSettings.conf"
+  "WindowRules.conf"
+  "WorkspaceRules.conf"
 )
 
 DIRPATH=~/.config/"$DIRH"
