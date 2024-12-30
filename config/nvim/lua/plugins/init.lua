@@ -227,6 +227,8 @@ return {
     "3rd/image.nvim",
     event = "VeryLazy",
     build = false,
-    opts = {},
+    opts = {
+      processor = "magick_cli",
+    },
   },
 }
