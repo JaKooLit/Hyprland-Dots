@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/*  ml4w-modern-mixed */
+/*  ml4w-modern */
 
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
@@ -42,7 +42,6 @@ window#waybar {
     font-weight: bold;
     font-style: normal;
     opacity: 0.8;
-    font-size: 16px;
     color: @textcolor1;
 }
 
@@ -89,7 +88,6 @@ tooltip label {
     padding: 2px 10px 0px 10px;
     border-radius: 5px 5px 5px 5px;
     color:white;
-    font-size:16px;
     font-weight:normal;
     opacity:0.8;
 }
@@ -161,7 +159,7 @@ window#waybar.empty #window {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
     margin-right: 16px;
-    font-size: 20px;
+    font-size: 100%;
     font-weight: bold;
     opacity: 0.8;
     color: @iconcolor;
@@ -173,7 +171,7 @@ window#waybar.empty #window {
 
 #idle_inhibitor {
     margin-right: 15px;
-    font-size: 22px;
+    font-size: 102%;
     font-weight: bold;
     opacity: 0.8;
     color: @iconcolor;
@@ -181,7 +179,7 @@ window#waybar.empty #window {
 
 #idle_inhibitor.activated {
     margin-right: 15px;
-    font-size: 20px;
+    font-size: 100%;
     font-weight: bold;
     opacity: 0.8;
     color: #dc2f2f;
@@ -189,7 +187,6 @@ window#waybar.empty #window {
 
 #custom-menu {
     background-color: @backgrounddark;
-    font-size: 16px;
     color: @textcolor1;
     border-radius: 5px 5px 5px 5px;
     padding: 0px 10px 0px 10px;
@@ -200,7 +197,6 @@ window#waybar.empty #window {
 
 #custom-power {
     background-color: @backgrounddark;
-    font-size: 16px;
     color: @textcolor1;
     border-radius: 5px 5px 5px 5px;
     padding: 0px 0px 0px 6px;
@@ -211,14 +207,12 @@ window#waybar.empty #window {
 #custom-keybinds {
     margin: 0px 13px 0px 0px;
     padding:0px;
-    font-size:20px;
     color: @iconcolor;
     opacity: 0.8;
 }
 
 #custom-updater {
     background-color: @backgroundlight;
-    font-size: 16px;
     color: @textcolor2;
     border-radius: 5px 5px 5px 5px;
     padding: 2px 10px 0px 10px;
@@ -243,7 +237,6 @@ window#waybar.empty #window {
 #disk,#memory,#cpu,#language {
     margin:0px;
     padding:0px;
-    font-size:16px;
     color:@iconcolor;
 }
 
@@ -253,7 +246,6 @@ window#waybar.empty #window {
 
 #clock {
     background-color: @backgrounddark;
-    font-size: 16px;
     color: @textcolor1;
     border-radius: 3px 5px 3px 5px;
     padding: 1px 10px 0px 10px;
@@ -265,7 +257,6 @@ window#waybar.empty #window {
 #backlight {
     background-color: @backgroundlight;
     margin-left: 6px;
-    font-size: 16px;
     color: @textcolor2;
     border-radius: 5px 5px 5px 5px;
     padding: 2px 10px 0px 10px;
@@ -275,7 +266,6 @@ window#waybar.empty #window {
 
 #pulseaudio {
     background-color: @backgroundlight;
-    font-size: 16px;
     color: @textcolor2;
     border-radius: 5px 5px 5px 5px;
     padding: 2px 10px 0px 10px;
@@ -290,7 +280,6 @@ window#waybar.empty #window {
 
 #network {
     background-color: @backgroundlight;
-    font-size: 16px;
     color: @textcolor2;
     border-radius: 5px 5px 5px 5px;
     padding: 2px 10px 0px 10px;
@@ -310,7 +299,6 @@ window#waybar.empty #window {
 
 #bluetooth, #bluetooth.on, #bluetooth.connected {
     background-color: @backgroundlight;
-    font-size: 16px;
     color: @textcolor2;
     border-radius: 5px 5px 5px 5px;
     padding: 2px 10px 0px 10px;
@@ -326,7 +314,6 @@ window#waybar.empty #window {
 
 #battery {
     background-color: @backgroundlight;
-    font-size: 16px;
     color: @textcolor2;
     border-radius: 5px 5px 5px 5px;
     padding: 2px 15px 0px 10px;
