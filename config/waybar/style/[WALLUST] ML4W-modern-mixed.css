@@ -19,6 +19,7 @@
 	min-height: 0;
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
 	font-size: 97%;
+	/* note: different modules have different font sizes */
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
@@ -34,6 +35,7 @@ window#waybar {
 #workspaces {
     background: @workspacesbackground1;
     margin: 2px 18px 3px 1px;
+    margin-left: 6px;
     padding: 0px 2px;
     border-radius: 5px 5px 5px 5px;
     border: 0px;
@@ -48,7 +50,6 @@ window#waybar {
     padding: 0px 6px;
     margin: 3px 2px;
     border-radius: 3px 3px 3px 3px;
-    border: 0px;
     color: @textcolor1;
     background-color: @workspacesbackground2;
     transition: all 0.1s linear;
@@ -166,6 +167,10 @@ window#waybar.empty #window {
     color: @iconcolor;
 }
 
+#custom-swaync {
+	margin-left: 6px;
+}
+
 #idle_inhibitor {
     margin-right: 15px;
     font-size: 22px;
@@ -198,7 +203,7 @@ window#waybar.empty #window {
     font-size: 16px;
     color: @textcolor1;
     border-radius: 5px 5px 5px 5px;
-    padding: 0px 2px 0px 10px;
+    padding: 0px 0px 0px 6px;
     opacity:0.8;
     border:3px solid @bordercolor;
 }
@@ -259,6 +264,7 @@ window#waybar.empty #window {
 
 #backlight {
     background-color: @backgroundlight;
+    margin-left: 6px;
     font-size: 16px;
     color: @textcolor2;
     border-radius: 5px 5px 5px 5px;
