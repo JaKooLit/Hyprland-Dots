@@ -499,11 +499,11 @@ for DIR_NAME in $DIR; do
   fi
 done
 
-printf "\n"
+printf "\n%.0s" {1..2}
 
 #  Restoring UserConfigs and UserScripts
-echo -e "Restoring previous User-Configs... \n"
-echo -e "${NOTE}: If you decide to restore the old configs, make sure to handle the updates or changes manually.\n"
+echo -e "Restoring previous User-Configs... "
+echo -e "${NOTE}: If you decide to restore the old configs, make sure to handle the updates or changes manually."
 echo -e "Visit and check KooL's Hyprland-Dots GitHub page for the commits.\n"
 
 # UserConfigs
