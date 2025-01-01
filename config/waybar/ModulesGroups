@@ -19,13 +19,13 @@
 		"custom/tty",
 		"custom/browser",
 		"custom/settings",
-		"power-profiles-daemon",
 	]
 },
 "group/motherboard": {
 	"orientation": "horizontal",
 	"modules": [
 		"cpu",
+		"power-profiles-daemon",
 		"memory",
 		"temperature",
 		"disk",
@@ -41,7 +41,8 @@
         },
 	"modules": [
 		"temperature",		
-		"cpu",	
+		"cpu",
+		"power-profiles-daemon",	
 		"memory",
 		"disk",
 	]

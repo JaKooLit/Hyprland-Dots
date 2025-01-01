@@ -1,6 +1,7 @@
 [%General]
 author=elkrien based on Arc Dark style
-comment=Catppuccin-Latte
+comment=Catppuccin-Mocha-Blue
+combo_focus_rect=true
 spread_menuitems=true
 left_tabs=true
 mirror_doc_tabs=true
@@ -23,7 +24,7 @@ double_click=false
 translucent_windows=false
 blurring=false
 popup_blurring=true
-opaque=audacious,kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,smplayer,smplayer2,avidemux,avidemux2_qt4,avidemux3_qt4,avidemux3_qt5,kamoso,QtCreator,VirtualBox,VirtualBoxVM,trojita,dragon,digikam,lyx
+opaque=kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,smplayer,smplayer2,avidemux,avidemux2_qt4,avidemux3_qt4,avidemux3_qt5,kamoso,QtCreator,VirtualBox,trojita,dragon,digikam,qmplay2
 group_toolbar_buttons=false
 vertical_spin_indicators=false
 fill_rubberband=false
@@ -43,7 +44,7 @@ joined_inactive_tabs=false
 layout_spacing=2
 submenu_overlap=0
 tooltip_delay=-1
-animate_states=true
+animate_states=false
 transient_scrollbar=true
 alt_mnemonic=true
 combo_menu=true
@@ -67,30 +68,28 @@ no_inactiveness=false
 reduce_menu_opacity=0
 reduce_window_opacity=10
 saturation=1.00
-shadowless_popup=true
+shadowless_popup=false
 transient_groove=false
-menu_blur_radius=6
-tooltip_blur_radius=6
 
 [GeneralColors]
-window.color=#EFF1F5
-base.color=#E6E9EF
-alt.base.color=#E6E9EF
-button.color=#CCD0DA
-light.color=#BCC0CC
-mid.light.color=#BCC0CC
-dark.color=#E6E9EF
-mid.color=#E6E9EF
-highlight.color=#DC8A78
-inactive.highlight.color=#DC8A78
-text.color=#4C4F69
-window.text.color=#4C4F69
-button.text.color=#4C4F69
-disabled.text.color=#ACB0BE
-tooltip.text.color=#4C4F69
-highlight.text.color=#E6E9EF
-link.color=#DC8A78
-link.visited.color=#1E66F5
+window.color=#1E1E2E
+base.color=#181825
+alt.base.color=#181825
+button.color=#313244
+light.color=#45475A
+mid.light.color=#45475A
+dark.color=#181825
+mid.color=#181825
+highlight.color=#89B4FA
+inactive.highlight.color=#89B4FA
+text.color=#CDD6F4
+window.text.color=#CDD6F4
+button.text.color=#CDD6F4
+disabled.text.color=#585B70
+tooltip.text.color=#CDD6F4
+highlight.text.color=#181825
+link.color=#F5E0DC
+link.visited.color=#89B4FA
 
 [ItemView]
 inherits=PanelButtonCommand
@@ -99,7 +98,7 @@ interior.element=itemview
 frame=true
 interior=true
 text.iconspacing=3
-text.toggle.color=#E6E9EF 
+text.toggle.color=#181825
 
 [RadioButton]
 inherits=PanelButtonCommand
@@ -126,10 +125,10 @@ frame=true
 inherits=PanelButtonCommand
 interior.element=button
 frame.element=button
-text.normal.color=#4C4F69
-text.focus.color=#4C4F69
-text.press.color=#E6E9EF
-text.toggle.color=#E6E9EF
+text.normal.color=#CDD6F4
+text.focus.color=#CDD6F4
+text.press.color=#181825
+text.toggle.color=#181825
 
 [PanelButtonTool]
 inherits=PanelButtonCommand
@@ -144,7 +143,7 @@ text.margin.left=5
 text.margin.right=5
 indicator.size=0
 
-[Dock] 
+[Dock]
 interior.element=toolbar
 frame.element=toolbar
 frame=true
@@ -231,10 +230,10 @@ frame.bottom=3
 frame.left=3
 frame.right=3
 indicator.size=10
-text.normal.color=#ACB0BE
-text.focus.color=#4C4F69
-text.press.color=#4C4F69
-text.toggle.color=#4C4F69
+text.normal.color=#585B70
+text.focus.color=#CDD6F4
+text.press.color=#CDD6F4
+text.toggle.color=#CDD6F4
 focusFrame=true
 
 [TabBarFrame]
@@ -271,10 +270,10 @@ frame.bottom=1
 frame.left=1
 frame.right=1
 frame.expansion=0
-text.normal.color=#4C4F69
-text.focus.color=#DC8A78
-text.press.color=#4C4F69
-text.toggle.color=#4C4F69
+text.normal.color=#CDD6F4
+text.focus.color=#89B4FA
+text.press.color=#CDD6F4
+text.toggle.color=#CDD6F4
 indicator.element=harrow
 
 [SizeGrip]
@@ -292,10 +291,10 @@ frame=true
 frame.bottom=4
 frame.left=4
 frame.right=4
-text.normal.color=#4C4F69
-text.focus.color=#4C4F69
-text.press.color=#DC8A78
-text.toggle.color=#DC8A78
+text.normal.color=#CDD6F4
+text.focus.color=#CDD6F4
+text.press.color=#89B4FA
+text.toggle.color=#89B4FA
 text.bold=false
 
 [MenuBar]
@@ -303,7 +302,7 @@ inherits=PanelButtonCommand
 frame.element=menubar
 interior.element=menubar
 frame.bottom=0
-text.normal.color=#4C4F69
+text.normal.color=#CDD6F4
 frame.expansion=0
 text.bold=false
 
@@ -311,10 +310,10 @@ text.bold=false
 frame.element=tbutton
 interior.element=tbutton
 indicator.element=arrow
-text.normal.color=#4C4F69
-text.focus.color=#4C4F69
-text.press.color=#E6E9EF
-text.toggle.color=#E6E9EF
+text.normal.color=#CDD6F4
+text.focus.color=#CDD6F4
+text.press.color=#181825
+text.toggle.color=#181825
 text.bold=false
 
 [Scrollbar]
@@ -356,10 +355,10 @@ frame.bottom=2
 frame.left=2
 frame.right=2
 text.margin=0
-text.normal.color=#4C4F69
-text.focus.color=#4C4F69
-text.press.color=#E6E9EF
-text.toggle.color=#E6E9EF
+text.normal.color=#CDD6F4
+text.focus.color=#CDD6F4
+text.press.color=#181825
+text.toggle.color=#181825
 text.bold=false
 frame.expansion=18
 
@@ -370,8 +369,8 @@ inherits=PanelButtonCommand
 frame.element=menu
 interior.element=menu
 inherits=PanelButtonCommand
-text.press.color=#E6E9EF
-text.toggle.color=#E6E9EF
+text.press.color=#181825
+text.toggle.color=#181825
 text.bold=false
 frame.top=3
 frame.bottom=3
@@ -382,8 +381,8 @@ frame.right=3
 inherits=PanelButtonCommand
 interior.element=menuitem
 indicator.size=8
-text.focus.color=#4C4F69
-text.press.color=#4C4F69
+text.focus.color=#CDD6F4
+text.press.color=#CDD6F4
 
 [MenuBarItem]
 inherits=PanelButtonCommand
@@ -398,7 +397,7 @@ text.margin.right=5
 inherits=Toolbar
 frame.element=toolbar
 font.bold=true
-text.normal.color=#4C4F69
+text.normal.color=#CDD6F4
 frame=true
 frame.top=0
 frame.bottom=0
@@ -423,16 +422,16 @@ text.margin.top=1
 text.margin.bottom=1
 text.margin.left=3
 text.margin.right=3
-text.toggle.color=#4C4F69
+text.toggle.color=#CDD6F4
 
 [ToolboxTab]
 inherits=PanelButtonCommand
-text.normal.color=#4C4F69
-text.press.color=#4C4F69
-text.focus.color=#4C4F69
+text.normal.color=#CDD6F4
+text.press.color=#CDD6F4
+text.focus.color=#CDD6F4
 
 [Hacks]
-transparent_dolphin_view=true
+transparent_dolphin_view=false
 blur_konsole=true
 transparent_ktitle_label=true
 transparent_menutitle=true
@@ -440,14 +439,14 @@ respect_darkness=true
 kcapacitybar_as_progressbar=true
 force_size_grip=false
 iconless_pushbutton=true
-iconless_menu=true
-disabled_icon_opacity=80
+iconless_menu=false
+disabled_icon_opacity=100
 lxqtmainmenu_iconsize=0
 normal_default_pushbutton=true
 single_top_toolbar=false
 tint_on_mouseover=0
 transparent_pcmanfm_sidepane=true
-transparent_pcmanfm_view=true
+transparent_pcmanfm_view=false
 blur_translucent=true
 centered_forms=false
 kinetic_scrolling=false
