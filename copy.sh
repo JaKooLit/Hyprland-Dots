@@ -500,7 +500,6 @@ done
 
 printf "\n%.0s" {1..2}
 
-
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
@@ -526,7 +525,7 @@ if [ -z "$BACKUP_DIR" ]; then
 fi
 
 if [ -d "$BACKUP_DIR_PATH" ]; then
-  echo -e "${NOTE} Restoring previous User-Configs... "
+  echo -e "${NOTE} Restoring previous ${ORANGE}User-Configs${RESET}... "
   echo -e "${WARN} If you decide to restore the old configs, make sure to handle the updates or changes manually."
   echo -e "${INFO} Kindly Visit and check KooL's Hyprland-Dots GitHub page for the commits."
 
@@ -549,6 +548,8 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
   done
 fi
 
+printf "\n%.0s" {1..2}
+
 # Restoring previous UserScripts
 DIRSH="hypr"
 SCRIPTS_TO_RESTORE=(
@@ -561,12 +562,12 @@ DIRSHPATH=~/.config/"$DIRSH"
 BACKUP_DIR_PATH="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
 
 if [ -d "$BACKUP_DIR_PATH" ]; then
-  echo -e "${INFO} Restoring previous User-Scripts from backup..."
+  echo -e "${NOTE} Restoring previous ${ORANGE}User-Scripts${RESET}..."
 
   for SCRIPT_NAME in "${SCRIPTS_TO_RESTORE[@]}"; do
     BACKUP_SCRIPT="$BACKUP_DIR_PATH/$SCRIPT_NAME"
 
-    if [ -f "$BACKUP_SCRIPT"; then
+    if [ -f "$BACKUP_SCRIPT" ]; then
       printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
       read -p "${CAT} Do you want to restore ${ORANGE}$SCRIPT_NAME${RESET} from backup? (y/N): " script_restore
       if [[ "$script_restore" == [Yy]* ]]; then
