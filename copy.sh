@@ -369,8 +369,7 @@ else
 fi
 printf "\n"
 
-# Copy Config Files #
-set -e # Exit immediately if a command exits with a non-zero status.
+set -e
 
 # Function to create a unique backup directory name with month, day, hours, and minutes
 get_backup_dirname() {
@@ -501,12 +500,8 @@ done
 
 printf "\n%.0s" {1..2}
 
-#  Restoring UserConfigs and UserScripts
-echo -e "Restoring previous User-Configs... "
-echo -e "${NOTE}: If you decide to restore the old configs, make sure to handle the updates or changes manually."
-echo -e "Visit and check KooL's Hyprland-Dots GitHub page for the commits.\n"
 
-# UserConfigs
+# Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
   "ENVariables.conf"
@@ -523,20 +518,24 @@ FILES_TO_RESTORE=(
 
 DIRPATH=~/.config/"$DIRH"
 BACKUP_DIR=$(get_backup_dirname)
+BACKUP_DIR_PATH="$DIRPATH-backup-$BACKUP_DIR/UserConfigs"
 
 if [ -z "$BACKUP_DIR" ]; then
   echo "${ERROR} - Backup directory name is empty. Exiting."
   exit 1
 fi
 
-# Check if the UserConfigs directory exists in ~/.config/hypr
-if [ -d "$DIRPATH/UserConfigs" ]; then
-  for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
-    BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
+if [ -d "$BACKUP_DIR_PATH" ]; then
+  echo -e "${NOTE} Restoring previous User-Configs... "
+  echo -e "${WARN} If you decide to restore the old configs, make sure to handle the updates or changes manually."
+  echo -e "${INFO} Kindly Visit and check KooL's Hyprland-Dots GitHub page for the commits."
 
+  for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
+    BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
     if [ -f "$BACKUP_FILE" ]; then
       printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
       read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/N): " file_restore
+
       if [[ "$file_restore" == [Yy]* ]]; then
         if cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME"; then
           echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
@@ -548,15 +547,9 @@ if [ -d "$DIRPATH/UserConfigs" ]; then
       fi
     fi
   done
-else
-  echo "${ERROR} - UserConfigs directory does not exist in $DIRPATH. Skipping restoration."
 fi
 
-printf "\n%.0s" {1..2}
-
-# UserScripts
-echo -e "Restoring previous some User-Scripts...\n"
-
+# Restoring previous UserScripts
 DIRSH="hypr"
 SCRIPTS_TO_RESTORE=(
   "RofiBeats.sh"
@@ -565,16 +558,19 @@ SCRIPTS_TO_RESTORE=(
 )
 
 DIRSHPATH=~/.config/"$DIRSH"
+BACKUP_DIR_PATH="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
 
-if [ -d "$DIRSHPATH/UserScripts" ]; then
+if [ -d "$BACKUP_DIR_PATH" ]; then
+  echo -e "${INFO} Restoring previous User-Scripts from backup..."
+
   for SCRIPT_NAME in "${SCRIPTS_TO_RESTORE[@]}"; do
-    BACKUP_SCRIPT="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts/$SCRIPT_NAME"
+    BACKUP_SCRIPT="$BACKUP_DIR_PATH/$SCRIPT_NAME"
 
-    if [ -f "$BACKUP_SCRIPT" ]; then
+    if [ -f "$BACKUP_SCRIPT"; then
       printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
       read -p "${CAT} Do you want to restore ${ORANGE}$SCRIPT_NAME${RESET} from backup? (y/N): " script_restore
       if [[ "$script_restore" == [Yy]* ]]; then
-        if cp "$BACKUP_SCRIPT" "$DIRPATH/UserScripts/$SCRIPT_NAME"; then
+        if cp "$BACKUP_SCRIPT" "$DIRSHPATH/UserScripts/$SCRIPT_NAME"; then
           echo "${OK} - $SCRIPT_NAME restored!" 2>&1 | tee -a "$LOG"
         else
           echo "${ERROR} - Failed to restore $SCRIPT_NAME!" 2>&1 | tee -a "$LOG"
@@ -584,8 +580,6 @@ if [ -d "$DIRSHPATH/UserScripts" ]; then
       fi
     fi
   done
-else
-  echo "${ERROR} - UserScripts directory does not exist in $DIRPATH. Skipping restoration."
 fi
 
 printf "\n%.0s" {1..2}
@@ -725,4 +719,4 @@ wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 printf "\n%.0s" {1..4}
 printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!!"
 printf "\n%.0s" {1..1}
-printf "${ORANGE}HOWEVER I HIGHLY SUGGEST to logout and re-login or better reboot to avoid any issues\n\n"
+printf "${ORANGE} HOWEVER I HIGHLY SUGGEST to logout and re-login or better reboot to avoid any issues\n\n"
