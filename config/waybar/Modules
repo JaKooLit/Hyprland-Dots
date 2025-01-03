@@ -155,8 +155,7 @@
 "clock#5": {
     //"format": "{:%A, %I:%M %P}", // AM PM format
     "format": "{:%a %d | %H:%M}", // 24H
-	"format-alt": "{:%A, %d %B, %Y (%R)}",
-	"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+	"format-alt": "{:%A, %d %B, %Y (%R)}"
 },
 "cpu": {
 	"format": "{usage}% 󰍛",
@@ -290,10 +289,10 @@
 	"tooltip-format-ethernet": "{ifname} 󰌘",
 	"tooltip-format-disconnected": "󰌙 Disconnected",
 	"min-length": 24,
-	"max-length": 24,
-	"format-icons": [
-		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
-	]
+	"max-length": 24
+//	"format-icons": [
+//		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+//	]
 },
 "power-profiles-daemon": {
   "format": "{icon} ",
@@ -364,7 +363,7 @@
 },
 "tray": {
 	"icon-size": 20,
-	"spacing": 4,
+	"spacing": 6,
 },
 "wireplumber": {
 	"format": "{icon} {volume} %",

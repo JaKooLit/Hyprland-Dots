@@ -55,7 +55,7 @@
 },
 
 "custom/hint": {
-	"format": "󰺁 HINT!",
+	"format": "󰺁 PISTA!",
 	"on-click": "$HOME/.config/hypr/scripts/KeyHints.sh",
 	"on-click-right": "$HOME/.config/hypr/scripts/KeyBinds.sh",
 	"tooltip": true,

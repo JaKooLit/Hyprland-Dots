@@ -19,13 +19,13 @@
 		"custom/tty",
 		"custom/browser",
 		"custom/settings",
+		"power-profiles-daemon",
 	]
 },
 "group/motherboard": {
 	"orientation": "horizontal",
 	"modules": [
 		"cpu",
-		"power-profiles-daemon",
 		"memory",
 		"temperature",
 		"disk",
@@ -41,8 +41,7 @@
         },
 	"modules": [
 		"temperature",		
-		"cpu",
-		"power-profiles-daemon",	
+		"cpu",	
 		"memory",
 		"disk",
 	]
@@ -67,19 +66,6 @@
 	]
 },
 
-"group/connections": {
-	"orientation": "inherit",
-	"drawer": {
-		"transition-duration": 500,
-		"children-class": "bluetooth",
-		"transition-left-to-right": true
-        },
-	"modules": [
-		"network",
-		"bluetooth",
-	]
-},
-
 "group/status": {
 	"orientation": "inherit",
 	"drawer": {
@@ -90,7 +76,7 @@
 	"modules": [
 		"custom/power",
 		"custom/lock",
-		"keyboard-state",
+		//"keyboard-state",
 		"custom/keyboard",
 	]
 },

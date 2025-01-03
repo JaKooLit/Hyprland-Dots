@@ -3,12 +3,13 @@
 # Rofi menu for Quick Edit/View of Settings (SUPER E)
 
 # Define preferred text editor and terminal
-edit=${EDITOR:-nano}
+edit=${EDITOR:-nvim}
 tty=kitty
 
 # Paths to configuration directories
 configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
+UserScripts="$HOME/.config/hypr/UserScripts"
 
 # Function to display the menu options
 menu() {
@@ -24,6 +25,7 @@ menu() {
 9. Edit Workspace-Rules
 10. Edit Default-Settings
 11. Edit Default-Keybinds
+12. Edit RofiBeats-Music
 EOF
 }
 
@@ -44,6 +46,7 @@ main() {
         9) file="$UserConfigs/WorkspaceRules.conf" ;;
         10) file="$configs/Settings.conf" ;;
         11) file="$configs/Keybinds.conf" ;;
+        12) file="$UserScripts/RofiBeats.sh"  ;;
         *) return ;;  # Do nothing for invalid choices
     esac
 

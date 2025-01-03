@@ -1,0 +1,30 @@
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
+
+# wallust-colors
+#include kitty-colors.conf 
+
+font_family Fira Code SemiBold
+font_size 12.0
+bold_font auto
+italic_font auto
+bold_italic_font auto
+
+background_opacity 0.7
+confirm_os_window_close 0
+
+# change to x11 or wayland or leave auto
+linux_display_server auto
+
+scrollback_lines 2000
+wheel_scroll_min_lines 1
+
+enable_audio_bell no
+
+window_padding_width 4
+
+selection_foreground none
+selection_background none
+
+foreground #dddddd
+background #000000
+cursor #dddddd

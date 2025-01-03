@@ -34,7 +34,7 @@
 	"custom/separator#dot-line",
 	"clock",
 	"custom/separator#line",
-	"hyprland/workspaces#kanji",
+	"hyprland/workspaces#4",
 	"custom/separator#dot-line",
 	"idle_inhibitor",	
 	"custom/hint",	
@@ -42,7 +42,7 @@
 
 "modules-right": [
 	"network#speed",
-	"group/connections",
+	//"group/connections",
 	"custom/separator#line",
 	"tray",
 	"mpris", 

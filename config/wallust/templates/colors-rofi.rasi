@@ -21,7 +21,7 @@ selected-active-foreground: {{foreground}};
 selected-normal-background: {{color7}};
 selected-normal-foreground: {{foreground}};
 selected-urgent-background: {{color12}};
-selected-urgent-foreground: {{foreground}};
+background: rgba(0,0,0,0.7);
 
 background-color: {{background}};
 background: rgba(0,0,0,0.7);

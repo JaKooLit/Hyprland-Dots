@@ -18,5 +18,5 @@ window {
 listview {
   fixed-columns: false;
   colums: 1;
-  lines: 3;
+  lines: 4;
 }
