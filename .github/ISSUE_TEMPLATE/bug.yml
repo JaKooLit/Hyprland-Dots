@@ -30,9 +30,9 @@ body:
   - type: textarea
     id: ver
     attributes:
-      label: System Info and Hyprland Version
+      label: System Info 
       description: |
-        Paste the output of `inxi -CGIsSMnr` here. here. If you can't
+        Paste the output of `inxi -CGIsSMnr` here
         install inxi if command not found
       value: "<details>
         <summary>System/Version info</summary>
