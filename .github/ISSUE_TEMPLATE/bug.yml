@@ -26,13 +26,12 @@ body:
     validations:
       required: true
 
-
   - type: textarea
     id: ver
     attributes:
-      label: System Info 
+      label: System Info
       description: |
-        Paste the output of `inxi -CGIsSMnr` here
+        Paste the output of `inxi -CGIsSMnr` here.
         install inxi if command not found
       value: "<details>
         <summary>System/Version info</summary>
@@ -42,13 +41,12 @@ body:
 
         <Paste the output of the command here, without removing any formatting around this>
 
-
         ```
 
 
         </details>"
     validations:
-      required: true  
+      required: true
 
   - type: textarea
     id: ver
