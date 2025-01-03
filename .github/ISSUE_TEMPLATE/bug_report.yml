@@ -1,6 +1,7 @@
 name: Bug Report
 description: Something is not working right
 labels: ["bug"]
+
 body:
   - type: checkboxes
     attributes:
