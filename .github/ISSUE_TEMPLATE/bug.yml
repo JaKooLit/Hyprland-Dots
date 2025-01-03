@@ -23,15 +23,16 @@ body:
       options:
         - "Yes"
         - "No"
+        - "Not sure"
     validations:
       required: true
 
   - type: textarea
     id: ver
     attributes:
-      label: System Info
+      label: System Info and Version
       description: |
-        Paste the output of `inxi -CGIsSMnr` here.
+        Paste the output of `inxi --full` here.
         install inxi if command not found.
       value: "<details>
         <summary>System/Version info</summary>
@@ -47,14 +48,14 @@ body:
         </details>"
     validations:
       required: true
-
+      
   - type: textarea
-    id: ver
+    id: dots
     attributes:
       label: KooL's Dots version
       description: |
-        Paste the output of `find ~/.config/hypr/ -type f -name 'v*' -exec basename {} \;`
-        This is just KooL's Dots hyprland version.
+        Paste the output of `find ~/.config/hypr/ -type f -name 'v*' -exec basename {} \;` 
+        This is just KooL's Hyprland Dots version.
     validations:
       required: true
 
@@ -80,9 +81,3 @@ body:
       label: install logs, images or videos
       description: |
         Anything that can help. Please always ATTACH and not paste them.
-
-
-
-
-
-
