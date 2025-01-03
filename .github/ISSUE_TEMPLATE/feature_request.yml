@@ -1,14 +1,15 @@
-name: Feature Request
+name: Feature request
 description: I'd like to request additional functionality
 labels: ["enhancement"]
 
 body:
-  - type: markdown
+  - type: checkboxes
     attributes:
-      value: |
-        Before opening a new feature, take a moment to search through the current open ones.
-
-        ---
+      label: Already requested ? *
+      description: Before opening a new feature request, please take a moment to search through the current open and closed issues to check if it already exists.
+      options:
+      - label: I have searched the existing open and closed issues.
+        required: true
 
   - type: textarea
     id: desc
