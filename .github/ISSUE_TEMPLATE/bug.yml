@@ -3,7 +3,7 @@ description: Something is not working right
 title: "[Bug]: "
 labels: ["bug"]
 assignees:
-  - Ja.KooLit
+  - JaKooLit
 
 body:
   - type: checkboxes
