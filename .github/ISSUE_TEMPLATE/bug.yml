@@ -32,7 +32,7 @@ body:
       label: System Info
       description: |
         Paste the output of `inxi -CGIsSMnr` here.
-        install inxi if command not found
+        install inxi if command not found.
       value: "<details>
         <summary>System/Version info</summary>
 
@@ -54,7 +54,7 @@ body:
       label: KooL's Dots version
       description: |
         Paste the output of `find ~/.config/hypr/ -type f -name 'v*' -exec basename {} \;`
-        This is just KooL's Dots hyprland version
+        This is just KooL's Dots hyprland version.
     validations:
       required: true
 
