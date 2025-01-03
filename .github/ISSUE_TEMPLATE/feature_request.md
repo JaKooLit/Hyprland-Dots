@@ -1,28 +1,34 @@
----
-name: Feature request
-about: Suggest a feature for this project
-title: "[Feature Request]: Short description of the feature"
-labels: "enhancement, needs triage, feature request"
----
+name: Feature Request
+description: I'd like to request additional functionality
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening a new feature, take a moment to search through the current open ones.
 
-## Feature Request
+        ---
 
-### Description
+  - type: textarea
+    id: desc
+    attributes:
+      label: Description
+      description: "Describe your idea"
+    validations:
+      required: true
 
-[Provide a clear and concise description of the feature you'd like to see added.]
+  - type: textarea
+    id: desc
+    attributes:
+      label: Use case
+      description: "Describe how this feature would be useful to you or to other users of the project."
+    validations:
+      required: true
 
-### Use Case
-
-[Describe how this feature would be useful to you or to other users of the project.]
-
-### Proposed Solution
-
-[If you have a specific solution in mind, describe it here. If not, you can skip this section.]
-
-### Alternatives
-
-[Are there any alternative solutions or workarounds that you've considered? If so, describe them here.]
-
-### Additional Information
-
-[Add any other information about the feature request here. For example, you might include links to similar features in other projects, or screenshots or diagrams to help explain your idea.]
+  - type: textarea
+    id: desc
+    attributes:
+      label: Proposed Solution or alternatives
+      description: "If you have a specific solution in mind, describe it here."
+    validations:
+      required: true

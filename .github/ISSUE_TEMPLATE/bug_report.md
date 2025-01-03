@@ -1,47 +1,63 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: "[Bug]: Short description of the issue"
-labels: "Something isn't working"
----
+name: Bug Report
+description: Something is not working right
+labels: ["bug"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Already reported ? *
+      description: Before opening a new bug report, please take a moment to search through the current open and closed issues to check if it already exists.
+      options:
+      - label: I have searched the existing open and closed issues.
+        required: true
 
-## Bug Report
+  - type: dropdown
+    id: type
+    attributes:
+      label: Regression?
+      description: |
+        Regression means that something used to work but no longer does.
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
 
-### Description
+  - type: textarea
+    id: ver
+    attributes:
+      label: System Info and Version
+      description: |
+        Paste the output of `inxi -CGIsSMnr` here.
+        install inxi if command not found
+    validations:
+      required: true
+      
 
-[Provide a clear and concise description of the bug.]
+  - type: textarea
+    id: desc
+    attributes:
+      label: Description
+      description: "What went wrong? What exactly happened?"
+    validations:
+      required: true
 
-### Steps to Reproduce
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: "How can someone else reproduce the issue?"
+    validations:
+      required: true
 
-1. [First Step]
-2. [Second Step]
-3. [and so on...]
-
-### Expected Behavior
-
-[What did you expect to happen?]
-
-### Actual Behavior
-
-[What actually happened?]
-
-### Screenshots
-
-[If applicable, add screenshots to help explain your problem.]
-
-### Environment
-
-[Please add any other relevant information about the bug and remove the unnecessary lines.]
-
-### show output of `inxi -CGIsSMnr` install package `inxi` if not exist
-show output here
-```
+  - type: textarea
+    id: logs
+    attributes:
+      label: install logs, images or videos
+      description: |
+        Anything that can help. Please always ATTACH and not paste them.
 
 
-```
 
-or you can also run `inxi -CGIsSMnr >diag.txt` and attach diag.txt
 
-### Additional Information
 
-[Add any other information about the problem here. For example, you might include the error message, any recent changes that you made to the project, or any other relevant details.]
+
