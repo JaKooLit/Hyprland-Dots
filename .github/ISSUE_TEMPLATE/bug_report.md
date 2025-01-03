@@ -1,3 +1,10 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: "[Bug]: Short description of the issue"
+labels: "Something isn't working"
+---
+
 name: Bug Report
 description: Something is not working right
 labels: ["bug"]
