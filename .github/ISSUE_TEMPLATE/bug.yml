@@ -26,16 +26,39 @@ body:
     validations:
       required: true
 
+
   - type: textarea
     id: ver
     attributes:
-      label: System Info and Version
+      label: System Info and Hyprland Version
       description: |
-        Paste the output of `inxi -CGIsSMnr` here.
+        Paste the output of `inxi -CGIsSMnr` here. here. If you can't
         install inxi if command not found
+      value: "<details>
+        <summary>System/Version info</summary>
+
+
+        ```
+
+        <Paste the output of the command here, without removing any formatting around this>
+
+
+        ```
+
+
+        </details>"
+    validations:
+      required: true  
+
+  - type: textarea
+    id: ver
+    attributes:
+      label: KooL's Dots version
+      description: |
+        Paste the output of `find ~/.config/hypr/ -type f -name 'v*' -exec basename {} \;`
+        This is just KooL's Dots hyprland version
     validations:
       required: true
-      
 
   - type: textarea
     id: desc
