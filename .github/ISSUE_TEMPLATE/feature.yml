@@ -1,6 +1,9 @@
 name: Feature Request
 description: I'd like to propose some changes and enhancements
+title: "[Enhancement]: "
 labels: ["enhancement"]
+assignees:
+  - Ja.KooLit
 
 body:
   - type: checkboxes

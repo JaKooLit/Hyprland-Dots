@@ -1,6 +1,9 @@
 name: Bug Report
 description: Something is not working right
+title: "[Bug]: "
 labels: ["bug"]
+assignees:
+  - Ja.KooLit
 
 body:
   - type: checkboxes
