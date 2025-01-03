@@ -1,10 +1,3 @@
----
-name: Feature request
-about: Suggest a feature for this project
-title: "[Feature Request]: I'd like to request additional functionality  or changes"
-labels: "enhancement, feature request"
----
-
 name: Feature Request
 description: I'd like to request additional functionality
 labels: ["enhancement"]
