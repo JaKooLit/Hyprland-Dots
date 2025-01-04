@@ -13,6 +13,7 @@ declare -A online_music=(
   ["Radio - Lofi Girl 🎧🎶"]="https://play.streamafrica.net/lofiradio"
   ["Radio - Chillhop 🎧🎶"]="http://stream.zeno.fm/fyn8eh3h5f8uv"
   ["FM - Easy Rock 96.3 📻🎶"]="https://radio-stations-philippines.com/easy-rock"
+  ["FM - Easy Rock - Baguio 91.9 📻🎶"]="https://radio-stations-philippines.com/easy-rock-baguio" 
   ["FM - Love Radio 90.7 📻🎶"]="https://radio-stations-philippines.com/love"
   ["FM - WRock - CEBU 96.3 📻🎶"]="https://onlineradio.ph/126-96-3-wrock.html"
   ["FM - Fresh Philippines 📻🎶"]="https://onlineradio.ph/553-fresh-fm.html"
