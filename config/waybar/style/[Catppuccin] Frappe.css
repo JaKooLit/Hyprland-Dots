@@ -1,23 +1,23 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Catppuccin Latte */
+/* Catppuccin Frappe */
 
 * {
-font-family: "JetBrainsMono Nerd Font";
-font-weight: bold;
-min-height: 0;
-/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 97%;
-font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+	font-family: "JetBrainsMono Nerd Font";
+	font-weight: bold;
+	min-height: 0;
+	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+	font-size: 97%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
-@import "../waybar/style/catppuccin-themes/latte.css";
+@import "../waybar/style/catppuccin-themes/frappe.css";
 
 window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
-  border-top: 1px solid @flamingo;
-  border-bottom: 3px solid @lavender;
-  background: alpha(@overlay0, 0.3);
+  border-top: 1px solid @rosewater;
+  border-bottom: 3px solid @sapphire;
+  background: alpha(@crust, 0.4);
   border-radius: 10px;
 }
 
