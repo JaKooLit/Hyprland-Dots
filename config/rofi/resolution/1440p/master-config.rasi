@@ -55,7 +55,7 @@ window {
 
 /* ----- Main Box ----- */
 mainbox {
-	padding:					 15px;
+	padding:					 12px;
     enabled:                     true;
     orientation:                 vertical;
     children:                    [ "inputbar", "listbox" ];
@@ -66,7 +66,7 @@ mainbox {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                     true;
-    padding:                     10px 10px 100px 10px;
+    padding:                     10px 10px 50px 10px;
     margin:                      10px;
     background-color:            transparent;
     border-radius:               25px;
