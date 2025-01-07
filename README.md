@@ -2,6 +2,9 @@
 <img align="center" width="80%" src=https://github.com/user-attachments/assets/bc18bd4d-944b-4d5f-a119-7578fa38f9b4 />
 </h3>
 
+    </br>
+      <img src="./assets/latte.png" width="400px" /> <br>
+
 <div align="center">
 <br>
   <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
