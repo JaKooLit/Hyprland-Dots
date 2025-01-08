@@ -177,6 +177,23 @@ tooltip {
 	color: #39FF14;
 }
 
+@keyframes blink {
+  to {
+    color: @main-bg;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: red;
+  color: white;
+  animation-name: blink;
+  animation-duration: 3.0s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  box-shadow: inset 0 -3px transparent;
+}
+
 #backlight {
 	padding-right: 2px;
 }

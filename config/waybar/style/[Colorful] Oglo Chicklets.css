@@ -181,6 +181,11 @@ button.active {
     background-color: #ee606a;
     color: #2d353b;
     border-bottom: 8px solid #ca4853;
+    animation-name: blink;
+	animation-duration: 3.0s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 label:focus {

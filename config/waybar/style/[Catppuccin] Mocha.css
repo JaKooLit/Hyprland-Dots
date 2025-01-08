@@ -176,11 +176,11 @@ window#waybar.empty #window {
 #battery.critical:not(.charging) {
   background-color: @red;
   color: @theme_text_color;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+	animation-name: blink;
+	animation-duration: 3.0s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
   box-shadow: inset 0 -3px transparent;
 }
 

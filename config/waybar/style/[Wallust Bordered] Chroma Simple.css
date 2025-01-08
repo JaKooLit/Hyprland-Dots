@@ -259,6 +259,23 @@ tooltip {
 	border: 2px solid @color8;
 }
 
+@keyframes blink {
+  to {
+    color: @color12;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: red;
+  color: white;
+  animation-name: blink;
+  animation-duration: 3.0s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  box-shadow: inset 0 -3px transparent;
+}
+
 #custom-weather {
     color: #8eacf3;
     border-right: 0px;

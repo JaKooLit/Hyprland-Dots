@@ -27,7 +27,7 @@ ags -q
 
 sleep 1
 #Restart waybar
-waybar &
+waybar && killall -SIGUSR2 waybar # added since wallust sometimes not applying
 
 # relaunch swaync
 sleep 0.5
@@ -41,6 +41,7 @@ sleep 1
 if file_exists "${UserScripts}/RainbowBorders.sh"; then
     ${UserScripts}/RainbowBorders.sh &
 fi
+
 
 
 exit 0
