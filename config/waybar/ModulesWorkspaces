@@ -173,6 +173,7 @@
 		"class<celluloid|Zoom>": " ",
 		"class<Cider>": "󰎆 ",
 		"class<virt-manager>": " ",
+		"class<.virt-manager-wrapped>": " ",
 		"class<codeblocks>": "󰅩 ",
 		"class<mousepad>": " ",
 		"class<libreoffice-writer>": " ",

@@ -34,8 +34,7 @@
 		
 "modules-right": [
 	"hyprland/window",
-	"custom/separator#blank",
-	"custom/separator#blank", 
+	"custom/separator#blank_2",
 	"pulseaudio",
 	"custom/separator#blank",
 	"custom/power",					

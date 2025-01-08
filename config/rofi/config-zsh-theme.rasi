@@ -49,7 +49,7 @@ element {
   border-radius: 10px;
 }
 
-/*****----- Message -----*****/
+/* ---- Message ---- */
 message {
   border-radius: 10px;
 }

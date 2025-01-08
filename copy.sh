@@ -65,7 +65,7 @@ if hostnamectl | grep -q 'Chassis: vm'; then
   # enabling proper ENV's for Virtual Environment which should help
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1true/' config/hypr/UserConfigs/UserSettings.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  sed -i '/env = LIBGL_ALWAYS_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
+  #sed -i '/env = LIBGL_ALWAYS_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
 fi
 
@@ -369,8 +369,7 @@ else
 fi
 printf "\n"
 
-# Copy Config Files #
-set -e # Exit immediately if a command exits with a non-zero status.
+set -e
 
 # Function to create a unique backup directory name with month, day, hours, and minutes
 get_backup_dirname() {
@@ -500,9 +499,9 @@ for DIR_NAME in $DIR; do
   fi
 done
 
-printf "\n"
+printf "\n%.0s" {1..2}
 
-# restoration of old configs
+# Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
   "ENVariables.conf"
@@ -519,31 +518,75 @@ FILES_TO_RESTORE=(
 
 DIRPATH=~/.config/"$DIRH"
 BACKUP_DIR=$(get_backup_dirname)
+BACKUP_DIR_PATH="$DIRPATH-backup-$BACKUP_DIR/UserConfigs"
 
+if [ -z "$BACKUP_DIR" ]; then
+  echo "${ERROR} - Backup directory name is empty. Exiting."
+  exit 1
+fi
 
-# Check if the UserConfigs directory exists in ~/.config/hypr
-if [ -d "$DIRPATH/UserConfigs" ]; then
-  # Loop through files to check and offer restoration
+if [ -d "$BACKUP_DIR_PATH" ]; then
+  echo -e "${NOTE} Restoring previous ${ORANGE}User-Configs${RESET}... "
+  echo -e "${WARN} If you decide to restore the old configs, make sure to handle the updates or changes manually."
+  echo -e "${INFO} Kindly Visit and check KooL's Hyprland-Dots GitHub page for the commits."
+
   for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
-    BACKUP_FILE="$DIRPATH-backup-$BACKUP_DIR/UserConfigs/$FILE_NAME"
-    
+    BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
     if [ -f "$BACKUP_FILE" ]; then
       printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
       read -p "${CAT} Do you want to restore ${ORANGE}$FILE_NAME${RESET} from backup? (y/N): " file_restore
+
       if [[ "$file_restore" == [Yy]* ]]; then
-        cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME" && echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
+        if cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME"; then
+          echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
+        else
+          echo "${ERROR} - Failed to restore $FILE_NAME!" 2>&1 | tee -a "$LOG"
+        fi
       else
         echo "${NOTE} - Skipped restoring $FILE_NAME."
       fi
     fi
   done
-else
-  echo "${ERROR} - UserConfigs directory does not exist in $DIRPATH. Skipping restoration."
 fi
 
 printf "\n%.0s" {1..2}
 
-# copying Wallpapers
+# Restoring previous UserScripts
+DIRSH="hypr"
+SCRIPTS_TO_RESTORE=(
+  "RofiBeats.sh"
+  "Weather.py"
+  "Weather.sh"
+)
+
+DIRSHPATH=~/.config/"$DIRSH"
+BACKUP_DIR_PATH="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
+
+if [ -d "$BACKUP_DIR_PATH" ]; then
+  echo -e "${NOTE} Restoring previous ${ORANGE}User-Scripts${RESET}..."
+
+  for SCRIPT_NAME in "${SCRIPTS_TO_RESTORE[@]}"; do
+    BACKUP_SCRIPT="$BACKUP_DIR_PATH/$SCRIPT_NAME"
+
+    if [ -f "$BACKUP_SCRIPT" ]; then
+      printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
+      read -p "${CAT} Do you want to restore ${ORANGE}$SCRIPT_NAME${RESET} from backup? (y/N): " script_restore
+      if [[ "$script_restore" == [Yy]* ]]; then
+        if cp "$BACKUP_SCRIPT" "$DIRSHPATH/UserScripts/$SCRIPT_NAME"; then
+          echo "${OK} - $SCRIPT_NAME restored!" 2>&1 | tee -a "$LOG"
+        else
+          echo "${ERROR} - Failed to restore $SCRIPT_NAME!" 2>&1 | tee -a "$LOG"
+        fi
+      else
+        echo "${NOTE} - Skipped restoring $SCRIPT_NAME."
+      fi
+    fi
+  done
+fi
+
+printf "\n%.0s" {1..2}
+
+# Wallpapers
 mkdir -p ~/Pictures/wallpapers
 cp -r wallpapers ~/Pictures/ && { echo "${OK} some wallpapers compied!"; } || { echo "${ERROR} Failed to copy some wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
  
@@ -678,4 +721,4 @@ wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 printf "\n%.0s" {1..4}
 printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!!"
 printf "\n%.0s" {1..1}
-printf "${ORANGE}HOWEVER I HIGHLY SUGGEST to logout and re-login or better reboot to avoid any issues\n\n"
+printf "${ORANGE} HOWEVER I HIGHLY SUGGEST to logout and re-login or better reboot to avoid any issues\n\n"

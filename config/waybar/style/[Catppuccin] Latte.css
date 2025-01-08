@@ -15,8 +15,9 @@ font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
-  border-bottom: 2px solid @sapphire;
-  background: @theme_base_color;
+  border-top: 1px solid @flamingo;
+  border-bottom: 3px solid @lavender;
+  background: alpha(@overlay0, 0.3);
   border-radius: 10px;
 }
 
