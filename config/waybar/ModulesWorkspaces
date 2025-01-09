@@ -167,6 +167,7 @@
 		"class<VSCode|code-url-handler|code-oss|codium|codium-url-handler|VSCodium>": "󰨞 ",
 		"class<thunar>": "󰝰 ",
 		"class<[Tt]hunderbird|[Tt]hunderbird-esr>": " ",
+		"class<eu.betterbird.Betterbird>": " ",
 		"class<discord|[Ww]ebcord|Vesktop>": " ",
 		"class<subl>": "󰅳 ",
 		"class<mpv>": " ",

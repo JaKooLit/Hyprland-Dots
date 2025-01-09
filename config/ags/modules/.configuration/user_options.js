@@ -75,6 +75,7 @@ let configOptions = {
             'Minecraft* 1.20.1': "minecraft",
             'gnome-tweaks': "org.gnome.tweaks",
             'pavucontrol-qt': "pavucontrol",
+            'eu.betterbird.Betterbird' : "thunderbird",
 			'thunderbird-esr': "thunderbird",
             'wps': "wps-office2019-kprometheus",
             'wpsoffice': "wps-office2019-kprometheus",
