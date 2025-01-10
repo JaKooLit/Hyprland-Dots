@@ -22,12 +22,10 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
+killall -SIGUSR2 waybar # added since wallust sometimes not applying
+
 # quit ags
 ags -q
-
-sleep 1
-#Restart waybar
-waybar && killall -SIGUSR2 waybar # added since wallust sometimes not applying
 
 # relaunch swaync
 sleep 0.5
@@ -35,6 +33,16 @@ swaync > /dev/null 2>&1 &
 
 # relaunch ags
 ags &
+
+# Kill waybar (yet again) # added since wallust sometimes not applying
+if pidof waybar >/dev/null; then
+    pkill waybar
+fi
+
+
+sleep 1
+#Restart waybar
+waybar &
 
 # Relaunching rainbow borders if the script exists
 sleep 1
