@@ -48,4 +48,9 @@ main() {
     fi
 }
 
+# Check if rofi is already running
+if pidof rofi > /dev/null; then
+  pkill rofi
+fi
+
 main

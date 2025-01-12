@@ -1,7 +1,7 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
-# Wallpaper Effects using ImageMagick
-# Inspiration from ML4W - Stephan Raabe https://gitlab.com/stephan-raabe/dotfiles
+# Wallpaper Effects using ImageMagick (SUPER SHIFT W)
+# Inspiration from ML4W - Stephan Raabe https://github.com/mylinuxforwork/dotfiles
 
 # Variables
 current_wallpaper="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
@@ -95,7 +95,6 @@ main() {
 # Check if rofi is already running and kill it
 if pidof rofi > /dev/null; then
     pkill rofi
-    exit 0
 fi
 
 main

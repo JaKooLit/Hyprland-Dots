@@ -19,8 +19,3 @@ entry {
   placeholder: "🖼️  Choose Waybar Style";
 }
 
-/* ---- Listview ---- */
-listview {
-  columns: 2;
-  lines: 6;
-}

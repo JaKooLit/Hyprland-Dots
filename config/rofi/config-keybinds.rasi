@@ -5,7 +5,7 @@
 
 /* ---- Entry ---- */
 entry {
-  width: 80%;
+  width: 85%;
   placeholder: " 🧮 Search Keybinds      ☣️ NOTE ☣️: Clicking with Mouse or Pressing ENTER will have NO function";
 }
 
@@ -16,5 +16,5 @@ listview {
 }
 
 window {
-    width: 90%;
+    width: 95%;
 }

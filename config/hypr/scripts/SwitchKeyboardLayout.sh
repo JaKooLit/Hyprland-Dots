@@ -80,7 +80,7 @@ change_layout() {
         fi
         
         echo "Switching layout for $name to $new_layout..."
-        hyprctl switchxkblayout "$name" next
+	      hyprctl switchxkblayout "$name" "$next_index"
         if [ $? -ne 0 ]; then
             echo "Error while switching layout for $name." >&2
             error_found=true
