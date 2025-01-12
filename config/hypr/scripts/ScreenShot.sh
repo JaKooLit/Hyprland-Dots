@@ -21,7 +21,7 @@ notify_cmd_shot_win="${notify_cmd_base} -i ${active_window_path}"
 notify_view() {
     if [[ "$1" == "active" ]]; then
         if [[ -e "${active_window_path}" ]]; then
-            resp=$(${notify_cmd_shot_win} "Screenshot of '${active_window_class}' Saved.")
+            resp=$(timeout 10 ${notify_cmd_shot_win} "Screenshot of '${active_window_class}' Saved.")
             "${sDIR}/Sounds.sh" --screenshot
 			case "$resp" in
 				action1)
@@ -36,7 +36,7 @@ notify_view() {
             "${sDIR}/Sounds.sh" --error
         fi
     elif [[ "$1" == "swappy" ]]; then
-		resp=$(${notify_cmd_shot} "Screenshot Captured.")
+		resp=$(timeout 10 ${notify_cmd_shot} "Screenshot Captured.")
 		case "$resp" in
 			action1)
 				xdg-open "${dir}/${file}" &
