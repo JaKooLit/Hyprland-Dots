@@ -4,7 +4,6 @@
 
 iDIR="$HOME/.config/swaync/icons"
 sDIR="$HOME/.config/hypr/scripts"
-notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
 
 time=$(date "+%d-%b_%H-%M-%S")
 dir="$(xdg-user-dir)/Pictures/Screenshots"
@@ -14,23 +13,51 @@ active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
 active_window_file="Screenshot_${time}_${active_window_class}.png"
 active_window_path="${dir}/${active_window_file}"
 
+notify_cmd_base="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify"
+notify_cmd_shot="${notify_cmd_base} -i ${dir}/${file}"
+notify_cmd_shot_win="${notify_cmd_base} -i ${active_window_path}"
+
 # notify and view screenshot
 notify_view() {
     if [[ "$1" == "active" ]]; then
         if [[ -e "${active_window_path}" ]]; then
-            ${notify_cmd_shot} "Screenshot of '${active_window_class}' Saved."
+            resp=$(timeout 10 ${notify_cmd_shot_win} "Screenshot of '${active_window_class}' Saved.")
             "${sDIR}/Sounds.sh" --screenshot
+			case "$resp" in
+				action1)
+					xdg-open "${active_window_path}" &
+					;;
+				action2)
+					rm "${active_window_path}" &
+					;;
+			esac
         else
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
             "${sDIR}/Sounds.sh" --error
         fi
     elif [[ "$1" == "swappy" ]]; then
-		${notify_cmd_shot} "Screenshot Captured."
+		resp=$(timeout 10 ${notify_cmd_shot} "Screenshot Captured.")
+		case "$resp" in
+			action1)
+				xdg-open "${dir}/${file}" &
+				;;
+			action2)
+				rm "${dir}/${file}" &
+				;;
+		esac
     else
-        local check_file="$dir/$file"
+        local check_file="${dir}/${file}"
         if [[ -e "$check_file" ]]; then
-            ${notify_cmd_shot} "Screenshot Saved."
+            resp=$(timeout 10 ${notify_cmd_shot} "Screenshot Saved.")
             "${sDIR}/Sounds.sh" --screenshot
+			case "$resp" in
+				action1)
+					xdg-open "${check_file}" &
+					;;
+				action2)
+					rm "${check_file}" &
+					;;
+			esac
         else
             ${notify_cmd_shot} "Screenshot NOT Saved."
             "${sDIR}/Sounds.sh" --error
@@ -93,7 +120,7 @@ shotactive() {
 
     hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -g - "${active_window_path}"
 	sleep 1
-    notify_view "active"  
+    notify_view "active"
 }
 
 shotswappy() {
