@@ -14,6 +14,7 @@ active_window_file="Screenshot_${time}_${active_window_class}.png"
 active_window_path="${dir}/${active_window_file}"
 
 notify_cmd_base="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify"
+notify_swappy="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
 notify_cmd_shot="${notify_cmd_base} -i ${dir}/${file}"
 notify_cmd_shot_win="${notify_cmd_base} -i ${active_window_path}"
 
@@ -21,9 +22,9 @@ notify_cmd_shot_win="${notify_cmd_base} -i ${active_window_path}"
 notify_view() {
     if [[ "$1" == "active" ]]; then
         if [[ -e "${active_window_path}" ]]; then
-            resp=$(timeout 10 ${notify_cmd_shot_win} "Screenshot of '${active_window_class}' Saved.")
-            "${sDIR}/Sounds.sh" --screenshot
-			case "$resp" in
+			"${sDIR}/Sounds.sh" --screenshot
+            resp=$(timeout 5 ${notify_cmd_shot_win} "Screenshot of '${active_window_class}' Saved.")
+            case "$resp" in
 				action1)
 					xdg-open "${active_window_path}" &
 					;;
@@ -35,21 +36,16 @@ notify_view() {
             ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
             "${sDIR}/Sounds.sh" --error
         fi
+
     elif [[ "$1" == "swappy" ]]; then
-		resp=$(timeout 10 ${notify_cmd_shot} "Screenshot Captured.")
-		case "$resp" in
-			action1)
-				xdg-open "${dir}/${file}" &
-				;;
-			action2)
-				rm "${dir}/${file}" &
-				;;
-		esac
+		"${sDIR}/Sounds.sh" --screenshot
+		${notify_swappy} "Screenshot Captured (swappy)"
+
     else
         local check_file="${dir}/${file}"
         if [[ -e "$check_file" ]]; then
-            resp=$(timeout 10 ${notify_cmd_shot} "Screenshot Saved.")
             "${sDIR}/Sounds.sh" --screenshot
+            resp=$(timeout 5 ${notify_cmd_shot} "Screenshot Saved.")
 			case "$resp" in
 				action1)
 					xdg-open "${check_file}" &
@@ -86,8 +82,7 @@ shot5() {
 	countdown '5'
 	sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
 	sleep 1
-	notify_view
-	
+	notify_view	
 }
 
 shot10() {
@@ -125,11 +120,10 @@ shotactive() {
 
 shotswappy() {
 	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile" && "${sDIR}/Sounds.sh" --screenshot && notify_view "swappy"
+	grim -g "$(slurp)" - >"$tmpfile" && notify_view "swappy"
 	swappy -f - <"$tmpfile"
 	rm "$tmpfile"
 }
-
 
 if [[ ! -d "$dir" ]]; then
 	mkdir -p "$dir"
