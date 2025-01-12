@@ -51,4 +51,9 @@ main() {
     $tty -e $edit "$file"
 }
 
+# Check if rofi is already running
+if pidof rofi > /dev/null; then
+  pkill rofi
+fi
+
 main

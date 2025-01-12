@@ -95,7 +95,6 @@ main() {
 # Check if rofi is already running and kill it
 if pidof rofi > /dev/null; then
     pkill rofi
-    exit 0
 fi
 
 main
