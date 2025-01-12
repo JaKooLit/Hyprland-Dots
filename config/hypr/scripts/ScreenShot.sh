@@ -39,7 +39,15 @@ notify_view() {
 
     elif [[ "$1" == "swappy" ]]; then
 		"${sDIR}/Sounds.sh" --screenshot
-		${notify_swappy} "Screenshot Captured (swappy)"
+		resp=$(${notify_cmd_shot} "Screenshot Captured (swappy)")
+		case "$resp" in
+			action1)
+				swappy -f - <"$tmpfile"
+				;;
+			action2)
+				rm "$tmpfile"
+				;;
+		esac
 
     else
         local check_file="${dir}/${file}"
@@ -82,7 +90,7 @@ shot5() {
 	countdown '5'
 	sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
 	sleep 1
-	notify_view	
+	notify_view
 }
 
 shot10() {
@@ -121,8 +129,6 @@ shotactive() {
 shotswappy() {
 	tmpfile=$(mktemp)
 	grim -g "$(slurp)" - >"$tmpfile" && notify_view "swappy"
-	swappy -f - <"$tmpfile"
-	rm "$tmpfile"
 }
 
 if [[ ! -d "$dir" ]]; then
