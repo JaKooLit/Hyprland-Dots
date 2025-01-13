@@ -1,7 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # Wallpaper Effects using ImageMagick (SUPER SHIFT W)
-# Inspiration from ML4W - Stephan Raabe https://github.com/mylinuxforwork/dotfiles
 
 # Variables
 current_wallpaper="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
@@ -40,15 +39,16 @@ declare -A effects=(
 
 # Function to apply no effects
 no-effects() {
-    swww img -o "$focused_monitor" "$current_wallpaper" $SWWW_PARAMS &
+    swww img -o "$focused_monitor" "$current_wallpaper" $SWWW_PARAMS &&
     # Wait for swww command to complete
     wait $!
     # Run other commands after swww
-    wallust run "$current_wallpaper" -s &
-    # Wait to complete
+    wallust run "$current_wallpaper" -s &&
     wait $!
     # Refresh rofi, waybar, wallust palettes
-    "${SCRIPTSDIR}/Refresh.sh"
+	sleep 2
+	"$SCRIPTSDIR/Refresh.sh"
+
     notify-send -u low -i "$iDIR/bell.png" "No wallpaper effects"
     # copying wallpaper for rofi menu
     cp "$current_wallpaper" "$wallpaper_output"
