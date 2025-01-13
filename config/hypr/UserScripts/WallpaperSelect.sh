@@ -101,9 +101,10 @@ fi
 
 main
 
-sleep 1.5
-"$SCRIPTSDIR/WallustSwww.sh"
+wait $!
+"$SCRIPTSDIR/WallustSwww.sh" &&
 
-sleep 0.5
+wait $!
+sleep 2
 "$SCRIPTSDIR/Refresh.sh"
 

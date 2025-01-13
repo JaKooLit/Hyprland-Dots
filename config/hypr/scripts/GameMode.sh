@@ -19,7 +19,7 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
 	
 	hyprctl keyword "windowrule opacity 1 override 1 override 1 override, ^(.*)$"
     swww kill 
-    notify-send -e -u low -i "$notif" "gamemode enabled. All animations off"
+    notify-send -e -u low -i "$notif" "$(printf "\n gamemode enabled\n All animations: OFF")"
     exit
 else
 	swww-daemon --format xrgb && swww img "$HOME/.config/rofi/.current_wallpaper" &
@@ -27,7 +27,7 @@ else
 	${SCRIPTSDIR}/WallustSwww.sh
 	sleep 0.5
 	${SCRIPTSDIR}/Refresh.sh	 
-    notify-send -e -u normal -i "$notif" "gamemode disabled. All animations normal"
+    notify-send -e -u normal -i "$notif" "$(printf "\n gamemode enabled\n All animations: normal")"
     exit
 fi
 hyprctl reload
