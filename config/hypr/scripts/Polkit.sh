@@ -4,9 +4,9 @@
 
 # Polkit possible paths files to check
 polkit=(
+  "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
   "/usr/libexec/hyprpolkitagent"
   "/usr/lib/hyprpolkitagent"
-  "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
   "/usr/lib/polkit-kde-authentication-agent-1"
   "/usr/lib/polkit-gnome-authentication-agent-1"
   "/usr/libexec/polkit-gnome-authentication-agent-1"
