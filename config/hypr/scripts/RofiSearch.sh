@@ -9,7 +9,7 @@ rofi_config="$HOME/.config/rofi/config-search.rasi"
 # Kill Rofi if already running before execution
 if pgrep -x "rofi" >/dev/null; then
     pkill rofi
-    exit 0
+    #exit 0
 fi
 
 # Open rofi with a dmenu and pass the selected item to xdg-open for Google search

@@ -5,6 +5,11 @@
 # Kill yad to not interfere with this binds
 pkill yad || true
 
+# Check if rofi is already running
+if pidof rofi > /dev/null; then
+  pkill rofi
+fi
+
 # Define the config files
 KEYBINDS_CONF="$HOME/.config/hypr/configs/Keybinds.conf"
 USER_KEYBINDS_CONF="$HOME/.config/hypr/UserConfigs/UserKeybinds.conf"
