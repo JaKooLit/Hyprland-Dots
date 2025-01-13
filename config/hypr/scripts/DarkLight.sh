@@ -48,7 +48,7 @@ update_theme_mode() {
 
 # Function to notify user
 notify_user() {
-    notify-send -u low -i "$notif" "Switching to $1 mode"
+    notify-send -u low -i "$notif" "$(printf "\n Switching to $1 mode")"
 }
 
 # Use sed to replace the palette setting in the wallust config file
@@ -229,15 +229,14 @@ set_custom_gtk_theme "$next_mode"
 # Update theme mode for the next cycle
 update_theme_mode
 
-sleep 0.5
-# Run remaining scripts
-${SCRIPTSDIR}/WallustSwww.sh
-sleep 1
+
+${SCRIPTSDIR}/WallustSwww.sh &&
+sleep 2
 ${SCRIPTSDIR}/Refresh.sh 
 
 sleep 0.3
-# Display notifications for theme and icon changes
-notify-send -u normal -i "$notif" "Themes in $next_mode Mode"
+# Display notifications for theme and icon changes 
+notify-send -u normal -i "$notif" "$(printf "\n Themes switched to \n $next_mode Mode")"
 
 exit 0
 

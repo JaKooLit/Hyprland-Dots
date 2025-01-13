@@ -22,8 +22,8 @@ notify_cmd_shot_win="${notify_cmd_base} -i ${iDIR}/picture.png"
 notify_view() {
     if [[ "$1" == "active" ]]; then
         if [[ -e "${active_window_path}" ]]; then
-			"${sDIR}/Sounds.sh" --screenshot
-            resp=$(timeout 5 ${notify_cmd_shot_win} "Screenshot of '${active_window_class}' Saved.")
+			"${sDIR}/Sounds.sh" --screenshot        
+            resp=$(timeout 5 ${notify_cmd_shot_win} "$(printf "\n Screenshot of ${active_window_class}\n Saved.")")
             case "$resp" in
 				action1)
 					xdg-open "${active_window_path}" &
@@ -33,13 +33,13 @@ notify_view() {
 					;;
 			esac
         else
-            ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
+            ${notify_cmd_shot} "$(printf "\n Screenshot of ${active_window_class}\n NOT Saved.")"
             "${sDIR}/Sounds.sh" --error
         fi
 
     elif [[ "$1" == "swappy" ]]; then
 		"${sDIR}/Sounds.sh" --screenshot
-		resp=$(${notify_cmd_shot} "Screenshot Captured (swappy)")
+		resp=$(${notify_cmd_shot} "$(printf "\n Screenshot Captured\n by Swappy")")
 		case "$resp" in
 			action1)
 				swappy -f - <"$tmpfile"
@@ -53,7 +53,7 @@ notify_view() {
         local check_file="${dir}/${file}"
         if [[ -e "$check_file" ]]; then
             "${sDIR}/Sounds.sh" --screenshot
-            resp=$(timeout 5 ${notify_cmd_shot} "Screenshot Saved.")
+            resp=$(timeout 5 ${notify_cmd_shot} "$(printf "\n Screenshot Saved")")
 			case "$resp" in
 				action1)
 					xdg-open "${check_file}" &
@@ -63,7 +63,7 @@ notify_view() {
 					;;
 			esac
         else
-            ${notify_cmd_shot} "Screenshot NOT Saved."
+            ${notify_cmd_shot} "$(printf "\n Screenshot NOT Saved")"
             "${sDIR}/Sounds.sh" --error
         fi
     fi
@@ -74,7 +74,7 @@ notify_view() {
 # countdown
 countdown() {
 	for sec in $(seq $1 -1 1); do
-		notify-send -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png "Taking shot in : $sec"
+		notify-send -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png  "$(printf "\n Taking shot in: $sec") secs"
 		sleep 1
 	done
 }
