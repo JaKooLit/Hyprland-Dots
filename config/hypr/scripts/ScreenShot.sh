@@ -15,8 +15,8 @@ active_window_path="${dir}/${active_window_file}"
 
 notify_cmd_base="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify"
 #notify_swappy="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
-notify_cmd_shot="${notify_cmd_base} -i ${dir}/${file}"
-notify_cmd_shot_win="${notify_cmd_base} -i ${active_window_path}"
+notify_cmd_shot="${notify_cmd_base} -i ${iDIR}/picture.png"
+notify_cmd_shot_win="${notify_cmd_base} -i ${iDIR}/picture.png"
 
 # notify and view screenshot
 notify_view() {
