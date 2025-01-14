@@ -5,7 +5,7 @@
 
 /* ---- Window ---- */
 window {
-    width:	60%;
+    width:	50%;
 }
 
 /* ---- Mode Switcher ---- */
@@ -15,23 +15,23 @@ button {
 
 /* ---- Listview ---- */
 listview {
-  columns: 6;
-  lines: 4;
+  columns: 5;
+  lines: 5;
   fixed-height:	true;
 }
 
 /* ---- Element ---- */
 element {
   orientation: vertical;
-  padding: 12px 0px 0px 0px;
+  padding: 10px 5px 10px 5px;
   spacing: 6px;
 }
 
 element-icon {
-  size: 5%;
+  size: 3%;
 }
 
 element-text {
-  font: "Fira Code SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 12";
   horizontal-align: 0.5;
 }
