@@ -3,11 +3,6 @@
 
 @import "~/.config/rofi/master-config.rasi" 
 
-/* ---- Configuration ---- */
-configuration {
-	font: "Fira Code SemiBold 12";
-}
-
 /* ---- Window ---- */
 window {
     width:	60%;
@@ -24,15 +19,13 @@ element {
   orientation: vertical;
   padding: 12px 0px 0px 0px;
   spacing: 6px;
-  border-radius: 12px;
 }
 
 element-icon {
-  size: 6%;
+  size: 3%;
 }
 
 element-text {
-  font: "Fira Code SemiBold 12";
-  vertical-align: 0.5;
+  font: "JetBrainsMono Nerd Font SemiBold 10";
   horizontal-align: 0.5;
 }

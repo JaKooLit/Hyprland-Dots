@@ -22,10 +22,10 @@ element {
 }
 
 element-icon {
-  size: 6%;
+  size: 3%;
 }
 
 element-text {
-  font: "Fira Code SemiBold 10";
+  font: "JetBrainsMono Nerd Font SemiBold 10";
   horizontal-align: 0.5;
 }
