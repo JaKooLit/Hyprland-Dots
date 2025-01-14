@@ -24,7 +24,7 @@ pallete_light="light16"
 pkill swaybg
 
 # Initialize swww if needed
-swww query || swww-daemon
+swww query || swww-daemon --format xrgb
 
 # Set swww options
 swww="swww img"
@@ -109,6 +109,7 @@ else
 	sed -i '/^background /s/^background .*/background #dddddd/' "${kitty_conf}"
 	sed -i '/^cursor /s/^cursor .*/cursor #000000/' "${kitty_conf}"
 fi
+
 for pid in $(pidof kitty); do
     kill -SIGUSR1 "$pid"
 done
@@ -231,6 +232,15 @@ update_theme_mode
 
 
 ${SCRIPTSDIR}/WallustSwww.sh &&
+
+# some process to kill
+_ps=(waybar rofi swaync ags swaybg)
+for _prs in "${_ps[@]}"; do
+    if pidof "${_prs}" >/dev/null; then
+        pkill "${_prs}"
+    fi
+done
+
 sleep 2
 ${SCRIPTSDIR}/Refresh.sh 
 
