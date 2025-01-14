@@ -69,7 +69,7 @@ inputbar {
     padding:                     10px 10px 50px 10px;
     margin:                      10px;
     background-color:            transparent;
-    border-radius:               25px;
+    border-radius:               20px;
     orientation:                 horizontal;
     children:                    ["entry", "dummy", "mode-switcher" ];
     background-image:            url("~/.config/rofi/.current_wallpaper", width);
@@ -154,7 +154,7 @@ scrollbar {
 element {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     10px;
+  	padding: 					 10px;
     border-radius:               12px;
     background-color:            transparent;
     cursor:                      pointer;
