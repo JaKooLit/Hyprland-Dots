@@ -13,17 +13,17 @@ UserConfigs="$HOME/.config/hypr/UserConfigs"
 # Function to display the menu options
 menu() {
     cat <<EOF
-1. Edit Env-variables
-2. Edit Window-Rules
-3. Edit Startup_Apps
-4. Edit User-Keybinds
-5. Edit Monitors
-6. Edit Laptop-Keybinds
-7. Edit User-Settings
-8. Edit Decorations & Animations
-9. Edit Workspace-Rules
-10. Edit Default-Settings
-11. Edit Default-Keybinds
+1. View / Edit  Env-variables
+2. View / Edit  Window-Rules
+3. View / Edit  Startup_Apps
+4. View / Edit  User-Keybinds
+5. View / Edit  Monitors
+6. View / Edit  Laptop-Keybinds
+7. View / Edit  User-Settings
+8. View / Edit  Decorations & Animations
+9. View / Edit  Workspace-Rules
+10. View / Edit  Default-Settings
+11. View / Edit  Default-Keybinds
 EOF
 }
 
