@@ -39,7 +39,7 @@ populate_local_music() {
 
 # Function for displaying notifications
 notification() {
-  notify-send -u normal -i "$iDIR/music.png" "$(printf "\n Playing:\n $@")"
+  notify-send -u normal -i "$iDIR/music.png" " Now Playing:" " $@"
 }
 
 # Main function for playing local music
@@ -92,7 +92,7 @@ play_online_music() {
 }
 
 # Check if an online music process is running and send a notification, otherwise run the main function
-pkill mpv && notify-send -u low -i "$iDIR/music.png" "$(printf "\n Music stopped")" || {
+pkill mpv && notify-send -u low -i "$iDIR/music.png" " Music stopped" || {
 
 # Check if rofi is already running
 if pidof rofi > /dev/null; then

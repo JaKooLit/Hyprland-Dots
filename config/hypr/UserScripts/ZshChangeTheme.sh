@@ -8,6 +8,9 @@
 themes_dir="$HOME/.oh-my-zsh/themes"
 file_extension=".zsh-theme"
 
+# Directory for swaync
+iDIR="$HOME/.config/swaync/images"
+
 themes_array=($(find "$themes_dir" -type f -name "*$file_extension" -exec basename {} \; | sed -e "s/$file_extension//"))
 
 # Add "Random" option to the beginning of the array
@@ -26,6 +29,7 @@ main() {
 
     # if nothing selected, script won't change anything
     if [ -z "$choice" ]; then
+        notify-send -u low -i "$iDIR/bell.png" " No theme selected." " No changes made!"
         exit 0
     fi
 
@@ -36,15 +40,18 @@ main() {
         # Pick a random theme from the original themes_array (excluding "Random")
         random_theme=${themes_array[$((RANDOM % (${#themes_array[@]} - 1) + 1))]}
         theme_to_set="$random_theme"
+        notify-send -i "$iDIR/bell.png" " Random theme selected: $random_theme"
     else
         # Set theme to the selected choice
         theme_to_set="$choice"
+        notify-send -i "$iDIR/bell.png" " Theme selected: $choice"
     fi
 
     if [ -f "$zsh_path" ]; then
         sed -i "s/^$var_name=.*/$var_name=\"$theme_to_set\"/" "$zsh_path"
+        notify-send -i "$iDIR/bell.png" " OMZ Theme updated" " restart your terminal"
     else
-        echo "File not found"
+        notify-send " Error: .zshrc file not found!"
     fi
 }
 
