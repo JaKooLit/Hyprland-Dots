@@ -25,13 +25,10 @@ window#waybar.empty #window {
 }
 
 tooltip {
-	color: @color15;
-	background: @color0;
-	opacity: 0.8;
+	color: @color13;
+	background: @color10;
+	opacity: 1.0;
 	border-radius: 10px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: @color15;
 }
 
 /*-----module groups----*/
