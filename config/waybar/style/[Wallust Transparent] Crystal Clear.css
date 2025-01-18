@@ -7,7 +7,7 @@
 @define-color critical #ff0000; /* critical color */
 @define-color warning #f3f809;  /* warning color */
 @define-color text @color12;  /* text color */
-@define-color text-alt @color9;  /* text alternative color */
+@define-color text-alt @color13;  /* text alternative color */
 @define-color bg @color7;  /* background color */
 
 *{
@@ -49,6 +49,15 @@ window#waybar.empty #window {
 
 .modules-left {
 	   
+}
+
+tooltip {
+	color: @color12;
+	background: @color10;
+	opacity: 0.8;
+	border-radius: 10px;
+	border-width: 1px;
+	border-style: solid;
 }
 
 #workspaces button {
