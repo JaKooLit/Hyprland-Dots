@@ -97,7 +97,7 @@ if ! change_layout; then
     echo "Layout change failed." >&2
     exit 1
 else
-    notify-send -u low -i "$notif_icon" " New kb_layout: $new_layout"
+    notify-send -u low -i "$notif_icon" " kb_layout: $new_layout"
     echo "Layout change notification sent."
 fi
 
