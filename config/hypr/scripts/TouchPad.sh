@@ -11,13 +11,13 @@ export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
 
 enable_touchpad() {
     printf "true" >"$STATUS_FILE"
-    notify-send -u low -i $notif  " Enabling touchpad"
+    notify-send -u low -i $notif  " Enabling" " touchpad"
     hyprctl keyword '$TOUCHPAD_ENABLED' "true" -r
 }
 
 disable_touchpad() {
     printf "false" >"$STATUS_FILE"
-    notify-send -u low -i $notif " Disabling touchpad"
+    notify-send -u low -i $notif " Disabling" " touchpad"
     hyprctl keyword '$TOUCHPAD_ENABLED' "false" -r
 }
 

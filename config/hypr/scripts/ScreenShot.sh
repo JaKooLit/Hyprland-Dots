@@ -53,7 +53,7 @@ notify_view() {
         local check_file="${dir}/${file}"
         if [[ -e "$check_file" ]]; then
             "${sDIR}/Sounds.sh" --screenshot
-            resp=$(timeout 5 ${notify_cmd_shot} " Screenshot Saved")
+            resp=$(timeout 5 ${notify_cmd_shot} " Screenshot" " Saved")
 			case "$resp" in
 				action1)
 					xdg-open "${check_file}" &
@@ -63,7 +63,7 @@ notify_view() {
 					;;
 			esac
         else
-            ${notify_cmd_shot} " Screenshot NOT Saved"
+            ${notify_cmd_shot} " Screenshot" " NOT Saved"
             "${sDIR}/Sounds.sh" --error
         fi
     fi
