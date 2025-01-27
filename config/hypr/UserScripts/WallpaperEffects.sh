@@ -49,7 +49,7 @@ no-effects() {
 	sleep 2
 	"$SCRIPTSDIR/Refresh.sh"
 
-    notify-send -u low -i "$iDIR/bell.png" "No wallpaper" "effects applied"
+    notify-send -u low -i "$iDIR/ja.png" "No wallpaper" "effects applied"
     # copying wallpaper for rofi menu
     cp "$current_wallpaper" "$wallpaper_output"
 }
@@ -71,7 +71,7 @@ main() {
             no-effects
         elif [[ "${effects[$choice]+exists}" ]]; then
             # Apply selected effect
-            notify-send -u normal -i "$iDIR/bell.png"  "Applying:" "$choice effects"
+            notify-send -u normal -i "$iDIR/ja.png"  "Applying:" "$choice effects"
             eval "${effects[$choice]}"
             # Wait for effects to be applied
             sleep 1
@@ -85,7 +85,7 @@ main() {
             sleep 0.5
             # Refresh rofi, waybar, wallust palettes
             "${SCRIPTSDIR}/Refresh.sh"
-            notify-send -u low -i "$iDIR/bell.png" "$choice" "effects applied"
+            notify-send -u low -i "$iDIR/ja.png" "$choice" "effects applied"
         else
             echo "Effect '$choice' not recognized."
         fi
