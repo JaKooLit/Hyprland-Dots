@@ -51,6 +51,7 @@
   "$HOME/.config/waybar/ModulesWorkspaces",
   "$HOME/.config/waybar/ModulesCustom",
   "$HOME/.config/waybar/ModulesGroups",
+  "$HOME/.config/waybar/ModulesVertical",
   ],
 "layer": "top",
 "position": "right",
