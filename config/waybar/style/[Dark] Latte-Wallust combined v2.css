@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Catppuccin Latte - Wallust v2 */
+/* Catppuccin Latte - Wallust - v2 */
 
 @define-color white      	#F2F2F2;
 @define-color black      	#000000;
@@ -11,7 +11,7 @@
 @define-color teal-trans	rgba(1, 117, 84, 0.5);
 @define-color cyan			rgba(53, 140, 169, 1);
 
-@define-color background-module     @transparent;
+@define-color background-module     @background;
 @define-color background-module2	@color11;
 @define-color border-color          @color12;
 @define-color button-color          @color10;
@@ -30,24 +30,12 @@
 }
 
 window#waybar {
-    background-color: @background-module;
+    background: @background;
     border-radius:15px;
-    border-bottom:2px solid @border-color;
 	padding-top: 2px;
 	padding-bottom: 0px;
 	padding-right: 4px;
 	padding-left: 4px;
-}
-
-window#waybar.hidden {
-    opacity: 0;
-}
-
-window#waybar.empty,
-window#waybar.empty #window {
-    padding: 0px;
-    border: 0px;
-    background-color: transparent;
 }
 
 tooltip {
