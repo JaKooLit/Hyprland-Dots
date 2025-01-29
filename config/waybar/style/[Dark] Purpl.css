@@ -65,6 +65,7 @@ tooltip {
 	padding-left: 4px;
 }
 
+
 #workspaces button {
 	color: #6E6A86;
     box-shadow: none;
@@ -139,6 +140,7 @@ tooltip {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -204,6 +206,7 @@ tooltip {
 	animation-direction: alternate;
 }
 
+#backlight-slider slider,
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;
@@ -213,6 +216,7 @@ tooltip {
 	box-shadow: none;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
 	min-width: 80px;
 	min-height: 5px;
@@ -220,30 +224,9 @@ tooltip {
 	background-color: #6E6A86;
 }
 
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
 	min-height: 10px;
-	border-radius: 5px;
-	background-color: purple;
-}
-
-#backlight-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
-}
-
-#backlight-slider trough {
-	min-width: 80px;
-	min-height: 10px;
-	border-radius: 5px;
-	background-color: #6E6A86;
-}
-
-#backlight-slider highlight {
-	min-width: 10px;
 	border-radius: 5px;
 	background-color: purple;
 }

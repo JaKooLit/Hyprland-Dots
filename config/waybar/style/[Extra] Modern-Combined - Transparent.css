@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Extra - Combined Modern v2 */
+/* Extra - Combined Modern - transparent */
 
 /* NOTE: This style is NOT vertical layout friendly! */
 
@@ -150,6 +150,7 @@ tooltip {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -189,55 +190,6 @@ tooltip {
 	padding-left: 6px;
 }
 
-#pulseaudio-slider slider {
-    min-width: 0px;
-    min-height: 0px;
-    opacity: 0;
-    background-image: none;
-    border: none;
-    box-shadow: none;
-}
-
-#pulseaudio-slider trough {
-    min-width: 80px;
-    min-height: 5px;
-    border-radius: 5px;
-    background-color: #22252a;
-}
-
-#pulseaudio-slider highlight {
-    min-height: 10px;
-    border-radius: 5px;
-    background-color: #ba5663;
-}
-
-#backlight-slider slider {
-    min-width: 0px;
-    min-height: 0px;
-    opacity: 0;
-    background-image: none;
-    border: none;
-    box-shadow: none;
-}
-
-#backlight-slider trough {
-    min-width: 80px;
-    min-height: 10px;
-    border-radius: 5px;
-    background-color: #22252a;
-}
-
-#backlight-slider highlight {
-    min-width: 10px;
-    border-radius: 5px;
-    background-color: #ba5663;
-}
-
-#pulseaudio-slider,
-#pulseaudio {
-	color: @foreground;
-}
-
 #pulseaudio.muted {
     color: red;
 }
@@ -255,6 +207,12 @@ tooltip {
 	animation-direction: alternate;
 }
 
+#pulseaudio-slider,
+#pulseaudio {
+	color: @foreground;
+}
+
+#backlight-slider slider,
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;
@@ -264,34 +222,16 @@ tooltip {
 	box-shadow: none;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
 	min-width: 80px;
 	min-height: 5px;
 	border-radius: 5px;
 }
 
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
 	min-height: 10px;
-	border-radius: 5px;
-}
-
-#backlight-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
-}
-
-#backlight-slider trough {
-	min-width: 80px;
-	min-height: 10px;
-	border-radius: 5px;
-}
-
-#backlight-slider highlight {
-	min-width: 10px;
 	border-radius: 5px;
 }
 

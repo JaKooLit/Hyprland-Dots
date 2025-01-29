@@ -32,6 +32,7 @@ tooltip {
 }
 
 /*-----module groups----*/
+.modules-left,
 .modules-right {
 	padding-top: 2px;
 	padding-bottom: 2px;
@@ -44,13 +45,6 @@ tooltip {
     border-left: 1px solid #ffd700;
     border-right: 1px solid #ffd700;
     border-radius: 20px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
-}
-
-.modules-left {
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
@@ -134,6 +128,7 @@ tooltip {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -184,6 +179,7 @@ tooltip {
 	animation-direction: alternate;
 }
 
+#backlight-slider slider,
 #pulseaudio-slider slider {
     min-width: 0px;
     min-height: 0px;
@@ -193,6 +189,7 @@ tooltip {
     box-shadow: none;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
     min-width: 80px;
     min-height: 5px;
@@ -200,30 +197,9 @@ tooltip {
     background-color: #22252a;
 }
 
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
     min-height: 10px;
-    border-radius: 5px;
-    background-color: #ba5663;
-}
-
-#backlight-slider slider {
-    min-width: 0px;
-    min-height: 0px;
-    opacity: 0;
-    background-image: none;
-    border: none;
-    box-shadow: none;
-}
-
-#backlight-slider trough {
-    min-width: 80px;
-    min-height: 10px;
-    border-radius: 5px;
-    background-color: #22252a;
-}
-
-#backlight-slider highlight {
-    min-width: 10px;
     border-radius: 5px;
     background-color: #ba5663;
 }

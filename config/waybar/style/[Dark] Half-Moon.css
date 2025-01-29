@@ -147,6 +147,7 @@ color: #F3F4F5;
 	padding: 2px 15px;
 }
 
+#custom-playerctl,
 #power-profiles-daemon,
 #custom-cycle_wall,
 #cpu {
@@ -293,6 +294,7 @@ color: #F3F4F5;
 	animation-direction: alternate;
 }
 
+#backlight-slider slider,
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;
@@ -302,6 +304,7 @@ color: #F3F4F5;
 	box-shadow: none;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
 	min-width: 80px;
 	min-height: 5px;
@@ -309,30 +312,9 @@ color: #F3F4F5;
 	background-color: #6E6A86;
 }
 
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
 	min-height: 10px;
-	border-radius: 5px;
-	background-color: purple;
-}
-
-#backlight-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
-}
-
-#backlight-slider trough {
-	min-width: 80px;
-	min-height: 10px;
-	border-radius: 5px;
-	background-color: #6E6A86;
-}
-
-#backlight-slider highlight {
-	min-width: 10px;
 	border-radius: 5px;
 	background-color: purple;
 }
