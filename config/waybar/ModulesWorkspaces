@@ -140,8 +140,8 @@
 		"default": "",
 	},
 },
-// number styles
-"hyprland/workspaces#number": {
+// numbers styles
+"hyprland/workspaces#numbers": {
 	"active-only": false,
 	"all-outputs": true,
 	"format": "{icon}",
