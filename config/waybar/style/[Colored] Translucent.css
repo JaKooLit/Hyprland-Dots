@@ -36,13 +36,6 @@ window#waybar.hidden {
     opacity: 0.1;
 }
 
-window#waybar.empty,
-window#waybar.empty #window {
-    padding: 0px;
-    border: 0px;
-    background-color: transparent;
-}
-
 tooltip {
     background: #1e1e2e;
     opacity: 0.6;
@@ -57,10 +50,8 @@ tooltip {
     color: #ffffff;
     box-shadow: none;
 	text-shadow: none;
-    padding: 0px;
+    padding: 4px;
     border-radius: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }

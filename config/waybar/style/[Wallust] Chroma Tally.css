@@ -22,7 +22,7 @@ window#waybar {
 
 #workspaces {
 	background: transparent;
-	padding: 0px 1px;
+	padding: 2px;
 	border-radius: 15px;
 	border: 0px;
 	font-style: normal;

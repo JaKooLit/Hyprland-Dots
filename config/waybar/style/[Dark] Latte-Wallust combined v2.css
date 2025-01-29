@@ -101,6 +101,7 @@ tooltip {
 .modules-center {
     background-color: @background-module2;
     border-radius: 10px;
+    padding: 4px;
 	border-bottom: 2px solid @border-color;
 	border-right: 1px solid @button-hover;
 	border-left: 1px solid @button-hover;
@@ -249,13 +250,8 @@ tooltip {
 	color: #39FF14;
 }
 
-
-#clock#2 {
-    color: #efe8f7;
-}
-
 #clock {
-	color: @sapphire;
+	color: @foreground;
     border-radius: 15px;
 }
 

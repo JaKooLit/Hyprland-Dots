@@ -99,7 +99,6 @@ window#waybar.empty #window {
 #taskbar {
     background: @backgroundlight;
     margin: 3px 15px 3px 0px;
-    padding:0px;
     border-radius: 5px 5px 5px 5px;
     font-weight: normal;
     font-style: normal;
@@ -182,6 +181,7 @@ window#waybar.empty #window {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
+	padding: 2px;
     margin-right: 8px;
 	margin-left: 6px;
     font-size: 100%;

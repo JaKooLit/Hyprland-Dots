@@ -98,8 +98,8 @@ window#waybar {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
+  padding: 6px;
   color: @foreground;
-  padding: 3px 6px 3px 6px;
 }
 
 #battery.warning,
