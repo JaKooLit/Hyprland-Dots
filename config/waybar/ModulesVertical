@@ -1,0 +1,122 @@
+//* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
+/* Waybar Modules for vertical modules or vertical layout */
+
+/* NOTE: hyprland-workspaces, Custom Modules & Groups on a separate files */
+
+{
+
+"temperature#vertical": {
+	"interval": 10,
+	"tooltip": true,
+	"hwmon-path": [
+		"/sys/class/hwmon/hwmon1/temp1_input",
+		"/sys/class/thermal/thermal_zone0/temp"
+	],
+	//"thermal-zone": 0,
+	"critical-threshold": 80,
+	"format-critical": "{icon}\n{temperatureC}°C",
+	"format": " {icon}",
+	"format-icons": [
+		"󰈸"
+	],
+	"on-click-right": "kitty --title nvtop sh -c 'nvtop'"
+},
+
+"backlight#vertical": {
+	"interval": 2,
+	"rotate": 1,
+	"format": "{icon}",
+	//"format-icons": ["󰃞", "󰃟", "󰃠"],
+	"format-icons": [
+		"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
+	],
+	"on-click": "",
+	"on-click-middle": "",
+	"on-click-right": "",
+	"on-update": "",
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Brightness.sh --inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Brightness.sh --dec",
+	"smooth-scrolling-threshold": 1,
+	"tooltip-format": "backlight {percent}%",
+},
+
+"clock#vertical": {
+	"format": "\n{:%H\n%M\n%S\n\n \n%d\n%m\n%y}",
+	"interval": 1,
+	//"format": "\n{:%I\n%M\n%p\n\n \n%d\n%m\n%y}",
+	"tooltip": true,
+	"tooltip-format": "{calendar}",
+	"calendar": {
+		"mode": "year",
+		"mode-mon-col": 3,
+		"format": {
+			"today": "<span color='#0dbc79'>{}</span>",
+		}
+	}
+},
+
+"cpu#vertical": {
+	"format": "󰍛\n{usage}%",
+	"interval": 1,
+	"on-click-right": "gnome-system-monitor",
+},
+
+"memory#vertical": {
+	"interval": 10,
+	"format": "󰾆\n{percentage}%",
+	"format-alt": "󰾆\n{used:0.1f}G",
+	"format-alt-click": "click",
+	"tooltip": true,
+	"tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
+	"on-click-right": "kitty --title btop sh -c 'btop'",
+},
+
+"pulseaudio#vertical": {
+	"format": "{icon}",
+	"format-bluetooth": "󰂰",
+	"format-muted": "󰖁",
+	"format-icons": {
+		"headphone": "",
+		"hands-free": "",
+		"headset": "",
+		"phone": "",
+		"portable": "",
+		"car": "",
+		"default": [
+			"", "", "󰕾", ""
+		],
+		"tooltip-format": "{icon} {desc} | {volume}%",
+		"ignored-sinks": [
+			"Easy Effects Sink"
+		],
+	},
+	"scroll-step": 5.0,
+	"on-click": "$HOME/.config/hypr/scripts/Volume.sh --toggle",
+	"on-click-right": "pavucontrol -t 3",
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+	"tooltip-format": "{icon} {desc} | {volume}%",
+	"smooth-scrolling-threshold": 1,
+},
+
+"pulseaudio#microphone_vertical": {
+	"format": "{format_source}",
+	"format-source": "󰍬",
+	"format-source-muted": "󰍭",
+	"on-click-right": "pavucontrol",
+	"on-click": "$HOME/.config/hypr/scripts/Volume.sh --toggle-mic",
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --mic-inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --mic-dec",
+	"max-volume": 100,
+	"tooltip": true,
+	"tooltip-format": "{source_desc} | {source_volume}%",
+},
+
+"custom/power_vertical": {
+	"format": "⏻",
+	"on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
+	"on-click-right": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
+	"tooltip": true,
+	"tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur",
+},
+}
