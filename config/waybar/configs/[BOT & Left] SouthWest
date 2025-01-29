@@ -54,6 +54,7 @@
   "$HOME/.config/waybar/ModulesWorkspaces",
   "$HOME/.config/waybar/ModulesCustom",
   "$HOME/.config/waybar/ModulesGroups",
+  "$HOME/.config/waybar/ModulesVertical",
   ],
 "layer": "top",
 "position": "left",
@@ -73,12 +74,12 @@
     ],
     
 "modules-center": [
-    "clock#vertical",
+    "clock#vertical"
     ],
     
 "modules-right": [
-		"mpris",
-		"custom/swaync",
+	"mpris",
+	"custom/swaync",
     "tray",
     "custom/light_dark",
     ],

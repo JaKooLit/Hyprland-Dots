@@ -5,7 +5,7 @@
 # use hyprctl devices to get your system touchpad device name
 # source https://github.com/hyprwm/Hyprland/discussions/4283?sort=new#discussioncomment-8648109
 
-notif="$HOME/.config/swaync/images/bell.png"
+notif="$HOME/.config/swaync/images/ja.png"
 
 export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
 

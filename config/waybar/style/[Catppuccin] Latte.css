@@ -25,13 +25,6 @@ window#waybar.hidden {
   opacity: 0.2;
 }
 
-window#waybar.empty,
-window#waybar.empty #window {
-    background-color: transparent;
-    padding: 0px;
-    border: 0px;
-}
-
 #taskbar button,
 #workspaces button {
     box-shadow: none;
