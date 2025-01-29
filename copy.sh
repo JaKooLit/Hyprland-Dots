@@ -3,7 +3,7 @@
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified
-waybar_style="$HOME/.config/waybar/style/[Wallust] Chroma Tally.css"
+waybar_style="$HOME/.config/waybar/style/[Extra] Modern-Combined - Transparent.css"
 waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v5"
 waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v5" 
 
