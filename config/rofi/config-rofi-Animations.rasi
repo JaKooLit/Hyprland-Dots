@@ -1,16 +1,17 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Hyprland Animations (compact) */
+/* Rofi Beats Config (compact) */
 
 @import "~/.config/rofi/config-compact.rasi" 
 
 /* ---- Window ---- */
 window {
-    width:	25%;
+    width:	35%;
 }
 
 /* ---- Entry ---- */ 
 entry {
-  placeholder: "✨ Choose Animations to load";
+  width: 25%;
+  placeholder: "✨ Choose which Animations to load";
 }
 
 /* ---- Listview ---- */
