@@ -32,6 +32,8 @@ tooltip label{
 }
 
 /*-----module groups----*/
+.modules-left,
+.modules-center,
 .modules-right {
     background-image: linear-gradient(45deg, #7287fd 10%, #209fb5 54%, #8839ef 90%);
 	color: black;
@@ -41,24 +43,7 @@ tooltip label{
 	padding-right: 4px;
 	padding-left: 4px;
 }
-.modules-center {
-    background-image: linear-gradient(0deg, #7287fd 10%, #209fb5 54%, #8839ef 90%);
-	color: black;
-	border-radius: 6px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
-}
-.modules-left {
-    background-image: linear-gradient(225deg, #7287fd 10%, #209fb5 54%, #8839ef 90%);
-	color: black;
-	border-radius: 6px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
-}
+
 /*-----modules indv----*/
 #workspaces button {
 	color: black;
@@ -127,6 +112,7 @@ tooltip label{
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,

@@ -21,14 +21,6 @@ window#waybar.hidden {
     opacity: 0.5;
 }
 
-window#waybar.empty,
-window#waybar.empty #window {
-    padding: 0px;
-    border: 0px;
-    /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
-    background-color: transparent;
-}
-
 tooltip {
 	color: @foreground;
     background: rgba(0, 0, 0, 0.8);
@@ -42,6 +34,8 @@ tooltip label {
 }
 
 /*-----module groups----*/
+.modules-left,
+.modules-center,
 .modules-right {
     border: 0px solid #b4befe;
     border-radius: 10px;
@@ -51,33 +45,13 @@ tooltip label {
     padding-left: 4px;
 }
 
-.modules-center {
-    border: 0px solid #b4befe;
-    border-radius: 10px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-    padding-right: 4px;
-    padding-left: 4px;
-}
-
-.modules-left {
-    border: 0px solid #b4befe;
-    border-radius: 10px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-    padding-right: 4px;
-    padding-left: 4px;    
-}
-
 #taskbar button,
 #workspaces button {
     color: @color12;
     box-shadow: none;
 	text-shadow: none;
-    padding: 0px;
+    padding: 4px;
     border-radius: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -145,6 +119,7 @@ tooltip label {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -195,6 +170,8 @@ tooltip label {
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 }
+
+#backlight-slider slider,
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;
@@ -204,33 +181,15 @@ tooltip label {
 	box-shadow: none;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
 	min-width: 80px;
 	min-height: 5px;
 	border-radius: 5px;
 }
 
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
 	min-height: 10px;
-	border-radius: 5px;
-}
-
-#backlight-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
-}
-
-#backlight-slider trough {
-	min-width: 80px;
-	min-height: 10px;
-	border-radius: 5px;
-}
-
-#backlight-slider highlight {
-	min-width: 10px;
 	border-radius: 5px;
 }

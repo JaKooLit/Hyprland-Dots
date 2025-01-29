@@ -24,8 +24,8 @@ max_width=1200
 max_height=1000
 
 # Set percentage of screen size for dynamic adjustment
-percentage_width=70
-percentage_height=70
+percentage_width=90
+percentage_height=90
 
 # Calculate dynamic width and height
 dynamic_width=$((width * percentage_width / 100))
@@ -80,6 +80,7 @@ GDK_BACKEND=$BACKEND yad --width=$dynamic_width --height=$dynamic_height \
 " Shift F" "Toggle float" "single window" \
 " ALT F" "Toggle all windows to float" "all windows" \
 " Shift B" "Toggle Blur" "normal or less blur" \
+" Shift A" "Animations Menu" "Choose Animations via rofi" \
 " SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
 " ALT E" "Rofi Emoticons" "Emoticon" \
 " ALT V" "Clipboard Manager" "cliphist" \

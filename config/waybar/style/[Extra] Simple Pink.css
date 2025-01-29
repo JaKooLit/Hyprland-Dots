@@ -21,14 +21,6 @@ window#waybar.hidden {
 	opacity: 0.5;
 }
 
-window#waybar.empty,
-window#waybar.empty #window {
-	padding: 0px;
-	border: 0px;
-	background-color: transparent;
-}
-
-
 tooltip {
 	background: #1e1e2e;
 	border-radius: 10px;
@@ -39,6 +31,7 @@ tooltip {
 }
 
 /*-----module groups----*/
+.modules-left,
 .modules-right {
 	border: 5px solid #19141b;
 	border-radius: 50px 50px 50px 50px;
@@ -57,21 +50,10 @@ tooltip {
 	padding-left: 4px;
 }
 
-.modules-left {
-	border: 5px solid #0d0a0f;
-	border-radius: 50px 50px 50px 50px;
-	background-color: #ba5663;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
-}
-
 #workspaces button {
 	color: pink;
     box-shadow: none;
 	text-shadow: none;
-    padding: 0px;
     border-radius: 9px;
     padding-left: 4px;
     padding-right: 4px;
@@ -79,6 +61,7 @@ tooltip {
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button.active,
 #workspaces button.active {
 	color: whitesmoke;
 	background-color: pink;
@@ -99,6 +82,7 @@ tooltip {
 	border-radius: 10px;
 }
 
+#taskbar button:hover,
 #workspaces button:hover {
 	color: #ba5663;
 	background-color: #0d0a0d;
@@ -107,7 +91,6 @@ tooltip {
     padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-
 }
 
 #backlight,
@@ -145,6 +128,7 @@ tooltip {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -164,8 +148,8 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: whitesmoke;
-	padding-top: 1px;
-	padding-bottom: 1px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 
@@ -187,23 +171,6 @@ tooltip {
 	color: #39FF14;
 }
 
-#taskbar button.active {
-	background-color: pink;
-    padding-left: 12px;
-    padding-right: 12px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-	color: #ba5663;
-	background-color: #0d0a0d;
-    padding-left: 3px;
-    padding-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
 #battery.critical:not(.charging) {
 	color: #f53c3c;
 	animation-name: blink;
@@ -213,46 +180,27 @@ tooltip {
 	animation-direction: alternate;
 }
 
+#backlight-slider slider,
 #pulseaudio-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
+    min-width: 0px;
+    min-height: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
-	min-width: 80px;
-	min-height: 5px;
-	border-radius: 5px;
-	background-color: #22252a;
+    min-width: 80px;
+    min-height: 5px;
+    border-radius: 5px;
+    background-color: #22252a;
 }
 
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
-	min-height: 10px;
-	border-radius: 5px;
-	background-color: pink;
-}
-
-#backlight-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
-}
-
-#backlight-slider trough {
-	min-width: 80px;
-	min-height: 10px;
-	border-radius: 5px;
-	background-color: #22252a;
-}
-
-#backlight-slider highlight {
-	min-width: 10px;
-	border-radius: 5px;
-	background-color: pink;
+    min-height: 10px;
+    border-radius: 5px;
+    background-color: #ba5663;
 }

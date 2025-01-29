@@ -99,7 +99,6 @@ window#waybar.empty #window {
 #taskbar {
     background: @backgroundlight;
     margin: 3px 15px 3px 0px;
-    padding:0px;
     border-radius: 5px 5px 5px 5px;
     font-weight: normal;
     font-style: normal;
@@ -163,6 +162,7 @@ window#waybar.empty #window {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -181,6 +181,7 @@ window#waybar.empty #window {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
+	padding: 2px;
     margin-right: 8px;
 	margin-left: 6px;
     font-size: 100%;
@@ -370,4 +371,27 @@ window#waybar.empty #window {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+	min-width: 80px;
+	min-height: 5px;
+	border-radius: 5px;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+	min-height: 10px;
+	border-radius: 5px;
 }
