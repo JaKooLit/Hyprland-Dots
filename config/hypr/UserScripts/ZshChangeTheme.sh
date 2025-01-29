@@ -51,7 +51,7 @@ main() {
         sed -i "s/^$var_name=.*/$var_name=\"$theme_to_set\"/" "$zsh_path"
         notify-send -i "$iDIR/ja.png" "OMZ theme" "applied. restart your terminal"
     else
-        notify-send "Error:" "~.zshrc file not found!"
+        notify-send -i "$iDIR/ja.png" "Error:" "~.zshrc file not found!"
     fi
 }
 
