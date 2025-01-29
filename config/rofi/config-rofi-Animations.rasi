@@ -1,0 +1,19 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Hyprland Animations (compact) */
+
+@import "~/.config/rofi/config-compact.rasi" 
+
+/* ---- Window ---- */
+window {
+    width:	25%;
+}
+
+/* ---- Entry ---- */ 
+entry {
+  placeholder: "✨ Choose Animations to load";
+}
+
+/* ---- Listview ---- */
+listview {
+  lines: 8;
+}
