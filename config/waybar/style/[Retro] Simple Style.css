@@ -79,6 +79,7 @@ window#waybar {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -97,8 +98,8 @@ window#waybar {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
+  padding: 6px;
   color: @foreground;
-  padding: 3px 6px 3px 6px;
 }
 
 #battery.warning,
@@ -149,6 +150,7 @@ window#waybar {
   border-bottom: 3px solid green;
 }
 
+#backlight-slider slider,
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;
@@ -157,38 +159,18 @@ window#waybar {
 	border: none;
 	box-shadow: none;
 }
-	
+
+#backlight-slider trough,
 #pulseaudio-slider trough {
 	min-width: 80px;  
 	min-height: 5px; 
 	border-radius: 5px;
 	background-color: @dim;
 }
-	
+
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
 	min-height: 10px; 
-	border-radius: 5px;
-	background-color: @green;
-}
-
-#backlight-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
-}
-	
-#backlight-slider trough {
-	min-width: 80px;  
-	min-height: 10px; 
-	border-radius: 5px;
-	background-color: @dim;
-}
-	
-#backlight-slider highlight {
-	min-width: 10px; 
 	border-radius: 5px;
 	background-color: @green;
 }

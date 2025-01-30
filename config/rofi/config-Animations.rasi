@@ -1,0 +1,20 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Rofi Beats Config (compact) */
+
+@import "~/.config/rofi/config-compact.rasi" 
+
+/* ---- Window ---- */
+window {
+    width:	35%;
+}
+
+/* ---- Entry ---- */ 
+entry {
+  width: 25%;
+  placeholder: "✨ Choose which Animations to load";
+}
+
+/* ---- Listview ---- */
+listview {
+  lines: 10;
+}

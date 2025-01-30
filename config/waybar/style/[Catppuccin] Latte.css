@@ -29,10 +29,8 @@ window#waybar.hidden {
 #workspaces button {
     box-shadow: none;
 	text-shadow: none;
-    padding: 0px;
+    padding: 4px;
     border-radius: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -103,6 +101,7 @@ window#waybar.hidden {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -248,11 +247,14 @@ window#waybar.hidden {
 #network {
   	color: @teal;
 }
+
 #network.disconnected,
 #network.disabled {
   	background-color: @surface0;
   	color: @text;
 }
+
+#backlight-slider slider,
 #pulseaudio-slider slider {
 	min-width: 0px;
 	min-height: 0px;
@@ -262,33 +264,15 @@ window#waybar.hidden {
 	box-shadow: none;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
 	min-width: 80px;
 	min-height: 5px;
 	border-radius: 5px;
 }
 
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
 	min-height: 10px;
-	border-radius: 5px;
-}
-
-#backlight-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
-}
-
-#backlight-slider trough {
-	min-width: 80px;
-	min-height: 10px;
-	border-radius: 5px;
-}
-
-#backlight-slider highlight {
-	min-width: 10px;
 	border-radius: 5px;
 }

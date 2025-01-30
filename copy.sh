@@ -3,7 +3,7 @@
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified
-waybar_style="$HOME/.config/waybar/style/[Wallust] Chroma Tally.css"
+waybar_style="$HOME/.config/waybar/style/[Extra] Modern-Combined - Transparent.css"
 waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v5"
 waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v5" 
 
@@ -208,6 +208,11 @@ if command -v blueman-applet >/dev/null 2>&1; then
     sed -i '/exec-once = blueman-applet &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
+# Check if ags is installed and add ags on Startup
+if command -v ags >/dev/null 2>&1; then
+    sed -i '/exec-once = ags &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+fi
+
 printf "\n"
 
 # Checking if neovim or vim is installed and offer user if they want to make as default editor
@@ -366,7 +371,7 @@ if [[ "$border_choice" =~ ^[Yy]$ ]]; then
     mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
     
     sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh \&/s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
-    sed -i '/  animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserDecorAnimations.conf
+    sed -i '/  animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserAnimations.conf
     
     echo "${OK} Rainbow borders is now disabled." 2>&1 | tee -a "$LOG"
 else
@@ -513,7 +518,8 @@ FILES_TO_RESTORE=(
   "Laptops.conf"
   "Monitors.conf"
   "Startup_Apps.conf"
-  "UserDecorAnimations.conf"
+  "UserDecorations.conf"
+  "UserAnimations.conf"
   "UserKeybinds.conf"
   "UserSettings.conf"
   "WindowRules.conf"

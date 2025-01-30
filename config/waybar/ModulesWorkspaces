@@ -140,6 +140,31 @@
 		"default": "",
 	},
 },
+// numbers styles
+"hyprland/workspaces#numbers": {
+	"active-only": false,
+	"all-outputs": true,
+	"format": "{icon}",
+	"show-special": false,
+	"on-click": "activate",
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+	"on-scroll-down": "hyprctl dispatch workspace e-1",
+    "persistent-workspaces": {
+      "*": 10
+	},
+	"format-icons": {
+		"1": "1",
+		"2": "2",
+		"3": "3",
+		"4": "4",
+		"5": "5",
+		"6": "6",
+		"7": "7",
+		"8": "8",
+		"9": "9",
+		"10": "10",
+	},
+},
 // NUMBERS and ICONS style with window rewrite 
 "hyprland/workspaces#rw": {
 	"disable-scroll": true,

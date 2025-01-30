@@ -189,7 +189,7 @@
 
 "hyprland/window": {
 	"format": "{}",
-	"max-length": 20,
+	"max-length": 25,
 	"separate-outputs": true,
 	"offscreen-css": true,
 	"offscreen-css-text": "(inactive)",

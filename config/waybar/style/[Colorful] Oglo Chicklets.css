@@ -91,6 +91,7 @@ button.active {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
 #custom-settings,
@@ -110,6 +111,8 @@ button.active {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay{
     color: #ffffff;
+    padding-top: 2px;
+    padding-bottom: 2px;
     border-radius: 5px;
 	padding-left: 5px;
 	padding-right: 5px;
