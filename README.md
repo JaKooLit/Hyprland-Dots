@@ -51,7 +51,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 
 #### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://www.youtube.com/watch?v=ir9NfMcZBzA)
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
 </details>
 
