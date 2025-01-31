@@ -6,7 +6,7 @@
 /* ---- Entry ---- */
 entry {
   width: 37%;
-  placeholder: "📋 Search Clipboard **note** 👀 CTRL Del - Cliphist del or Alt Del - cliphist wipe";
+  placeholder: " 📋 Search Clipboard **note** 👀 CTRL Del - Cliphist del or Alt Del - cliphist wipe";
 }
 
 /* ---- Listview ---- */

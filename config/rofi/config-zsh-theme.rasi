@@ -33,7 +33,7 @@ inputbar {
 }
 
 entry {
-  placeholder: "󰸉  Choose ZSH theme";
+  placeholder: " 󰸉  Choose ZSH theme";
 }
 
 /* ---- Listview ---- */

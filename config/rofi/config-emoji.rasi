@@ -6,7 +6,7 @@
 /* ---- Entry ---- */
 entry {
   width: 37%;
-  placeholder: "💫 Search Emoji's  **note** 👀 Click or Return to choose | Ctrl V to Paste";
+  placeholder: " 💫 Search Emoji's  **note** 👀 Click or Return to choose | Ctrl V to Paste";
 }
 
 /* ---- Listview ---- */

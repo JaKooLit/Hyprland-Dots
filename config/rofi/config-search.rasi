@@ -23,6 +23,6 @@ mainbox {
 
 /* ---- Entry ---- */ 
 entry {
-	placeholder: "🔎 Google Search";
+	placeholder: " 🔎 Google Search via web browser";
 }
 
