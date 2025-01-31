@@ -50,6 +50,7 @@ tooltip {
 	padding-left: 4px;
 }
 
+#taskbar button,
 #workspaces button {
 	color: pink;
     box-shadow: none;

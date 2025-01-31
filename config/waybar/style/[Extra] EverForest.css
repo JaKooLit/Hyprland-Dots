@@ -81,6 +81,8 @@ window#waybar.hidden {
 #custom-swaync {
   color: @yellow;
 }
+
+#taskbar button,
 #workspaces button {
   padding: 0px 5px;
   background-color: @orange;

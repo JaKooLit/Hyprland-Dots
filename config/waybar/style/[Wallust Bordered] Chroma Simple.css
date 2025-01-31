@@ -37,6 +37,7 @@ tooltip {
     opacity: 0.9;
 }
 
+#taskbar button,
 #workspaces {
 	border-radius: 20px;
     background: @background;

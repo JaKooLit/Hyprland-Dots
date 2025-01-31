@@ -60,6 +60,7 @@ tooltip {
 	border-style: solid;
 }
 
+#taskbar button,
 #workspaces button {
 	color: @text-alt;
    	box-shadow: none;

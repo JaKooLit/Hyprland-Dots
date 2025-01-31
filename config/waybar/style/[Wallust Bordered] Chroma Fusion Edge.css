@@ -197,6 +197,7 @@ tooltip {
     
 }
 
+#taskbar button,
 #workspaces button {
     border-radius: 15px;
     border:0px;
@@ -208,6 +209,7 @@ tooltip {
     opacity:0.8;
 }
 
+#taskbar button.active,
 #workspaces button.active {
     color: #FFFFFF;
     background: @button-color;
@@ -224,6 +226,7 @@ tooltip {
     opacity:1.0;
 }
 
+#taskbar button:hover,
 #workspaces button:hover {
     color: #FFFFFF;
     background: @button-hover;
@@ -268,21 +271,6 @@ tooltip {
     to {
         color: #000000;
     }
-}
-
-#taskbar button.active {
-    background-color: rgb(47, 46, 46);
-	border-radius: 30px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-	border-radius: 15px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #battery.critical:not(.charging) {

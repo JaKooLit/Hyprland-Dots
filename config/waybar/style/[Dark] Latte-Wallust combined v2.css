@@ -54,7 +54,9 @@ tooltip {
     font-weight: bold;
     font-style: normal;
     opacity: 0.8;
-}   
+}
+
+#taskbar button,   
 #workspaces button {
     color: @foreground;
     box-shadow: none;

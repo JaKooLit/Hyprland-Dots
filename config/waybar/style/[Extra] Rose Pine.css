@@ -37,6 +37,7 @@ tooltip {
     border-width: 0px;
 }
 
+#taskbar button,
 #workspaces button {
     box-shadow: none;
 	text-shadow: none;
