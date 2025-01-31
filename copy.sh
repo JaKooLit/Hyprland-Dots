@@ -413,7 +413,7 @@ for DIR2 in $DIRS; do
   
   if [ -d "$DIRPATH" ]; then
     while true; do
-      read -p "${CAT} ${MAGENTA}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${MAGENTA}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
+      read -p "\n${CAT} ${MAGENTA}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${MAGENTA}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
       case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
@@ -485,7 +485,7 @@ for DIR_NAME in $DIR; do
   
   # Backup the existing directory if it exists
   if [ -d "$DIRPATH" ]; then
-    echo -e "${NOTE} - Config for ${MAGENTA}$DIR_NAME${RESET} found, attempting to back up."
+    echo -e "\n${NOTE} - Config for ${MAGENTA}$DIR_NAME${RESET} found, attempting to back up."
     BACKUP_DIR=$(get_backup_dirname)
     
     # Backup the existing directory
@@ -635,7 +635,7 @@ fi
 
 # additional wallpapers
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
-printf "\n"
+printf "\n%.0s" {1..1}
 
 while true; do
   read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is more than 800 MB (y/n)" WALL
@@ -737,4 +737,5 @@ wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 printf "\n%.0s" {1..4}
 printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!!"
 printf "\n%.0s" {1..1}
-printf "${MAGENTA} HOWEVER I HIGHLY SUGGEST to logout and re-login or better reboot to avoid any issues\n\n"
+printf "${MAGENTA} However, it is HIGHLY SUGGESTED to logout and re-login or better reboot to avoid any issues\n\n"
+printf "${BLUE} Thank you for using KooL's Hyprland Configuration... ENJOY!!!\n"
