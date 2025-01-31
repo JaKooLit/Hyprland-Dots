@@ -72,7 +72,7 @@ fi
 
 # Proper Polkit for NixOS
 if hostnamectl | grep -q 'Operating System: NixOS'; then
-  echo "You Distro is NixOS. Setting up properly." 2>&1 | tee -a "$LOG" || true
+  echo "NixOS Distro Detected. Setting up properly." 2>&1 | tee -a "$LOG" || true
   sed -i -E '/^#?exec-once = \$scriptsDir\/Polkit-NixOS\.sh/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
   sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
@@ -86,7 +86,6 @@ fi
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
 if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
-    # Define the config file path
     HYPRCURSOR_ENV_FILE="config/hypr/UserConfigs/ENVariables.conf"
 
     sed -i 's/^#env = HYPRCURSOR_THEME,Bibata-Modern-Ice/env = HYPRCURSOR_THEME,Bibata-Modern-Ice/' "$HYPRCURSOR_ENV_FILE"
@@ -155,7 +154,6 @@ while true; do
 
   case $keyboard_layout in
     [yY])
-        # If the detected layout is correct, update the 'kb_layout =' line in the file
         awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
         
@@ -186,8 +184,7 @@ NOTE:
         printf "\n%.0s" {1..1}
         
         read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
-        
-        # Update the 'kb_layout =' line with the correct layout in the file
+
         awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
         echo "${OK} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
@@ -284,7 +281,7 @@ if [ "$resolution" == "< 1440p" ]; then
   sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
 
   # hyprlock matters
-  mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf
+  mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf &&
   mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
 
 elif [ "$resolution" == "≥ 1440p" ]; then
@@ -295,16 +292,15 @@ printf "\n"
 
 # Ask whether to change to 12hr format
 while true; do
-  echo -e "$MAGENTA By default, configs are in 24H format."
-  read -p "$CAT Do you want to change to 12H format (AM/PM)? (y/n): " answer
+  echo -e "$MAGENTA By default, KooL's Dots are configured in 24H clock format."
+  read -p "$CAT Do you want to change to 12H format or AM/PM format? (y/n): " answer
 
   # Convert the answer to lowercase for comparison
   answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 
 # Check if the answer is valid
 if [[ "$answer" == "y" ]]; then
-    # Modify waybar config if 12hr is selected
-    
+    # Modify waybar clock modules if 12hr is selected    
     # Clock 1
     sed -i 's#^\(\s*\)//\("format": " {:%I:%M %p}",\) #\1\2 #g' config/waybar/Modules 2>&1 | tee -a "$LOG"
     sed -i 's#^\(\s*\)\("format": " {:%H:%M:%S}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"

@@ -17,7 +17,7 @@ UserConfigs="$HOME/.config/hypr/UserConfigs"
 animations_list=$(find "$animations_dir" -maxdepth 1 -type f | sed 's/.*\///' | sed 's/\.conf$//')
 
 # Rofi Menu
-chosen_file=$(echo "$animations_list" | rofi -i -dmenu -config ~/.config/rofi/config-Animations.rasi "Choose animation:")
+chosen_file=$(echo "$animations_list" | rofi -i -dmenu -config ~/.config/rofi/config-Animations.rasi)
 
 # Check if a file was selected
 if [[ -n "$chosen_file" ]]; then
@@ -26,9 +26,9 @@ if [[ -n "$chosen_file" ]]; then
     
     cp "$full_path" "$UserConfigs/UserAnimations.conf"
     
-    notify-send -u low -i "$iDIR/ja.png" "$chosen_file" "Animation Loaded"
+    notify-send -u low -i "$iDIR/ja.png" "$chosen_file" "Hyprland Animation Loaded"
 else
-    notify-send -u low -i "$iDIR/ja.png" "You chose to" "NOT apply other animations"
+    notify-send -u low -i "$iDIR/ja.png" "You chose NOT" "to apply other Hyprland animations"
 fi
 
 sleep 1
