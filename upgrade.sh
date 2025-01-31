@@ -10,7 +10,8 @@ ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
 WARN="$(tput setaf 1)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-ORANGE=$(tput setaf 5)
+MAGENTA=$(tput setaf 5)
+WARNING=$(tput setaf 1)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
@@ -146,7 +147,7 @@ if version_gt "$latest_version" "$stored_version"; then
 		chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 		
     else
-        echo "$ORANGE Upgrade declined. No files or folders changed" 2>&1 | tee -a "$LOG"
+        echo "$MAGENTA Upgrade declined. No files or folders changed" 2>&1 | tee -a "$LOG"
     fi
 else
     echo "$OK No upgrade found. The installed version ($stored_version) is up to date with the Hyprland-Dots version ($latest_version)." 2>&1 | tee -a "$LOG"
