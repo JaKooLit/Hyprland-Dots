@@ -11,7 +11,7 @@ window {
 /* ---- Entry ---- */ 
 entry {
   width: 25%;
-  placeholder: "✨ Choose which Animations to load";
+  placeholder: " ✨ Choose which Animations to load";
 }
 
 /* ---- Listview ---- */

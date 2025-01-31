@@ -7,7 +7,7 @@
 /* ---- Entry ---- */
 entry {
   width: 27%;
-  placeholder: "🧮 Calculate";
+  placeholder: " 🧮 Calculate";
 }
 
 /* ---- Window ---- */

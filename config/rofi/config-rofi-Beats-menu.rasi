@@ -6,7 +6,7 @@
 /* ---- Entry ---- */ 
 entry {
   width: 20%;
-  placeholder: "📻 Choose Music Source";
+  placeholder: " 📻 Choose Music Source";
 }
 
 /* ---- Window ---- */

@@ -19,21 +19,21 @@
 
 "custom/file_manager": {
 	"format": " ",
-	"on-click": "thunar",
+	"on-click": "xdg-open . &",
 	"tooltip": true,
 	"tooltip-format": "File Manager",
 },
 
 "custom/tty": {
 	"format": " ",
-	"on-click": "kitty",
+	"on-click": "kitty &",
 	"tooltip": true,
 	"tooltip-format": "Launch Terminal",
 },
 
 "custom/browser": {
 	"format": " ",
-	"on-click": "firefox",
+	"on-click": "xdg-open http:// &",
 	"tooltip": true,
 	"tooltip-format": "Launch Browser",
 },
