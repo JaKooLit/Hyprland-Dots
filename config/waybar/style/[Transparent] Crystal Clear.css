@@ -27,7 +27,8 @@ window#waybar.empty #window {
    border: 0px;
    background-color: transparent;
 }
-	   
+
+#taskbar button,	   
 #workspaces button {
 	color: #6E6A86;
    	box-shadow: none;

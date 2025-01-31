@@ -45,6 +45,7 @@ tooltip {
 }
 /*-----modules indv----*/
 
+#taskbar button,
 #workspaces button {
     color: @color2;
     box-shadow: none;
@@ -57,6 +58,7 @@ tooltip {
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button.active,
 #workspaces button.active {
     color: @foreground;
     background-color: @color2;
@@ -75,6 +77,7 @@ tooltip {
     border-radius: 10px;
 }
 
+#taskbar button:hover,
 #workspaces button:hover {
     color: @color4;
     padding-left: 2px;
@@ -173,22 +176,6 @@ tooltip {
     to {
         color: #000000;
     }
-}
-
-#taskbar button.active {
-	color: @foreground;
-    background-color: @color2;
-	border-radius: 30px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-	border-radius: 15px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #battery.critical:not(.charging) {

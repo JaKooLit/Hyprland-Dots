@@ -63,6 +63,7 @@ tooltip {
 	padding-left: 4px;
 }
 
+#taskbar button,
 #workspaces button {
     color: @foreground;
     box-shadow: none;
@@ -75,6 +76,7 @@ tooltip {
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button.active,
 #workspaces button.active {
     color: @background;
     background-color: @color7;
@@ -93,6 +95,7 @@ tooltip {
     border-radius: 10px;
 }
 
+#taskbar button:hover,
 #workspaces button:hover {
     color: @color4;
     padding-left: 2px;
@@ -179,21 +182,6 @@ tooltip {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
-}
-
-#taskbar button.active {
-    background-color: rgb(47, 46, 46);
-	border-radius: 30px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-	border-radius: 15px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #battery.critical:not(.charging) {

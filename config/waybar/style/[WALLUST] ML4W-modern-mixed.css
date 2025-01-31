@@ -32,6 +32,7 @@ window#waybar {
     transition-duration: .5s;
 }
 
+#taskbar,
 #workspaces {
     background: @workspacesbackground1;
     margin: 2px 18px 3px 1px;
@@ -45,6 +46,7 @@ window#waybar {
     color: @textcolor1;
 }
 
+#taskbar button,
 #workspaces button {
     padding: 0px 6px;
     margin: 3px 2px;
@@ -55,6 +57,7 @@ window#waybar {
     opacity: 0.4;
 }
 
+#taskbar button.active,
 #workspaces button.active {
     color: @textcolor1;
     background: @workspacesbackground2;
@@ -64,6 +67,7 @@ window#waybar {
     opacity:1.0;
 }
 
+#taskbar button.hover,
 #workspaces button:hover {
     color: @textcolor1;
     background: @workspacesbackground2;
@@ -94,22 +98,6 @@ tooltip label {
 
 window#waybar.empty #window {
     background-color:transparent;
-}
-
-#taskbar {
-    background: @backgroundlight;
-    margin: 3px 15px 3px 0px;
-    border-radius: 5px 5px 5px 5px;
-    font-weight: normal;
-    font-style: normal;
-    opacity:0.8;
-    border: 3px solid @backgroundlight;
-}
-
-#taskbar button {
-    margin:0;
-    border-radius: 5px 5px 5px 5px;
-    padding: 0px 5px 0px 5px;
 }
 
 #taskbar.empty {

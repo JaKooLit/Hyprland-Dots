@@ -45,6 +45,7 @@ tooltip {
     border-color: #11111b;
 }
 
+#taskbar button,
 #workspaces button {
     background-color: transparent;
     color: #ffffff;

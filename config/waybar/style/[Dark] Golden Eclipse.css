@@ -122,6 +122,7 @@ window#waybar.hidden {
 	animation-direction: alternate;
 }
 
+#taskbar button,
 #workspaces button {
     box-shadow: none;
 	text-shadow: none;

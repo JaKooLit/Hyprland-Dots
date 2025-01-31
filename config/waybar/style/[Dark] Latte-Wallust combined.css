@@ -69,7 +69,9 @@ tooltip {
     font-style: normal;
     opacity:0.8;
     color:#FFFFFF;
-}   
+}
+
+#taskbar button,   
 #workspaces button {
     color: #6E6A86;
     box-shadow: none;

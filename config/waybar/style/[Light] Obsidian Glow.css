@@ -30,6 +30,7 @@ tooltip label {
 	padding-left: 2px;
 }
 
+#taskbar button,
 #workspaces button {
 	color: #585b70;
     box-shadow: none;
