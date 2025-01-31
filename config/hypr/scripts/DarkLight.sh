@@ -13,8 +13,10 @@ ags_style="$HOME/.config/ags/user/style.css"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 notif="$HOME/.config/swaync/images/bell.png"
 wallust_rofi="$HOME/.config/wallust/templates/colors-rofi.rasi"
+alacritty_themes="$HOME/.config/alacritty/themes"
 
 kitty_conf="$HOME/.config/kitty/kitty.conf"
+alacritty_conf="$HOME/.config/alacritty/alacritty.toml"
 
 wallust_config="$HOME/.config/wallust/wallust.toml"
 pallete_dark="dark16"
@@ -122,9 +124,17 @@ done
 # Set Dynamic Wallpaper for Dark or Light Mode
 if [ "$next_mode" = "Dark" ]; then
     next_wallpaper="$(find -L "${dark_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
+    next_theme="$(find "${alacritty_themes}" -type f -iname "*dark*.toml" -print0 | shuf -n1 -z | xargs -0)"
 else
     next_wallpaper="$(find -L "${light_wallpapers}" -type f \( -iname "*.jpg" -o -iname "*.png" \) -print0 | shuf -n1 -z | xargs -0)"
+    next_theme="$(find "${alacritty_themes}" -type f -iname "*light*.toml" -print0 | shuf -n1 -z | xargs -0)"
 fi
+
+
+replace="general.import=[\"${next_theme}\"]"
+escaped_replace=$(printf '%s\n' "$replace" | sed 's/[\/&]/\\&/g')
+sed -i "s/^general.import.*/${escaped_replace}/g" "${alacritty_conf}"
+echo $?
 
 # Update wallpaper using swww command
 $swww "${next_wallpaper}" $effect
