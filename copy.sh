@@ -413,11 +413,11 @@ for DIR2 in $DIRS; do
   
   if [ -d "$DIRPATH" ]; then
     while true; do
-      read -p "\n${CAT} ${MAGENTA}$DIR2${RESET} config found in ~/.config/ Do you want to replace ${MAGENTA}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
+      printf "\n${INFO} Found ${MAGENTA}$DIR2${RESET} config found in ~/.config/\n"
+      read -p "${CAT} Do you want to replace ${MAGENTA}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
       case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
-          echo -e "${NOTE} - Config for ${YELLOW}$DIR2${RESET} found, attempting to back up."
           
           mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
           if [ $? -eq 0 ]; then
