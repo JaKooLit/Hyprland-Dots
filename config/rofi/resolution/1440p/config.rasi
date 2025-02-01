@@ -5,12 +5,12 @@
 
 /* ---- Window ---- */
 window {
-    width:	50%;
+  width:	50%;
 }
 
 /* ---- Mode Switcher ---- */
 button {
-    width:	110px;
+  width:	110px;
 }
 
 /* ---- Listview ---- */
