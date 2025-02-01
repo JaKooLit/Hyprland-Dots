@@ -409,8 +409,8 @@ for DIR2 in $DIRS; do
   
   if [ -d "$DIRPATH" ]; then
     while true; do
-      printf "\n${INFO} Found ${MAGENTA}$DIR2${RESET} config found in ~/.config/\n"
-      read -p "${CAT} Do you want to replace ${MAGENTA}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
+      printf "\n${INFO} Found ${YELLOW}$DIR2${RESET} config found in ~/.config/\n"
+      read -p "${CAT} Do you want to replace ${YELLOW}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
       case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
@@ -434,7 +434,7 @@ for DIR2 in $DIRS; do
           ;;
         [Nn]* )
           # Skip the directory
-          echo -e "${NOTE} - Skipping ${MAGENTA}$DIR2${RESET} " 2>&1 | tee -a "$LOG"
+          echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET} " 2>&1 | tee -a "$LOG"
           break
           ;;
         * )
@@ -481,7 +481,7 @@ for DIR_NAME in $DIR; do
   
   # Backup the existing directory if it exists
   if [ -d "$DIRPATH" ]; then
-    echo -e "\n${NOTE} - Config for ${MAGENTA}$DIR_NAME${RESET} found, attempting to back up."
+    echo -e "\n${NOTE} - Config for ${YELLOW}$DIR_NAME${RESET} found, attempting to back up."
     BACKUP_DIR=$(get_backup_dirname)
     
     # Backup the existing directory
@@ -544,7 +544,7 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
     BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
     if [ -f "$BACKUP_FILE" ]; then
       printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
-      read -p "${CAT} Do you want to restore ${MAGENTA}$FILE_NAME${RESET} from backup? (y/N): " file_restore
+      read -p "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (y/N): " file_restore
 
       if [[ "$file_restore" == [Yy]* ]]; then
         if cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME"; then
@@ -580,7 +580,7 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
 
     if [ -f "$BACKUP_SCRIPT" ]; then
       printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
-      read -p "${CAT} Do you want to restore ${MAGENTA}$SCRIPT_NAME${RESET} from backup? (y/N): " script_restore
+      read -p "${CAT} Do you want to restore ${YELLOW}$SCRIPT_NAME${RESET} from backup? (y/N): " script_restore
       if [[ "$script_restore" == [Yy]* ]]; then
         if cp "$BACKUP_SCRIPT" "$DIRSHPATH/UserScripts/$SCRIPT_NAME"; then
           echo "${OK} - $SCRIPT_NAME restored!" 2>&1 | tee -a "$LOG"
@@ -687,9 +687,9 @@ cleanup_backups() {
 
       # If more than one backup found
       if [ ${#BACKUP_DIRS[@]} -gt 1 ]; then
-		printf "\n\n ${INFO} Performing clean up for ${MAGENTA}${DIR##*/}${RESET}\n"
+		printf "\n\n ${INFO} Performing clean up for ${YELLOW}${DIR##*/}${RESET}\n"
 
-        echo -e "${NOTE} Found multiple backups for: ${MAGENTA}${DIR##*/}${RESET}"
+        echo -e "${NOTE} Found multiple backups for: ${YELLOW}${DIR##*/}${RESET}"
         echo "${YELLOW}Backups: ${RESET}"
 
         # List the backups
@@ -697,7 +697,7 @@ cleanup_backups() {
           echo "  - ${BACKUP##*/}"
         done
 
-        read -p "${CAT} Do you want to delete the older backups of ${MAGENTA}${DIR##*/}${RESET} and keep the latest backup only? (y/N): " back_choice
+        read -p "${CAT} Do you want to delete the older backups of ${YELLOW}${DIR##*/}${RESET} and keep the latest backup only? (y/N): " back_choice
         if [[ "$back_choice" == [Yy]* ]]; then
           # Sort backups by modification time
           latest_backup="${BACKUP_DIRS[0]}"
@@ -713,7 +713,7 @@ cleanup_backups() {
               rm -rf "$BACKUP"
             fi
           done
-          echo "Old backups of ${MAGENTA}${DIR##*/}${RESET} deleted, keeping: ${YELLOW}${latest_backup##*/}${RESET}"
+          echo "Old backups of ${YELLOW}${DIR##*/}${RESET} deleted, keeping: ${MAGENTA}${latest_backup##*/}${RESET}"
         fi
       fi
     fi
