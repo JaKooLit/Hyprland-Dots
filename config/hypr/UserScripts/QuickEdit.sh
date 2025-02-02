@@ -23,8 +23,7 @@ menu() {
 8. View / Edit  Decorations
 9. View / Edit  Animations
 10. View / Edit  Workspace-Rules
-11. View / Edit  Default-Settings
-12. View / Edit  Default-Keybinds
+11. View / Edit  Default-Keybinds
 EOF
 }
 
@@ -44,8 +43,7 @@ main() {
         8) file="$UserConfigs/UserDecorations.conf" ;;
         9) file="$UserConfigs/UserAnimations.conf" ;;
         10) file="$UserConfigs/WorkspaceRules.conf" ;;
-        11) file="$configs/Settings.conf" ;;
-        12) file="$configs/Keybinds.conf" ;;
+        11) file="$configs/Keybinds.conf" ;;
         *) return ;;  # Do nothing for invalid choices
     esac
 

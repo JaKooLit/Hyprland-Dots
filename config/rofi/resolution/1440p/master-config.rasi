@@ -4,19 +4,19 @@
 /* ---- Configuration ---- */
 
 configuration {
-	font:						"JetBrainsMono Nerd Font SemiBold 12";
-	modi:                       "drun,run,filebrowser";
+    font:                       "JetBrainsMono Nerd Font SemiBold 12";
+    modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     display-drun:               "Apps";
     display-run:                "Run";
     display-filebrowser:        "Files";
     display-window:             "Windows";
-	drun-display-format:        "{name}";
-	hover-select:               true;
-	me-select-entry:            "MouseSecondary";
+    drun-display-format:        "{name}";
+    hover-select:               true;
+    me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
-	window-format:              "{w} · {c} · {t}";
-	dpi:						1;
+    window-format:              "{w} · {c} · {t}";
+    dpi:						1;
 }
 
 /* ---- Load wallust colors ---- */
@@ -145,7 +145,7 @@ button selected {
 /* ---- Scrollbar ---- */
 scrollbar {
     border:       				0;
-    handle-color: 				@border-color;
+    handle-color: 				@background-alt;
     handle-width: 				2px ;
     padding:      				0;
 }
@@ -178,7 +178,7 @@ element selected.normal {
     border-radius:               16px;
     border-color:                @selected;
     background-color:            transparent;
-    text-color:                  @selected;
+    text-color:                  @background-alt;
 }
 
 element selected.urgent {

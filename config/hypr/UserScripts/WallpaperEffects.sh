@@ -63,7 +63,7 @@ main() {
     done
 
     # Show rofi menu and handle user choice
-    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -p "Choose effect" -i -config ~/.config/rofi/config-wallpaper-effect.rasi)
+    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config ~/.config/rofi/config-wallpaper-effect.rasi)
 
     # Process user choice
     if [[ -n "$choice" ]]; then

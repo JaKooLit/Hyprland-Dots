@@ -5,7 +5,7 @@
 
 /* ---- Window ---- */
 window {
-    width:	35%;
+  width:	35%;
 }
 
 /* ---- Entry ---- */ 

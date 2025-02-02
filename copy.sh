@@ -50,7 +50,7 @@ xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 
 # setting up for nvidia
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-  echo "Nvidia GPU detected. Setting up proper env's and configs" 2>&1 | tee -a "$LOG" || true
+  echo "${INFO} Nvidia GPU detected. Setting up proper env's and configs" 2>&1 | tee -a "$LOG" || true
   sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = NVD_BACKEND,direct/s/^#//' config/hypr/UserConfigs/ENVariables.conf
@@ -62,7 +62,7 @@ fi
 
 # uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
 if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "System is running in a virtual machine." 2>&1 | tee -a "$LOG" || true
+  echo "${INFO} System is running in a virtual machine." 2>&1 | tee -a "$LOG" || true
   # enabling proper ENV's for Virtual Environment which should help
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1true/' config/hypr/UserConfigs/UserSettings.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
@@ -72,23 +72,22 @@ fi
 
 # Proper Polkit for NixOS
 if hostnamectl | grep -q 'Operating System: NixOS'; then
-  echo "You Distro is NixOS. Setting up properly." 2>&1 | tee -a "$LOG" || true
+  echo "${INFO} NixOS Distro Detected. Setting up properly." 2>&1 | tee -a "$LOG" || true
   sed -i -E '/^#?exec-once = \$scriptsDir\/Polkit-NixOS\.sh/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
   sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
 # Check if dpkg is installed (use to check if Debian or Ubuntu or based distros
 if command -v dpkg &> /dev/null; then
-	echo "Debian/Ubuntu based distro. Disabling pyprland" 2>&1 | tee -a "$LOG" || true
+	echo "${INFO} Debian/Ubuntu based distro. Disabling pyprland since it does not work properly" 2>&1 | tee -a "$LOG" || true
   # disabling pyprland as causing issues
   sed -i '/^exec-once = pypr &/ s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
 if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
-    # Define the config file path
     HYPRCURSOR_ENV_FILE="config/hypr/UserConfigs/ENVariables.conf"
-
+    echo "${INFO} Bibata-Hyprcursor directory detected. Activating Hyprcursor...." 2>&1 | tee -a "$LOG" || true
     sed -i 's/^#env = HYPRCURSOR_THEME,Bibata-Modern-Ice/env = HYPRCURSOR_THEME,Bibata-Modern-Ice/' "$HYPRCURSOR_ENV_FILE"
     sed -i 's/^#env = HYPRCURSOR_SIZE,24/env = HYPRCURSOR_SIZE,24/' "$HYPRCURSOR_ENV_FILE"
 fi
@@ -115,24 +114,23 @@ if [ "$layout" = "(unset)" ]; then
   while true; do
     printf "\n%.0s" {1..1}
     print_color $WARNING "
-█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-        STOP AND READ
-█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+            STOP AND READ
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
     !!! IMPORTANT WARNING !!!
 
 The Default Keyboard Layout could not be detected
-
 You need to set it Manually
 
-!!! WARNING !!!
+    !!! WARNING !!!
+
 Setting a wrong Keyboard Layout will cause Hyprland to crash
+If you are not sure, just type ${YELLOW}us${RESET}
 
-If you are not sure, just type us
-
-NOTE:
+${MAGENTA} NOTE:${RESET}
 •  You can also set more than 2 keyboard layouts
-•  For example us, kr, gb, ru
+•  For example: ${YELLOW}us, kr, gb, ru${RESET}
 "
     printf "\n%.0s" {1..1}
     read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
@@ -155,7 +153,6 @@ while true; do
 
   case $keyboard_layout in
     [yY])
-        # If the detected layout is correct, update the 'kb_layout =' line in the file
         awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
         
@@ -164,30 +161,28 @@ while true; do
     [nN])
         printf "\n%.0s" {1..2}
         print_color $WARNING "
-█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-        STOP AND READ
-█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+            STOP AND READ
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
     !!! IMPORTANT WARNING !!!
 
 The Default Keyboard Layout could not be detected
-
 You need to set it Manually
 
-!!! WARNING !!!
+    !!! WARNING !!!
+
 Setting a wrong Keyboard Layout will cause Hyprland to crash
+If you are not sure, just type ${YELLOW}us${RESET}
 
-If you are not sure, just type us
-
-NOTE:
+${MAGENTA} NOTE:${RESET}
 •  You can also set more than 2 keyboard layouts
-•  For example us, kr, gb, ru
+•  For example: ${YELLOW}us, kr, gb, ru${RESET}
 "
         printf "\n%.0s" {1..1}
         
         read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
-        
-        # Update the 'kb_layout =' line with the correct layout in the file
+
         awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
         echo "${OK} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
@@ -284,7 +279,7 @@ if [ "$resolution" == "< 1440p" ]; then
   sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
 
   # hyprlock matters
-  mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf
+  mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf &&
   mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
 
 elif [ "$resolution" == "≥ 1440p" ]; then
@@ -295,16 +290,15 @@ printf "\n"
 
 # Ask whether to change to 12hr format
 while true; do
-  echo -e "$MAGENTA By default, configs are in 24H format."
-  read -p "$CAT Do you want to change to 12H format (AM/PM)? (y/n): " answer
+  echo -e "$MAGENTA By default, KooL's Dots are configured in 24H clock format."
+  read -p "$CAT Do you want to change to 12H format or AM/PM format? (y/n): " answer
 
   # Convert the answer to lowercase for comparison
   answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 
 # Check if the answer is valid
 if [[ "$answer" == "y" ]]; then
-    # Modify waybar config if 12hr is selected
-    
+    # Modify waybar clock modules if 12hr is selected    
     # Clock 1
     sed -i 's#^\(\s*\)//\("format": " {:%I:%M %p}",\) #\1\2 #g' config/waybar/Modules 2>&1 | tee -a "$LOG"
     sed -i 's#^\(\s*\)\("format": " {:%H:%M:%S}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
@@ -413,8 +407,8 @@ for DIR2 in $DIRS; do
   
   if [ -d "$DIRPATH" ]; then
     while true; do
-      printf "\n${INFO} Found ${MAGENTA}$DIR2${RESET} config found in ~/.config/\n"
-      read -p "${CAT} Do you want to replace ${MAGENTA}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
+      printf "\n${INFO} Found ${YELLOW}$DIR2${RESET} config found in ~/.config/\n"
+      read -p "${CAT} Do you want to replace ${YELLOW}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
       case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
@@ -438,7 +432,7 @@ for DIR2 in $DIRS; do
           ;;
         [Nn]* )
           # Skip the directory
-          echo -e "${NOTE} - Skipping ${MAGENTA}$DIR2${RESET} " 2>&1 | tee -a "$LOG"
+          echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET} " 2>&1 | tee -a "$LOG"
           break
           ;;
         * )
@@ -485,7 +479,7 @@ for DIR_NAME in $DIR; do
   
   # Backup the existing directory if it exists
   if [ -d "$DIRPATH" ]; then
-    echo -e "\n${NOTE} - Config for ${MAGENTA}$DIR_NAME${RESET} found, attempting to back up."
+    echo -e "\n${NOTE} - Config for ${YELLOW}$DIR_NAME${RESET} found, attempting to back up."
     BACKUP_DIR=$(get_backup_dirname)
     
     # Backup the existing directory
@@ -541,14 +535,14 @@ fi
 
 if [ -d "$BACKUP_DIR_PATH" ]; then
   echo -e "${NOTE} Restoring previous ${MAGENTA}User-Configs${RESET}... "
-  echo -e "${WARN} If you decide to restore the old configs, make sure to handle the updates or changes manually."
-  echo -e "${INFO} Kindly Visit and check KooL's Hyprland-Dots GitHub page for the commits."
+  echo -e "${WARN} ${WARNING}If you decide to restore the old configs, make sure to handle the updates or changes manually${RESET}."
+  echo -e "${INFO} Kindly Visit and check KooL's Hyprland-Dots GitHub page for the history of commits."
 
   for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
     BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
     if [ -f "$BACKUP_FILE" ]; then
       printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
-      read -p "${CAT} Do you want to restore ${MAGENTA}$FILE_NAME${RESET} from backup? (y/N): " file_restore
+      read -p "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (y/N): " file_restore
 
       if [[ "$file_restore" == [Yy]* ]]; then
         if cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME"; then
@@ -584,7 +578,7 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
 
     if [ -f "$BACKUP_SCRIPT" ]; then
       printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
-      read -p "${CAT} Do you want to restore ${MAGENTA}$SCRIPT_NAME${RESET} from backup? (y/N): " script_restore
+      read -p "${CAT} Do you want to restore ${YELLOW}$SCRIPT_NAME${RESET} from backup? (y/N): " script_restore
       if [[ "$script_restore" == [Yy]* ]]; then
         if cp "$BACKUP_SCRIPT" "$DIRSHPATH/UserScripts/$SCRIPT_NAME"; then
           echo "${OK} - $SCRIPT_NAME restored!" 2>&1 | tee -a "$LOG"
@@ -634,8 +628,8 @@ else
 fi
 
 # additional wallpapers
-echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
 printf "\n%.0s" {1..1}
+echo "${MAGENTA}By default only a few wallpapers are copied${RESET}..."
 
 while true; do
   read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is more than 800 MB (y/n)" WALL
@@ -691,9 +685,9 @@ cleanup_backups() {
 
       # If more than one backup found
       if [ ${#BACKUP_DIRS[@]} -gt 1 ]; then
-		printf "\n\n ${INFO} Performing clean up for ${MAGENTA}${DIR##*/}${RESET}\n"
+		printf "\n\n ${INFO} Performing clean up for ${YELLOW}${DIR##*/}${RESET}\n"
 
-        echo -e "${NOTE} Found multiple backups for: ${MAGENTA}${DIR##*/}${RESET}"
+        echo -e "${NOTE} Found multiple backups for: ${YELLOW}${DIR##*/}${RESET}"
         echo "${YELLOW}Backups: ${RESET}"
 
         # List the backups
@@ -701,7 +695,7 @@ cleanup_backups() {
           echo "  - ${BACKUP##*/}"
         done
 
-        read -p "${CAT} Do you want to delete the older backups of ${MAGENTA}${DIR##*/}${RESET} and keep the latest backup only? (y/N): " back_choice
+        read -p "${CAT} Do you want to delete the older backups of ${YELLOW}${DIR##*/}${RESET} and keep the latest backup only? (y/N): " back_choice
         if [[ "$back_choice" == [Yy]* ]]; then
           # Sort backups by modification time
           latest_backup="${BACKUP_DIRS[0]}"
@@ -717,7 +711,7 @@ cleanup_backups() {
               rm -rf "$BACKUP"
             fi
           done
-          echo "Old backups of ${MAGENTA}${DIR##*/}${RESET} deleted, keeping: ${YELLOW}${latest_backup##*/}${RESET}"
+          echo "Old backups of ${YELLOW}${DIR##*/}${RESET} deleted, keeping: ${MAGENTA}${latest_backup##*/}${RESET}"
         fi
       fi
     fi
