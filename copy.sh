@@ -327,7 +327,7 @@ while true; do
     
     echo "${OK} 12H format set on waybar clocks succesfully." 2>&1 | tee -a "$LOG"
 
-     # Function to apply 12H format to SDDM themes
+    # Function to apply 12H format to SDDM themes
     apply_sddm_12h_format() {
         local sddm_directory=$1
 
@@ -337,8 +337,6 @@ while true; do
 
             sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
             sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
-        else
-            echo "${ERROR} Directory $sddm_directory does not exist. Skipping..." 2>&1 | tee -a "$LOG"
         fi
     }
 
@@ -360,6 +358,8 @@ while true; do
 
         echo "${OK} 12H format set to SDDM successfully." 2>&1 | tee -a "$LOG"
     fi
+
+  done
 
 printf "\n"
 
