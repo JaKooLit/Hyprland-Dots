@@ -604,11 +604,15 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
   done
 fi
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..}
 
-# Wallpapers
+# wallpaper stuff
 mkdir -p ~/Pictures/wallpapers
-cp -r wallpapers ~/Pictures/ && { echo "${OK} some wallpapers compied!"; } || { echo "${ERROR} Failed to copy some wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
+if cp -r wallpapers ~/Pictures/; then
+  echo "${OK} Some ${MAGENTA}wallpapers${RESET} copied successfully!" | tee -a "$LOG"
+else
+  echo "${ERROR} Failed to copy some ${YELLOW}wallpapers${RESET}" | tee -a "$LOG"
+fi
  
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
@@ -639,6 +643,8 @@ else
            "$HOME/.config/waybar/configs/[TOP] Default_v5" 2>&1 | tee -a "$LOG" || true
 fi
 
+printf "\n%.0s" {1..2}
+
 # for SDDM (sequoia_2)
 sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
 if [ -d "$sddm_sequioa" ]; then
@@ -665,8 +671,6 @@ if [ -d "$sddm_sequioa" ]; then
     esac
   done
 fi
-
-
 
 # additional wallpapers
 printf "\n%.0s" {1..1}
