@@ -776,5 +776,5 @@ wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 printf "\n%.0s" {1..4}
 printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!!"
 printf "\n%.0s" {1..1}
-printf "${MAGENTA} However, it is HIGHLY SUGGESTED to logout and re-login or better reboot to avoid any issues\n\n"
-printf "${BLUE} Thank you for using KooL's Hyprland Configuration... ENJOY!!!\n"
+printf "${MAGENTA} However, it is HIGHLY SUGGESTED to logout and re-login or better reboot to avoid any issues${RESET}\n\n"
+printf "${BLUE} Thank you for using KooL's Hyprland Configuration... ENJOY!!! ${RESET}\n"
