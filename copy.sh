@@ -348,7 +348,7 @@ while true; do
         # for SDDM (sequoia_2)
         sddm_directory_3="/usr/share/sddm/themes/sequoia_2"
         if [ -d "$sddm_directory_3" ]; then
-            echo "sddm sequoia_2 theme exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
+            echo "${YELLOW}sddm sequoia_2${RESET} theme exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
 
             sudo sed -i 's|^clockFormat="HH:mm"|## clockFormat="HH:mm"|' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
 
@@ -643,12 +643,17 @@ fi
 sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
 if [ -d "$sddm_sequioa" ]; then
   while true; do
-    read -rp "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n)" SDDM_WALL
+    read -rp "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n): " SDDM_WALL
+    
+    # Remove any leading/trailing whitespace or newlines from input
+    SDDM_WALL=$(echo "$SDDM_WALL" | tr -d '\n' | tr -d ' ')
+
     case $SDDM_WALL in
       [Yy])
         # Copy the wallpaper, ignore errors if the file exists or fails
         sudo cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/sequoia_2/backgrounds/default" || true
         echo "${NOTE} Current wallpaper applied as default SDDM background" 2>&1 | tee -a "$LOG"
+        break
         ;;
       [Nn])
         echo "${NOTE} You chose not to apply the current wallpaper to SDDM." 2>&1 | tee -a "$LOG"
@@ -660,6 +665,7 @@ if [ -d "$sddm_sequioa" ]; then
     esac
   done
 fi
+
 
 
 # additional wallpapers
