@@ -327,13 +327,19 @@ while true; do
     
     echo "${OK} 12H format set on waybar clocks succesfully." 2>&1 | tee -a "$LOG"
 
-    # Function to apply 12H format to SDDM themes
+     # Function to apply 12H format to SDDM themes
     apply_sddm_12h_format() {
-      local sddm_directory=$1
-      echo "Editing $sddm_directory to 12H format" 2>&1 | tee -a "$LOG"
+        local sddm_directory=$1
 
-      sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
-      sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
+        # Check if the directory exists
+        if [ -d "$sddm_directory" ]; then
+            echo "Editing $sddm_directory to 12H format" 2>&1 | tee -a "$LOG"
+
+            sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
+            sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
+        else
+            echo "${ERROR} Directory $sddm_directory does not exist. Skipping..." 2>&1 | tee -a "$LOG"
+        fi
     }
 
     # Applying to different SDDM themes
@@ -343,23 +349,17 @@ while true; do
 
     # for SDDM (sequoia_2)
     sddm_directory_3="/usr/share/sddm/themes/sequoia_2"
-      if [ -d "$sddm_directory_3" ]; then
+    if [ -d "$sddm_directory_3" ]; then
         echo "sddm sequoia_2 theme exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
-        sudo sed -i 's|^clockFormat="HH:mm"|## clockFormat="HH:mm"|' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
-      if ! grep -q 'clockFormat="hh:mm AP"' "$sddm_directory_3/theme.conf"; then
-        sudo sed -i '/^clockFormat=/a clockFormat="hh:mm AP"' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
-      fi
 
-      echo "${OK} 12H format set to SDDM successfully." 2>&1 | tee -a "$LOG"
-      fi
-      break
-    elif [[ "$answer" == "n" ]]; then
-      echo "${NOTE} You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
-      break
-    else
-      echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
+        sudo sed -i 's|^clockFormat="HH:mm"|## clockFormat="HH:mm"|' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
+
+        if ! grep -q 'clockFormat="hh:mm AP"' "$sddm_directory_3/theme.conf"; then
+            sudo sed -i '/^clockFormat=/a clockFormat="hh:mm AP"' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
+        fi
+
+        echo "${OK} 12H format set to SDDM successfully." 2>&1 | tee -a "$LOG"
     fi
-  done
 
 printf "\n"
 
