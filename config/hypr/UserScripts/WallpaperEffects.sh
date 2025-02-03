@@ -10,6 +10,7 @@ focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{pri
 
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
+iDIRi="$HOME/.config/swaync/icons"
 
 # swww transition config
 FPS=60
@@ -62,7 +63,6 @@ main() {
         [[ "$effect" != "No Effects" ]] && options+=("$effect")
     done
 
-    # Show rofi menu and handle user choice
     choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config ~/.config/rofi/config-wallpaper-effect.rasi)
 
     # Process user choice
@@ -98,3 +98,26 @@ if pidof rofi > /dev/null; then
 fi
 
 main
+
+sleep 2
+# supports sddm sequoia_2 theme only
+sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
+if [ -d "$sddm_sequoia" ]; then
+    notify-send -i "$iDIRi/picture.png" "Set wallpaper" "as SDDM background?" \
+        -t 10000 \
+        -A "yes=Yes" \
+        -A "no=No" \
+        -h string:x-canonical-private-synchronous:wallpaper-notify
+
+    dbus-monitor "interface='org.freedesktop.Notifications',member='ActionInvoked'" |
+    while read -r line; do
+        if echo "$line" | grep -q "yes"; then
+            # User chose "Yes", copy the wallpaper with correct syntax
+            pkexec /usr/bin/cp -r "$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified" "$sddm_sequoia/backgrounds/default"
+            notify-send -i "$iDIRi/picture.png" "SDDM" "Background SET"
+            break
+        elif echo "$line" | grep -q "no"; then
+            break
+        fi
+    done &
+fi

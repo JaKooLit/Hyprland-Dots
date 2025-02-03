@@ -296,8 +296,8 @@ while true; do
   # Convert the answer to lowercase for comparison
   answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 
-# Check if the answer is valid
-if [[ "$answer" == "y" ]]; then
+  # Check if the answer is valid
+  if [[ "$answer" == "y" ]]; then
     # Modify waybar clock modules if 12hr is selected    
     # Clock 1
     sed -i 's#^\(\s*\)//\("format": " {:%I:%M %p}",\) #\1\2 #g' config/waybar/Modules 2>&1 | tee -a "$LOG"
@@ -327,36 +327,39 @@ if [[ "$answer" == "y" ]]; then
     
     echo "${OK} 12H format set on waybar clocks succesfully." 2>&1 | tee -a "$LOG"
 
-    # for SDDM (simple-sddm)
-    sddm_folder="/usr/share/sddm/themes/simple-sddm"
-    if [ -d "$sddm_folder" ]; then
-      echo "Simple sddm exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
+    # Function to apply 12H format to SDDM themes
+    apply_sddm_12h_format() {
+      local sddm_directory=$1
+      echo "Editing $sddm_directory to 12H format" 2>&1 | tee -a "$LOG"
 
-      sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_folder/theme.conf" 2>&1 | tee -a "$LOG" || true
-      sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_folder/theme.conf" 2>&1 | tee -a "$LOG" || true
+      sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
+      sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
+    }
 
-      echo "${OK} 12H format set to SDDM theme successfully." 2>&1 | tee -a "$LOG"
+    # Applying to different SDDM themes
+    apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm"
+    apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm-2"
+    apply_sddm_12h_format "/usr/share/sddm/themes/sequoia_2"
+
+    # for SDDM (sequoia_2)
+    sddm_directory_3="/usr/share/sddm/themes/sequoia_2"
+      if [ -d "$sddm_directory_3" ]; then
+        echo "sddm sequoia_2 theme exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
+        sudo sed -i 's|^clockFormat="HH:mm"|## clockFormat="HH:mm"|' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
+      if ! grep -q 'clockFormat="hh:mm AP"' "$sddm_directory_3/theme.conf"; then
+        sudo sed -i '/^clockFormat=/a clockFormat="hh:mm AP"' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
+      fi
+
+      echo "${OK} 12H format set to SDDM successfully." 2>&1 | tee -a "$LOG"
+      fi
+      break
+    elif [[ "$answer" == "n" ]]; then
+      echo "${NOTE} You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
+      break
+    else
+      echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
     fi
-
-        # for SDDM (simple-sddm-2)
-    sddm_folder_2="/usr/share/sddm/themes/simple-sddm-2"
-    if [ -d "$sddm_folder_2" ]; then
-      echo "Simple sddm 2 exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
-
-      sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_folder_2/theme.conf" 2>&1 | tee -a "$LOG" || true
-      sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_folder_2/theme.conf" 2>&1 | tee -a "$LOG" || true
-
-      echo "${OK} 12H format set to SDDM theme successfully." 2>&1 | tee -a "$LOG"
-    fi
-
-    break
-  elif [[ "$answer" == "n" ]]; then
-    echo "${NOTE} You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
-    break
-  else
-    echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
-  fi
-done
+  done
 
 printf "\n"
 
@@ -626,6 +629,29 @@ else
            "$HOME/.config/waybar/configs/[TOP] Default_v4" \
            "$HOME/.config/waybar/configs/[TOP] Default_v5" 2>&1 | tee -a "$LOG" || true
 fi
+
+# for SDDM (sequoia_2)
+sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
+if [ -d "$sddm_sequioa" ]; then
+  while true; do
+    read -rp "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n)" SDDM_WALL
+    case $SDDM_WALL in
+      [Yy])
+        # Copy the wallpaper, ignore errors if the file exists or fails
+        sudo cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/sequoia_2/backgrounds/default" || true
+        echo "${NOTE} Current wallpaper applied as default SDDM background" 2>&1 | tee -a "$LOG"
+        ;;
+      [Nn])
+        echo "${NOTE} You chose not to apply the current wallpaper to SDDM." 2>&1 | tee -a "$LOG"
+        break
+        ;;
+      *)
+        echo "Please enter 'y' or 'n' to proceed."
+        ;;
+    esac
+  done
+fi
+
 
 # additional wallpapers
 printf "\n%.0s" {1..1}
