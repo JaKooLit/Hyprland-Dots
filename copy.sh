@@ -333,7 +333,7 @@ while true; do
 
             # Check if the directory exists
             if [ -d "$sddm_directory" ]; then
-                echo "Editing $sddm_directory to 12H format" 2>&1 | tee -a "$LOG"
+                echo "Editing ${SKY_BLUE}$sddm_directory${RESET} to 12H format" 2>&1 | tee -a "$LOG"
 
                 sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
                 sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
@@ -773,8 +773,10 @@ printf "\n%.0s" {1..2}
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
-printf "\n%.0s" {1..4}
-printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!!"
+printf "\n%.0s" {1..2}
+printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!! "
 printf "\n%.0s" {1..1}
-printf "${MAGENTA} However, it is HIGHLY SUGGESTED to logout and re-login or better reboot to avoid any issues${RESET}\n\n"
-printf "${BLUE} Thank you for using KooL's Hyprland Configuration... ENJOY!!! ${RESET}\n"
+printf "${MAGENTA} However, it is HIGHLY SUGGESTED to logout and re-login or better reboot to avoid any issues${RESET}"
+printf "\n%.0s" {1..1}
+printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Configuration${RESET}... ${YELLOW}ENJOY!!!${RESET}"
+printf "\n%.0s" {1..2}
