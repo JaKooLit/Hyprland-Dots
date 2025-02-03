@@ -346,7 +346,6 @@ while true; do
       # Applying to different SDDM themes
       apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm"
       apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm-2"
-      apply_sddm_12h_format "/usr/share/sddm/themes/sequoia_2"
 
       # For SDDM (sequoia_2)
       sddm_directory_3="/usr/share/sddm/themes/sequoia_2"
