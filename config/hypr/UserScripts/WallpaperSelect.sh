@@ -109,7 +109,7 @@ wait $!
 sleep 2
 "$SCRIPTSDIR/Refresh.sh"
 
-sleep 2
+sleep 5 # add delay of 5 secords for those who have slow machines
 sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
 if [ -d "$sddm_sequoia" ]; then
     notify-send -i "$iDIR/picture.png" "Set wallpaper" "as SDDM background?" \

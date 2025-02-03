@@ -99,7 +99,7 @@ fi
 
 main
 
-sleep 2
+sleep 5 # add delay of 5 secords for those who have slow machines
 # supports sddm sequoia_2 theme only
 sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
 if [ -d "$sddm_sequoia" ]; then
