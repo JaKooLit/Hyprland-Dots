@@ -32,7 +32,7 @@
 
 <div align="center">
 
-https://github.com/user-attachments/assets/71ccd129-f6e0-4d79-aa09-9143511fe982
+https://github.com/JaKooLit/screenshots/assets/71ccd129-f6e0-4d79-aa09-9143511fe982
 
 </div>
 
