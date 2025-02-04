@@ -27,6 +27,8 @@ declare -A effects=(
     ["Charcoal"]="magick $current_wallpaper -charcoal 0x5 $wallpaper_output"
     ["Edge Detect"]="magick $current_wallpaper -edge 1 $wallpaper_output"
     ["Emboss"]="magick $current_wallpaper -emboss 0x5 $wallpaper_output"
+    ["Frame Raised"]="magick $current_wallpaper +raise 150 $wallpaper_output"
+    ["Frame Sunk"]="magick $current_wallpaper -raise 150 $wallpaper_output"
     ["Negate"]="magick $current_wallpaper -negate $wallpaper_output"
     ["Oil Paint"]="magick $current_wallpaper -paint 4 $wallpaper_output"
     ["Posterize"]="magick $current_wallpaper -posterize 4 $wallpaper_output"
@@ -34,7 +36,8 @@ declare -A effects=(
     ["Sepia Tone"]="magick $current_wallpaper -sepia-tone 65% $wallpaper_output"
     ["Solarize"]="magick $current_wallpaper -solarize 80% $wallpaper_output"
     ["Sharpen"]="magick $current_wallpaper -sharpen 0x5 $wallpaper_output"
-    ["Vignette"]="magick $current_wallpaper -vignette 0x5 $wallpaper_output"
+    ["Vignette"]="magick $current_wallpaper -vignette 0x3 $wallpaper_output"
+    ["Vignette-black"]="magick $current_wallpaper -background black -vignette 0x3 $wallpaper_output"
     ["Zoomed"]="magick $current_wallpaper -gravity Center -extent 1:1 $wallpaper_output"
 )
 
