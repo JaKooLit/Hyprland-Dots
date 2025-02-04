@@ -24,11 +24,8 @@ done
 
 killall -SIGUSR2 waybar # added since wallust sometimes not applying
 
-# quit ags
-ags -q
-
-# relaunch ags
-ags &
+# quit ags & relaunch ags
+#ags -q && ags &
 
 # Kill waybar & swaync (yet again) # added since wallust sometimes not applying
 _ps2=(waybar swaync)
