@@ -411,7 +411,7 @@ if [ ! -d "$HOME/.config" ]; then
   exit 1
 fi
 
-printf "${INFO} - copying dotfiles ${BLUE}first${RESET} part\n"
+printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
 DIRS="
   ags 
@@ -473,7 +473,7 @@ done
 
 printf "\n%.0s" {1..1}
 
-printf "${INFO} - Copying dotfiles ${BLUE}second${RESET} part\n"
+printf "${INFO} - Copying dotfiles ${SKY_BLUE}second${RESET} part\n"
 
 # Check if the config directory exists
 if [ ! -d "config" ]; then
