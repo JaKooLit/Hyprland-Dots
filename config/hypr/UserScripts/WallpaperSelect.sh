@@ -3,9 +3,15 @@
 # This script for selecting wallpapers (SUPER W)
 
 # WALLPAPERS PATH
+terminal=kitty
+
 wallDIR="$HOME/Pictures/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
-iDIR="$HOME/.config/swaync/icons"
+wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
+
+# Directory for swaync
+iDIR="$HOME/.config/swaync/images"
+iDIRi="$HOME/.config/swaync/icons"
 
 # variables
 focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
@@ -109,10 +115,10 @@ wait $!
 sleep 2
 "$SCRIPTSDIR/Refresh.sh"
 
-sleep 5 # add delay of 5 secords for those who have slow machines
+sleep 3 # add delay of 3 seconds for those who have slow machines
 sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
 if [ -d "$sddm_sequoia" ]; then
-    notify-send -i "$iDIR/picture.png" "Set wallpaper" "as SDDM background?" \
+    notify-send -i "$iDIR/ja.png" "Set wallpaper" "as SDDM background?" \
         -t 10000 \
         -A "yes=Yes" \
         -A "no=No" \
@@ -121,13 +127,14 @@ if [ -d "$sddm_sequoia" ]; then
     # Wait for user input using a background process
     dbus-monitor "interface='org.freedesktop.Notifications',member='ActionInvoked'" |
     while read -r line; do
-        if echo "$line" | grep -q "yes"; then
-            # User chose "Yes", copy the wallpaper with correct syntax
-            pkexec /usr/bin/cp -r "$HOME/.config/hypr/wallpaper_effects/.wallpaper_current" "$sddm_sequoia/backgrounds/default"
-            notify-send -i "$iDIR/picture.png" "SDDM" "Background SET"
+      if echo "$line" | grep -q "yes"; then
+      $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
+      sudo cp -r $wallpaper_current '$sddm_sequoia/backgrounds/default' && \
+      notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
             break
         elif echo "$line" | grep -q "no"; then
             break
         fi
     done &
 fi
+

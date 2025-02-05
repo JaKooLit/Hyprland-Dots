@@ -3,6 +3,8 @@
 # Wallpaper Effects using ImageMagick (SUPER SHIFT W)
 
 # Variables
+terminal=kitty
+
 current_wallpaper="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 wallpaper_output="$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
@@ -102,22 +104,22 @@ fi
 
 main
 
-sleep 5 # add delay of 5 secords for those who have slow machines
-# supports sddm sequoia_2 theme only
+sleep 3 # add delay of 3 seconds for those who have slow machines
 sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
 if [ -d "$sddm_sequoia" ]; then
-    notify-send -i "$iDIRi/picture.png" "Set wallpaper" "as SDDM background?" \
+    notify-send -i "$iDIR/ja.png" "Set wallpaper" "as SDDM background?" \
         -t 10000 \
         -A "yes=Yes" \
         -A "no=No" \
         -h string:x-canonical-private-synchronous:wallpaper-notify
 
+    # Wait for user input using a background process
     dbus-monitor "interface='org.freedesktop.Notifications',member='ActionInvoked'" |
     while read -r line; do
-        if echo "$line" | grep -q "yes"; then
-            # User chose "Yes", copy the wallpaper with correct syntax
-            pkexec /usr/bin/cp -r "$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified" "$sddm_sequoia/backgrounds/default"
-            notify-send -i "$iDIRi/picture.png" "SDDM" "Background SET"
+      if echo "$line" | grep -q "yes"; then
+      $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
+      sudo cp -r $wallpaper_output '$sddm_sequoia/backgrounds/default' && \
+      notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
             break
         elif echo "$line" | grep -q "no"; then
             break
