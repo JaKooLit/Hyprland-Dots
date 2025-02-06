@@ -7,18 +7,6 @@ waybar_style="$HOME/.config/waybar/style/[Extra] Modern-Combined - Transparent.c
 waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v5"
 waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v5" 
 
-# Check if running as root. If root, script will exit
-if [[ $EUID -eq 0 ]]; then
-    echo "This script should not be executed as root! Exiting......."
-    exit 1
-fi
-
-printf "\n%.0s" {1..2}  
-echo '  ╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐  ╔╦╗┌─┐┌┬┐┌─┐      '
-echo '  ╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  ├─┤│││ ││───║║│ │ │ └─┐ 2025 '
-echo '  ╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘  ═╩╝└─┘ ┴ └─┘      '
-printf "\n%.0s" {1..2} 
- 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -35,6 +23,22 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
+
+# Check if running as root. If root, script will exit
+if [[ $EUID -eq 0 ]]; then
+    echo "${ERROR}  This script should ${WARNING}NOT${RESET} be executed as root!! Exiting......."
+    printf "\n%.0s" {1..2} 
+    exit 1
+fi
+  
+printf "\n%.0s" {1..2}  
+echo -e "\e[35m
+  ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
+  ╠╩╗│ ││ │║     ║║│ │ │ └─┐ 2025
+  ╩ ╩└─┘└─┘╩═╝  ═╩╝└─┘ ┴ └─┘
+\e[0m"
+printf "\n%.0s" {1..1}  
+ 
 # Create Directory for Copy Logs
 if [ ! -d Copy-Logs ]; then
     mkdir Copy-Logs
