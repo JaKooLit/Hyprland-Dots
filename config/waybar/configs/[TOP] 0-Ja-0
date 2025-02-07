@@ -41,7 +41,7 @@
 
 "modules-right": [
 	"group/laptop",
-	"custom/separator#dot-line",
+	"custom/separator#blank",
 	"group/mobo_drawer",
 	"custom/separator#line",  
 	"group/audio",
