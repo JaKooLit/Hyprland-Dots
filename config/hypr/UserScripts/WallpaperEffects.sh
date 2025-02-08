@@ -4,8 +4,7 @@
 
 # Variables
 terminal=kitty
-
-current_wallpaper="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
+wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 wallpaper_output="$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
@@ -24,32 +23,32 @@ SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration
 # Define ImageMagick effects
 declare -A effects=(
     ["No Effects"]="no-effects"
-    ["Black & White"]="magick $current_wallpaper -colorspace gray -sigmoidal-contrast 10,40% $wallpaper_output"
-    ["Blurred"]="magick $current_wallpaper -blur 0x10 $wallpaper_output"
-    ["Charcoal"]="magick $current_wallpaper -charcoal 0x5 $wallpaper_output"
-    ["Edge Detect"]="magick $current_wallpaper -edge 1 $wallpaper_output"
-    ["Emboss"]="magick $current_wallpaper -emboss 0x5 $wallpaper_output"
-    ["Frame Raised"]="magick $current_wallpaper +raise 150 $wallpaper_output"
-    ["Frame Sunk"]="magick $current_wallpaper -raise 150 $wallpaper_output"
-    ["Negate"]="magick $current_wallpaper -negate $wallpaper_output"
-    ["Oil Paint"]="magick $current_wallpaper -paint 4 $wallpaper_output"
-    ["Posterize"]="magick $current_wallpaper -posterize 4 $wallpaper_output"
-    ["Polaroid"]="magick $current_wallpaper -polaroid 0 $wallpaper_output"
-    ["Sepia Tone"]="magick $current_wallpaper -sepia-tone 65% $wallpaper_output"
-    ["Solarize"]="magick $current_wallpaper -solarize 80% $wallpaper_output"
-    ["Sharpen"]="magick $current_wallpaper -sharpen 0x5 $wallpaper_output"
-    ["Vignette"]="magick $current_wallpaper -vignette 0x3 $wallpaper_output"
-    ["Vignette-black"]="magick $current_wallpaper -background black -vignette 0x3 $wallpaper_output"
-    ["Zoomed"]="magick $current_wallpaper -gravity Center -extent 1:1 $wallpaper_output"
+    ["Black & White"]="magick $wallpaper_current -colorspace gray -sigmoidal-contrast 10,40% $wallpaper_output"
+    ["Blurred"]="magick $wallpaper_current -blur 0x10 $wallpaper_output"
+    ["Charcoal"]="magick $wallpaper_current -charcoal 0x5 $wallpaper_output"
+    ["Edge Detect"]="magick $wallpaper_current -edge 1 $wallpaper_output"
+    ["Emboss"]="magick $wallpaper_current -emboss 0x5 $wallpaper_output"
+    ["Frame Raised"]="magick $wallpaper_current +raise 150 $wallpaper_output"
+    ["Frame Sunk"]="magick $wallpaper_current -raise 150 $wallpaper_output"
+    ["Negate"]="magick $wallpaper_current -negate $wallpaper_output"
+    ["Oil Paint"]="magick $wallpaper_current -paint 4 $wallpaper_output"
+    ["Posterize"]="magick $wallpaper_current -posterize 4 $wallpaper_output"
+    ["Polaroid"]="magick $wallpaper_current -polaroid 0 $wallpaper_output"
+    ["Sepia Tone"]="magick $wallpaper_current -sepia-tone 65% $wallpaper_output"
+    ["Solarize"]="magick $wallpaper_current -solarize 80% $wallpaper_output"
+    ["Sharpen"]="magick $wallpaper_current -sharpen 0x5 $wallpaper_output"
+    ["Vignette"]="magick $wallpaper_current -vignette 0x3 $wallpaper_output"
+    ["Vignette-black"]="magick $wallpaper_current -background black -vignette 0x3 $wallpaper_output"
+    ["Zoomed"]="magick $wallpaper_current -gravity Center -extent 1:1 $wallpaper_output"
 )
 
 # Function to apply no effects
 no-effects() {
-    swww img -o "$focused_monitor" "$current_wallpaper" $SWWW_PARAMS &&
+    swww img -o "$focused_monitor" "$wallpaper_current" $SWWW_PARAMS &&
     # Wait for swww command to complete
     wait $!
     # Run other commands after swww
-    wallust run "$current_wallpaper" -s &&
+    wallust run "$wallpaper_current" -s &&
     wait $!
     # Refresh rofi, waybar, wallust palettes
 	sleep 2
@@ -57,7 +56,7 @@ no-effects() {
 
     notify-send -u low -i "$iDIR/ja.png" "No wallpaper" "effects applied"
     # copying wallpaper for rofi menu
-    cp "$current_wallpaper" "$wallpaper_output"
+    cp "$wallpaper_current" "$wallpaper_output"
 }
 
 # Function to run rofi menu
@@ -104,25 +103,29 @@ fi
 
 main
 
-sleep 3 # add delay of 3 seconds for those who have slow machines
-sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
-if [ -d "$sddm_sequoia" ]; then
-    notify-send -i "$iDIR/ja.png" "Set wallpaper" "as SDDM background?" \
-        -t 10000 \
-        -A "yes=Yes" \
-        -A "no=No" \
-        -h string:x-canonical-private-synchronous:wallpaper-notify
+sleep 1
+# Check if user selected a wallpaper
+if [[ -n "$choice" ]]; then
+    sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
+    if [ -d "$sddm_sequoia" ]; then
+        notify-send -i "$iDIR/ja.png" "Set wallpaper" "as SDDM background?" \
+            -t 10000 \
+            -A "yes=Yes" \
+            -A "no=No" \
+            -h string:x-canonical-private-synchronous:wallpaper-notify
 
-    # Wait for user input using a background process
-    dbus-monitor "interface='org.freedesktop.Notifications',member='ActionInvoked'" |
-    while read -r line; do
-      if echo "$line" | grep -q "yes"; then
-      $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
-      sudo cp -r $wallpaper_output '$sddm_sequoia/backgrounds/default' && \
-      notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
+        # Wait for user input using dbus-monitor
+        dbus-monitor "interface='org.freedesktop.Notifications',member='ActionInvoked'" |
+        while read -r line; do
+          if echo "$line" | grep -q "yes"; then
+            $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
+            sudo cp -r $wallpaper_output '$sddm_sequoia/backgrounds/default' && \
+            notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
             break
-        elif echo "$line" | grep -q "no"; then
+          elif echo "$line" | grep -q "no"; then
+            echo "Wallpaper not set as SDDM background. Exiting."
             break
-        fi
-    done &
+          fi
+        done &
+    fi
 fi
