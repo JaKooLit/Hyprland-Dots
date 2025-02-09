@@ -1,13 +1,12 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config (Waybar Layout) */
+/* Main Config Rofi Theme */
 
-@import "~/.config/rofi/config.rasi" 
+@import "~/.config/rofi/config.rasi"  
 
 
-
-/* ---- Configuration ---- */
-configuration {
-  modi: "drun";
+/* ---- Window ---- */
+window {
+    width: 45%;
 }
 
 /* ---- Mainbox ---- */
@@ -16,21 +15,25 @@ mainbox {
     [ "inputbar", "listview"];
 }
 
-/* ---- Entry ---- */ 
-entry {
-  expand: true;
-  placeholder: " 🖼️ Search / Choose Waybar Layout";
-}
-
 /* ---- Listview ---- */
 listview {
     columns: 2;
-    lines: 9;
+    lines: 8;
     fixed-height: false;
-    margin: 10px;
 }
 
+/* ---- Entry input ---- */
+entry {
+  expand: true;
+  placeholder: " ⬇️  Select Which Rofi Theme wanted to apply";
+}
+
+
 /* ---- Elements ---- */
+element {
+  orientation: vertical;
+}
+
 element-icon {
   	size: 0%;
 }

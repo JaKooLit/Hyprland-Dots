@@ -1,16 +1,38 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Main Config - emoji */
 
-@import "~/.config/rofi/master-config.rasi" 
+@import "~/.config/rofi/config.rasi" 
+
+/* ---- Mainbox ---- */
+mainbox {
+  children:
+    [ "inputbar", "listview"];
+}
 
 /* ---- Entry ---- */
 entry {
   width: 37%;
-  placeholder: " 💫 Search Emoji's  **note** 👀 Click or Return to choose | Ctrl V to Paste";
+  placeholder: " 💫 Search / Choose Emoji's  **note** 👀 Click or Return to choose | Ctrl V to Paste";
+  horizontal-align: 0.0;
 }
 
 /* ---- Listview ---- */
 listview {
   columns: 1;
   lines: 8;
+  fixed-height: false;
+}
+
+/* ---- Elements ---- */
+element {
+  orientation: horizontal;
+}
+
+element-icon {
+  size: 0%;
+}
+
+element-text {
+  horizontal-align: 0.0;
+  vertical-align: 0.5;
 }

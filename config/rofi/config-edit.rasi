@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config (waybar style) */
+/* Main Config (compact) */
 
-@import "~/.config/rofi/config.rasi" 
+@import "~/.config/rofi/config.rasi"  
 
 /* ---- Mainbox ---- */
 mainbox {
@@ -9,31 +9,41 @@ mainbox {
     [ "inputbar", "listview"];
 }
 
-/* ---- Configuration ---- */
+
+/* ---- Configuration ---- */ 
 configuration {
   modi: "drun";
 }
 
-/* ---- Entry ---- */ 
-entry {
-  expand: true;
-  placeholder: " 🖼️  Search / Choose Waybar Style";
+/* ---- Window ---- */
+window {
+    width: 45%;
 }
 
 
 /* ---- Listview ---- */
 listview {
     columns: 2;
-    lines: 9;
+    lines: 6;
     fixed-height: false;
-    margin: 10px;
 }
 
+/* ---- Entry input ---- */
+entry {
+  expand: true;
+  placeholder: " 👀  View / Edit KooL Hyprland Configs";
+}
+
+
 /* ---- Elements ---- */
+element {
+  orientation: horizontal;
+}
+
 element-icon {
   	size: 0%;
 }
 element-text {
-    horizontal-align: 0.0;
+    horizontal-align:            0.0;
     margin: 5px 30px 5px 30px;
 }

@@ -1,22 +1,37 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Main config Rofi Beats Config (compact) */
 
-@import "~/.config/rofi/master-config.rasi"  
+@import "~/.config/rofi/config.rasi"  
+
+/* ---- Mainbox ---- */
+mainbox {
+  children:
+    [ "inputbar", "listview"];
+}
 
 /* ---- Entry ---- */ 
 entry {
-  width: 20%;
+  expand: true;
   placeholder: " 📻 Choose Music Source";
 }
 
 /* ---- Window ---- */
 window {
-  width: 24%;
+  width: 20%;
 }
 
 /* ---- Listview ---- */
 listview {
   fixed-columns: false;
+  scrollbar: false;
   colums: 1;
   lines: 3;
+}
+
+/* ---- Element ---- */
+element-icon {
+  	size: 0%;
+}
+element-text {
+    horizontal-align: 0.5;
 }

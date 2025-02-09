@@ -257,7 +257,7 @@ fi
 
 printf "\n"
 
-# Action to do for better rofi and kitty appearance
+# Action to do for better kitty appearance
 while true; do
   echo "$MAGENTA Select monitor resolution to properly configure appearance and fonts:"
   echo "$YELLOW   -- Enter 1. for monitor res 1440p or less (< 1440p)"
@@ -284,7 +284,7 @@ echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 
 # Add your commands based on the resolution choice
 if [ "$resolution" == "< 1440p" ]; then
-  cp -r config/rofi/resolution/1080p/* config/rofi/
+  #cp -r config/rofi/resolution/1080p/* config/rofi/ 10-Feb-2025
   sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
 
   # hyprlock matters
@@ -292,7 +292,7 @@ if [ "$resolution" == "< 1440p" ]; then
   mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
 
 elif [ "$resolution" == "≥ 1440p" ]; then
-  cp -r config/rofi/resolution/1440p/* config/rofi/
+  #cp -r config/rofi/resolution/1440p/* config/rofi/ 10-Feb-2025
 fi
 
 printf "\n"
@@ -614,6 +614,24 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
     fi
   done
 fi
+
+printf "\n%.0s" {1..}
+
+## Rofi Additional themes
+source_DIR="$HOME/assets/rofi/themes"
+rofi_DIR="$HOME/.local/share/rofi/themes"
+
+echo -e "${NOTE} copying additional rofi themes into ${YELOW}$rofi_DIR${RESET}... "
+
+if [ ! -d "$rofi_DIR" ]; then
+  echo "Directory $rofi_DIR does not exist. Creating it now..." | tee -a "$LOG"
+  mkdir -p "$rofi_DIR"
+fi
+
+# Copy the rofi themes from assets
+cp -r "$source_DIR"/* "$rofi_DIR"
+
+echo "rofi themes from $source_DIR have been copied to $rofi_DIR" | tee -a "$LOG"
 
 printf "\n%.0s" {1..}
 

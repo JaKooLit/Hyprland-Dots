@@ -2,21 +2,23 @@
 /* Main Config Calculator */
 /* Submitted by: https://github.com/JosephArmas */
 
-@import "~/.config/rofi/master-config.rasi" 
+@import "~/.config/rofi/config.rasi" 
+
+/* ---- Mainbox ---- */
+mainbox {
+  children: [ "entry", "message" ];
+}
+
 
 /* ---- Entry ---- */
 entry {
-  width: 27%;
+  expand: true;
   placeholder: " 🧮 Calculate";
 }
 
-/* ---- Window ---- */
-window {
-    width:	30%;
+textbox {
+    padding: 12px;
+    border-radius: 10px;
 }
 
-/* ---- Message ---- */
-textbox {
-    background-color:            @selected;
-    text-color:                  @background;
-}
+listview {enable: false;}

@@ -14,6 +14,7 @@ fi
 KEYBINDS_CONF="$HOME/.config/hypr/configs/Keybinds.conf"
 USER_KEYBINDS_CONF="$HOME/.config/hypr/UserConfigs/UserKeybinds.conf"
 LAPTOP_CONF="$HOME/.config/hypr/UserConfigs/Laptop.conf"
+rofi_theme="~/.config/rofi/config-keybinds.rasi"
 
 # Combine the contents of the keybinds files and filter for keybinds
 KEYBINDS=$(cat "$KEYBINDS_CONF" "$USER_KEYBINDS_CONF" | grep -E '^(bind|bindl|binde|bindm)')
@@ -31,4 +32,4 @@ if [[ -z "$KEYBINDS" ]]; then
 fi
 
 # Use rofi to display the keybinds
-echo "$KEYBINDS" | rofi -dmenu -i -p "Keybinds" -config ~/.config/rofi/config-keybinds.rasi
+echo "$KEYBINDS" | rofi -dmenu -i -config $rofi_theme

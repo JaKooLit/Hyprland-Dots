@@ -1,11 +1,18 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Main Config - For Keybinds generation */
 
-@import "~/.config/rofi/master-config.rasi"  
+@import "~/.config/rofi/config.rasi"  
+
+
+/* ---- Mainbox ---- */
+mainbox {
+  children:
+    [ "inputbar", "listview"];
+}
 
 /* ---- Entry ---- */
 entry {
-  width: 85%;
+  expand: true;
   placeholder: " 🧮 Search Keybinds      ☣️ NOTE ☣️: Clicking with Mouse or Pressing ENTER will have NO function";
 }
 
@@ -13,8 +20,23 @@ entry {
 listview {
   columns: 2;
   lines: 12;
+  fixed-height: false;
 }
 
 window {
-    width: 95%;
+    width: 90%;
+}
+
+/* ---- Elements ---- */
+element {
+  orientation: horizontal;
+}
+
+element-icon {
+  	size: 0%;
+}
+
+element-text {
+    horizontal-align: 0.0;
+    vertical-align: 0.5;
 }

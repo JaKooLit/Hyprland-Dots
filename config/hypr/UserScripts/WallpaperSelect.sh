@@ -13,6 +13,7 @@ iDIR="$HOME/.config/swaync/images"
 iDIRi="$HOME/.config/swaync/icons"
 
 # variables
+rofi_theme="~/.config/rofi/config-wallpaper.rasi"
 focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 # swww transition config
 FPS=60
@@ -33,7 +34,7 @@ RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 RANDOM_PIC_NAME=". random"
 
 # Rofi command
-rofi_command="rofi -i -show -dmenu -config ~/.config/rofi/config-wallpaper.rasi"
+rofi_command="rofi -i -show -dmenu -config $rofi_theme"
 
 # Sorting Wallpapers
 menu() {

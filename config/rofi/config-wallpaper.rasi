@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Main Config (wallpaper) */
 
-@import "~/.config/rofi/master-config.rasi"  
+@import "~/.config/rofi/config.rasi"  
 
 /* ---- Configuration ---- */ 
 configuration {
@@ -12,17 +12,16 @@ window {
   width: 60%;
 }
 
-/* ---- Imagebox ---- */
-imagebox {
-  orientation: vertical;
+/* ---- Mainbox ---- */
+mainbox {
   children:
-    [ "entry", "listbox"];
+    [ "inputbar", "listview"];
 }
 
-
 entry {
-  expand: false;
-  placeholder: " 🎞️ Choose Wallpaper";
+  expand: true;
+  placeholder: " 🎞️ Search / Choose Wallpaper";
+  horizontal-align: 0.0;
 }
 
 /* ---- Listview ---- */
@@ -35,17 +34,13 @@ listview {
 /* ---- Element ---- */
 element {
   orientation: vertical;
-  padding: 0px;
-  spacing: 0px;
-  border-radius: 12px;
 }
 
 element-icon {
-  size: 15%;
+  size: 10%;
 }
 
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
   vertical-align: 0.5;
   horizontal-align: 0.5;
 }

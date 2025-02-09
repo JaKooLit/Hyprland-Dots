@@ -9,6 +9,7 @@ tty=kitty
 # Paths to configuration directories
 configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
+rofi_theme="~/.config/rofi/config-edit.rasi"
 
 # Function to display the menu options
 menu() {
@@ -29,7 +30,7 @@ EOF
 
 # Main function to handle menu selection
 main() {
-    choice=$(menu | rofi -i -dmenu -config ~/.config/rofi/config-compact.rasi | cut -d. -f1)
+    choice=$(menu | rofi -i -dmenu -config $rofi_theme | cut -d. -f1)
     
     # Map choices to corresponding files
     case $choice in
