@@ -291,7 +291,7 @@ if [ "$resolution" == "< 1440p" ]; then
   mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf &&
   mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
 
-elif [ "$resolution" == "≥ 1440p" ]; then
+  #elif [ "$resolution" == "≥ 1440p" ]; then
   #cp -r config/rofi/resolution/1440p/* config/rofi/ 10-Feb-2025
 fi
 
@@ -615,25 +615,25 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
   done
 fi
 
-printf "\n%.0s" {1..}
+printf "\n%.0s" {1..1}
 
 ## Rofi Additional themes
-source_DIR="$HOME/assets/rofi/themes"
+source_DIR="assets/rofi/themes"
 rofi_DIR="$HOME/.local/share/rofi/themes"
 
-echo -e "${NOTE} copying additional rofi themes into ${YELOW}$rofi_DIR${RESET}... "
+echo -e "${NOTE} copying additional rofi themes into ${YELLOW}$rofi_DIR${RESET}... "
 
 if [ ! -d "$rofi_DIR" ]; then
-  echo "Directory $rofi_DIR does not exist. Creating it now..." | tee -a "$LOG"
+  echo "${INFO}Directory $rofi_DIR does not exist. Creating it now..." | tee -a "$LOG"
   mkdir -p "$rofi_DIR"
 fi
 
 # Copy the rofi themes from assets
 cp -r "$source_DIR"/* "$rofi_DIR"
 
-echo "rofi themes from $source_DIR have been copied to $rofi_DIR" | tee -a "$LOG"
+echo "${OK}rofi themes from ${YELLOW}$source_DIR${RESET} have been copied to ${MAGENTA}$rofi_DIR${RESET}" | tee -a "$LOG"
 
-printf "\n%.0s" {1..}
+printf "\n%.0s" {1..1}
 
 # wallpaper stuff
 mkdir -p ~/Pictures/wallpapers
