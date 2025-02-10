@@ -22,10 +22,12 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
-killall -SIGUSR2 waybar # added since wallust sometimes not applying
+# added since wallust sometimes not applying
+killall -SIGUSR2 waybar 
+killall -SIGUSR2 swaync
 
 # quit ags & relaunch ags
-#ags -q && ags &
+ags -q && ags &
 
 # some process to kill
 for pid in $(pidof waybar rofi swaync ags swaybg); do

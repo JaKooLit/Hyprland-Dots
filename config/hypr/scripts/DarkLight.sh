@@ -20,8 +20,11 @@ wallust_config="$HOME/.config/wallust/wallust.toml"
 pallete_dark="dark16"
 pallete_light="light16"
 
-# kill swaybg if running
-pkill swaybg
+# intial kill process
+for pid in kitty waybar rofi swaync ags swaybg; do
+    killall -SIGUSR1 "$pid"
+done
+
 
 # Initialize swww if needed
 swww query || swww-daemon --format xrgb
@@ -230,15 +233,16 @@ update_theme_mode
 
 ${SCRIPTSDIR}/WallustSwww.sh &&
 
-# some process to kill
-for pid in $(pidof kitty waybar rofi swaync ags swaybg); do
-    kill -SIGUSR1 "$pid"
+sleep 2
+# kill process
+for pid1 in kitty waybar rofi swaync ags swaybg; do
+    killall "$pid1"
 done
 
-sleep 2
+sleep 1
 ${SCRIPTSDIR}/Refresh.sh 
 
-sleep 1
+sleep 0.5
 # Display notifications for theme and icon changes 
 notify-send -u low -i "$notif" " Themes switched to:" " $next_mode Mode"
 

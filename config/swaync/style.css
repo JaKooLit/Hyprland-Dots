@@ -6,10 +6,9 @@
 @define-color noti-border-color @color12;
 @define-color noti-bg rgba(0, 0, 0, 0.8);
 @define-color noti-bg-alt #111111;
-@define-color noti-bg-hover @color11;
+@define-color noti-bg-hover @background;
 @define-color text-color @foreground;
-@define-color text-color-alt @foreground;
-@define-color text-color-disabled rgba(150, 150, 150, 0.8);
+
 * {
     font-family: "JetBrains Mono Nerd Font";
     font-weight: bold;
@@ -32,7 +31,7 @@
 }
 
 .notification-content{
-	color: @foreground;
+	/*color: @text-color;*/
     background: @noti-bg;
     padding: 3px 10px 3px 6px;
     border-radius: 10px;
@@ -74,8 +73,9 @@
 .notification-default-action:hover,
 .notification-action:hover {
     color: @text-color;
-    background: @color1
+    background: @noti-bg
 }
+
 
 .notification-default-action {
     border-radius: 10px;
@@ -120,7 +120,7 @@
 
 .inline-reply-button:disabled {
     background: initial;
-    color: @text-color-disabled;
+    color: @text-color;
     border: 1px solid transparent
 }
 
@@ -130,7 +130,7 @@
 
 .body-image {
     margin-top: 6px;
-    color: @text-color-alt;
+    color: @text-color;
     border-radius: 10px
 }
 
@@ -138,7 +138,7 @@
     font-size: 1rem;
     font-weight: bold;
     background: transparent;
-    color: @text-color-alt;
+    color: @text-color;
     text-shadow: none
 }
 
@@ -161,7 +161,7 @@
 
 .control-center {
     background: @noti-bg;
-    border: 1.5px solid @noti-border-color;
+    border: 1px solid @noti-border-color;
 	color: @text-color;
     border-radius: 10px;
 }
@@ -183,7 +183,7 @@
 }
 
 .widget-title {
-    color: @noti-border-color;
+    color: @text-color;
     background: @noti-bg-alt;
     padding: 3px 6px;
     margin: 5px;
@@ -199,9 +199,10 @@
 	border: 0.5px solid @noti-border-color;
 }
 
+/* clear button */
 .widget-title>button:hover {
-    background: #f7768e;
-    color: @noti-border-color;
+    background: @text-color;
+    color: red;
 }
 
 .widget-dnd {
@@ -215,7 +216,7 @@
 
 .widget-dnd>switch {
     border-radius: 10px;
-    /* border: 1px solid #7aa2f7; */
+    border: 1px solid #7aa2f7;
     background: @noti-border-color;
 }
 
@@ -245,7 +246,7 @@
 
 .widget-mpris {
     color: @text-color;
-    background: @noti-bg-alt;
+    background: @noti-bg;
     padding: 3px 6px;
     margin: 5px;
     border-radius: 10px;
@@ -285,8 +286,9 @@
     color: @text-color
 }
 
+/* individual buttons */
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-    background: @noti-border-color;
+    background: @text-color;
     color: @noti-bg-hover
 }
 
