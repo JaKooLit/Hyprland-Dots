@@ -110,9 +110,9 @@ else
 	sed -i '/^cursor /s/^cursor .*/cursor #000000/' "${kitty_conf}"
 fi
 
-for pid in $(pidof kitty); do
-    kill -SIGUSR1 "$pid"
-done
+#for pid in $(pidof kitty); do
+#    kill -SIGUSR1 "$pid"
+#done
 
 
 # Set Dynamic Wallpaper for Dark or Light Mode
@@ -234,19 +234,16 @@ update_theme_mode
 ${SCRIPTSDIR}/WallustSwww.sh &&
 
 # some process to kill
-_ps=(waybar rofi swaync ags swaybg)
-for _prs in "${_ps[@]}"; do
-    if pidof "${_prs}" >/dev/null; then
-        pkill "${_prs}"
-    fi
+for pid in $(pidof kitty waybar rofi swaync ags swaybg); do
+    kill -SIGUSR1 "$pid"
 done
 
 sleep 2
 ${SCRIPTSDIR}/Refresh.sh 
 
-sleep 0.3
+sleep 1
 # Display notifications for theme and icon changes 
-notify-send -u normal -i "$notif" " Themes switched to:" " $next_mode Mode"
+notify-send -u low -i "$notif" " Themes switched to:" " $next_mode Mode"
 
 exit 0
 
