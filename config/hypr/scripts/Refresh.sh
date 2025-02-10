@@ -25,7 +25,7 @@ done
 killall -SIGUSR2 waybar # added since wallust sometimes not applying
 
 # quit ags & relaunch ags
-ags -q && ags &
+#ags -q && ags &
 
 # some process to kill
 for pid in $(pidof waybar rofi swaync ags swaybg); do
