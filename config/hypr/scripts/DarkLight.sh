@@ -89,14 +89,16 @@ else
 fi
 
 # ags color change
-if [ "$next_mode" = "Dark" ]; then
-    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.4);/' "${ags_style}"
-	sed -i '/@define-color text-color/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.7);/' "${ags_style}"
-	sed -i '/@define-color noti-bg-alt/s/#.*;/#111111;/' "${ags_style}"
-else
-    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.4);/' "${ags_style}"
-    sed -i '/@define-color text-color/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.7);/' "${ags_style}"
-	sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' "${ags_style}"
+if command -v ags >/dev/null 2>&1; then    
+    if [ "$next_mode" = "Dark" ]; then
+        sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.4);/' "${ags_style}"
+	    sed -i '/@define-color text-color/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.7);/' "${ags_style}" 
+	    sed -i '/@define-color noti-bg-alt/s/#.*;/#111111;/' "${ags_style}"
+    else
+        sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.4);/' "${ags_style}"
+        sed -i '/@define-color text-color/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.7);/' "${ags_style}"
+	    sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' "${ags_style}"
+    fi
 fi
 
 # kitty background color change
@@ -109,11 +111,6 @@ else
 	sed -i '/^background /s/^background .*/background #dddddd/' "${kitty_conf}"
 	sed -i '/^cursor /s/^cursor .*/cursor #000000/' "${kitty_conf}"
 fi
-
-#for pid in $(pidof kitty); do
-#    kill -SIGUSR1 "$pid"
-#done
-
 
 # Set Dynamic Wallpaper for Dark or Light Mode
 if [ "$next_mode" = "Dark" ]; then
