@@ -22,33 +22,30 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
-killall -SIGUSR2 waybar # added since wallust sometimes not applying
+# added since wallust sometimes not applying
+killall -SIGUSR2 waybar 
+killall -SIGUSR2 swaync
 
 # quit ags & relaunch ags
-#ags -q && ags &
+ags -q && ags &
 
-# Kill waybar & swaync (yet again) # added since wallust sometimes not applying
-_ps2=(waybar swaync)
-for _prs2 in "${_ps2[@]}"; do
-    if pidof "${_prs2}" >/dev/null; then
-        killall "${_prs2}"
-    fi
+# some process to kill
+for pid in $(pidof waybar rofi swaync ags swaybg); do
+    kill -SIGUSR1 "$pid"
 done
-
-# relaunch swaync
-sleep 0.5
-swaync > /dev/null 2>&1 &
 
 #Restart waybar
 sleep 1
 waybar &
+
+# relaunch swaync
+sleep 0.5
+swaync > /dev/null 2>&1 &
 
 # Relaunching rainbow borders if the script exists
 sleep 1
 if file_exists "${UserScripts}/RainbowBorders.sh"; then
     ${UserScripts}/RainbowBorders.sh &
 fi
-
-
 
 exit 0
