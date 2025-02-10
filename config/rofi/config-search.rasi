@@ -7,13 +7,13 @@
 window {
 	width: 40%;
 	height: inherit;
-	background-color: inherit;
-	text-color: inherit;
-    y-offset: 6px;
+	background-color: black/25%;
+    y-offset: 10px;
     location: north;
     children: [ "entry" ];
     border: 2px;
-    border-color: white/50%;
+    border-color: white/25%;
+	border-radius: 20px;
 }
 
 /* ---- Entry ---- */ 
@@ -21,5 +21,5 @@ entry {
 	placeholder: " 🔎 Google Search via web browser";
 	padding: 15px;
 	border: 0px;
+	text-color: white;
 }
-
