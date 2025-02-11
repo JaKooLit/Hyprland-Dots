@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### DEFAULT v2 (Laptop)  - Top ### //
+// ### DEFAULT  - Top (old v4) ### //
 {
 "include": [
   "$HOME/.config/waybar/Modules",
@@ -21,13 +21,9 @@
 "margin-right": 8,
 
 "modules-left": [
-	"custom/menu",
-	"custom/light_dark",
+	"group/app_drawer",
 	"custom/separator#dot-line",
-	"power-profiles-daemon",
 	"group/mobo_drawer",
-	"custom/separator#blank",
-	"group/laptop",
 	"custom/separator#line",
 	"custom/weather",
 	],
@@ -51,10 +47,7 @@
 	"tray",
 	"mpris", 
 	"group/audio",
-	"custom/separator#line",
-	"keyboard-state",
-	"custom/keyboard",
-	"custom/lock",
-	"custom/power",
+	"custom/separator#dot-line",
+	"group/status",
 	],
 }

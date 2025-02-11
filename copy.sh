@@ -4,8 +4,8 @@
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
 waybar_style="$HOME/.config/waybar/style/[Extra] Modern-Combined - Transparent.css"
-waybar_config="$HOME/.config/waybar/configs/[TOP] Default_v5"
-waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop_v5" 
+waybar_config="$HOME/.config/waybar/configs/[TOP] Default"
+waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop" 
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -631,28 +631,24 @@ chmod +x ~/.config/hypr/UserScripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
-# Detect machine type and set waybar configurations accordingly
+# Waybar config to symlink & retain based on machine type
 if hostnamectl | grep -q 'Chassis: desktop'; then
-    # Configurations for a desktop
-    ln -sf "$waybar_config" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    # Remove waybar configs for laptop
-    rm -rf "$HOME/.config/waybar/configs/[TOP] Default Laptop" \
-           "$HOME/.config/waybar/configs/[BOT] Default Laptop" \
-           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v2" \
-           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v3" \
-           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v4" \
-           "$HOME/.config/waybar/configs/[TOP] Default Laptop_v5" 2>&1 | tee -a "$LOG" || true
+    config_file="$waybar_config"
+    config_remove=" Laptop"
 else
-    # Configurations for a laptop or any system other than desktop
-    ln -sf "$waybar_config_laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    # Remove waybar configs for desktop
-    rm -rf "$HOME/.config/waybar/configs/[TOP] Default" \
-           "$HOME/.config/waybar/configs/[BOT] Default" \
-           "$HOME/.config/waybar/configs/[TOP] Default_v2" \
-           "$HOME/.config/waybar/configs/[TOP] Default_v3" \
-           "$HOME/.config/waybar/configs/[TOP] Default_v4" \
-           "$HOME/.config/waybar/configs/[TOP] Default_v5" 2>&1 | tee -a "$LOG" || true
+    config_file="$waybar_config_laptop"
+    config_remove=""
 fi
+
+ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG" || true
+
+# Remove inappropriate waybar configs
+rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
+       "$HOME/.config/waybar/configs/[BOT] Default$config_remove" \
+       "$HOME/.config/waybar/configs/[TOP] Default$config_remove (old v1)" \
+       "$HOME/.config/waybar/configs/[TOP] Default$config_remove (old v2)" \
+       "$HOME/.config/waybar/configs/[TOP] Default$config_remove (old v3)" \
+       "$HOME/.config/waybar/configs/[TOP] Default$config_remove (old v4)" 2>&1 | tee -a "$LOG" || true
 
 printf "\n%.0s" {1..2}
 
