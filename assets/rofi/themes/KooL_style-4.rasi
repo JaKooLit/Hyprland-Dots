@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
+/* KooL Hyprland Rofi Style 4 */
 /* credit: https://github.com/adi1090x/rofi */
 
 /*****----- Configuration -----*****/
@@ -89,7 +89,7 @@ mainbox {
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
     border-color:                @border-color;
-    background-color:            transparent;
+    background-color:            inherit;
     children:                    [ "inputbar", "message", "custombox" ];
 }
 
@@ -132,7 +132,7 @@ textbox-prompt-colon {
 entry {
     enabled:                     true;
     padding:                     5px 0px;
-    background-color:            inherit;
+    background-color:            @alternate-background;
     text-color:                  @foreground;
     cursor:                      text;
     placeholder:                 "Search...";

@@ -16,7 +16,7 @@ while true; do
     result=$(
         rofi -i -dmenu \
             -config $rofi_theme \
-            -mesg "$result = $calc_result"
+            -mesg "$result      =    $calc_result"
     )
 
     if [ $? -ne 0 ]; then

@@ -66,7 +66,6 @@ window {
     children: [ inputbar, message, wrapper-mode-switcher, listview , pagerbox ];
 }
 
-
 pagerbox {
     expand: false;
     orientation: horizontal;
@@ -229,6 +228,7 @@ sidebar {
 inputbar {
     text-color: @normal-foreground;
     padding: 0px 0px 0.5em;
+	children:   [ wrapper ];   
 }
 case-indicator {
     text-color: @normal-foreground;
@@ -237,9 +237,8 @@ case-indicator {
 wrapper {
     orientation: horizontal;
     text-color:       black;
-    background-color: white / 70%;
+    background-color: white / 75%;
     border-color:     grey;
-
     border: 2px;
     border-radius: 5px;
     padding: 4px;
@@ -270,12 +269,13 @@ icon-k {
 entry {
     enabled: true;
     expand: true;
+	background-color: white / 75%;
     placeholder: " 🖥️ Search ";
     vertical-align: 0.5;
+    border-radius: 5px;
+    padding: 4px;
 }
-inputbar {
-    children:   [ wrapper ];
-}
+
 
 error-message {
     background-color: darkred/10%;

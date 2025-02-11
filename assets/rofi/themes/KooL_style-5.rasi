@@ -118,7 +118,7 @@ entry {
     cursor:                     text;
     placeholder:                "  Search";
     placeholder-color:          inherit;
-	background-color:			transparent;
+	background-color:			@background;
 }
 
 /* ---- Mode Switcher ---- */
@@ -230,7 +230,7 @@ element-icon {
 }
 
 element-text {
-	font:                       "JetBrainsMono Nerd Font SemiBold 10";
+	font:                       "JetBrainsMono Nerd Font SemiBold 12";
     background-color:           transparent;
     text-color:                 @foreground;
     cursor:                     inherit;

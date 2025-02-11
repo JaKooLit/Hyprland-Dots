@@ -132,7 +132,7 @@ scrollbar {
 
 /* ---- Elements ---- */
 element {
-    font:			                "JetBrainsMono Nerd Font SemiBold 11";
+    font:			                "JetBrainsMono Nerd Font SemiBold 12";
     background-color:               @BG;
     text-color:                     @FG;
     orientation:                    horizontal;
@@ -187,4 +187,24 @@ element selected.urgent {
 element selected.active {
     background-color:               @BGA;
     color:                          @FG;
+}
+
+/* ---- Message ---- */
+message {
+    background-color:            transparent;
+    border:                      0px;
+}
+textbox {
+    padding:                     12px;
+    border-radius:               10px;
+    background-color:            @background;
+    text-color:                  @foreground;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+error-message {
+    padding:                     12px;
+    border-radius:               20px;
+    background-color:            @background;
+    text-color:                  @foreground;
 }

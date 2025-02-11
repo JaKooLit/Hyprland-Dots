@@ -64,14 +64,14 @@ inputbar {
     border:                      0px 0px 2px 0px;
     border-radius:               0px;
     border-color:                gray/20%;
-    background-color:            transparent;
+    background-color:            black/50%;
     children:                    [ "entry" ];
 }
 
 entry {
     enabled:                     true;
-    background-color:            transparent;
-    text-color:                  dimgray;
+    background-color:            black/50%;
+    text-color:                  white/75%;
     cursor:                      text;
     placeholder:                 "Type to search";
     placeholder-color:           inherit;
@@ -148,7 +148,7 @@ mode-switcher{
     text-color:                  white;
 }
 button {
-    font:                        "JetBrainsMono Nerd Font SemiBold 10";
+    font:                        "JetBrainsMono Nerd Font SemiBold 12";
     padding:                     6px;
     border:                      0px solid;
     border-radius:               100%;

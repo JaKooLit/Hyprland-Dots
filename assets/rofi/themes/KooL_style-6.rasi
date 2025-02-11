@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Hyprland v2.2.10 (old) - Default Config */
+/* KooL Hyprland Rofi Style 6 */
 
 /* ---- Configuration ---- */
 
@@ -199,7 +199,6 @@ element-icon {
 }
 element-text {
     background-color:            transparent;
-    font:                       "Fira Code SemiBold 12";
     text-color:                  inherit;
     cursor:                      inherit;
     vertical-align:              0.5;

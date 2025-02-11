@@ -41,7 +41,7 @@ window {
     padding:                     0px;
     border-radius:               12px;
     cursor:                      "default";
-	background-color: 			 transparent;
+	background-color: 			 inherit;
 }
 
 /*****----- Main Box -----*****/
@@ -60,7 +60,7 @@ inputbar {
     enabled:                     true;
     spacing:                     0px;
     margin:                      0px;
-    padding:                     0px 0px 10px 0px;
+    padding:                     0px 10px 10px 0px;
     border:                      0px 0px 2px 0px;
     border-radius:               0px;
     border-color:                gray/20%;
@@ -70,7 +70,7 @@ inputbar {
 
 entry {
     enabled:                     true;
-    background-color:            transparent;
+    background-color:            inherit;
     text-color:                  black;
     cursor:                      text;
     placeholder:                 "Type to search";

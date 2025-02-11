@@ -213,7 +213,7 @@ element-icon {
     cursor:                      inherit;
 }
 element-text {
-  	font:                       "JetBrainsMono Nerd Font SemiBold 11";
+  	font:                       "JetBrainsMono Nerd Font SemiBold 12";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;

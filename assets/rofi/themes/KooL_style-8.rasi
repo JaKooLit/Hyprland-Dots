@@ -218,16 +218,21 @@ element-text {
 }
 
 /* ---- Message ---- */
-error-message {
-    text-color:                  @foreground;
-    background-color:            @background;
-    text-transform:              capitalize;
-    children:                    [ "textbox" ];
+message {
+    background-color:            transparent;
+    border:                      0px;
 }
-
 textbox {
-    text-color:                  inherit;
-    background-color:            inherit;
+    padding:                     12px;
+    border-radius:               10px;
+    background-color:            @background;
+    text-color:                  @foreground;
     vertical-align:              0.5;
-    horizontal-align:            0.5;
+    horizontal-align:            0.0;
+}
+error-message {
+    padding:                     12px;
+    border-radius:               20px;
+    background-color:            @background;
+    text-color:                  @foreground;
 }

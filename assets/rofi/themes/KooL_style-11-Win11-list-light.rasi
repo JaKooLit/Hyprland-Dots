@@ -12,8 +12,8 @@ configuration {
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
 }
-
 /*****----- Global Properties -----*****/
+
 * {
   font: "JetBrainsMono Nerd Font SemiBold 13";
 
