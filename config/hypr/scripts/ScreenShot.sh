@@ -2,21 +2,23 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Screenshots scripts
 
-iDIR="$HOME/.config/swaync/icons"
-sDIR="$HOME/.config/hypr/scripts"
-
+# variables
 time=$(date "+%d-%b_%H-%M-%S")
 dir="$(xdg-user-dir)/Pictures/Screenshots"
 file="Screenshot_${time}_${RANDOM}.png"
+
+iDIR="$HOME/.config/swaync/icons"
+iDoR="$HOME/.config/swaync/images"
+sDIR="$HOME/.config/hypr/scripts"
 
 active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
 active_window_file="Screenshot_${time}_${active_window_class}.png"
 active_window_path="${dir}/${active_window_file}"
 
 notify_cmd_base="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify"
-#notify_swappy="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
 notify_cmd_shot="${notify_cmd_base} -i ${iDIR}/picture.png "
 notify_cmd_shot_win="${notify_cmd_base} -i ${iDIR}/picture.png "
+notify_cmd_NOT="notify-send -u low -i ${iDoR}/ja.png "
 
 # notify and view screenshot
 notify_view() {
@@ -33,7 +35,7 @@ notify_view() {
 					;;
 			esac
         else
-            ${notify_cmd_shot} " Screenshot of:" " ${active_window_class} NOT Saved."
+            ${notify_cmd_NOT} " Screenshot of:" " ${active_window_class} NOT Saved."
             "${sDIR}/Sounds.sh" --error
         fi
 
@@ -63,13 +65,11 @@ notify_view() {
 					;;
 			esac
         else
-            ${notify_cmd_shot} " Screenshot" " NOT Saved"
+            ${notify_cmd_NOT} " Screenshot" " NOT Saved"
             "${sDIR}/Sounds.sh" --error
         fi
     fi
 }
-
-
 
 # countdown
 countdown() {

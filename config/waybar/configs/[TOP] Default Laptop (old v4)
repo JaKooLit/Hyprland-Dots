@@ -1,6 +1,6 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### DEFAULT v4 (Laptop)  - Top ### //
+// ### DEFAULT (Laptop)  - Top (old v4) ### //
 {
 "include": [
   "$HOME/.config/waybar/Modules",
