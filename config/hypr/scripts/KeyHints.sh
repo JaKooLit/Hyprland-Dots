@@ -25,7 +25,7 @@ max_height=1000
 
 # Set percentage of screen size for dynamic adjustment
 percentage_width=90
-percentage_height=90
+percentage_height=100
 
 # Calculate dynamic width and height
 dynamic_width=$((width * percentage_width / 100))
@@ -46,16 +46,17 @@ GDK_BACKEND=$BACKEND yad --width=$dynamic_width --height=$dynamic_height \
     --column=Command: \
     --timeout-indicator=bottom \
 "ESC" "close this app" "" "=" "SUPER KEY (Windows Key)" "(SUPER KEY)" \
+" SHIFT K" "Searchable Keybinds" "(Search all Keybinds via rofi)" \
+"" "" "" \
 " enter" "Terminal" "(kitty)" \
-" SHIFT enter" "DropDown Terminal" "(kitty-pyprland)" \
-" SHIFT K" "Searchable Keybinds" "(Keybinds)" \
+" SHIFT enter" "DropDown Terminal" "(Not available in Debian and Ubuntu)" \
 " A" "Desktop Overview" "(AGS Overview)" \
 " D" "Application Launcher" "(rofi-wayland)" \
 " T" "Open File Manager" "(Thunar)" \
 " S" "Google Search using rofi" "(rofi)" \
 " Q" "close active window" "(not kill)" \
 " Shift Q " "kills an active window" "(kill)" \
-" Z" "Desktop Zoom" "(pyprland)" \
+" Z" "Desktop Zoom" "(Not available in Debian and Ubuntu)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
 " W" "Choose wallpaper" "(Wallpaper Menu)" \
 " Shift W" "Choose wallpaper effects" "(imagemagick + swww)" \
