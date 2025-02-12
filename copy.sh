@@ -40,9 +40,10 @@ echo -e "\e[35m
 printf "\n%.0s" {1..1}  
 
 ####### Announcement
-echo "${MAGENTA}     H - E - L - L - O !${RESET}"
+echo "${WARNING}      		A T T E N T I O N !${RESET}"
 echo "${SKY_BLUE}KooL Hyprland v2.3.11 have some Minor Keybinds changes!${RESET}"
 echo "${YELLOW}SUPER H for Keyhints and/or SUPER SHIFT K to search for Keybinds ${RESET}"
+echo "${MAGENTA}	   Once Logged in to Kool Hyprland! ${RESET}"
 printf "\n%.0s" {1..1}
 
 # Create Directory for Copy Logs
@@ -207,8 +208,6 @@ ${MAGENTA} NOTE:${RESET}
   esac
 done
 
-printf "\n%.0s" {1..1}
-
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
     sed -i '/exec-once = rog-control-center &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
@@ -267,14 +266,15 @@ printf "\n"
 
 # Action to do for better kitty appearance
 while true; do
-  echo "$MAGENTA Select monitor resolution to properly configure appearance and fonts:"
-  echo "$YELLOW   -- Enter 1. for monitor res 1440p or less (< 1440p)"
-  echo "$YELLOW   -- Enter 2. for monitors res higher than 1440p (≥ 1440p)"
+  echo "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured for 1440p!"
+  echo "${MAGENTA}Select monitor resolution to properly configure appearance and fonts:"
+  echo "$YELLOW  -- Enter 1. for monitor resolution 1200p or less (< 1200p)"
+  echo "$YELLOW  -- Enter 2. for monitor resolution higher than 1440p (≥ 1440p)"
   read -p "$CAT Enter the number of your choice (1 or 2): " res_choice
 
   case $res_choice in
     1)
-        resolution="< 1440p"
+        resolution="< 1200p"
         break
         ;;
     2)
@@ -300,15 +300,13 @@ if [ "$resolution" == "< 1440p" ]; then
   mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
 
   # rofi fonts reduction
-  themes_dir="$HOME/.local/share/rofi/themes"
-  config_file="$HOME/.config/rofi/config.rasi"
+  themes_dir="assets/rofi/themes"
+  config_file="config/rofi/config.rasi"
 
-  changes_made=false
   # Change rofi font size in ~/.local/share/rofi/themes/
   find "$themes_dir" -type f | while read -r file; do
       if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 12";\n}' "$file"; then
           sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
-          changes_made=true
       fi
   done
 
@@ -316,19 +314,15 @@ if [ "$resolution" == "< 1440p" ]; then
   if [ -f "$config_file" ]; then
       if grep -Pzoq 'configuration {\n  font: "JetBrainsMono Nerd Font SemiBold 13";\n}' "$config_file"; then
           sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 12"/' "$config_file"
-          changes_made=true
       fi
-  fi
-  if $changes_made; then
-      echo "$INFO ${MAGENTA}Rofi Font sizes${RESET} updated completed successfully."
   fi
 fi
 
-printf "\n"
+printf "\n%.0s" {1..1}
 
 # Ask whether to change to 12hr format
 while true; do
-    echo -e "$MAGENTA By default, KooL's Dots are configured in 24H clock format."
+    echo -e "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured in 24H clock format."
     read -p "$CAT Do you want to change to 12H format or AM/PM format? (y/n): " answer
 
     # Convert the answer to lowercase for comparison
@@ -409,11 +403,11 @@ while true; do
 done
 
 
-printf "\n"
+printf "\n%.0s" {1..1}
 
 # Check if the user wants to disable Rainbow borders
 printf "${MAGENTA} By default, Rainbow Borders animation is enabled.\n"
-printf "${WARN} - However, this uses a bit more CPU and Memory resources.\n"
+printf "${WARN} However, this uses a bit more CPU and Memory resources.\n"
 
 read -p "${CAT} Do you want to disable Rainbow Borders animation? (y/N): " border_choice
 if [[ "$border_choice" =~ ^[Yy]$ ]]; then
