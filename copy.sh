@@ -31,14 +31,20 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
   
-printf "\n%.0s" {1..2}  
+printf "\n%.0s" {1..1}  
 echo -e "\e[35m
-  ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
-  ╠╩╗│ ││ │║     ║║│ │ │ └─┐ 2025
-  ╩ ╩└─┘└─┘╩═╝  ═╩╝└─┘ ┴ └─┘
+    ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
+    ╠╩╗│ ││ │║     ║║│ │ │ └─┐ 2025
+    ╩ ╩└─┘└─┘╩═╝  ═╩╝└─┘ ┴ └─┘
 \e[0m"
 printf "\n%.0s" {1..1}  
- 
+
+####### Announcement
+echo "${MAGENTA}     H - E - L - L - O !${RESET}"
+echo "${SKY_BLUE}KooL Hyprland v2.3.11 have some Minor Keybinds changes!${RESET}"
+echo "${YELLOW}SUPER H for Keyhints and/or SUPER SHIFT K to search for Keybinds ${RESET}"
+printf "\n%.0s" {1..1}
+
 # Create Directory for Copy Logs
 if [ ! -d Copy-Logs ]; then
     mkdir Copy-Logs
@@ -99,6 +105,8 @@ if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
     sed -i 's/^#env = HYPRCURSOR_SIZE,24/env = HYPRCURSOR_SIZE,24/' "$HYPRCURSOR_ENV_FILE"
 fi
 
+printf "\n%.0s" {1..1} 
+
 # Function to detect keyboard layout using localectl or setxkbmap
 detect_layout() {
   if command -v localectl >/dev/null 2>&1; then
@@ -151,7 +159,7 @@ ${MAGENTA} NOTE:${RESET}
   done
 fi
 
-printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n\n"
+printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n"
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
