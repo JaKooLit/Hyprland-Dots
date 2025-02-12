@@ -14,5 +14,12 @@
 * ~/.local/share/rofi/themes will be replaced. However, it wont overwrite your own config if you
 * renamed with your own unique file name */
 
+/* ---- Configuration Fonts ---- */
+configuration {
+  font: "JetBrainsMono Nerd Font SemiBold 13";
+}
+
+/* note: Element-text font and size, edit configs in ~/.local/share/rofi/themes */
+
 
 @theme "~/.local/share/rofi/themes/KooL_style-2-Dark.rasi"

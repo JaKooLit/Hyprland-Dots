@@ -4,7 +4,6 @@
 
 /*****----- Configuration -----*****/
 configuration {
-    font:                       "JetBrainsMono Nerd Font SemiBold 13";
     modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     display-drun:               " Apps";
@@ -55,6 +54,11 @@ configuration {
     alternate-active-foreground: @background;
     
 
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
 }
 
 /*****----- Main Window -----*****/

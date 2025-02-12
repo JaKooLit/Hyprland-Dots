@@ -5,7 +5,6 @@
 
 configuration {
 	modi:                       "drun,run,filebrowser";
-	font:                       "Fira Code SemiBold 13";
     show-icons:                 true;
     display-drun:               "Apps";
     display-run:                "Run";
@@ -33,6 +32,11 @@ configuration {
     text-selected:               @background;
     text-color:                  @foreground;
     border-color:                @selected;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
 }
 
 /* ---- Window ---- */

@@ -299,8 +299,29 @@ if [ "$resolution" == "< 1440p" ]; then
   mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf &&
   mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
 
-  #elif [ "$resolution" == "≥ 1440p" ]; then
-  #cp -r config/rofi/resolution/1440p/* config/rofi/ 10-Feb-2025
+  # rofi fonts reduction
+  themes_dir="$HOME/.local/share/rofi/themes"
+  config_file="$HOME/.config/rofi/config.rasi"
+
+  changes_made=false
+  # Change rofi font size in ~/.local/share/rofi/themes/
+  find "$themes_dir" -type f | while read -r file; do
+      if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 12";\n}' "$file"; then
+          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
+          changes_made=true
+      fi
+  done
+
+  # Change rofi font size in ~/.config/rofi/config.rasi
+  if [ -f "$config_file" ]; then
+      if grep -Pzoq 'configuration {\n  font: "JetBrainsMono Nerd Font SemiBold 13";\n}' "$config_file"; then
+          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 12"/' "$config_file"
+          changes_made=true
+      fi
+  fi
+  if $changes_made; then
+      echo "$INFO ${MAGENTA}Rofi Font sizes${RESET} updated completed successfully."
+  fi
 fi
 
 printf "\n"
@@ -378,8 +399,7 @@ while true; do
       fi
 
     break
- 
-
+     
     elif [[ "$answer" == "n" ]]; then
         echo "${NOTE} You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
         break  # Exit the loop if the user chooses "n"

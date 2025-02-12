@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Style 9 */
+/* KooL Hyprland Rofi Style 9 */
 /* Modified version of Rofi Config which was submitted by https://github.com/lonerOrz via Discord */
 
 /* Integrating Wallust and More tweaks */
@@ -22,9 +22,7 @@ configuration {
 @theme "~/.config/rofi/wallust/colors-rofi.rasi"
 
 /*****----- Global Properties -----*****/
-* {
-    font: "JetBrainsMono Nerd Font SemiBold 13";
-    
+* {    
     BG:    @background;
     BGA:   @color11;
     FG:    @foreground;
@@ -35,6 +33,11 @@ configuration {
     IMG:   #FAE3B0ff;
     OFF:   #575268ff;
     ON:    #ABE9B3ff;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
 }
 
 /* ---- Window ---- */
@@ -132,7 +135,6 @@ scrollbar {
 
 /* ---- Elements ---- */
 element {
-    font:			                "JetBrainsMono Nerd Font SemiBold 12";
     background-color:               @BG;
     text-color:                     @FG;
     orientation:                    horizontal;

@@ -11,7 +11,8 @@ mainbox {
 
 /* ---- Entry ---- */ 
 entry {
-  expand: true;
+  expand: false;
+  width: 17%;
   placeholder: " 📻 Choose Music Source";
 }
 

@@ -3,6 +3,11 @@
 
 @import "~/.config/rofi/config.rasi" 
 
+/* ---- Window ---- */
+window {
+    width: 45%;
+}
+
 /* ---- Mainbox ---- */
 mainbox {
   children:

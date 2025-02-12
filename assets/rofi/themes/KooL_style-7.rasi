@@ -1,11 +1,10 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Style 7 */
+/* KooL Hyprland Rofi Style 7 */
 
 /* original design from: https://github.com/adi1090x/rofi */
 
 /*****----- Configuration -----*****/
 configuration {
-    font:                       "JetBrains Mono Nerd Font 13";
 	modi:                       "drun,run,filebrowser,window";
     show-icons:                 true;
     display-drun:                " ";
@@ -30,6 +29,11 @@ configuration {
     active:                      @color11;
     urgent:                      #8E3596;
 }
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
+}
+
 /*****----- Main Window -----*****/
 window {
     transparency:                "real";

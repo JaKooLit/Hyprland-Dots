@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Hyprland Style 10 - Fancy */
+/* KooL Hyprland Rofi Style 10 - Fancy */
 /* Credit to DaveDavenport. I have only some few things changed */
 
 /*******************************************************************************
@@ -12,7 +12,6 @@
 /* ---- Configuration ---- */
 
 configuration {
-	font:                       "JetBrainsMono Nerd Font SemiBold 13";
     modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     drun-display-format:        "{name}";
@@ -49,6 +48,12 @@ configuration {
     active-background:           rgba ( 39, 40, 34, 0 % );
     selected-active-background:  rgba ( 20, 20, 17, 100 % );
 }
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
+}
+
 window {
     border-color:     darkgray/30%;
     background-color: black/50%;

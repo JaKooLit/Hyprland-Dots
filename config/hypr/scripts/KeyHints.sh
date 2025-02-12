@@ -23,13 +23,14 @@ GDK_BACKEND=$BACKEND yad \
     --column=Description: \
     --column=Command: \
     --timeout-indicator=bottom \
-"ESC" "close this app" "" "=" "SUPER KEY (Windows Key)" "(SUPER KEY)" \
+"ESC" "close this app" "" " = " "SUPER KEY (Windows Key Button)" "(SUPER KEY)" \
 " SHIFT K" "Searchable Keybinds" "(Search all Keybinds via rofi)" \
 "" "" "" \
+" SHIFT E" "View or EDIT Keybinds, Settings, Monitor" "" \
 " enter" "Terminal" "(kitty)" \
-" SHIFT enter" "DropDown Terminal" "(kitty-pyprland)" \
-" SHIFT K" "Searchable Keybinds" "(Keybinds)" \
-" A" "Desktop Overview" "(AGS Overview)" \
+" SHIFT enter" "DropDown Terminal" "(Not available in Debian and Ubuntu)" \
+" B" "Launch Browser" "(Default browser)" \
+" A" "Desktop Overview" "(AGS - if opted to install)" \
 " D" "Application Launcher" "(rofi-wayland)" \
 " E" "Open File Manager" "(Thunar)" \
 " S" "Google Search using rofi" "(rofi)" \
@@ -53,7 +54,7 @@ GDK_BACKEND=$BACKEND yad \
 "ALT Print" "Screenshot active window" "active window only" \
 "CTRL ALT P" "power-menu" "(wlogout)" \
 "CTRL ALT L" "screen lock" "(hyprlock)" \
-"CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
+"CTRL ALT Del" "Hyprland Exit" "(NOTE: Hyprland Will exit immediately)" \
 " SHIFT F" "Fullscreen" "Toggles to full screen" \
 " CTL F" "Fake Fullscreen" "Toggles to fake full screen" \
 " ALT L" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
@@ -65,6 +66,5 @@ GDK_BACKEND=$BACKEND yad \
 " ALT E" "Rofi Emoticons" "Emoticon" \
 " ALT V" "Clipboard Manager" "cliphist" \
 " H" "Launch this QUICK CHEAT" "" \
-" SHIFT E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
 "More tips:" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\

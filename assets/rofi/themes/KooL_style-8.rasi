@@ -1,11 +1,10 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Hyprland - Style 13 */
+/* KooL Hyprland Rofi Style 8 */
 
 
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,filebrowser,window,run";
-	font:                       "JetBrainsMono Nerd Font SemiBold 13";
     show-icons:                 true;
     display-drun:               "  apps";
     display-run:                "  term";
@@ -27,6 +26,11 @@ configuration {
 
     border-width: 2px;
     border-radius: 12px;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
 }
 
 /* ---- Window ---- */

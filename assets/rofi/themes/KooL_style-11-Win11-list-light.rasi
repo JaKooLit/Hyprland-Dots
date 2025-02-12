@@ -1,22 +1,20 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Style 10 - Windows 11 List Light */
+/* KooL Hyprland Rofi Style 11 - Windows 11 List Light */
 /* source: https://github.com/newmanls */
 
 /* Integrating Wallust and More tweaks */
 
 /* ---- Configuration ---- */
 configuration {
-    dpi:						1;
-    show-icons:                 true;
-    hover-select:               true;
-    me-select-entry:            "MouseSecondary";
-    me-accept-entry:            "MousePrimary";
+  dpi:						1;
+  show-icons:                 true;
+  hover-select:               true;
+  me-select-entry:            "MouseSecondary";
+  me-accept-entry:            "MousePrimary";
 }
 /*****----- Global Properties -----*****/
 
 * {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-
   bg0    : #ffffff80;
   bg1    : #f9f9f9bf;
   bg2    : #f7f7f7;
@@ -32,6 +30,11 @@ configuration {
   margin  : 0;
   padding : 0;
   spacing : 0;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
 }
 
 element-icon, element-text, scrollbar {
@@ -91,7 +94,6 @@ listview {
 }
 
 element {
-  font: "JetBrainsMono Nerd Font SemiBold 11";
   spacing       : 1em;
   padding       : 8px;
   border-radius : 2px;

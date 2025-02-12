@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Style 2 Dark */
+/* KooL Hyprland Rofi Style 2 Dark */
 /* Source: https://github.com/adi1090x/rofi */
 
 
@@ -19,9 +19,9 @@ configuration {
     me-accept-entry:            "MousePrimary";
 }
 
-/*****----- Global Properties -----*****/
-* {
-    font:                        "JetBrainsMono Nerd Font SemiBold 13";
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
 }
 
 /*****----- Main Window -----*****/
@@ -148,7 +148,6 @@ mode-switcher{
     text-color:                  white;
 }
 button {
-    font:                        "JetBrainsMono Nerd Font SemiBold 12";
     padding:                     6px;
     border:                      0px solid;
     border-radius:               100%;

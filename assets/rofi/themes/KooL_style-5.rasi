@@ -1,9 +1,8 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Hyprland v2.1.13 (old) - Default Config */
+/* KooL Hyprland Rofi Style 5 */
 
 /* ---- Configuration ---- */
 configuration {
-    font:                       "JetBrainsMono Nerd Font SemiBold 13";
     modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     display-drun:               "Apps";
@@ -33,6 +32,11 @@ configuration {
     text-selected:               @background;
     text-color:                  @foreground;
     border-color:                @selected;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
 }
 
 /* ---- Window ---- */
@@ -230,7 +234,6 @@ element-icon {
 }
 
 element-text {
-	font:                       "JetBrainsMono Nerd Font SemiBold 12";
     background-color:           transparent;
     text-color:                 @foreground;
     cursor:                     inherit;
