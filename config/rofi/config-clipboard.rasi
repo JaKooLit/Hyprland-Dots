@@ -11,13 +11,13 @@ window {
 /* ---- Mainbox ---- */
 mainbox {
   children:
-    [ "inputbar", "listview"];
+    [ "inputbar", "message", "listview"];
 }
 
 /* ---- Entry ---- */
 entry {
   width: 42%;
-  placeholder: " 📋 Search  Clipboard **note** 👀 CTRL Del - Cliphist del or Alt Del - cliphist wipe";
+  placeholder: " 📋 Search  Clipboard ";
 }
 
 /* ---- Listview ---- */

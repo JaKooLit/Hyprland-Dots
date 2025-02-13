@@ -165,7 +165,7 @@ listview {
 	reverse:                    false;
 	fixed-height:               true;
 	fixed-columns:              false;
-	background-color:           transparent;
+	background-color:           @background;
 	border-radius:   	        12px;
 	border:						0px;
 }
@@ -250,9 +250,9 @@ textbox {
     padding:                     12px;
     border-radius:               10px;
     background-color:            @background-alt;
-    text-color:                  @background;
+    text-color:                  @foreground;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
+    horizontal-align:            0.5;
 }
 error-message {
     padding:                     12px;

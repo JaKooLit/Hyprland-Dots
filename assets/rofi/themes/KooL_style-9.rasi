@@ -199,10 +199,10 @@ message {
 textbox {
     padding:                     12px;
     border-radius:               10px;
-    background-color:            @background;
+    background-color:            @BDR;
     text-color:                  @foreground;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
+    horizontal-align:            0.5;
 }
 error-message {
     padding:                     12px;

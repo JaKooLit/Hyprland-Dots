@@ -312,7 +312,7 @@ textbox {
     background-color:            @alternate-background;
     text-color:                  @foreground-color;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
+    horizontal-align:            0.5;
     highlight:                   none;
     placeholder-color:           @foreground-color;
     blink:                       true;

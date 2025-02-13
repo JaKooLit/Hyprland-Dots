@@ -81,11 +81,6 @@ entry {
   text-color		: @fg1;
 }
 
-textbox {
-  padding          : 4px 8px;
-  background-color : @bg2;
-}
-
 listview {
   columns       : 2;
   spacing       : 8px;
@@ -129,4 +124,17 @@ element-icon {
 
 element-text {
   text-color: inherit;
+}
+
+/*****----- Message -----*****/
+error-message {
+  padding: 20px;
+}
+
+textbox {
+  padding			: 10px;
+  background-color	: @bg0;
+  text-color		: @fg0;
+  vertical-align	: 0.5;
+  horizontal-align	: 0.5;
 }

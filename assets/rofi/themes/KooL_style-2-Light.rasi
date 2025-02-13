@@ -164,14 +164,12 @@ button selected {
 /*****----- Message -----*****/
 error-message {
     padding:                     20px;
-    background-color:            transparent;
-    text-color:                  black;
 }
 textbox {
-    padding:                     20px;
-    border-radius:               12px;
-    background-color:            white/30%;
+    padding:                     10px;
+    background-color:            gray/25%;
     text-color:                  black;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
+    horizontal-align:            0.5;
 }
+

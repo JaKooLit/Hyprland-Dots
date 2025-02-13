@@ -186,9 +186,11 @@ error-message {
     text-color:                  @foreground;
 }
 textbox {
-    background-color:            @background;
+	padding:					 10px;
+    border-radius:               20px;
+    background-color:            @color11;
     text-color:                  @foreground;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
+    horizontal-align:            0.5;
     highlight:                   none;
 }

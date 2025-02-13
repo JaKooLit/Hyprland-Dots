@@ -14,7 +14,8 @@ fi
 KEYBINDS_CONF="$HOME/.config/hypr/configs/Keybinds.conf"
 USER_KEYBINDS_CONF="$HOME/.config/hypr/UserConfigs/UserKeybinds.conf"
 LAPTOP_CONF="$HOME/.config/hypr/UserConfigs/Laptop.conf"
-rofi_theme="~/.config/rofi/config-keybinds.rasi"
+rofi_theme="$HOME/.config/rofi/config-keybinds.rasi"
+msg='☣️ NOTE ☣️: Clicking with Mouse or Pressing ENTER will have NO function'
 
 # Combine the contents of the keybinds files and filter for keybinds
 KEYBINDS=$(cat "$KEYBINDS_CONF" "$USER_KEYBINDS_CONF" | grep -E '^(bind|bindl|binde|bindm)')
@@ -25,11 +26,11 @@ if [[ -f "$LAPTOP_CONF" ]]; then
     KEYBINDS+=$'\n'"$LAPTOP_BINDS"
 fi
 
-# check for any keybinds to display
+# Check for any keybinds to display
 if [[ -z "$KEYBINDS" ]]; then
     echo "No keybinds found."
     exit 1
 fi
 
-# Use rofi to display the keybinds
-echo "$KEYBINDS" | rofi -dmenu -i -config $rofi_theme
+# Ensure the message is being passed correctly
+echo "$KEYBINDS" | rofi -dmenu -i -config "$rofi_theme" -mesg "$msg"

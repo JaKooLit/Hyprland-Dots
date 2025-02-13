@@ -282,12 +282,18 @@ entry {
 }
 
 
+/*****----- Message -----*****/
 error-message {
-    background-color: darkred/10%;
-    border-color: darkred;
+    background-color: darkred/20%;
     border-radius: 10px;
     border: 2px;
-    padding: 0.5em;
 
 }
+textbox {
+    padding: 5px;
+    background-color: darkred/10%;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+
 
