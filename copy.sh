@@ -264,9 +264,11 @@ fi
 
 printf "\n"
 
-# Action to do for better kitty appearance
+# Action to do for better appearance
 while true; do
   echo "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured for 1440p!"
+  echo "${WARN} If you dont select proper resolution, Hyprlock will look FUNKY!"
+  echo "${INFO} If you are not sure what is your resolution, choose 1 here!"
   echo "${MAGENTA}Select monitor resolution to properly configure appearance and fonts:"
   echo "$YELLOW  -- Enter 1. for monitor resolution 1200p or less (< 1200p)"
   echo "$YELLOW  -- Enter 2. for monitor resolution higher than 1440p (≥ 1440p)"
@@ -406,8 +408,8 @@ done
 printf "\n%.0s" {1..1}
 
 # Check if the user wants to disable Rainbow borders
-printf "${MAGENTA} By default, Rainbow Borders animation is enabled.\n"
-printf "${WARN} However, this uses a bit more CPU and Memory resources.\n"
+echo "${NOTE} ${SKY_BLUE}By default, Rainbow Borders animation is enabled"
+echo "${WARN} However, this uses a bit more CPU and Memory resources."
 
 read -p "${CAT} Do you want to disable Rainbow Borders animation? (y/N): " border_choice
 if [[ "$border_choice" =~ ^[Yy]$ ]]; then
