@@ -80,7 +80,7 @@ imagebox {
 listbox {
     spacing:                    4px;
     orientation:                vertical;
-    children:                   [ "listview" ];
+    children:                   [ "message", "listview" ];
 	padding:					10px;
     border-radius:              12px;
     border:                     1px;
@@ -256,7 +256,7 @@ textbox {
 }
 error-message {
     padding:                     12px;
-    border-radius:               20px;
+    border-radius:               12px;
     background-color:            @background-alt;
     text-color:                  @background;
 }

@@ -48,7 +48,7 @@ window {
     border:                         2px;
     border-color:                   @BDR;
     border-radius:                  10px;
-    width:                          25%;
+    width:                          30%;
     anchor:                         center;
     x-offset:                       0;
     y-offset:                       0;

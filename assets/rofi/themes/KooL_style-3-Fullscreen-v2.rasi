@@ -90,7 +90,7 @@ mainbox {
     border-radius:               0px 0px 0px 0px;
     border-color:                @selected;
     background-color:            transparent;
-    children:                    [ "inputbar", "listview" ];
+    children:                    [ "inputbar", "message", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -196,6 +196,10 @@ element-text {
 }
 
 /*****----- Message -----*****/
+message {
+    background-color:            transparent;
+    border:                      0px;
+}
 error-message {
     padding:                     0px;
     border-color:                @selected;
@@ -204,7 +208,8 @@ error-message {
 }
 textbox {
     padding:                     20px;
-    background-color:            black/10%;
+    border-radius:               15px;
+    background-color:            white / 10%;
     text-color:                  @foreground;
     vertical-align:              0.5;
     horizontal-align:            0.5;

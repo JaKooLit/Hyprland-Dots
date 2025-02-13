@@ -105,7 +105,7 @@ listview {
 
 mainbox {
     background-color:               @BG;
-    children:                       [ inputbar, listview ];
+    children:                       [ inputbar, message, listview ];
     spacing:                        15px;
     padding:                        15px;
 }
@@ -168,13 +168,18 @@ element selected.active {
 }
 
 /*****----- Message -----*****/
+message {
+    background-color:            	transparent;
+    border:                      	0px;
+}
 error-message {
     padding:                        20px;
 }
 textbox {
     padding:                        10px;
-	background-color:               @BG;
-    text-color:                     @FG;
+    border-radius:                  10px;
+	background-color:               @BDR;
+    text-color:                     @SEL;
     vertical-align:                 0.5;
     horizontal-align:               0.5;
 }

@@ -64,7 +64,7 @@ mainbox {
     border-radius:               0px 0px 0px 0px;
     border-color:                @selected;
     background-color:            transparent;
-    children:                    [ "inputbar", "listview" ];
+    children:                    [ "inputbar", "message", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -177,18 +177,22 @@ element-text {
 }
 
 /*****----- Message -----*****/
+message {
+    background-color:            transparent;
+    border:                      0px;
+}
 error-message {
     padding:                     20px;
     border:                      2px solid;
     border-radius:               20px;
-    border-color:                @selected;
+    border-color:                @active;
     background-color:            @background;
     text-color:                  @foreground;
 }
 textbox {
 	padding:					 10px;
     border-radius:               20px;
-    background-color:            @color11;
+    background-color:            @selected;
     text-color:                  @foreground;
     vertical-align:              0.5;
     horizontal-align:            0.5;

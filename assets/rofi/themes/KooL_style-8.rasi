@@ -53,7 +53,7 @@ mainbox {
     spacing:                     0em;
     padding:                     0em;
     orientation:                 vertical;
-    children:                    [ "inputbar" , "mode-switcher", "listbox" ];
+    children:                    [ "inputbar" , "mode-switcher", "message", "listbox" ];
     background-color:            transparent;
 }
 
@@ -105,7 +105,7 @@ listview {
     spacing:                     0.5em;
     enabled:                     true;
     columns:                     2;
-    lines:                       3;
+    lines:                       4;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   true;
@@ -121,10 +121,10 @@ listview {
 /* ---- Mode Switcher ---- */
 mode-switcher {
     orientation:                 horizontal;
-    width:                       1em;
+    width:                       2em;
     enabled:                     true;
     padding:                     1em;
-    spacing:                     0em;
+    spacing:                     1em;
     background-color:            transparent;
 }
 
@@ -227,16 +227,17 @@ message {
     border:                      0px;
 }
 textbox {
+	margin:						 12px;
     padding:                     12px;
-    border-radius:               0px;
-    background-color:            @color11;
+    border-radius:               @border-radius;
+    background-color:            @color12;
     text-color:                  @foreground;
     vertical-align:              0.5;
     horizontal-align:            0.5;
 }
 error-message {
-    padding:                     12px;
-    border-radius:               0px;
+    padding:                     0px;
+    border-radius:               @border-radius;
     background-color:            @background;
     text-color:                  @foreground;
 }

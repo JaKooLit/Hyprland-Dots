@@ -52,7 +52,7 @@ mainbox {
     padding:                     40px;
     border-radius:               12px;
     background-color:            white/90%;
-    children:                    [ "inputbar", "mode-switcher", "listview" ];
+    children:                    [ "inputbar", "mode-switcher", "message", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -152,23 +152,27 @@ button {
     padding:                     6px;
     border:                      0px solid;
     border-radius:               100%;
-    background-color:          #719DF9;
+    background-color:            #719DF9;
     text-color:                  inherit;
     cursor:                      pointer;
 }
 button selected {
-    background-color:          #F37277;
+    background-color:            #F37277;
     text-color:                  inherit;
 }
 
 /*****----- Message -----*****/
+message {
+    background-color:            transparent;
+    border:                      0px;
+}
 error-message {
     padding:                     20px;
 }
 textbox {
     padding:                     10px;
-    background-color:            gray/25%;
-    text-color:                  black;
+    background-color:            #719DF9;
+    text-color:                  inherit;
     vertical-align:              0.5;
     horizontal-align:            0.5;
 }
