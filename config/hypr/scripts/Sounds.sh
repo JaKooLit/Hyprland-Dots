@@ -58,13 +58,13 @@ iTheme=$(cat "$sDIR/index.theme" | grep -i "inherits" | cut -d "=" -f 2)
 iDIR="$sDIR/../$iTheme"
 
 # Find the sound file and play it.
-sound_file=$(find $sDIR/stereo -name "$soundoption" -print -quit)
+sound_file=$(find -L $sDIR/stereo -name "$soundoption" -print -quit)
 if ! test -f "$sound_file"; then
-    sound_file=$(find $iDIR/stereo -name "$soundoption" -print -quit)
+    sound_file=$(find -L $iDIR/stereo -name "$soundoption" -print -quit)
     if ! test -f "$sound_file"; then
-        sound_file=$(find $userDIR/$defaultTheme/stereo -name "$soundoption" -print -quit)
+        sound_file=$(find -L $userDIR/$defaultTheme/stereo -name "$soundoption" -print -quit)
         if ! test -f "$sound_file"; then
-            sound_file=$(find $systemDIR/$defaultTheme/stereo -name "$soundoption" -print -quit)
+            sound_file=$(find -L $systemDIR/$defaultTheme/stereo -name "$soundoption" -print -quit)
             if ! test -f "$sound_file"; then
                 echo "Error: Sound file not found."
                 exit 1

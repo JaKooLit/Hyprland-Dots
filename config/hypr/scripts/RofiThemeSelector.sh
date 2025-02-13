@@ -16,7 +16,7 @@ menu() {
     options=()
     while IFS= read -r file; do
         options+=("$(basename "$file")")
-    done < <(find "$rofi_theme_dir" -maxdepth 1 -type f -exec basename {} \; | sort)
+    done < <(find -L "$rofi_theme_dir" -maxdepth 1 -type f -exec basename {} \; | sort)
 
     printf '%s\n' "${options[@]}"
 }

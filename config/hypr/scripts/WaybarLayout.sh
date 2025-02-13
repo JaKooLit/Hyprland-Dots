@@ -2,6 +2,7 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Script for waybar layout or configs
 
+set -x
 IFS=$'\n\t'
 
 # Define directories
@@ -15,7 +16,7 @@ menu() {
     options=()
     while IFS= read -r file; do
         options+=("$(basename "$file")")
-    done < <(find "$waybar_layouts" -maxdepth 1 -type f -exec basename {} \; | sort)
+    done < <(find -L "$waybar_layouts" -maxdepth 1 -type f -exec basename {} \; | sort)
 
     printf '%s\n' "${options[@]}"
 }

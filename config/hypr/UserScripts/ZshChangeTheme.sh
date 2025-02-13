@@ -12,7 +12,7 @@ file_extension=".zsh-theme"
 iDIR="$HOME/.config/swaync/images"
 rofi_theme="~/.config/rofi/config-zsh-theme.rasi"
 
-themes_array=($(find "$themes_dir" -type f -name "*$file_extension" -exec basename {} \; | sed -e "s/$file_extension//"))
+themes_array=($(find -L "$themes_dir" -type f -name "*$file_extension" -exec basename {} \; | sed -e "s/$file_extension//"))
 
 # Add "Random" option to the beginning of the array
 themes_array=("Random" "${themes_array[@]}")
