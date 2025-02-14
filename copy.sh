@@ -403,8 +403,22 @@ while true; do
         echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
     fi
 done
+printf "\n%.0s" {1..1}
 
-
+# Ask whether to have update notification
+while true; do
+    read -p "$CAT Do you want to ${YELLOW}enable${RESE} ${SKY_BLUE}KooL Hyprland Dots available update notification? (y/n)${RESET}: " update
+    # Convert the answer to lowercase for comparison
+    answer=$(echo "$update" | tr '[:upper:]' '[:lower:]')
+    if [[ "$answer" == "y" ]]; then
+        break
+    elif [[ "$answer" == "n" ]]; then
+        sed -i 's|^exec-once = $HOME/.config/hypr/KooLsDotsUpdate.sh|#exec-once = $HOME/.config/hypr/KooLsDotsUpdate.sh|' config/hypr/hyprland.conf
+        echo "Update notification disabled"
+    else
+        echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
+    fi
+done
 printf "\n%.0s" {1..1}
 
 # Check if the user wants to disable Rainbow borders
@@ -422,7 +436,7 @@ if [[ "$border_choice" =~ ^[Yy]$ ]]; then
 else
     echo "${NOTE} No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$LOG"
 fi
-printf "\n"
+printf "\n%.0s" {1..1}
 
 set -e
 
@@ -498,7 +512,6 @@ for DIR2 in $DIRS; do
     fi
   fi
 done
-
 printf "\n%.0s" {1..1}
 
 printf "${INFO} - Copying dotfiles ${SKY_BLUE}second${RESET} part\n"
@@ -553,7 +566,7 @@ for DIR_NAME in $DIR; do
   fi
 done
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
@@ -604,7 +617,7 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
   done
 fi
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # Restoring previous UserScripts
 DIRSH="hypr"
@@ -692,7 +705,7 @@ rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
        "$HOME/.config/waybar/configs/[TOP] Default$config_remove (old v3)" \
        "$HOME/.config/waybar/configs/[TOP] Default$config_remove (old v4)" 2>&1 | tee -a "$LOG" || true
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # for SDDM (sequoia_2)
 sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
@@ -817,15 +830,15 @@ cleanup_backups
 # symlinks for waybar style
 ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
 printf "\n%.0s" {1..2}
 printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!! "
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 printf "${INFO} However, it is ${MAGENTA}HIGHLY SUGGESTED${RESET} to logout and re-login or better reboot to avoid any issues"
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Configuration${RESET}... ${YELLOW}ENJOY!!!${RESET}"
 printf "\n%.0s" {1..3}

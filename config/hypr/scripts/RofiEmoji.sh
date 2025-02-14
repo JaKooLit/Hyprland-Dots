@@ -1,6 +1,5 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Rofi Emoticons. Not my own. Cant remember the source
 
 # Variables
 rofi_theme="~/.config/rofi/config-emoji.rasi"
