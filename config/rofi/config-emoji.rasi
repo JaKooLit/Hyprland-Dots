@@ -18,9 +18,10 @@ entry {
 
 /* ---- Listview ---- */
 listview {
-  columns: 1;
+  columns: 2;
   lines: 8;
   fixed-height: false;
+  scrollbar: true;
 }
 
 /* ---- Elements ---- */

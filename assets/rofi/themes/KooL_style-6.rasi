@@ -121,6 +121,15 @@ listview {
     border:                      0px;
 }
 
+/* ---- Scrollbar ---- */
+scrollbar {
+  border:						0px;
+  border-radius:				10px;
+  background-color:				transparent;
+  handle-color: 				@active;
+  handle-width: 				5px ;
+  padding:      				0;
+}
 /* ---- Dummy ---- */
 dummy {
     expand:                      true;
@@ -142,7 +151,7 @@ button {
     cursor:                      pointer;
 }
 button selected {
-    background-color:            @color11;
+    background-color:            @active;
     text-color:                  @text-selected;
 }
 

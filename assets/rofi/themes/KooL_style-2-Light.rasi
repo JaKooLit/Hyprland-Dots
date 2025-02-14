@@ -104,6 +104,16 @@ listview {
     cursor:                      "default";
 }
 
+/* ---- Scrollbar ---- */
+scrollbar {
+  border:						0px;
+  border-radius:				10px;
+  background-color:				transparent;
+  handle-color: 				gray/50%;
+  handle-width: 				5px ;
+  padding:      				0;
+}
+
 /*****----- Elements -----*****/
 element {
     enabled:                     true;

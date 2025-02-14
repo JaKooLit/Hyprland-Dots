@@ -20,6 +20,7 @@ listview {
     columns: 2;
     lines: 8;
     fixed-height: false;
+    scrollbar: true;
 }
 
 /* ---- Entry input ---- */
@@ -41,3 +42,4 @@ element-text {
     horizontal-align: 0.0;
     margin: 5px 30px 5px 30px;
 }
+

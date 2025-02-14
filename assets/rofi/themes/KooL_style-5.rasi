@@ -144,7 +144,7 @@ button {
 }
 
 button selected {
-    background-color:          @color12;
+    background-color:          @selected;
     text-color:                @foreground;
     border:                    1px;
     border-color:              transparent;
@@ -168,6 +168,16 @@ listview {
 	background-color:           @background;
 	border-radius:   	        12px;
 	border:						0px;
+}
+
+/* ---- Scrollbar ---- */
+scrollbar {
+  border:						0px;
+  border-radius:				10px;
+  background-color:				transparent;
+  handle-color: 				@active;
+  handle-width: 				5px ;
+  padding:      				0;
 }
 
 /* ---- Element ---- */
@@ -197,7 +207,7 @@ element normal.active {
 }
 
 element selected.normal {
-    background-color:           @color11;
+    background-color:           @active;
     text-color:                 inherit;
 }
 

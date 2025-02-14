@@ -103,6 +103,16 @@ listview {
     layout:                         vertical;
 }
 
+/* ---- Scrollbar ---- */
+scrollbar {
+  border:							0px;
+  border-radius:					10px;
+  background-color:					transparent;
+  handle-color: 					@BDR;
+  handle-width: 					5px ;
+  padding:      					0;
+}
+
 mainbox {
     background-color:               @BG;
     children:                       [ inputbar, message, listview ];

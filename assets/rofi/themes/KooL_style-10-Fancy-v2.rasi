@@ -1,3 +1,7 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* KooL Hyprland Rofi Style 10 - Fancy v2 */
+/* Credit to DaveDavenport & Rasmus Steinke */
+
 /**
  * Edited by: Dave Davenport
  * User: Rasi
@@ -63,10 +67,14 @@ listview {
     color             : #000000;
     spacing           : 0.3em;
 }
+/* ---- Scrollbar ---- */
 scrollbar {
-    color: @black;
-    background-color: @blue;
-    padding: 1px;
+  border:			1px;
+  border-radius:	10px;
+  background-color:	@blue;
+  handle-color: 	@orange;
+  handle-width: 	5px ;
+  padding:      	0;
 }
 element {
     border: 0px;

@@ -128,6 +128,15 @@ element-text {
     cursor: inherit;
 }
 
+/* ---- Scrollbar ---- */
+scrollbar {
+    border-radius:				10px;
+    background-color: 			transparent;
+    handle-color: 				darkgrey;
+    handle-width: 				5px ;
+    padding:      				0;
+}
+
 /* ---- Message ---- */
 message {
     background-color:            transparent;

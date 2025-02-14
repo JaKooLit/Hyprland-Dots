@@ -220,11 +220,14 @@ element.alternate.active {
     background-color: @alternate-active-background;
     text-color:       @alternate-active-foreground;
 }
+/* ---- Scrollbar ---- */
 scrollbar {
-    width:        4px ;
-    border:       0;
-    handle-width: 8px ;
-    padding:      0;
+  border:			1px;
+  border-radius:	10px;
+  background-color:	@selected-normal-background;
+  handle-color: 	@separatorcolor;
+  handle-width: 	5px ;
+  padding:      	0;
 }
 sidebar {
     border:       2px 0px 0px ;
