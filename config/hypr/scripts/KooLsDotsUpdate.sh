@@ -1,6 +1,8 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # simple bash script to check if KooL Hyprland Dots update is available by comparing local version and github version
+# it utilizes curl and also has a default time of 60s if users dont do anything
+# will only ran once you logged into your system. It will not continously pinging the KooL github
 
 # Local Paths
 local_dir="$HOME/.config/hypr"
@@ -14,8 +16,9 @@ if [ -z "$local_version" ]; then
   exit 1
 fi
 
-# GitHub URL pointing to versioned files
-github_url="https://github.com/JaKooLit/Hyprland-Dots/tree/main/config/hypr/"
+# KooL's Dots GitHub URL 
+branch="main"
+github_url="https://github.com/JaKooLit/Hyprland-Dots/tree/$branch/config/hypr/"
 
 # Fetch the latest version from GitHub directly
 github_version=$(curl -s $github_url | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -V | tail -n 1 | sed 's/v//')
