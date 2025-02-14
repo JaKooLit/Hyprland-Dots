@@ -13,12 +13,12 @@ fi
 
 sed '1,/^# # DATA # #$/d' "$0" | \
 rofi -i -dmenu -mesg "$msg" -config $rofi_theme | \
-awk -F'\t' '{print $1}' | \
+awk '{print $1}' | \
+head -n 1 | \
 tr -d '\n' | \
 wl-copy
 
 exit
-
 
 # # DATA # #
 😀 grinning face
@@ -4740,7 +4740,7 @@ exit
 🈚 Japanese “free of charge” button
 🈲 Japanese “prohibited” button
 🉑 Japanese “acceptable” button
-🈸 Japanese “application” button
+🈸 Japanese “application” button 
 🈴 Japanese “passing grade” button
 🈳 Japanese “vacancy” button
 ㊗️ Japanese “congratulations” button
@@ -4790,14 +4790,10 @@ exit
 🏁 chequered flag
 🚩 triangular flag
 🎌 crossed flags
-🏴 black flag
+🏴 black flag 
 🏳️ white flag
 🏳 white flag
-🏳️‍🌈 rainbow flag
-🏳‍🌈 rainbow flag
-🏳️‍⚧️ transgender flag
-🏳‍⚧️ transgender flag
-🏳️‍⚧ transgender flag
+🏳️‍🌈 rainbow flag 
 🏳‍⚧ transgender flag
 🏴‍☠️ pirate flag
 🏴‍☠ pirate flag
@@ -4909,7 +4905,7 @@ exit
 🇭🇺 flag: Hungary
 🇮🇨 flag: Canary Islands
 🇮🇩 flag: Indonesia
-🇮🇪 flag: Ireland
+🇮🇪 flag: Ireland 
 🇮🇱 flag: Israel
 🇮🇲 flag: Isle of Man
 🇮🇳 flag: India
@@ -4917,7 +4913,7 @@ exit
 🇮🇶 flag: Iraq
 🇮🇷 flag: Iran
 🇮🇸 flag: Iceland
-🇮🇹 flag: Italy
+🇮🇹 flag: Italy  🇯
 🇯🇪 flag: Jersey
 🇯🇲 flag: Jamaica
 🇯🇴 flag: Jordan
@@ -4973,7 +4969,7 @@ exit
 🇳🇫 flag: Norfolk Island
 🇳🇬 flag: Nigeria
 🇳🇮 flag: Nicaragua
-🇳🇱 flag: Netherlands
+🇳🇱 flag: Netherlands 
 🇳🇴 flag: Norway
 🇳🇵 flag: Nepal
 🇳🇷 flag: Nauru
