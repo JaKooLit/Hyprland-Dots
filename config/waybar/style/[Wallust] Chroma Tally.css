@@ -4,66 +4,67 @@
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
 * {
-    font-family: "JetBrainsMono Nerd Font";
-    font-weight: bold;
-    min-height: 0;
-    font-size: 97%;
-    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+font-family: "JetBrainsMono Nerd Font";
+font-weight: bold;
+min-height: 0;
+/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+font-size: 97%;
+font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
 window#waybar {
-    background: @color0; /* Dark background */
+    background: rgba (0, 0, 0, 0.5);
     border-radius: 12px;
-    border-bottom: 2px;
+	border-bottom: 2px;
     border-style: solid;
-    border-color: @color7; /* Light border */
+	border-color: @color12; 
 }
 
 #workspaces {
-    background: transparent;
-    padding: 2px;
-    border-radius: 15px;
-    border: 0px;
-    font-style: normal;
-    color: @color7; /* Light text */
+	background: transparent;
+	padding: 2px;
+	border-radius: 15px;
+	border: 0px;
+	font-style: normal;
+	color: #0F1419;
 }
 
 #taskbar button,
 #workspaces button {
-    padding: 0px 5px;
-    border-radius: 15px;
-    border: 0px;
-    color: @color7; /* Light text */
-    background: linear-gradient(45deg, @color5, @color6, @color7); /* Lighter gradient */
-    opacity: 0.5;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+	padding: 0px 5px;
+	border-radius: 15px;
+	border: 0px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #95E6CB, #59C2FF, #D2A6FF);
+	opacity: 0.5;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #taskbar button.active,
 #workspaces button.active {
-    padding: 0px 5px;
-    border-radius: 15px;
-    border: 0px;
-    color: @color7; /* Light text */
-    background: linear-gradient(45deg, @color5, @color6); /* Lighter gradient */
-    opacity: 1.0;
-    min-width: 40px;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+	padding: 0px 5px;
+	border-radius: 15px;
+	border: 0px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #59C2FF, #D2A6FF);
+	opacity: 1.0;
+	min-width: 40px;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
-    border-radius: 15px;
-    color: @color7; /* Light text */
-    background: linear-gradient(45deg, @color6, @color7); /* Lighter gradient */
-    opacity: 0.8;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+	border-radius: 15px;
+	color: #0F1419;
+	background: linear-gradient(45deg, #59C2FF, #D2A6FF);
+	opacity: 0.8;
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+
 }
 
 tooltip {
-    background: @color1; /* Slightly darker tooltip background */
-    opacity: 0.8;
-    border-radius: 6px;
-    color: @color7; /* Light text */
+	background: #1e1e2e;
+	opacity: 0.8;
+	border-radius: 6px;
 }
 
 #backlight,
@@ -119,98 +120,102 @@ tooltip {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 6px;
-    padding-left: 6px;
-    color: @color6; /* Lighter - changed from color5 */
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 6px;
+	padding-left: 6px;
 }
+ 
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
 
+ 
 #clock {
-    color: @color6; /* Lighter */
+ color:#a3be8c;
 }
 
 #backlight {
-    color: @color5; /* Lighter */
+    color: #ebcb8b;
 }
 
 #battery {
-    color: @color6; /* Lighter */
+    color: #d8dee9;
 }
 
 #battery.charging {
-    color: @color7; /* Lightest */
+    color: #81a1c1;
 }
 
 @keyframes blink {
     to {
-        color: @color4; /* Slightly lighter blink color */
-        background-color: @color7; /* Lightest */
+        color: #4c566a;
+        background-color: #eceff4;
     }
 }
 
 #battery.critical:not(.charging) {
-    background: @color5; /* Lighter background */
-    color: @color7; /* Lightest */
-    animation-name: blink;
-    animation-duration: 3.0s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    background: #bf616a;
+    color: #eceff4;
+	animation-name: blink;
+	animation-duration: 3.0s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 #cpu {
-    color: @color6; /* Lighter */
+    color: #a3be8c;
 }
 
 #disk {
-    color: @color5; /* Lighter */
+	color: #94e2d5;
 }
 
 #custom-keyboard,
 #memory {
-    color: @color6; /* Lighter */
+    color: #d3869b;
 }
 
 #network.disabled {
-    color: @color5; /* Lighter */
+    color:#bf616a;
 }
 
 #network{
-    color: @color6; /* Lighter */
+    color:#a3be8c;
 }
 
 #network.disconnected {
-    color: @color5; /* Lighter */
+    color: #bf616a;
 }
 
 #pulseaudio {
-    color: @color7; /* Lightest */
+    color: #04a5e5;
 }
 
 #pulseaudio.muted {
-    color: @color5; /* Lighter */
+    color: #9ca0b0;
 }
 
 #custom-light_dark,
 #temperature {
-    color: @color6; /* Lighter */
+    color: #7287fd;
 }
 
 #temperature.critical {
-    color: @color5; /* Lighter */
+    color: #bf616a;
 }
 
 #keyboard-state,
 #custom-hypridle,
 #idle_inhibitor {
-    color: @color5; /* Lighter */
+   color: #ebcb8b;
 }
 
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
-    color: @color4; /* Slightly lighter */
+	color: #39FF14;
 }
 
 #tray {
@@ -218,12 +223,11 @@ tooltip {
 
 #custom-swaync,
 #custom-menu {
-    color: @color7; /* Lightest */
-    padding-left: 8px;
+	color: yellow;
+	padding-left: 8px;
 }
-
 #custom-power{
-    color: @color6; /* Lighter */
+    color: #eba0ac; 
 }
 
 #window{
@@ -232,38 +236,36 @@ tooltip {
 
 #custom-lock,    
 #bluetooth{
-    color: @color5; /* Lighter */
+	color:#d08770;
 }
 
 #custom-cava_mviz{
-    color: @color7; /* Lightest */
+	color: @color11;
 } 
- 
+  
 #custom-weather{
-    color: @color5; /* Lighter */
+	color:#d08770;
 }
 
 #backlight-slider slider,
 #pulseaudio-slider slider {
-    min-width: 0px;
-    min-height: 0px;
-    opacity: 0;
-    background-image: none;
-    border: none;
-    box-shadow: none;
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
 }
 
 #backlight-slider trough,
 #pulseaudio-slider trough {
-    min-width: 80px;
-    min-height: 5px;
-    border-radius: 5px;
-    background-color: @color2; /* Slightly darker trough */
+	min-width: 80px;
+	min-height: 5px;
+	border-radius: 5px;
 }
 
 #backlight-slider highlight,
 #pulseaudio-slider highlight {
-    min-height: 10px;
-    border-radius: 5px;
-    background-color: @color6; /* Lighter highlight */
+	min-height: 10px;
+	border-radius: 5px;
 }
