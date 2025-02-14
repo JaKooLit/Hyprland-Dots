@@ -29,7 +29,7 @@
 	"hyprland/workspaces#cam",
 	"custom/separator#line",
 	"mpris",
-	"custom/swaync",
+	"group/notify",
 	"tray", 
 	"wlr/taskbar"],
 

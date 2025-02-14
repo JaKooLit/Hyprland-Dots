@@ -405,22 +405,6 @@ while true; do
 done
 printf "\n%.0s" {1..1}
 
-# Ask whether to have update notification
-while true; do
-    read -p "$CAT Do you want to ${YELLOW}enable${RESE} ${SKY_BLUE}KooL Hyprland Dots available update notification? (y/n)${RESET}: " update
-    # Convert the answer to lowercase for comparison
-    answer=$(echo "$update" | tr '[:upper:]' '[:lower:]')
-    if [[ "$answer" == "y" ]]; then
-        break
-    elif [[ "$answer" == "n" ]]; then
-        sed -i 's|^exec-once = $HOME/.config/hypr/KooLsDotsUpdate.sh|#exec-once = $HOME/.config/hypr/KooLsDotsUpdate.sh|' config/hypr/hyprland.conf
-        echo "Update notification disabled"
-    else
-        echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
-    fi
-done
-printf "\n%.0s" {1..1}
-
 # Check if the user wants to disable Rainbow borders
 echo "${NOTE} ${SKY_BLUE}By default, Rainbow Borders animation is enabled"
 echo "${WARN} However, this uses a bit more CPU and Memory resources."

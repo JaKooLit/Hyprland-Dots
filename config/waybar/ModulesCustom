@@ -62,6 +62,13 @@
 	"tooltip-format": "Left Click: Quick Tips\nRight Click: Keybinds",
 },
 
+"custom/dot_update": {
+	"format": " 󰁈 ",
+	"on-click": "$HOME/.config/hypr/scripts/KooLsDotsUpdate.sh",
+	"tooltip": true,
+	"tooltip-format": "Check KooL Dots update\nIf available",
+},
+
 // Hypridle inhibitor
 "custom/hypridle": {
 	"format": "󱫗 ",

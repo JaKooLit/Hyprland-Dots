@@ -30,7 +30,7 @@
 	"custom/separator#blank",
 	"clock",
 	"custom/separator#blank",
-	"custom/swaync"
+	"group/notify"
 ],
 		
 "modules-right": [

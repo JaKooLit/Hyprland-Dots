@@ -36,7 +36,7 @@
 	"custom/separator#dot-line",
 	"hyprland/workspaces#rw",
 	"custom/separator#dot-line",
-	"custom/swaync",	
+	"group/notify",	
 	],
 
 "modules-right": [

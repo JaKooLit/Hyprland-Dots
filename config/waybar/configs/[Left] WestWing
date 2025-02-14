@@ -33,7 +33,7 @@
 "modules-right": [
 	"mpris",
 	"tray",
-	"custom/swaync",
+	"group/notify",
 	"backlight#vertical",
 	"pulseaudio#microphone_vertical",
 	"pulseaudio#vertical",
