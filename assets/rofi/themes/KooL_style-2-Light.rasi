@@ -11,14 +11,18 @@ configuration {
     display-run:                "RUN";
     display-filebrowser:        "FILES";
     display-window:             "WINDOW";
-	drun-display-format:        "{name}\n[<span weight='light' size='small'><i>({generic})</i></span>]";
-	window-format:              "Class : {c}\nWorkspace : {w}";
+    drun-display-format:        "{name}";
+    window-format:              "{w} · {c} · {t}";
     dpi:						1;
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
 }
 
+/*****----- Global Properties -----*****/
+* {
+
+}
 /*****-- Elements Font Size -----*****/
 element-text {
   font: "JetBrainsMono Nerd Font SemiBold 12";

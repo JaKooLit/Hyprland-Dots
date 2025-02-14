@@ -6,14 +6,14 @@
 
 /* ---- Configuration ---- */
 configuration {
-  dpi:						1;
+  dpi:                        1;
   show-icons:                 true;
   hover-select:               true;
   me-select-entry:            "MouseSecondary";
   me-accept-entry:            "MousePrimary";
 }
-/*****----- Global Properties -----*****/
 
+/*****----- Global Properties -----*****/
 * {
   bg0    : #ffffff80;
   bg1    : #f9f9f9bf;
@@ -81,7 +81,6 @@ entry {
   placeholder-color : @fg1;
 }
 
-
 listview {
   columns       : 2;
   spacing       : 8px;
@@ -133,9 +132,9 @@ error-message {
 }
 
 textbox {
-  padding			: 10px;
-  background-color	: @bg0;
-  text-color		: @fg0;
-  vertical-align	: 0.5;
-  horizontal-align	: 0.5;
+  padding            : 10px;
+  background-color   : @bg0;
+  text-color         : @fg0;
+  vertical-align     : 0.5; 
+  horizontal-align   : 0.5;
 }
