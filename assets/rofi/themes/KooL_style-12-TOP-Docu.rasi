@@ -119,6 +119,7 @@ element selected {
 
 
 element-icon {
+	size:						5%;
     cursor: 					inherit;
 }
 
