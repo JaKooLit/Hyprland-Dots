@@ -13,14 +13,14 @@ fi
 # Define the config files
 KEYBINDS_CONF="$HOME/.config/hypr/configs/Keybinds.conf"
 USER_KEYBINDS_CONF="$HOME/.config/hypr/UserConfigs/UserKeybinds.conf"
-LAPTOP_CONF="$HOME/.config/hypr/UserConfigs/Laptop.conf"
+LAPTOP_CONF="$HOME/.config/hypr/UserConfigs/Laptops.conf"
 
 # Combine the contents of the keybinds files and filter for keybinds
-KEYBINDS=$(cat "$KEYBINDS_CONF" "$USER_KEYBINDS_CONF" | grep -E '^(bind|bindl|binde|bindm)')
+KEYBINDS=$(cat "$KEYBINDS_CONF" "$USER_KEYBINDS_CONF" | grep -E '^bind')
 
 # Check if Laptop.conf exists and add its keybinds if present
 if [[ -f "$LAPTOP_CONF" ]]; then
-    LAPTOP_BINDS=$(grep -E '^(bind|bindl|binde|bindm)' "$LAPTOP_CONF")
+    LAPTOP_BINDS=$(grep -E '^bind' "$LAPTOP_CONF")
     KEYBINDS+=$'\n'"$LAPTOP_BINDS"
 fi
 
