@@ -28,20 +28,20 @@ fi
 
 # Comparing local and github versions
 if [ "$(echo -e "$github_version\n$local_version" | sort -V | head -n 1)" = "$github_version" ]; then
-   notify-send -i $iDIR "KooL Hyprland" "No update available"
+   notify-send -i $iDIR "KooL Hyprland:" "No update available"
   exit 0
 else
   # update available
   notify_cmd_base="notify-send -t 10000 -A action1=Update -A action2=NO -h string:x-canonical-private-synchronous:shot-notify"
   notify_cmd_shot="${notify_cmd_base} -i $iDIR"
 
-  response=$($notify_cmd_shot "KooL Hyprland" "Update available! Update now?")
+  response=$($notify_cmd_shot "KooL Hyprland:" "Update available! Update now?")
 
   case "$response" in
     "action1")  
       if [ -d $KooL_Dots_DIR ]; then
       	if ! command -v kitty &> /dev/null; then
-  			notify-send -i $iDIR "Need Kitty" "Kitty terminal not found. Please install Kitty terminal."
+  			notify-send -i $iDIR "Need Kitty:" "Kitty terminal not found. Please install Kitty terminal."
   			exit 1
 		fi
         kitty -e bash -c "
@@ -52,7 +52,7 @@ else
         "
       else
          if ! command -v kitty &> /dev/null; then
-  		  	notify-send -i $iDIR "Need Kitty" "Kitty terminal not found. Please install Kitty terminal."
+  		  	notify-send -i $iDIR "Need Kitty:" "Kitty terminal not found. Please install Kitty terminal."
   			exit 1
 		fi
         kitty -e bash -c "

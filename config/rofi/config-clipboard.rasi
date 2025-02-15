@@ -5,7 +5,7 @@
 
 /* ---- Window ---- */
 window {
-  width: 45%;
+  width: 50%;
 }
 
 /* ---- Mainbox ---- */
@@ -16,7 +16,7 @@ mainbox {
 
 /* ---- Entry ---- */
 entry {
-  width: 42%;
+  width: 47%;
   placeholder: " 📋 Search  Clipboard ";
 }
 
