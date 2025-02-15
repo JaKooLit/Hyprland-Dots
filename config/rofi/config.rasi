@@ -11,7 +11,7 @@
 
 * TIPS 
 * If you have edited a config, rename it with a unique name. During update, the contents of 
-* ~/.config/rofi/themes/ will be replaced. 
+* ~/.config/rofi/themes/ will be replaced. */
 
 /* ---- Configuration Fonts ---- */
 configuration {
