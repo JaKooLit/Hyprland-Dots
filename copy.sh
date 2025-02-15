@@ -302,10 +302,10 @@ if [ "$resolution" == "< 1440p" ]; then
   mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
 
   # rofi fonts reduction
-  themes_dir="assets/rofi/themes"
+  themes_dir="config/rofi/themes"
   config_file="config/rofi/config.rasi"
 
-  # Change rofi font size in ~/.local/share/rofi/themes/
+  # Change rofi font size
   find "$themes_dir" -type f | while read -r file; do
       if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 12";\n}' "$file"; then
           sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
@@ -638,21 +638,22 @@ fi
 
 printf "\n%.0s" {1..1}
 
-## Rofi Additional themes
-source_DIR="assets/rofi/themes"
+# Define the target directory for rofi themes
 rofi_DIR="$HOME/.local/share/rofi/themes"
 
-echo -e "${NOTE} copying additional rofi themes into ${YELLOW}$rofi_DIR${RESET}... "
-
 if [ ! -d "$rofi_DIR" ]; then
-  echo "${INFO}Directory $rofi_DIR does not exist. Creating it now..." | tee -a "$LOG"
   mkdir -p "$rofi_DIR"
 fi
-
-# Copy the rofi themes from assets
-cp -r "$source_DIR"/* "$rofi_DIR"
-
-echo "${OK}rofi themes from ${YELLOW}$source_DIR${RESET} have been copied to ${MAGENTA}$rofi_DIR${RESET}" | tee -a "$LOG"
+if [ -d "$HOME/.config/rofi/themes" ]; then
+  if [ -z "$(ls -A $HOME/.config/rofi/themes)" ]; then
+    echo '/* Default Rofi theme */' > "$HOME/.config/rofi/themes/default.rasi"
+  fi
+  ln -snf ~/.config/rofi/themes/* ~/.local/share/rofi/themes/
+  # Delete the dummy file if it was created
+  if [ -f "$HOME/.config/rofi/themes/default.rasi" ]; then
+    rm "$HOME/.config/rofi/themes/default.rasi"
+  fi
+fi
 
 printf "\n%.0s" {1..1}
 
