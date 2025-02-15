@@ -1,0 +1,272 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Wallust - Chroma Tally v2 */
+
+/* edited by: https://github.com/prateekshukla1108 */ 
+
+@import '../../.config/waybar/wallust/colors-waybar.css';
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    min-height: 0;
+    font-size: 97%;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+}
+
+window#waybar {
+    background: @color0; /* Dark background */
+    border-radius: 12px;
+    border-bottom: 2px;
+    border-style: solid;
+    border-color: @color7; /* Light border */
+}
+
+#workspaces {
+    background: transparent;
+    padding: 2px;
+    border-radius: 15px;
+    border: 0px;
+    font-style: normal;
+    color: @color7; /* Light text */
+}
+
+#taskbar button,
+#workspaces button {
+    padding: 0px 5px;
+    border-radius: 15px;
+    border: 0px;
+    color: @color7; /* Light text */
+    background: linear-gradient(45deg, @color5, @color6, @color7); /* Lighter gradient */
+    opacity: 0.5;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button.active,
+#workspaces button.active {
+    padding: 0px 5px;
+    border-radius: 15px;
+    border: 0px;
+    color: @color7; /* Light text */
+    background: linear-gradient(45deg, @color5, @color6); /* Lighter gradient */
+    opacity: 1.0;
+    min-width: 40px;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button:hover {
+    border-radius: 15px;
+    color: @color7; /* Light text */
+    background: linear-gradient(45deg, @color6, @color7); /* Lighter gradient */
+    opacity: 0.8;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+tooltip {
+    background: @color1; /* Slightly darker tooltip background */
+    opacity: 0.8;
+    border-radius: 6px;
+    color: @color7; /* Light text */
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#power-profiles-daemon,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-browser,
+#custom-cava_mviz,
+#custom-cycle_wall,
+#custom-dot_update,
+#custom-file_manager,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-hint,
+#custom-hypridle,
+#custom-menu,
+#custom-playerctl,
+#custom-power_vertical,
+#custom-power,
+#custom-settings,
+#custom-spotify,
+#custom-swaync,
+#custom-tty,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 6px;
+    padding-left: 6px;
+    color: @color6; /* Lighter - changed from color5 */
+}
+
+#clock {
+    color: @color6; /* Lighter */
+}
+
+#backlight {
+    color: @color5; /* Lighter */
+}
+
+#battery {
+    color: @color6; /* Lighter */
+}
+
+#battery.charging {
+    color: @color7; /* Lightest */
+}
+
+@keyframes blink {
+    to {
+        color: @color4; /* Slightly lighter blink color */
+        background-color: @color7; /* Lightest */
+    }
+}
+
+#battery.critical:not(.charging) {
+    background: @color5; /* Lighter background */
+    color: @color7; /* Lightest */
+    animation-name: blink;
+    animation-duration: 3.0s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    color: @color6; /* Lighter */
+}
+
+#disk {
+    color: @color5; /* Lighter */
+}
+
+#custom-keyboard,
+#memory {
+    color: @color6; /* Lighter */
+}
+
+#network.disabled {
+    color: @color5; /* Lighter */
+}
+
+#network{
+    color: @color6; /* Lighter */
+}
+
+#network.disconnected {
+    color: @color5; /* Lighter */
+}
+
+#pulseaudio {
+    color: @color7; /* Lightest */
+}
+
+#pulseaudio.muted {
+    color: @color5; /* Lighter */
+}
+
+#custom-light_dark,
+#temperature {
+    color: @color6; /* Lighter */
+}
+
+#temperature.critical {
+    color: @color5; /* Lighter */
+}
+
+#keyboard-state,
+#custom-hypridle,
+#idle_inhibitor {
+    color: @color5; /* Lighter */
+}
+
+/*-----Indicators----*/
+#custom-hypridle.notactive,
+#idle_inhibitor.activated {
+    color: @color4; /* Slightly lighter */
+}
+
+#tray {
+}
+
+#custom-swaync,
+#custom-menu {
+    color: @color7; /* Lightest */
+    padding-left: 8px;
+}
+
+#custom-power{
+    color: @color6; /* Lighter */
+}
+
+#window{
+    border-style: hidden; 
+}
+
+#custom-lock,    
+#bluetooth{
+    color: @color5; /* Lighter */
+}
+
+#custom-cava_mviz{
+    color: @color7; /* Lightest */
+} 
+ 
+#custom-weather{
+    color: @color5; /* Lighter */
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+    min-width: 0px;
+    min-height: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+    min-width: 80px;
+    min-height: 5px;
+    border-radius: 5px;
+    background-color: @color2; /* Slightly darker trough */
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+    min-height: 10px;
+    border-radius: 5px;
+    background-color: @color6; /* Lighter highlight */
+}
