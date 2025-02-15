@@ -3,10 +3,9 @@
 
 @import "~/.config/rofi/config.rasi"  
 
-
 /* ---- Window ---- */
 window {
-    width: 45%;
+  width: 45%;
 }
 
 /* ---- Mainbox ---- */
@@ -17,10 +16,10 @@ mainbox {
 
 /* ---- Listview ---- */
 listview {
-    columns: 2;
-    lines: 8;
-    fixed-height: false;
-    scrollbar: true;
+  columns: 2;
+  lines: 8;
+  fixed-height: false;
+  scrollbar: true;
 }
 
 /* ---- Entry input ---- */
@@ -39,7 +38,7 @@ element-icon {
   	size: 0%;
 }
 element-text {
-    horizontal-align: 0.0;
-    margin: 5px 30px 5px 30px;
+  horizontal-align: 0.0;
+  margin: 5px 30px 5px 30px;
 }
 

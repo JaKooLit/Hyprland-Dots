@@ -21,6 +21,7 @@ listview {
   columns: 2;
   lines: 12;
   fixed-height: false;
+  scrollbar: true;
 }
 
 window {

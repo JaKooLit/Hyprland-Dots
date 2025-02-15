@@ -17,15 +17,15 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width: 45%;
+   width: 45%;
 }
 
 
 /* ---- Listview ---- */
 listview {
-    columns: 2;
-    lines: 6;
-    fixed-height: false;
+  columns: 2;
+  lines: 6;
+  fixed-height: false;
 }
 
 /* ---- Entry input ---- */
@@ -41,9 +41,9 @@ element {
 }
 
 element-icon {
-  	size: 0%;
+  size: 0%;
 }
 element-text {
-    horizontal-align:            0.0;
-    margin: 5px 30px 5px 30px;
+  horizontal-align: 0.0;
+  margin: 5px 30px 5px 30px;
 }

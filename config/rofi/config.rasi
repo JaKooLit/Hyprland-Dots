@@ -1,25 +1,24 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Ja KooLit - Default 
 
-* All main themes or configs are located in ~/.local/share/rofi/themes 
+* All main themes or configs are located in ~/.config/rofi/themes/
 * If you want to edit the config, that is where you should edit NOT here 
 
-* To load a new theme, manually edit the file path below or choose desired theme via rofi theme selector 
+* To load a new theme, manually edit the file path below or choose desired theme via rofi theme selector (choose via app menu)
 
 * Alternative way to Load (preferred) own cooked by Ja 
-* SUPER CTRL R - Choose style 
+* SUPER CTRL R - Choose style & SUPER CTRL SHIFT R 
 
 * TIPS 
 * If you have edited a config, rename it with a unique name. During update, the contents of 
-* ~/.local/share/rofi/themes will be replaced. However, it wont overwrite your own config if you
-* renamed with your own unique file name */
+* ~/.config/rofi/themes/ will be replaced. 
 
 /* ---- Configuration Fonts ---- */
 configuration {
   font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
-/* note: Element-text font and size, edit configs in ~/.local/share/rofi/themes */
+/* note: Element-text font and size, edit configs in ~/.config/rofi/themes/ */
 
 
-@theme "~/.local/share/rofi/themes/KooL_style-2-Dark.rasi"
+@theme "~/.config/rofi/themes/KooL_style-2-Dark.rasi"

@@ -3,8 +3,6 @@
 
 @import "~/.config/rofi/config.rasi" 
 
-
-
 /* ---- Configuration ---- */
 configuration {
   modi: "drun";
@@ -24,17 +22,18 @@ entry {
 
 /* ---- Listview ---- */
 listview {
-    columns: 2;
-    lines: 9;
-    fixed-height: false;
-    margin: 10px;
+  columns: 2;
+  lines: 9;
+  fixed-height: false;
+  margin: 10px;
+  scrollbar: true;
 }
 
 /* ---- Elements ---- */
 element-icon {
-  	size: 0%;
+  size: 0%;
 }
 element-text {
-    horizontal-align: 0.0;
-    margin: 5px 30px 5px 30px;
+  horizontal-align: 0.0;
+  margin: 5px 30px 5px 30px;
 }

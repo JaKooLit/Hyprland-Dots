@@ -15,9 +15,8 @@ window {
 }
 
 mainbox {
-    children: [ "inputbar" , "listview" ];
+  children: [ "inputbar" , "listview" ];
 }
-
 
 /* ---- Listbox ---- */
 listbox {

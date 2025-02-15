@@ -219,7 +219,7 @@ then
     # Send notification with the selected theme name
     selection="${theme_names[${SELECTED}]}"
     if [ -n "$NOTIFY_SEND" ]; then
-        notify-send -u low -i "$iDIR/ja.png"  "Rofi Theme" "applied: $selection"
+        notify-send -u low -i "$iDIR/ja.png"  "Rofi Theme applied:" "$selection"
     fi
 fi
 
