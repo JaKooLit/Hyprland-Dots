@@ -36,7 +36,7 @@ then
 fi
 
 TMP_CONFIG_FILE=$(${MKTEMP}).rasi
-rofi_theme_dir="${HOME}/.local/share/rofi/themes"
+#rofi_theme_dir="${HOME}/.local/share/rofi/themes"
 rofi_config_file="${XDG_CONFIG_HOME:-${HOME}/.config}/rofi/config.rasi"
 
 ##
@@ -50,32 +50,25 @@ declare -a theme_names
 # Function that tries to find all installed rofi themes.
 # This fills in #themes array and formats a displayable string #theme_names
 ##
-find_themes()
-{
-    DIRS="${HOME}/.local/share"
-    OLDIFS=${IFS}
-    IFS=:
-    # Add user dir.
-    DIRS+=":${XDG_CONFIG_HOME:-${HOME}/.config}"
-    for p in ${DIRS}; do
-        p=${p%/}
-        TD=${p}/rofi/themes
-        if [ -n "${p}" ] && [ -d "${TD}" ]
-        then
-            echo "Checking themes in: ${TD}"
-            for file in ${TD}/*.rasi
-            do
-                if [ -f "${file}" ]
-                then
-                    themes+=("${file}")
-                    FN=$(basename "${file}")
-                    NAME=${FN%.*}  # Extract the file name without extension
-                    theme_names+=("${NAME}")  # Only add the base file name
+# Find themes in defined directories
+find_themes() {
+    directories=("$HOME/.local/share/rofi/themes" "$HOME/.config/rofi/themes")
+    
+    for TD in "${directories[@]}"; do
+        if [ -d "$TD" ]; then
+            echo "Checking themes in: $TD"
+            for file in "$TD"/*.rasi; do
+                if [ -f "$file" ] && [ ! -L "$file" ]; then
+                    themes+=("$file")
+                    theme_names+=("$(basename "${file%.*}")")
+                else
+                    echo "Skipping symlink: $file"
                 fi
-           done
+            done
+        else
+            echo "Directory does not exist: $TD"
         fi
     done
-    IFS=${OLDIFS}
 }
 
 ##
@@ -83,16 +76,27 @@ find_themes()
 ##
 add_theme_to_config() {
     local theme_name="$1"
-    local theme_path="$rofi_theme_dir/$theme_name"
-    
-    # if config in $HOME to write as $HOME 
-    if [[ "$theme_path" == $HOME/* ]]; then
-        theme_path_with_tilde="~${theme_path#$HOME}"
+    local theme_path
+
+    # Determine the correct path for the theme
+    if [[ -f "$HOME/.local/share/rofi/themes/$theme_name.rasi" ]]; then
+        theme_path="$HOME/.local/share/rofi/themes/$theme_name.rasi"
+    elif [[ -f "$HOME/.config/rofi/themes/$theme_name.rasi" ]]; then
+        theme_path="$HOME/.config/rofi/themes/$theme_name.rasi"
     else
-        theme_path_with_tilde="$theme_path"
+        echo "Theme not found: $theme_name"
+        return 1
     fi
 
-    # If no @theme is in the file, add it
+    # Resolve symlinks if present
+    if [[ -L "$theme_path" ]]; then
+        theme_path=$(readlink -f "$theme_path")
+    fi
+
+    # Convert path to use ~ for home directory
+    theme_path_with_tilde="~${theme_path#$HOME}"
+
+    # Add or update @theme line in config
     if ! grep -q '^\s*@theme' "$rofi_config_file"; then
         echo -e "\n\n@theme \"$theme_path_with_tilde\"" >> "$rofi_config_file"
         echo "Added @theme \"$theme_path_with_tilde\" to $rofi_config_file"
@@ -102,13 +106,12 @@ add_theme_to_config() {
         echo "Updated @theme line to $theme_path_with_tilde"
     fi
 
-    # Ensure no more than max # of lines with //@theme lines
-    max_line="9"
+    # Limit the number of @theme lines to a maximum of 9
+    max_lines=9
     total_lines=$(grep -c '^\s*//@theme' "$rofi_config_file")
 
-    if [ "$total_lines" -gt "$max_line" ]; then
-        excess=$((total_lines - max_line))
-        # Remove the oldest or the very top //@theme lines
+    if [ "$total_lines" -gt "$max_lines" ]; then
+        excess=$((total_lines - max_lines))
         for i in $(seq 1 "$excess"); do
             $SED -i '0,/^\s*\/\/@theme/ { /^\s*\/\/@theme/ {d; q; }}' "$rofi_config_file"
         done
