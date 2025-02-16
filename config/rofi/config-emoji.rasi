@@ -9,6 +9,11 @@ mainbox {
     [ "inputbar", "message", "listview"];
 }
 
+/* ---- Window ---- */
+window {
+  width: 45%;
+}
+
 /* ---- Entry ---- */
 entry {
   width: 37%;

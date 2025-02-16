@@ -3,15 +3,20 @@
 
 @import "~/.config/rofi/config.rasi" 
 
+/* ---- Mainbox ---- */
+mainbox {
+  children:
+    [ "inputbar", "listview"];
+}
+
 /* ---- Configuration ---- */
 configuration {
   modi: "drun";
 }
 
-/* ---- Mainbox ---- */
-mainbox {
-  children:
-    [ "inputbar", "listview"];
+/* ---- Window ---- */
+window {
+  width: 45%;
 }
 
 /* ---- Entry ---- */ 

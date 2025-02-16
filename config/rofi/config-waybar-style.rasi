@@ -14,12 +14,16 @@ configuration {
   modi: "drun";
 }
 
+/* ---- Window ---- */
+window {
+  width: 45%;
+}
+
 /* ---- Entry ---- */ 
 entry {
   expand: true;
   placeholder: " 🖼️  Search / Choose Waybar Style";
 }
-
 
 /* ---- Listview ---- */
 listview {
