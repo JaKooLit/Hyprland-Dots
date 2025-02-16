@@ -37,18 +37,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 </div>
 
 #### 📹 A video walkthroughs
-<details>
-  <summary>YT Videos</summary>
-
-- [Walkthough](https://youtu.be/fO-RBHvVEcc)
-
-- [V1-Changes](https://youtu.be/upDl1ns05eg)
-
-- [v2-Changes](https://youtu.be/yaVurRoXc-s)
-
-#### 📽️ A video coverage by other users. Pls watch and subscribe to their channel
-- [`Link`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Videos_and_Reviews)
-
+- at the bottom
 
 #### 🎞️ AGS Overview DEMO
 - in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
@@ -181,6 +170,9 @@ chmod +x upgrade.sh
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/JaKooLit)
 
+
+####  📹 Youtube videos (Click to view and watch the playlist) 📹
+[![Youtube Playlist Thumbnail](https://raw.githubusercontent.com/JaKooLit/screenshots/main/Youtube.png)](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
 
                         
 ## 🫰	Thank you for the stars 🩷
