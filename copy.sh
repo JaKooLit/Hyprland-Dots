@@ -30,7 +30,28 @@ if [[ $EUID -eq 0 ]]; then
     printf "\n%.0s" {1..2} 
     exit 1
 fi
-  
+
+# Function to print colorful text
+print_color() {
+    printf "%b%s%b\n" "$1" "$2" "$CLEAR"
+}
+
+# Check if dpkg is installed (use to check if Debian or Ubuntu or based distros)
+if command -v dpkg &> /dev/null; then
+	printf "\n%.0s" {1..1}
+    print_color $WARNING "
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+            INCOMPATIBLE
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+
+    You are running Debian / Ubuntu. Kindly refer to Hyprland-Dots Readme
+    for instruction on how to update your Hyprland-Dots
+    "
+  printf "\n%.0s" {1..3}
+  exit 1
+fi
+
+
 printf "\n%.0s" {1..1}  
 echo -e "\e[35m
     ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
