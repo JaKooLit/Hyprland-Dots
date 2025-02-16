@@ -143,6 +143,7 @@ You need to set it Manually
 
 Setting a wrong Keyboard Layout will cause Hyprland to crash
 If you are not sure, just type ${YELLOW}us${RESET}
+${SKYBLUE}You can change later in ~/.config/hypr/UserConfigs/UserSettings.conf${RESET}
 
 ${MAGENTA} NOTE:${RESET}
 •  You can also set more than 2 keyboard layouts
@@ -190,6 +191,7 @@ You need to set it Manually
 
 Setting a wrong Keyboard Layout will cause Hyprland to crash
 If you are not sure, just type ${YELLOW}us${RESET}
+${SKYBLUE}You can change later in ~/.config/hypr/UserConfigs/UserSettings.conf${RESET}
 
 ${MAGENTA} NOTE:${RESET}
 •  You can also set more than 2 keyboard layouts
