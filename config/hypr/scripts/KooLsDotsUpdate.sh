@@ -48,8 +48,10 @@ else
           cd $KooL_Dots_DIR &&
           git stash &&
           git pull &&
-          ./copy.sh
+          ./copy.sh &&
+		  notify-send -u critical -i $iDIR 'Update Completed:' 'Kindly Log out and relogin to take effect'
         "
+	
       else
          if ! command -v kitty &> /dev/null; then
   		  	notify-send -i $iDIR "Need Kitty:" "Kitty terminal not found. Please install Kitty terminal."
@@ -59,7 +61,8 @@ else
           git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git $KooL_Dots_DIR &&
           cd $KooL_Dots_DIR &&
           chmod +x copy.sh &&
-          ./copy.sh
+          ./copy.sh &&
+		  notify-send -u critical -i $iDIR 'Update Completed:' 'Kindly Log out and relogin to take effect'
         "
       fi
       ;;
