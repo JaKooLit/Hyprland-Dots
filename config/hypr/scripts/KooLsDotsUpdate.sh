@@ -49,7 +49,7 @@ else
           git stash &&
           git pull &&
           ./copy.sh &&
-		  notify-send -u critical -i $iDIR 'Update Completed:' 'Kindly Log out and relogin to take effect'
+		  notify-send -u critical -i $iDIR 'Update Completed:' 'Kindly log out and relogin to take effect'
         "
 	
       else
@@ -62,7 +62,7 @@ else
           cd $KooL_Dots_DIR &&
           chmod +x copy.sh &&
           ./copy.sh &&
-		  notify-send -u critical -i $iDIR 'Update Completed:' 'Kindly Log out and relogin to take effect'
+		  notify-send -u critical -i $iDIR 'Update Completed:' 'Kindly log out and relogin to take effect'
         "
       fi
       ;;
