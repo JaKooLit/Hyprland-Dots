@@ -646,12 +646,12 @@ if [ ! -d "$rofi_DIR" ]; then
 fi
 if [ -d "$HOME/.config/rofi/themes" ]; then
   if [ -z "$(ls -A $HOME/.config/rofi/themes)" ]; then
-    echo '/* Default Rofi theme */' > "$HOME/.config/rofi/themes/default.rasi"
+    echo '/* Dummy Rofi theme */' > "$HOME/.config/rofi/themes/dummy.rasi"
   fi
   ln -snf ~/.config/rofi/themes/* ~/.local/share/rofi/themes/
   # Delete the dummy file if it was created
-  if [ -f "$HOME/.config/rofi/themes/default.rasi" ]; then
-    rm "$HOME/.config/rofi/themes/default.rasi"
+  if [ -f "$HOME/.config/rofi/themes/dummy.rasi" ]; then
+    rm "$HOME/.config/rofi/themes/dummy.rasi"
   fi
 fi
 
