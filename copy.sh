@@ -40,12 +40,14 @@ print_color() {
 if command -v dpkg &> /dev/null; then
 	printf "\n%.0s" {1..1}
     print_color $WARNING "
-    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-            INCOMPATIBLE
-    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+                 KOOL DOTS version INCOMPATIBLE
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    You are running Debian / Ubuntu. Kindly refer to Hyprland-Dots Readme
-    for instruction on how to update your Hyprland-Dots
+    Debian / Ubuntu detected. Refer to Hyprland-Dots README
+    For instruction on how to update your KooL Hyprland Dots
+
+    exiting ....
     "
   printf "\n%.0s" {1..3}
   exit 1
