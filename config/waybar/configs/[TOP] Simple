@@ -28,7 +28,7 @@
     
 "modules-center": [
 	"clock#2",
-	"custom/swaync",
+	"group/notify",
 	],
     
 "modules-right": [

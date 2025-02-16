@@ -8,6 +8,7 @@ wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 wallpaper_output="$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+rofi_theme="~/.config/rofi/config-wallpaper-effect.rasi"
 
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
@@ -45,9 +46,7 @@ declare -A effects=(
 # Function to apply no effects
 no-effects() {
     swww img -o "$focused_monitor" "$wallpaper_current" $SWWW_PARAMS &&
-    # Wait for swww command to complete
     wait $!
-    # Run other commands after swww
     wallust run "$wallpaper_current" -s &&
     wait $!
     # Refresh rofi, waybar, wallust palettes
@@ -67,7 +66,7 @@ main() {
         [[ "$effect" != "No Effects" ]] && options+=("$effect")
     done
 
-    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config ~/.config/rofi/config-wallpaper-effect.rasi)
+    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config $rofi_theme)
 
     # Process user choice
     if [[ -n "$choice" ]]; then
@@ -77,16 +76,14 @@ main() {
             # Apply selected effect
             notify-send -u normal -i "$iDIR/ja.png"  "Applying:" "$choice effects"
             eval "${effects[$choice]}"
-            # Wait for effects to be applied
+
             sleep 1
-            # Execute swww command after image conversion
             swww img -o "$focused_monitor" "$wallpaper_output" $SWWW_PARAMS &
-            # Wait for swww command to complete
+
             sleep 2
-            # Wait for other commands to finish
+  
             wallust run "$wallpaper_output" -s &
-            # Wait for other commands to finish
-            sleep 0.5
+            sleep 1
             # Refresh rofi, waybar, wallust palettes
             "${SCRIPTSDIR}/Refresh.sh"
             notify-send -u low -i "$iDIR/ja.png" "$choice" "effects applied"

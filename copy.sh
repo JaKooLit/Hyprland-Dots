@@ -31,14 +31,21 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
   
-printf "\n%.0s" {1..2}  
+printf "\n%.0s" {1..1}  
 echo -e "\e[35m
-  ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
-  ╠╩╗│ ││ │║     ║║│ │ │ └─┐ 2025
-  ╩ ╩└─┘└─┘╩═╝  ═╩╝└─┘ ┴ └─┘
+    ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
+    ╠╩╗│ ││ │║     ║║│ │ │ └─┐ 2025
+    ╩ ╩└─┘└─┘╩═╝  ═╩╝└─┘ ┴ └─┘
 \e[0m"
 printf "\n%.0s" {1..1}  
- 
+
+####### Announcement
+echo "${WARNING}      		A T T E N T I O N !${RESET}"
+echo "${SKY_BLUE}KooL Hyprland v2.3.11 have some Minor Keybinds changes!${RESET}"
+echo "${YELLOW}SUPER H for Keyhints and/or SUPER SHIFT K to search for Keybinds ${RESET}"
+echo "${MAGENTA}	   Once Logged in to Kool Hyprland! ${RESET}"
+printf "\n%.0s" {1..1}
+
 # Create Directory for Copy Logs
 if [ ! -d Copy-Logs ]; then
     mkdir Copy-Logs
@@ -99,6 +106,8 @@ if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
     sed -i 's/^#env = HYPRCURSOR_SIZE,24/env = HYPRCURSOR_SIZE,24/' "$HYPRCURSOR_ENV_FILE"
 fi
 
+printf "\n%.0s" {1..1} 
+
 # Function to detect keyboard layout using localectl or setxkbmap
 detect_layout() {
   if command -v localectl >/dev/null 2>&1; then
@@ -151,7 +160,7 @@ ${MAGENTA} NOTE:${RESET}
   done
 fi
 
-printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n\n"
+printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n"
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
@@ -198,8 +207,6 @@ ${MAGENTA} NOTE:${RESET}
         echo "${ERROR} Please enter either 'y' or 'n'." ;;
   esac
 done
-
-printf "\n%.0s" {1..1}
 
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
@@ -257,16 +264,19 @@ fi
 
 printf "\n"
 
-# Action to do for better rofi and kitty appearance
+# Action to do for better appearance
 while true; do
-  echo "$MAGENTA Select monitor resolution to properly configure appearance and fonts:"
-  echo "$YELLOW   -- Enter 1. for monitor res 1440p or less (< 1440p)"
-  echo "$YELLOW   -- Enter 2. for monitors res higher than 1440p (≥ 1440p)"
+  echo "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured for 1440p!"
+  echo "${WARN} If you dont select proper resolution, Hyprlock will look FUNKY!"
+  echo "${INFO} If you are not sure what is your resolution, choose 1 here!"
+  echo "${MAGENTA}Select monitor resolution to properly configure appearance and fonts:"
+  echo "$YELLOW  -- Enter 1. for monitor resolution 1200p or less (< 1200p)"
+  echo "$YELLOW  -- Enter 2. for monitor resolution higher than 1440p (≥ 1440p)"
   read -p "$CAT Enter the number of your choice (1 or 2): " res_choice
 
   case $res_choice in
     1)
-        resolution="< 1440p"
+        resolution="< 1200p"
         break
         ;;
     2)
@@ -284,22 +294,37 @@ echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 
 # Add your commands based on the resolution choice
 if [ "$resolution" == "< 1440p" ]; then
-  cp -r config/rofi/resolution/1080p/* config/rofi/
+  #cp -r config/rofi/resolution/1080p/* config/rofi/ 10-Feb-2025
   sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
 
   # hyprlock matters
   mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf &&
   mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
 
-elif [ "$resolution" == "≥ 1440p" ]; then
-  cp -r config/rofi/resolution/1440p/* config/rofi/
+  # rofi fonts reduction
+  themes_dir="config/rofi/themes"
+  config_file="config/rofi/config.rasi"
+
+  # Change rofi font size
+  find "$themes_dir" -type f | while read -r file; do
+      if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 12";\n}' "$file"; then
+          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
+      fi
+  done
+
+  # Change rofi font size in ~/.config/rofi/config.rasi
+  if [ -f "$config_file" ]; then
+      if grep -Pzoq 'configuration {\n  font: "JetBrainsMono Nerd Font SemiBold 13";\n}' "$config_file"; then
+          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 12"/' "$config_file"
+      fi
+  fi
 fi
 
-printf "\n"
+printf "\n%.0s" {1..1}
 
 # Ask whether to change to 12hr format
 while true; do
-    echo -e "$MAGENTA By default, KooL's Dots are configured in 24H clock format."
+    echo -e "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured in 24H clock format."
     read -p "$CAT Do you want to change to 12H format or AM/PM format? (y/n): " answer
 
     # Convert the answer to lowercase for comparison
@@ -370,8 +395,7 @@ while true; do
       fi
 
     break
- 
-
+     
     elif [[ "$answer" == "n" ]]; then
         echo "${NOTE} You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
         break  # Exit the loop if the user chooses "n"
@@ -379,13 +403,11 @@ while true; do
         echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
     fi
 done
-
-
-printf "\n"
+printf "\n%.0s" {1..1}
 
 # Check if the user wants to disable Rainbow borders
-printf "${MAGENTA} By default, Rainbow Borders animation is enabled.\n"
-printf "${WARN} - However, this uses a bit more CPU and Memory resources.\n"
+echo "${NOTE} ${SKY_BLUE}By default, Rainbow Borders animation is enabled"
+echo "${WARN} However, this uses a bit more CPU and Memory resources."
 
 read -p "${CAT} Do you want to disable Rainbow Borders animation? (y/N): " border_choice
 if [[ "$border_choice" =~ ^[Yy]$ ]]; then
@@ -398,7 +420,7 @@ if [[ "$border_choice" =~ ^[Yy]$ ]]; then
 else
     echo "${NOTE} No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$LOG"
 fi
-printf "\n"
+printf "\n%.0s" {1..1}
 
 set -e
 
@@ -474,7 +496,6 @@ for DIR2 in $DIRS; do
     fi
   fi
 done
-
 printf "\n%.0s" {1..1}
 
 printf "${INFO} - Copying dotfiles ${SKY_BLUE}second${RESET} part\n"
@@ -529,7 +550,7 @@ for DIR_NAME in $DIR; do
   fi
 done
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
@@ -580,7 +601,7 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
   done
 fi
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # Restoring previous UserScripts
 DIRSH="hypr"
@@ -615,7 +636,26 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
   done
 fi
 
-printf "\n%.0s" {1..}
+printf "\n%.0s" {1..1}
+
+# Define the target directory for rofi themes
+rofi_DIR="$HOME/.local/share/rofi/themes"
+
+if [ ! -d "$rofi_DIR" ]; then
+  mkdir -p "$rofi_DIR"
+fi
+if [ -d "$HOME/.config/rofi/themes" ]; then
+  if [ -z "$(ls -A $HOME/.config/rofi/themes)" ]; then
+    echo '/* Default Rofi theme */' > "$HOME/.config/rofi/themes/default.rasi"
+  fi
+  ln -snf ~/.config/rofi/themes/* ~/.local/share/rofi/themes/
+  # Delete the dummy file if it was created
+  if [ -f "$HOME/.config/rofi/themes/default.rasi" ]; then
+    rm "$HOME/.config/rofi/themes/default.rasi"
+  fi
+fi
+
+printf "\n%.0s" {1..1}
 
 # wallpaper stuff
 mkdir -p ~/Pictures/wallpapers
@@ -650,7 +690,7 @@ rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
        "$HOME/.config/waybar/configs/[TOP] Default$config_remove (old v3)" \
        "$HOME/.config/waybar/configs/[TOP] Default$config_remove (old v4)" 2>&1 | tee -a "$LOG" || true
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # for SDDM (sequoia_2)
 sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
@@ -775,15 +815,15 @@ cleanup_backups
 # symlinks for waybar style
 ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
 
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
 
 printf "\n%.0s" {1..2}
 printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!! "
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 printf "${INFO} However, it is ${MAGENTA}HIGHLY SUGGESTED${RESET} to logout and re-login or better reboot to avoid any issues"
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Configuration${RESET}... ${YELLOW}ENJOY!!!${RESET}"
 printf "\n%.0s" {1..3}

@@ -1,20 +1,39 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Rofi Beats Config (compact) */
+/* Animations Menu */
 
-@import "~/.config/rofi/config-compact.rasi" 
+@import "~/.config/rofi/config.rasi" 
+
+/* ---- Mainbox ---- */
+mainbox {
+  children:
+    [ "inputbar", "message", "listview"];
+}
 
 /* ---- Window ---- */
 window {
-  width:	35%;
+  width:	30%;
 }
 
 /* ---- Entry ---- */ 
 entry {
-  width: 25%;
-  placeholder: " ✨ Choose which Animations to load";
+  width: 28%;
+  placeholder: " ✨ Search / Choose which Animations to load";
 }
 
 /* ---- Listview ---- */
 listview {
-  lines: 10;
+  columns: 2;
+  lines: 9;
+  fixed-height: false;
+  margin: 10px;
+}
+
+/* ---- Elements ---- */
+element-icon {
+  size: 0%;
+}
+element-text {
+  horizontal-align: 0.0;
+  vertical-align: 0.0;
+  margin: 5px 30px 5px 30px;
 }

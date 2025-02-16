@@ -1,22 +1,21 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Master Config 1080p*/
+/* KooL Hyprland Rofi Style 6 */
 
 /* ---- Configuration ---- */
 
 configuration {
-    font:                       "JetBrainsMono Nerd Font SemiBold 12";
-    modi:                       "drun,run,filebrowser";
+	modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     display-drun:               "Apps";
     display-run:                "Run";
     display-filebrowser:        "Files";
     display-window:             "Windows";
-    drun-display-format:        "{name}";
-    hover-select:               true;
-    me-select-entry:            "MouseSecondary";
+	drun-display-format:        "{name}";
+	hover-select:               true;
+	me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
-    window-format:              "{w} · {c} · {t}";
-    dpi:						1;
+	window-format:              "{w} · {c} · {t}";
+	dpi:						1;
 }
 
 /* ---- Load wallust colors ---- */
@@ -25,14 +24,19 @@ configuration {
 /* ---- Global Properties ---- */
 * {
 
-    background-alt:              @selected-active-background; // Buttons background
-    selected:                    @selected-urgent-background; // Button selected
-    active:                      @selected-normal-background; // Window activated
-    urgent:                      @selected; // When hovering the activated window (maybe more?)
+    background-alt:              @color1;
+    selected:                    @color12;
+    active:                      @color11;
+    urgent:                      red;
 
     text-selected:               @background;
     text-color:                  @foreground;
     border-color:                @selected;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
 }
 
 /* ---- Window ---- */
@@ -43,19 +47,18 @@ window {
     transparency:               "real";
     cursor:                     "default";
     spacing:                    0px;
-    border:                     3px 0px 3px 0px;
+    border:                     2px;
     border-radius:              30px;
     location:                   center;
     anchor:                     center;
 
     // Style Values
     width:                      50%;
-    background-color:           @background;
+    background-color:           #00000099;
 }
 
 /* ----- Main Box ----- */
 mainbox {
-	padding:					 12px;
     enabled:                     true;
     orientation:                 vertical;
     children:                    [ "inputbar", "listbox" ];
@@ -66,7 +69,7 @@ mainbox {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                     true;
-    padding:                     10px 10px 50px 10px;
+    padding:                     10px 10px 150px 10px;
     margin:                      10px;
     background-color:            transparent;
     border-radius:               25px;
@@ -79,13 +82,13 @@ inputbar {
 entry {
     enabled:                     true;
     expand:                      false;
-    width:                       20%;
+    width:                       300px;
     padding:                     10px;
     border-radius:               12px;
-    background-color:            @selected;
-    text-color:                  @text-selected;
+    background-color:            @background;
+    text-color:                  inherit;
     cursor:                      text;
-    placeholder:                 " 🖥️ Search "; // << Search symbol
+    placeholder:                 "  Search "; // << Search symbol
     placeholder-color:           inherit;
 }
 
@@ -105,18 +108,28 @@ listview {
     lines:                       6;
     cycle:                       true;
     dynamic:                     true;
-    scrollbar:                   true;
+    scrollbar:                   false;
     layout:                      vertical;
     reverse:                     false;
-    fixed-height:                false;
+    fixed-height:                true;
     fixed-columns:               true;    
     spacing:                     10px;
+    padding:					 10px;
     background-color:            transparent;
 
 //  Adapt rofi theme
     border:                      0px;
 }
 
+/* ---- Scrollbar ---- */
+scrollbar {
+  border:						0px;
+  border-radius:				10px;
+  background-color:				transparent;
+  handle-color: 				@active;
+  handle-width: 				5px ;
+  padding:      				0;
+}
 /* ---- Dummy ---- */
 dummy {
     expand:                      true;
@@ -133,29 +146,22 @@ button {
     width:                       5%;
     padding:                     12px;
     border-radius:               12px;
-    background-color:            @text-selected;
-    text-color:                  @text-color;
+    background-color:            @background;
+    text-color:                  inherit;
     cursor:                      pointer;
 }
 button selected {
-    background-color:            @selected;
+    background-color:            @active;
     text-color:                  @text-selected;
 }
 
-/* ---- Scrollbar ---- */
-scrollbar {
-    border:       				0;
-    handle-color: 				@background-alt;
-    handle-width: 				2px ;
-    padding:      				0;
-}
 
 /* ---- Elements ---- */
 element {
     enabled:                     true;
     spacing:                     10px;
-  	padding: 					 10px;
-    border-radius:               12px;
+    padding:                     4px;
+    border-radius:               10px;
     background-color:            transparent;
     cursor:                      pointer;
 }
@@ -174,13 +180,9 @@ element normal.active {
 }
 
 element selected.normal {
-    border:                      0px 3px 0px 3px;
-    border-radius:               16px;
-    border-color:                @selected;
-    background-color:            transparent;
-    text-color:                  @background-alt;
+    background-color:            @color11;
+    text-color:                  @text-selected;
 }
-
 element selected.urgent {
     background-color:            @urgent;
     text-color:                  @text-selected;
@@ -205,33 +207,35 @@ element alternate.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
+    size:                        36px;
     cursor:                      inherit;
 }
 element-text {
-    font:						"JetBrainsMono Nerd Font SemiBold 12";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.0;
+
 }
 
 /* ---- Message ---- */
 message {
-    background-color:            transparent;
+    background-color:            @background;
     border:                      0px;
 }
 textbox {
+	margin:						 10px;
     padding:                     12px;
     border-radius:               10px;
-    background-color:            @background-alt;
-    text-color:                  @background;
+    background-color:            @active;
+    text-color:                  @foreground;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
+    horizontal-align:            0.5;
 }
 error-message {
     padding:                     12px;
     border-radius:               20px;
-    background-color:            @background-alt;
-    text-color:                  @background;
+    background-color:            @background;
+    text-color:                  @foreground;
 }

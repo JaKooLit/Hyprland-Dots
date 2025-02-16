@@ -52,7 +52,7 @@
 "modules-right": [
 	"network#speed",
 	"custom/separator#dot-line",
-	"custom/swaync",
+	"group/notify",
 	"tray",
 	"mpris", 
 	"custom/separator#dot-line",

@@ -1,0 +1,159 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* KooL Hyprland Rofi Style 12 - TOP - Docu */
+/* Credit to DaveDavenport. I have only some few things changed */
+
+/**
+ * ROFI Documentation theme.
+ * User: Qball
+ * Copyright: Dave Davenport
+ */
+
+configuration {
+    modi:                       "drun,run,filebrowser";
+    show-icons:                 true;
+    display-drun:               "Apps";
+    display-run:                "Run";
+    display-filebrowser:        "Files";
+    display-window:             "Windows";
+    drun-display-format:        "{name}";
+    window-format:              "{w} · {c} · {t}";
+    dpi:						1;
+    hover-select:               true;
+    me-select-entry:            "MouseSecondary";
+    me-accept-entry:            "MousePrimary";
+}
+
+/* ---- Global Properties ---- */
+* {
+    background-color: 			transparent;
+    text-color:       			white;
+}
+entry {
+    border: 					2px 0px;
+    border-color:  				darkgrey;
+    background-color: 			grey;
+    padding:       				4px;
+    placeholder:       			"🔎 Search";
+    placeholder-color: 			darkgrey;
+    cursor: 					text;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
+
+}
+inputbar {
+    spacing: 0;
+    children: 					[  icon-keyboard, entry, mode-switcher ];
+}
+
+mode-switcher {
+    spacing: 					10px;
+    border: 					2px;
+    border-radius: 				0px 4px 4px 0px;
+    border-color: 				darkgrey;
+    background-color: 			darkgrey;    
+}
+
+button {
+	padding: 					0px 60px 0px 60px;
+    background-color: 			grey;
+    border-color: 				darkgrey;    
+    cursor: 					pointer;
+}
+
+button selected {
+    background-color: 			white/20%;
+    text-color:       			black;
+}
+
+icon-keyboard {
+    border:        				2px 0px 2px 2px;
+    border-radius: 				4px 0px 0px 4px;
+    border-color: 				darkgrey;
+    background-color: 			grey;
+    padding: 					0px 10px 0px 10px;
+    expand: 					false;
+    size: 						1.2em;
+    filename: 					"keyboard";
+}
+
+window {
+    anchor: 					north;
+    location: 					north;
+    width:            			100%;
+    background-color: 			black / 50%;
+    padding:           			1em;
+    border-color: 				black;
+    border:  					0em 0.2em 0.2em;
+    chilren:					[  inputbar, message, listview ];
+}
+
+mainbox { 
+    spacing: 					1em;
+}
+
+
+listview {
+    lines: 						4;
+    columns: 					6;
+    spacing: 					1em;
+    fixed-columns: 				true;
+}
+
+element {
+    orientation:      			vertical;
+    border:           			2px;
+    border-radius:    			4px ;
+    border-color:     			darkgrey;
+    background-color: 			grey;
+    cursor: 					pointer;
+    padding:         			4px;
+}
+
+element selected {
+    background-color: 			white/20%;
+    text-color:       			black;
+}
+
+
+element-icon {
+	size:						5%;
+    cursor: 					inherit;
+}
+
+element-text {
+    horizontal-align: 			0.5;
+    cursor: inherit;
+}
+
+/* ---- Scrollbar ---- */
+scrollbar {
+    border-radius:				10px;
+    background-color: 			transparent;
+    handle-color: 				darkgrey;
+    handle-width: 				5px ;
+    padding:      				0;
+}
+
+/* ---- Message ---- */
+message {
+    background-color:            transparent;
+    border:                      0px;
+}
+textbox {
+	margin: 10px;
+    padding:                     12px;
+    border-radius:               10px;
+    background-color: 			 black / 50%;
+    text-color:                  white;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
+error-message {
+    padding:                     12px;
+    border-radius:               20px;
+    background-color: 			 black / 50%;
+    text-color:                  white;
+}

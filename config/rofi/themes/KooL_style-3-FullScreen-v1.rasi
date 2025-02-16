@@ -1,10 +1,9 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Master Config 1440p*/
+/* KooL Hyprland Rofi Style 3 - Full screen v1 */
 
 /* ---- Configuration ---- */
 
 configuration {
-    font:                       "JetBrainsMono Nerd Font SemiBold 12";
     modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     display-drun:               "Apps";
@@ -12,11 +11,11 @@ configuration {
     display-filebrowser:        "Files";
     display-window:             "Windows";
     drun-display-format:        "{name}";
+    window-format:              "{w} · {c} · {t}";
+    dpi:						1;
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
-    window-format:              "{w} · {c} · {t}";
-    dpi:						1;
 }
 
 /* ---- Load wallust colors ---- */
@@ -35,11 +34,29 @@ configuration {
     border-color:                @selected;
 }
 
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
+}
+
+/* ---- Global Properties ---- */
+* {
+	main-bg:            @background;
+    main-fg:            @foreground;
+    main-br:            @color12;
+    main-ex:            @color11;
+    select-bg:          @foreground;
+    select-fg:          @background;
+    separatorcolor:     transparent;
+    border-color:       transparent;
+}
+
+
 /* ---- Window ---- */
 window {
     // Default
     enabled:                    true;
-    fullscreen:                 false;
+    fullscreen:                 true;
     transparency:               "real";
     cursor:                     "default";
     spacing:                    0px;
@@ -49,7 +66,6 @@ window {
     anchor:                     center;
 
     // Style Values
-    width:                      50%;
     background-color:           @background;
 }
 
@@ -85,7 +101,7 @@ entry {
     background-color:            @selected;
     text-color:                  @text-selected;
     cursor:                      text;
-    placeholder:                 " 🖥️ Search "; // << Search symbol
+    placeholder:                 " 🖥️ Search ";
     placeholder-color:           inherit;
 }
 
@@ -101,17 +117,18 @@ listbox {
 /* ---- Listview ---- */
 listview {
     enabled:                     true;
-    columns:                     2;
-    lines:                       6;
+    columns:                     5;
+    lines:                       5;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   true;
     layout:                      vertical;
     reverse:                     false;
-    fixed-height:                false;
+    fixed-height:                true;
     fixed-columns:               true;    
     spacing:                     10px;
     background-color:            transparent;
+    margin: 					 10px;
 
 //  Adapt rofi theme
     border:                      0px;
@@ -153,8 +170,9 @@ scrollbar {
 /* ---- Elements ---- */
 element {
     enabled:                     true;
-    spacing:                     10px;
+    orientation: 				 vertical;
   	padding: 					 10px;
+  	spacing: 					 10px;
     border-radius:               12px;
     background-color:            transparent;
     cursor:                      pointer;
@@ -203,17 +221,17 @@ element alternate.active {
     text-color:                  inherit;
 }
 element-icon {
+  	size: 						 5%;
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
 }
 element-text {
-    font:						"JetBrainsMono Nerd Font SemiBold 14";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
+    horizontal-align:            0.5;
 }
 
 /* ---- Message ---- */
@@ -222,12 +240,13 @@ message {
     border:                      0px;
 }
 textbox {
+    margin: 					 10px;
     padding:                     12px;
     border-radius:               10px;
-    background-color:            @background-alt;
+    background-color:            @selected;
     text-color:                  @background;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
+    horizontal-align:            0.5;
 }
 error-message {
     padding:                     12px;

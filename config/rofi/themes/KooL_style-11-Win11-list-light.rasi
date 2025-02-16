@@ -1,0 +1,150 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* KooL Hyprland Rofi Style 11 - Windows 11 List Light */
+/* source: https://github.com/newmanls */
+
+/* Integrating Wallust and More tweaks */
+
+/* ---- Configuration ---- */
+configuration {
+  dpi:                        1;
+  show-icons:                 true;
+  hover-select:               true;
+  me-select-entry:            "MouseSecondary";
+  me-accept-entry:            "MousePrimary";
+}
+
+/*****----- Global Properties -----*****/
+* {
+  bg0    : #ffffff80;
+  bg1    : #f9f9f9bf;
+  bg2    : #f7f7f7;
+  bg3    : #fefefebf;
+  fg0    : #1a1a1a;
+  fg1    : #5f5f5f;
+  accent : #005fb8;
+  urgent : @accent;
+
+  background-color : transparent;
+  text-color       : @fg0;
+
+  margin  : 0;
+  padding : 0;
+  spacing : 0;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
+}
+
+element-icon, element-text, scrollbar {
+  cursor: pointer;
+}
+
+window {
+  location : south;
+  width    : 40%;
+  height   : 50%;
+  y-offset : -10px;
+
+  background-color : @bg1;
+  border-radius    : 8px;
+}
+
+mainbox {
+  padding : 24px;
+  spacing : 24px;
+}
+
+inputbar {
+  padding          : 8px;
+  spacing          : 4px;
+  children         : [ icon-search, entry ];
+  border           : 0 0 2px 0 solid;
+  border-color     : @accent;
+  border-radius    : 2px;
+  background-color : @bg0;
+}
+
+icon-search, entry, element-icon, element-text {
+  vertical-align: 0.5;
+}
+
+icon-search {
+  expand   : false;
+  filename : "search-symbolic";
+  size     : 24px;
+}
+
+entry {
+  placeholder       : "Type here to search";
+  placeholder-color : @fg1;
+}
+
+listview {
+  columns       : 2;
+  spacing       : 8px;
+  fixed-height  : true;
+  fixed-columns : true;
+}
+
+element {
+  spacing       : 1em;
+  padding       : 8px;
+  border-radius : 2px;
+}
+
+element normal urgent {
+  text-color: @urgent;
+}
+
+element normal active {
+  text-color: @accent;
+}
+
+element alternate active {
+  text-color: @accent;
+}
+
+element selected active {
+  text-color: @accent;
+}
+
+element selected {
+  background-color: @bg3;
+}
+
+element selected urgent {
+  background-color: @urgent;
+}
+
+element-icon {
+  size: 1.5em;
+}
+
+element-text {
+  text-color: inherit;
+}
+
+/* ---- Scrollbar ---- */
+scrollbar {
+  border:			1px;
+  border-radius:	10px;
+  background-color:	inherit;
+  handle-color: 	@accent;
+  handle-width: 	5px ;
+  padding:      	0;
+}
+
+/*****----- Message -----*****/
+error-message {
+  padding: 20px;
+}
+
+textbox {
+  padding            : 10px;
+  background-color   : @bg0;
+  text-color         : @fg0;
+  vertical-align     : 0.5; 
+  horizontal-align   : 0.5;
+}

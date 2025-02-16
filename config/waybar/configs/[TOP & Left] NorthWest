@@ -75,7 +75,7 @@
     
 "modules-right": [
 	"mpris",
-	"custom/swaync",
+	"group/notify",
     "tray",
     "custom/light_dark",
     ],

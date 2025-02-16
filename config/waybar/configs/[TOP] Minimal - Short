@@ -26,7 +26,7 @@
 "modules-right": [
 	"custom/menu", 
 	"tray",
-	"custom/swaync",
+	"group/notify",
 	"mpris", 
 	"network", 
 	"bluetooth", 

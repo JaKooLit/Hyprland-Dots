@@ -2,6 +2,8 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Script for waybar styles
 
+set -x 
+
 IFS=$'\n\t'
 
 # Define directories
@@ -17,7 +19,7 @@ menu() {
         if [ -f "$waybar_styles/$file" ]; then
             options+=("$(basename "$file" .css)")
         fi
-    done < <(find "$waybar_styles" -maxdepth 1 -type f -name '*.css' -exec basename {} \; | sort)
+    done < <(find -L "$waybar_styles" -maxdepth 1 -type f -name '*.css' -exec basename {} \; | sort)
     
     printf '%s\n' "${options[@]}"
 }

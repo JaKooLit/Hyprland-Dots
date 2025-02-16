@@ -8,15 +8,16 @@
 themes_dir="$HOME/.oh-my-zsh/themes"
 file_extension=".zsh-theme"
 
-# Directory for swaync
+# Variables
 iDIR="$HOME/.config/swaync/images"
+rofi_theme="~/.config/rofi/config-zsh-theme.rasi"
 
-themes_array=($(find "$themes_dir" -type f -name "*$file_extension" -exec basename {} \; | sed -e "s/$file_extension//"))
+themes_array=($(find -L "$themes_dir" -type f -name "*$file_extension" -exec basename {} \; | sed -e "s/$file_extension//"))
 
 # Add "Random" option to the beginning of the array
 themes_array=("Random" "${themes_array[@]}")
 
-rofi_command="rofi -i -dmenu -config ~/.config/rofi/config-zsh-theme.rasi"
+rofi_command="rofi -i -dmenu -config $rofi_theme"
 
 menu() {
     for theme in "${themes_array[@]}"; do
@@ -29,7 +30,6 @@ main() {
 
     # if nothing selected, script won't change anything
     if [ -z "$choice" ]; then
-        notify-send -u low -i "$iDIR/ja.png" "No theme selected." "No changes made!"
         exit 0
     fi
 

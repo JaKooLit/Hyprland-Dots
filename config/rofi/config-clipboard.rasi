@@ -1,16 +1,42 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Clipboard Config - Clipboard */
 
-@import "~/.config/rofi/master-config.rasi"  
+@import "~/.config/rofi/config.rasi"  
+
+/* ---- Window ---- */
+window {
+  width: 50%;
+}
+
+/* ---- Mainbox ---- */
+mainbox {
+  children:
+    [ "inputbar", "message", "listview"];
+}
 
 /* ---- Entry ---- */
 entry {
-  width: 37%;
-  placeholder: " 📋 Search Clipboard **note** 👀 CTRL Del - Cliphist del or Alt Del - cliphist wipe";
+  width: 47%;
+  placeholder: " 📋 Search  Clipboard ";
 }
 
 /* ---- Listview ---- */
 listview {
   columns: 1;
   lines: 8;
+  fixed-height: false;
+}
+
+/* ---- Elements ---- */
+element {
+  orientation: horizontal;
+}
+
+element-icon {
+  size: 0%;
+}
+
+element-text {
+  horizontal-align: 0.0;
+  vertical-align: 0.5;
 }

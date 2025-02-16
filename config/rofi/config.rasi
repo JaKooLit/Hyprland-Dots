@@ -1,31 +1,24 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config 1080p */
+/* Ja KooLit - Default 
 
-@import "~/.config/rofi/master-config.rasi" 
+* All main themes or configs are located in ~/.config/rofi/themes/
+* If you want to edit the config, that is where you should edit NOT here 
 
-/* ---- Window ---- */
-window {
-    width:	50%;
-}
-/* ---- Listview ---- */
-listview {
-  columns: 5;
-  lines: 5;
-  fixed-height:	true;
-}
+* To load a new theme, manually edit the file path below or choose desired theme via rofi theme selector (choose via app menu)
 
-/* ---- Element ---- */
-element {
-  orientation: vertical;
-  padding: 10px 5px 10px 5px;
-  spacing: 6px;
+* Alternative way to Load (preferred) own cooked by Ja 
+* SUPER CTRL R - Choose style & SUPER CTRL SHIFT R 
+
+* TIPS 
+* If you have edited a config, rename it with a unique name. During update, the contents of 
+* ~/.config/rofi/themes/ will be replaced. */
+
+/* ---- Configuration Fonts ---- */
+configuration {
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
-element-icon {
-  size: 3%;
-}
+/* note: Element-text font and size, edit configs in ~/.config/rofi/themes/ */
 
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 10";
-  horizontal-align: 0.5;
-}
+
+@theme "~/.config/rofi/themes/KooL_style-2-Dark.rasi"

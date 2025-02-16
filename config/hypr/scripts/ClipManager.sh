@@ -2,6 +2,9 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Clipboard Manager. This script uses cliphist, rofi, and wl-copy.
 
+# Variables
+rofi_theme="~/.config/rofi/config-clipboard.rasi"
+msg='👀 **note**  CTRL DEL = cliphist del (entry)   or   ALT DEL - cliphist wipe (all)'
 # Actions:
 # CTRL Del to delete an entry
 # ALT Del to wipe clipboard contents
@@ -16,7 +19,8 @@ while true; do
         rofi -i -dmenu \
             -kb-custom-1 "Control-Delete" \
             -kb-custom-2 "Alt-Delete" \
-            -config ~/.config/rofi/config-clipboard.rasi < <(cliphist list)
+            -config $rofi_theme < <(cliphist list) \
+			-mesg "$msg" 
     )
 
     case "$?" in
