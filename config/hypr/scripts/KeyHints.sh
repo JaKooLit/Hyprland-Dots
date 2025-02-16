@@ -62,6 +62,8 @@ GDK_BACKEND=$BACKEND yad \
 " ALT SPACEBAR" "Toggle all windows to float" "all windows" \
 " ALT O" "Toggle Blur" "normal or less blur" \
 " Shift A" "Animations Menu" "Choose Animations via rofi" \
+" CTRL R" "Rofi Themes Menu" "Choose Rofi Themes via rofi" \
+" CTRLL Shift R" "Rofi Themes Menu v2" "Choose Rofi Themes via Theme Selector (modified)" \
 " SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
 " ALT E" "Rofi Emoticons" "Emoticon" \
 " ALT V" "Clipboard Manager" "cliphist" \
