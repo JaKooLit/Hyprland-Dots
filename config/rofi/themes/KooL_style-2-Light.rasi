@@ -7,10 +7,10 @@
 configuration {
 	modi:                       "drun,filebrowser,window";
     show-icons:                 true;
-    display-drun:               "APPS";
-    display-run:                "RUN";
-    display-filebrowser:        "FILES";
-    display-window:             "WINDOW";
+    display-drun:               "  apps";
+    display-run:                "  term";
+    display-filebrowser:        "  files";
+    display-window:             "  window";
     drun-display-format:        "{name}";
     window-format:              "{w} · {c} · {t}";
     dpi:						1;
