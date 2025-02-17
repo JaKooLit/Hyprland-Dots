@@ -92,13 +92,13 @@ git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
 cd Hyprland-Dots
 ```
 
-- automatic copy/install of pre-configured dots
+- automatic copy/install of pre-configured dots (recommended for updating)
 ```bash
 chmod +x copy.sh
 ./copy.sh
 ```
 
-- to copy/install from releases (stable)
+- to copy/install from releases (stable) (note this is 1 version older than in main)
 ```bash
 chmod +x release.sh
 ./release.sh
