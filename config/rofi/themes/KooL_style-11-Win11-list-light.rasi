@@ -77,8 +77,9 @@ icon-search {
 }
 
 entry {
-  placeholder       : "Type here to search";
-  placeholder-color : @fg1;
+  placeholder       : "Search  👀 NOTE: CTRL TAB to change MODE";
+  text-color		: @fg1;
+  horizontal-align  : 0.5;
 }
 
 listview {

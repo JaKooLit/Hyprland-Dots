@@ -6,11 +6,10 @@
 configuration {
     modi:                       "drun,run,filebrowser";
     show-icons:                 true;
-    display-drun:               " Apps";
-    display-run:                " Run";
-    display-filebrowser:        " Files";
-    display-window:             " Window";
-	display-ssh:                " SSH";
+    display-drun:               "  apps";
+    display-run:                "  term";
+    display-filebrowser:        "  file";
+    display-window:             "  window";
     drun-display-format:        "{name}";
     window-format:              "{w} · {c} · {t}";
     dpi:						1;
