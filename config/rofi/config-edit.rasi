@@ -17,7 +17,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-   width: 45%;
+   width: 50%;
 }
 
 

@@ -11,12 +11,12 @@ mainbox {
 
 /* ---- Window ---- */
 window {
-  width:	30%;
+  width:	45%;
 }
 
 /* ---- Entry ---- */ 
 entry {
-  width: 28%;
+  width: 43%;
   placeholder: " ✨ Search / Choose which Animations to load";
 }
 
