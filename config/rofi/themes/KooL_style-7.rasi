@@ -102,7 +102,7 @@ entry {
     background-color:            inherit;
     text-color:                  @foreground;
     cursor:                      text;
-    placeholder:                 "Search...";
+    placeholder:                 "Search...  👀 NOTE: CTRL TAB to change MODE";
     placeholder-color:           inherit;
 }
 

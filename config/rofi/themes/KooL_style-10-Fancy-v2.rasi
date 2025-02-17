@@ -69,12 +69,12 @@ listview {
 }
 /* ---- Scrollbar ---- */
 scrollbar {
-  border:			1px;
-  border-radius:	10px;
-  background-color:	@blue;
-  handle-color: 	@orange;
-  handle-width: 	5px ;
-  padding:      	0;
+	border:			1px;
+	border-radius:	10px;
+	background-color:	@blue;
+	handle-color: 	@orange;
+	handle-width: 	5px ;
+	padding:      	0;
 }
 element {
     border: 0px;

@@ -65,7 +65,7 @@ entry {
     placeholder-color:              @FG;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search...";
+    placeholder:                    "Search     👀 NOTE: CTRL TAB to change MODE";
     blink:                          true;
     border:                  	    0px 0px 2px 0px;
     border-color:                   @BDR;

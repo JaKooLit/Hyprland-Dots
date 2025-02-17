@@ -6,10 +6,10 @@
 configuration {
 	modi:                       "drun,run,filebrowser";
     show-icons:                 true;
-    display-drun:               "Apps";
-    display-run:                "Run";
-    display-filebrowser:        "Files";
-    display-window:             "Windows";
+    display-drun:               "  apps";
+    display-run:                "  term";
+    display-filebrowser:        "  files";
+    display-window:             "  window";
 	drun-display-format:        "{name}";
 	hover-select:               true;
 	me-select-entry:            "MouseSecondary";
