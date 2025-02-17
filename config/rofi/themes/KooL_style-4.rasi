@@ -8,7 +8,7 @@ configuration {
     show-icons:                 true;
     display-drun:               "  apps";
     display-run:                "  term";
-    display-filebrowser:        "  file";
+    display-filebrowser:        "  files";
     display-window:             "  window";
     drun-display-format:        "{name}";
     window-format:              "{w} · {c} · {t}";
