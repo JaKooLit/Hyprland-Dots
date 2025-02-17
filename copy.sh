@@ -291,12 +291,12 @@ printf "\n"
 
 # Action to do for better appearance
 while true; do
-  echo "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured for 1440p!"
+  echo "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured for 1440p or 2k."
   echo "${WARN} If you dont select proper resolution, Hyprlock will look FUNKY!"
   echo "${INFO} If you are not sure what is your resolution, choose 1 here!"
   echo "${MAGENTA}Select monitor resolution to properly configure appearance and fonts:"
-  echo "$YELLOW  -- Enter 1. for monitor resolution 1200p or less (< 1200p)"
-  echo "$YELLOW  -- Enter 2. for monitor resolution higher than 1440p (≥ 1440p)"
+  echo "$YELLOW  -- Enter 1. for monitor resolution less than 1440p (< 1440p)"
+  echo "$YELLOW  -- Enter 2. for monitor resolution equal to or higher than 1440p (≥ 1440p)"
   read -p "$CAT Enter the number of your choice (1 or 2): " res_choice
 
   case $res_choice in
