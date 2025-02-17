@@ -1,57 +1,55 @@
 #!/bin/bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */ ##
 # wlogout (Power, Screen Lock, Suspend, etc)
 
-# Set variables for parameters. First numbers corresponts to Monitor Resolution
-# i.e 2160 means 2160p
-A_2160=700
-B_2160=700
-A_1600=650
-B_1600=650
-A_1440=450
-B_1440=450
-A_1080=350
-B_1080=350
-A_720=50
-B_720=50
+# Parameters for screen resolutions
+declare -A resolutions=(
+    [2160]=450
+    [1600]=450
+    [1440]=450
+    [1080]=350
+    [720]=175
+)
 
-# Check if wlogout is already running
+# Check if wlogout is already running, if so, kill it
 if pgrep -x "wlogout" > /dev/null; then
     pkill -x "wlogout"
     exit 0
 fi
 
-# Detect monitor resolution and scaling factor
-resolution=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .height / .scale' | awk -F'.' '{print $1}')
-hypr_scale=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .scale')
+# Detect the current monitor's native resolution and scale
+monitor_info=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true)')
+# extract some info
+resolution=$(echo "$monitor_info" | jq -r '.height')
+width=$(echo "$monitor_info" | jq -r '.width')
+hypr_scale=$(echo "$monitor_info" | jq -r '.scale')
 
-# Set parameters based on screen resolution and scaling factor
-if ((resolution >= 2160)); then
-    T_val=$(awk "BEGIN {printf \"%.0f\", $A_2160 * 2160 * $hypr_scale / $resolution}")
-    B_val=$(awk "BEGIN {printf \"%.0f\", $B_2160 * 2160 * $hypr_scale / $resolution}")
-    echo "Setting parameters for resolution >= 4k"
-    wlogout --protocol layer-shell -b 6 -T $T_val -B $B_val &
-elif ((resolution >= 1600 && resolution < 2160)); then
-    T_val=$(awk "BEGIN {printf \"%.0f\", $A_1600 * 1600 * $hypr_scale / $resolution}")
-    B_val=$(awk "BEGIN {printf \"%.0f\", $B_1600 * 1600 * $hypr_scale / $resolution}")
-    echo "Setting parameters for resolution >= 2.5k and < 4k"
-    wlogout --protocol layer-shell -b 6 -T $T_val -B $B_val &
-elif ((resolution >= 1440 && resolution < 1600)); then
-    T_val=$(awk "BEGIN {printf \"%.0f\", $A_1440 * 1440 * $hypr_scale / $resolution}")
-    B_val=$(awk "BEGIN {printf \"%.0f\", $B_1440 * 1440 * $hypr_scale / $resolution}")
-    echo "Setting parameters for resolution >= 2k and < 2.5k"
-    wlogout --protocol layer-shell -b 6 -T $T_val -B $B_val &
-elif ((resolution >= 1080 && resolution < 1440)); then
-    T_val=$(awk "BEGIN {printf \"%.0f\", $A_1080 * 1080 * $hypr_scale / $resolution}")
-    B_val=$(awk "BEGIN {printf \"%.0f\", $B_1080 * 1080 * $hypr_scale / $resolution}")
-    echo "Setting parameters for resolution >= 1080p and < 2k"
-    wlogout --protocol layer-shell -b 6 -T $T_val -B $B_val &
-elif ((resolution >= 720 && resolution < 1080)); then
-    T_val=$(awk "BEGIN {printf \"%.0f\", $A_720 * 720 * $hypr_scale / $resolution}")
-    B_val=$(awk "BEGIN {printf \"%.0f\", $B_720 * 720 * $hypr_scale / $resolution}")
-    echo "Setting parameters for resolution >= 720p and < 1080p"
-    wlogout --protocol layer-shell -b 3 -T $T_val -B $B_val &
-else
-    echo "Setting default parameters"
-    wlogout &
+# If hypr_scale >= 1.25 or resolution can't be detected, run wlogout with -b 3 
+if [[ -z "$resolution" || ! "$resolution" =~ ^[0-9]+$ || -z "$hypr_scale" || $(awk "BEGIN {exit !($hypr_scale >= 1.25)}") -eq 1 ]]; then
+    echo "Hypr_scale is greater than or equal to 1.25 or resolution could not be detected, running wlogout with -b 3"
+    wlogout --protocol layer-shell -b 3 -T 100 -B 100 &
+    exit 0
 fi
+
+# Determine the appropriate resolution range and calculate T and B values
+if ((resolution >= 2160)); then
+    res_key=2160
+elif ((resolution >= 1600)); then
+    res_key=1600
+elif ((resolution >= 1440)); then
+    res_key=1440
+elif ((resolution >= 1080)); then
+    res_key=1080
+else
+    res_key=720
+fi
+
+# Calculate T and B values based on selected resolution and scale
+T_val=$(awk "BEGIN {printf \"%.0f\", ${resolutions[$res_key]} * $res_key * $hypr_scale / $resolution}")
+B_val=$(awk "BEGIN {printf \"%.0f\", ${resolutions[$res_key]} * $res_key * $hypr_scale / $resolution}")
+
+# Output the resolution setting for debugging purposes
+echo "Setting parameters for resolution >= $res_key"
+
+# Run wlogout with -b 6 and calculated T/B values
+wlogout --protocol layer-shell -b 6 -T $T_val -B $B_val &

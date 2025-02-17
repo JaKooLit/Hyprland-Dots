@@ -6,7 +6,7 @@
 /* ---- Mainbox ---- */
 mainbox {
   children:
-    [ "inputbar", "listview"];
+    [ "inputbar", "message", "listview"];
 }
 
 
