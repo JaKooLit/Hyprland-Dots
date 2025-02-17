@@ -10,40 +10,41 @@ tty=kitty
 configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
 rofi_theme="~/.config/rofi/config-edit.rasi"
+msg=' ⁉️ Choose which config to View or Edit ⁉️'
 
 # Function to display the menu options
 menu() {
     cat <<EOF
-1. View / Edit  Env-variables
-2. View / Edit  Window-Rules
-3. View / Edit  Startup_Apps
-4. View / Edit  User-Keybinds
-5. View / Edit  Monitors
-6. View / Edit  Laptop-Keybinds
-7. View / Edit  User-Settings
-8. View / Edit  Decorations
-9. View / Edit  Animations
-10. View / Edit  Workspace-Rules
-11. View / Edit  Default-Keybinds
+1. ENV variables
+2. Window Rules
+3. Monitors
+4. User Keybinds
+5. User Settings
+6. Startup Apps
+7. Decorations
+8. Animations
+9. Workspace Rules
+10. Laptop Keybinds
+11. Default Keybinds
 EOF
 }
 
 # Main function to handle menu selection
 main() {
-    choice=$(menu | rofi -i -dmenu -config $rofi_theme | cut -d. -f1)
+    choice=$(menu | rofi -i -dmenu -config $rofi_theme -mesg "$msg" | cut -d. -f1)
     
     # Map choices to corresponding files
     case $choice in
         1) file="$UserConfigs/ENVariables.conf" ;;
         2) file="$UserConfigs/WindowRules.conf" ;;
-        3) file="$UserConfigs/Startup_Apps.conf" ;;
+        3) file="$UserConfigs/Monitors.conf" ;;
         4) file="$UserConfigs/UserKeybinds.conf" ;;
-        5) file="$UserConfigs/Monitors.conf" ;;
-        6) file="$UserConfigs/Laptops.conf" ;;
-        7) file="$UserConfigs/UserSettings.conf" ;;
-        8) file="$UserConfigs/UserDecorations.conf" ;;
-        9) file="$UserConfigs/UserAnimations.conf" ;;
-        10) file="$UserConfigs/WorkspaceRules.conf" ;;
+        5) file="$UserConfigs/UserSettings.conf" ;;
+        6) file="$UserConfigs/Startup_Apps.conf" ;;
+        7) file="$UserConfigs/UserDecorations.conf" ;;
+        8) file="$UserConfigs/UserAnimations.conf" ;;
+        9) file="$UserConfigs/WorkspaceRules.conf" ;;
+        10) file="$UserConfigs/Laptops.conf" ;;
         11) file="$configs/Keybinds.conf" ;;
         *) return ;;  # Do nothing for invalid choices
     esac

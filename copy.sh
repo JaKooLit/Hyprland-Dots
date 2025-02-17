@@ -30,7 +30,30 @@ if [[ $EUID -eq 0 ]]; then
     printf "\n%.0s" {1..2} 
     exit 1
 fi
-  
+
+# Function to print colorful text
+print_color() {
+    printf "%b%s%b\n" "$1" "$2" "$CLEAR"
+}
+
+# Check if dpkg is installed (use to check if Debian or Ubuntu or based distros)
+if command -v dpkg &> /dev/null; then
+	printf "\n%.0s" {1..1}
+    print_color $WARNING "
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+                 KOOL DOTS version INCOMPATIBLE
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+
+    Debian / Ubuntu detected. Refer to Hyprland-Dots README
+    For instruction on how to update your KooL Hyprland Dots
+
+    exiting ....
+    "
+  printf "\n%.0s" {1..3}
+  exit 1
+fi
+
+
 printf "\n%.0s" {1..1}  
 echo -e "\e[35m
     ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
@@ -143,6 +166,7 @@ You need to set it Manually
 
 Setting a wrong Keyboard Layout will cause Hyprland to crash
 If you are not sure, just type ${YELLOW}us${RESET}
+${SKYBLUE}You can change later in ~/.config/hypr/UserConfigs/UserSettings.conf${RESET}
 
 ${MAGENTA} NOTE:${RESET}
 •  You can also set more than 2 keyboard layouts
@@ -190,6 +214,7 @@ You need to set it Manually
 
 Setting a wrong Keyboard Layout will cause Hyprland to crash
 If you are not sure, just type ${YELLOW}us${RESET}
+${SKYBLUE}You can change later in ~/.config/hypr/UserConfigs/UserSettings.conf${RESET}
 
 ${MAGENTA} NOTE:${RESET}
 •  You can also set more than 2 keyboard layouts
