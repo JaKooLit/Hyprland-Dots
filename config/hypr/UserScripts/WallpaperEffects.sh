@@ -7,7 +7,7 @@ terminal=kitty
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 wallpaper_output="$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
-focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 rofi_theme="~/.config/rofi/config-wallpaper-effect.rasi"
 
 # Directory for swaync
@@ -15,9 +15,9 @@ iDIR="$HOME/.config/swaync/images"
 iDIRi="$HOME/.config/swaync/icons"
 
 # swww transition config
-FPS=60
+FPS=30
 TYPE="wipe"
-DURATION=2
+DURATION=1
 BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
