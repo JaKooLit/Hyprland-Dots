@@ -37,7 +37,7 @@ print_color() {
 }
 
 # Check /etc/os-release to see if this is an Ubuntu or Debian based distro
-if grep -q '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release &> /dev/null; then
+if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
 	printf "\n%.0s" {1..1}
     print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
@@ -115,7 +115,7 @@ if hostnamectl | grep -q 'Operating System: NixOS'; then
 fi
 
 # Check if dpkg is installed (use to check if Debian or Ubuntu or based distros
-if command -v dpkg &> /dev/null; then
+if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
 	echo "${INFO} Debian/Ubuntu based distro. Disabling pyprland since it does not work properly" 2>&1 | tee -a "$LOG" || true
   # disabling pyprland as causing issues
   sed -i '/^exec-once = pypr &/ s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
