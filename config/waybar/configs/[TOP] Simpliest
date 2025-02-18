@@ -1,0 +1,36 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+// ### TOP Simpliests ## //
+
+{
+"include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  "$HOME/.config/waybar/ModulesCustom",
+  "$HOME/.config/waybar/ModulesGroups",
+  ],
+"layer": "top", 
+"position": "top", 
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"gtk-layer-shell": true,
+"margin-left": 6,
+"margin-right": 6,
+"margin-top": 2,
+
+"modules-left": [	 
+	"hyprland/workspaces",
+	"tray",
+	"mpris", 
+	],
+    
+"modules-center": [
+	"hyprland/window", 
+	],
+    
+"modules-right": [
+	"idle_inhibitor",
+	"group/notify",
+	],
+}
+
