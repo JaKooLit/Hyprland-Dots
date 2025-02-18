@@ -2,8 +2,6 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Script for waybar styles
 
-set -x 
-
 IFS=$'\n\t'
 
 # Define directories
