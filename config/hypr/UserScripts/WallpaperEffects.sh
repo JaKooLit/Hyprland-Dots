@@ -15,9 +15,9 @@ iDIR="$HOME/.config/swaync/images"
 iDIRi="$HOME/.config/swaync/icons"
 
 # swww transition config
-FPS=30
+FPS=60
 TYPE="wipe"
-DURATION=1
+DURATION=2
 BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
