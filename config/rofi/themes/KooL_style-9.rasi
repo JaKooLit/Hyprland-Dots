@@ -54,6 +54,13 @@ window {
     y-offset:                       0;
 }
 
+mainbox {
+    background-color:               @BG;
+    children:                       [ inputbar, listview ];
+    spacing:                        15px;
+    padding:                        15px;
+}
+
 prompt {
     enabled: 			            true;
     padding: 			            8px;
@@ -114,22 +121,16 @@ listview {
     dynamic:                        true;
     layout:                         vertical;
     scrollbar:                   	true;
-}
-
-mainbox {
-    background-color:               @BG;
-    children:                       [ inputbar, listview ];
-    spacing:                        15px;
-    padding:                        15px;
+    padding:						10px;
 }
 
 /* ---- Scrollbar ---- */
 scrollbar {
-    border:       					1px;
+    border:       					0px;
     border-radius:					10px;
     border-color:					@color12;
     handle-color: 					@color11;
-    handle-width: 					10px ;
+    handle-width: 					2px ;
     padding:      					0;
 }
 

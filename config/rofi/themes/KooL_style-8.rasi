@@ -101,7 +101,7 @@ listbox {
 
 /* ---- Listview ---- */
 listview {
-    padding:                     1.5em;
+    padding:                     0.5em;
     spacing:                     0.5em;
     enabled:                     true;
     columns:                     2;
@@ -142,10 +142,9 @@ button selected {
 
 /* ---- Scrollbar ---- */
 scrollbar {
-    border:       				@border-width;
-    border-color:				@color11;
-    handle-color: 				@color12;
-    handle-width: 				10px ;
+    border:       				0px;
+    handle-color: 				@color11;
+    handle-width: 				2px ;
     padding:      				0;
 }
 

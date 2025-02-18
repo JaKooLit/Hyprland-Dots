@@ -23,7 +23,7 @@ entry {
 /* ---- Listview ---- */
 listview {
   columns: 1;
-  lines: 8;
+  lines: 7;
   fixed-height: false;
 }
 

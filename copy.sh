@@ -333,7 +333,7 @@ if [ "$resolution" == "< 1440p" ]; then
   # Change rofi font size
   find "$themes_dir" -type f | while read -r file; do
       if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 12";\n}' "$file"; then
-          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
+          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 10"/' "$file"
       fi
   done
 

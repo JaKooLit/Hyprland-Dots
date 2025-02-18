@@ -40,7 +40,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       800px;
+    width:                       40%;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -130,7 +130,7 @@ listview {
     cursor:                      "default";
 }
 scrollbar {
-    handle-width:                5px ;
+    handle-width:                2px ;
     handle-color:                @selected;
     border-radius:               0px;
     background-color:            @background-alt;

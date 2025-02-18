@@ -22,9 +22,10 @@ entry {
 /* ---- Listview ---- */
 listview {
   columns: 2;
-  lines: 8;
+  lines: 7;
   fixed-height: false;
   margin: 10px;
+  scrollbar: true;
 }
 
 /* ---- Elements ---- */

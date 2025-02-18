@@ -190,7 +190,7 @@ listview {
     cursor:                      "default";
 }
 scrollbar {
-    handle-width:                5px ;
+    handle-width:                2px ;
     handle-color:                @handle-color;
     border-radius:               10px;
     background-color:            @alternate-background;

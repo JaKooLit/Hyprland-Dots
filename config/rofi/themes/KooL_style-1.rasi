@@ -148,11 +148,11 @@ button selected {
 
 /* ---- Scrollbar ---- */
 scrollbar {
-    border:       				1px;
+    border:       				0px;
     border-radius:				10px;
     border-color:				@color12;
     handle-color: 				@color11;
-    handle-width: 				10px ;
+    handle-width: 				2px ;
     padding:      				0;
 }
 
