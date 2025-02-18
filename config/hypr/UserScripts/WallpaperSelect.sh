@@ -8,13 +8,24 @@ wallDIR="$HOME/Pictures/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 
+rofi_override="element-icon{size:${icon_size}px;}"
+
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
 iDIRi="$HOME/.config/swaync/icons"
 
 # variables
 rofi_theme="~/.config/rofi/config-wallpaper.rasi"
-focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
+
+# Get monitor width and DPI
+monitor_width=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .width')
+scale_factor=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .scale')
+
+# Calculate icon size for rofi
+icon_size=$(echo "scale=1; ($monitor_width * 14) / ($scale_factor * 100)" | bc)
+rofi_override="element-icon{size:${icon_size}px;}"
+
 # swww transition config
 FPS=60
 TYPE="any"
@@ -34,7 +45,7 @@ RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 RANDOM_PIC_NAME=". random"
 
 # Rofi command
-rofi_command="rofi -i -show -dmenu -config $rofi_theme"
+rofi_command="rofi -i -show -dmenu -config $rofi_theme -theme-str $rofi_override"
 
 # Sorting Wallpapers
 menu() {

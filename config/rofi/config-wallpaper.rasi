@@ -21,26 +21,35 @@ mainbox {
 entry {
   expand: true;
   placeholder: " 🎞️ Search / Choose Wallpaper";
-  horizontal-align: 0.0;
+  horizontal-align: 0.5;
 }
 
 /* ---- Listview ---- */
 listview {
-  columns: 5;
-  lines: 3;
+  columns: 4;
+  lines: 2;
+  spacing: 10px;
+  padding: 10px;
   flow: horizontal;
+  fixed-width: false;
+  fixed-height: true;
 }
 
 /* ---- Element ---- */
 element {
   orientation: vertical;
+  border-radius: 12px;
+  spacing: 20px;
+  padding: 6px;
 }
 
 element-icon {
-  size: 10%;
+ vertical-align: 0.5; 
 }
 
 element-text {
-  vertical-align: 0.5;
+  vertical-align: 1.0;
   horizontal-align: 0.5;
+  padding: 0px;
+  margin: 0px;
 }

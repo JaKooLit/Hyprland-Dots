@@ -152,7 +152,7 @@ listview {
     cursor:                      "default";
 }
 scrollbar {
-    handle-width:                5px ;
+    handle-width:                2px ;
     handle-color:                @selected;
     border-radius:               0px;
     background-color:            @background-alt;

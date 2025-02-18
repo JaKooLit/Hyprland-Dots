@@ -12,13 +12,14 @@ mainbox {
 /* ---- Entry ---- */ 
 entry {
   expand: false;
-  width: 27%;
+  width: 25%;
   placeholder: " 📻 Choose Music Source";
+  horizontal-align: 0.5;
 }
 
 /* ---- Window ---- */
 window {
-  width: 30%;
+  width: 28%;
 }
 
 /* ---- Listview ---- */

@@ -53,7 +53,7 @@ mainbox {
     enabled:                     true;
     spacing:                     20px;
     margin:                      10px;
-    padding:                     40px;
+    padding:                     20px;
     border-radius:               12px;
     background-color:            black/90%;
     children:                    [ "inputbar", "mode-switcher", "message", "listview" ];
@@ -110,7 +110,7 @@ scrollbar {
   border-radius:				10px;
   background-color:				inherit;
   handle-color: 				#719DF9;
-  handle-width: 				5px ;
+  handle-width: 				2px ;
   padding:      				0;
 }
 

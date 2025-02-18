@@ -36,8 +36,8 @@ print_color() {
     printf "%b%s%b\n" "$1" "$2" "$CLEAR"
 }
 
-# Check if dpkg is installed (use to check if Debian or Ubuntu or based distros)
-if command -v dpkg &> /dev/null; then
+# Check /etc/os-release to see if this is an Ubuntu or Debian based distro
+if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
 	printf "\n%.0s" {1..1}
     print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
@@ -115,7 +115,7 @@ if hostnamectl | grep -q 'Operating System: NixOS'; then
 fi
 
 # Check if dpkg is installed (use to check if Debian or Ubuntu or based distros
-if command -v dpkg &> /dev/null; then
+if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
 	echo "${INFO} Debian/Ubuntu based distro. Disabling pyprland since it does not work properly" 2>&1 | tee -a "$LOG" || true
   # disabling pyprland as causing issues
   sed -i '/^exec-once = pypr &/ s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
@@ -333,7 +333,7 @@ if [ "$resolution" == "< 1440p" ]; then
   # Change rofi font size
   find "$themes_dir" -type f | while read -r file; do
       if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 12";\n}' "$file"; then
-          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
+          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 10"/' "$file"
       fi
   done
 

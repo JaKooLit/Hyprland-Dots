@@ -127,7 +127,7 @@ scrollbar {
   border-radius:				10px;
   background-color:				transparent;
   handle-color: 				@active;
-  handle-width: 				5px ;
+  handle-width: 				2px ;
   padding:      				0;
 }
 /* ---- Dummy ---- */

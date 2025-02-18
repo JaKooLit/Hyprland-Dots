@@ -1,6 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* KooL Style LonerOrZ */
 /* Submitted by https://github.com/lonerOrz */
+/* Edited by Ja */
 
 
 
@@ -109,7 +110,7 @@ scrollbar {
   border-radius:					10px;
   background-color:					transparent;
   handle-color: 					@BDR;
-  handle-width: 					5px ;
+  handle-width: 					2px ;
   padding:      					0;
 }
 

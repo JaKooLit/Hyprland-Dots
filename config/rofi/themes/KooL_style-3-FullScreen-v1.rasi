@@ -161,10 +161,10 @@ button selected {
 
 /* ---- Scrollbar ---- */
 scrollbar {
-    border:       				0;
+    border:       				0px;
     handle-color: 				@background-alt;
     handle-width: 				2px ;
-    padding:      				0;
+    padding:      				0px;
 }
 
 /* ---- Elements ---- */

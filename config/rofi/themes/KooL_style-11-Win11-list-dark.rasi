@@ -129,11 +129,11 @@ element-text {
 
 /* ---- Scrollbar ---- */
 scrollbar {
-  border:			1px;
+  border:			0px;
   border-radius:	10px;
   background-color:	inherit;
   handle-color: 	@accent;
-  handle-width: 	5px ;
+  handle-width: 	2px ;
   padding:      	0;
 }
 
