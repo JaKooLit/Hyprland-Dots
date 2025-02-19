@@ -10,7 +10,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-  width: 40%;
+  width: inherit;
+  height: inherit;
   border-radius: 15px;
 }
 

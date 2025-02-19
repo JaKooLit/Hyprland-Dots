@@ -2,12 +2,6 @@
 /* KooL Hyprland Rofi Style 10 - Fancy v2 */
 /* Credit to DaveDavenport & Rasmus Steinke */
 
-/**
- * Edited by: Dave Davenport
- * User: Rasi
- * Copyright: Rasmus Steinke
- */
-
 /* global settings and color variables */
 * {
     blue:        #A7c6E2;

@@ -12,6 +12,7 @@ mainbox {
 /* ---- Window ---- */
 window {
   width: 45%;
+  height: inherit;
 }
 
 /* ---- Entry ---- */

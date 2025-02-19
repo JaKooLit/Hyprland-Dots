@@ -7,10 +7,10 @@
 configuration {
 	modi:                       "drun,run,filebrowser,window";
     show-icons:                 true;
-    display-drun:                " ";
-    display-run:                 " ";
-    display-filebrowser:         " ";
-    display-window:              " ";
+    display-drun:               "  ";
+    display-run:                "  ";
+    display-filebrowser:        "  ";
+    display-window:             "  ";
 	drun-display-format:        "{name}";
     dpi:						1;
     hover-select:               true;

@@ -6,6 +6,7 @@
 /* ---- Window ---- */
 window {
   width: 50%;
+  height: inherit;
 }
 
 /* ---- Mainbox ---- */
@@ -23,7 +24,7 @@ entry {
 /* ---- Listview ---- */
 listview {
   columns: 1;
-  lines: 7;
+  lines: 15;
   fixed-height: false;
 }
 

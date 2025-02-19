@@ -1,0 +1,276 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* KooL_Style 13 (thin) */
+
+/* ---- Configuration ---- */
+configuration {
+    modi:                       "drun,run,filebrowser";
+    font:                       "Fira Code SemiBold 12";
+    show-icons:                 true;
+    display-drun:               " ";
+    display-run:                " ";
+    display-filebrowser:        "";
+    display-window:             " ";
+	drun-display-format:        "{name}";
+    hover-select:               true;
+    me-select-entry:            "MouseSecondary";
+    me-accept-entry:            "MousePrimary";
+    window-format:              "{w} · {c} · {t}";
+	dpi:						1;
+    
+}
+/* ---- Load wallust colors ---- */
+@theme "~/.config/rofi/wallust/colors-rofi.rasi"
+
+/* ---- Global Properties ---- */
+* {
+    background-alt:              @color10;
+    selected:                    @color12;
+    active:                      @color11;
+    urgent:                      red;
+
+    text-selected:               @background;
+    text-color:                  @foreground;
+    border-color:                @selected;
+}
+
+/*****-- Elements Font Size -----*****/
+element-text {
+  font: "JetBrainsMono Nerd Font SemiBold 12";
+}
+
+/* ---- Window ---- */
+window {
+    width:						15%;
+	height:						80%;
+    x-offset:                   8px;
+    y-offset:                   0px;
+    spacing:                    0px;
+    padding:                    0px;
+    margin:                     0px; 
+    border:                     2px;
+    border-color:               @border-color;
+    cursor:                     "default";
+    location:                   center;
+    anchor:                     center;
+    fullscreen:                 false;
+    enabled:                    true;
+    border-radius:              12px;
+ 	background-color:           rgba(0, 0, 0, 0.6);
+}
+
+/* ---- Mainbox ---- */
+mainbox {
+    enabled:                    true;
+    orientation:                vertical;
+	padding:					0px;
+    background-color:		    rgba(0, 0, 0, 0.1);
+    children:                   [ "inputbar", "imagebox" ];
+    border-radius:              12px;
+}
+
+/* ---- Imagebox ---- */
+imagebox {
+    background-color:           transparent;
+    orientation:                vertical;
+    children:                   [ "mode-switcher",  "listbox"];
+}
+
+/* ---- Listbox ---- */
+listbox {
+    spacing:                    5px;
+    orientation:                vertical;
+    children:                   [ "message", "listview" ];
+	padding:					6px;
+    border-radius:              12px;
+    border:                     0px;
+    border-color:               @border-color;
+	background-color:		    transparent;
+}
+
+/* ---- Dummy ---- */
+dummy {
+    background-color:           transparent;
+}
+
+/* ---- Inputbar ---- */
+inputbar {
+    enabled:                    true;
+    text-color:                 @foreground;
+    spacing:                    10px;
+    padding:                    30px;
+    border-radius:              10px;
+    border-color:               @border-color;
+	background-color:		    @background;
+    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    children:                   [ "textbox-prompt-colon","entry" ];
+    border:                     0px;
+}
+
+textbox-prompt-colon {
+    enabled:                    true;
+	padding:					6px 0px 6px 10px;
+    expand:                     false;
+    str:                        "⁉️";
+    text-color:                 inherit;
+	background-color:			transparent;
+}
+
+entry {
+    enabled:                    true;
+	padding:					6px 0px 0px 0px;
+    text-color:                 @foreground;
+    cursor:                     text;
+    border-radius:              12px;
+    placeholder:                "Type to search";
+    placeholder-color:          inherit;
+	background-color:			@background;
+	horizontal-align:           0.5;
+}
+
+/* ---- Mode Switcher ---- */
+mode-switcher{
+	orientation:				horizontal;
+    enabled:                    true;
+    padding:                    8px;
+    spacing:                    12px;
+    background-color:          	transparent;
+    text-color:                 @foreground;
+}
+
+button {
+    padding:                   10px;
+    border-radius:             10px;
+    background-color:          @background;
+    text-color:                inherit;
+    cursor:                    pointer;
+    border:                    1px;
+    border-color:              @border-color;
+}
+
+button selected {
+    background-color:          @active;
+    text-color:                @foreground;
+    border:                    1px;
+    border-color:              @background;
+	
+}
+
+/* ---- Listview ---- */
+listview {
+	enabled:					true;
+	columns:					1;
+	lines:						10;
+	spacing:                    0px;
+	dynamic:                    true;
+	cycle:                      true;
+	scrollbar:                  false;
+	layout:                     vertical;
+	reverse:                    false;
+	fixed-height:               false;
+	fixed-columns:              true;
+	background-color:           transparent;
+	cursor:                     "default";
+}
+
+/* ---- Scrollbar ---- */
+scrollbar {
+  	border:						0px;
+  	border-radius:				10px;
+  	background-color:			transparent;
+  	handle-color: 				@active;
+  	handle-width: 				2px ;
+  	padding:      				0;
+}
+
+/* ---- Element ---- */
+element {
+    enabled:                    true;
+    padding:                    8px;
+    spacing:                    10px;
+    cursor:                     pointer;
+    background-color:         	transparent;
+    border-radius:              10px;
+    border:                     0px;
+}
+
+element normal.normal {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element normal.urgent {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element normal.active {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element selected.normal {
+    background-color:           @active;
+    text-color:                 @foreground;
+}
+
+element selected.urgent {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element selected.active {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element alternate.normal {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element alternate.urgent {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element alternate.active {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element-icon {
+    background-color:           transparent;
+    text-color:                 inherit;
+    size:                       30px;
+    cursor:                     inherit;
+}
+
+element-text {
+    background-color:           transparent;
+    text-color:                 inherit;
+    cursor:                     inherit;
+    vertical-align:             0.5;
+    horizontal-align:           0.0;
+}
+
+/*****----- Message -----*****/
+message {
+    background-color:          @background-alt;
+    margin:						10px;
+    border-radius: 				12px;
+}
+
+textbox {
+    padding:                    10px;
+    background-color:      		@background-alt;
+    text-color:                 @foreground;
+    vertical-align:             0.5;
+    horizontal-align:           0.5;
+}
+
+error-message {
+    padding:                    15px;
+    border-radius:            	12px;
+    background-color:      		@background-alt;
+    text-color:                 @foreground;
+}

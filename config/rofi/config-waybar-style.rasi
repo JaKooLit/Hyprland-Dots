@@ -16,7 +16,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-  width: 45%;
+  width: inherit;
+  height: inherit;
 }
 
 /* ---- Entry ---- */ 

@@ -26,6 +26,7 @@ listview {
 
 window {
     width: 90%;
+    height: inherit;
 }
 
 /* ---- Elements ---- */

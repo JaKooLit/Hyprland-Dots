@@ -2,13 +2,6 @@
 /* KooL Hyprland Rofi Style 10 - Fancy */
 /* Credit to DaveDavenport. I have only some few things changed */
 
-/*******************************************************************************
- * ROFI Color theme
- * Theme designed to show off moving, packing of widgets, icons and more.
- * User: DaveDavenport
- * Copyright: DaveDavenport
- ********************************************************************************/
-
 /* ---- Configuration ---- */
 
 configuration {

@@ -10,6 +10,7 @@ configuration {
 
 window {
   width: 75%;
+  height: inherit;
 }
 
 /* ---- Mainbox ---- */
@@ -22,6 +23,7 @@ entry {
   expand: true;
   placeholder: " 🎞️ Search / Choose Wallpaper";
   horizontal-align: 0.5;
+  horizontal-align: 0.5;
 }
 
 /* ---- Listview ---- */
@@ -30,8 +32,12 @@ listview {
   lines: 2;
   spacing: 40px;
   padding: 20px;
+  columns: 6;
+  lines: 2;
+  spacing: 40px;
+  padding: 20px;
   flow: horizontal;
-  fixed-width: false;
+  fixed-width: true;
   fixed-height: true;
 }
 
@@ -40,17 +46,17 @@ element {
   orientation: vertical;
   border-radius: inherit;
   spacing: 20px;
-  padding: 6px;
+  padding: 10px;
 }
 
 element-icon {
  vertical-align: 0.5; 
-  margin: -110px -10px;
+  margin: -100px -10px;
 }
 
 element-text {
   vertical-align: 0.5;
   horizontal-align: 0.5;
-  padding: 0px;
-  margin: 0px;
+  padding: 10px;
+  margin: 10px;
 }

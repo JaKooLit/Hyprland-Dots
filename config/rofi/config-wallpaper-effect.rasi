@@ -19,6 +19,7 @@ entry {
 /* ---- Window ---- */
 window {
   width: 35%;
+  height: inherit;
 }
 
 /* ---- Listview ---- */
