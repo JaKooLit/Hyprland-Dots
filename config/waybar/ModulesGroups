@@ -106,4 +106,20 @@
 		"custom/dot_update",
 	]
 },
+
+// groups for vertical
+"group/power#vert": {
+     "orientation": "inherit",
+     "drawer": {
+        "transition-duration": 300,
+        "children-class": "not-memory",
+        "transition-left-to-right": false
+       },
+     "modules": [
+        "custom/power",
+        "custom/lock",
+        "custom/logout",
+        "custom/reboot"
+      ]
+},
 }

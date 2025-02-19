@@ -9,7 +9,7 @@ configuration {
 }
 
 window {
-  width: 60%;
+  width: 75%;
 }
 
 /* ---- Mainbox ---- */
@@ -26,10 +26,10 @@ entry {
 
 /* ---- Listview ---- */
 listview {
-  columns: 4;
+  columns: 6;
   lines: 2;
-  spacing: 10px;
-  padding: 10px;
+  spacing: 40px;
+  padding: 20px;
   flow: horizontal;
   fixed-width: false;
   fixed-height: true;
@@ -38,17 +38,18 @@ listview {
 /* ---- Element ---- */
 element {
   orientation: vertical;
-  border-radius: 12px;
+  border-radius: inherit;
   spacing: 20px;
   padding: 6px;
 }
 
 element-icon {
  vertical-align: 0.5; 
+  margin: -110px -10px;
 }
 
 element-text {
-  vertical-align: 1.0;
+  vertical-align: 0.5;
   horizontal-align: 0.5;
   padding: 0px;
   margin: 0px;
