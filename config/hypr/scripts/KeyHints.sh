@@ -61,12 +61,13 @@ GDK_BACKEND=$BACKEND yad \
 " SPACEBAR" "Toggle float" "single window" \
 " ALT SPACEBAR" "Toggle all windows to float" "all windows" \
 " ALT O" "Toggle Blur" "normal or less blur" \
+" CTRL O" "Toggle Opaque ON or OFF" "on active window only" \
 " Shift A" "Animations Menu" "Choose Animations via rofi" \
 " CTRL R" "Rofi Themes Menu" "Choose Rofi Themes via rofi" \
-" CTRLL Shift R" "Rofi Themes Menu v2" "Choose Rofi Themes via Theme Selector (modified)" \
+" CTRL Shift R" "Rofi Themes Menu v2" "Choose Rofi Themes via Theme Selector (modified)" \
 " SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
 " ALT E" "Rofi Emoticons" "Emoticon" \
 " ALT V" "Clipboard Manager" "cliphist" \
-" H" "Launch this QUICK CHEAT" "" \
+" H" "Launch this Quick Cheat Sheet" "" \
 "" "" "" \
 "More tips:" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
