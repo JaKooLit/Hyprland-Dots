@@ -22,9 +22,10 @@ focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 monitor_width=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .width')
 scale_factor=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .scale')
 
-# Calculate icon size for rofi
-icon_size=$(echo "scale=1; ($monitor_width * 14) / ($scale_factor * 100)" | bc)
-rofi_override="element-icon{size:${icon_size}px;}"
+icon_size=$(echo "scale=1; ($monitor_width * 18) / ($scale_factor * 100)" | bc) # icon size
+margin=$(echo "scale=1; ($scale_factor * 120) / $scale_factor" | bc) # margin
+
+rofi_override="element-icon{size:${icon_size}px;margin:-${margin}px;}"
 
 # swww transition config
 FPS=60
@@ -74,7 +75,6 @@ swww query || swww-daemon --format xrgb
 main() {
   choice=$(menu | $rofi_command)
   
-  # Trim any potential whitespace or hidden characters
   choice=$(echo "$choice" | xargs)
   RANDOM_PIC_NAME=$(echo "$RANDOM_PIC_NAME" | xargs)
 
@@ -94,7 +94,6 @@ main() {
     exit 0
   fi
 
-  # Find the index of the selected file
   pic_index=-1
   for i in "${!PICS[@]}"; do
     filename=$(basename "${PICS[$i]}")
@@ -143,16 +142,16 @@ if [[ -n "$choice" ]]; then
     while read -r line; do
       if echo "$line" | grep -q "yes"; then
 
-		  # Check if terminal exists
-		  if ! command -v "$terminal" &>/dev/null; then
-   			notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
-   		  exit 1
-		  fi
+    # Check if terminal exists
+	if ! command -v "$terminal" &>/dev/null; then
+   	  notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
+   	  exit 1
+	fi
 			
-      $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
-      sudo cp -r $wallpaper_current '$sddm_sequoia/backgrounds/default' && \
-      notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
-      break
+    $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
+    sudo cp -r $wallpaper_current '$sddm_sequoia/backgrounds/default' && \
+    notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
+    break
   elif echo "$line" | grep -q "no"; then
     echo "Wallpaper not set as SDDM background. Exiting."
     break
@@ -161,5 +160,3 @@ if [[ -n "$choice" ]]; then
   done &
   fi
 fi
-
-

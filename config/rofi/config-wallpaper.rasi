@@ -51,12 +51,11 @@ element {
 
 element-icon {
  vertical-align: 0.5; 
-  margin: -100px -10px;
 }
 
 element-text {
   vertical-align: 0.5;
   horizontal-align: 0.5;
   padding: 10px;
-  margin: 10px;
+  margin: 0px;
 }
