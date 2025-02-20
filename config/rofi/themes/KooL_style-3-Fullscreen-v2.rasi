@@ -187,12 +187,14 @@ element-text selected,
 element selected.selected {
     background-color:            white/50%;
     text-color:                  @foreground;
+	border-radius:				 20px;
+	padding:					 20px;
 }
 
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        72px;
+    size:                        7%;
     cursor:                      inherit;
 }
 element-text {
@@ -202,6 +204,7 @@ element-text {
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.5;
+	padding: 					 30px;
 }
 
 /*****----- Message -----*****/

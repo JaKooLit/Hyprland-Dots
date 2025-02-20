@@ -91,7 +91,7 @@ listview {
 
 element {
   spacing       : 1em;
-  padding       : 8px;
+  padding       : 20px;
   border-radius : 2px;
 }
 
@@ -114,6 +114,8 @@ element selected active {
 element-text selected,
 element selected {
   background-color: @bg3;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 element selected urgent {

@@ -19,13 +19,16 @@ fi
 
 # Detect the current monitor's native resolution and scale
 monitor_info=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true)')
-# extract some info
+
 resolution=$(echo "$monitor_info" | jq -r '.height')
 width=$(echo "$monitor_info" | jq -r '.width')
 hypr_scale=$(echo "$monitor_info" | jq -r '.scale')
 
-# If hypr_scale >= 1.25 or resolution can't be detected, run wlogout with -b 3 
-if [[ -z "$resolution" || ! "$resolution" =~ ^[0-9]+$ || -z "$hypr_scale" || $(awk "BEGIN {exit !($hypr_scale >= 1.25)}") -eq 1 ]]; then
+# Round hypr_scale to 2 decimal places for accurate comparison
+rounded_scale=$(echo "scale=2; $hypr_scale/1" | bc)
+
+# If resolution or scale is invalid or hypr_scale >= 1.25, run wlogout with -b 3
+if [[ -z "$resolution" || ! "$resolution" =~ ^[0-9]+$ || -z "$hypr_scale" || $(echo "$rounded_scale >= 1.25" | bc) -eq 1 ]]; then
     echo "Hypr_scale is greater than or equal to 1.25 or resolution could not be detected, running wlogout with -b 3"
     wlogout --protocol layer-shell -b 3 -T 100 -B 100 &
     exit 0

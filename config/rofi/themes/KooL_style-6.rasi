@@ -160,7 +160,7 @@ button selected {
 element {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     4px;
+    padding:                     15px;
     border-radius:               10px;
     background-color:            transparent;
     cursor:                      pointer;

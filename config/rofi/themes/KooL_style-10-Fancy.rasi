@@ -165,7 +165,7 @@ listview {
 element {
     border:  1;
     border-color: transparent;
-    padding: 4px ;
+    padding: 12px ;
 }
 element-text {
     background-color: inherit;

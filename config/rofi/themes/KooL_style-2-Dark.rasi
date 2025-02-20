@@ -106,20 +106,20 @@ listview {
 
 /* ---- Scrollbar ---- */
 scrollbar {
-  border:						1px;
-  border-radius:				10px;
-  background-color:				inherit;
-  handle-color: 				#719DF9;
-  handle-width: 				2px ;
-  padding:      				0;
+    border:						1px;
+    border-radius:				10px;
+    background-color:				inherit;
+    handle-color: 				#719DF9;
+    handle-width: 				2px ;
+    padding:      				0;
 }
 
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
     spacing:                     10px;
-    margin:                      0px;
-    padding:                     20px 0px 20px 0px;
+    margin:                      10px;
+    padding:                     20px;
     border:                      1px solid;
     border-radius:               8px;
     border-color:                white/30%;

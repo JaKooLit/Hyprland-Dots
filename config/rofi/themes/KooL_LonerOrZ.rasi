@@ -126,7 +126,7 @@ element {
     text-color:                     @FG;
     orientation:                    horizontal;
     border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+    padding:                        12px;
 }
 
 element-icon {

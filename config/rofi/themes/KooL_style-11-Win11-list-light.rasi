@@ -117,6 +117,8 @@ element-text selected,
 element selected normal {
   background-color: @bg0;
   text-color: @accent;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 element selected urgent {
@@ -149,6 +151,6 @@ error-message {
 textbox {
   padding           : 10px;
   text-color        : @fg0;
-  vertical-align	  : 0.5;
+  vertical-align	: 0.5;
   horizontal-align	: 0.5;
 }

@@ -31,7 +31,6 @@ listview {
   columns: 6;
   lines: 2;
   spacing: 20px;
-  padding: 10px;
   columns: 6;
   lines: 2;
   flow: horizontal;
@@ -42,8 +41,6 @@ listview {
 /* ---- Element ---- */
 element {
   orientation: vertical;
-  padding: 0px;
-  spacing: 0px;
   border-radius: 10px;
   padding: 0px;
   margin: 0px;
@@ -51,18 +48,20 @@ element {
 
 element selected.normal {
   background-color: transparent;
+
 }
 
 element-icon {
-    text-color:                  inherit;
-    size:                        10%;
-    margin:                      -30px;
-    cursor:                      inherit;
+  text-color: inherit;
+  size: 1%;
+  margin: -30px;
+  cursor: inherit;
+
 }
 
 element-text {
   vertical-align: 0.5;
   horizontal-align: 0.5;
-  padding: 10px;
+  padding: 20px;
   margin: 0px;
 }

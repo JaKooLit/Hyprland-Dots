@@ -183,7 +183,7 @@ scrollbar {
 /* ---- Element ---- */
 element {
     enabled:                    true;
-    padding:                    5px;
+    padding:                    12px;
     margin:                     2px;
     cursor:                     pointer;
     background-color:         	transparent;

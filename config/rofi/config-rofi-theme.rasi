@@ -26,7 +26,7 @@ listview {
   columns: 2;
   lines: 7;
   fixed-height: false;
-  margin: 10px;
+  margin: 0px;
   scrollbar: true;
 }
 
@@ -37,5 +37,5 @@ element-icon {
 element-text {
   horizontal-align: 0.0;
   vertical-align: 0.0;
-  margin: 5px 30px 5px 30px;
+  margin: 0px;
 }
