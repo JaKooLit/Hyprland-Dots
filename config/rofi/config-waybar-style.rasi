@@ -5,8 +5,7 @@
 
 /* ---- Mainbox ---- */
 mainbox {
-  children:
-    [ "inputbar", "message", "listview"];
+  children: [ "inputbar", "message", "listview"];
 }
 
 /* ---- Configuration ---- */

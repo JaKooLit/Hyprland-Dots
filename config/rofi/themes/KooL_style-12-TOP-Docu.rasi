@@ -129,6 +129,7 @@ element-text {
     cursor: inherit;
 }
 
+
 /* ---- Scrollbar ---- */
 scrollbar {
     border-radius:				10px;

@@ -50,7 +50,7 @@ element {
 }
 
 element selected.normal {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 element-icon {

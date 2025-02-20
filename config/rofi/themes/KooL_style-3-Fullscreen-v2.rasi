@@ -172,10 +172,12 @@ element {
     orientation:                 vertical;
     cursor:                      pointer;
 }
+
 element normal.normal {
     background-color:            transparent;
     text-color:                  @foreground;
 }
+
 element selected.normal {
     background-color:            inherit;
     text-color:                  @foreground;
@@ -186,6 +188,7 @@ element selected.selected {
     background-color:            white/50%;
     text-color:                  @foreground;
 }
+
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;

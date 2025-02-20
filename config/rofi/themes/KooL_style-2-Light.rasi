@@ -98,7 +98,7 @@ listview {
     
     spacing:                     40px;
     margin:                      0px;
-    padding:                     20px 0px 0px 0px;
+    padding:                     0px;
     border:                      0px solid;
     background-color:            transparent;
     cursor:                      "default";
@@ -128,17 +128,18 @@ element {
     cursor:                      pointer;
 }
 element normal.active {
-    background-color:          #67FF80;
+    background-color:            #67FF80;
     text-color:                  black;
 }
 
 element-text selected,
 element selected.normal {
-    background-color:          #FDD66F;
+    background-color:            #FDD66F;
     text-color:                  black;
 }
+
 element selected.active {
-    background-color:          #FF7F7C;
+    background-color:            #FF7F7C;
     text-color:                  black;
 }
 element-icon {
@@ -186,7 +187,7 @@ error-message {
 }
 textbox {
     padding:                     10px;
-    background-color:            #719DF9;
+    background-color:          #719DF9;
     text-color:                  inherit;
     vertical-align:              0.5;
     horizontal-align:            0.5;
