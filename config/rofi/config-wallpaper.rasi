@@ -46,11 +46,17 @@ element {
   orientation: vertical;
   border-radius: inherit;
   spacing: 20px;
-  padding: 10px;
+  padding: 0px;
+}
+
+element selected.normal {
+  border: 0px 3px 0px 3px;
+  border-color: inherit;
+  border-radius: 2%;
 }
 
 element-icon {
- vertical-align: 0.5; 
+   vertical-align: 0.5; 
 }
 
 element-text {
