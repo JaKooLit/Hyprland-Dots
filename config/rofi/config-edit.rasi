@@ -46,5 +46,6 @@ element-icon {
 }
 element-text {
   horizontal-align: 0.0;
+  padding-left: 0px;
   margin: 5px 30px 5px 30px;
 }

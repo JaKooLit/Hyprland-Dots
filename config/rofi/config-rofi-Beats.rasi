@@ -14,10 +14,10 @@ mainbox {
   children:
     [ "inputbar", "listview"];
 }
-R
+
 /* ---- Entry ---- */ 
 entry {
-  placeholder: " 📻 Choose Media or Stations to play";
+  placeholder: "📻 Choose Media or Stations to play";
 }
 
 /* ---- Listview ---- */
