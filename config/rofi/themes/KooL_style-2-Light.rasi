@@ -131,6 +131,8 @@ element normal.active {
     background-color:          #67FF80;
     text-color:                  black;
 }
+
+element-text selected,
 element selected.normal {
     background-color:          #FDD66F;
     text-color:                  black;

@@ -111,6 +111,7 @@ element selected active {
   text-color: @accent;
 }
 
+element-text selected,
 element selected {
   background-color: @bg3;
 }

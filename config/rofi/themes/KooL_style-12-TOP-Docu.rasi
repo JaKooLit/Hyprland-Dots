@@ -112,8 +112,9 @@ element {
     padding:         			2px;
 }
 
+element-text selected,
 element selected {
-    background-color: 			white/20%;
+    background-color: 			white/30%;
     text-color:       			black;
 }
 

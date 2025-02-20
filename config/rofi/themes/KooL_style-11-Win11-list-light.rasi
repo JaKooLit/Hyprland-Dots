@@ -111,6 +111,7 @@ element selected active {
   text-color: @accent;
 }
 
+element-text selected,
 element selected {
   background-color: @bg3;
 }
@@ -146,6 +147,5 @@ textbox {
   padding            : 10px;
   background-color   : @bg0;
   text-color         : @fg0;
-  vertical-align     : 0.5; 
   horizontal-align   : 0.5;
 }

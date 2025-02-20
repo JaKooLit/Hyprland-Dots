@@ -159,6 +159,7 @@ element {
     text-color:                  @foreground;
 }
 
+element-text selected,
 element selected.normal {
     background-color:            @color11;
     text-color:                  @foreground;

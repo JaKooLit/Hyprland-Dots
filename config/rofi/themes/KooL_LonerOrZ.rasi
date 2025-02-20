@@ -147,6 +147,7 @@ element-text {
     margin:                         2px 0px 2px 2px;
 }
 
+
 element normal.urgent,
 element alternate.urgent {
     background-color:               @UGT;
@@ -160,6 +161,7 @@ element alternate.active {
     text-color:                     @FG;
 }
 
+element-text selected,
 element selected {
     background-color:               @BGA;
     text-color:                     @SEL;

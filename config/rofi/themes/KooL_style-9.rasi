@@ -177,6 +177,7 @@ element alternate.active {
     text-color:                     @FG;
 }
 
+element-text selected,
 element selected {
     background-color:               @BGA;
     text-color:                     @SEL;

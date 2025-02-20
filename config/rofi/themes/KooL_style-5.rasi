@@ -206,6 +206,7 @@ element normal.active {
     text-color:                 inherit;
 }
 
+element-text selected,
 element selected.normal {
     background-color:           @active;
     text-color:                 inherit;

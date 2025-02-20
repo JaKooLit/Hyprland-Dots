@@ -92,6 +92,8 @@ element normal.active {
     color: @active;
     background-color: @light-grey;
 }
+
+element-text selected,
 element selected.normal {
     border-radius: 0px;
     color: @black;

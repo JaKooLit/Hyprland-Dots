@@ -213,6 +213,12 @@ element.alternate.active {
     background-color: @alternate-active-background;
     text-color:       @alternate-active-foreground;
 }
+
+element-text selected {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
 /* ---- Scrollbar ---- */
 scrollbar {
   border:			0px;

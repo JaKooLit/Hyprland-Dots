@@ -154,14 +154,15 @@ element normal.normal {
     background-color:            transparent;
     text-color:                  @foreground;
 }
+
+element-text selected,
 element selected.normal {
-    border-radius:               10%;
+	border-radius:               30px;
     background-color:            @color11;
     text-color:                  @foreground;
 }
 element-icon {
     padding:                     0px;
-    border-radius:               100%;
     background-color:            transparent;
     text-color:                  inherit;
     size:                        5%;
