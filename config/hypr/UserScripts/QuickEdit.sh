@@ -6,11 +6,12 @@
 edit=${EDITOR:-nano}
 tty=kitty
 
-# Paths to configuration directories
+# variables
 configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
 rofi_theme="~/.config/rofi/config-edit.rasi"
 msg=' ⁉️ Choose which config to View or Edit ⁉️'
+iDIR="$HOME/.config/swaync/images"
 
 # Function to display the menu options
 menu() {
@@ -44,8 +45,16 @@ main() {
         7) file="$UserConfigs/UserAnimations.conf" ;;
         8) file="$UserConfigs/Laptops.conf" ;;
         9) file="$configs/Keybinds.conf" ;;
-        10) nwg-displays ;;
-        11) nwg-displays ;;
+        10) if ! command -v nwg-displays &>/dev/null; then
+   	  		notify-send -i "$iDIR/ja.png" "Missing nwg-displays" "Install nwg-displays first"
+   	  		exit 1
+			fi
+			nwg-displays ;;
+        11) if ! command -v nwg-displays &>/dev/null; then
+   	  		notify-send -i "$iDIR/ja.png" "Missing nwg-displays" "Install nwg-displays first"
+   	  		exit 1
+			fi
+			nwg-displays ;;
         *) return ;;  # Do nothing for invalid choices
     esac
 
@@ -61,4 +70,3 @@ if pidof rofi > /dev/null; then
 fi
 
 main
-

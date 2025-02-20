@@ -12,8 +12,8 @@ mainbox {
 
 /* ---- Entry ---- */ 
 entry {
-  width: 32%;
   placeholder: " 🏙️ Search / Choose desired wallpaper effect";
+  padding: 12px;
 }
 
 /* ---- Window ---- */
