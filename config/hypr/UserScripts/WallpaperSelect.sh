@@ -22,8 +22,8 @@ focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 monitor_width=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .width')
 scale_factor=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .scale')
 
-icon_size=$(echo "scale=1; ($monitor_width * 18) / ($scale_factor * 100)" | bc) # icon size
-margin=$(echo "scale=1; ($scale_factor * 120) / $scale_factor" | bc) # margin
+icon_size=$(echo "scale=1; ($monitor_width * 15) / ($scale_factor * 100)" | bc) # icon size
+margin=$(echo "scale=1; ($scale_factor * 100) / $scale_factor" | bc) # margin
 
 rofi_override="element-icon{size:${icon_size}px;margin:-${margin}px;}"
 
