@@ -104,7 +104,7 @@ if hostnamectl | grep -q 'Chassis: vm'; then
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)false/\1true/' config/hypr/UserConfigs/UserSettings.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   #sed -i '/env = LIBGL_ALWAYS_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
+  sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/monitors.conf
 fi
 
 # Proper Polkit for NixOS
@@ -114,7 +114,7 @@ if hostnamectl | grep -q 'Operating System: NixOS'; then
   sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
-# Check if dpkg is installed (use to check if Debian or Ubuntu or based distros
+# to check if Debian or Ubuntu or based distros
 if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
 	echo "${INFO} Debian/Ubuntu based distro. Disabling pyprland since it does not work properly" 2>&1 | tee -a "$LOG" || true
   # disabling pyprland as causing issues
@@ -583,14 +583,12 @@ FILES_TO_RESTORE=(
   "ENVariables.conf"
   "LaptopDisplay.conf"
   "Laptops.conf"
-  "Monitors.conf"
   "Startup_Apps.conf"
   "UserDecorations.conf"
   "UserAnimations.conf"
   "UserKeybinds.conf"
   "UserSettings.conf"
   "WindowRules.conf"
-  "WorkspaceRules.conf"
 )
 
 DIRPATH=~/.config/"$DIRH"
@@ -637,13 +635,13 @@ SCRIPTS_TO_RESTORE=(
 )
 
 DIRSHPATH=~/.config/"$DIRSH"
-BACKUP_DIR_PATH="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
+BACKUP_DIR_PATH_S="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
 
-if [ -d "$BACKUP_DIR_PATH" ]; then
+if [ -d "$BACKUP_DIR_PATH_S" ]; then
   echo -e "${NOTE} Restoring previous ${MAGENTA}User-Scripts${RESET}..."
 
   for SCRIPT_NAME in "${SCRIPTS_TO_RESTORE[@]}"; do
-    BACKUP_SCRIPT="$BACKUP_DIR_PATH/$SCRIPT_NAME"
+    BACKUP_SCRIPT="$BACKUP_DIR_PATH_S/$SCRIPT_NAME"
 
     if [ -f "$BACKUP_SCRIPT" ]; then
       printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
@@ -657,6 +655,46 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
       else
         echo "${NOTE} - Skipped restoring $SCRIPT_NAME."
       fi
+    fi
+  done
+fi
+
+printf "\n%.0s" {1..1}
+
+# restoring some files in ~/.config/hypr
+DIR_H="hypr"
+FILES_2_RESTORE=(
+  "hyprlock.conf"
+  "hypridle.conf"
+  "monitors.conf"
+  "workspaces.conf"
+)
+
+DIRPATH=~/.config/"$DIR_H"
+BACKUP_DIR=$(get_backup_dirname)
+BACKUP_DIR_PATH_F="$DIRPATH-backup-$BACKUP_DIR"
+
+if [ -d "$BACKUP_DIR_PATH_F" ]; then
+  echo -e "${NOTE} Restoring some files in ${MAGENTA}~/.config/hypr directory${RESET}..."
+
+  for FILE_RESTORE in "${FILES_2_RESTORE[@]}"; do
+    BACKUP_FILE="$BACKUP_DIR_PATH_F/$FILE_RESTORE"
+  
+    if [ -f "$BACKUP_FILE" ]; then
+      echo -e "\n${INFO} Found ${YELLOW}$FILE_RESTORE${RESET} in hypr backup..."
+      read -p "${CAT} Do you want to restore ${YELLOW}$FILE_RESTORE${RESET} from backup? (y/N): " file2restore
+
+      if [[ "$file2restore" == [Yy]* ]]; then
+        if cp "$BACKUP_FILE" "$DIRPATH/$FILE_RESTORE"; then
+          echo "${OK} - $FILE_RESTORE restored!" 2>&1 | tee -a "$LOG"
+        else
+          echo "${ERROR} - Failed to restore $FILE_RESTORE!" 2>&1 | tee -a "$LOG"
+        fi
+      else
+        echo "${NOTE} - Skipped restoring $FILE_RESTORE."
+      fi
+    else
+      echo "${ERROR} - Backup file $BACKUP_FILE does not exist."
     fi
   done
 fi
