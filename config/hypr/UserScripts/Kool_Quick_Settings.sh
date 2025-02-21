@@ -1,6 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Rofi menu for Quick Edit/View of Settings (SUPER E)
+# Rofi menu for Quick Edit/View of Settings (SUPER SHIFT E)
 
 # Define preferred text editor and terminal
 edit=${EDITOR:-nano}
@@ -10,8 +10,10 @@ tty=kitty
 configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
 rofi_theme="~/.config/rofi/config-edit.rasi"
-msg=' ⁉️ Choose which config to View or Edit ⁉️'
+msg=' ⁉️ Choose what to do ⁉️'
 iDIR="$HOME/.config/swaync/images"
+scriptsDir="$HOME/.config/hypr/scripts"
+UserScripts="$HOME/.config/hypr/UserScripts"
 
 # Function to display the menu options
 menu() {
@@ -27,6 +29,10 @@ menu() {
 9. view/edit Default Keybinds
 10. view/edit Monitors (via nwg-displays)
 11. view/edit Workspace Rules (nwg-displays)
+12. Choose Hyprland Animations
+13. Choose Monitor Profiles
+14. Choose Rofi Themes
+15. Search for Keybinds
 EOF
 }
 
@@ -55,6 +61,11 @@ main() {
    	  		exit 1
 			fi
 			nwg-displays ;;
+		12) $scriptsDir/Animations.sh ;;
+		13) $scriptsDir/MonitorProfiles.sh ;;
+		14) $scriptsDir/RofiThemeSelector.sh ;;
+		15) $scriptsDir/KeyBinds.sh ;;
+
         *) return ;;  # Do nothing for invalid choices
     esac
 

@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Hyprland Edit Rofi Config */
+/* Monitor Profiles Menu */
 
-@import "~/.config/rofi/config.rasi"  
+@import "~/.config/rofi/config.rasi" 
 
 /* ---- Mainbox ---- */
 mainbox {
@@ -9,44 +9,33 @@ mainbox {
     [ "inputbar", "message", "listview"];
 }
 
-
-/* ---- Configuration ---- */ 
-configuration {
-  modi: "drun";
-}
-
 /* ---- Window ---- */
 window {
-   width: 50%;
-   height: inherit;
+  width: 45%;
+  height: inherit;
 }
 
+/* ---- Entry ---- */ 
+entry {
+  width: 43%;
+  placeholder: " 💻 Search / Choose which Monitor Profiles to load";
+}
 
 /* ---- Listview ---- */
 listview {
-  columns: 2;
-  lines: 6;
+  columns: 1;
+  lines: 5;
   fixed-height: false;
+  margin: 10px;
   scrollbar: true;
 }
 
-/* ---- Entry input ---- */
-entry {
-  expand: true;
-  placeholder: " 👀  View / Edit KooL Hyprland Configs";
-}
-
-
 /* ---- Elements ---- */
-element {
-  orientation: horizontal;
-}
-
 element-icon {
   size: 0%;
 }
 element-text {
   horizontal-align: 0.0;
-  padding-left: 0px;
+  vertical-align: 0.0;
   margin: 5px 30px 5px 30px;
 }

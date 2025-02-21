@@ -1,0 +1,9 @@
+# Create a Monitor profile you want to on this directory
+
+# Create a unique file name i.e. Mirror, or Office, Scale, etc etc
+
+# tip: You can easily create a profile using nwg-displays
+# after which, you can copy the ~/.config/hypr/monitors.conf file in this directory
+
+# Note, after selecting Profiles wanted, it will copy contents into ~/.config/hypr/monitors.conf
+

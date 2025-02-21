@@ -40,9 +40,9 @@
 
 "custom/settings": {
 	"format": " ",
-	"on-click": "$HOME/.config/hypr/UserScripts/QuickEdit.sh",
+	"on-click": "$HOME/.config/hypr/UserScripts/Kool_Quick_Settings.sh",
 	"tooltip": true,
-	"tooltip-format": "Launch Quick Edit",
+	"tooltip-format": "Launch KooL Hyprland Settings Menu",
 },
 
 "custom/cycle_wall": {
