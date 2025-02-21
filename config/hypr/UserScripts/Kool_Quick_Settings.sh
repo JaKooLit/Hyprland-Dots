@@ -27,8 +27,8 @@ menu() {
 7. view/edit Animations
 8. view/edit Laptop Keybinds
 9. view/edit Default Keybinds
-10. view/edit Monitors (via nwg-displays)
-11. view/edit Workspace Rules (nwg-displays)
+10. Configure Monitors (nwg-displays)
+11. Configure Workspace Rules (nwg-displays)
 12. Choose Hyprland Animations
 13. Choose Monitor Profiles
 14. Choose Rofi Themes
