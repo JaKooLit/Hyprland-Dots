@@ -493,7 +493,10 @@ for DIR2 in $DIRS; do
           
           # restoring waybar config and style automatically
           if [ "$DIR2" = "waybar" ]; then
-            cp "$DIRPATH-backup-$BACKUP_DIR/config" ~/.config/waybar/ && cp "$DIRPATH-backup-$BACKUP_DIR/style.css" ~/.config/waybar/
+          	rm -f "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css" || true
+            cp -L "$DIRPATH-backup-$BACKUP_DIR/config" "$HOME/.config/waybar/config" || true
+            cp -L "$DIRPATH-backup-$BACKUP_DIR/style.css" "$HOME/.config/waybar/style.css" || true
+            
             echo -e "${OK} - waybar config and style restored automatically" 2>&1 | tee -a "$LOG"
           fi
           break
@@ -768,7 +771,10 @@ else
     config_remove=""
 fi
 
-ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG" || true
+# Check if ~/.config/waybar/config is a symlink
+if [ -L "$HOME/.config/waybar/config" ]; then
+   ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+fi
 
 # Remove inappropriate waybar configs
 rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
@@ -900,8 +906,10 @@ cleanup_backups() {
 # Execute the cleanup function
 cleanup_backups
 
-# symlinks for waybar style
-ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
+# Check if ~/.config/waybar/style is a symlink
+if [ -L "$HOME/.config/waybar/style.css" ]; then
+   	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" 2>&1 | tee -a "$LOG"
+fi
 
 printf "\n%.0s" {1..1}
 
