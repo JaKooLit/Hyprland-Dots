@@ -577,6 +577,42 @@ done
 
 printf "\n%.0s" {1..1}
 
+# Restore automatically Animations and Monitor-Profiles
+# including monitors.conf and workspaces.conf
+HYPR_DIR="$HOME/.config/hypr"
+BACKUP_DIR=$(get_backup_dirname)
+BACKUP_HYPR_PATH="$HYPR_DIR-backup-$BACKUP_DIR"
+
+if [ ! -d "$BACKUP_HYPR_PATH" ]; then
+  exit 0  
+fi
+
+echo -e "\n${NOTE} Restoring ${SKY_BLUE}Animations & Monitor Profiles${RESET} directories into ${YELLOW}$HYPR_DIR${RESET}..."
+
+DIR_B=("Monitor_Profiles" "animations")
+# Restore directories automatically 
+for DIR_RESTORE in "${DIR_B[@]}"; do
+  BACKUP_SUBDIR="$BACKUP_HYPR_PATH/$DIR_RESTORE"
+  
+  if [ -d "$BACKUP_SUBDIR" ]; then
+    cp -r "$BACKUP_SUBDIR" "$HYPR_DIR/" 
+    echo "${OK} - Restored directory: ${MAGENTA}$DIR_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
+  fi
+done
+
+# Restore files automatically
+FILE_B=("monitors.conf" "workspaces.conf")
+for FILE_RESTORE in "${FILE_B[@]}"; do
+  BACKUP_FILE="$BACKUP_HYPR_PATH/$FILE_RESTORE"
+
+  if [ -f "$BACKUP_FILE" ]; then
+    cp "$BACKUP_FILE" "$HYPR_DIR/$FILE_RESTORE" 
+    echo "${OK} - Restored file: ${MAGENTA}$FILE_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
+  fi
+done
+
+printf "\n%.0s" {1..1}
+
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
@@ -666,8 +702,6 @@ DIR_H="hypr"
 FILES_2_RESTORE=(
   "hyprlock.conf"
   "hypridle.conf"
-  "monitors.conf"
-  "workspaces.conf"
 )
 
 DIRPATH=~/.config/"$DIR_H"

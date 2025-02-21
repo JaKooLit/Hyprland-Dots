@@ -29,7 +29,7 @@
 ],
 
 "modules-center": [
-	"hyprland/workspaces",
+	"hyprland/workspaces#numbers",
 ],
 
 "modules-right": [
