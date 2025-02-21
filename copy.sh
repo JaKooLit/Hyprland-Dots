@@ -483,26 +483,23 @@ for DIR2 in $DIRS; do
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
           
+          # Backup the existing directory
           mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-          if [ $? -eq 0 ]; then
-            echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
-            
-            cp -r config/"$DIR2" ~/.config/"$DIR2"
-            if [ $? -eq 0 ]; then
-              echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
-            else
-              echo "${ERROR} - Failed to copy $DIR2." 2>&1 | tee -a "$LOG"
-              exit 1
-            fi
-          else
-            echo "${ERROR} - Failed to back up $DIR2." 2>&1 | tee -a "$LOG"
-            exit 1
+          echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
+          
+          # Copy the new config
+          cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
+          echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
+          
+          # restoring waybar config and style automatically
+          if [ "$DIR2" = "waybar" ]; then
+            cp "$DIRPATH-backup-$BACKUP_DIR/config" ~/.config/waybar/ && cp "$DIRPATH-backup-$BACKUP_DIR/style.css" ~/.config/waybar/
+            echo -e "${OK} - waybar config and style restored automatically" 2>&1 | tee -a "$LOG"
           fi
           break
           ;;
         [Nn]* )
-          # Skip the directory
-          echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET} " 2>&1 | tee -a "$LOG"
+          echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
           break
           ;;
         * )
@@ -513,14 +510,10 @@ for DIR2 in $DIRS; do
   else
     # Copy new config if directory does not exist
     cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
-    if [ $? -eq 0 ]; then
-      echo "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
-    else
-      echo "${ERROR} - Failed to copy ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
-      exit 1
-    fi
+    echo "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
   fi
 done
+
 printf "\n%.0s" {1..1}
 
 printf "${INFO} - Copying dotfiles ${SKY_BLUE}second${RESET} part\n"
@@ -586,7 +579,7 @@ BACKUP_HYPR_PATH="$HYPR_DIR-backup-$BACKUP_DIR"
 if [ -d "$BACKUP_HYPR_PATH" ]; then
   echo -e "\n${NOTE} Restoring ${SKY_BLUE}Animations & Monitor Profiles${RESET} directories into ${YELLOW}$HYPR_DIR${RESET}..."
   
-  DIR_B=("Monitor_Profiles" "animations")
+  DIR_B=("Monitor_Profiles" "animations" "wallpaper_effects")
   # Restore directories automatically 
   for DIR_RESTORE in "${DIR_B[@]}"; do
     BACKUP_SUBDIR="$BACKUP_HYPR_PATH/$DIR_RESTORE"
@@ -598,7 +591,7 @@ if [ -d "$BACKUP_HYPR_PATH" ]; then
   done
 
   # Restore files automatically
-  FILE_B=("monitors.conf" "workspaces.conf")
+  FILE_B=("monitors.conf" "workspaces.conf" "pyprland.toml")
   for FILE_RESTORE in "${FILE_B[@]}"; do
     BACKUP_FILE="$BACKUP_HYPR_PATH/$FILE_RESTORE"
 
