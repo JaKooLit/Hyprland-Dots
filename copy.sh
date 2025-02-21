@@ -583,10 +583,6 @@ HYPR_DIR="$HOME/.config/hypr"
 BACKUP_DIR=$(get_backup_dirname)
 BACKUP_HYPR_PATH="$HYPR_DIR-backup-$BACKUP_DIR"
 
-if [ ! -d "$BACKUP_HYPR_PATH" ]; then
-  exit 0  
-fi
-
 echo -e "\n${NOTE} Restoring ${SKY_BLUE}Animations & Monitor Profiles${RESET} directories into ${YELLOW}$HYPR_DIR${RESET}..."
 
 DIR_B=("Monitor_Profiles" "animations")
