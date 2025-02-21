@@ -12,13 +12,13 @@ mainbox {
 
 /* ---- Entry ---- */ 
 entry {
+  width: 32%;
   placeholder: " 🏙️ Search / Choose desired wallpaper effect";
-  padding: 12px;
 }
 
 /* ---- Window ---- */
 window {
-  width: 35%;
+  width: inherit;
   height: inherit;
 }
 
@@ -28,6 +28,7 @@ listview {
   lines: 7;
   fixed-height: false;
   scrollbar: true;
+  spacing: 6px;
 }
 
 /* ---- Inputbar ---- */
@@ -43,5 +44,6 @@ element-icon {
 element-text {
   horizontal-align: 0.0;
   vertical-align: 0.0;
-  margin: 5px 30px 5px 30px;
+  margin: 0px;
+  padding: 0px;
 }

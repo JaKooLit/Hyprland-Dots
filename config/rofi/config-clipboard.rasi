@@ -5,7 +5,7 @@
 
 /* ---- Window ---- */
 window {
-  width: 50%;
+  width: inherit;
   height: inherit;
 }
 
@@ -17,7 +17,7 @@ mainbox {
 
 /* ---- Entry ---- */
 entry {
-  width: 47%;
+  width: inherit;
   placeholder: " 📋 Search  Clipboard ";
 }
 
@@ -26,6 +26,7 @@ listview {
   columns: 1;
   lines: 8;
   fixed-height: true;
+  spacing: 6px;
 }
 
 /* ---- Elements ---- */
@@ -40,4 +41,6 @@ element-icon {
 element-text {
   horizontal-align: 0.0;
   vertical-align: 0.5;
+  margin: 0px;
+  padding: 0px;
 }

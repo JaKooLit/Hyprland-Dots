@@ -15,57 +15,58 @@ iDIR="$HOME/.config/swaync/images"
 scriptsDir="$HOME/.config/hypr/scripts"
 UserScripts="$HOME/.config/hypr/UserScripts"
 
-# Function to display the menu options
+# Function to display the menu options without numbers
 menu() {
     cat <<EOF
-1. view/edit ENV variables
-2. view/edit Window Rules
-3. view/edit User Keybinds
-4. view/edit User Settings
-5. view/edit Startup Apps
-6. view/edit Decorations
-7. view/edit Animations
-8. view/edit Laptop Keybinds
-9. view/edit Default Keybinds
-10. Configure Monitors (nwg-displays)
-11. Configure Workspace Rules (nwg-displays)
-12. Choose Hyprland Animations
-13. Choose Monitor Profiles
-14. Choose Rofi Themes
-15. Search for Keybinds
+view/edit ENV variables
+view/edit Window Rules
+view/edit User Keybinds
+view/edit User Settings
+view/edit Startup Apps
+view/edit Decorations
+view/edit Animations
+view/edit Laptop Keybinds
+view/edit Default Keybinds
+Configure Monitors (nwg-displays)
+Configure Workspace Rules (nwg-displays)
+Choose Hyprland Animations
+Choose Monitor Profiles
+Choose Rofi Themes
+Search for Keybinds
 EOF
 }
 
 # Main function to handle menu selection
 main() {
-    choice=$(menu | rofi -i -dmenu -config $rofi_theme -mesg "$msg" | cut -d. -f1)
+    choice=$(menu | rofi -i -dmenu -config $rofi_theme -mesg "$msg")
     
     # Map choices to corresponding files
-    case $choice in
-        1) file="$UserConfigs/ENVariables.conf" ;;
-        2) file="$UserConfigs/WindowRules.conf" ;;
-        3) file="$UserConfigs/UserKeybinds.conf" ;;
-        4) file="$UserConfigs/UserSettings.conf" ;;
-        5) file="$UserConfigs/Startup_Apps.conf" ;;
-        6) file="$UserConfigs/UserDecorations.conf" ;;
-        7) file="$UserConfigs/UserAnimations.conf" ;;
-        8) file="$UserConfigs/Laptops.conf" ;;
-        9) file="$configs/Keybinds.conf" ;;
-        10) if ! command -v nwg-displays &>/dev/null; then
-   	  		notify-send -i "$iDIR/ja.png" "Missing nwg-displays" "Install nwg-displays first"
-   	  		exit 1
-			fi
-			nwg-displays ;;
-        11) if ! command -v nwg-displays &>/dev/null; then
-   	  		notify-send -i "$iDIR/ja.png" "Missing nwg-displays" "Install nwg-displays first"
-   	  		exit 1
-			fi
-			nwg-displays ;;
-		12) $scriptsDir/Animations.sh ;;
-		13) $scriptsDir/MonitorProfiles.sh ;;
-		14) $scriptsDir/RofiThemeSelector.sh ;;
-		15) $scriptsDir/KeyBinds.sh ;;
-
+    case "$choice" in
+        "view/edit ENV variables") file="$UserConfigs/ENVariables.conf" ;;
+        "view/edit Window Rules") file="$UserConfigs/WindowRules.conf" ;;
+        "view/edit User Keybinds") file="$UserConfigs/UserKeybinds.conf" ;;
+        "view/edit User Settings") file="$UserConfigs/UserSettings.conf" ;;
+        "view/edit Startup Apps") file="$UserConfigs/Startup_Apps.conf" ;;
+        "view/edit Decorations") file="$UserConfigs/UserDecorations.conf" ;;
+        "view/edit Animations") file="$UserConfigs/UserAnimations.conf" ;;
+        "view/edit Laptop Keybinds") file="$UserConfigs/Laptops.conf" ;;
+        "view/edit Default Keybinds") file="$configs/Keybinds.conf" ;;
+        "Configure Monitors (nwg-displays)") 
+            if ! command -v nwg-displays &>/dev/null; then
+                notify-send -i "$iDIR/ja.png" "Missing nwg-displays" "Install nwg-displays first"
+                exit 1
+            fi
+            nwg-displays ;;
+        "Configure Workspace Rules (nwg-displays)") 
+            if ! command -v nwg-displays &>/dev/null; then
+                notify-send -i "$iDIR/ja.png" "Missing nwg-displays" "Install nwg-displays first"
+                exit 1
+            fi
+            nwg-displays ;;
+        "Choose Hyprland Animations") $scriptsDir/Animations.sh ;;
+        "Choose Monitor Profiles") $scriptsDir/MonitorProfiles.sh ;;
+        "Choose Rofi Themes") $scriptsDir/RofiThemeSelector.sh ;;
+        "Search for Keybinds") $scriptsDir/KeyBinds.sh ;;
         *) return ;;  # Do nothing for invalid choices
     esac
 

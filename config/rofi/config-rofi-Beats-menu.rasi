@@ -31,6 +31,7 @@ listview {
   scrollbar: false;
   colums: 1;
   lines: 3;
+  spacing: 6px;
 }
 
 /* ---- Element ---- */
@@ -39,4 +40,5 @@ element-icon {
 }
 element-text {
     horizontal-align: 0.5;
+    
 }
