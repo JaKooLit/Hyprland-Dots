@@ -11,7 +11,7 @@ mainbox {
 
 /* ---- Window ---- */
 window {
-  width: 45%;
+  width: inherit;
   height: inherit;
 }
 
@@ -19,12 +19,13 @@ window {
 entry {
   width: 43%;
   placeholder: " 💻 Search / Choose which Monitor Profiles to load";
+  horizontal-align: 0.5;
 }
 
 /* ---- Listview ---- */
 listview {
-  columns: 1;
-  lines: 5;
+  columns: 2;
+  lines: 3;
   fixed-height: false;
   margin: 10px;
   scrollbar: true;
@@ -35,7 +36,7 @@ element-icon {
   size: 0%;
 }
 element-text {
-  horizontal-align: 0.0;
+  horizontal-align: 0.5;
   vertical-align: 0.0;
   margin: 5px 30px 5px 30px;
 }
