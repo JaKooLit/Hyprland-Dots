@@ -15,7 +15,7 @@ fi
 while true; do
     result=$(
         rofi -i -dmenu \
-            -config $rofi_theme \
+            -config "$rofi_theme" \
             -mesg "$result      =    $calc_result"
     )
 
