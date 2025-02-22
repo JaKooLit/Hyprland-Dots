@@ -464,16 +464,10 @@ fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
-DIRS="
-  ags 
-  fastfetch 
-  kitty 
-  rofi 
-  swaync 
-  waybar
-"
+DIRS="ags fastfetch kitty rofi swaync waybar"
+
 for DIR2 in $DIRS; do
-  DIRPATH=~/.config/"$DIR2"
+  DIRPATH="$HOME/.config/$DIR2"
   
   if [ -d "$DIRPATH" ]; then
     while true; do
@@ -483,31 +477,42 @@ for DIR2 in $DIRS; do
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
           
+          # special handling for waybar since it contains symlinks
+          if [ "$DIR2" = "waybar" ]; then
+              for symlink in "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css"; do
+                  if [ -L "$symlink" ]; then
+                      symlink_target=$(readlink "$symlink")
+                      temp_file="${symlink}_2"
+                      cp -f "$symlink_target" "$temp_file"
+                  fi
+              done
+          fi
+
           # Backup the existing directory
           mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
           echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
-          
-          # Copy the new config
-          cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
-          echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
-          
-          # restoring waybar config and style automatically
-          if [ "$DIR2" = "waybar" ]; then
-          	rm -f "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css" || true
-            cp -L "$DIRPATH-backup-$BACKUP_DIR/config" "$HOME/.config/waybar/config" || true
-            cp -L "$DIRPATH-backup-$BACKUP_DIR/style.css" "$HOME/.config/waybar/style.css" || true
-            
-            find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec cp -n "{}" "$HOME/.config/waybar/configs/" \; || true
-            find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec cp -n "{}" "$HOME/.config/waybar/style/" \; || true
 
-            echo -e "${OK} - unique waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
+          # Copy the new config
+          cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$LOG"
+          echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
+
+          # Restoring waybar config and style automatically
+          if [ "$DIR2" = "waybar" ]; then
+              rm -rf "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css"
+
+              cp "$DIRPATH-backup-$BACKUP_DIR/config_2" "$HOME/.config/waybar/config" 
+              cp "$DIRPATH-backup-$BACKUP_DIR/style.css_2" "$HOME/.config/waybar/style.css" 
+              
+              find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec cp -n "{}" "$HOME/.config/waybar/configs/" \; || true
+              find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec cp -n "{}" "$HOME/.config/waybar/style/" \; || true
+
+              echo -e "${OK} - Unique waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
           fi
           
-          # restoring rofi themes
+          # Restoring rofi themes
           if [ "$DIR2" = "rofi" ]; then            
             find "$DIRPATH-backup-$BACKUP_DIR/themes" -type f -exec cp -n "{}" "$HOME/.config/rofi/themes/" \; || true
-            
-            echo -e "${OK} - unique rofi themes restored automatically" 2>&1 | tee -a "$LOG"
+            echo -e "${OK} - Unique rofi themes restored automatically" 2>&1 | tee -a "$LOG"
           fi
           
           break
@@ -523,8 +528,8 @@ for DIR2 in $DIRS; do
     done
   else
     # Copy new config if directory does not exist
-    cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
-    echo "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
+    cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$LOG"
+    echo -e "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
   fi
 done
 
@@ -538,17 +543,7 @@ if [ ! -d "config" ]; then
   exit 1
 fi
 
-DIR="
-  btop
-  cava
-  hypr
-  Kvantum
-  qt5ct
-  qt6ct
-  swappy
-  wallust
-  wlogout
-"
+DIR="btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout"
 
 for DIR_NAME in $DIR; do
   DIRPATH=~/.config/"$DIR_NAME"
