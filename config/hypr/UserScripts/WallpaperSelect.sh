@@ -12,10 +12,9 @@ rofi_override="element-icon{size:${icon_size}px;}"
 
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
-iDIRi="$HOME/.config/swaync/icons"
 
 # variables
-rofi_theme="~/.config/rofi/config-wallpaper.rasi"
+rofi_theme="$HOME/.config/rofi/config-wallpaper.rasi"
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 
 # Get monitor width and DPI
@@ -30,7 +29,6 @@ rofi_override="element-icon{size:${icon_size}px;}"
 FPS=60
 TYPE="any"
 DURATION=2
-BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
 # Check if swaybg is running
@@ -161,5 +159,3 @@ if [[ -n "$choice" ]]; then
   done &
   fi
 fi
-
-

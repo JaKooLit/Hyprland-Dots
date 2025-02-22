@@ -8,17 +8,15 @@ wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 wallpaper_output="$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
-rofi_theme="~/.config/rofi/config-wallpaper-effect.rasi"
+rofi_theme="$HOME/.config/rofi/config-wallpaper-effect.rasi"
 
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
-iDIRi="$HOME/.config/swaync/icons"
 
 # swww transition config
 FPS=60
 TYPE="wipe"
 DURATION=2
-BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
 # Define ImageMagick effects
@@ -66,7 +64,7 @@ main() {
         [[ "$effect" != "No Effects" ]] && options+=("$effect")
     done
 
-    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config $rofi_theme)
+    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config "$rofi_theme")
 
     # Process user choice
     if [[ -n "$choice" ]]; then
@@ -134,3 +132,4 @@ if [[ -n "$choice" ]]; then
   done &
   fi
 fi
+
