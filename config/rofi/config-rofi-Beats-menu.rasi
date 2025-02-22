@@ -13,13 +13,16 @@ mainbox {
 entry {
   expand: false;
   width: 25%;
+  width: 25%;
   placeholder: " 📻 Choose Music Source";
+  horizontal-align: 0.5;
   horizontal-align: 0.5;
 }
 
 /* ---- Window ---- */
 window {
   width: 28%;
+  height: inherit;
 }
 
 /* ---- Listview ---- */
@@ -28,6 +31,7 @@ listview {
   scrollbar: false;
   colums: 1;
   lines: 3;
+  spacing: 6px;
 }
 
 /* ---- Element ---- */
@@ -36,4 +40,5 @@ element-icon {
 }
 element-text {
     horizontal-align: 0.5;
+    
 }

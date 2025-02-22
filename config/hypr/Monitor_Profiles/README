@@ -1,0 +1,10 @@
+# Create a Monitor profile you want to on this directory
+
+# Create a unique file name i.e. Mirror, or Office, Scale, etc etc
+
+# tip: You can easily create a profile using nwg-displays
+# after creating a profile using nwg-displays, you can copy the ~/.config/hypr/monitors.conf file to this directory
+
+
+# Note, after selecting Profiles wanted via Rofi (SUPER SHIFT E), previous content of ~/.config/hypr/monitors.conf will be backed up as previous
+

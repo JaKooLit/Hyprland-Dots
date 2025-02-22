@@ -104,7 +104,7 @@ if hostnamectl | grep -q 'Chassis: vm'; then
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)false/\1true/' config/hypr/UserConfigs/UserSettings.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   #sed -i '/env = LIBGL_ALWAYS_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
+  sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/monitors.conf
 fi
 
 # Proper Polkit for NixOS
@@ -114,7 +114,7 @@ if hostnamectl | grep -q 'Operating System: NixOS'; then
   sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
-# Check if dpkg is installed (use to check if Debian or Ubuntu or based distros
+# to check if Debian or Ubuntu or based distros
 if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
 	echo "${INFO} Debian/Ubuntu based distro. Disabling pyprland since it does not work properly" 2>&1 | tee -a "$LOG" || true
   # disabling pyprland as causing issues
@@ -483,26 +483,26 @@ for DIR2 in $DIRS; do
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
           
+          # Backup the existing directory
           mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-          if [ $? -eq 0 ]; then
-            echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
+          echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
+          
+          # Copy the new config
+          cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
+          echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
+          
+          # restoring waybar config and style automatically
+          if [ "$DIR2" = "waybar" ]; then
+          	rm -f "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css" || true
+            cp -L "$DIRPATH-backup-$BACKUP_DIR/config" "$HOME/.config/waybar/config" || true
+            cp -L "$DIRPATH-backup-$BACKUP_DIR/style.css" "$HOME/.config/waybar/style.css" || true
             
-            cp -r config/"$DIR2" ~/.config/"$DIR2"
-            if [ $? -eq 0 ]; then
-              echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
-            else
-              echo "${ERROR} - Failed to copy $DIR2." 2>&1 | tee -a "$LOG"
-              exit 1
-            fi
-          else
-            echo "${ERROR} - Failed to back up $DIR2." 2>&1 | tee -a "$LOG"
-            exit 1
+            echo -e "${OK} - waybar config and style restored automatically" 2>&1 | tee -a "$LOG"
           fi
           break
           ;;
         [Nn]* )
-          # Skip the directory
-          echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET} " 2>&1 | tee -a "$LOG"
+          echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
           break
           ;;
         * )
@@ -513,14 +513,10 @@ for DIR2 in $DIRS; do
   else
     # Copy new config if directory does not exist
     cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
-    if [ $? -eq 0 ]; then
-      echo "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
-    else
-      echo "${ERROR} - Failed to copy ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
-      exit 1
-    fi
+    echo "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
   fi
 done
+
 printf "\n%.0s" {1..1}
 
 printf "${INFO} - Copying dotfiles ${SKY_BLUE}second${RESET} part\n"
@@ -577,20 +573,52 @@ done
 
 printf "\n%.0s" {1..1}
 
+# Restore automatically Animations and Monitor-Profiles
+# including monitors.conf and workspaces.conf
+HYPR_DIR="$HOME/.config/hypr"
+BACKUP_DIR=$(get_backup_dirname)
+BACKUP_HYPR_PATH="$HYPR_DIR-backup-$BACKUP_DIR"
+
+if [ -d "$BACKUP_HYPR_PATH" ]; then
+  echo -e "\n${NOTE} Restoring ${SKY_BLUE}Animations & Monitor Profiles${RESET} directories into ${YELLOW}$HYPR_DIR${RESET}..."
+  
+  DIR_B=("Monitor_Profiles" "animations" "wallpaper_effects")
+  # Restore directories automatically 
+  for DIR_RESTORE in "${DIR_B[@]}"; do
+    BACKUP_SUBDIR="$BACKUP_HYPR_PATH/$DIR_RESTORE"
+    
+    if [ -d "$BACKUP_SUBDIR" ]; then
+      cp -r "$BACKUP_SUBDIR" "$HYPR_DIR/" 
+      echo "${OK} - Restored directory: ${MAGENTA}$DIR_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
+    fi
+  done
+
+  # Restore files automatically
+  FILE_B=("monitors.conf" "workspaces.conf" "pyprland.toml")
+  for FILE_RESTORE in "${FILE_B[@]}"; do
+    BACKUP_FILE="$BACKUP_HYPR_PATH/$FILE_RESTORE"
+
+    if [ -f "$BACKUP_FILE" ]; then
+      cp "$BACKUP_FILE" "$HYPR_DIR/$FILE_RESTORE" 
+      echo "${OK} - Restored file: ${MAGENTA}$FILE_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
+    fi
+  done
+fi
+
+printf "\n%.0s" {1..1}
+
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
   "ENVariables.conf"
   "LaptopDisplay.conf"
   "Laptops.conf"
-  "Monitors.conf"
   "Startup_Apps.conf"
   "UserDecorations.conf"
   "UserAnimations.conf"
   "UserKeybinds.conf"
   "UserSettings.conf"
   "WindowRules.conf"
-  "WorkspaceRules.conf"
 )
 
 DIRPATH=~/.config/"$DIRH"
@@ -637,13 +665,13 @@ SCRIPTS_TO_RESTORE=(
 )
 
 DIRSHPATH=~/.config/"$DIRSH"
-BACKUP_DIR_PATH="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
+BACKUP_DIR_PATH_S="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
 
-if [ -d "$BACKUP_DIR_PATH" ]; then
+if [ -d "$BACKUP_DIR_PATH_S" ]; then
   echo -e "${NOTE} Restoring previous ${MAGENTA}User-Scripts${RESET}..."
 
   for SCRIPT_NAME in "${SCRIPTS_TO_RESTORE[@]}"; do
-    BACKUP_SCRIPT="$BACKUP_DIR_PATH/$SCRIPT_NAME"
+    BACKUP_SCRIPT="$BACKUP_DIR_PATH_S/$SCRIPT_NAME"
 
     if [ -f "$BACKUP_SCRIPT" ]; then
       printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
@@ -657,6 +685,44 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
       else
         echo "${NOTE} - Skipped restoring $SCRIPT_NAME."
       fi
+    fi
+  done
+fi
+
+printf "\n%.0s" {1..1}
+
+# restoring some files in ~/.config/hypr
+DIR_H="hypr"
+FILES_2_RESTORE=(
+  "hyprlock.conf"
+  "hypridle.conf"
+)
+
+DIRPATH=~/.config/"$DIR_H"
+BACKUP_DIR=$(get_backup_dirname)
+BACKUP_DIR_PATH_F="$DIRPATH-backup-$BACKUP_DIR"
+
+if [ -d "$BACKUP_DIR_PATH_F" ]; then
+  echo -e "${NOTE} Restoring some files in ${MAGENTA}~/.config/hypr directory${RESET}..."
+
+  for FILE_RESTORE in "${FILES_2_RESTORE[@]}"; do
+    BACKUP_FILE="$BACKUP_DIR_PATH_F/$FILE_RESTORE"
+  
+    if [ -f "$BACKUP_FILE" ]; then
+      echo -e "\n${INFO} Found ${YELLOW}$FILE_RESTORE${RESET} in hypr backup..."
+      read -p "${CAT} Do you want to restore ${YELLOW}$FILE_RESTORE${RESET} from backup? (y/N): " file2restore
+
+      if [[ "$file2restore" == [Yy]* ]]; then
+        if cp "$BACKUP_FILE" "$DIRPATH/$FILE_RESTORE"; then
+          echo "${OK} - $FILE_RESTORE restored!" 2>&1 | tee -a "$LOG"
+        else
+          echo "${ERROR} - Failed to restore $FILE_RESTORE!" 2>&1 | tee -a "$LOG"
+        fi
+      else
+        echo "${NOTE} - Skipped restoring $FILE_RESTORE."
+      fi
+    else
+      echo "${ERROR} - Backup file $BACKUP_FILE does not exist."
     fi
   done
 fi
@@ -705,7 +771,10 @@ else
     config_remove=""
 fi
 
-ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG" || true
+# Check if ~/.config/waybar/config is a symlink
+if [ -L "$HOME/.config/waybar/config" ]; then
+   ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+fi
 
 # Remove inappropriate waybar configs
 rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
@@ -837,8 +906,10 @@ cleanup_backups() {
 # Execute the cleanup function
 cleanup_backups
 
-# symlinks for waybar style
-ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
+# Check if ~/.config/waybar/style is a symlink
+if [ -L "$HOME/.config/waybar/style.css" ]; then
+   	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" 2>&1 | tee -a "$LOG"
+fi
 
 printf "\n%.0s" {1..1}
 

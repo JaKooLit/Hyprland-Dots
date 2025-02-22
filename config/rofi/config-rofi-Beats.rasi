@@ -5,7 +5,8 @@
 
 /* ---- Window ---- */
 window {
-  width: 45%;
+  width: inherit;
+  height: inherit;
 }
 
 /* ---- Mainbox ---- */
@@ -13,10 +14,10 @@ mainbox {
   children:
     [ "inputbar", "listview"];
 }
-R
+
 /* ---- Entry ---- */ 
 entry {
-  placeholder: " 📻 Choose Media or Stations to play";
+  placeholder: "📻 Choose Media or Stations to play";
 }
 
 /* ---- Listview ---- */
@@ -26,6 +27,7 @@ listview {
   fixed-height: false;
   margin: 10px;
   scrollbar: true;
+  spacing: 6px;
 }
 
 /* ---- Elements ---- */
@@ -40,4 +42,6 @@ element-icon {
 element-text {
   horizontal-align: 0.0;
   vertical-align: 0.5;
+  margin: 0px;
+  padding: 0px;
 }

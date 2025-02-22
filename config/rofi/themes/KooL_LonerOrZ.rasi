@@ -126,7 +126,7 @@ element {
     text-color:                     @FG;
     orientation:                    horizontal;
     border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+    padding:                        12px;
 }
 
 element-icon {
@@ -147,6 +147,7 @@ element-text {
     margin:                         2px 0px 2px 2px;
 }
 
+
 element normal.urgent,
 element alternate.urgent {
     background-color:               @UGT;
@@ -160,6 +161,7 @@ element alternate.active {
     text-color:                     @FG;
 }
 
+element-text selected,
 element selected {
     background-color:               @BGA;
     text-color:                     @SEL;

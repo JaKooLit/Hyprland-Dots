@@ -221,6 +221,8 @@ element normal.active {
     background-color:            transparent;
     text-color:                  @active-foreground;
 }
+
+element-text selected,
 element selected.normal {
     background-color:            @selected-normal-background;
     text-color:                  @selected-normal-foreground;

@@ -5,7 +5,8 @@
 
 /* ---- Window ---- */
 window {
-  width: 45%;
+  width: inherit;
+  height: inherit;
 }
 
 /* ---- Mainbox ---- */
@@ -14,31 +15,29 @@ mainbox {
     [ "inputbar", "listview"];
 }
 
-/* ---- Listview ---- */
-listview {
-  columns: 2;
-  lines: 7;
-  fixed-height: false;
-  scrollbar: true;
-}
-
 /* ---- Entry input ---- */
 entry {
   expand: true;
   placeholder: " ⬇️  Select Which Rofi Theme wanted to apply";
 }
 
-
-/* ---- Elements ---- */
-element {
-  orientation: vertical;
+/* ---- Listview ---- */
+listview {
+  columns: 2;
+  lines: 7;
+  fixed-height: false;
+  margin: 10px;
+  scrollbar: true;
+  spacing: 6px;
 }
 
+/* ---- Elements ---- */
 element-icon {
-  	size: 0%;
+  size: 0%;
 }
 element-text {
   horizontal-align: 0.0;
-  margin: 5px 30px 5px 30px;
+  vertical-align: 0.5;
+  margin: 0px;
+  padding: 0px;
 }
-

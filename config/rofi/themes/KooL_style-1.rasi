@@ -167,6 +167,7 @@ element {
     cursor:                      pointer;
 }
 
+element-text selected,
 element normal.normal {
     background-color:            inherit;
     text-color:                  inherit;

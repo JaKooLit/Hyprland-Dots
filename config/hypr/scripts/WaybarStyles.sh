@@ -9,6 +9,7 @@ waybar_styles="$HOME/.config/waybar/style"
 waybar_style="$HOME/.config/waybar/style.css"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 rofi_config="$HOME/.config/rofi/config-waybar-style.rasi"
+msg=' 🎌 NOTE: Some waybar STYLES NOT fully compatible with some LAYOUTS'
 
 # Function to display menu options
 menu() {
@@ -30,7 +31,7 @@ apply_style() {
 
 # Main function
 main() {
-    choice=$(menu | rofi -i -dmenu -config "$rofi_config")
+    choice=$(menu | rofi -i -dmenu -config "$rofi_config" -mesg "$msg")
 
     if [[ -z "$choice" ]]; then
         echo "No option selected. Exiting."

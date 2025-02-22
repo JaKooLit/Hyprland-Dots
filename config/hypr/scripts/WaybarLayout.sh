@@ -9,6 +9,7 @@ waybar_layouts="$HOME/.config/waybar/configs"
 waybar_config="$HOME/.config/waybar/config"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 rofi_config="$HOME/.config/rofi/config-waybar-layout.rasi"
+msg=' 🎌 NOTE: Some waybar LAYOUT NOT fully compatible with some STYLES'
 
 # Function to display menu options
 menu() {
@@ -23,13 +24,12 @@ menu() {
 # Apply selected configuration
 apply_config() {
     ln -sf "$waybar_layouts/$1" "$waybar_config"
-    #restart_waybar_if_needed
     "${SCRIPTSDIR}/Refresh.sh" &
 }
 
 # Main function
 main() {
-    choice=$(menu | rofi -i -dmenu -config "$rofi_config")
+    choice=$(menu | rofi -i -dmenu -config "$rofi_config" -mesg "$msg")
 
     if [[ -z "$choice" ]]; then
         echo "No option selected. Exiting."

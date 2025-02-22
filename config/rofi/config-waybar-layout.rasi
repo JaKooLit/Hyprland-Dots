@@ -6,7 +6,7 @@
 /* ---- Mainbox ---- */
 mainbox {
   children:
-    [ "inputbar", "listview"];
+    [ "inputbar", "message", "listview"];
 }
 
 /* ---- Configuration ---- */
@@ -16,13 +16,14 @@ configuration {
 
 /* ---- Window ---- */
 window {
-  width: 45%;
+  width: inherit;
+  height: inherit;
 }
 
 /* ---- Entry ---- */ 
 entry {
   expand: true;
-  placeholder: " 🖼️ Search / Choose Waybar Layout";
+  placeholder: " 🖼️  Search / Choose Waybar Layout";
 }
 
 /* ---- Listview ---- */
@@ -32,6 +33,7 @@ listview {
   fixed-height: false;
   margin: 10px;
   scrollbar: true;
+  spacing: 6px;
 }
 
 /* ---- Elements ---- */
@@ -40,5 +42,6 @@ element-icon {
 }
 element-text {
   horizontal-align: 0.0;
-  margin: 5px 30px 5px 30px;
+  margin: 0px;
+  padding: 0px;
 }

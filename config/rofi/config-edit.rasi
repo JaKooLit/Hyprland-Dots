@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config (compact) */
+/* KooL Hyprland Edit Rofi Config */
 
 @import "~/.config/rofi/config.rasi"  
 
@@ -17,7 +17,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-   width: 50%;
+   width: inherit;
+   height: inherit;
 }
 
 
@@ -26,6 +27,8 @@ listview {
   columns: 2;
   lines: 6;
   fixed-height: false;
+  scrollbar: true;
+  spacing: 6px;
 }
 
 /* ---- Entry input ---- */
@@ -45,5 +48,6 @@ element-icon {
 }
 element-text {
   horizontal-align: 0.0;
-  margin: 5px 30px 5px 30px;
+  margin: 0px;
+  padding: 0px;
 }
