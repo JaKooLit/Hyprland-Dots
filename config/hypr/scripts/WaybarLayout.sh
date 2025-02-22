@@ -16,7 +16,7 @@ menu() {
     options=()
     while IFS= read -r file; do
         options+=("$(basename "$file")")
-    done < <(find -L "$waybar_layouts" -maxdepth 1 -type f -exec basename {} \; | sort)
+    done < <(find -L "$waybar_layouts" -maxdepth 1 -type f -exec basename {} \; | sort )
 
     printf '%s\n' "${options[@]}"
 }

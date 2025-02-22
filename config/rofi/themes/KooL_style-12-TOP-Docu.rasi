@@ -40,7 +40,7 @@ entry {
 
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 
 }
 inputbar {

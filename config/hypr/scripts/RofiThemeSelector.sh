@@ -15,8 +15,8 @@ rofi_theme="$HOME/.config/rofi/config-rofi-theme.rasi"
 menu() {
     options=()
     while IFS= read -r file; do
-        options+=("$(basename "$file")")
-    done < <(find -L "$rofi_theme_dir" -maxdepth 1 -type f -exec basename {} \; | sort)
+        options+=("$file")
+    done < <(find -L "$rofi_theme_dir" -maxdepth 1 -type f -exec basename {} \; | sort -V)
 
     printf '%s\n' "${options[@]}"
 }

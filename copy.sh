@@ -63,10 +63,10 @@ echo -e "\e[35m
 printf "\n%.0s" {1..1}  
 
 ####### Announcement
-echo "${WARNING}      		A T T E N T I O N !${RESET}"
-echo "${SKY_BLUE}KooL Hyprland v2.3.11 have some Minor Keybinds changes!${RESET}"
-echo "${YELLOW}SUPER H for Keyhints and/or SUPER SHIFT K to search for Keybinds ${RESET}"
-echo "${MAGENTA}	   Once Logged in to Kool Hyprland! ${RESET}"
+echo "${YELLOW}A T T E N T I O N !${RESET}"
+echo "${SKY_BLUE}This version requires nwg-displays!${RESET}"
+echo "${YELLOW}previous version: Some Keybinds changes${RESET}"
+echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for the changelog${RESET}"
 printf "\n%.0s" {1..1}
 
 # Create Directory for Copy Logs
@@ -332,8 +332,8 @@ if [ "$resolution" == "< 1440p" ]; then
 
   # Change rofi font size
   find "$themes_dir" -type f | while read -r file; do
-      if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 12";\n}' "$file"; then
-          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 10"/' "$file"
+      if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 13";\n}' "$file"; then
+          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
       fi
   done
 
@@ -493,15 +493,23 @@ for DIR2 in $DIRS; do
           
           # restoring waybar config and style automatically
           if [ "$DIR2" = "waybar" ]; then
-          	rm -f "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css" || true
-            cp -L "$DIRPATH-backup-$BACKUP_DIR/config" "$HOME/.config/waybar/config" || true
-            cp -L "$DIRPATH-backup-$BACKUP_DIR/style.css" "$HOME/.config/waybar/style.css" || true
+          	rm -f "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css" 
+            cp -L "$DIRPATH-backup-$BACKUP_DIR/config" "$HOME/.config/waybar/config" 
+            cp -L "$DIRPATH-backup-$BACKUP_DIR/style.css" "$HOME/.config/waybar/style.css"
             
             find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec cp -n "{}" "$HOME/.config/waybar/configs/" \;
             find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec cp -n "{}" "$HOME/.config/waybar/style/" \;
 
-            echo -e "${OK} - waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
+            echo -e "${OK} - unique waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
           fi
+          
+          # restoring rofi themes
+          if [ "$DIR2" = "rofi" ]; then            
+            find "$DIRPATH-backup-$BACKUP_DIR/themes" -type f -exec cp -n "{}" "$HOME/.config/rofi/themes/" \;
+            
+            echo -e "${OK} - unique rofi themes restored automatically" 2>&1 | tee -a "$LOG"
+          fi
+          
           break
           ;;
         [Nn]* )

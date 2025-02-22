@@ -79,7 +79,9 @@ shuffle_local_music() {
 
 # Main function for playing online music
 play_online_music() {
-  choice=$(printf "%s\n" "${!online_music[@]}" | rofi -i -dmenu -config $rofi_theme)
+  choice=$(for online in "${!online_music[@]}"; do
+      echo "$online"
+    done | sort | rofi -i -dmenu -config "$rofi_theme")
 
   if [ -z "$choice" ]; then
     exit 1
@@ -92,6 +94,7 @@ play_online_music() {
   # Play the selected online music using mpv
   mpv --shuffle --vid=no "$link"
 }
+
 
 # Check if an online music process is running and send a notification, otherwise run the main function
 pkill mpv && notify-send -u low -i "$iDIR/music.png" "Music stopped" || {
