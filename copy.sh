@@ -497,7 +497,10 @@ for DIR2 in $DIRS; do
             cp -L "$DIRPATH-backup-$BACKUP_DIR/config" "$HOME/.config/waybar/config" || true
             cp -L "$DIRPATH-backup-$BACKUP_DIR/style.css" "$HOME/.config/waybar/style.css" || true
             
-            echo -e "${OK} - waybar config and style restored automatically" 2>&1 | tee -a "$LOG"
+            find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec cp -n "{}" "$HOME/.config/waybar/configs/" \;
+            find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec cp -n "{}" "$HOME/.config/waybar/style/" \;
+
+            echo -e "${OK} - waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
           fi
           break
           ;;

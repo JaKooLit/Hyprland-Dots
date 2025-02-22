@@ -53,10 +53,10 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     "$scriptsDir/SwitchKeyboardLayout.sh" > /dev/null 2>&1 &
 
 	# waybar style
-	if [ -L "$HOME/.config/waybar/config" ]; then
-        	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
-        	"$scriptsDir/Refresh.sh" > /dev/null 2>&1 & 
-	fi
+	#if [ -L "$HOME/.config/waybar/config" ]; then
+    ##    	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
+    #   	"$scriptsDir/Refresh.sh" > /dev/null 2>&1 & 
+	#fi
 
 
     # Create a marker file to indicate that the script has been executed.
