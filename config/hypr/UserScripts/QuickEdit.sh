@@ -9,7 +9,7 @@ tty=kitty
 # Paths to configuration directories
 configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
-rofi_theme="~/.config/rofi/config-edit.rasi"
+rofi_theme="$HOME/.config/rofi/config-edit.rasi"
 msg=' ⁉️ Choose which config to View or Edit ⁉️'
 
 # Function to display the menu options
@@ -31,7 +31,7 @@ EOF
 
 # Main function to handle menu selection
 main() {
-    choice=$(menu | rofi -i -dmenu -config $rofi_theme -mesg "$msg" | cut -d. -f1)
+    choice=$(menu | rofi -i -dmenu -config "$rofi_theme" -mesg "$msg" | cut -d. -f1)
     
     # Map choices to corresponding files
     case $choice in
@@ -50,7 +50,7 @@ main() {
     esac
 
     # Open the selected file in the terminal with the text editor
-    $tty -e $edit "$file"
+    $tty -e "$edit" "$file"
 }
 
 # Check if rofi is already running
