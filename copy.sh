@@ -493,19 +493,19 @@ for DIR2 in $DIRS; do
           
           # restoring waybar config and style automatically
           if [ "$DIR2" = "waybar" ]; then
-          	rm -f "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css" 
-            cp -L "$DIRPATH-backup-$BACKUP_DIR/config" "$HOME/.config/waybar/config" 
-            cp -L "$DIRPATH-backup-$BACKUP_DIR/style.css" "$HOME/.config/waybar/style.css"
+          	rm -f "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css" || true
+            cp -L "$DIRPATH-backup-$BACKUP_DIR/config" "$HOME/.config/waybar/config" || true
+            cp -L "$DIRPATH-backup-$BACKUP_DIR/style.css" "$HOME/.config/waybar/style.css" || true
             
-            find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec cp -n "{}" "$HOME/.config/waybar/configs/" \;
-            find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec cp -n "{}" "$HOME/.config/waybar/style/" \;
+            find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec cp -n "{}" "$HOME/.config/waybar/configs/" \; || true
+            find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec cp -n "{}" "$HOME/.config/waybar/style/" \; || true
 
             echo -e "${OK} - unique waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
           fi
           
           # restoring rofi themes
           if [ "$DIR2" = "rofi" ]; then            
-            find "$DIRPATH-backup-$BACKUP_DIR/themes" -type f -exec cp -n "{}" "$HOME/.config/rofi/themes/" \;
+            find "$DIRPATH-backup-$BACKUP_DIR/themes" -type f -exec cp -n "{}" "$HOME/.config/rofi/themes/" \; || true
             
             echo -e "${OK} - unique rofi themes restored automatically" 2>&1 | tee -a "$LOG"
           fi
@@ -782,10 +782,11 @@ else
     config_remove=""
 fi
 
-# Check if ~/.config/waybar/config is a symlink
-if [ -L "$HOME/.config/waybar/config" ]; then
-   ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+# Check if ~/.config/waybar/config does not exist or is a symlink
+if [ ! -e "$HOME/.config/waybar/config" ] || [ -L "$HOME/.config/waybar/config" ]; then
+    ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
 fi
+
 
 # Remove inappropriate waybar configs
 rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
@@ -917,9 +918,9 @@ cleanup_backups() {
 # Execute the cleanup function
 cleanup_backups
 
-# Check if ~/.config/waybar/style is a symlink
-if [ -L "$HOME/.config/waybar/style.css" ]; then
-   	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" 2>&1 | tee -a "$LOG"
+# Check if ~/.config/waybar/style.css does not exist or is a symlink
+if [ ! -e "$HOME/.config/waybar/style.css" ] || [ -L "$HOME/.config/waybar/style.css" ]; then
+    ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" 2>&1 | tee -a "$LOG"
 fi
 
 printf "\n%.0s" {1..1}
