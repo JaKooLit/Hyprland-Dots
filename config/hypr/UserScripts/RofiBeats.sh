@@ -5,8 +5,8 @@
 # Variables
 mDIR="$HOME/Music/"
 iDIR="$HOME/.config/swaync/icons"
-rofi_theme="~/.config/rofi/config-rofi-Beats.rasi"
-rofi_theme_1="~/.config/rofi/config-rofi-Beats-menu.rasi"
+rofi_theme="$HOME/.config/rofi/config-rofi-Beats.rasi"
+rofi_theme_1="$HOME/.config/rofi/config-rofi-Beats-menu.rasi"
 
 # Online Stations. Edit as required
 declare -A online_music=(
@@ -27,6 +27,7 @@ declare -A online_music=(
   ["YT - Korean Drama OST 📹🎶"]="https://youtube.com/playlist?list=PLUge_o9AIFp4HuA-A3e3ZqENh63LuRRlQ"
   ["YT - lofi hip hop radio beats 📹🎶"]="https://www.youtube.com/live/jfKfPfyJRdk?si=PnJIA9ErQIAw6-qd"
   ["YT - Relaxing Piano Jazz Music 🎹🎶"]="https://youtu.be/85UEqRat6E4?si=jXQL1Yp2VP_G6NSn"
+  ["YT - lofi hip hop ☕ - steezyaf"]="https://www.youtube.com/live/rPjez8z61rI?si=rHdq7a5grG6csjWq"
 )
 
 # Populate local_music array with files from music directory and subdirectories
@@ -49,7 +50,7 @@ play_local_music() {
   populate_local_music
 
   # Prompt the user to select a song
-  choice=$(printf "%s\n" "${filenames[@]}" | rofi -i -dmenu -config $rofi_theme)
+  choice=$(printf "%s\n" "${filenames[@]}" | rofi -i -dmenu -config "$rofi_theme")
 
   if [ -z "$choice" ]; then
     exit 1
@@ -79,7 +80,7 @@ shuffle_local_music() {
 
 # Main function for playing online music
 play_online_music() {
-  choice=$(printf "%s\n" "${!online_music[@]}" | rofi -i -dmenu -config $rofi_theme)
+  choice=$(printf "%s\n" "${!online_music[@]}" | rofi -i -dmenu -config "$rofi_theme")
 
   if [ -z "$choice" ]; then
     exit 1
@@ -103,7 +104,7 @@ fi
 
 
 # Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Online Stations\nPlay from Music Folder\nShuffle Play from Music Folder" | rofi -dmenu -config $rofi_theme_1)
+user_choice=$(printf "Play from Online Stations\nPlay from Music Folder\nShuffle Play from Music Folder" | rofi -dmenu -config "$rofi_theme_1")
 
   case "$user_choice" in
     "Play from Music Folder")
