@@ -465,7 +465,7 @@ fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
-DIRS="ags fastfetch kitty rofi swaync waybar"
+DIRS="ags fastfetch kitty rofi swaync"
 
 for DIR2 in $DIRS; do
   DIRPATH="$HOME/.config/$DIR2"
@@ -477,18 +477,6 @@ for DIR2 in $DIRS; do
       case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
-          
-          # special handling for waybar since it contains symlinks
-          if [ "$DIR2" = "waybar" ]; then
-              for symlink in "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css"; do
-                  if [ -L "$symlink" ]; then
-                      symlink_target=$(readlink "$symlink")
-                      temp_file="${symlink}_2"
-                      cp -f "$symlink_target" "$temp_file"
-                  fi
-              done
-          fi
-
           # Backup the existing directory
           mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
           echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
@@ -496,31 +484,6 @@ for DIR2 in $DIRS; do
           # Copy the new config
           cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$LOG"
           echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
-
-          # Restoring waybar config and style automatically
-          if [ "$DIR2" = "waybar" ]; then
-              # Remove existing symlinks first before copying.
-              rm -rf "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css"
-
-              # Copy the temp files (config_2 and style.css_2) from the backup and restore them
-              cp "$DIRPATH-backup-$BACKUP_DIR/config_2" "$HOME/.config/waybar/config" || true
-              cp "$DIRPATH-backup-$BACKUP_DIR/style.css_2" "$HOME/.config/waybar/style.css" || true 
-              
-              echo -e "${OK} - previous waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
-
-            # Optionally restore other waybar configuration and style files if present
-            for file in "$DIRPATH-backup-$BACKUP_DIR/configs"/*; do
-              [ -e "$file" ] || continue  # Skip if no files are found
-              echo "Copying $file to $HOME/.config/waybar/configs/" >> "$LOG"
-              cp -n "$file" "$HOME/.config/waybar/configs/"
-            done || true
-
-            for file in "$DIRPATH-backup-$BACKUP_DIR/style"/*; do
-              [ -e "$file" ] || continue  # Skip if no files are found
-              echo "Copying $file to $HOME/.config/waybar/style/" >> "$LOG"
-              cp -n "$file" "$HOME/.config/waybar/style/"
-            done || true           
-          fi
          
           # Restoring rofi themes directory unique themes
           if [ "$DIR2" = "rofi" ]; then
@@ -550,6 +513,67 @@ for DIR2 in $DIRS; do
     echo -e "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
   fi
 done
+
+printf "\n%.0s" {1..1}
+
+# for waybar special part since it contains symlink
+DIRW="waybar"
+DIRPATHw="$HOME/.config/$DIRW"
+if [ -d "$DIRPATHw" ]; then
+    while true; do
+        read -p "${CAT} Do you want to replace ${YELLOW}$DIRW${RESET} config? (y/n): " DIR1_CHOICE
+        case "$DIR1_CHOICE" in
+            [Yy]* )
+                BACKUP_DIR=$(get_backup_dirname)
+
+                # Backup the existing directory
+                cp -r "$DIRPATHw" "$DIRPATHw-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+                echo -e "${NOTE} - Backed up $DIRW to $DIRPATHw-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
+
+                rm -rf "$DIRPATHw" && cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$LOG"
+
+                for file in "config" "style.css"; do
+                    symlink="$DIRPATHw-backup-$BACKUP_DIR/$file"
+                    target_file="$DIRPATHw/$file"
+
+                    if [ -L "$symlink" ]; then
+                        symlink_target=$(readlink "$symlink")
+                        if [ -f "$symlink_target" ]; then
+                            rm -f "$target_file" &&  cp -f "$symlink_target" "$target_file"
+                            echo -e "${NOTE} - Copied $file as a regular file."
+                        else
+                            echo -e "${WARN} - Symlink target for $file does not exist."
+                        fi
+                    fi
+                done  
+
+                for file in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
+                    [ -e "$file" ] || continue  # Skip if no files are found
+                    echo "Copying $file to $HOME/.config/waybar/configs/" >> "$LOG"
+                    cp -n "$file" "$HOME/.config/waybar/configs/"
+                done || true
+
+                for file in "$DIRPATHw-backup-$BACKUP_DIR/style"/*; do
+                    [ -e "$file" ] || continue  # Skip if no files are found
+                    echo "Copying $file to $HOME/.config/waybar/style/" >> "$LOG"
+                    cp -n "$file" "$HOME/.config/waybar/style/"
+                done || true
+
+                break
+                ;;
+            [Nn]* )
+                echo -e "${NOTE} - Skipping ${YELLOW}$DIRW${RESET} config replacement." 2>&1 | tee -a "$LOG"
+                break
+                ;;
+            * )
+                echo -e "${WARN} - Invalid choice. Please enter Y or N."
+                ;;
+        esac
+    done
+else
+    cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$LOG"
+    echo -e "${OK} - Copy completed for ${YELLOW}$DIRW${RESET}" 2>&1 | tee -a "$LOG"
+fi
 
 printf "\n%.0s" {1..1}
 
