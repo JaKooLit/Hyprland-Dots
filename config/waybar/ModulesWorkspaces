@@ -213,7 +213,8 @@
 		"class<zen>": "󰰷 ", //Zen Browser
 		"class<waterfox|waterfox-bin>": " ",
 		"class<microsoft-edge>": " ",
-		"class<vlc>": "󰕼 "
+		"class<vlc>": "󰕼 ",
+		"class<steam>": " "
 		}   
 	},
 
