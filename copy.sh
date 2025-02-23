@@ -507,29 +507,31 @@ for DIR2 in $DIRS; do
               
               echo -e "${OK} - previous waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
 
-              # Optionally restore other waybar configuration and style files if present
-              find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec sh -c '
-                echo "Copying {} to $HOME/.config/waybar/configs/" >> "$LOG"
-                cp -n "{}" "$HOME/.config/waybar/configs/"
-              ' \; || true
+            # Optionally restore other waybar configuration and style files if present
+            for file in "$DIRPATH-backup-$BACKUP_DIR/configs"/*; do
+              [ -e "$file" ] || continue  # Skip if no files are found
+              echo "Copying $file to $HOME/.config/waybar/configs/" >> "$LOG"
+              cp -n "$file" "$HOME/.config/waybar/configs/"
+            done || true
 
-              find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec sh -c '
-                echo "Copying {} to $HOME/.config/waybar/style/" >> "$LOG"
-                cp -n "{}" "$HOME/.config/waybar/style/"
-              ' \; || true              
+            for file in "$DIRPATH-backup-$BACKUP_DIR/style"/*; do
+              [ -e "$file" ] || continue  # Skip if no files are found
+              echo "Copying $file to $HOME/.config/waybar/style/" >> "$LOG"
+              cp -n "$file" "$HOME/.config/waybar/style/"
+            done || true           
           fi
-
-          
+         
           # Restoring rofi themes directory unique themes
           if [ "$DIR2" = "rofi" ]; then
             if [ -d "$DIRPATH-backup-$BACKUP_DIR/themes" ]; then
-              find "$DIRPATH-backup-$BACKUP_DIR/themes" -type f -exec sh -c '
-                echo "Copying {} to $HOME/.config/rofi/themes/" >> "$LOG"
-                cp -n "{}" "$HOME/.config/rofi/themes/"
-              ' \; || true
+              for file in "$DIRPATH-backup-$BACKUP_DIR/themes"/*; do
+                [ -e "$file" ] || continue  # Skip if no files are found
+                echo "Copying $file to $HOME/.config/rofi/themes/" >> "$LOG"
+                cp -n "$file" "$HOME/.config/rofi/themes/"
+              done || true
             fi
           fi
-          
+
           break
           ;;
         [Nn]* )
