@@ -63,8 +63,8 @@ echo -e "\e[35m
 printf "\n%.0s" {1..1}  
 
 ####### Announcement
-echo "${YELLOW}A T T E N T I O N !${RESET}"
-echo "${SKY_BLUE}This version requires nwg-displays!${RESET}"
+echo "${WARNING}A T T E N T I O N !${RESET}"
+echo "${SKY_BLUE}This version (v2.3.12) requires nwg-displays!${RESET}"
 echo "${YELLOW}previous version: Some Keybinds changes${RESET}"
 echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for the changelog${RESET}"
 printf "\n%.0s" {1..1}
