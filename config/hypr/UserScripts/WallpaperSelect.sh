@@ -15,7 +15,7 @@ iDIR="$HOME/.config/swaync/images"
 iDIRi="$HOME/.config/swaync/icons"
 
 # variables
-rofi_theme="~/.config/rofi/config-wallpaper.rasi"
+rofi_theme="$HOME/.config/rofi/config-wallpaper.rasi"
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 
 # Get monitor width and DPI

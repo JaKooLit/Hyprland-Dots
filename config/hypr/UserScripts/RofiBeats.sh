@@ -5,8 +5,8 @@
 # Variables
 mDIR="$HOME/Music/"
 iDIR="$HOME/.config/swaync/icons"
-rofi_theme="~/.config/rofi/config-rofi-Beats.rasi"
-rofi_theme_1="~/.config/rofi/config-rofi-Beats-menu.rasi"
+rofi_theme="$HOME/.config/rofi/config-rofi-Beats.rasi"
+rofi_theme_1="$HOME/.config/rofi/config-rofi-Beats-menu.rasi"
 
 # Online Stations. Edit as required
 declare -A online_music=(

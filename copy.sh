@@ -64,9 +64,10 @@ printf "\n%.0s" {1..1}
 
 ####### Announcement
 echo "${WARNING}A T T E N T I O N !${RESET}"
-echo "${SKY_BLUE}This version (v2.3.12) requires nwg-displays!${RESET}"
+echo "${SKY_BLUE}This version (v2.3.12) requires nwg-displays and some fonts!${RESET}"
+echo "${SKY_BLUE}If you ran through (Distro-Hyprland install scripts), no need to do anything${RESET}"
 echo "${YELLOW}previous version: Some Keybinds changes${RESET}"
-echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for the changelog${RESET}"
+echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for changelogs${RESET}"
 printf "\n%.0s" {1..1}
 
 # Create Directory for Copy Logs
@@ -458,8 +459,8 @@ get_backup_dirname() {
 
 # Check if the ~/.config/ directory exists
 if [ ! -d "$HOME/.config" ]; then
-  echo "${ERROR} - The ~/.config directory does not exist."
-  exit 1
+  echo "${ERROR} - $HOME/.config directory does not exist. Creating it now."
+  mkdir -p "$HOME/.config" && echo "Directory created successfully." || echo "Failed to create directory."
 fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
@@ -563,7 +564,7 @@ fi
 DIR="btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout"
 
 for DIR_NAME in $DIR; do
-  DIRPATH=~/.config/"$DIR_NAME"
+  DIRPATH="$HOME/.config/$DIR_NAME"
   
   # Backup the existing directory if it exists
   if [ -d "$DIRPATH" ]; then
@@ -582,7 +583,7 @@ for DIR_NAME in $DIR; do
   
   # Copy the new config
   if [ -d "config/$DIR_NAME" ]; then
-    cp -r "config/$DIR_NAME/" ~/.config/"$DIR_NAME" 2>&1 | tee -a "$LOG"
+    cp -r "config/$DIR_NAME/" "$HOME/.config/$DIR_NAME" 2>&1 | tee -a "$LOG"
     if [ $? -eq 0 ]; then
       echo "${OK} - Copy of config for ${YELLOW}$DIR_NAME${RESET} completed!"
     else
@@ -644,7 +645,7 @@ FILES_TO_RESTORE=(
   "WindowRules.conf"
 )
 
-DIRPATH=~/.config/"$DIRH"
+DIRPATH="$HOME/.config/$DIRH"
 BACKUP_DIR=$(get_backup_dirname)
 BACKUP_DIR_PATH="$DIRPATH-backup-$BACKUP_DIR/UserConfigs"
 
@@ -687,7 +688,7 @@ SCRIPTS_TO_RESTORE=(
   "Weather.sh"
 )
 
-DIRSHPATH=~/.config/"$DIRSH"
+DIRSHPATH="$HOME/.config/$DIRSH"
 BACKUP_DIR_PATH_S="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
 
 if [ -d "$BACKUP_DIR_PATH_S" ]; then
@@ -721,12 +722,12 @@ FILES_2_RESTORE=(
   "hypridle.conf"
 )
 
-DIRPATH=~/.config/"$DIR_H"
+DIRPATH="$HOME/.config/$DIR_H"
 BACKUP_DIR=$(get_backup_dirname)
 BACKUP_DIR_PATH_F="$DIRPATH-backup-$BACKUP_DIR"
 
 if [ -d "$BACKUP_DIR_PATH_F" ]; then
-  echo -e "${NOTE} Restoring some files in ${MAGENTA}~/.config/hypr directory${RESET}..."
+  echo -e "${NOTE} Restoring some files in ${MAGENTA}$HOME/.config/hypr directory${RESET}..."
 
   for FILE_RESTORE in "${FILES_2_RESTORE[@]}"; do
     BACKUP_FILE="$BACKUP_DIR_PATH_F/$FILE_RESTORE"
@@ -762,7 +763,7 @@ if [ -d "$HOME/.config/rofi/themes" ]; then
   if [ -z "$(ls -A $HOME/.config/rofi/themes)" ]; then
     echo '/* Dummy Rofi theme */' > "$HOME/.config/rofi/themes/dummy.rasi"
   fi
-  ln -snf ~/.config/rofi/themes/* ~/.local/share/rofi/themes/
+  ln -snf "$HOME/.config/rofi/themes/"* "$HOME/.local/share/rofi/themes/"
   # Delete the dummy file if it was created
   if [ -f "$HOME/.config/rofi/themes/dummy.rasi" ]; then
     rm "$HOME/.config/rofi/themes/dummy.rasi"
@@ -772,18 +773,18 @@ fi
 printf "\n%.0s" {1..1}
 
 # wallpaper stuff
-mkdir -p ~/Pictures/wallpapers
-if cp -r wallpapers ~/Pictures/; then
+mkdir -p $HOME/Pictures/wallpapers
+if cp -r wallpapers $HOME/Pictures/; then
   echo "${OK} Some ${MAGENTA}wallpapers${RESET} copied successfully!" | tee -a "$LOG"
 else
   echo "${ERROR} Failed to copy some ${YELLOW}wallpapers${RESET}" | tee -a "$LOG"
 fi
  
 # Set some files as executable
-chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
-chmod +x ~/.config/hypr/UserScripts/* 2>&1 | tee -a "$LOG"
+chmod +x "$HOME/.config/hypr/scripts/"* 2>&1 | tee -a "$LOG"
+chmod +x "$HOME/.config/hypr/UserScripts/"* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
-chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
+chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"
 
 # Waybar config to symlink & retain based on machine type
 if hostnamectl | grep -q 'Chassis: desktop'; then
@@ -850,12 +851,12 @@ while true; do
           echo "${OK} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
           # Check if wallpapers directory exists and create it if not
-          if [ ! -d ~/Pictures/wallpapers ]; then
-              mkdir -p ~/Pictures/wallpapers
+          if [ ! -d "$HOME/Pictures/wallpapers" ]; then
+              mkdir -p "$HOME/Pictures/wallpapers"
               echo "${OK} Created wallpapers directory." 2>&1 | tee -a "$LOG"
           fi
 
-          if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
+          if cp -R Wallpaper-Bank/wallpapers/* "$HOME/Pictures/wallpapers/" >> "$LOG" 2>&1; then
               echo "${OK} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
               rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
               break
@@ -878,10 +879,10 @@ done
 
 # CLeaning up of ~/.config/ backups
 cleanup_backups() {
-  CONFIG_DIR=~/.config
+  CONFIG_DIR="$HOME/.config"
   BACKUP_PREFIX="-backup"
 
-  # Loop through directories in ~/.config
+  # Loop through directories in $HOME/.config
   for DIR in "$CONFIG_DIR"/*; do
     if [ -d "$DIR" ]; then
       BACKUP_DIRS=()

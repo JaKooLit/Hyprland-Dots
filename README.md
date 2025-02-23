@@ -119,7 +119,7 @@ chmod +x upgrade.sh
 ## ⚠️⚠️⚠️ ATTENTION - BACKUPS CREATED by SCRIPT
 > [!CAUTION]
 > copy.sh, release.sh and even upgrade.sh creates a backup!
-> Kindly investigate manually contents on your ~/.config
+> Kindly investigate manually contents on your $HOME/.config
 > Delete manually all the backups which you dont need
 
 #### 🛎️ a small note on wallpapers

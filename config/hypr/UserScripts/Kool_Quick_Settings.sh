@@ -9,7 +9,7 @@ tty=kitty
 # variables
 configs="$HOME/.config/hypr/configs"
 UserConfigs="$HOME/.config/hypr/UserConfigs"
-rofi_theme="~/.config/rofi/config-edit.rasi"
+rofi_theme="$HOME/.config/rofi/config-edit.rasi"
 msg=' ⁉️ Choose what to do ⁉️'
 iDIR="$HOME/.config/swaync/images"
 scriptsDir="$HOME/.config/hypr/scripts"
