@@ -498,21 +498,36 @@ for DIR2 in $DIRS; do
 
           # Restoring waybar config and style automatically
           if [ "$DIR2" = "waybar" ]; then
+              # Remove existing symlinks first before copying.
               rm -rf "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css"
 
+              # Copy the temp files (config_2 and style.css_2) from the backup and restore them
               cp "$DIRPATH-backup-$BACKUP_DIR/config_2" "$HOME/.config/waybar/config" || true
               cp "$DIRPATH-backup-$BACKUP_DIR/style.css_2" "$HOME/.config/waybar/style.css" || true 
               
-              find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec cp -n "{}" "$HOME/.config/waybar/configs/" \; || true
-              find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec cp -n "{}" "$HOME/.config/waybar/style/" \; || true
+              echo -e "${OK} - previous waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
 
-              echo -e "${OK} - Unique waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
+              # Optionally restore other waybar configuration and style files if present
+              find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec sh -c '
+                echo "Copying {} to $HOME/.config/waybar/configs/" >> "$LOG"
+                cp -n "{}" "$HOME/.config/waybar/configs/"
+              ' \; || true
+
+              find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec sh -c '
+                echo "Copying {} to $HOME/.config/waybar/style/" >> "$LOG"
+                cp -n "{}" "$HOME/.config/waybar/style/"
+              ' \; || true              
           fi
+
           
-          # Restoring rofi themes
-          if [ "$DIR2" = "rofi" ]; then            
-            find "$DIRPATH-backup-$BACKUP_DIR/themes" -type f -exec cp -n "{}" "$HOME/.config/rofi/themes/" \; || true
-            echo -e "${OK} - Unique rofi themes restored automatically" 2>&1 | tee -a "$LOG"
+          # Restoring rofi themes directory unique themes
+          if [ "$DIR2" = "rofi" ]; then
+            if [ -d "$DIRPATH-backup-$BACKUP_DIR/themes" ]; then
+              find "$DIRPATH-backup-$BACKUP_DIR/themes" -type f -exec sh -c '
+                echo "Copying {} to $HOME/.config/rofi/themes/" >> "$LOG"
+                cp -n "{}" "$HOME/.config/rofi/themes/"
+              ' \; || true
+            fi
           fi
           
           break
