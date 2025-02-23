@@ -500,8 +500,8 @@ for DIR2 in $DIRS; do
           if [ "$DIR2" = "waybar" ]; then
               rm -rf "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css"
 
-              cp "$DIRPATH-backup-$BACKUP_DIR/config_2" "$HOME/.config/waybar/config" 
-              cp "$DIRPATH-backup-$BACKUP_DIR/style.css_2" "$HOME/.config/waybar/style.css" 
+              cp "$DIRPATH-backup-$BACKUP_DIR/config_2" "$HOME/.config/waybar/config" || true
+              cp "$DIRPATH-backup-$BACKUP_DIR/style.css_2" "$HOME/.config/waybar/style.css" || true 
               
               find "$DIRPATH-backup-$BACKUP_DIR/configs" -type f -exec cp -n "{}" "$HOME/.config/waybar/configs/" \; || true
               find "$DIRPATH-backup-$BACKUP_DIR/style" -type f -exec cp -n "{}" "$HOME/.config/waybar/style/" \; || true
