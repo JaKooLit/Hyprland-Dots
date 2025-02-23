@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Rofi Beats Config (compact) */
+/* Rofi Beats Config */
 
 @import "~/.config/rofi/config.rasi" 
 
@@ -28,6 +28,7 @@ listview {
   margin: 10px;
   scrollbar: true;
   spacing: 6px;
+  cycle: true;
 }
 
 /* ---- Elements ---- */

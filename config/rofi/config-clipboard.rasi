@@ -27,6 +27,7 @@ listview {
   lines: 8;
   fixed-height: true;
   spacing: 6px;
+  cycle: true;
 }
 
 /* ---- Elements ---- */

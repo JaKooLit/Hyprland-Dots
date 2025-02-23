@@ -29,6 +29,7 @@ listview {
   fixed-height: false;
   margin: 10px;
   scrollbar: true;
+  cycle: true;
 }
 
 /* ---- Elements ---- */
