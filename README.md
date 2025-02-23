@@ -116,6 +116,10 @@ chmod +x upgrade.sh
 ./upgrade.sh
 ```
 
+## ❗❗❗ DEBIAN AND UBUNTU HEADS UP!
+- I am getting ridiculously amount of messages for updating your KooL Hyprland dotfiles. I have made a BIG note on [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update)
+
+
 ## ⚠️⚠️⚠️ ATTENTION - BACKUPS CREATED by SCRIPT
 > [!CAUTION]
 > copy.sh, release.sh and even upgrade.sh creates a backup!
