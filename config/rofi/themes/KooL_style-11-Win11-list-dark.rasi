@@ -34,7 +34,7 @@ configuration {
 
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
 element-icon, element-text, scrollbar {
@@ -91,7 +91,7 @@ listview {
 
 element {
   spacing       : 1em;
-  padding       : 8px;
+  padding       : 20px;
   border-radius : 2px;
 }
 
@@ -111,8 +111,11 @@ element selected active {
   text-color: @accent;
 }
 
+element-text selected,
 element selected {
   background-color: @bg3;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 element selected urgent {

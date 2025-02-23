@@ -10,7 +10,7 @@ file_extension=".zsh-theme"
 
 # Variables
 iDIR="$HOME/.config/swaync/images"
-rofi_theme="~/.config/rofi/config-zsh-theme.rasi"
+rofi_theme="$HOME/.config/rofi/config-zsh-theme.rasi"
 
 themes_array=($(find -L "$themes_dir" -type f -name "*$file_extension" -exec basename {} \; | sed -e "s/$file_extension//"))
 

@@ -1,0 +1,222 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/*  Vertical Catpuccin Mocha */
+/*  As stated on title, best style for vertical layout waybar config */
+
+* {
+	font-family: "JetBrainsMono Nerd Font";
+	font-weight: bold;
+	min-height: 0;
+	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+	font-size: 97%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+}
+
+@import "../waybar/style/catppuccin-themes/mocha.css";
+
+window#waybar {
+  background-color: @base;
+  border-radius: 5px;
+}
+
+tooltip {
+  background: @base;
+  opacity: 1;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: @sapphire;
+}
+
+tooltip label {
+  color: @blue;
+}
+
+#taskbar button,
+#workspaces button {
+  color: @surface2;
+  background-color: transparent;
+  	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 6px;
+	padding-left: 4px;
+}
+
+#taskbar button.active,
+#workspaces button.active {
+  color: @maroon;
+}
+
+#taskbar button.focused,
+#workspaces button.focused {
+  color: @rosewater;
+  background: transparent;
+  border-radius: 15px;
+}
+
+#workspaces button.urgent {
+  color: #11111b;
+  background: transparent;
+  border-radius: 15px;
+}
+
+#taskbar button:hover,
+#workspaces button:hover {
+  background: transparent;
+  color: @flamingo;
+  border-radius: 15px;
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#power-profiles-daemon,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar button,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-browser,
+#custom-cava_mviz,
+#custom-cycle_wall,
+#custom-dot_update,
+#custom-file_manager,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-hint,
+#custom-hypridle,
+#custom-menu,
+#custom-playerctl,
+#custom-power_vertical,
+#custom-power,
+#custom-settings,
+#custom-spotify,
+#custom-swaync,
+#custom-tty,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+#idle_inhibitor {
+  color: @pink;
+}
+
+#mpris {
+  color: @rosewater;
+}
+
+#battery {
+  color: #a6e3a1;
+  padding-left: 15px;
+  border-radius: 15px 0 0 15px;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #333333;
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#custom-lock,
+#custom-power {
+  color: @red;
+  border-radius: 15px;
+  font-weight: bolder;
+  padding-left: 1px;
+}
+
+#network {
+  background-color: transparent;
+  color: @mauve;
+}
+
+#backlight {
+  color: @flamingo;
+}
+
+
+#custom-weather {
+  color: @green;
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+#custom-menu {
+  color: #89b4fa;
+}
+
+#pulseaudio {
+  background-color: transparent;
+  color: @blue;
+}
+
+#clock,
+#clock-calender {
+  color: @sapphire;
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+  min-height: 7px;
+  min-width: 15px;
+  opacity: 0;
+  background-color: @text;
+  border-radius: 3px;
+  box-shadow: 1px 5px 6px 1px #272727;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+  min-height: 100px;
+  min-width: 7px;
+  border-radius: 5px;
+  background-color: @surface0;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+  min-width: 5px;
+  border-radius: 5px;
+  background-color: @blue;
+}

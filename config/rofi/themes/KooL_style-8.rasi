@@ -30,7 +30,7 @@ configuration {
 
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
 /* ---- Window ---- */
@@ -123,7 +123,7 @@ mode-switcher {
     orientation:                 horizontal;
     width:                       2em;
     enabled:                     true;
-    padding:                     1em;
+    padding:                     0.7em;
     spacing:                     1em;
     background-color:            transparent;
 }
@@ -133,6 +133,7 @@ button {
     border-radius:               2em;
     background-color:            @background;
     text-color:                  @foreground;
+	padding: 0.4em;
 }
 
 button selected {
@@ -153,12 +154,13 @@ scrollbar {
 element {
     enabled:                     true;
     spacing:                     0em;
-    padding:                     0.5em;
+    padding:                     0.8em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @foreground;
 }
 
+element-text selected,
 element selected.normal {
     background-color:            @color11;
     text-color:                  @foreground;

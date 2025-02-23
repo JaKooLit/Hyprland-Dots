@@ -74,6 +74,9 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 ### 📦 Whats new?
 - To easily track changes, I will be updating the [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth mentioning the changes!
 
+> [!NOTE]
+> Kindly note that by defeault, Kools Dots are adjusted / configured for 2k (1440p) display without scaling. 
+
 ### 💥 Copying / Installation / Update instructions 💥
 - [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
 > [!Note] 
@@ -113,10 +116,14 @@ chmod +x upgrade.sh
 ./upgrade.sh
 ```
 
+## ❗❗❗ DEBIAN AND UBUNTU HEADS UP!
+- I am getting ridiculously amount of messages for updating your KooL Hyprland dotfiles. I have made a BIG note on [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update)
+
+
 ## ⚠️⚠️⚠️ ATTENTION - BACKUPS CREATED by SCRIPT
 > [!CAUTION]
 > copy.sh, release.sh and even upgrade.sh creates a backup!
-> Kindly investigate manually contents on your ~/.config
+> Kindly investigate manually contents on your $HOME/.config
 > Delete manually all the backups which you dont need
 
 #### 🛎️ a small note on wallpapers
@@ -134,10 +141,6 @@ chmod +x upgrade.sh
 
 #### 📖 Known issues and possible solutions
 - check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [UNSOLVED ISSUES](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known_Issues)
-
-
-### ‼️ ⁉️ Debian and Ubuntu Users ATTENTION!
-- to update your dots, follow [THIS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#--debian-and-ubuntu-hyprland-dots-updating-notes-)
 
 
 #### 🙋 QUESTIONS ?!?! ⁉️

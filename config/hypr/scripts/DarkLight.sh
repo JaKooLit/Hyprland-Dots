@@ -46,7 +46,7 @@ fi
 
 # Function to update theme mode for the next cycle
 update_theme_mode() {
-    echo "$next_mode" > ~/.cache/.theme_mode
+    echo "$next_mode" > "$HOME/.cache/.theme_mode"
 }
 
 # Function to notify user

@@ -1,5 +1,5 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Main Config - emoji */
+/* Monitor Profiles Menu */
 
 @import "~/.config/rofi/config.rasi" 
 
@@ -15,34 +15,28 @@ window {
   height: inherit;
 }
 
-/* ---- Entry ---- */
+/* ---- Entry ---- */ 
 entry {
-  width: 37%;
-  placeholder: " 💫 Search / Choose Emoji's";
-  horizontal-align: 0.0;
+  width: 43%;
+  placeholder: " 💻 Search / Choose which Monitor Profiles to load";
+  horizontal-align: 0.5;
 }
 
 /* ---- Listview ---- */
 listview {
   columns: 2;
-  lines: 7;
+  lines: 3;
   fixed-height: false;
+  margin: 10px;
   scrollbar: true;
-  spacing: 6px;
 }
 
 /* ---- Elements ---- */
-element {
-  orientation: horizontal;
-}
-
 element-icon {
   size: 0%;
 }
-
 element-text {
-  horizontal-align: 0.0;
-  vertical-align: 0.5;
-  padding: 0px;
-  margin: 0px;
+  horizontal-align: 0.5;
+  vertical-align: 0.0;
+  margin: 5px 30px 5px 30px;
 }

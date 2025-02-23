@@ -89,8 +89,8 @@
 	"format-time": "{H}h {M}min",
 	"tooltip": true,
 	"tooltip-format": "{timeTo} {power}w",
-	"on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
-	"on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
+	"on-click-middle": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
+	"on-click-right": "$HOME/.config/hypr/scripts/Wlogout.sh",
 },
 
 "cpu#forest": {

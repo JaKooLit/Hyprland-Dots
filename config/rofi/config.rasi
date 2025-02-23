@@ -21,4 +21,4 @@ configuration {
 /* note: Element-text font and size, edit configs in ~/.config/rofi/themes/ */
 
 
-@theme "~/.config/rofi/themes/KooL_style-2-Dark.rasi"
+@theme "~/.config/rofi/themes/KooL_style-9.rasi"

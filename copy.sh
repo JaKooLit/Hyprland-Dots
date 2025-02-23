@@ -63,10 +63,11 @@ echo -e "\e[35m
 printf "\n%.0s" {1..1}  
 
 ####### Announcement
-echo "${WARNING}      		A T T E N T I O N !${RESET}"
-echo "${SKY_BLUE}KooL Hyprland v2.3.11 have some Minor Keybinds changes!${RESET}"
-echo "${YELLOW}SUPER H for Keyhints and/or SUPER SHIFT K to search for Keybinds ${RESET}"
-echo "${MAGENTA}	   Once Logged in to Kool Hyprland! ${RESET}"
+echo "${WARNING}A T T E N T I O N !${RESET}"
+echo "${SKY_BLUE}This version (v2.3.12) requires nwg-displays and some fonts!${RESET}"
+echo "${SKY_BLUE}If you ran through (Distro-Hyprland install scripts), no need to do anything${RESET}"
+echo "${YELLOW}previous version: Some Keybinds changes${RESET}"
+echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for changelogs${RESET}"
 printf "\n%.0s" {1..1}
 
 # Create Directory for Copy Logs
@@ -104,7 +105,7 @@ if hostnamectl | grep -q 'Chassis: vm'; then
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)false/\1true/' config/hypr/UserConfigs/UserSettings.conf
   sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   #sed -i '/env = LIBGL_ALWAYS_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/UserConfigs/Monitors.conf
+  sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/monitors.conf
 fi
 
 # Proper Polkit for NixOS
@@ -114,7 +115,7 @@ if hostnamectl | grep -q 'Operating System: NixOS'; then
   sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
-# Check if dpkg is installed (use to check if Debian or Ubuntu or based distros
+# to check if Debian or Ubuntu or based distros
 if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
 	echo "${INFO} Debian/Ubuntu based distro. Disabling pyprland since it does not work properly" 2>&1 | tee -a "$LOG" || true
   # disabling pyprland as causing issues
@@ -320,7 +321,7 @@ echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 # Add your commands based on the resolution choice
 if [ "$resolution" == "< 1440p" ]; then
   #cp -r config/rofi/resolution/1080p/* config/rofi/ 10-Feb-2025
-  sed -i 's/font_size 16.0/font_size 12.0/' config/kitty/kitty.conf
+  sed -i 's/font_size 15.0/font_size 13.0/' config/kitty/kitty.conf
 
   # hyprlock matters
   mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf &&
@@ -332,8 +333,8 @@ if [ "$resolution" == "< 1440p" ]; then
 
   # Change rofi font size
   find "$themes_dir" -type f | while read -r file; do
-      if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 12";\n}' "$file"; then
-          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 12"/font: "JetBrainsMono Nerd Font SemiBold 10"/' "$file"
+      if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 13";\n}' "$file"; then
+          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
       fi
   done
 
@@ -458,22 +459,16 @@ get_backup_dirname() {
 
 # Check if the ~/.config/ directory exists
 if [ ! -d "$HOME/.config" ]; then
-  echo "${ERROR} - The ~/.config directory does not exist."
-  exit 1
+  echo "${ERROR} - $HOME/.config directory does not exist. Creating it now."
+  mkdir -p "$HOME/.config" && echo "Directory created successfully." || echo "Failed to create directory."
 fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
-DIRS="
-  ags 
-  fastfetch 
-  kitty 
-  rofi 
-  swaync 
-  waybar
-"
+DIRS="ags fastfetch kitty rofi swaync waybar"
+
 for DIR2 in $DIRS; do
-  DIRPATH=~/.config/"$DIR2"
+  DIRPATH="$HOME/.config/$DIR2"
   
   if [ -d "$DIRPATH" ]; then
     while true; do
@@ -483,26 +478,65 @@ for DIR2 in $DIRS; do
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
           
-          mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-          if [ $? -eq 0 ]; then
-            echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
-            
-            cp -r config/"$DIR2" ~/.config/"$DIR2"
-            if [ $? -eq 0 ]; then
-              echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
-            else
-              echo "${ERROR} - Failed to copy $DIR2." 2>&1 | tee -a "$LOG"
-              exit 1
-            fi
-          else
-            echo "${ERROR} - Failed to back up $DIR2." 2>&1 | tee -a "$LOG"
-            exit 1
+          # special handling for waybar since it contains symlinks
+          if [ "$DIR2" = "waybar" ]; then
+              for symlink in "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css"; do
+                  if [ -L "$symlink" ]; then
+                      symlink_target=$(readlink "$symlink")
+                      temp_file="${symlink}_2"
+                      cp -f "$symlink_target" "$temp_file"
+                  fi
+              done
           fi
+
+          # Backup the existing directory
+          mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+          echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
+
+          # Copy the new config
+          cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$LOG"
+          echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
+
+          # Restoring waybar config and style automatically
+          if [ "$DIR2" = "waybar" ]; then
+              # Remove existing symlinks first before copying.
+              rm -rf "$HOME/.config/waybar/config" "$HOME/.config/waybar/style.css"
+
+              # Copy the temp files (config_2 and style.css_2) from the backup and restore them
+              cp "$DIRPATH-backup-$BACKUP_DIR/config_2" "$HOME/.config/waybar/config" || true
+              cp "$DIRPATH-backup-$BACKUP_DIR/style.css_2" "$HOME/.config/waybar/style.css" || true 
+              
+              echo -e "${OK} - previous waybar configs and styles restored automatically" 2>&1 | tee -a "$LOG"
+
+            # Optionally restore other waybar configuration and style files if present
+            for file in "$DIRPATH-backup-$BACKUP_DIR/configs"/*; do
+              [ -e "$file" ] || continue  # Skip if no files are found
+              echo "Copying $file to $HOME/.config/waybar/configs/" >> "$LOG"
+              cp -n "$file" "$HOME/.config/waybar/configs/"
+            done || true
+
+            for file in "$DIRPATH-backup-$BACKUP_DIR/style"/*; do
+              [ -e "$file" ] || continue  # Skip if no files are found
+              echo "Copying $file to $HOME/.config/waybar/style/" >> "$LOG"
+              cp -n "$file" "$HOME/.config/waybar/style/"
+            done || true           
+          fi
+         
+          # Restoring rofi themes directory unique themes
+          if [ "$DIR2" = "rofi" ]; then
+            if [ -d "$DIRPATH-backup-$BACKUP_DIR/themes" ]; then
+              for file in "$DIRPATH-backup-$BACKUP_DIR/themes"/*; do
+                [ -e "$file" ] || continue  # Skip if no files are found
+                echo "Copying $file to $HOME/.config/rofi/themes/" >> "$LOG"
+                cp -n "$file" "$HOME/.config/rofi/themes/"
+              done || true
+            fi
+          fi
+
           break
           ;;
         [Nn]* )
-          # Skip the directory
-          echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET} " 2>&1 | tee -a "$LOG"
+          echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
           break
           ;;
         * )
@@ -512,15 +546,11 @@ for DIR2 in $DIRS; do
     done
   else
     # Copy new config if directory does not exist
-    cp -r config/"$DIR2" ~/.config/"$DIR2" 2>&1 | tee -a "$LOG"
-    if [ $? -eq 0 ]; then
-      echo "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
-    else
-      echo "${ERROR} - Failed to copy ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
-      exit 1
-    fi
+    cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$LOG"
+    echo -e "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
   fi
 done
+
 printf "\n%.0s" {1..1}
 
 printf "${INFO} - Copying dotfiles ${SKY_BLUE}second${RESET} part\n"
@@ -531,20 +561,10 @@ if [ ! -d "config" ]; then
   exit 1
 fi
 
-DIR="
-  btop
-  cava
-  hypr
-  Kvantum
-  qt5ct
-  qt6ct
-  swappy
-  wallust
-  wlogout
-"
+DIR="btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout"
 
 for DIR_NAME in $DIR; do
-  DIRPATH=~/.config/"$DIR_NAME"
+  DIRPATH="$HOME/.config/$DIR_NAME"
   
   # Backup the existing directory if it exists
   if [ -d "$DIRPATH" ]; then
@@ -563,7 +583,7 @@ for DIR_NAME in $DIR; do
   
   # Copy the new config
   if [ -d "config/$DIR_NAME" ]; then
-    cp -r "config/$DIR_NAME/" ~/.config/"$DIR_NAME" 2>&1 | tee -a "$LOG"
+    cp -r "config/$DIR_NAME/" "$HOME/.config/$DIR_NAME" 2>&1 | tee -a "$LOG"
     if [ $? -eq 0 ]; then
       echo "${OK} - Copy of config for ${YELLOW}$DIR_NAME${RESET} completed!"
     else
@@ -577,23 +597,55 @@ done
 
 printf "\n%.0s" {1..1}
 
+# Restore automatically Animations and Monitor-Profiles
+# including monitors.conf and workspaces.conf
+HYPR_DIR="$HOME/.config/hypr"
+BACKUP_DIR=$(get_backup_dirname)
+BACKUP_HYPR_PATH="$HYPR_DIR-backup-$BACKUP_DIR"
+
+if [ -d "$BACKUP_HYPR_PATH" ]; then
+  echo -e "\n${NOTE} Restoring ${SKY_BLUE}Animations & Monitor Profiles${RESET} directories into ${YELLOW}$HYPR_DIR${RESET}..."
+  
+  DIR_B=("Monitor_Profiles" "animations" "wallpaper_effects")
+  # Restore directories automatically 
+  for DIR_RESTORE in "${DIR_B[@]}"; do
+    BACKUP_SUBDIR="$BACKUP_HYPR_PATH/$DIR_RESTORE"
+    
+    if [ -d "$BACKUP_SUBDIR" ]; then
+      cp -r "$BACKUP_SUBDIR" "$HYPR_DIR/" 
+      echo "${OK} - Restored directory: ${MAGENTA}$DIR_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
+    fi
+  done
+
+  # Restore files automatically
+  FILE_B=("monitors.conf" "workspaces.conf" "pyprland.toml")
+  for FILE_RESTORE in "${FILE_B[@]}"; do
+    BACKUP_FILE="$BACKUP_HYPR_PATH/$FILE_RESTORE"
+
+    if [ -f "$BACKUP_FILE" ]; then
+      cp "$BACKUP_FILE" "$HYPR_DIR/$FILE_RESTORE" 
+      echo "${OK} - Restored file: ${MAGENTA}$FILE_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
+    fi
+  done
+fi
+
+printf "\n%.0s" {1..1}
+
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
   "ENVariables.conf"
   "LaptopDisplay.conf"
   "Laptops.conf"
-  "Monitors.conf"
   "Startup_Apps.conf"
   "UserDecorations.conf"
   "UserAnimations.conf"
   "UserKeybinds.conf"
   "UserSettings.conf"
   "WindowRules.conf"
-  "WorkspaceRules.conf"
 )
 
-DIRPATH=~/.config/"$DIRH"
+DIRPATH="$HOME/.config/$DIRH"
 BACKUP_DIR=$(get_backup_dirname)
 BACKUP_DIR_PATH="$DIRPATH-backup-$BACKUP_DIR/UserConfigs"
 
@@ -636,14 +688,14 @@ SCRIPTS_TO_RESTORE=(
   "Weather.sh"
 )
 
-DIRSHPATH=~/.config/"$DIRSH"
-BACKUP_DIR_PATH="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
+DIRSHPATH="$HOME/.config/$DIRSH"
+BACKUP_DIR_PATH_S="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
 
-if [ -d "$BACKUP_DIR_PATH" ]; then
+if [ -d "$BACKUP_DIR_PATH_S" ]; then
   echo -e "${NOTE} Restoring previous ${MAGENTA}User-Scripts${RESET}..."
 
   for SCRIPT_NAME in "${SCRIPTS_TO_RESTORE[@]}"; do
-    BACKUP_SCRIPT="$BACKUP_DIR_PATH/$SCRIPT_NAME"
+    BACKUP_SCRIPT="$BACKUP_DIR_PATH_S/$SCRIPT_NAME"
 
     if [ -f "$BACKUP_SCRIPT" ]; then
       printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
@@ -663,6 +715,44 @@ fi
 
 printf "\n%.0s" {1..1}
 
+# restoring some files in ~/.config/hypr
+DIR_H="hypr"
+FILES_2_RESTORE=(
+  "hyprlock.conf"
+  "hypridle.conf"
+)
+
+DIRPATH="$HOME/.config/$DIR_H"
+BACKUP_DIR=$(get_backup_dirname)
+BACKUP_DIR_PATH_F="$DIRPATH-backup-$BACKUP_DIR"
+
+if [ -d "$BACKUP_DIR_PATH_F" ]; then
+  echo -e "${NOTE} Restoring some files in ${MAGENTA}$HOME/.config/hypr directory${RESET}..."
+
+  for FILE_RESTORE in "${FILES_2_RESTORE[@]}"; do
+    BACKUP_FILE="$BACKUP_DIR_PATH_F/$FILE_RESTORE"
+  
+    if [ -f "$BACKUP_FILE" ]; then
+      echo -e "\n${INFO} Found ${YELLOW}$FILE_RESTORE${RESET} in hypr backup..."
+      read -p "${CAT} Do you want to restore ${YELLOW}$FILE_RESTORE${RESET} from backup? (y/N): " file2restore
+
+      if [[ "$file2restore" == [Yy]* ]]; then
+        if cp "$BACKUP_FILE" "$DIRPATH/$FILE_RESTORE"; then
+          echo "${OK} - $FILE_RESTORE restored!" 2>&1 | tee -a "$LOG"
+        else
+          echo "${ERROR} - Failed to restore $FILE_RESTORE!" 2>&1 | tee -a "$LOG"
+        fi
+      else
+        echo "${NOTE} - Skipped restoring $FILE_RESTORE."
+      fi
+    else
+      echo "${ERROR} - Backup file $BACKUP_FILE does not exist."
+    fi
+  done
+fi
+
+printf "\n%.0s" {1..1}
+
 # Define the target directory for rofi themes
 rofi_DIR="$HOME/.local/share/rofi/themes"
 
@@ -673,7 +763,7 @@ if [ -d "$HOME/.config/rofi/themes" ]; then
   if [ -z "$(ls -A $HOME/.config/rofi/themes)" ]; then
     echo '/* Dummy Rofi theme */' > "$HOME/.config/rofi/themes/dummy.rasi"
   fi
-  ln -snf ~/.config/rofi/themes/* ~/.local/share/rofi/themes/
+  ln -snf "$HOME/.config/rofi/themes/"* "$HOME/.local/share/rofi/themes/"
   # Delete the dummy file if it was created
   if [ -f "$HOME/.config/rofi/themes/dummy.rasi" ]; then
     rm "$HOME/.config/rofi/themes/dummy.rasi"
@@ -683,18 +773,18 @@ fi
 printf "\n%.0s" {1..1}
 
 # wallpaper stuff
-mkdir -p ~/Pictures/wallpapers
-if cp -r wallpapers ~/Pictures/; then
+mkdir -p $HOME/Pictures/wallpapers
+if cp -r wallpapers $HOME/Pictures/; then
   echo "${OK} Some ${MAGENTA}wallpapers${RESET} copied successfully!" | tee -a "$LOG"
 else
   echo "${ERROR} Failed to copy some ${YELLOW}wallpapers${RESET}" | tee -a "$LOG"
 fi
  
 # Set some files as executable
-chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
-chmod +x ~/.config/hypr/UserScripts/* 2>&1 | tee -a "$LOG"
+chmod +x "$HOME/.config/hypr/scripts/"* 2>&1 | tee -a "$LOG"
+chmod +x "$HOME/.config/hypr/UserScripts/"* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
-chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
+chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"
 
 # Waybar config to symlink & retain based on machine type
 if hostnamectl | grep -q 'Chassis: desktop'; then
@@ -705,7 +795,11 @@ else
     config_remove=""
 fi
 
-ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG" || true
+# Check if ~/.config/waybar/config does not exist or is a symlink
+if [ ! -e "$HOME/.config/waybar/config" ] || [ -L "$HOME/.config/waybar/config" ]; then
+    ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+fi
+
 
 # Remove inappropriate waybar configs
 rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
@@ -757,12 +851,12 @@ while true; do
           echo "${OK} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
           # Check if wallpapers directory exists and create it if not
-          if [ ! -d ~/Pictures/wallpapers ]; then
-              mkdir -p ~/Pictures/wallpapers
+          if [ ! -d "$HOME/Pictures/wallpapers" ]; then
+              mkdir -p "$HOME/Pictures/wallpapers"
               echo "${OK} Created wallpapers directory." 2>&1 | tee -a "$LOG"
           fi
 
-          if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
+          if cp -R Wallpaper-Bank/wallpapers/* "$HOME/Pictures/wallpapers/" >> "$LOG" 2>&1; then
               echo "${OK} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
               rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
               break
@@ -785,10 +879,10 @@ done
 
 # CLeaning up of ~/.config/ backups
 cleanup_backups() {
-  CONFIG_DIR=~/.config
+  CONFIG_DIR="$HOME/.config"
   BACKUP_PREFIX="-backup"
 
-  # Loop through directories in ~/.config
+  # Loop through directories in $HOME/.config
   for DIR in "$CONFIG_DIR"/*; do
     if [ -d "$DIR" ]; then
       BACKUP_DIRS=()
@@ -837,8 +931,10 @@ cleanup_backups() {
 # Execute the cleanup function
 cleanup_backups
 
-# symlinks for waybar style
-ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" && \
+# Check if ~/.config/waybar/style.css does not exist or is a symlink
+if [ ! -e "$HOME/.config/waybar/style.css" ] || [ -L "$HOME/.config/waybar/style.css" ]; then
+    ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" 2>&1 | tee -a "$LOG"
+fi
 
 printf "\n%.0s" {1..1}
 

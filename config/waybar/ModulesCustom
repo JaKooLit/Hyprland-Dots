@@ -11,9 +11,9 @@
 	"format-alt-click": "click",
 	"interval": 3600,
 	"return-type": "json",
-	"exec": "$HOME/.config/hypr/UserScripts/Weather.sh",
-	//"exec": "$HOME/.config/hypr/UserScripts/Weather.py",
-	"exec-if": "ping wttr.in -c1",
+	"exec": "$HOME/.config/hypr/UserScripts/Weather.py",
+	//"exec": "$HOME/.config/hypr/UserScripts/Weather.sh",
+	//"exec-if": "ping wttr.in -c1",
 	"tooltip": true,
 },
 
@@ -40,9 +40,9 @@
 
 "custom/settings": {
 	"format": " ",
-	"on-click": "$HOME/.config/hypr/UserScripts/QuickEdit.sh",
+	"on-click": "$HOME/.config/hypr/UserScripts/Kool_Quick_Settings.sh",
 	"tooltip": true,
-	"tooltip-format": "Launch Quick Edit",
+	"tooltip-format": "Launch KooL Hyprland Settings Menu",
 },
 
 "custom/cycle_wall": {
@@ -133,7 +133,7 @@
 },
     
 "custom/power": {
-	"format": "⏻ ",
+	"format": " ⏻ ",
 	"on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
 	"on-click-right": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
 	"tooltip": true,

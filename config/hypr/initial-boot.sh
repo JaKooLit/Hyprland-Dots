@@ -21,7 +21,7 @@ swww="swww img"
 effect="--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"
 
 # Check if a marker file exists.
-if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
+if [ ! -f "$HOME/.config/hypr/.initial_startup_done" ]; then
     sleep 1
     # Initialize wallust and wallpaper
 	if [ -f "$wallpaper" ]; then
@@ -52,16 +52,15 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
     # initiate the kb_layout (for some reason) waybar cant launch it
     "$scriptsDir/SwitchKeyboardLayout.sh" > /dev/null 2>&1 &
 
-    # Initial waybar style
-	if [ -f "$waybar_style" ]; then
-    	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
+	# waybar style
+	#if [ -L "$HOME/.config/waybar/config" ]; then
+    ##    	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
+    #   	"$scriptsDir/Refresh.sh" > /dev/null 2>&1 & 
+	#fi
 
-		# Refreshing waybar, swaync, rofi etc. 
-		"$scriptsDir/Refresh.sh" > /dev/null 2>&1 & 
-	fi
 
     # Create a marker file to indicate that the script has been executed.
-    touch ~/.config/hypr/.initial_startup_done
+    touch "$HOME/.config/hypr/.initial_startup_done"
 
     exit
 fi

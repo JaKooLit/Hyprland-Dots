@@ -37,7 +37,7 @@ configuration {
 
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
 /* ---- Window ---- */
@@ -48,17 +48,10 @@ window {
     border:                         2px;
     border-color:                   @BDR;
     border-radius:                  10px;
-    width:                          30%;
+    width:                          25%;
     anchor:                         center;
     x-offset:                       0;
     y-offset:                       0;
-}
-
-mainbox {
-    background-color:               @BG;
-    children:                       [ inputbar, listview ];
-    spacing:                        15px;
-    padding:                        15px;
 }
 
 prompt {
@@ -77,14 +70,13 @@ textbox-prompt-colon {
     padding:                        8px 12px 8px 12px;
 }
 
-/* ---- Entry input ---- */
 entry {
     background-color:               @BG;
     text-color:                     @FG;
     placeholder-color:              @FG;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "  Search   👀 NOTE: CTRL TAB to change MODE";
+    placeholder:                    "Search     👀 NOTE: CTRL TAB to change MODE";
     blink:                          true;
     border:                  	    0px 0px 2px 0px;
     border-color:                   @BDR;
@@ -111,36 +103,40 @@ case-indicator {
     spacing:                        0;
 }
 
-/* ---- Listview ---- */
+
 listview {
     background-color:               @BG;
     columns:                        1;
     lines:			                7;
     spacing:                        4px;
-    cycle:                          true;
+    cycle:                          false;
     dynamic:                        true;
     layout:                         vertical;
-    scrollbar:                   	true;
-    padding:						10px;
 }
 
 /* ---- Scrollbar ---- */
 scrollbar {
-    border:       					0px;
-    border-radius:					10px;
-    border-color:					@color12;
-    handle-color: 					@color11;
-    handle-width: 					2px ;
-    padding:      					0;
+  border:							0px;
+  border-radius:					10px;
+  background-color:					transparent;
+  handle-color: 					@BDR;
+  handle-width: 					2px ;
+  padding:      					0;
 }
 
-/* ---- Elements ---- */
+mainbox {
+    background-color:               @BG;
+    children:                       [ inputbar, message, listview ];
+    spacing:                        15px;
+    padding:                        15px;
+}
+
 element {
     background-color:               @BG;
     text-color:                     @FG;
     orientation:                    horizontal;
     border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+    padding:                        12px;
 }
 
 element-icon {
@@ -161,6 +157,7 @@ element-text {
     margin:                         2px 0px 2px 2px;
 }
 
+
 element normal.urgent,
 element alternate.urgent {
     background-color:               @UGT;
@@ -174,6 +171,7 @@ element alternate.active {
     text-color:                     @FG;
 }
 
+element-text selected,
 element selected {
     background-color:               @BGA;
     text-color:                     @SEL;
@@ -192,22 +190,19 @@ element selected.active {
     color:                          @FG;
 }
 
-/* ---- Message ---- */
+/*****----- Message -----*****/
 message {
-    background-color:            transparent;
-    border:                      0px;
-}
-textbox {
-    padding:                     12px;
-    border-radius:               10px;
-    background-color:            @BDR;
-    text-color:                  @foreground;
-    vertical-align:              0.5;
-    horizontal-align:            0.5;
+    background-color:            	transparent;
+    border:                      	0px;
 }
 error-message {
-    padding:                     12px;
-    border-radius:               20px;
-    background-color:            @background;
-    text-color:                  @foreground;
+    padding:                        20px;
+}
+textbox {
+    padding:                        10px;
+    border-radius:                  10px;
+	background-color:               @BDR;
+    text-color:                     @SEL;
+    vertical-align:                 0.5;
+    horizontal-align:               0.5;
 }

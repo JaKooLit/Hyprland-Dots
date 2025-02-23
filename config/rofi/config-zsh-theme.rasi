@@ -10,7 +10,8 @@ configuration {
 
 /* ---- Window ---- */
 window {
-  width: 40%;
+  width: inherit;
+  height: inherit;
   border-radius: 15px;
 }
 
@@ -58,9 +59,9 @@ textbox {
 
 /* ---- Element ---- */
 element-icon {
-  	size: 0%;
+  size: 0%;
 }
 element-text {
-    horizontal-align: 0.0;
-    margin: 5px 30px 5px 30px;
+  horizontal-align: 0.0;
+  margin: 5px 30px 5px 30px;
 }

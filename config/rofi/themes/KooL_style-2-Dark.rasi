@@ -25,7 +25,7 @@ configuration {
 }
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
 /*****----- Main Window -----*****/
@@ -53,7 +53,7 @@ mainbox {
     enabled:                     true;
     spacing:                     20px;
     margin:                      10px;
-    padding:                     20px;
+    padding:                     15px;
     border-radius:               12px;
     background-color:            black/90%;
     children:                    [ "inputbar", "mode-switcher", "message", "listview" ];
@@ -64,7 +64,7 @@ inputbar {
     enabled:                     true;
     spacing:                     0px;
     margin:                      0px;
-    padding:                     0px 0px 10px 0px;
+    padding:                     20px 0px 20px 0px;
     border:                      0px 0px 2px 0px;
     border-radius:               0px;
     border-color:                gray/20%;
@@ -98,7 +98,7 @@ listview {
     
     spacing:                     40px;
     margin:                      0px;
-    padding:                     20px 0px 0px 0px;
+    padding:                     0px;
     border:                      0px solid;
     background-color:            transparent;
     cursor:                      "default";
@@ -106,20 +106,20 @@ listview {
 
 /* ---- Scrollbar ---- */
 scrollbar {
-  border:						1px;
-  border-radius:				10px;
-  background-color:				inherit;
-  handle-color: 				#719DF9;
-  handle-width: 				2px ;
-  padding:      				0;
+    border:						1px;
+    border-radius:				10px;
+    background-color:				inherit;
+    handle-color: 				#719DF9;
+    handle-width: 				2px ;
+    padding:      				0;
 }
 
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
     spacing:                     10px;
-    margin:                      0px;
-    padding:                     15px;
+    margin:                      10px;
+    padding:                     20px;
     border:                      1px solid;
     border-radius:               8px;
     border-color:                white/30%;
@@ -131,6 +131,8 @@ element normal.active {
     background-color:           #67FF80;
     text-color:                  black;
 }
+
+element-text selected,
 element selected.normal {
     background-color:           #c19419;
     text-color:                  black;

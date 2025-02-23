@@ -25,7 +25,7 @@ configuration {
 }
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
 /*****----- Main Window -----*****/
@@ -98,7 +98,7 @@ listview {
     
     spacing:                     40px;
     margin:                      0px;
-    padding:                     20px 0px 0px 0px;
+    padding:                     0px;
     border:                      0px solid;
     background-color:            transparent;
     cursor:                      "default";
@@ -108,7 +108,7 @@ listview {
 scrollbar {
   border:						0px;
   border-radius:				10px;
-  background-color:				transparent;
+  background-color:				inherit;
   handle-color: 				gray/50%;
   handle-width: 				2px ;
   padding:      				0;
@@ -119,7 +119,7 @@ element {
     enabled:                     true;
     spacing:                     10px;
     margin:                      0px;
-    padding:                     15px;
+    padding:                     20px 0px 20px 0px;
     border:                      1px solid;
     border-radius:               8px;
     border-color:                gray/30%;
@@ -128,15 +128,18 @@ element {
     cursor:                      pointer;
 }
 element normal.active {
-    background-color:          #67FF80;
+    background-color:            #67FF80;
     text-color:                  black;
 }
+
+element-text selected,
 element selected.normal {
-    background-color:          #FDD66F;
+    background-color:            #FDD66F;
     text-color:                  black;
 }
+
 element selected.active {
-    background-color:          #FF7F7C;
+    background-color:            #FF7F7C;
     text-color:                  black;
 }
 element-icon {
@@ -162,7 +165,6 @@ mode-switcher{
     text-color:                  white;
 }
 button {
-    font:                        "JetBrainsMono Nerd Font SemiBold 10";
     padding:                     6px;
     border:                      0px solid;
     border-radius:               100%;
@@ -185,9 +187,8 @@ error-message {
 }
 textbox {
     padding:                     10px;
-    background-color:            #719DF9;
+    background-color:          #719DF9;
     text-color:                  inherit;
     vertical-align:              0.5;
     horizontal-align:            0.5;
 }
-

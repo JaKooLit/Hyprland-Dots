@@ -23,9 +23,9 @@ configuration {
   fg1    : #5f5f5f;
   accent : #005fb8;
   urgent : @accent;
-
-  background-color : transparent;
-  text-color       : @fg0;
+  
+  background-color: transparent;
+  text-color : @fg0;
 
   margin  : 0;
   padding : 0;
@@ -34,7 +34,7 @@ configuration {
 
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
 element-icon, element-text, scrollbar {
@@ -68,6 +68,7 @@ inputbar {
 
 icon-search, entry, element-icon, element-text {
   vertical-align: 0.5;
+  background-color : transparent;
 }
 
 icon-search {
@@ -80,6 +81,7 @@ entry {
   placeholder       : "Search  👀 NOTE: CTRL TAB to change MODE";
   text-color		: @fg1;
   horizontal-align  : 0.5;
+  background-color : transparent;
 }
 
 listview {
@@ -111,8 +113,12 @@ element selected active {
   text-color: @accent;
 }
 
-element selected {
-  background-color: @bg3;
+element-text selected,
+element selected normal {
+  background-color: @bg0;
+  text-color: @accent;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 element selected urgent {
@@ -143,9 +149,8 @@ error-message {
 }
 
 textbox {
-  padding            : 10px;
-  background-color   : @bg0;
-  text-color         : @fg0;
-  vertical-align     : 0.5; 
-  horizontal-align   : 0.5;
+  padding           : 10px;
+  text-color        : @fg0;
+  vertical-align	: 0.5;
+  horizontal-align	: 0.5;
 }

@@ -2,13 +2,6 @@
 /* KooL Hyprland Rofi Style 10 - Fancy */
 /* Credit to DaveDavenport. I have only some few things changed */
 
-/*******************************************************************************
- * ROFI Color theme
- * Theme designed to show off moving, packing of widgets, icons and more.
- * User: DaveDavenport
- * Copyright: DaveDavenport
- ********************************************************************************/
-
 /* ---- Configuration ---- */
 
 configuration {
@@ -51,7 +44,7 @@ configuration {
 
 /*****-- Elements Font Size -----*****/
 element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 12";
+  font: "JetBrainsMono Nerd Font SemiBold 13";
 }
 
 window {
@@ -172,7 +165,7 @@ listview {
 element {
     border:  1;
     border-color: transparent;
-    padding: 4px ;
+    padding: 12px ;
 }
 element-text {
     background-color: inherit;
@@ -220,6 +213,12 @@ element.alternate.active {
     background-color: @alternate-active-background;
     text-color:       @alternate-active-foreground;
 }
+
+element-text selected {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
 /* ---- Scrollbar ---- */
 scrollbar {
   border:			0px;
