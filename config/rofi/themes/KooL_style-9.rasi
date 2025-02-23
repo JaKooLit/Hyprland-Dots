@@ -12,7 +12,6 @@ configuration {
     disable-history:                false;
     click-to-exit: 		            true;
     location:                       0;
-    dpi:							1;
     hover-select:               	true;
     me-select-entry:            	"MouseSecondary";
     me-accept-entry:            	"MousePrimary";

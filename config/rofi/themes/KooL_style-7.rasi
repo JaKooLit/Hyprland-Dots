@@ -12,7 +12,6 @@ configuration {
     display-filebrowser:        "  ";
     display-window:             "  ";
 	drun-display-format:        "{name}";
-    dpi:						1;
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
