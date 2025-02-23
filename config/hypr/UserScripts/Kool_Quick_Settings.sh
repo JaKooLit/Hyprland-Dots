@@ -53,13 +53,13 @@ main() {
         "view/edit Default Keybinds") file="$configs/Keybinds.conf" ;;
         "Configure Monitors (nwg-displays)") 
             if ! command -v nwg-displays &>/dev/null; then
-                notify-send -i "$iDIR/ja.png" "Missing nwg-displays" "Install nwg-displays first"
+                notify-send -i "$iDIR/ja.png" "E-R-R-O-R" "Install nwg-displays first"
                 exit 1
             fi
             nwg-displays ;;
         "Configure Workspace Rules (nwg-displays)") 
             if ! command -v nwg-displays &>/dev/null; then
-                notify-send -i "$iDIR/ja.png" "Missing nwg-displays" "Install nwg-displays first"
+                notify-send -i "$iDIR/ja.png" "E-R-R-O-R" "Install nwg-displays first"
                 exit 1
             fi
             nwg-displays ;;

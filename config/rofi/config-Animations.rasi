@@ -29,6 +29,7 @@ listview {
   margin: 10px;
   scrollbar: true;
   spacing: 6px;
+  cycle: true;
 }
 
 /* ---- Elements ---- */

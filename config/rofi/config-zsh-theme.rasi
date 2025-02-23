@@ -41,6 +41,7 @@ listview {
   lines: 3;
   spacing: 4px;
   border-radius: 10px;
+  cycle: true;
 }
 
 /* ---- Element ---- */

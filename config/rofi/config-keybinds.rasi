@@ -23,11 +23,12 @@ listview {
   fixed-height: false;
   scrollbar: true;
   spacing: 6px;
+  cycle: true;
 }
 
 window {
-    width: 90%;
-    height: inherit;
+  width: 90%;
+  height: inherit;
 }
 
 /* ---- Elements ---- */

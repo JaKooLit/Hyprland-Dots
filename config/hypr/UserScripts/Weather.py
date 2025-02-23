@@ -138,7 +138,7 @@ simple_weather = (
 )
 
 try:
-    with open(os.path.expanduser("$HOME/.cache/.weather_cache"), "w") as file:
+    with open(os.path.expanduser("~/.cache/.weather_cache"), "w") as file:
         file.write(simple_weather)
 except Exception as e:
     print(f"Error writing to cache: {e}")

@@ -6,11 +6,10 @@
 
 /* ---- Configuration ---- */
 configuration {
-  dpi:                        1;
-  show-icons:                 true;
-  hover-select:               true;
-  me-select-entry:            "MouseSecondary";
-  me-accept-entry:            "MousePrimary";
+  show-icons:        true;
+  hover-select:      true;
+  me-select-entry:   "MouseSecondary";
+  me-accept-entry:   "MousePrimary";
 }
 
 /*****----- Global Properties -----*****/

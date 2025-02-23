@@ -37,6 +37,7 @@ listview {
   flow: horizontal;
   fixed-width: true;
   fixed-height: true;
+  cycle: true;
 }
 
 /* ---- Element ---- */
