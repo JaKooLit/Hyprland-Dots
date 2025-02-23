@@ -143,10 +143,6 @@ chmod +x upgrade.sh
 - check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [UNSOLVED ISSUES](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known_Issues)
 
 
-### ‼️ ⁉️ Debian and Ubuntu Users ATTENTION!
-- to update your dots, follow [THIS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update#--debian-and-ubuntu-hyprland-dots-updating-notes-)
-
-
 #### 🙋 QUESTIONS ?!?! ⁉️
 - FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo:)
 - QUICK HINT! Click the HINT! Waybar module (note only available in Waybar default and Simple-L [TOP] layout). Can be launched by Keybind `SUPER H`
