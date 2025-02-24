@@ -5,83 +5,141 @@
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
 window {
-    font-family: Fira Code Medium;
-    font-size: 16pt;
-    color: #cdd6f4; /* text */
-    background-color: rgba(30, 30, 46, 0.6);
+    font-family: "FantasqueSansM Nerd Font Mono Bold";
+    font-size: 125%;
+    background-color: rgba(30, 30, 46, 0.9);
 }
 
 button {
+    font-family: "FantasqueSansM Nerd Font Mono Bold";
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: 20%;
+    background-size: 10%;
     background-color: rgba(200, 220, 255, 0);
     animation: gradient_f 10s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    border-radius: 80px;
-	border:0px;
+    transition: all 0.3s ease, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    border: 2px solid transparent;
+    border-radius: 30%;
+    margin: 0px;
+    padding: 0px;  
+    transition: all 0.3s ease;
+    background-position: center;
 }
 
 button:focus {
-    background-size: 50%;
-	border: 0px;
-
+    background-size: 20%;
+    border: 0px;
+    border-radius: 30%;
 }
 
 button:hover {
-    background-color: @color12; 
-    color: #1e1e2e;
-    background-size: 50%;
-    margin: 30px;
-    border-radius: 80px;
-	box-shadow: 0 0 30px @color7;
-	
+	background-color: transparent;
+    color: @color13;
+    border-radius: 40%;
+    background-size: 30%;
+    box-shadow: 0 0 100px @color12;
 }
 
-/* Adjust the size of the icon or content inside the button */
-button span {
-    font-size: 1.2em; /* Increase the font size */
-}
-
-
-#lock {
+/* Port Side */
+#lock {	
+    padding-right: 200px;
+    padding-left: 0px; 
+    margin-left: 0px; 
+    margin-right: -200px; 
     background-image: image(url("./icons/lock.png"));
 }
 #lock:hover {
+    padding-left: 200px;
+    padding-right: 0px; 
+    margin-right: 0px; 
+    margin-left: -200px;    
     background-image: image(url("./icons/lock-hover.png"));
 }
 
-#logout {
-    background-image: image(url("./icons/logout.png"));
-}
-#logout:hover {
-    background-image: image(url("./icons/logout-hover.png"));
-}
-
-#suspend {
-    background-image: image(url("./icons/sleep.png"));
-}
-#suspend:hover {
-    background-image: image(url("./icons/sleep-hover.png"));
-}
-
-#shutdown {
-    background-image: image(url("./icons/power.png"));
-}
-#shutdown:hover {
-    background-image: image(url("./icons/power-hover.png"));
-}
-
 #reboot {
+    padding-right: 200px;
+    padding-left: 0px; 
+    margin-left: 0px; 
+    margin-right: -200px; 
     background-image: image(url("./icons/restart.png"));
 }
 #reboot:hover {
+    padding-left: 200px;
+    padding-right: 0px; 
+    margin-right: 0px; 
+    margin-left: -200px; 
     background-image: image(url("./icons/restart-hover.png"));
 }
 
+/* Midship */
+#shutdown {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px; 
+    margin-left: 0px; 
+    margin-right: 0px;
+    margin-top: -200px; 
+    background-image: image(url("./icons/power.png"));
+}
+#shutdown:hover {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px; 
+    margin-left: 0px; 
+    margin-right: 0px;
+    margin-top: -200px; 
+    background-image: image(url("./icons/power-hover.png"));
+}
+
+#logout {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px; 
+    margin-left: 0px; 
+    margin-right: 0px;
+    margin-bottom: -200px; 
+    background-image: image(url("./icons/logout.png"));
+}
+#logout:hover {
+    padding-bottom: 00px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px; 
+    margin-left: 0px; 
+    margin-right: 0px;
+    margin-bottom: -200px; 
+    background-image: image(url("./icons/logout-hover.png"));
+}
+
+/* Starboard */
+#suspend {
+    padding-left: 200px;
+    padding-right: 0px; 
+    margin-right: 0px; 
+    margin-left: -200px; 
+    background-image: image(url("./icons/sleep.png"));
+}
+#suspend:hover {
+    padding-right: 200px;
+    padding-left: 0px; 
+    margin-left: 0px; 
+    margin-right: -200px; 
+    background-image: image(url("./icons/sleep-hover.png"));
+}
+
 #hibernate {
+    padding-left: 200px;
+    padding-right: 0px; 
+    margin-right: 0px; 
+    margin-left: -200px; 
     background-image: image(url("./icons/hibernate.png"));
 }
 #hibernate:hover {
+    padding-right: 200px;
+    padding-left: 0px; 
+    margin-left: 0px; 
+    margin-right: -200px; 
     background-image: image(url("./icons/hibernate-hover.png"));
 }
