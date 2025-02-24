@@ -1,11 +1,10 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 
-# *********************************************************** #
-# 
-# NOTE: This will be overwritten by NWG-Displays 
-# once you use and click apply. 
-#
-# *********************************************************** #
+# NOTE: THIS IS NOT BEING SOURCED by hyprland
+# It is only here as a guide if you want to do it manually
+# The file you should edit is ~/.config/hypr/workspaces.conf
+# Since that is the work space rules being sourced by hyprland
+# use nwg-displays to handle your workspace rules.
 
 # You can set workspace rules to achieve workspace-specific behaviors. 
 # For instance, you can define a workspace where all windows are drawn without borders or gaps.
