@@ -1,6 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Rofi menu for KooL Quick Hyprland Settings (SUPER SHIFT E)
+# Rofi menu for KooL Hyprland Quick Settings (SUPER SHIFT E)
 
 # Define preferred text editor and terminal
 edit=${EDITOR:-nano}
