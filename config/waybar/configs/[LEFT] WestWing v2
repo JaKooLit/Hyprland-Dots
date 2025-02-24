@@ -29,6 +29,7 @@
 ],
 
 "modules-center": [
+	"idle_inhibitor",
 	"hyprland/workspaces#numbers",
 ],
 
