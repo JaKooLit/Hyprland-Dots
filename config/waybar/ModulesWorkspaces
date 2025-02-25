@@ -210,10 +210,11 @@
 		"class<com.obsproject.Studio>": " ",
 		"class<polkit-gnome-authentication-agent-1>": "󰒃 ",
 		"class<nwg-look>": " ",
-		"class<zen-alpha>": "󰰷 ", //Zen Browser
+		"class<zen>": "󰰷 ", //Zen Browser
 		"class<waterfox|waterfox-bin>": " ",
 		"class<microsoft-edge>": " ",
-		"class<vlc>": "󰕼 "
+		"class<vlc>": "󰕼 ",
+		"class<steam>": " "
 		}   
 	},
 

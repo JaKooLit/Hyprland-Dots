@@ -101,36 +101,22 @@ fi
 main
 
 sleep 1
-# Check if user selected a wallpaper
+
 if [[ -n "$choice" ]]; then
   sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
   if [ -d "$sddm_sequoia" ]; then
-    notify-send -i "$iDIR/ja.png" "Set wallpaper" "as SDDM background?" \
-      -t 10000 \
-      -A "yes=Yes" \
-      -A "no=No" \
-      -h string:x-canonical-private-synchronous:wallpaper-notify
-
-    # Wait for user input using dbus-monitor
-    dbus-monitor "interface='org.freedesktop.Notifications',member='ActionInvoked'" |
-    while read -r line; do
-      if echo "$line" | grep -q "yes"; then
+    if yad --question --text="Set wallpaper as SDDM background?\nNOTE: This only applies to SEQUOIA SDDM Theme" --title="SDDM Background" --ok-label="Yes"; then
 
     # Check if terminal exists
-	if ! command -v "$terminal" &>/dev/null; then
-   	  notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
-   	  exit 1
-	fi
-			
+    if ! command -v "$terminal" &>/dev/null; then
+    notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
+    exit 1
+    fi
+
+      # Open terminal and set the wallpaper
     $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
     sudo cp -r $wallpaper_output '$sddm_sequoia/backgrounds/default' && \
     notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
-    break
-  elif echo "$line" | grep -q "no"; then
-    echo "Wallpaper not set as SDDM background. Exiting."
-    break
-  fi
-  
-  done &
+    fi
   fi
 fi
