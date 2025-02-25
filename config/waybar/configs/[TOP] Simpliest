@@ -7,7 +7,7 @@
   "$HOME/.config/waybar/ModulesWorkspaces",
   "$HOME/.config/waybar/ModulesCustom",
   "$HOME/.config/waybar/ModulesGroups",
-  "$HOME/.config/waybar/Modules_Extras",
+  "$HOME/.config/waybar/UserModules",
   ],
 "layer": "top", 
 "position": "top", 
