@@ -525,38 +525,74 @@ if [ -d "$DIRPATHw" ]; then
         case "$DIR1_CHOICE" in
             [Yy]* )
                 BACKUP_DIR=$(get_backup_dirname)
-
-                # Backup the existing directory
                 cp -r "$DIRPATHw" "$DIRPATHw-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
                 echo -e "${NOTE} - Backed up $DIRW to $DIRPATHw-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
-
+                
+                # Remove the old $DIRPATHw and copy the new one
                 rm -rf "$DIRPATHw" && cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$LOG"
-
+                
+                # Step 1: Handle waybar symlinks 
                 for file in "config" "style.css"; do
                     symlink="$DIRPATHw-backup-$BACKUP_DIR/$file"
                     target_file="$DIRPATHw/$file"
-
+                    
                     if [ -L "$symlink" ]; then
                         symlink_target=$(readlink "$symlink")
                         if [ -f "$symlink_target" ]; then
-                            rm -f "$target_file" &&  cp -f "$symlink_target" "$target_file"
+                            rm -f "$target_file" && cp -f "$symlink_target" "$target_file"
                             echo -e "${NOTE} - Copied $file as a regular file."
                         else
                             echo -e "${WARN} - Symlink target for $file does not exist."
                         fi
                     fi
-                done  
+                done
+                
+                # Step 2: Copy non-existing directories and files under waybar/configs
+                for dir in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
+                    [ -e "$dir" ] || continue  # Skip if no files are found
+                    if [ -d "$dir" ]; then
+                        target_dir="$HOME/.config/waybar/configs/$(basename "$dir")"
+                        if [ ! -d "$target_dir" ]; then
+                            echo "Copying directory $dir to $HOME/.config/waybar/configs/" >> "$LOG"
+                            cp -r "$dir" "$HOME/.config/waybar/configs/"
+                        else
+                            echo "Directory $target_dir already exists. Skipping." >> "$LOG"
+                        fi
+                    fi
+                done
 
                 for file in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
-                    [ -e "$file" ] || continue  # Skip if no files are found
-                    echo "Copying $file to $HOME/.config/waybar/configs/" >> "$LOG"
-                    cp -n "$file" "$HOME/.config/waybar/configs/"
+                    [ -e "$file" ] || continue  
+                    target_file="$HOME/.config/waybar/configs/$(basename "$file")"
+                    if [ ! -e "$target_file" ]; then
+                        echo "Copying $file to $HOME/.config/waybar/configs/" >> "$LOG"
+                        cp "$file" "$HOME/.config/waybar/configs/"
+                    else
+                        echo "File $target_file already exists. Skipping." >> "$LOG"
+                    fi
                 done || true
-
+                
+                # Step 3: Copy unique files in waybar/style
                 for file in "$DIRPATHw-backup-$BACKUP_DIR/style"/*; do
-                    [ -e "$file" ] || continue  # Skip if no files are found
-                    echo "Copying $file to $HOME/.config/waybar/style/" >> "$LOG"
-                    cp -n "$file" "$HOME/.config/waybar/style/"
+                    [ -e "$file" ] || continue  
+                    
+                    if [ -d "$file" ]; then
+                        target_dir="$HOME/.config/waybar/style/$(basename "$file")"
+                        if [ ! -d "$target_dir" ]; then
+                            echo "Copying directory $file to $HOME/.config/waybar/style/" >> "$LOG"
+                            cp -r "$file" "$HOME/.config/waybar/style/"
+                        else
+                            echo "Directory $target_dir already exists. Skipping." >> "$LOG"
+                        fi
+                    else
+                        target_file="$HOME/.config/waybar/style/$(basename "$file")"
+                        if [ ! -e "$target_file" ]; then
+                            echo "Copying file $file to $HOME/.config/waybar/style/" >> "$LOG"
+                            cp "$file" "$HOME/.config/waybar/style/"
+                        else
+                            echo "File $target_file already exists. Skipping." >> "$LOG"
+                        fi
+                    fi
                 done || true
 
                 break
@@ -917,7 +953,7 @@ cleanup_backups() {
           BACKUP_DIRS+=("$BACKUP")
         fi
       done
-
+	  
       # If more than one backup found
       if [ ${#BACKUP_DIRS[@]} -gt 1 ]; then
 		printf "\n\n ${INFO} Performing clean up for ${YELLOW}${DIR##*/}${RESET}\n"
