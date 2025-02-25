@@ -956,9 +956,8 @@ cleanup_backups() {
 	  
       # If more than one backup found
       if [ ${#BACKUP_DIRS[@]} -gt 1 ]; then
-		printf "\n\n ${INFO} Performing clean up for ${YELLOW}${DIR##*/}${RESET}\n"
-
-        echo -e "${NOTE} Found multiple backups for: ${YELLOW}${DIR##*/}${RESET}"
+      	printf "\n%.0s" {1..2}
+        echo -e "${INFO} Found ${MAGENTA}multiple backups${RESET} for: ${YELLOW}${DIR##*/}${RESET}"
         echo "${YELLOW}Backups: ${RESET}"
 
         # List the backups
