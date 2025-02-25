@@ -31,12 +31,9 @@ done
 # Rofi Menu
 chosen_file=$(echo "$mon_profiles_list" | rofi -i -dmenu -config $rofi_theme -mesg "$msg")
 
-# Check if a file was selected
 if [[ -n "$chosen_file" ]]; then
     full_path="$monitor_dir/$chosen_file.conf"
-    cp -r "$target" "$monitor_dir/Previous_Profile.conf" && cp "$full_path" "$target"    
+    cp "$full_path" "$target"
+    
     notify-send -u low -i "$iDIR/ja.png" "$chosen_file" "Monitor Profile Loaded"
 fi
-
-sleep 1
-"$SCRIPTSDIR/RefreshNoWaybar.sh"
