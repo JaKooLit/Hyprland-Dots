@@ -596,9 +596,9 @@ if [ -d "$DIRPATHw" ]; then
                 done || true
 
                 # Step 4: restore Modules_Extras
-                BACKUP_FILE="$DIRPATHw-backup-$BACKUP_DIR/Modules_Extras"
+                BACKUP_FILE="$DIRPATHw-backup-$BACKUP_DIR/UserModules"
                 if [ -f "$BACKUP_FILE" ]; then
-                  cp -f "$BACKUP_FILE" "$DIRPATHw/Modules_Extras"
+                  cp -f "$BACKUP_FILE" "$DIRPATHw/UserModules"
                 fi
 
                 break
