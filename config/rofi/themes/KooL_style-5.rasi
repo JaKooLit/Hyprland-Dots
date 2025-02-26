@@ -33,10 +33,6 @@ configuration {
     border-color:                @selected;
 }
 
-/*****-- Elements Font Size -----*****/
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-}
 
 /* ---- Window ---- */
 window {

@@ -34,11 +34,6 @@ configuration {
     ON:    #ABE9B3ff;
 }
 
-/*****-- Elements Font Size -----*****/
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-}
-
 /* ---- Window ---- */
 window {
     transparency:                   "real";

@@ -31,10 +31,6 @@ configuration {
   spacing : 0;
 }
 
-/*****-- Elements Font Size -----*****/
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-}
 
 element-icon, element-text, scrollbar {
   cursor: pointer;

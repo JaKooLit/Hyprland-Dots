@@ -41,11 +41,6 @@ configuration {
     selected-active-background:  rgba ( 20, 20, 17, 100 % );
 }
 
-/*****-- Elements Font Size -----*****/
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-}
-
 window {
     border-color:     darkgray/30%;
     background-color: black/50%;

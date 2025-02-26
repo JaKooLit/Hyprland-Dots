@@ -1,31 +1,24 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Hyprland Rofi Style 7 */
+/* KooL Hyprland Rofi Style 14 */
 
 /* original design from: https://github.com/adi1090x/rofi */
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,run,filebrowser,window";
+	modi:                       "drun";
     show-icons:                 true;
-    display-drun:               "  ";
-    display-run:                "  ";
-    display-filebrowser:        "  ";
-    display-window:             "  ";
+    display-drun:               "Applications";
 	drun-display-format:        "{name}";
-    hover-select:               true;
-    me-select-entry:            "MouseSecondary";
-    me-accept-entry:            "MousePrimary";
 }
 
-/* ---- Load wallust colors ---- */
+/*****----- Global Properties -----*****/
 @theme "~/.config/rofi/wallust/colors-rofi.rasi"
-
 
 /*****----- Global Properties -----*****/
 * {
-    background-alt:              @color1;
-    selected:                    @color12;
-    active:                      @color11;
+    background-alt:              @color0;
+    selected:                    @color13;
+    active:                      @color12;
     urgent:                      #8E3596;
 }
 
@@ -42,24 +35,24 @@ window {
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
-    border:                      0px solid;
-    border-radius:               20px;
-    border-color:                @selected;
-    background-color:            @background-alt;
+    border:                      2px 0px 2px 0px;
+    border-radius:               16px;
+    border-color:                @active;
+    background-color:            @background;
     cursor:                      "default";
 }
 
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     15px;
-    margin:                      40px;
-    padding:                     0px;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     30px;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
     border-color:                @selected;
     background-color:            transparent;
-    children:                    [ "inputbar", "message", "listview" ];
+    children:                    [ "inputbar", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -69,35 +62,34 @@ inputbar {
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
-    border-radius:               100%;
+    border-radius:               16px;
     border-color:                @selected;
     background-color:            @background-alt;
     text-color:                  @foreground;
-    children:                    [ "entry" ];
+    children:                    [ "prompt", "entry" ];
 }
 
 prompt {
     enabled:                     true;
-    padding:                     15px;
-    border-radius:               100%;
-    background-color:            @selected;
+    padding:                     12px;
+    border-radius:               16px;
+    background-color:            @active;
     text-color:                  @background;
 }
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         ":::";
-    padding:                     15px;
+    str:                         "::";
     background-color:            inherit;
     text-color:                  inherit;
 }
 entry {
     enabled:                     true;
-    padding:                     15px 0px;
+    padding:                     12px;
     background-color:            inherit;
-    text-color:                  @foreground;
+    text-color:                  inherit;
     cursor:                      text;
-    placeholder:                 "Search...  👀 NOTE: CTRL TAB to change MODE";
+    placeholder:                 "Search     👀 NOTE: CTRL TAB to change MODE";
     placeholder-color:           inherit;
 }
 
@@ -105,7 +97,7 @@ entry {
 listview {
     enabled:                     true;
     columns:                     2;
-    lines:                       6;
+    lines:                       5;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -114,7 +106,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     15px;
+    spacing:                     10px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
@@ -125,7 +117,7 @@ listview {
     cursor:                      "default";
 }
 scrollbar {
-    handle-width:                2px ;
+    handle-width:                5px ;
     handle-color:                @selected;
     border-radius:               0px;
     background-color:            @background-alt;
@@ -136,34 +128,38 @@ element {
     enabled:                     true;
     spacing:                     10px;
     margin:                      0px;
-    padding:                     20px;
+    padding:                     10px;
     border:                      0px solid;
-    border-radius:               0px;
+    border-radius:               16px;
     border-color:                @selected;
-    background-color:            transparent;
+    background-color:            @background;
     text-color:                  @foreground;
-    orientation:                 horizontal;
     cursor:                      pointer;
 }
 element normal.normal {
-    background-color:            transparent;
+    background-color:            @background-alt;
     text-color:                  @foreground;
 }
-
-element-text selected,
-element selected.normal {
-	border-radius:               30px;
-    background-color:            @color11;
+element alternate.normal {
+    background-color:            @background-alt;
     text-color:                  @foreground;
+}
+element selected.normal {
+    border:                      0px 5px 0px 5px;
+    border-radius:               16px;
+    border-color:                @selected;
+    background-color:            @background-alt;
+    text-color:                  @selected;
 }
 element-icon {
-    padding:                     0px;
+    padding:                     0px 0px 0px 10px;
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        5%;
+    size:                        32px;
     cursor:                      inherit;
 }
 element-text {
+	padding:					 10px;
     background-color:            transparent;
     text-color:                  inherit;
     highlight:                   inherit;
@@ -173,23 +169,19 @@ element-text {
 }
 
 /*****----- Message -----*****/
-message {
-    background-color:            transparent;
-    border:                      0px;
-}
 error-message {
-    padding:                     20px;
+    padding:                     15px;
     border:                      2px solid;
-    border-radius:               20px;
-    border-color:                @active;
+    border-radius:               16px;
+    border-color:                @selected;
     background-color:            @background;
     text-color:                  @foreground;
 }
 textbox {
-	padding:					 10px;
-    border-radius:               20px;
-    background-color:            @selected;
-    text-color:                  @foreground;
+    background-color:            @active;
+    padding:					 10px;
+    border-radius:               16px;
+    text-color:                  inherit;
     vertical-align:              0.5;
     horizontal-align:            0.5;
     highlight:                   none;

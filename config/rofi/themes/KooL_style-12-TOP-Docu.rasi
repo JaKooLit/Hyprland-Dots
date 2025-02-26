@@ -37,11 +37,6 @@ entry {
     cursor: 					text;
 }
 
-/*****-- Elements Font Size -----*****/
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-
-}
 inputbar {
     spacing: 0;
     children: 					[  icon-keyboard, entry, mode-switcher ];

@@ -318,31 +318,24 @@ done
 # Use the selected resolution in your existing script
 echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 
-# Add your commands based on the resolution choice
+# actions if < 1440p is chosen
 if [ "$resolution" == "< 1440p" ]; then
-  #cp -r config/rofi/resolution/1080p/* config/rofi/ 10-Feb-2025
+  # kitty font size
   sed -i 's/font_size 16.0/font_size 14.0/' config/kitty/kitty.conf
 
   # hyprlock matters
-  mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf &&
-  mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
+  if [ -f config/hypr/hyprlock.conf ]; then
+    mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf
+  fi
+  if [ -f config/hypr/hyprlock-1080p.conf ]; then
+    mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
+  fi
 
   # rofi fonts reduction
-  themes_dir="config/rofi/themes"
-  config_file="config/rofi/config.rasi"
-
-  # Change rofi font size
-  find "$themes_dir" -type f | while read -r file; do
-      if grep -Pzoq 'element-text {\n  font: "JetBrainsMono Nerd Font SemiBold 13";\n}' "$file"; then
-          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$file"
-      fi
-  done
-
-  # Change rofi font size in ~/.config/rofi/config.rasi
-  if [ -f "$config_file" ]; then
-      if grep -Pzoq 'configuration {\n  font: "JetBrainsMono Nerd Font SemiBold 13";\n}' "$config_file"; then
-          sed -i 's/font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 12"/' "$config_file"
-      fi
+  rofi_config_file="config/rofi/0-shared-fonts.rasi"
+  if [ -f "$rofi_config_file" ]; then
+      sed -i '/element-text {/,/}/s/[[:space:]]*font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$rofi_config_file" 2>&1 | tee -a "$LOG"  
+      sed -i '/configuration {/,/}/s/[[:space:]]*font: "JetBrainsMono Nerd Font SemiBold 15"/font: "JetBrainsMono Nerd Font SemiBold 13"/' "$rofi_config_file" 2>&1 | tee -a "$LOG"
   fi
 fi
 
@@ -491,9 +484,16 @@ for DIR2 in $DIRS; do
               for file in "$DIRPATH-backup-$BACKUP_DIR/themes"/*; do
                 [ -e "$file" ] || continue  # Skip if no files are found
                 echo "Copying $file to $HOME/.config/rofi/themes/" >> "$LOG"
-                cp -n "$file" "$HOME/.config/rofi/themes/"
+                cp -n "$file" "$HOME/.config/rofi/themes/" >> "$LOG" 2>&1
               done || true
             fi
+            
+            # restoring global 0-shared-fonts.rasi
+            if [ -f "$DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi" ]; then
+              echo "Restoring $DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi to $HOME/.config/rofi/" >> "$LOG"
+              cp "$DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi" "$HOME/.config/rofi/0-shared-fonts.rasi" >> "$LOG" 2>&1
+            fi
+
           fi
 
           break

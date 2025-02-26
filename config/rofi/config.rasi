@@ -13,12 +13,10 @@
 * If you have edited a config, rename it with a unique name. During update, the contents of 
 * ~/.config/rofi/themes/ will be replaced. */
 
-/* ---- Configuration Fonts ---- */
-configuration {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-}
+/* ---- Global Configuration Fonts ---- */
+@import "~/.config/rofi/0-shared-fonts.rasi"
 
-/* note: Element-text font and size, edit configs in ~/.config/rofi/themes/ */
-
+/* note: Main themes in ~/.config/rofi/themes */
+/* You can manually change here or you can use rofi theme selector SUPER SHIFT E */
 
 @theme "~/.config/rofi/themes/KooL_style-9.rasi"
