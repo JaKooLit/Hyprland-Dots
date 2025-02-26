@@ -18,6 +18,10 @@ done
 config_file="/tmp/bar_cava_config"
 cat >"$config_file" <<EOF
 [general]
+# Older systems show significant CPU use with default framerate
+# Setting maximum framerate to 30  
+# You can increase the value if you wish
+framerate = 30
 bars = 10
 
 [input]
