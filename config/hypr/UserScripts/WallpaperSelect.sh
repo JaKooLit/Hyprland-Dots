@@ -130,7 +130,7 @@ sleep 1
 if [[ -n "$choice" ]]; then
   sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
   if [ -d "$sddm_sequoia" ]; then
-    if yad --question --text="Set wallpaper as SDDM background?\nNOTE: This only applies to SEQUOIA SDDM Theme" --title="SDDM Background" --ok-label="Yes"; then
+    if yad --question --text="Set wallpaper as SDDM background?\nNOTE: This only applies to SEQUOIA SDDM Theme" --title="SDDM Background" --timeout=10 --ok-label="Yes"; then
 
     # Check if terminal exists
     if ! command -v "$terminal" &>/dev/null; then

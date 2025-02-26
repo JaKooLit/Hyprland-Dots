@@ -35,7 +35,8 @@ listview {
 /* ---- Entry input ---- */
 entry {
   expand: true;
-  placeholder: " 👀  View / Edit KooL Hyprland Configs";
+  placeholder: " 💫  Customize KooL Hyprland  💫";
+  horizontal-align: 0.5;
 }
 
 

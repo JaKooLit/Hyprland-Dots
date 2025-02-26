@@ -22,10 +22,6 @@ configuration {
 * {
 
 }
-/*****-- Elements Font Size -----*****/
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-}
 
 /*****----- Main Window -----*****/
 window {

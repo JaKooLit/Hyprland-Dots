@@ -27,11 +27,6 @@ configuration {
     border-radius: 12px;
 }
 
-/*****-- Elements Font Size -----*****/
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-}
-
 /* ---- Window ---- */
 window {
     width:                       50%;

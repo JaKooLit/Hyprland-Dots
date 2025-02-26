@@ -24,11 +24,6 @@
     line-style: "none";
 }
 
-/*****-- Elements Font Size -----*****/
-element-text {
-  font: "JetBrainsMono Nerd Font SemiBold 13";
-}
-
 prompt-box {
   background-color    : transparent;
 }
