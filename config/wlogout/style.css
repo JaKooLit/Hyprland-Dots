@@ -5,17 +5,15 @@
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
 window {
-    font-family: "FantasqueSansM Nerd Font Mono Bold";
     font-size: 24pt;
     color: @foreground; /* text */
-    background-color: rgba(30, 30, 46, 0.6);
+    background-color: rgba(30, 30, 46, 0.8);
 }
 
 button {
-	margin: 20px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 30%;
+    background-size: 20%;
     background-color: rgba(200, 220, 255, 0);
     animation: gradient_f 10s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
@@ -24,19 +22,17 @@ button {
 }
 
 button:focus {
-    background-size: 40%;
+    background-size: 50%;
 	border: 0px;
-	border-radius: 80px;
 
 }
 
 button:hover {
     background-color: transparent; 
-    color: @color11;
-    background-size: 40%;
-    margin: -20px;
+    color: @color13;
+    background-size: 50%;
+    margin: 30px;
     border-radius: 80px;
-	/*box-shadow: 0 0 30px @color7;*/
 	
 }
 
