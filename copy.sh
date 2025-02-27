@@ -601,7 +601,6 @@ if [ -d "$DIRPATHw" ]; then
                   cp -f "$BACKUP_FILEw" "$DIRPATHw/UserModules"
                 fi
 
-
                 break
                 ;;
             [Nn]* )
