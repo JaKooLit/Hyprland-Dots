@@ -67,7 +67,6 @@ GDK_BACKEND=$BACKEND yad \
 " CTRL Shift R" "Rofi Themes Menu v2" "Choose Rofi Themes via Theme Selector (modified)" \
 " SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
 " ALT E" "Rofi Emoticons" "Emoticon" \
-" ALT V" "Clipboard Manager" "cliphist" \
 " H" "Launch this Quick Cheat Sheet" "" \
 "" "" "" \
 "More tips:" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
