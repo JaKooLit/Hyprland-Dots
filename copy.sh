@@ -599,6 +599,8 @@ if [ -d "$DIRPATHw" ]; then
                 BACKUP_FILEw="$DIRPATHw-backup-$BACKUP_DIR/UserModules"
                 if [ -f "$BACKUP_FILEw" ]; then
                   cp -f "$BACKUP_FILEw" "$DIRPATHw/UserModules"
+                fi
+
 
                 break
                 ;;
