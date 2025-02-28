@@ -8,8 +8,6 @@ wallDIR="$HOME/Pictures/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 
-rofi_override="element-icon{size:${icon_size}px;}"
-
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
 iDIRi="$HOME/.config/swaync/icons"
@@ -18,13 +16,18 @@ iDIRi="$HOME/.config/swaync/icons"
 rofi_theme="$HOME/.config/rofi/config-wallpaper.rasi"
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 
-# Get monitor width and DPI
-monitor_width=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .width')
+# Monitor details
 scale_factor=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .scale')
+monitor_height=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .height')
 
-icon_size=$(echo "scale=1; ($monitor_width * 3) / ($scale_factor * 400)" | bc)
+icon_size=$(echo "scale=1; ($monitor_height * 3) / ($scale_factor * 150)" | bc)
 
-rofi_override="element-icon{size:${icon_size}%;}"
+# Apply limit
+adjusted_icon_size=$(echo "$icon_size" | awk '{if ($1 < 15) $1 = 20; if ($1 > 25) $1 = 25; print $1}')
+
+# Setting the rofi override with the adjusted icon size
+rofi_override="element-icon{size:${adjusted_icon_size}%;}"
+
 
 # swww transition config
 FPS=60
