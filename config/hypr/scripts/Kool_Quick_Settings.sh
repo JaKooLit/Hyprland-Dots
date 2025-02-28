@@ -2,9 +2,13 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Rofi menu for KooL Hyprland Quick Settings (SUPER SHIFT E)
 
-# Define preferred text editor and terminal
-edit=${EDITOR:-nano}
-tty=kitty
+# Modify this config file for default terminal and EDITOR
+config_file="$HOME/.config/hypr/UserConfigs/01-UserDefaults.conf"
+
+tmp_config_file=$(mktemp)
+sed 's/^\$//g; s/ = /=/g' "$config_file" > "$tmp_config_file"
+source "$tmp_config_file"
+# ##################################### #
 
 # variables
 configs="$HOME/.config/hypr/configs"
@@ -72,7 +76,7 @@ main() {
 
     # Open the selected file in the terminal with the text editor
     if [ -n "$file" ]; then
-        $tty -e $edit "$file"
+        $term -e $edit "$file"
     fi
 }
 

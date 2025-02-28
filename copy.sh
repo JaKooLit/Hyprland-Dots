@@ -257,7 +257,7 @@ printf "\n%.0s" {1..1}
 # Function to modify the ENVariables.conf file
 update_editor() {
     local editor=$1
-    sed -i "s/#env = EDITOR,.*/env = EDITOR,$editor #default editor/" config/hypr/UserConfigs/ENVariables.conf
+    sed -i "s/#env = EDITOR,.*/env = EDITOR,$editor #default editor/" config/hypr/UserConfigs/01-UserDefaults.conf
     echo "${OK} Default editor set to ${MAGENTA}$editor${RESET}." 2>&1 | tee -a "$LOG"
 }
 
@@ -700,6 +700,7 @@ printf "\n%.0s" {1..1}
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
+  01-UserDefaults.conf
   "ENVariables.conf"
   "LaptopDisplay.conf"
   "Laptops.conf"
