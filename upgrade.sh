@@ -3,18 +3,44 @@
 # for Semi-Manual upgrading your system.
 # NOTE: requires rsync 
 
-
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
 WARN="$(tput setaf 1)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-MAGENTA=$(tput setaf 5)
-WARNING=$(tput setaf 1)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
+MAGENTA="$(tput setaf 5)"
+ORANGE="$(tput setaf 214)"
+WARNING="$(tput setaf 1)"
+YELLOW="$(tput setaf 3)"
+GREEN="$(tput setaf 2)"
+BLUE="$(tput setaf 4)"
+SKY_BLUE="$(tput setaf 6)"
+RESET="$(tput sgr0)"
 
+printf "\n%.0s" {1..1}  
+echo -e "\e[35m
+    ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
+    ╠╩╗│ ││ │║     ║║│ │ │ └─┐ 2025
+    ╩ ╩└─┘└─┘╩═╝  ═╩╝└─┘ ┴ └─┘ upgrade.sh
+\e[0m"
+printf "\n%.0s" {1..1}  
+
+echo "${WARNING}A T T E N T I O N !${RESET}"
+echo "${SKY_BLUE}This script is meant to manually upgrade your KooL Hyprland Dots${RESET}"
+echo "${YELLOW}NOTE that you should edit this script and assign an Directory or Files exclusion${RESET}"
+printf "\n%.0s" {1..1}
+echo "${MAGENTA}If you are not sure what you are doing,ran the ${SKY_BLUE}copy.sh${RESET} ${MAGENTA}instead${RESET}"
+printf "\n%.0s" {1..1}
+read -p "${CAT} - Would you like to proceed (y/n): ${RESET}" proceed
+
+if [ "$proceed" != "y" ]; then
+    printf "\n%.0s" {1..1}
+    echo "${INFO} Installation aborted. ${SKY_BLUE}No changes in your system.${RESET} ${YELLOW}Goodbye!${RESET}"
+    printf "\n%.0s" {1..1}
+    exit 1
+fi
 
 # Create Directory for Upgrade Logs
 if [ ! -d Upgrade-Logs ]; then
@@ -150,7 +176,7 @@ if version_gt "$latest_version" "$stored_version"; then
         echo "$MAGENTA Upgrade declined. No files or folders changed" 2>&1 | tee -a "$LOG"
     fi
 else
-    echo "$OK No upgrade found. The installed version ($stored_version) is up to date with the Hyprland-Dots version ($latest_version)." 2>&1 | tee -a "$LOG"
+    echo "$OK 👌 No upgrade found. The installed version ${MAGENTA}($stored_version)${RESET} is up to date with the KooL Hyprland-Dots version ${YELLOW}($latest_version)${RESET}" 2>&1 | tee -a "$LOG"
 fi
 
 printf "\n%.0s" {1..3}

@@ -6,12 +6,58 @@
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
 WARN="$(tput setaf 1)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-MAGENTA=$(tput setaf 5)
-WARNING=$(tput setaf 1)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
+MAGENTA="$(tput setaf 5)"
+ORANGE="$(tput setaf 214)"
+WARNING="$(tput setaf 1)"
+YELLOW="$(tput setaf 3)"
+GREEN="$(tput setaf 2)"
+BLUE="$(tput setaf 4)"
+SKY_BLUE="$(tput setaf 6)"
+RESET="$(tput sgr0)"
+
+# Check /etc/os-release to see if this is an Ubuntu or Debian based distro
+if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
+	printf "\n%.0s" {1..1}
+    print_color $WARNING "
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+                 KOOL DOTS version INCOMPATIBLE
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+
+    Debian / Ubuntu detected. Refer to Hyprland-Dots README
+    For instruction on how to update your KooL Hyprland Dots
+
+    exiting ....
+    "
+  printf "\n%.0s" {1..3}
+  exit 1
+fi
+
+
+printf "\n%.0s" {1..1}  
+echo -e "\e[35m
+    ╦╔═┌─┐┌─┐╦    ╔╦╗┌─┐┌┬┐┌─┐
+    ╠╩╗│ ││ │║     ║║│ │ │ └─┐ 2025
+    ╩ ╩└─┘└─┘╩═╝  ═╩╝└─┘ ┴ └─┘ release.sh
+\e[0m"
+printf "\n%.0s" {1..1}  
+
+echo "${WARNING}A T T E N T I O N !${RESET}"
+echo "${SKY_BLUE}This script is meant to download from the "RELEASES" on the KooL Hyprland-Dots${RESET}"
+echo "${YELLOW}Kindly note that the RELEASES is one version older that from main${RESET}"
+printf "\n%.0s" {1..1}
+echo "${MAGENTA}If you want to get the latest, kindly ran the ${SKY_BLUE}copy.sh${RESET} ${MAGENTA}instead${RESET}"
+printf "\n%.0s" {1..1}
+read -p "${CAT} - Would you like to proceed and install from releases? (y/n): ${RESET}" proceed
+
+if [ "$proceed" != "y" ]; then
+    printf "\n%.0s" {1..1}
+    echo "${INFO} Installation aborted. ${SKY_BLUE}No changes in your system.${RESET} ${YELLOW}Goodbye!${RESET}"
+    printf "\n%.0s" {1..1}
+    exit 1
+fi
 
 printf "${NOTE} Downloading / Checking for existing Hyprland-Dots.tar.gz...\n"
 
