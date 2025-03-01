@@ -1,0 +1,64 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+/* ### DUAL TOP and BOTTOM v 2### */
+
+[
+  {
+  "include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  "$HOME/.config/waybar/ModulesCustom",
+  "$HOME/.config/waybar/ModulesGroups",
+  "$HOME/.config/waybar/UserModules",
+  ],
+    "name": "topbar",
+    "layer": "top",
+    "position": "top",
+    //"mode": "dock",
+    "exclusive": true,
+    "spacing": 2,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+    "modules-left": [
+      "group/app_drawer",
+      "keyboard-state",
+      "clock",
+      "bluetooth",
+      "network",
+    ],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+      "mpris",
+      "battery",
+      "backlight",
+      "pulseaudio",
+      "group/mobo_drawer", 
+      "idle_inhibitor",
+      "group/power"
+    ],
+
+},
+  {
+  "include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  "$HOME/.config/waybar/ModulesCustom",
+  "$HOME/.config/waybar/ModulesGroups",
+  "$HOME/.config/waybar/UserModules",
+  ],
+    "name": "bottombar",
+    "layer": "top",
+    "position": "bottom",
+    "height": 30,
+    "mode": "dock",
+    "exclusive": true,
+    "spacing": 2,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+    "modules-left": ["hyprland/workspaces#rw"],
+    "modules-center": ["wlr/taskbar"],
+    "modules-right": ["tray", "custom/updater", "group/notify"],
+  }
+]

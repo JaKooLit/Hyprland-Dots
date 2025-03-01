@@ -140,6 +140,20 @@
 	"tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur",
 },
 
+"custom/reboot": {
+    "format": "󰜉",
+    "on-click": "systemctl reboot",
+    "tooltip": true,
+	"tooltip-format": "Left Click: Reboot",
+},
+    
+"custom/quit": {
+    "format": "󰗼",
+    "on-click": "hyprctl dispatch exit",
+    "tooltip": true,
+	"tooltip-format": "Left Click: Exit Hyprland",
+},
+
 "custom/swaync": {
 	"tooltip": true,
 	"tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",

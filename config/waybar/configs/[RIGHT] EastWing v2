@@ -24,7 +24,7 @@
   
 "modules-left": [
 	"group/notify",	
-    "clock#vertical",
+  "clock#vertical",
     
 	"custom/menu",
 ],

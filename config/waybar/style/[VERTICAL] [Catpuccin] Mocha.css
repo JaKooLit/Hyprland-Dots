@@ -46,7 +46,6 @@ tooltip label {
   color: @maroon;
 }
 
-#taskbar button.focused,
 #workspaces button.focused {
   color: @rosewater;
   background: transparent;
@@ -195,6 +194,10 @@ tooltip label {
 
 #clock,
 #clock-calender {
+  color: @sapphire;
+}
+
+#custom-dots {
   color: @sapphire;
 }
 

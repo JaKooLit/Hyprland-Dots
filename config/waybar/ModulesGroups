@@ -107,6 +107,20 @@
 	]
 },
 
+"group/power": {
+    "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "children-class": "drawer-child",
+        "transition-left-to-right": false
+      },
+    "modules": [
+        "custom/power",
+        "custom/quit",
+        "custom/lock",
+        "custom/reboot"
+      ]
+},
 // groups for vertical
 "group/power#vert": {
      "orientation": "inherit",
