@@ -1,0 +1,42 @@
+Debian/Ubuntu based distro. Disabling pyprland
+[33m[NOTE](B[m kb_layout [38;5;166mus(B[m configured in settings.
+[32m[OK](B[m Default editor set to [38;5;166mvim(B[m.
+[32m[OK](B[m You have chosen < 1440p resolution.
+sed: can't read config/hypr/hyprlock.conf: No such file or directory
+sed: can't read config/hypr/hyprlock.conf: No such file or directory
+sed: can't read config/hypr/hyprlock.conf: No such file or directory
+sed: can't read config/hypr/hyprlock.conf: No such file or directory
+Simple sddm 2 exists. Editing to 12H format
+[32m[OK](B[m 12H format set to SDDM theme successfully.
+[33m[NOTE](B[m No changes made. Rainbow borders remain enabled.
+[33m[NOTE](B[m - Backed up ags to /home/popcorn9499/.config/ags-backup-back-up_1231_2203.
+[32m[OK](B[m - Replaced ags with new configuration.
+[33m[NOTE](B[m - Backed up fastfetch to /home/popcorn9499/.config/fastfetch-backup-back-up_1231_2203.
+[32m[OK](B[m - Replaced fastfetch with new configuration.
+[33m[NOTE](B[m - Backed up kitty to /home/popcorn9499/.config/kitty-backup-back-up_1231_2203.
+[32m[OK](B[m - Replaced kitty with new configuration.
+[33m[NOTE](B[m - Backed up rofi to /home/popcorn9499/.config/rofi-backup-back-up_1231_2203.
+[32m[OK](B[m - Replaced rofi with new configuration.
+[33m[NOTE](B[m - Backed up swaync to /home/popcorn9499/.config/swaync-backup-back-up_1231_2203.
+[32m[OK](B[m - Replaced swaync with new configuration.
+[33m[NOTE](B[m - Backed up waybar to /home/popcorn9499/.config/waybar-backup-back-up_1231_2203.
+[32m[OK](B[m - Replaced waybar with new configuration.
+[33m[NOTE](B[m You chose not to download additional wallpapers.
+[[1m[34mI[39m[0m] [1m[35mimage[39m[0m: .wallpaper_modified
+[[1m[34mI[39m[0m] [1m[35mimage parser[39m[0m: Using [94m[1mKmeans[0m[39m backend parser
+[[1m[34mI[39m[0m] [1m[35mthreshold[39m[0m: Using a threshold of 11 in between colors.
+[[1m[34mI[39m[0m] [1m[35mcolorspace[39m[0m: Using [32m[1mLabMixed[0m[39m colorspace variation
+[[1m[34mI[39m[0m] [1m[35mscheme palette[39m[0m: Using [94m[1mDark16[0m[39m palette
+[[1m[34mI[39m[0m] [1m[35mcache[39m[0m: Using cache [3m/home/popcorn9499/.cache/wallust/1.5_5_1_01_11_0_0_0_1eui6fm.json[0m
+
+[48;2;14;14;14m    [49m[48;2;60;60;60m    [49m[48;2;74;74;74m    [49m[48;2;110;110;110m    [49m[48;2;116;116;116m    [49m[48;2;166;166;166m    [49m[48;2;173;173;173m    [49m[48;2;235;235;235m    [49m
+[48;2;164;164;164m    [49m[48;2;80;80;80m    [49m[48;2;99;99;99m    [49m[48;2;146;146;146m    [49m[48;2;155;155;155m    [49m[48;2;222;222;222m    [49m[48;2;231;231;231m    [49m[48;2;235;235;235m    [49m
+
+[[1m[34mI[39m[0m] [1m[35mtemplates[39m[0m: Writing templates..
+  * Templated [1mcava[0m to '[3m~/.config/cava/config[0m'
+  * Templated [1mwaybar[0m to '[3m~/.config/waybar/wallust/colors-waybar.css[0m'
+  * Templated [1mrofi[0m to '[3m~/.config/rofi/wallust/colors-rofi.rasi[0m'
+  * Templated [1mkitty[0m to '[3m~/.config/kitty/kitty-colors.conf[0m'
+  * Templated [1mhypr[0m to '[3m~/.config/hypr/wallust/wallust-hyprland.conf[0m'
+
+[5m[1m[38;2;235;235;235mE [39m[0m[0m[5m[1m[38;2;231;231;231mN [39m[0m[0m[5m[1m[38;2;222;222;222mJ [39m[0m[0m[5m[1m[38;2;155;155;155mO [39m[0m[0m[5m[1m[38;2;146;146;146mY [39m[0m[0m[9m  [0m[5m[1m[38;2;99;99;99mT [39m[0m[0m[5m[1m[38;2;80;80;80mH [39m[0m[0m[5m[1m[38;2;164;164;164mE [39m[0m[0m[9m  [0m[5m[1m[38;2;235;235;235mP [39m[0m[0m[5m[1m[38;2;173;173;173mA [39m[0m[0m[5m[1m[38;2;166;166;166mL [39m[0m[0m[5m[1m[38;2;116;116;116mE [39m[0m[0m[5m[1m[38;2;110;110;110mT [39m[0m[0m[5m[1m[38;2;74;74;74mT [39m[0m[0m[5m[1m[38;2;60;60;60mE [39m[0m[0m[5m[1m[38;2;247;247;247m! [39m[0m[0m
