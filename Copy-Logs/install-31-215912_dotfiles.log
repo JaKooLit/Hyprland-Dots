@@ -1,0 +1,30 @@
+Debian/Ubuntu based distro. Disabling pyprland
+[33m[NOTE](B[m kb_layout [38;5;166mus(B[m configured in settings.
+[32m[OK](B[m Default editor set to [38;5;166mvim(B[m.
+[32m[OK](B[m You have chosen < 1440p resolution.
+sed: can't read config/hypr/hyprlock.conf: No such file or directory
+sed: can't read config/hypr/hyprlock.conf: No such file or directory
+sed: can't read config/hypr/hyprlock.conf: No such file or directory
+sed: can't read config/hypr/hyprlock.conf: No such file or directory
+Simple sddm 2 exists. Editing to 12H format
+[32m[OK](B[m 12H format set to SDDM theme successfully.
+[33m[NOTE](B[m No changes made. Rainbow borders remain enabled.
+[33m[NOTE](B[m - Backed up ags to /home/popcorn9499/.config/ags-backup-back-up_1231_2159.
+[32m[OK](B[m - Replaced ags with new configuration.
+[33m[NOTE](B[m - Backed up fastfetch to /home/popcorn9499/.config/fastfetch-backup-back-up_1231_2159.
+[32m[OK](B[m - Replaced fastfetch with new configuration.
+[33m[NOTE](B[m - Backed up kitty to /home/popcorn9499/.config/kitty-backup-back-up_1231_2159.
+[32m[OK](B[m - Replaced kitty with new configuration.
+[33m[NOTE](B[m - Backed up rofi to /home/popcorn9499/.config/rofi-backup-back-up_1231_2159.
+[32m[OK](B[m - Replaced rofi with new configuration.
+[33m[NOTE](B[m - Backed up swaync to /home/popcorn9499/.config/swaync-backup-back-up_1231_2159.
+[32m[OK](B[m - Replaced swaync with new configuration.
+[33m[NOTE](B[m - Backed up waybar to /home/popcorn9499/.config/waybar-backup-back-up_1231_2159.
+[32m[OK](B[m - Replaced waybar with new configuration.
+[32m[OK](B[m - ENVariables.conf restored!
+[32m[OK](B[m - LaptopDisplay.conf restored!
+[32m[OK](B[m - Laptops.conf restored!
+[32m[OK](B[m - Monitors.conf restored!
+[32m[OK](B[m - Startup_Apps.conf restored!
+[32m[OK](B[m - UserDecorAnimations.conf restored!
+[32m[OK](B[m - UserKeybinds.conf restored!
