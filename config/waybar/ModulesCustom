@@ -33,7 +33,7 @@
 
 "custom/browser": {
 	"format": " ",
-	"on-click": "xdg-open http:// &",
+	"on-click": "xdg-open https:// &",
 	"tooltip": true,
 	"tooltip-format": "Launch Browser",
 },
