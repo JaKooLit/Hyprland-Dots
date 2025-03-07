@@ -700,7 +700,7 @@ printf "\n%.0s" {1..1}
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
-  01-UserDefaults.conf
+  "01-UserDefaults.conf"
   "ENVariables.conf"
   "LaptopDisplay.conf"
   "Laptops.conf"
