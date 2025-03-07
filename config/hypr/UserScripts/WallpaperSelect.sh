@@ -142,7 +142,7 @@ if [[ -n "$choice" ]]; then
     if yad --info --text="Set current wallpaper as SDDM background?\n\nNOTE: This only applies to SEQUOIA SDDM Theme" \
     --text-align=left \
     --title="SDDM Background" \
-    --timeout=10 \
+    --timeout=5 \
     --timeout-indicator=right \
     --button="yad-yes:0" \
     --button="yad-no:1" \
