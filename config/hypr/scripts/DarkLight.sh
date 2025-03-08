@@ -144,9 +144,9 @@ kvantummanager --set "$kvantum_theme"
 
 # set the rofi color for background
 if [ "$next_mode" = "Dark" ]; then
-    sed -i '24s/.*/background: rgba(0,0,0,0.7);/' $wallust_rofi
+    sed -i '/^background:/s/.*/background: rgba(0,0,0,0.7);/' $wallust_rofi
 else
-    sed -i '24s/.*/background: rgba(255,255,255,0.9);/' $wallust_rofi
+    sed -i '/^background:/s/.*/background: rgba(255,255,255,0.9);/' $wallust_rofi
 fi
 
 
