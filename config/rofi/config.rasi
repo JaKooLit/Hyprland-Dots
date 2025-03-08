@@ -19,4 +19,5 @@
 /* note: Main themes in ~/.config/rofi/themes */
 /* You can manually change here or you can use rofi theme selector SUPER SHIFT E */
 
+
 @theme "~/.config/rofi/themes/KooL_style-9.rasi"
