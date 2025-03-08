@@ -1,18 +1,25 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Modified Script for Google Search
-# Original Submitted by https://github.com/LeventKaanOguz
+# For Searching via web browsers
 
-# Opens rofi in dmenu mod and waits for input. Then pushes the input to the query of the URL.
+# Modify this config file for default search engine
+config_file="$HOME/.config/hypr/UserConfigs/01-UserDefaults.conf"
 
+tmp_config_file=$(mktemp)
+sed 's/^\$//g; s/ = /=/g' "$config_file" > "$tmp_config_file"
+source "$tmp_config_file"
+# ##################################### #
+
+# Rofi theme and message
 rofi_theme="$HOME/.config/rofi/config-search.rasi"
-msg='‼️ **note** ‼️ search via default web browser'    
+msg='‼️ **note** ‼️ search via default web browser'
+
 # Kill Rofi if already running before execution
 if pgrep -x "rofi" >/dev/null; then
     pkill rofi
-    #exit 0
 fi
 
-# Open rofi with a dmenu and pass the selected item to xdg-open for Google search
-#echo "" | rofi -dmenu -config "$rofi_config" | xargs -I{} xdg-open "https://www.google.com/search?q={}"
+# Open Rofi and pass the selected query to xdg-open for Google search
+echo "" | rofi -dmenu -config "$rofi_theme" -mesg "$msg" | xargs -I{} xdg-open $Search_Engine
 
-echo "" | rofi -dmenu -config $rofi_theme -mesg "$msg" | xargs -I{} xdg-open "https://www.google.com/search?q={}"
+# Clean up temporary file after sourcing
+rm "$tmp_config_file"

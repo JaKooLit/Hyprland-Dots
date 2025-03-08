@@ -113,6 +113,8 @@ tooltip label{
 #custom-playerctl,
 #custom-power_vertical,
 #custom-power,
+#custom-quit,
+#custom-reboot,
 #custom-settings,
 #custom-spotify,
 #custom-swaync,
@@ -232,6 +234,7 @@ tooltip label{
 	background-color: #cba6f7;
 }
 
+#custom-reboot,
 #wireplumber {
 	background-color: #a6e3a1;
 }
@@ -245,6 +248,7 @@ tooltip label{
 	background-color: #89dceb;
 }
 
+#custom-quit,
 #temperature {
   	background-color: #86b4fa;
 }

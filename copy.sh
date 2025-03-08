@@ -64,9 +64,9 @@ printf "\n%.0s" {1..1}
 
 ####### Announcement
 echo "${WARNING}A T T E N T I O N !${RESET}"
-echo "${SKY_BLUE}This version (v2.3.12) requires nwg-displays and some fonts!${RESET}"
+echo "${SKY_BLUE}This version (v2.3.13) no extra packages!${RESET}"
 echo "${SKY_BLUE}If you ran through (Distro-Hyprland install scripts), no need to do anything${RESET}"
-echo "${YELLOW}previous version: Some Keybinds changes${RESET}"
+echo "${YELLOW}previous version: nwg-displays & Some Keybinds changes${RESET}"
 echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for changelogs${RESET}"
 printf "\n%.0s" {1..1}
 
@@ -257,7 +257,7 @@ printf "\n%.0s" {1..1}
 # Function to modify the ENVariables.conf file
 update_editor() {
     local editor=$1
-    sed -i "s/#env = EDITOR,.*/env = EDITOR,$editor #default editor/" config/hypr/UserConfigs/ENVariables.conf
+    sed -i "s/#env = EDITOR,.*/env = EDITOR,$editor #default editor/" config/hypr/UserConfigs/01-UserDefaults.conf
     echo "${OK} Default editor set to ${MAGENTA}$editor${RESET}." 2>&1 | tee -a "$LOG"
 }
 
@@ -700,6 +700,7 @@ printf "\n%.0s" {1..1}
 # Restoring UserConfigs and UserScripts
 DIRH="hypr"
 FILES_TO_RESTORE=(
+  "01-UserDefaults.conf"
   "ENVariables.conf"
   "LaptopDisplay.conf"
   "Laptops.conf"
@@ -909,7 +910,7 @@ printf "\n%.0s" {1..1}
 echo "${MAGENTA}By default only a few wallpapers are copied${RESET}..."
 
 while true; do
-  read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is more than 800 MB (y/n)" WALL
+  read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is almost 1GB (y/n)" WALL
   case $WALL in
     [Yy])
       echo "${NOTE} Downloading additional wallpapers..."

@@ -33,7 +33,7 @@
 
 "custom/browser": {
 	"format": " ",
-	"on-click": "xdg-open http:// &",
+	"on-click": "xdg-open https://",
 	"tooltip": true,
 	"tooltip-format": "Launch Browser",
 },
@@ -140,6 +140,20 @@
 	"tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur",
 },
 
+"custom/reboot": {
+    "format": "󰜉",
+    "on-click": "systemctl reboot",
+    "tooltip": true,
+	"tooltip-format": "Left Click: Reboot",
+},
+    
+"custom/quit": {
+    "format": "󰗼",
+    "on-click": "hyprctl dispatch exit",
+    "tooltip": true,
+	"tooltip-format": "Left Click: Exit Hyprland",
+},
+
 "custom/swaync": {
 	"tooltip": true,
 	"tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
@@ -161,15 +175,16 @@
 	"on-click-right": "swaync-client -d -sw",
 	"escape": true,
 },
-// NOTE:! This is only for Arch and Arch Based Distros  depend: pacman-contrib
+// NOTE:! This is mainly for Arch and Arch Based Distros  depend: pacman-contrib
+// Other Distro dont have notifications but can use to check for update for any other distro
 "custom/updater": {
 	"format": " {}",
 	"exec": "checkupdates | wc -l",
 	"exec-if": "[[ $(checkupdates | wc -l) ]]",
-	"interval": 15,
-	"on-click": "if command -v paru &> /dev/null; then kitty -T update paru -Syu; else kitty -T update yay -Syu; fi && notify-send 'The system has been updated'",
+	"interval": 43200, // (Arch Linux will try to check 12 hrs interval only
+	"on-click": "$HOME/.config/hypr/scripts/Distro_update.sh",
 	"tooltip": true,
-	"tooltip-format": "Left Click: Update System\nArch Linux Only",
+	"tooltip-format": "Left Click: Update System\nArch (w/ notification)\nFedora, OpenSuse, Debian/Ubuntu click to update",
 },
 // Separators
 "custom/separator#dot": {

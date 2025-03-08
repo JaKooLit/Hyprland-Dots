@@ -12,6 +12,12 @@ wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 iDIR="$HOME/.config/swaync/images"
 iDIRi="$HOME/.config/swaync/icons"
 
+# Check if package bc exists
+if ! command -v bc &>/dev/null; then
+notify-send -i "$iDIR/ja.png" "bc missing" "Install package bc first"
+exit 1
+fi
+
 # variables
 rofi_theme="$HOME/.config/rofi/config-wallpaper.rasi"
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
@@ -27,7 +33,6 @@ adjusted_icon_size=$(echo "$icon_size" | awk '{if ($1 < 15) $1 = 20; if ($1 > 25
 
 # Setting the rofi override with the adjusted icon size
 rofi_override="element-icon{size:${adjusted_icon_size}%;}"
-
 
 # swww transition config
 FPS=60
@@ -133,10 +138,16 @@ sleep 1
 if [[ -n "$choice" ]]; then
   sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
   if [ -d "$sddm_sequoia" ]; then
+  
+	# Check if yad is running to avoid multiple yad notification
+	if pidof yad > /dev/null; then
+	  killall yad
+	fi
+    
     if yad --info --text="Set current wallpaper as SDDM background?\n\nNOTE: This only applies to SEQUOIA SDDM Theme" \
     --text-align=left \
     --title="SDDM Background" \
-    --timeout=10 \
+    --timeout=5 \
     --timeout-indicator=right \
     --button="yad-yes:0" \
     --button="yad-no:1" \

@@ -1,0 +1,284 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* .............Prismatic Glow............ */
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+	min-height: 0;  
+    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+    font-size: 97%;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    
+    border: none;
+    border-radius: 10px;
+    font-size: 97%;
+    min-height: 20px;
+    margin: 0px;
+}
+
+/* Module Styles */
+.module {
+    padding: 2px 4px;
+    margin: 1px 1px;
+}
+
+.modules-left>widget:first-child .module {
+    margin-left: 2px;
+}
+
+/* Special Case: Right Margin for Last Module in Right Section */
+.modules-right>widget:last-child .module {
+    margin-right: 2px;
+}
+
+/* Window Styling */
+window#waybar {
+    background-color: transparent;
+    color: black;
+    transition: background-color 0.5s;
+}
+
+/* Make window module transparent when no windows present */
+window#waybar.empty #window {
+    background-color: transparent;
+    background: transparent;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* Tooltip styling */
+menu,
+tooltip {
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    border: 2px transparent;
+    border-image: linear-gradient(45deg, #FA8BFF, #2BD2FF) 1;
+    padding: 5px;
+    box-shadow: 0 0 0 1px;
+}
+
+menu label,
+tooltip label {
+    color: rgb(0, 238, 255);
+}
+
+/* Workspaces Button Styling */
+#workspaces button {
+    color: rgb(0, 238, 255);
+    background: transparent;
+    font-weight: bolder;
+    box-shadow: inset 0 -3px transparent;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 2px 5px;
+}
+
+#workspaces button.active {
+    color: black;
+    border-bottom: 2px solid transparent;
+    /* border-top: 2px solid transparent; */
+    border-image: linear-gradient(45deg, #FA8BFF, #2BD2FF) 1;
+    padding: 0 10px;
+}
+
+#workspaces button.focused {
+    background: black;
+}
+
+#workspaces button.visible {
+    color: rgb(0, 238, 255);
+}
+
+#workspaces button.urgent {
+    background: red;
+    color: black;
+    padding: 0 5px;
+}
+
+#workspaces button:hover {
+    background: black;
+    border: 1px solid transparent;
+    border-image: linear-gradient(45deg, #FA8BFF, #2BD2FF) 1;
+    padding: 0 5px;
+}
+
+/* Taskbar Button Styling */
+#taskbar button {
+    padding: 0 1px;
+}
+
+#taskbar button.active {
+    background: black;
+    border-bottom: 2px solid transparent;
+    /* border-top: 2px solid transparent; */
+    border-image: linear-gradient(45deg, #FA8BFF, #2BD2FF) 1;
+    padding: 0 5px;
+}
+#taskbar button:hover {
+    background: black;
+    border: 1px solid transparent;
+    border-image: linear-gradient(45deg, #FA8BFF, #2BD2FF) 1;
+    padding: 0 5px;
+}
+
+/* Transparent Modules When Empty */
+#taskbar.empty,
+window#waybar.empty {
+    background-color: transparent;
+}
+
+/* Specific Module Styles */
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#network,
+#power-profiles-daemon,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar,
+#temperature,
+#tray,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-browser,
+#custom-cava_mviz,
+#custom-cycle_wall,
+#custom-dot_update,
+#custom-file_manager,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-hint,
+#custom-hypridle,
+#custom-menu,
+#custom-playerctl,
+#custom-power_vertical,
+#custom-power,
+#custom-quit,
+#custom-reboot,
+#custom-settings,
+#custom-spotify,
+#custom-swaync,
+#custom-tty,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+    background-color: black;
+    color: rgb(0, 238, 255);
+}
+
+#temperature.critical {
+    background-color: red;
+}
+
+#network.disconnected,
+#pulseaudio.muted {
+    color: red;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: black;
+    background: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #FA8BFF 90%);
+}
+
+@keyframes blink {
+    to {
+        background-color: black;
+        color: red;
+    }
+}
+
+#battery.warning:not(.charging),
+#battery.critical:not(.charging) {
+    background-color: red;
+    color: black;
+}
+
+#battery.warning:not(.charging) {
+    animation: blink 1s linear infinite alternate;
+}
+#battery.critical:not(.charging) {
+    animation: blink 0.5s linear infinite alternate;
+}
+
+/* Focused Label Background */
+label:focus {
+    background-color: black;
+}
+
+/* Keyboard State Styles */
+#keyboard-state>label {
+    padding: 0 5px;
+}
+
+#keyboard-state>label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Tray Styles */
+#tray {
+    background-color: black;
+}
+
+#tray>.passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+    -gtk-icon-effect: highlight;
+    padding: 0 5px;
+    background-color: red;
+}
+
+/* Gradient Module Styles */
+#mpd,
+#mpris,
+#window {
+    background: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #FA8BFF 90%);
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+	min-width: 0px;
+	min-height: 0px;
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+	min-width: 80px;
+	min-height: 5px;
+	border-radius: 5px;
+	background-color: #6E6A86;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+	min-height: 10px;
+	border-radius: 5px;
+	background-color: purple;
+}

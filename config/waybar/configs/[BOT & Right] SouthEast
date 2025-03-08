@@ -80,8 +80,8 @@
     ],
     
 "modules-right": [
-		"mpris",
-		"group/notify",
+	"mpris",
+	"group/notify",
     "tray",
     "custom/light_dark",
     ],
