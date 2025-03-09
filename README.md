@@ -51,6 +51,9 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hyprland.sh)
 ```
 
+- you can now use above command to automatically clone the Distro-Hyprland install scripts below
+- it will clone the install scripts and start the `install.sh` 😎
+
 ## Installation 
 ### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
 - Automated Hyprland Scripts for Distro of choice which will pull this dotfiles if opted to install these configurations
