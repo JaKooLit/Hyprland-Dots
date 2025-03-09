@@ -37,3 +37,6 @@ if [[ -n "$chosen_file" ]]; then
     
     notify-send -u low -i "$iDIR/ja.png" "$chosen_file" "Monitor Profile Loaded"
 fi
+
+sleep 1
+${SCRIPTSDIR}/RefreshNoWaybar.sh &
