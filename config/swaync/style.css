@@ -5,7 +5,7 @@
 
 @define-color noti-border-color @color12;
 @define-color noti-bg rgba(0, 0, 0, 0.8);
-@define-color noti-bg-alt #111111;
+@define-color noti-bg-alt @background-alt;
 @define-color noti-bg-hover @background;
 @define-color text-color @foreground;
 
