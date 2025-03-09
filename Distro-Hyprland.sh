@@ -58,7 +58,7 @@ elif [ "$distro_name" == "NixOS" ]; then
     Distro="NixOS-Hyprland"
     Github_URL="https://github.com/JaKooLit/$Distro.git"
     Distro_DIR="$HOME/$Distro"
-elif [ "$distro_name" == "Debian" ]; then
+elif [ "$distro_name" == "Debian GNU/Linux" ]; then
     PACKAGE_MANAGER="apt"
     INSTALL_CMD="sudo apt install -y"
     GIT_INSTALL_CMD="sudo apt install -y git"
