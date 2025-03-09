@@ -30,35 +30,7 @@ else
 fi
 
 # Define package managers, Git install commands, and dynamic variables for each distro
-if command -v pacman &> /dev/null; then
-    PACKAGE_MANAGER="pacman"
-    INSTALL_CMD="sudo pacman -S --noconfirm"
-    GIT_INSTALL_CMD="sudo pacman -S git --noconfirm"
-    Distro="Arch-Hyprland"
-    Github_URL="https://github.com/JaKooLit/$Distro.git"
-    Distro_DIR="$HOME/$Distro"
-elif command -v dnf &> /dev/null; then
-    PACKAGE_MANAGER="dnf"
-    INSTALL_CMD="sudo dnf install -y"
-    GIT_INSTALL_CMD="sudo dnf install -y git"
-    Distro="Fedora-Hyprland"
-    Github_URL="https://github.com/JaKooLit/$Distro.git"
-    Distro_DIR="$HOME/$Distro"
-elif command -v zypper &> /dev/null; then
-    PACKAGE_MANAGER="zypper"
-    INSTALL_CMD="sudo zypper install -y"
-    GIT_INSTALL_CMD="sudo zypper install -y git"
-    Distro="OpenSUSE-Hyprland"
-    Github_URL="https://github.com/JaKooLit/$Distro.git"
-    Distro_DIR="$HOME/$Distro"
-elif [ "$distro_name" == "NixOS" ]; then
-    PACKAGE_MANAGER="nix"
-    INSTALL_CMD="nix-shell"
-    GIT_INSTALL_CMD="nix-shell -p git curl pciutils"
-    Distro="NixOS-Hyprland"
-    Github_URL="https://github.com/JaKooLit/$Distro.git"
-    Distro_DIR="$HOME/$Distro"
-elif [ "$distro_name" == "Debian GNU/Linux" ]; then
+if [ "$distro_name" == "Debian GNU/Linux" ]; then
     PACKAGE_MANAGER="apt"
     INSTALL_CMD="sudo apt install -y"
     GIT_INSTALL_CMD="sudo apt install -y git"
@@ -99,6 +71,34 @@ elif [ "$distro_name" == "Ubuntu" ]; then
             echo "${INFO} Ubuntu version $distro_version detected. Using default Ubuntu setup."
             ;;
     esac
+elif command -v pacman &> /dev/null; then
+    PACKAGE_MANAGER="pacman"
+    INSTALL_CMD="sudo pacman -S --noconfirm"
+    GIT_INSTALL_CMD="sudo pacman -S git --noconfirm"
+    Distro="Arch-Hyprland"
+    Github_URL="https://github.com/JaKooLit/$Distro.git"
+    Distro_DIR="$HOME/$Distro"
+elif command -v dnf &> /dev/null; then
+    PACKAGE_MANAGER="dnf"
+    INSTALL_CMD="sudo dnf install -y"
+    GIT_INSTALL_CMD="sudo dnf install -y git"
+    Distro="Fedora-Hyprland"
+    Github_URL="https://github.com/JaKooLit/$Distro.git"
+    Distro_DIR="$HOME/$Distro"
+elif command -v zypper &> /dev/null; then
+    PACKAGE_MANAGER="zypper"
+    INSTALL_CMD="sudo zypper install -y"
+    GIT_INSTALL_CMD="sudo zypper install -y git"
+    Distro="OpenSUSE-Hyprland"
+    Github_URL="https://github.com/JaKooLit/$Distro.git"
+    Distro_DIR="$HOME/$Distro"
+elif [ "$distro_name" == "NixOS" ]; then
+    PACKAGE_MANAGER="nix"
+    INSTALL_CMD="nix-shell"
+    GIT_INSTALL_CMD="nix-shell -p git curl pciutils"
+    Distro="NixOS-Hyprland"
+    Github_URL="https://github.com/JaKooLit/$Distro.git"
+    Distro_DIR="$HOME/$Distro"
 else
     echo "${ERROR} Unsupported distribution: $distro_name. Exiting."
     exit 1
