@@ -1,4 +1,5 @@
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+#!/bin/bash
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##v
 # For Searching via web browsers
 
 # Modify this config file for default search engine
