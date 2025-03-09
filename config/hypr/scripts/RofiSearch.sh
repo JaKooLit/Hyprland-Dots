@@ -1,3 +1,4 @@
+#!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # For Searching via web browsers
 
