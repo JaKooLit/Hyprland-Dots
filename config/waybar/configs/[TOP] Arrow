@@ -1,0 +1,43 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* .....[TOP] Arrow Best to combine with [Extra] Arrow Style ......... */
+/* --- 👍 taken from https://github.com/mxkrsv  👍 --- */
+
+{
+"include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  "$HOME/.config/waybar/ModulesCustom",
+  "$HOME/.config/waybar/ModulesGroups",
+  "$HOME/.config/waybar/UserModules",
+  ],
+  
+	"layer": "top",
+	"position": "top",
+
+	"modules-left": [
+		"hyprland/mode",
+		"hyprland/workspaces",
+		"custom/arrow10",
+		"hyprland/window"
+	],
+
+	"modules-right": [
+		"custom/arrow9",
+		"pulseaudio",
+		"custom/arrow8",
+		"network",
+		"custom/arrow7",
+		"memory",
+		"custom/arrow6",
+		"cpu",
+		"custom/arrow5",
+		"temperature",
+		"custom/arrow4",
+		"battery",
+		"custom/arrow2",
+		"tray",
+		"custom/arrow1",
+		"clock#2"
+	],
+}
+

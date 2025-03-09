@@ -66,3 +66,4 @@ element-text {
   horizontal-align: 0.5;
   padding: 6px;
   margin: 6px;
+}

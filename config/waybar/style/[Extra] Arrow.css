@@ -1,0 +1,291 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* .....[Extra] Arrow Best to combine with [TOP] Arrow.... */
+/* --- 👍 taken from https://github.com/mxkrsv  👍 --- */
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+	min-height: 0;  
+    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+    font-size: 97%;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    border: none;
+	border-radius: 0;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	text-shadow: none;
+	icon-shadow: none;
+}
+
+/* Colors (gruvbox) */
+@define-color black		#282828;
+@define-color red		#cc241d;
+@define-color green		#98971a;
+@define-color yellow	#d79921;
+@define-color blue		#458588;
+@define-color purple	#b16286;
+@define-color aqua		#689d6a;
+@define-color gray		#a89984;
+@define-color brgray	#928374;
+@define-color brred		#fb4934;
+@define-color brgreen	#b8bb26;
+@define-color bryellow	#fabd2f;
+@define-color brblue	#83a598;
+@define-color brpurple	#d3869b;
+@define-color braqua	#8ec07c;
+@define-color white		#ebdbb2;
+@define-color bg2		#504945;
+
+
+@define-color warning 	@bryellow;
+@define-color critical	@red;
+@define-color mode		@black;
+@define-color unfocused	@bg2;
+@define-color focused	@braqua;
+@define-color inactive	@purple;
+@define-color sound		@brpurple;
+@define-color network	@purple;
+@define-color memory	@braqua;
+@define-color cpu		@green;
+@define-color temp		@brgreen;
+@define-color layout	@bryellow;
+@define-color battery	@aqua;
+@define-color date		@black;
+@define-color time		@white;
+
+/* The whole bar */
+#waybar {
+	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
+	color: @white;
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#power-profiles-daemon,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-browser,
+#custom-cava_mviz,
+#custom-cycle_wall,
+#custom-dot_update,
+#custom-file_manager,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-hint,
+#custom-hypridle,
+#custom-menu,
+#custom-playerctl,
+#custom-power_vertical,
+#custom-power,
+#custom-quit,
+#custom-reboot,
+#custom-settings,
+#custom-spotify,
+#custom-swaync,
+#custom-tty,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+	padding-left: 8pt;
+	padding-right: 8pt;
+}
+
+/* Each critical module */
+#mode,
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.critical.discharging {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-name: blink-critical;
+	animation-duration: 1s;
+}
+
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning.discharging {
+	color: @warning;
+}
+
+/* Keyframes */
+
+@keyframes blink-critical {
+	to {
+		/*color: @white;*/
+		background-color: @critical;
+	}
+}
+
+/* Current sway mode (resize etc) */
+#mode {
+	color: @white;
+	background: @mode;
+}
+
+/* Workspaces stuff */
+#workspaces button {
+	/*font-weight: bold;*/
+	padding-left: 2pt;
+	padding-right: 2pt;
+	color: @white;
+	background: @unfocused;
+}
+
+/* Inactive (on unfocused output) */
+#workspaces button.visible {
+	color: @white;
+	background: @inactive;
+}
+
+/* Active (on focused output) */
+#workspaces button.focused {
+	color: @black;
+	background: @focused;
+}
+
+/* Contains an urgent window */
+#workspaces button.urgent {
+	color: @black;
+	background: @warning;
+}
+
+/* Style when cursor is on the button */
+#workspaces button:hover {
+	background: @black;
+	color: @white;
+}
+
+#window {
+	margin-right: 35pt;
+	margin-left: 35pt;
+}
+
+#pulseaudio {
+	background: @sound;
+	color: @black;
+}
+
+#network {
+	background: @network;
+	color: @white;
+}
+
+#memory {
+	background: @memory;
+	color: @black;
+}
+
+#cpu {
+	background: @cpu;
+	color: @white;
+}
+
+#temperature {
+	background: @temp;
+	color: @black;
+}
+
+#language {
+	background: @layout;
+	color: @black;
+}
+
+#battery {
+	background: @battery;
+	color: @white;
+}
+
+#tray {
+	background: @date;
+}
+
+#clock {
+	background: @time;
+	color: @black;
+}
+
+#custom-arrow1 {
+	color: @time;
+	background: @date;
+}
+
+#custom-arrow2 {
+	color: @date;
+	background: @layout;
+}
+
+#custom-arrow3 {
+	color: @layout;
+	background: @battery;
+}
+
+#custom-arrow4 {
+	color: @battery;
+	background: @temp;
+}
+
+#custom-arrow5 {
+	color: @temp;
+	background: @cpu;
+}
+
+#custom-arrow6 {
+	color: @cpu;
+	background: @memory;
+}
+
+#custom-arrow7 {
+	color: @memory;
+	background: @network;
+}
+
+#custom-arrow8 {
+	color: @network;
+	background: @sound;
+}
+
+#custom-arrow9 {
+	color: @sound;
+	background: transparent;
+}
+
+#custom-arrow10 {
+	color: @unfocused;
+	background: transparent;
+}

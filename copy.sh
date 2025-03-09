@@ -119,7 +119,7 @@ fi
 if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
 	echo "${INFO} Debian/Ubuntu based distro. Disabling pyprland since it does not work properly" 2>&1 | tee -a "$LOG" || true
   # disabling pyprland as causing issues
-  sed -i '/^exec-once = pypr &/ s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
+  sed -i '/^\s*exec-once = pypr\s*/ s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
@@ -236,17 +236,17 @@ done
 
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
-    sed -i '/exec-once = rog-control-center &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+    sed -i '/^\s*#exec-once = rog-control-center/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
 # Check if blueman-applet is installed and add blueman-applet on Startup
 if command -v blueman-applet >/dev/null 2>&1; then
-    sed -i '/exec-once = blueman-applet &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+    sed -i '/^\s*#exec-once = blueman-applet/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
 # Check if ags is installed edit ags behaviour on configs
 if command -v ags >/dev/null 2>&1; then
-    sed -i '/#exec-once = ags &/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+    sed -i '/^\s*#exec-once = ags/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
     sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
     sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
 fi
@@ -432,7 +432,7 @@ read -p "${CAT} Do you want to disable Rainbow Borders animation? (y/N): " borde
 if [[ "$border_choice" =~ ^[Yy]$ ]]; then
     mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
     
-    sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh \&/s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
+    sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh/s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
     sed -i '/^[[:space:]]*animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserAnimations.conf
     
     echo "${OK} Rainbow borders is now disabled." 2>&1 | tee -a "$LOG"
@@ -910,7 +910,7 @@ printf "\n%.0s" {1..1}
 echo "${MAGENTA}By default only a few wallpapers are copied${RESET}..."
 
 while true; do
-  read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is almost 1GB (y/n)" WALL
+  read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is almost 1GB (y/n): " WALL
   case $WALL in
     [Yy])
       echo "${NOTE} Downloading additional wallpapers..."
