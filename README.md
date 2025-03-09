@@ -44,6 +44,12 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 </details>
 
+## Auto Distro-Hyprland install scripts cloning (BETA)
+- NOTE still on beta. will change the development to main b4 merging to main and once all distro are tested
+```bash
+sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/development/Distro-Hyprland.sh)
+```
+
 ## Installation 
 ### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
 - Automated Hyprland Scripts for Distro of choice which will pull this dotfiles if opted to install these configurations
