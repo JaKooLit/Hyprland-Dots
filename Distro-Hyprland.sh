@@ -30,28 +30,28 @@ else
 fi
 
 # Define package managers, Git install commands, and dynamic variables for each distro
-if [ "$distro_name" == "Arch Linux" ]; then
+if command -v pacman &> /dev/null; then
     PACKAGE_MANAGER="pacman"
     INSTALL_CMD="sudo pacman -S --noconfirm"
     GIT_INSTALL_CMD="sudo pacman -S git --noconfirm"
     Distro="Arch-Hyprland"
     Github_URL="https://github.com/JaKooLit/$Distro.git"
     Distro_DIR="$HOME/$Distro"
-elif [ "$distro_name" == "Fedora" ]; then
+elif command -v dnf &> /dev/null; then
     PACKAGE_MANAGER="dnf"
     INSTALL_CMD="sudo dnf install -y"
     GIT_INSTALL_CMD="sudo dnf install -y git"
     Distro="Fedora-Hyprland"
     Github_URL="https://github.com/JaKooLit/$Distro.git"
     Distro_DIR="$HOME/$Distro"
-elif [ "$distro_name" == "openSUSE" ]; then
+elif command -v zypper &> /dev/null; then
     PACKAGE_MANAGER="zypper"
     INSTALL_CMD="sudo zypper install -y"
     GIT_INSTALL_CMD="sudo zypper install -y git"
     Distro="OpenSUSE-Hyprland"
     Github_URL="https://github.com/JaKooLit/$Distro.git"
     Distro_DIR="$HOME/$Distro"
-elif [ "$distro_name" == "NixOS" ]; then
+elif command -v nix &> /dev/null; then
     PACKAGE_MANAGER="nix"
     INSTALL_CMD="nix-shell"
     GIT_INSTALL_CMD="nix-shell -p git curl pciutils"
@@ -105,10 +105,7 @@ else
 fi
 
 # Check for Git and install if not found
-printf "\n%.0s" {1..1}
-
-if ! command -v git &> /dev/null
-then
+if ! command -v git &> /dev/null; then
     echo "${INFO} Git not found! ${SKY_BLUE}Installing Git...${RESET}"
     if ! $GIT_INSTALL_CMD; then
         echo "${ERROR} Failed to install Git. Exiting."
@@ -117,8 +114,6 @@ then
 fi
 
 # Check if the directory already exists and perform clone or update
-printf "\n%.0s" {1..1}
-
 if [ -d "$Distro_DIR" ]; then
     echo "${YELLOW}$Distro_DIR exists. Updating the repository... ${RESET}"
     cd "$Distro_DIR"
@@ -130,6 +125,7 @@ else
     
     # Clone the specific branch for Ubuntu versions only
     if [ "$distro_name" == "Ubuntu" ]; then
+        echo "${INFO} Cloning from branch ${Github_URL_branch} for Ubuntu $distro_version."
         git clone --depth=1 -b "$Github_URL_branch" "$Github_URL" "$Distro_DIR"
     else
         git clone --depth=1 "$Github_URL" "$Distro_DIR"
