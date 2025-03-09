@@ -30,14 +30,14 @@ else
 fi
 
 # Define package managers, Git install commands, and dynamic variables for each distro
-if [ "$distro_name" == "Debian GNU/Linux" ]; then
+if [ "$distro_name" = "Debian GNU/Linux" ]; then
     PACKAGE_MANAGER="apt"
     INSTALL_CMD="sudo apt install -y"
     GIT_INSTALL_CMD="sudo apt install -y git"
     Distro="Debian-Hyprland"
     Github_URL="https://github.com/JaKooLit/$Distro.git"
     Distro_DIR="$HOME/$Distro"
-elif [ "$distro_name" == "Ubuntu" ]; then
+elif [ "$distro_name" = "Ubuntu" ]; then
     PACKAGE_MANAGER="apt"
     INSTALL_CMD="sudo apt install -y"
     GIT_INSTALL_CMD="sudo apt install -y git"
@@ -92,7 +92,7 @@ elif command -v zypper &> /dev/null; then
     Distro="OpenSUSE-Hyprland"
     Github_URL="https://github.com/JaKooLit/$Distro.git"
     Distro_DIR="$HOME/$Distro"
-elif [ "$distro_name" == "NixOS" ]; then
+elif [ "$distro_name" = "NixOS" ]; then
     PACKAGE_MANAGER="nix"
     INSTALL_CMD="nix-shell"
     GIT_INSTALL_CMD="nix-shell -p git curl pciutils"
@@ -124,7 +124,7 @@ else
     echo "${MAGENTA}$Distro_DIR does not exist. Cloning the repository...${RESET}"
     
     # Clone the specific branch for Ubuntu versions only
-    if [ "$distro_name" == "Ubuntu" ]; then
+    if [ "$distro_name" = "Ubuntu" ]; then
         echo "${INFO} Cloning from branch ${Github_URL_branch} for Ubuntu $distro_version."
         git clone --depth=1 -b "$Github_URL_branch" "$Github_URL" "$Distro_DIR"
     else
