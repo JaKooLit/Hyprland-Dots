@@ -28,7 +28,7 @@ GDK_BACKEND=$BACKEND yad \
 " SHIFT E" "KooL Hyprland Settings Menu" "" \
 "" "" "" \
 " enter" "Terminal" "(kitty)" \
-" SHIFT enter" "DropDown Terminal" "(Not available in Debian and Ubuntu)" \
+" SHIFT enter" "DropDown Terminal" " Q to close" \
 " B" "Launch Browser" "(Default browser)" \
 " A" "Desktop Overview" "(AGS - if opted to install)" \
 " D" "Application Launcher" "(rofi-wayland)" \
@@ -36,7 +36,7 @@ GDK_BACKEND=$BACKEND yad \
 " S" "Google Search using rofi" "(rofi)" \
 " Q" "close active window" "(not kill)" \
 " Shift Q " "kills an active window" "(kill)" \
-" Z" "Desktop Zoom" "(Not available in Debian and Ubuntu)" \
+" ALT mouse scroll up/down   " "Desktop Zoom" "Desktop Magnifier" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
 " W" "Choose wallpaper" "(Wallpaper Menu)" \
 " Shift W" "Choose wallpaper effects" "(imagemagick + swww)" \
