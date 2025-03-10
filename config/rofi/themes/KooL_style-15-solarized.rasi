@@ -1,0 +1,141 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* KooL Hyprland Rofi Style 15 */
+/* original design: https://github.com/arkboix/dotfiles */
+
+
+configuration {
+    modi:                "drun,run,filebrowser";
+    show-icons:          true;
+    display-drun:        "  ";
+    display-run:         "  ";
+    display-filebrowser: "  ";
+    display-window:      "  ";
+    drun-display-format: "{name}";
+    window-format:       "{w} · {c} · {t}";
+    hover-select:        true;
+    me-select-entry:     "MouseSecondary";
+    me-accept-entry:     "MousePrimary";
+}
+
+* {
+    base03:     #002b36;
+    base02:     #073642;
+    base01:     #586e75;
+    base00:     #657b83;
+    base0:      #839496;
+    base1:      #93a1a1;
+    base2:      #eee8d5;
+    base3:      #fdf6e3;
+    yellow:     #b58900;
+    orange:     #cb4b16;
+    red:        #dc322f;
+    magenta:    #d33682;
+    violet:     #6c71c4;
+    blue:       #268bd2;
+    cyan:       #2aa198;
+    green:      #859900;
+
+    background-color: transparent;
+}
+
+window {
+    transparency:     "real";
+    background-color: #002b36E6;
+    width:            60%;
+    border-radius:    12px;
+    padding:          2% 2%;
+}
+
+mainbox {
+    background-color: transparent;
+    children:         [ inputbar, message, listview ];
+    spacing:          20px;
+}
+
+inputbar {
+    background-color: @base02;
+    border-radius:    6px;
+    padding:          10px;
+    spacing:          10px;
+    children:         [ entry ];
+}
+
+prompt {
+    text-color:       @red;
+}
+
+entry {
+    placeholder:       "Search     👀 NOTE: CTRL TAB to change MODE";
+    placeholder-color: @base01;
+    text-color:        @red;
+}
+
+listview {
+    background-color: transparent;
+    columns:          5;
+    lines:            4;
+    fixed-height:     false;
+    dynamic:          true;
+    cycle:            false;
+    scrollbar:        false;
+    layout:           vertical;
+    spacing:          10px;
+}
+
+element {
+    background-color: @base02;
+    orientation:      vertical;
+    border-radius:    6px;
+    padding:          15px 10px;
+}
+
+element-icon {
+    size:             3%;
+    horizontal-align: 0.5;
+}
+
+element-text {
+	text-color:       @base00;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+}
+
+element selected {
+    border:           0px 3px 0px 3px;
+    border-radius:    16px;
+    border-color:     @red;
+    background-color: @base03;
+}
+
+/* ---- Scrollbar ---- */
+scrollbar {
+    border:       	  0px;
+    border-radius:	  10px;
+    border-color:	  transparent;
+    handle-color: 	  @green;
+    handle-width: 	  2px ;
+    padding:      	  0;
+}
+
+/*****----- Message -----*****/
+message {
+    background-color: @base00;
+    border-radius:    12px;
+}
+error-message {
+    padding:          6px;
+    border:           2px solid;
+    border-radius:    12px;
+    border-color:     @base3;
+    background-color: @base03;
+    text-color:       @red;
+}
+textbox {
+	padding:		  6px;
+    border-radius:    12px;
+    background-color: inherit;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+    highlight:        none;
+}
