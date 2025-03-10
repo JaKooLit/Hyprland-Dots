@@ -38,6 +38,7 @@ Choose Monitor Profiles
 Choose Rofi Themes
 Search for Keybinds
 Toggle Game Mode
+Switch Dark-Light Theme
 EOF
 }
 
@@ -73,6 +74,7 @@ main() {
         "Choose Rofi Themes") $scriptsDir/RofiThemeSelector.sh ;;
         "Search for Keybinds") $scriptsDir/KeyBinds.sh ;;
         "Toggle Game Mode") $scriptsDir/GameMode.sh ;;
+        "Switch Dark-Light Theme") $scriptsDir/DarkLight.sh ;;
         *) return ;;  # Do nothing for invalid choices
     esac
 
