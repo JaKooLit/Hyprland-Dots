@@ -344,7 +344,7 @@ printf "\n%.0s" {1..1}
 # Ask whether to change to 12hr format
 while true; do
     echo -e "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured in 24H clock format."
-    read -p "$CAT Do you want to change to 24H or AM/PM format? (y/n): " answer
+    read -p "$CAT Do you want to change to 12H (AM/PM) clock format? (y/n): " answer
 
     # Convert the answer to lowercase for comparison
     answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
