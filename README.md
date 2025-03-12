@@ -50,6 +50,10 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hyprland.sh)
 ```
+- if you are using say fish or a non-POSIX compliant
+```bash
+curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hyprland.sh | bash
+```
 
 - you can now use above command to automatically clone the Distro-Hyprland install scripts below
 - it will clone the install scripts and start the `install.sh` 😎
