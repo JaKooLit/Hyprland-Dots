@@ -115,6 +115,13 @@ if hostnamectl | grep -q 'Operating System: NixOS'; then
   sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
+# to check if Debian or Ubuntu or based distros
+if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
+	echo "${INFO} Debian/Ubuntu based distro. Disabling pyprland since it does not work properly" 2>&1 | tee -a "$LOG" || true
+  # disabling pyprland as causing issues
+  sed -i '/^\s*exec-once = pypr &\s*/ s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
+fi
+
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
 if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
     HYPRCURSOR_ENV_FILE="config/hypr/UserConfigs/ENVariables.conf"
@@ -677,7 +684,7 @@ if [ -d "$BACKUP_HYPR_PATH" ]; then
   done
 
   # Restore files automatically
-  FILE_B=("monitors.conf" "workspaces.conf")
+  FILE_B=("monitors.conf" "workspaces.conf" "pyprland.toml")
   for FILE_RESTORE in "${FILE_B[@]}"; do
     BACKUP_FILE="$BACKUP_HYPR_PATH/$FILE_RESTORE"
 
