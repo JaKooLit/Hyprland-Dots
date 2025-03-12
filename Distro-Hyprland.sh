@@ -47,30 +47,30 @@ elif [ "$distro_name" = "Ubuntu" ]; then
             Distro="Ubuntu-Hyprland"
             Github_URL="https://github.com/JaKooLit/$Distro.git"
             Github_URL_branch="24.04"
-            Distro_DIR="$HOME/$Distro"
+            Distro_DIR="$HOME/$Distro-$Github_URL_branch"
             echo "${INFO} Ubuntu 24.04 detected. Customizing setup for Ubuntu 24.04."
             ;;
         "24.10")
             Distro="Ubuntu-Hyprland"
             Github_URL="https://github.com/JaKooLit/$Distro.git"
             Github_URL_branch="24.10"
-            Distro_DIR="$HOME/$Distro"
+            Distro_DIR="$HOME/$Distro-$Github_URL_branch"
             echo "${INFO} Ubuntu 24.10 detected. Customizing setup for Ubuntu 24.10."
             ;;
         "25.04")
             Distro="Ubuntu-Hyprland"
             Github_URL="https://github.com/JaKooLit/$Distro.git"
             Github_URL_branch="25.04"
-            Distro_DIR="$HOME/$Distro"
+            Distro_DIR="$HOME/$Distro-$Github_URL_branch"
             echo "${INFO} Ubuntu 25.04 detected. Customizing setup for Ubuntu 25.04."
             ;;
         *)
             Distro="Ubuntu-Hyprland"
-            Github_URL="https://github.com/JaKooLit/$Distro.git"
-            Distro_DIR="$HOME/$Distro"
-            echo "${INFO} Ubuntu version $distro_version detected. Using default Ubuntu setup."
+            echo "${ERROR} Unsupported distribution: $distro_version. Exiting."
+            exit 1
             ;;
     esac
+
 elif command -v pacman &> /dev/null; then
     PACKAGE_MANAGER="pacman"
     INSTALL_CMD="sudo pacman -S --noconfirm"
