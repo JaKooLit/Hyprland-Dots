@@ -677,7 +677,7 @@ if [ -d "$BACKUP_HYPR_PATH" ]; then
   done
 
   # Restore files automatically
-  FILE_B=("monitors.conf" "workspaces.conf" "pyprland.toml")
+  FILE_B=("monitors.conf" "workspaces.conf")
   for FILE_RESTORE in "${FILE_B[@]}"; do
     BACKUP_FILE="$BACKUP_HYPR_PATH/$FILE_RESTORE"
 
