@@ -21,7 +21,7 @@ pallete_dark="dark16"
 pallete_light="light16"
 
 # intial kill process
-for pid in kitty waybar rofi swaync ags swaybg; do
+for pid in waybar rofi swaync ags swaybg; do
     killall -SIGUSR1 "$pid"
 done
 
@@ -114,6 +114,10 @@ else
 	sed -i '/^background /s/^background .*/background #dddddd/' "${kitty_conf}"
 	sed -i '/^cursor /s/^cursor .*/cursor #000000/' "${kitty_conf}"
 fi
+
+for pid_kitty in $(pidof kitty); do
+    kill -SIGUSR1 "$pid_kitty"
+done
 
 # Set Dynamic Wallpaper for Dark or Light Mode
 if [ "$next_mode" = "Dark" ]; then
@@ -235,7 +239,7 @@ ${SCRIPTSDIR}/WallustSwww.sh &&
 
 sleep 2
 # kill process
-for pid1 in kitty waybar rofi swaync ags swaybg; do
+for pid1 in waybar rofi swaync ags swaybg; do
     killall "$pid1"
 done
 
