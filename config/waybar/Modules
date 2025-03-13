@@ -246,6 +246,8 @@
 	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
 	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
 	"smooth-scrolling-threshold": 1,
+	"tooltip": true,
+	"tooltip-format": "{status_icon} {dynamic}\nLeft Click: previous\nMid Click: Pause\nRight Click: Next",
 	"player-icons": {
 		"chromium": "",
 		"default": "",
