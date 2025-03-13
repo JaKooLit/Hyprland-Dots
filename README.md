@@ -94,7 +94,7 @@ curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hy
 ### 💥 Copying / Installation / Update instructions 💥
 - [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
 > [!Note] 
-> The auto copy script "copy.sh" will create backups of intended folders to be copied. However, still a good idea to manually backup just incase script failed to backup!
+> The auto copy script "copy.sh" will create backups of intended directories to be copied. However, still a good idea to manually backup just incase script failed to backup!
 - clone this repo by using git. Change directory, make executable and run the script
 
 > to download from Master branch
