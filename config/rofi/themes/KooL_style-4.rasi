@@ -305,7 +305,7 @@ textbox {
     border:                      0px solid;
     border-radius:               8px;
     border-color:                @border-color;
-    background-color:            @alternate-background;
+    background-color:            @color0;
     text-color:                  @foreground-color;
     vertical-align:              0.5;
     horizontal-align:            0.5;
