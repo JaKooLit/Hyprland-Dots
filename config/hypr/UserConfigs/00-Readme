@@ -2,9 +2,9 @@
 
 KooL's Hyprland-Dots
 
-1.) Suggest not to rename any files in this folder. As this is connected and being sourced from hyprland.conf in ~/.config/hypr
+1.) Suggest not to rename any files in this directory. As this is connected and being sourced from hyprland.conf in ~/.config/hypr
 
-2.) This folder, along with UserScripts folder will NOT be touch when running upgrade.sh
+2.) This directory, along with UserScripts directory will NOT be touch when running upgrade.sh
 
 3.) However, if hyprland has a big change in settings, i.e., blur section is moved into another group, you should managed the change yourself.
 

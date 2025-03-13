@@ -133,39 +133,39 @@ if version_gt "$latest_version" "$stored_version"; then
     read -r answer
     if [[ "$answer" =~ ^[Yy]$ ]]; then
         # Loop through directories for comparison
-		for source_folder in "${!directories[@]}"; do
-    	target_folder="${directories[$source_folder]}"
-    	echo "$YELLOW Comparing directories: $source_folder and $target_folder" $RESET    
-    	# Compare source and target folders
-    	comparison=$(compare_directories "$source_folder" "$target_folder")
+		for source_directory in "${!directories[@]}"; do
+    	target_directory="${directories[$source_directory]}"
+    	echo "$YELLOW Comparing directories: $source_directory and $target_directory" $RESET    
+    	# Compare source and target directories
+    	comparison=$(compare_directories "$source_directory" "$target_directory")
     	if [ -n "$comparison" ]; then
-        echo "$NOTE Here are difference of $source_folder and $target_folder:"
+        echo "$NOTE Here are difference of $source_directory and $target_directory:"
         echo "$comparison"
         
         printf "\n%.0s" {1..2}
         
         # Prompt user for action
-        echo "$CAT Do you want to copy files and folders from $source_folder to $target_folder? (Y/N)"
+        echo "$CAT Do you want to copy files and directories from $source_directory to $target_directory? (Y/N)"
         read -r answer
 
         if [[ "$answer" =~ ^[Yy]$ ]]; then
-            # Creating backup of the target folder
-            create_backup "$target_folder"
+            # Creating backup of the target directory
+            create_backup "$target_directory"
             
             printf "\n%.0s" {1..2}
-            # Copy differences from source folder to target folder
-            rsync -av --delete ${exclusions[$source_folder]} "$source_folder" "$target_folder"
-            echo "$NOTE Differences of "$target_folder" copied successfully." 2>&1 | tee -a "$LOG"
+            # Copy differences from source directory to target directory
+            rsync -av --delete ${exclusions[$source_directory]} "$source_directory" "$target_directory"
+            echo "$NOTE Differences of "$target_directory" copied successfully." 2>&1 | tee -a "$LOG"
             printf "\n%.0s" {1..2}
         else
-            	echo "$NOTE No changes were made for $target_folder" 2>&1 | tee -a "$LOG"
+            	echo "$NOTE No changes were made for $target_directory" 2>&1 | tee -a "$LOG"
         	fi
     	else
-        	echo "$OK No differences found between $source_folder and $target_folder" 2>&1 | tee -a "$LOG"
+        	echo "$OK No differences found between $source_directory and $target_directory" 2>&1 | tee -a "$LOG"
     	fi
 		done
 		printf "\n%.0s" {1..2}
-        echo "$NOTE Files or Folders updated successfully to version $latest_version" 2>&1 | tee -a "$LOG"
+        echo "$NOTE Files or directories updated successfully to version $latest_version" 2>&1 | tee -a "$LOG"
 
         # Set some files as executable
         chmod +x "$HOME/.config/hypr/scripts/"* 2>&1 | tee -a "$LOG"
@@ -173,7 +173,7 @@ if version_gt "$latest_version" "$stored_version"; then
         # Set executable for initial-boot.sh
         chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"		
     else
-        echo "$MAGENTA Upgrade declined. No files or folders changed" 2>&1 | tee -a "$LOG"
+        echo "$MAGENTA Upgrade declined. No files or directories changed" 2>&1 | tee -a "$LOG"
     fi
 else
     echo "$OK 👌 No upgrade found. The installed version ${MAGENTA}($stored_version)${RESET} is up to date with the KooL Hyprland-Dots version ${YELLOW}($latest_version)${RESET}" 2>&1 | tee -a "$LOG"
@@ -181,7 +181,7 @@ fi
 
 printf "\n%.0s" {1..3}
 echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT NOTICE!!!! $(tput sgr0)" 
-echo "$(tput bold)$(tput setaf 7)If you updated waybar folder, and you have your own waybar layout and styles $(tput sgr0)"
+echo "$(tput bold)$(tput setaf 7)If you updated waybar directory, and you have your own waybar layout and styles $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)Copy those files from the created backup ~/.config/waybar-b4-upgrade $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)Make sure to set your waybar and style before logout or reboot $(tput sgr0)"
 echo "$(tput bold)$(tput setaf 7)SUPER CTRL B for Waybar Styles and SUPER ALT B for Waybar Layout $(tput sgr0)"
