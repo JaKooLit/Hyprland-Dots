@@ -732,7 +732,7 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
           echo "${ERROR} - Failed to restore $FILE_NAME!" 2>&1 | tee -a "$LOG"
         fi
       else
-        echo "${NOTE} - Skipped restoring $FILE_NAME."
+        echo "${NOTE} - Skipped restoring $FILE_NAME." 2>&1 | tee -a "$LOG"
       fi
     fi
   done
@@ -767,7 +767,7 @@ if [ -d "$BACKUP_DIR_PATH_S" ]; then
           echo "${ERROR} - Failed to restore $SCRIPT_NAME!" 2>&1 | tee -a "$LOG"
         fi
       else
-        echo "${NOTE} - Skipped restoring $SCRIPT_NAME."
+        echo "${NOTE} - Skipped restoring $SCRIPT_NAME." 2>&1 | tee -a "$LOG"
       fi
     fi
   done
@@ -803,7 +803,7 @@ if [ -d "$BACKUP_DIR_PATH_F" ]; then
           echo "${ERROR} - Failed to restore $FILE_RESTORE!" 2>&1 | tee -a "$LOG"
         fi
       else
-        echo "${NOTE} - Skipped restoring $FILE_RESTORE."
+        echo "${NOTE} - Skipped restoring $FILE_RESTORE." 2>&1 | tee -a "$LOG"
       fi
     else
       echo "${ERROR} - Backup file $BACKUP_FILE does not exist."
