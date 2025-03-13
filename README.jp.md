@@ -64,7 +64,7 @@ curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hy
 - インストールスクリプトをクローンし、`install.sh` を実行します😎
 
 ## 　インストール方法
-### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
+### 👁️‍🗨️ 私の Hyprland のインストールスクリプト 👁️‍🗨️
 - 選択したディストロ向けの自動化された Hyprland スクリプトです。これらの設定をインストールするオプションを選択した場合、対応する dotfiles を取得します。
 
 - [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
