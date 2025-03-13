@@ -22,6 +22,7 @@ UserScripts="$HOME/.config/hypr/UserScripts"
 # Function to display the menu options without numbers
 menu() {
     cat <<EOF
+view/edit User Defaults
 view/edit ENV variables
 view/edit Window Rules
 view/edit User Keybinds
@@ -48,6 +49,7 @@ main() {
     
     # Map choices to corresponding files
     case "$choice" in
+    	"view/edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
         "view/edit ENV variables") file="$UserConfigs/ENVariables.conf" ;;
         "view/edit Window Rules") file="$UserConfigs/WindowRules.conf" ;;
         "view/edit User Keybinds") file="$UserConfigs/UserKeybinds.conf" ;;
