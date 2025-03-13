@@ -106,16 +106,16 @@ fi
 
 
 # Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Online Stations\nPlay from Music Folder\nShuffle Play from Music Folder" | rofi -dmenu -config $rofi_theme_1)
+user_choice=$(printf "Play from Online Stations\nPlay from Music directory\nShuffle Play from Music directory" | rofi -dmenu -config $rofi_theme_1)
 
   case "$user_choice" in
-    "Play from Music Folder")
+    "Play from Music directory")
       play_local_music
       ;;
     "Play from Online Stations")
       play_online_music
       ;;
-    "Shuffle Play from Music Folder")
+    "Shuffle Play from Music directory")
       shuffle_local_music
       ;;
     *)

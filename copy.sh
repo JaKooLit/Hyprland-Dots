@@ -83,7 +83,7 @@ print_color() {
 # Set the name of the log file to include the current date and time
 LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 
-# update home folders
+# update home directories
 xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 
 # setting up for nvidia
