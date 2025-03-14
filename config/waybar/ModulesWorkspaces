@@ -213,7 +213,6 @@
 
 		"title<.*ChatGPT.*>": "󰚩 ",
 		"title<.*deepseek.*>": "󰚩 ",
-		"title<.*AI.*>": "󰚩 ",
 		"title<.*qwen.*>": "󰚩 ",
 		"class<subl>": "󰅳 ",
 		"class<slack>": " ",
