@@ -206,6 +206,7 @@
 		"class<[Tt]elegram-desktop|org.telegram.desktop|io.github.tdesktop_x64.TDesktop>": " ",
 		"class<discord|[Ww]ebcord|Vesktop>": " ",
 		"title<.*whatsapp.*>": " ",
+    "title<.*zapzap.*>": " ",
 		"title<.*messenger.*>": " ",
 		"title<.*facebook.*>": " ",
 		"title<.*reddit.*>": " ",
@@ -233,6 +234,7 @@
 		"class<remmina>": "🖥️ ",
 
 		"class<VSCode|code-url-handler|code-oss|codium|codium-url-handler|VSCodium>": "󰨞 ",
+    "class<dev.zed.Zed>": "󰵁",
 		"class<codeblocks>": "󰅩 ",
 		"title<.*github.*>": " ",
 		"class<mousepad>": " ",
@@ -253,11 +255,13 @@
 
 		"class<steam>": " ",
 		"class<thunar|nemo>": "󰝰 ",	
+    "class<Gparted>":"",
 		"class<gimp>": " ",
 		"class<emulator>": "📱 ",
 		"class<android-studio>": " ",
-        
-		}   
+    "class<org.pipewire.Helvum>": "󰓃",
+    "class<localsend>":"",
+    "class<PrusaSlicer|UltiMaker-Cura|OrcaSlicer>": "󰹛",
+		}
 	},
-
 }
