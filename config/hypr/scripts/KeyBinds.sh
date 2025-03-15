@@ -37,4 +37,3 @@ display_keybinds=$(echo "$keybinds" | sed 's/\$mainMod/SUPER/g')
 
 # use rofi to display the keybinds with the modified content
 echo "$display_keybinds" | rofi -dmenu -i -config "$rofi_theme" -mesg "$msg"
-s
