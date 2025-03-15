@@ -38,15 +38,17 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 </div>
 
-#### 📹 A video walkthroughs
+### 📹 A video walkthroughs
 - at the bottom
 
-#### 🎞️ AGS Overview DEMO
+### 🎞️ AGS Overview DEMO
 - in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
 </details>
 
-## 🚩 🏁 Auto Distro-Hyprland install scripts cloning and starting 🇵🇭
+---
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=22&pause=1000&color=F7077E&vCenter=true&width=435&height=30&lines=INSTALLATION)](https://git.io/typing-svg)
+### 🚩 🏁 Auto Distro-Hyprland install scripts cloning and starting 🇵🇭
 - NOTE: you need package `curl` for this to work
 
 ```bash
@@ -60,7 +62,7 @@ curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hy
 - you can now use above command to automatically clone the Distro-Hyprland install scripts below
 - it will clone the install scripts and start the `install.sh` 😎
 
-## Installation 
+
 ### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
 - Automated Hyprland Scripts for Distro of choice which will pull this dotfiles if opted to install these configurations
 
@@ -77,7 +79,7 @@ curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hy
 - [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
 - [Ubuntu 24.10](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
 - [Ubuntu 25.04 - (ALPHA STAGE)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04)
-
+---
 
 ### 🪧 Attention 🪧
 - This repo does NOT contain or will NOT install any packages. These are only pre-configured-hyprland configs or dotfiles
