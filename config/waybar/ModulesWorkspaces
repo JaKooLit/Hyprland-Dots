@@ -8,7 +8,7 @@
 // CIRCLES Style
 "hyprland/workspaces": {
 	"active-only": false,
-	"all-outputs": true,
+	"all-outputs": false,
 	"format": "{icon}",
 	"show-special": false,
 	"on-click": "activate",
@@ -25,7 +25,7 @@
 // ROMAN Numerals style
 "hyprland/workspaces#roman": {
 	"active-only": false,
-	"all-outputs": true,
+	"all-outputs": false,
 	"format": "{icon}",
 	"show-special": false,
 	"on-click": "activate",
@@ -50,7 +50,7 @@
 // PACMAN Style
 "hyprland/workspaces#pacman": {
 	"active-only": false,
-	"all-outputs": true,
+	"all-outputs": false,
 	"format": "{icon}",
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -70,7 +70,7 @@
 "hyprland/workspaces#kanji": {
 	"disable-scroll": true,
 	"show-special": false,
-	"all-outputs": true,
+	"all-outputs": false,
 	"format": "{icon}",
     "persistent-workspaces": {
       "*": 5
@@ -91,7 +91,7 @@
 // for Camilla or Spanish
 "hyprland/workspaces#cam": {
 	"active-only":false,
-	"all-outputs": true,
+	"all-outputs": false,
 	"format": "{icon}",
 	"show-special": false,
 	"on-click": "activate",
@@ -123,7 +123,7 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-	"all-outputs": true,
+	"all-outputs": false,
 	"sort-by-number": true,
 	"format-icons": {
 		"1": " ",
@@ -143,7 +143,7 @@
 // numbers styles
 "hyprland/workspaces#numbers": {
 	"active-only": false,
-	"all-outputs": true,
+	"all-outputs": false,
 	"format": "{icon}",
 	"show-special": false,
 	"on-click": "activate",
@@ -168,7 +168,7 @@
 // NUMBERS and ICONS style with window rewrite 
 "hyprland/workspaces#rw": {
 	"disable-scroll": true,
-	"all-outputs": true,
+	"all-outputs": false,
 	"warp-on-scroll": false,
 	"sort-by-number": true,
 	"show-special": false,
