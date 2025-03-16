@@ -46,6 +46,7 @@ rofi_override="element-icon{size:${adjusted_icon_size}%;}"
 # Kill existing wallpaper daemons
 kill_wallpaper_for_video() {	
 	killall swww
+    killall mpvpaper
     pkill swaybg
     pkill hyprpaper
 }
