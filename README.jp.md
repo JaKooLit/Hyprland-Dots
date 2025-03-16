@@ -38,15 +38,17 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 </div>
 
-#### 📹 動画による説明
+### 📹 動画による説明
 - ページの下部へ
 
-#### 🎞️ AGS概要デモ
+### 🎞️ AGS概要デモ
 - 概要が気になる場合は、こちらにAGS概要の短いデモがあります [Youtube リンク](https://youtu.be/zY5SLNPBJTs)
 
 </details>
 
-## 🚩 🏁 自動化された Distro-Hyprland のインストールスクリプトのクローンと起動 🇵🇭
+---
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=22&pause=1000&color=F7077E&vCenter=true&width=435&height=30&lines=INSTALLATION)](https://git.io/typing-svg)
+### 🚩 🏁 自動化された Distro-Hyprland のインストールスクリプトのクローンと起動 🇵🇭
 - 重要：これを動作させるには、`curl` パッケージが必要です。
 
 ```bash
@@ -60,7 +62,7 @@ curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hy
 - 上記のコマンドを使用して、Distro-Hyprland のインストールスクリプトを自動的にクローンできます。
 - インストールスクリプトをクローンし、`install.sh` を実行します😎
 
-## 　インストール方法
+
 ### 👁️‍🗨️ 私の Hyprland のインストールスクリプト 👁️‍🗨️
 - 選択したディストロ向けの自動化された Hyprland スクリプトです。これらの設定をインストールするオプションを選択した場合、対応する dotfiles を取得します。
 
@@ -77,7 +79,7 @@ curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hy
 - [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
 - [Ubuntu 24.10](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
 - [Ubuntu 25.04 - (ALPHA STAGE)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04)
-
+---
 
 ### 🪧 注意 🪧
 - このリポジトリにはパッケージは含まれておらず、インストールもされません。含まれているのは、あらかじめ設定された Hyprland の設定ファイルや dotfiles のみです。
