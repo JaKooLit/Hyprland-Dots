@@ -181,7 +181,7 @@ apply_video_wallpaper() {
     kill_wallpaper_for_video
 
     # Apply video wallpaper using mpvpaper, adding a unique argument
-    mpvpaper '*' -o "no-audio --loop --unique-wallpaper-process" "$video_path" &
+    mpvpaper '*' -o "load-scripts=no no-audio --loop --unique-wallpaper-process" "$video_path" &
 }
 
 # Main function
