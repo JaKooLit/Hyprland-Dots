@@ -16,9 +16,9 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword general:gaps_out 0;\
         keyword general:border_size 1;\
         keyword decoration:rounding 0"
-	
+
 	hyprctl keyword "windowrule opacity 1 override 1 override 1 override, ^(.*)$"
-    swww kill 
+    swww kill
     notify-send -e -u low -i "$notif" " Gamemode:" " enabled"
     exit
 else
@@ -26,8 +26,8 @@ else
 	sleep 0.1
 	${SCRIPTSDIR}/WallustSwww.sh
 	sleep 0.5
-	${SCRIPTSDIR}/Refresh.sh	 
+	${SCRIPTSDIR}/Refresh.sh
+    hyprctl reload
     notify-send -e -u normal -i "$notif" " Gamemode:" " disabled"
     exit
 fi
-hyprctl reload
