@@ -46,7 +46,7 @@ rofi_override="element-icon{size:${adjusted_icon_size}%;}"
 # Kill existing wallpaper daemons
 kill_wallpaper_for_video() {	
 	killall swww
-    killall mpvpaper
+	killall mpvpaper
     pkill swaybg
     pkill hyprpaper
 }
@@ -170,7 +170,6 @@ apply_image_wallpaper() {
     set_sddm_wallpaper
 }
 
-# Apply Video Wallpaper
 apply_video_wallpaper() {
     local video_path="$1"
 
@@ -181,8 +180,8 @@ apply_video_wallpaper() {
     fi
     kill_wallpaper_for_video
 
-    # Apply video wallpaper using mpvpaper
-    mpvpaper '*' -o "no-audio --loop" "$video_path" &
+    # Apply video wallpaper using mpvpaper, adding a unique argument
+    mpvpaper '*' -o "no-audio --loop --unique-wallpaper-process" "$video_path" &
 }
 
 # Main function
