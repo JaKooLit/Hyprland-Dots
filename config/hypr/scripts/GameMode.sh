@@ -31,3 +31,4 @@ else
     notify-send -e -u normal -i "$notif" " Gamemode:" " disabled"
     exit
 fi
+

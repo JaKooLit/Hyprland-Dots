@@ -11,6 +11,17 @@
 
 # https://wiki.hyprland.org/Configuring/Workspace-Rules/
 
+workspace = 1, monitor:HDMI-A-1, persistent:true, default:true
+workspace = 2, monitor:HDMI-A-1, persistent:true
+workspace = 3, monitor:HDMI-A-1, persistent:true
+workspace = 4, monitor:HDMI-A-1, persistent:true
+workspace = 5, monitor:HDMI-A-1, persistent:true
+workspace = 6, monitor:DP-3, persistent:true
+workspace = 7, monitor:DP-3, persistent:true
+workspace = 8, monitor:DP-3, persistent:true
+workspace = 9, monitor:DP-3, persistent:true
+workspace = 10, monitor:DP-3, persistent:true
+
 # Assigning workspace to a certain monitor. Below are just examples
 # workspace = 1, monitor:eDP-1
 # workspace = 2, monitor:eDP-1
