@@ -28,8 +28,6 @@
 	"custom/separator#blank",
 	"clock",
 	"custom/separator#blank_2",
-	"mpris",
-	"custom/separator#blank_2",
 	"hyprland/window",
 	],
 
@@ -47,7 +45,9 @@
 	"group/mobo_drawer",
 	"custom/separator#line",  
 	"group/audio",
-	"custom/separator#dot-line", 
+	"custom/separator#dot-line",
+	"mpris",
+	"custom/separator#blank", 
 	"group/status",
 	],
 }
