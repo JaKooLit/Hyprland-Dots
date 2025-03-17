@@ -218,7 +218,7 @@ main() {
     modify_startup_config "$selected_file"
 
     # **CHECK FIRST** if it's a video or an image **before calling any function**
-    if [[ "$selected_file" =~ \.(mp4|mkv|mov|webm)$ ]]; then
+    if [[ "$selected_file" =~ \.(mp4|mkv|mov|webm|MP4|MKV|MOV|WEBM)$ ]]; then
         apply_video_wallpaper "$selected_file"
     else
         apply_image_wallpaper "$selected_file"
