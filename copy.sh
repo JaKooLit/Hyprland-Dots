@@ -276,10 +276,6 @@ if [[ "$EDITOR_SET" -eq 0 ]] && command -v vim &> /dev/null; then
     fi
 fi
 
-if [[ "$EDITOR_SET" -eq 0 ]]; then
-    echo "${YELLOW} Neither neovim nor vim is installed or selected as default." 2>&1 | tee -a "$LOG"
-fi
-
 printf "\n"
 
 # Action to do for better appearance
