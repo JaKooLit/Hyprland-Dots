@@ -252,14 +252,14 @@
 
 		"class<polkit-gnome-authentication-agent-1>": "󰒃 ",
 		"class<nwg-look>": " ",
-
+		"class<[Pp]avucontrol|org.pulseaudio.pavucontrol>": "󱡫 ",
 		"class<steam>": " ",
 		"class<thunar|nemo>": "󰝰 ",	
     "class<Gparted>":"",
 		"class<gimp>": " ",
 		"class<emulator>": "📱 ",
 		"class<android-studio>": " ",
-    "class<org.pipewire.Helvum>": "󰓃",
+   	"class<org.pipewire.Helvum>": "󰓃",
     "class<localsend>":"",
     "class<PrusaSlicer|UltiMaker-Cura|OrcaSlicer>": "󰹛",
 		}
