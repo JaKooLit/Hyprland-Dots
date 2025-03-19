@@ -1,5 +1,5 @@
 #!/bin/bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */ 
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 # This script for selecting wallpapers (SUPER W)
 
 # WALLPAPERS PATH
@@ -14,8 +14,8 @@ iDIRi="$HOME/.config/swaync/icons"
 
 # Check if package bc exists
 if ! command -v bc &>/dev/null; then
-notify-send -i "$iDIR/ja.png" "bc missing" "Install package bc first"
-exit 1
+  notify-send -i "$iDIR/ja.png" "bc missing" "Install package bc first"
+  exit 1
 fi
 
 # variables
@@ -42,7 +42,7 @@ BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --transition-bezier $BEZIER"
 
 # Check if swaybg is running
-if pidof swaybg > /dev/null; then
+if pidof swaybg >/dev/null; then
   pkill swaybg
 fi
 
@@ -59,18 +59,18 @@ rofi_command="rofi -i -show -dmenu -config $rofi_theme -theme-str $rofi_override
 menu() {
   # Sort the PICS array
   IFS=$'\n' sorted_options=($(sort <<<"${PICS[*]}"))
-  
+
   # Place ". random" at the beginning with the random picture as an icon
   printf "%s\x00icon\x1f%s\n" "$RANDOM_PIC_NAME" "$RANDOM_PIC"
-  
+
   for pic_path in "${sorted_options[@]}"; do
     pic_name=$(basename "$pic_path")
-    
+
     # Displaying .gif to indicate animated images
     if [[ ! "$pic_name" =~ \.gif$ ]]; then
       printf "%s\x00icon\x1f%s\n" "$(echo "$pic_name" | cut -d. -f1)" "$pic_path"
     else
-      printf "%s\n" "$pic_name"
+      printf "%s\x00icon\x1f%s\n" "$pic_name" "$pic_path"
     fi
   done
 }
@@ -81,7 +81,7 @@ swww query || swww-daemon --format xrgb
 # Choice of wallpapers
 main() {
   choice=$(menu | $rofi_command)
-  
+
   choice=$(echo "$choice" | xargs)
   RANDOM_PIC_NAME=$(echo "$RANDOM_PIC_NAME" | xargs)
 
@@ -93,7 +93,7 @@ main() {
 
   # Random choice case
   if [[ "$choice" == "$RANDOM_PIC_NAME" ]]; then
-	swww img -o "$focused_monitor" "$RANDOM_PIC" $SWWW_PARAMS;
+    swww img -o "$focused_monitor" "$RANDOM_PIC" $SWWW_PARAMS
     sleep 2
     "$SCRIPTSDIR/WallustSwww.sh"
     sleep 0.5
@@ -120,7 +120,7 @@ main() {
 }
 
 # Check if rofi is already running
-if pidof rofi > /dev/null; then
+if pidof rofi >/dev/null; then
   pkill rofi
 fi
 
@@ -128,8 +128,7 @@ main
 
 wait $!
 "$SCRIPTSDIR/WallustSwww.sh" &&
-
-wait $!
+  wait $!
 sleep 2
 "$SCRIPTSDIR/Refresh.sh"
 
@@ -138,31 +137,32 @@ sleep 1
 if [[ -n "$choice" ]]; then
   sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
   if [ -d "$sddm_sequoia" ]; then
-  
-	# Check if yad is running to avoid multiple yad notification
-	if pidof yad > /dev/null; then
-	  killall yad
-	fi
-    
-    if yad --info --text="Set current wallpaper as SDDM background?\n\nNOTE: This only applies to SEQUOIA SDDM Theme" \
-    --text-align=left \
-    --title="SDDM Background" \
-    --timeout=5 \
-    --timeout-indicator=right \
-    --button="yad-yes:0" \
-    --button="yad-no:1" \
-    ; then
 
-    # Check if terminal exists
-    if ! command -v "$terminal" &>/dev/null; then
-    notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
-    exit 1
+    # Check if yad is running to avoid multiple yad notification
+    if pidof yad >/dev/null; then
+      killall yad
     fi
 
-    # Open terminal to enter password
-    $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
+    if yad --info --text="Set current wallpaper as SDDM background?\n\nNOTE: This only applies to SEQUOIA SDDM Theme" \
+      --text-align=left \
+      --title="SDDM Background" \
+      --timeout=5 \
+      --timeout-indicator=right \
+      --button="yad-yes:0" \
+      --button="yad-no:1" \
+      ; then
+
+      # Check if terminal exists
+      if ! command -v "$terminal" &>/dev/null; then
+        notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
+        exit 1
+      fi
+
+      # Open terminal to enter password
+      $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
     sudo cp -r $wallpaper_current '$sddm_sequoia/backgrounds/default' && \
     notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
     fi
   fi
 fi
+
