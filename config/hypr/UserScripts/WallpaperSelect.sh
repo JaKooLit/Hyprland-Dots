@@ -155,8 +155,7 @@ apply_image_wallpaper() {
 
     # Run additional scripts
     "$SCRIPTSDIR/WallustSwww.sh"
-    wait $!
-    sleep 1
+    sleep 2
     "$SCRIPTSDIR/Refresh.sh"
     sleep 1
 
@@ -174,7 +173,7 @@ apply_video_wallpaper() {
     kill_wallpaper_for_video
 
     # Apply video wallpaper using mpvpaper, adding a unique argument (for mpris waybar module)
-    mpvpaper '*' -o "load-scripts=no no-audio --loop --unique-wallpaper-process" "$video_path" &
+    mpvpaper '*' -o "load-scripts=no no-audio --loop" "$video_path" &
 }
 
 # Main function
@@ -196,7 +195,7 @@ main() {
     choice_basename=$(basename "$choice" | sed 's/\(.*\)\.[^.]*$/\1/')
 
     # Search for the selected file in the wallpapers directory, including subdirectories
-    selected_file=$(find $wallDIR -iname "$choice_basename.*" -print -quit)
+    selected_file=$(find "$wallDIR" -iname "$choice_basename.*" -print -quit)
 
     if [[ -z "$selected_file" ]]; then
         echo "File not found. Selected choice: $choice"
