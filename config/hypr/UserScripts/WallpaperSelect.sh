@@ -196,7 +196,7 @@ main() {
     choice_basename=$(basename "$choice" | sed 's/\(.*\)\.[^.]*$/\1/')
 
     # Search for the selected file in the wallpapers directory, including subdirectories
-    selected_file=$(find /home/ja/Pictures/wallpapers -iname "$choice_basename.*" -print -quit)
+    selected_file=$(find $wallDIR -iname "$choice_basename.*" -print -quit)
 
     if [[ -z "$selected_file" ]]; then
         echo "File not found. Selected choice: $choice"
