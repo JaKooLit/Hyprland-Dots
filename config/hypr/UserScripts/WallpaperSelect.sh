@@ -43,18 +43,19 @@ icon_size=$(echo "scale=1; ($monitor_height * 3) / ($scale_factor * 150)" | bc)
 adjusted_icon_size=$(echo "$icon_size" | awk '{if ($1 < 15) $1 = 20; if ($1 > 25) $1 = 25; print $1}')
 rofi_override="element-icon{size:${adjusted_icon_size}%;}"
 
-# Kill existing wallpaper daemons
-kill_wallpaper_for_video() {	
-	killall swww
-	killall mpvpaper
-    pkill swaybg
-    pkill hyprpaper
+# Kill existing wallpaper daemons for video
+kill_wallpaper_for_video() {
+    pkill swww 2>/dev/null
+    pkill mpvpaper 2>/dev/null
+    pkill swaybg 2>/dev/null
+    pkill hyprpaper 2>/dev/null
 }
 
+# Kill existing wallpaper daemons for image
 kill_wallpaper_for_image() {
-	killall mpvpaper
-    pkill swaybg
-    pkill hyprpaper
+    pkill mpvpaper 2>/dev/null
+    pkill swaybg 2>/dev/null
+    pkill hyprpaper 2>/dev/null
 }
 
 # Retrieve wallpapers (both images & videos)
@@ -115,31 +116,27 @@ set_sddm_wallpaper() {
     fi
 }
 
-# setting up $HOME/.config/hypr/UserConfigs/Startup_Apps.conf
 modify_startup_config() {
     local selected_file="$1"
-
-    # Path to the configuration file
     local startup_config="$HOME/.config/hypr/UserConfigs/Startup_Apps.conf"
 
     # Check if it's a live wallpaper (video)
     if [[ "$selected_file" =~ \.(mp4|mkv|mov|webm)$ ]]; then
-        # Comment out the line for swww-daemon
+        # For video wallpapers: 
         sed -i '/^\s*exec-once\s*=\s*swww-daemon\s*--format\s*xrgb.*$/s/^/\#/' "$startup_config"
+        sed -i '/^\s*#\s*exec-once\s*=\s*mpvpaper\s*.*$/s/^#\s*//;' "$startup_config"
 
         # Update the livewallpaper variable with the selected video path (using $HOME)
         selected_file="${selected_file/#$HOME/\$HOME}"  # Replace /home/user with $HOME
         sed -i "s|^\$livewallpaper=.*|\$livewallpaper=\"$selected_file\"|" "$startup_config"
 
-        # Uncomment the mpvpaper line and set it with the live wallpaper path
-        sed -i '/^\s*#\s*exec-once\s*=\s*mpvpaper\s*.*$/s/^#\s*//; s|mpvpaper\s*'.*'|mpvpaper '*' -o \"no-audio --loop\" \"\$livewallpaper\"|' "$startup_config"
-
         echo "Configured for live wallpaper (video)."
     else
-        sed -i 's/^#\(exec-once = swww-daemon.*\)$/\1/' "$startup_config"
+        # For image wallpapers: 
+        sed -i '/^\s*#\s*exec-once\s*=\s*swww-daemon\s*--format\s*xrgb.*$/s/^#\s*//;' "$startup_config"
+        sed -i '/^\s*exec-once\s*=\s*mpvpaper\s*.*$/s/^/\#/' "$startup_config"
 
-        # Comment out the mpvpaper line 
-        sed -i '/^exec-once = mpvpaper\s*'.*'/s/^/#/' "$startup_config"
+        echo "Configured for static wallpaper (image)."
     fi
 }
 
@@ -149,24 +146,20 @@ apply_image_wallpaper() {
 
     kill_wallpaper_for_image
 
-    # Start swww-daemon if not running
     if ! pgrep -x "swww-daemon" > /dev/null; then
         echo "Starting swww-daemon..."
         swww-daemon --format xrgb &
     fi
-
-    # Apply static image wallpaper using swww
-    sleep 1
+    
     swww img -o "$focused_monitor" "$image_path" $SWWW_PARAMS
 
     # Run additional scripts
     "$SCRIPTSDIR/WallustSwww.sh"
     wait $!
-    sleep 2
+    sleep 1
     "$SCRIPTSDIR/Refresh.sh"
     sleep 1
 
-    # set SDDM wallpaper
     set_sddm_wallpaper
 }
 
@@ -180,7 +173,7 @@ apply_video_wallpaper() {
     fi
     kill_wallpaper_for_video
 
-    # Apply video wallpaper using mpvpaper, adding a unique argument
+    # Apply video wallpaper using mpvpaper, adding a unique argument (for mpris waybar module)
     mpvpaper '*' -o "load-scripts=no no-audio --loop --unique-wallpaper-process" "$video_path" &
 }
 
@@ -200,21 +193,17 @@ main() {
         choice=$(basename "$RANDOM_PIC")
     fi
 
-    # Find the selected file
-    selected_file=""
-    for pic in "${PICS[@]}"; do
-        if [[ "$(basename "$pic")" == "$choice"* ]]; then
-            selected_file="$pic"
-            break
-        fi
-    done
+    choice_basename=$(basename "$choice" | sed 's/\(.*\)\.[^.]*$/\1/')
+
+    # Search for the selected file in the wallpapers directory, including subdirectories
+    selected_file=$(find /home/ja/Pictures/wallpapers -iname "$choice_basename.*" -print -quit)
 
     if [[ -z "$selected_file" ]]; then
-        echo "File not found."
+        echo "File not found. Selected choice: $choice"
         exit 1
     fi
 
-	# Modify the Startup_Apps.conf file based on wallpaper type
+    # Modify the Startup_Apps.conf file based on wallpaper type
     modify_startup_config "$selected_file"
 
     # **CHECK FIRST** if it's a video or an image **before calling any function**
