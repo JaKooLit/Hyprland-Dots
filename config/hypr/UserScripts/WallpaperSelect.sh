@@ -45,7 +45,7 @@ rofi_override="element-icon{size:${adjusted_icon_size}%;}"
 
 # Kill existing wallpaper daemons for video
 kill_wallpaper_for_video() {
-    pkill swww 2>/dev/null
+    swww kill 2>/dev/null
     pkill mpvpaper 2>/dev/null
     pkill swaybg 2>/dev/null
     pkill hyprpaper 2>/dev/null
@@ -172,7 +172,7 @@ apply_video_wallpaper() {
     fi
     kill_wallpaper_for_video
 
-    # Apply video wallpaper using mpvpaper, adding a unique argument (for mpris waybar module)
+    # Apply video wallpaper using mpvpaper
     mpvpaper '*' -o "load-scripts=no no-audio --loop" "$video_path" &
 }
 
