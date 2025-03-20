@@ -9,12 +9,18 @@ kitty_config="$HOME/.config/kitty/kitty.conf"
 iDIR="$HOME/.config/swaync/images"
 rofi_theme="$HOME/.config/rofi/config-kitty-theme.rasi"
 
+# Check if the Kitty Themes directory exists
+if [ ! -d "$kitty_themes_DiR" ]; then
+  notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Unable to locate Kitty Themes directory. Exiting....."
+  exit 1
+fi
+
 # List the kitty-theme files from the themes directory
 theme=$(ls "$kitty_themes_DiR"/*.conf | xargs -n 1 basename | sed 's/\.conf$//' | rofi -dmenu -config $rofi_theme)
 
-# Check if the user selected a theme
+# Check if no theme was selected, and exit if empty
 if [ -z "$theme" ]; then
-  echo "No theme selected, exiting..."
+  notify-send -u low -i "$iDIR/note.png" "No kitty theme" "selected. Exiting....."
   exit 1
 fi
 
