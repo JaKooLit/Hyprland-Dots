@@ -145,7 +145,7 @@ message {
 listview {
     enabled:                     true;
     columns:                     2;
-    lines:                       10;
+    lines:                       6;
     spacing:      2px ;
     scrollbar:    false;
     padding:      0.5em;
