@@ -109,6 +109,8 @@ shotwin() {
 shotarea() {
 	tmpfile=$(mktemp)
 	grim -g "$(slurp)" - >"$tmpfile"
+
+  # Copy with saving
 	if [[ -s "$tmpfile" ]]; then
 		wl-copy <"$tmpfile"
 		mv "$tmpfile" "$dir/$file"
@@ -128,7 +130,13 @@ shotactive() {
 
 shotswappy() {
 	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile" && notify_view "swappy"
+	grim -g "$(slurp)" - >"$tmpfile" 
+
+  # Copy without saving
+  if [[ -s "$tmpfile" ]]; then
+		wl-copy <"$tmpfile"
+    notify_view "swappy"
+  fi
 }
 
 if [[ ! -d "$dir" ]]; then
