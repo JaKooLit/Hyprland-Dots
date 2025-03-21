@@ -1,6 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# For Rofi Beats to play online Music or Locally save media files
+# For Rofi Beats to play online Music or Locally saved media files
 
 # Variables
 mDIR="$HOME/Music/"
@@ -41,7 +41,7 @@ populate_local_music() {
 
 # Function for displaying notifications
 notification() {
-  notify-send -u normal -i "$iDIR/music.png" " Now Playing:" " $@"
+  notify-send -u normal -i "$iDIR/music.png" "Now Playing:" "$@"
 }
 
 # Main function for playing local music
@@ -60,8 +60,6 @@ play_local_music() {
     if [ "${filenames[$i]}" = "$choice" ]; then
 		
 	    notification "$choice"
-
-      # Play the selected local music file using mpv
       mpv --playlist-start="$i" --loop-playlist --vid=no  "${local_music[@]}"
 
       break
@@ -95,18 +93,30 @@ play_online_music() {
   mpv --shuffle --vid=no "$link"
 }
 
+# Function to stop music and kill mpv processes
+stop_music() {
+  mpv_pids=$(pgrep -x mpv)
 
-# Check if an online music process is running and send a notification, otherwise run the main function
-pkill mpv && notify-send -u low -i "$iDIR/music.png" "Music stopped" || {
+  if [ -n "$mpv_pids" ]; then
+    # Get the PID of the mpv process used by mpvpaper (using the unique argument added)
+    mpvpaper_pid=$(ps aux | grep -- 'unique-wallpaper-process' | grep -v 'grep' | awk '{print $2}')
 
-# Check if rofi is already running
-if pidof rofi > /dev/null; then
-  pkill rofi
-fi
+    for pid in $mpv_pids; do
+      if ! echo "$mpvpaper_pid" | grep -q "$pid"; then
+        kill -9 $pid || true 
+      fi
+    done
+    notify-send -u low -i "$iDIR/music.png" "Music stopped" || true
+  fi
+}
 
+# Check if music is already playing
+if pgrep -x "mpv" > /dev/null; then
+  stop_music
+else
+  user_choice=$(printf "Play from Online Stations\nPlay from Music directory\nShuffle Play from Music directory" | rofi -dmenu -config $rofi_theme_1)
 
-# Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Online Stations\nPlay from Music directory\nShuffle Play from Music directory" | rofi -dmenu -config $rofi_theme_1)
+  echo "User choice: $user_choice"
 
   case "$user_choice" in
     "Play from Music directory")
@@ -119,7 +129,6 @@ user_choice=$(printf "Play from Online Stations\nPlay from Music directory\nShuf
       shuffle_local_music
       ;;
     *)
-      echo "Invalid choice"
       ;;
   esac
-}
+fi

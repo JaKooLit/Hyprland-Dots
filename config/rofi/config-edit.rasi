@@ -17,14 +17,14 @@ configuration {
 
 /* ---- Window ---- */
 window {
-   width: inherit;
+   width: 70%;
    height: inherit;
 }
 
 
 /* ---- Listview ---- */
 listview {
-  columns: 2;
+  columns: 3;
   lines: 6;
   fixed-height: false;
   scrollbar: true;

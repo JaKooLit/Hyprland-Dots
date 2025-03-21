@@ -10,7 +10,7 @@ iDIR="$HOME/.config/swaync/images"
 rofi_theme="$HOME/.config/rofi/config-zsh-theme.rasi"
 
 if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
-  notify-send -i "$iDIR/ja.png" "NOT Supported" "Sorry NixOS does not support this KooL feature"
+  notify-send -i "$iDIR/note.png" "NOT Supported" "Sorry NixOS does not support this KooL feature"
   exit 1
 fi
 
@@ -57,7 +57,7 @@ main() {
         sed -i "s/^$var_name=.*/$var_name=\"$theme_to_set\"/" "$zsh_path"
         notify-send -i "$iDIR/ja.png" "OMZ theme" "applied. restart your terminal"
     else
-        notify-send -i "$iDIR/ja.png" "Error:" "~.zshrc file not found!"
+        notify-send -i "$iDIR/error.png" "E-R-R-O-R" "~.zshrc file not found!"
     fi
 }
 
