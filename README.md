@@ -172,7 +172,10 @@ chmod +x upgrade.sh
 
 #### 🙏 Special request
 - If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
-- Waybar styles (all those new panel styles require some tweaking) - I kindly request assistance 🙏
+
+
+#### ✍️ Contributing
+- Want to contribute? Click [`HERE`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CONTRIBUTING.md) for a guide how to contribute
 
 
 #### 🤷‍♂️ TO DO!
@@ -184,7 +187,7 @@ chmod +x upgrade.sh
 - kindly join my [Discord](https://discord.com/invite/kool-tech-world)
 
 
-### 💖 Support
+#### 💖 Support
 - a Star on my Github repos would be nice 🌟
 
 - Subscribe to my Youtube Channel [YouTube](https://www.youtube.com/@Ja.KooLit) 
