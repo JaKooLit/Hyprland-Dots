@@ -32,7 +32,7 @@ done
 ${SCRIPTSDIR}/WallustSwww.sh &
 
 # reload swaync
-swaync-client --reload-configv
+swaync-client --reload-config
 
 # Relaunching rainbow borders if the script exists
 sleep 1
