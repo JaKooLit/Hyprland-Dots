@@ -26,7 +26,7 @@
 
 "custom/tty": {
 	"format": " ",
-	"on-click": "kitty &",
+	"on-click": "$HOME/.config/hypr/scripts/WaybarScripts.sh --term",
 	"tooltip": true,
 	"tooltip-format": "Launch Terminal",
 },
