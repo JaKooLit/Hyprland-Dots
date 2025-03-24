@@ -124,18 +124,28 @@ fi
 
 printf "\n%.0s" {1..1} 
 
+# Extract Hyprland version (first occurrence of x.y.z after "Hyprland")
+version_output=$(hyprctl version | awk '/^Hyprland/ {print $2}')
+
+# Check if version is 0.48.0 or higher
+if [[ "$(printf '%s\n' "0.48.0" "$version_output" | sort -V | head -n1)" == "0.48.0" ]]; then
+
+    mv config/hypr/UserConfigs/WindowRules.conf config/hypr/UserConfigs/WindowRules-old.conf
+    mv config/hypr/UserConfigs/WindowRules-new.conf config/hypr/UserConfigs/WindowRules.conf 
+
+    echo "$NOTE - Window Rule set up for Hyprland $version_output"
+fi
+
+printf "\n%.0s" {1..1} 
+
 # Function to detect keyboard layout using localectl or setxkbmap
 detect_layout() {
-  if command -v localectl >/dev/null 2>&1; then
-    layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
-    if [ -n "$layout" ]; then
-      echo "$layout"
-    fi
-  elif command -v setxkbmap >/dev/null 2>&1; then
+  if which localectl >/dev/null 2>&1; then
+    layout=$(localectl status --no-pager | grep 'X11 Layout' | awk '{print $3}')
+    [ -n "$layout" ] && echo "$layout"
+  elif which setxkbmap >/dev/null 2>&1; then
     layout=$(setxkbmap -query | grep layout | awk '{print $2}')
-    if [ -n "$layout" ]; then
-      echo "$layout"
-    fi
+    [ -n "$layout" ] && echo "$layout"
   fi
 }
 
@@ -144,8 +154,9 @@ layout=$(detect_layout)
 
 if [ "$layout" = "(unset)" ]; then
   while true; do
-    printf "\n%.0s" {1..1}
-    print_color $WARNING "
+    printf "\n"
+
+    print_color "$WARNING" "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
             STOP AND READ
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
@@ -165,8 +176,10 @@ ${MAGENTA} NOTE:${RESET}
 •  You can also set more than 2 keyboard layouts
 •  For example: ${YELLOW}us, kr, gb, ru${RESET}
 "
-    printf "\n%.0s" {1..1}
-    read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+    printf "\n"
+
+    printf "%s - Please enter the correct keyboard layout: " "$CAT"
+    read new_layout
 
     if [ -n "$new_layout" ]; then
         layout="$new_layout"
@@ -177,14 +190,17 @@ ${MAGENTA} NOTE:${RESET}
   done
 fi
 
-printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n"
+printf "\n"
+printf "%s Detecting keyboard layout to prepare proper Hyprland Settings\n" "$NOTE"
 
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
-  printf "${INFO} Current keyboard layout is ${MAGENTA}$layout${RESET}\n"
-  read -p "${CAT} Is this correct? [y/n] " keyboard_layout
+  printf "%s Current keyboard layout is %s%s%s\n" "$INFO" "$MAGENTA" "$layout" "$RESET"
 
-  case $keyboard_layout in
+  printf "%s Is this correct? [y/n] " "$CAT"
+  read keyboard_layout
+
+  case "$keyboard_layout" in
     [yY])
         awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
@@ -192,8 +208,10 @@ while true; do
         echo "${NOTE} kb_layout ${MAGENTA}$layout${RESET} configured in settings." 2>&1 | tee -a "$LOG"
         break ;;
     [nN])
-        printf "\n%.0s" {1..2}
-        print_color $WARNING "
+        printf "\n"
+        printf "\n"
+
+        print_color "$WARNING" "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
             STOP AND READ
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
@@ -213,9 +231,10 @@ ${MAGENTA} NOTE:${RESET}
 •  You can also set more than 2 keyboard layouts
 •  For example: ${YELLOW}us, kr, gb, ru${RESET}
 "
-        printf "\n%.0s" {1..1}
-        
-        read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+        printf "\n"
+
+        printf "%s - Please enter the correct keyboard layout: " "$CAT"
+        read new_layout
 
         awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
