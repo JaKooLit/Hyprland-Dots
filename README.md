@@ -50,14 +50,13 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 ---
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=22&pause=1000&color=F7077E&vCenter=true&width=435&height=30&lines=INSTALLATION)](https://git.io/typing-svg)
 ### 🚩 🏁 Auto Distro-Hyprland install scripts cloning and starting 🇵🇭
+> [!CAUTION] 
+> If you are using FISH SHELL, DO NOT use this function. Clone the Distro-Hyprland and ran install.sh instead
+
 - NOTE: you need package `curl` for this to work
 
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hyprland.sh)
-```
-- if you are using say fish or a non-POSIX compliant
-```bash
-curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hyprland.sh | bash
 ```
 
 - you can now use above command to automatically clone the Distro-Hyprland install scripts below

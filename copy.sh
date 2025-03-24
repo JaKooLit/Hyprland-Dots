@@ -915,7 +915,7 @@ printf "\n%.0s" {1..1}
 sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
 if [ -d "$sddm_sequioa" ]; then
   while true; do
-    echo "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
+    echo -n "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
     read SDDM_WALL
     
     # Remove any leading/trailing whitespace or newlines from input
@@ -944,7 +944,7 @@ printf "\n%.0s" {1..1}
 echo "${MAGENTA}By default only a few wallpapers are copied${RESET}..."
 
 while true; do
-  echo "${CAT} Would you like to download additional wallpapers? ${WARN} This is 1GB in size (y/n): "
+  echo -n "${CAT} Would you like to download additional wallpapers? ${WARN} This is 1GB in size (y/n): "
   read WALL
   
   case $WALL in
