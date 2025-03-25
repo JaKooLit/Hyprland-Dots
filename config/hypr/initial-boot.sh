@@ -13,9 +13,13 @@ wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
 waybar_style="$HOME/.config/waybar/style/[Extra] Modern-Combined - Transparent.css"
 kvantum_theme="catppuccin-mocha-blue"
 color_scheme="prefer-dark"
-gtk_theme="Flat-Remix-GTK-Blue-Dark"
-icon_theme="Flat-Remix-Blue-Dark"
-cursor_theme="Bibata-Modern-Ice"
+#gtk_theme="Flat-Remix-GTK-Blue-Dark"
+#icon_theme="Flat-Remix-Blue-Dark"
+#cursor_theme="Bibata-Modern-Ice"
+gtk_theme="Breeze-Dark"
+icon_theme="breeze"
+cursor_theme="breeze_cursors"
+
 
 swww="swww img"
 effect="--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"
