@@ -26,7 +26,7 @@ for _prs in "${_ps[@]}"; do
 done
 
 # quit ags & relaunch ags
-#ags -q && ags &
+ags -q && ags &
 
 # Wallust refresh
 ${SCRIPTSDIR}/WallustSwww.sh &
