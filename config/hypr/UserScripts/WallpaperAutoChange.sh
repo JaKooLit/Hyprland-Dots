@@ -9,6 +9,8 @@
 
 wallust_refresh=$HOME/.config/hypr/scripts/RefreshNoWaybar.sh
 
+monitors=$(hyprctl monitors | awk '/^Monitor/{print $2}')
+
 focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 
 if [[ $# -lt 1 ]] || [[ ! -d $1   ]]; then
@@ -22,18 +24,24 @@ export SWWW_TRANSITION_FPS=60
 export SWWW_TRANSITION_TYPE=simple
 
 # This controls (in seconds) when to switch to the next image
-INTERVAL=1800
+INTERVAL=900
 
 while true; do
-	find "$1" \
-		| while read -r img; do
-			echo "$((RANDOM % 1000)):$img"
-		done \
-		| sort -n | cut -d':' -f2- \
-		| while read -r img; do
-			swww img -o $focused_monitor "$img" 
-			$wallust_refresh
-			sleep $INTERVAL
-			
-		done
+    while IFS= read -r focused_monitor; do
+		random_file=$(find $1 -type f | shuf -n 1)
+		echo "$random_file"
+		swww img -o $focused_monitor "$random_file"
+		$wallust_refresh
+		# find "$1" \
+		# 	| while read -r img; do
+		# 		echo "$((RANDOM % 1000)):$img"
+		# 	done \
+		# 	| sort -n | cut -d':' -f2- \
+		# 	| while read -r img; do
+		 		
+		# 		echo "$img"
+		# 	done
+		echo "$focused_monitor"
+	done <<< "$monitors"
+	sleep $INTERVAL
 done

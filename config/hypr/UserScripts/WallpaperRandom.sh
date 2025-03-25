@@ -2,7 +2,8 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Script for Random Wallpaper ( CTRL ALT W)
 
-wallDIR="$HOME/Pictures/wallpapers"
+#wallDIR="$HOME/Pictures/wallpapers"
+wallDir="/mnt/drive1/Wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
@@ -12,9 +13,9 @@ RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
 
 
 # Transition config
-FPS=30
+FPS=60
 TYPE="random"
-DURATION=1
+DURATION=1.5
 BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --transition-bezier $BEZIER"
 

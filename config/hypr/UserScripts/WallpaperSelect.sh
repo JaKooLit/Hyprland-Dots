@@ -4,7 +4,8 @@
 
 # WALLPAPERS PATH
 terminal=kitty
-wallDIR="$HOME/Pictures/wallpapers"
+#wallDIR="$HOME/Pictures/wallpapers"
+wallDIR="/mnt/drive1/Wallpapers/"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 
