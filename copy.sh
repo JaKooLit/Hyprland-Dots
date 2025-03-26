@@ -124,6 +124,20 @@ fi
 
 printf "\n%.0s" {1..1} 
 
+# Extract Hyprland version (first occurrence of x.y.z after "Hyprland")
+version_output=$(hyprctl version | awk '/^Hyprland/ {print $2}')
+
+# Check if version is 0.48.0 or higher
+if [[ "$(printf '%s\n' "0.48.0" "$version_output" | sort -V | head -n1)" == "0.48.0" ]]; then
+
+    mv config/hypr/UserConfigs/WindowRules.conf config/hypr/UserConfigs/WindowRules-old.conf
+    mv config/hypr/UserConfigs/WindowRules-new.conf config/hypr/UserConfigs/WindowRules.conf 
+
+    echo "$NOTE - Window Rule set up for Hyprland $version_output"
+fi
+
+printf "\n%.0s" {1..1} 
+
 # Function to detect keyboard layout using localectl or setxkbmap
 detect_layout() {
   if command -v localectl >/dev/null 2>&1; then
@@ -166,7 +180,9 @@ ${MAGENTA} NOTE:${RESET}
 •  For example: ${YELLOW}us, kr, gb, ru${RESET}
 "
     printf "\n%.0s" {1..1}
-    read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+    
+    echo -n "${CAT} - Please enter the correct keyboard layout: "
+    read new_layout
 
     if [ -n "$new_layout" ]; then
         layout="$new_layout"
@@ -182,7 +198,8 @@ printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n"
 # Prompt the user to confirm whether the detected layout is correct
 while true; do
   printf "${INFO} Current keyboard layout is ${MAGENTA}$layout${RESET}\n"
-  read -p "${CAT} Is this correct? [y/n] " keyboard_layout
+  echo -n "${CAT} Is this correct? [y/n] "
+  read keyboard_layout
 
   case $keyboard_layout in
     [yY])
@@ -215,7 +232,8 @@ ${MAGENTA} NOTE:${RESET}
 "
         printf "\n%.0s" {1..1}
         
-        read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
+        echo -n "${CAT} - Please enter the correct keyboard layout: "
+        read new_layout
 
         awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
         mv temp.conf config/hypr/UserConfigs/UserSettings.conf
@@ -257,8 +275,9 @@ EDITOR_SET=0
 # Check for neovim if installed
 if command -v nvim &> /dev/null; then
     printf "${INFO} ${MAGENTA}neovim${RESET} is detected as installed\n"
-    read -p "${CAT} Do you want to make ${MAGENTA}neovim${RESET} the default editor? (y/N): " EDITOR_CHOICE
-    if [[ "$EDITOR_CHOICE" == "y" ]]; then
+    echo -n "${CAT} Do you want to make ${MAGENTA}neovim${RESET} the default editor? (y/N): "
+    read EDITOR_CHOICE
+    if [[ "$EDITOR_CHOICE" == "y" || "$EDITOR_CHOICE" == "Y" ]]; then
         update_editor "nvim"
         EDITOR_SET=1
     fi
@@ -269,8 +288,9 @@ printf "\n"
 # Check for vim if installed, but only if neovim wasn't chosen
 if [[ "$EDITOR_SET" -eq 0 ]] && command -v vim &> /dev/null; then
     printf "${INFO} ${MAGENTA}vim${RESET} is detected as installed\n"
-    read -p "${CAT} Do you want to make ${MAGENTA}vim${RESET} the default editor? (y/N): " EDITOR_CHOICE
-    if [[ "$EDITOR_CHOICE" == "y" ]]; then
+    echo -n "${CAT} Do you want to make ${MAGENTA}vim${RESET} the default editor? (y/N): "
+    read EDITOR_CHOICE
+    if [[ "$EDITOR_CHOICE" == "y" || "$EDITOR_CHOICE" == "Y" ]]; then
         update_editor "vim"
         EDITOR_SET=1
     fi
@@ -286,7 +306,9 @@ while true; do
   echo "${MAGENTA}Select monitor resolution to properly configure appearance and fonts:"
   echo "$YELLOW  -- Enter 1. for monitor resolution less than 1440p (< 1440p)"
   echo "$YELLOW  -- Enter 2. for monitor resolution equal to or higher than 1440p (≥ 1440p)"
-  read -p "$CAT Enter the number of your choice (1 or 2): " res_choice
+  
+  echo -n "$CAT Enter the number of your choice (1 or 2): "
+  read res_choice
 
   case $res_choice in
     1)
@@ -332,7 +354,8 @@ printf "\n%.0s" {1..1}
 # Ask whether to change to 12hr format
 while true; do
     echo -e "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured in 24H clock format."
-    read -p "$CAT Do you want to change to 12H (AM/PM) clock format? (y/n): " answer
+    echo -n "$CAT Do you want to change to 12H (AM/PM) clock format? (y/n): "
+    read answer
 
     # Convert the answer to lowercase for comparison
     answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
@@ -416,14 +439,20 @@ printf "\n%.0s" {1..1}
 echo "${NOTE} ${SKY_BLUE}By default, Rainbow Borders animation is enabled"
 echo "${WARN} However, this uses a bit more CPU and Memory resources."
 
-read -p "${CAT} Do you want to disable Rainbow Borders animation? (y/N): " border_choice
+# Ask whether to disable Rainbow Borders animation
+echo -n "${CAT} Do you want to disable Rainbow Borders animation? (y/N): "
+read border_choice
+
+# Check user's choice
 if [[ "$border_choice" =~ ^[Yy]$ ]]; then
+    # Disable Rainbow Borders
     mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
     
+    # Comment out the exec-once and animation lines
     sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh/s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
     sed -i '/^[[:space:]]*animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserAnimations.conf
     
-    echo "${OK} Rainbow borders is now disabled." 2>&1 | tee -a "$LOG"
+    echo "${OK} Rainbow borders are now disabled." 2>&1 | tee -a "$LOG"
 else
     echo "${NOTE} No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$LOG"
 fi
@@ -454,7 +483,9 @@ for DIR2 in $DIRS; do
   if [ -d "$DIRPATH" ]; then
     while true; do
       printf "\n${INFO} Found ${YELLOW}$DIR2${RESET} config found in ~/.config/\n"
-      read -p "${CAT} Do you want to replace ${YELLOW}$DIR2${RESET} config? (y/n): " DIR1_CHOICE
+      echo -n "${CAT} Do you want to replace ${YELLOW}$DIR2${RESET} config? (y/n): "
+      read DIR1_CHOICE
+
       case "$DIR1_CHOICE" in
         [Yy]* )
           BACKUP_DIR=$(get_backup_dirname)
@@ -509,7 +540,9 @@ DIRW="waybar"
 DIRPATHw="$HOME/.config/$DIRW"
 if [ -d "$DIRPATHw" ]; then
     while true; do
-        read -p "${CAT} Do you want to replace ${YELLOW}$DIRW${RESET} config? (y/n): " DIR1_CHOICE
+        echo -n "${CAT} Do you want to replace ${YELLOW}$DIRW${RESET} config? (y/n): "
+        read DIR1_CHOICE
+
         case "$DIR1_CHOICE" in
             [Yy]* )
                 BACKUP_DIR=$(get_backup_dirname)
@@ -726,7 +759,8 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
     BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
     if [ -f "$BACKUP_FILE" ]; then
       printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
-      read -p "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (y/N): " file_restore
+      echo -n "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (y/N): "
+      read file_restore
 
       if [[ "$file_restore" == [Yy]* ]]; then
         if cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME"; then
@@ -762,7 +796,9 @@ if [ -d "$BACKUP_DIR_PATH_S" ]; then
 
     if [ -f "$BACKUP_SCRIPT" ]; then
       printf "\n${INFO} Found ${YELLOW}$SCRIPT_NAME${RESET} in hypr backup...\n"
-      read -p "${CAT} Do you want to restore ${YELLOW}$SCRIPT_NAME${RESET} from backup? (y/N): " script_restore
+      echo -n "${CAT} Do you want to restore ${YELLOW}$SCRIPT_NAME${RESET} from backup? (y/N): "
+      read script_restore
+      
       if [[ "$script_restore" == [Yy]* ]]; then
         if cp "$BACKUP_SCRIPT" "$DIRSHPATH/UserScripts/$SCRIPT_NAME"; then
           echo "${OK} - $SCRIPT_NAME restored!" 2>&1 | tee -a "$LOG"
@@ -797,7 +833,8 @@ if [ -d "$BACKUP_DIR_PATH_F" ]; then
   
     if [ -f "$BACKUP_FILE" ]; then
       echo -e "\n${INFO} Found ${YELLOW}$FILE_RESTORE${RESET} in hypr backup..."
-      read -p "${CAT} Do you want to restore ${YELLOW}$FILE_RESTORE${RESET} from backup? (y/N): " file2restore
+      echo -n "${CAT} Do you want to restore ${YELLOW}$FILE_RESTORE${RESET} from backup? (y/N): "
+      read file2restore
 
       if [[ "$file2restore" == [Yy]* ]]; then
         if cp "$BACKUP_FILE" "$DIRPATH/$FILE_RESTORE"; then
@@ -878,7 +915,8 @@ printf "\n%.0s" {1..1}
 sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
 if [ -d "$sddm_sequioa" ]; then
   while true; do
-    read -rp "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n): " SDDM_WALL
+    echo -n "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
+    read SDDM_WALL
     
     # Remove any leading/trailing whitespace or newlines from input
     SDDM_WALL=$(echo "$SDDM_WALL" | tr -d '\n' | tr -d ' ')
@@ -906,7 +944,9 @@ printf "\n%.0s" {1..1}
 echo "${MAGENTA}By default only a few wallpapers are copied${RESET}..."
 
 while true; do
-  read -rp "${CAT} Would you like to download additional wallpapers? ${WARN} This is 1GB in size (y/n): " WALL
+  echo -n "${CAT} Would you like to download additional wallpapers? ${WARN} This is 1GB in size (y/n): "
+  read WALL
+  
   case $WALL in
     [Yy])
       echo "${NOTE} Downloading additional wallpapers..."
@@ -968,7 +1008,9 @@ cleanup_backups() {
           echo "  - ${BACKUP##*/}"
         done
 
-        read -p "${CAT} Do you want to delete the older backups of ${YELLOW}${DIR##*/}${RESET} and keep the latest backup only? (y/N): " back_choice
+        echo -n "${CAT} Do you want to delete the older backups of ${YELLOW}${DIR##*/}${RESET} and keep the latest backup only? (y/N): "
+        read back_choice
+
         if [[ "$back_choice" == [Yy]* ]]; then
           # Sort backups by modification time
           latest_backup="${BACKUP_DIRS[0]}"

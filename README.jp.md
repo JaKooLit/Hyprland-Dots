@@ -55,16 +55,13 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 ### 🚩 🏁 自動化された Distro-Hyprland のインストールスクリプトのクローンと起動 🇵🇭
 
+> [注意！]
+> FISH SHELLを使用している場合、この関数を使わないでください。代わりにDistro-Hyprlandをクローンしinstall.shを実行してください。
+
 - 重要：これを動作させるには、`curl` パッケージが必要です。
 
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hyprland.sh)
-```
-
-- Fish などの非 POSIX 準拠のシェルを使用している場合
-
-```bash
-curl -sL https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hyprland.sh | bash
 ```
 
 - 上記のコマンドを使用して、Distro-Hyprland のインストールスクリプトを自動的にクローンできます。
