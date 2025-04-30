@@ -88,7 +88,7 @@ temp_max = (
 temp_min_max = f"  {temp_min}\t\t  {temp_max}"
 
 # wind speed
-wind_speed = html_data("span[data-testid='Wind']").text().split("\n")[0]
+wind_speed = html_data("span[data-testid='Wind'] > span").eq(1)[0].text
 wind_text = f"  {wind_speed}"
 
 # humidity
