@@ -58,7 +58,10 @@ play_local_music() {
   # Find the corresponding file path based on user's choice and set that to play the song then continue on the list
   for (( i=0; i<"${#filenames[@]}"; ++i )); do
     if [ "${filenames[$i]}" = "$choice" ]; then
-		
+
+      if music_playing; then
+        stop_music
+      fi
 	    notification "$choice"
       mpv --playlist-start="$i" --loop-playlist --vid=no  "${local_music[@]}"
 
@@ -69,6 +72,9 @@ play_local_music() {
 
 # Main function for shuffling local music
 shuffle_local_music() {
+  if music_playing; then
+    stop_music
+  fi
   notification "Shuffle Play local music"
 
   # Play music in $mDIR on shuffle
@@ -87,10 +93,18 @@ play_online_music() {
 
   link="${online_music[$choice]}"
 
+  if music_playing; then
+    stop_music
+  fi
   notification "$choice"
   
   # Play the selected online music using mpv
   mpv --shuffle --vid=no "$link"
+}
+
+# Function to check if music is already playing
+music_playing() {
+  pgrep -x "mpv" > /dev/null
 }
 
 # Function to stop music and kill mpv processes
@@ -110,25 +124,30 @@ stop_music() {
   fi
 }
 
-# Check if music is already playing
-if pgrep -x "mpv" > /dev/null; then
-  stop_music
-else
-  user_choice=$(printf "Play from Online Stations\nPlay from Music directory\nShuffle Play from Music directory" | rofi -dmenu -config $rofi_theme_1)
+user_choice=$(printf "%s\n" \
+  "Play from Online Stations" \
+  "Play from Music directory" \
+  "Shuffle Play from Music directory" \
+  "Stop RofiBeats" \
+  | rofi -dmenu -config $rofi_theme_1)
 
-  echo "User choice: $user_choice"
+echo "User choice: $user_choice"
 
-  case "$user_choice" in
-    "Play from Music directory")
-      play_local_music
-      ;;
-    "Play from Online Stations")
-      play_online_music
-      ;;
-    "Shuffle Play from Music directory")
-      shuffle_local_music
-      ;;
-    *)
-      ;;
-  esac
-fi
+case "$user_choice" in
+  "Play from Online Stations")
+    play_online_music
+    ;;
+  "Play from Music directory")
+    play_local_music
+    ;;
+  "Shuffle Play from Music directory")
+    shuffle_local_music
+    ;;
+  "Stop RofiBeats")
+    if music_playing; then
+      stop_music
+    fi
+    ;;
+  *)
+    ;;
+esac
