@@ -7,6 +7,7 @@ polkit=(
   "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
   "/usr/libexec/hyprpolkitagent"
   "/usr/lib/hyprpolkitagent"
+  "/usr/lib/hyprpolkitagent/hyprpolkitagent"
   "/usr/lib/polkit-kde-authentication-agent-1"
   "/usr/lib/polkit-gnome-authentication-agent-1"
   "/usr/libexec/polkit-gnome-authentication-agent-1"
@@ -15,13 +16,13 @@ polkit=(
   "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
 )
 
-executed=false  # Flag to track if a file has been executed
+executed=false # Flag to track if a file has been executed
 
 # Loop through the list of files
 for file in "${polkit[@]}"; do
-  if [ -e "$file" ]; then
+  if [ -e "$file" ] && [ -f "$file" ] && [ -x "$file" ]; then
     echo "File $file found, executing command..."
-    exec "$file"  
+    exec "$file"
     executed=true
     break
   fi
