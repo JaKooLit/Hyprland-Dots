@@ -1,6 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
-# Kitty Themes - Script to preview themes by applying and re-opening Rofi.
+# Kitty Themes Source https://github.com/dexpota/kitty-themes #
 
 # Define directories and variables
 kitty_themes_DiR="$HOME/.config/kitty/kitty-themes" # Kitty Themes Directory
