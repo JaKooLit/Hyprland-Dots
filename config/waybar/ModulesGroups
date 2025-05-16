@@ -32,7 +32,7 @@
 	]
 },
 
-"group/mobo_drawer": {
+/*"group/mobo_drawer": {
 	"orientation": "inherit",
 	"drawer": {
 		"transition-duration": 500,
@@ -46,7 +46,7 @@
 		"memory",
 		"disk",
 	]
-},
+},*/
 "group/laptop": {
 	"orientation": "inherit",
 	"modules": [
@@ -89,9 +89,6 @@
         },
 	"modules": [
 		"custom/power",
-		"custom/lock",
-		"keyboard-state",
-		"custom/keyboard",
 	]
 },
 "group/notify": {
