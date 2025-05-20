@@ -124,20 +124,6 @@ fi
 
 printf "\n%.0s" {1..1} 
 
-# Extract Hyprland version (first occurrence of x.y.z after "Hyprland")
-version_output=$(hyprctl version | awk '/^Hyprland/ {print $2}')
-
-# Check if version is 0.48.0 or higher
-if [[ "$(printf '%s\n' "0.48.0" "$version_output" | sort -V | head -n1)" == "0.48.0" ]]; then
-
-    mv config/hypr/UserConfigs/WindowRules.conf config/hypr/UserConfigs/WindowRules-old.conf
-    mv config/hypr/UserConfigs/WindowRules-new.conf config/hypr/UserConfigs/WindowRules.conf 
-
-    echo "$NOTE - Window Rule set up for Hyprland $version_output"
-fi
-
-printf "\n%.0s" {1..1} 
-
 # Function to detect keyboard layout using localectl or setxkbmap
 detect_layout() {
   if command -v localectl >/dev/null 2>&1; then
