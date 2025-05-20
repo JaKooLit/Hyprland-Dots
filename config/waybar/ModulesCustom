@@ -19,7 +19,7 @@
 
 "custom/file_manager": {
 	"format": " ",
-	"on-click": "xdg-open . &",
+	"on-click": "$HOME/.config/hypr/scripts/WaybarScripts.sh --files",
 	"tooltip": true,
 	"tooltip-format": "File Manager",
 },
