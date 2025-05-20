@@ -32,10 +32,13 @@ elif [[ "$1" == "--nmtui" ]]; then
     $term nmtui
 elif [[ "$1" == "--term" ]]; then
     $term &
+elif [[ "$1" == "--files" ]]; then
+    $files &
 else
     echo "Usage: $0 [--btop | --nvtop | --nmtui | --term]"
     echo "--btop       : Open btop in a new term"
     echo "--nvtop      : Open nvtop in a new term"
     echo "--nmtui      : Open nmtui in a new term"
     echo "--term   : Launch a term window"
+    echo "--files  : Launch a file manager"
 fi
