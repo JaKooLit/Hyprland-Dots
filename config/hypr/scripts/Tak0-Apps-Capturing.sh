@@ -1,5 +1,5 @@
 ##################################################################
-#                                                                #   
+#                                                                #
 #                                                                #
 #             TAK_0'S Apps-Capturing-And-Deploying               #
 #                                                                #
@@ -11,7 +11,7 @@
 #                                                                #
 #                                                                #
 #    For some unexplainable reason though the text prompt        #
-#     does not work in wofi, so just for you to know - if there  # 
+#     does not work in wofi, so just for you to know - if there  #
 #        is an empty text line - it asks you for the name        #
 #                                                                #
 ##################################################################
@@ -21,7 +21,7 @@
 
 set -euo pipefail  # Strict error handling: exit on error, unset variables, and pipeline failure
 
-# Configuration
+# ------------------ CONFIGURATION ------------------
 CONFIG="$HOME/.config/hypr/UserConfigs/Startup_Apps.conf"  # Path to user startup config
 SCRIPTS_DIR="$(dirname "$CONFIG")"  # Directory containing the config
 DEPLOY_DIR="$SCRIPTS_DIR/deploy-scripts"  # Directory to store generated deployment scripts
@@ -32,7 +32,7 @@ echo "[DEBUG] CONFIG=$CONFIG"
 echo "[DEBUG] SCRIPTS_DIR=$SCRIPTS_DIR"
 echo "[DEBUG] DEPLOY_DIR=$DEPLOY_DIR"
 
-# Dependencies check
+# ------------------ DEPENDENCIES ------------------
 echo "[DEBUG] Checking dependencies..."
 for cmd in hyprctl jq wofi; do
     if ! command -v "$cmd" &>/dev/null; then
@@ -42,7 +42,7 @@ for cmd in hyprctl jq wofi; do
     echo "[DEBUG] Found dependency: $cmd"
 done
 
-# Prompt user whether to capture all workspaces or select one
+# ------------------ WORKSPACE CHOICE ------------------
 echo "[DEBUG] Prompting for capture mode (all or one workspace)..."
 CAPTURE_ALL=$(printf "No\nYes" | wofi --dmenu --prompt="Capture all workspaces?" --lines=2)
 echo "[DEBUG] CAPTURE_ALL=$CAPTURE_ALL"
@@ -64,6 +64,8 @@ else
 fi
 
 echo "[DEBUG] Workspaces to capture: ${WS_LIST[*]}"
+
+# ------------------ CAPTURE CLIENTS ------------------
 
 # Get all current clients (windows)
 echo "[DEBUG] Capturing all clients..."
@@ -95,9 +97,33 @@ for ENTRY in "${CMDS[@]}"; do
 
 done
 
-# Remove duplicates
+# ------------------ DEDUPLICATE ------------------
 mapfile -t UNIQUE_ENTRIES < <(printf "%s\n" "${FILTERED[@]}" | awk '!seen[$0]++')
 echo "[DEBUG] Unique entries count: ${#UNIQUE_ENTRIES[@]}"
+
+# Check if existing deployment scripts are available
+echo "[DEBUG] Checking for existing deployment scripts..."
+mapfile -t EXISTING_SCRIPTS < <(find "$DEPLOY_DIR" -maxdepth 1 -type f -name "*.sh" | sort)
+
+APPEND_MODE="No"
+if (( ${#EXISTING_SCRIPTS[@]} > 0 )); then
+    echo "[DEBUG] Found existing scripts: ${EXISTING_SCRIPTS[*]}"
+    CHOICE=$(printf "Create new script\nAppend to existing" | wofi --dmenu --prompt="Choose deployment method:" --lines=2)
+    echo "[DEBUG] User chose deployment method: $CHOICE"
+    if [[ "$CHOICE" == "Append to existing" ]]; then
+        APPEND_MODE="Yes"
+        # Select script to append to
+        EXISTING_SCRIPT_SELECTION=$(printf "%s\n" "${EXISTING_SCRIPTS[@]}" | wofi --dmenu --prompt="Select script to append to:" --lines=10)
+        if [[ -z "$EXISTING_SCRIPT_SELECTION" ]]; then
+            echo "No script selected. Exiting..."
+            exit 1
+        fi
+        echo "[DEBUG] Appending to: $EXISTING_SCRIPT_SELECTION"
+        SCRIPT_PATH="$EXISTING_SCRIPT_SELECTION"
+    fi
+fi
+
+# ------------------ SCRIPT ALIAS PROMPT ------------------
 
 # Prompt for script alias/name
 echo "[DEBUG] Prompting for script alias..."
@@ -112,28 +138,37 @@ fi
 SCRIPT_PATH="$DEPLOY_DIR/$SCRIPT_ALIAS.sh"
 echo "[DEBUG] SCRIPT_PATH=$SCRIPT_PATH"
 
-# Write the deployment script
+# ------------------ GENERATE DEPLOY SCRIPT ------------------
 echo "[DEBUG] Writing deployment script..."
-{
-    echo "#!/usr/bin/env bash"
-    if [[ "$CAPTURE_ALL" == "Yes" ]]; then
-        echo "# Deployment script for all workspaces"
-    else
-        echo "# Deployment script for workspace ${WS_LIST[*]}"
-    fi
+if [[ "$APPEND_MODE" == "Yes" ]]; then
     for ENTRY in "${UNIQUE_ENTRIES[@]}"; do
-        CMD=${ENTRY%%::*}  # Extract command
-        WS=${ENTRY##*::}   # Extract workspace
-        echo "( $CMD & ) && sleep 1 && hyprctl dispatch movetoworkspace $WS"
+        CMD=${ENTRY%%::*}
+        WS=${ENTRY##*::}
+        echo "( $CMD & ) && sleep 1 && hyprctl dispatch movetoworkspace $WS" >> "$SCRIPT_PATH"
+        echo "[DEBUG] Appended: $CMD on workspace $WS"
     done
-} > "$SCRIPT_PATH"
-chmod +x "$SCRIPT_PATH"
-echo "[DEBUG] Script written and made executable."
+else
+    {
+        echo "#!/usr/bin/env bash"
+        if [[ "$CAPTURE_ALL" == "Yes" ]]; then
+            echo "# Deployment script for all workspaces"
+        else
+            echo "# Deployment script for workspace ${WS_LIST[*]}"
+        fi
+        for ENTRY in "${UNIQUE_ENTRIES[@]}"; do
+            CMD=${ENTRY%%::*}
+            WS=${ENTRY##*::}
+            echo "( $CMD & ) && sleep 1 && hyprctl dispatch movetoworkspace $WS"
+        done
+    } > "$SCRIPT_PATH"
+    chmod +x "$SCRIPT_PATH"
+    echo "[DEBUG] Script written and made executable."
+fi
 
 echo "Deployment script created at: $SCRIPT_PATH"
 
-# Prompt to add the script to Hyprland startup config
-echo "[DEBUG] Prompting to add script to Hyprland startup config..."
+# ------------------ ADD TO HYPRLAND STARTUP ------------------
+echo "[DEBUG] Prompting to add script to Hyprland startup..."
 ADD_STARTUP=$(printf "No\nYes" | wofi --dmenu --prompt="Add script to Hyprland startup?" --lines=2)
 echo "[DEBUG] ADD_STARTUP=$ADD_STARTUP"
 if [[ "$ADD_STARTUP" == "Yes" ]]; then
@@ -155,7 +190,7 @@ else
     echo "Skipped adding to Hyprland startup."
 fi
 
-# Prompt to add zsh alias
+# ------------------ ADD ZSH ALIAS ------------------
 echo "[DEBUG] Prompting to add zsh alias..."
 ADD_ZSH_ALIAS=$(printf "No\nYes" | wofi --dmenu --prompt="Add zsh alias for this script?" --lines=2)
 echo "[DEBUG] ADD_ZSH_ALIAS=$ADD_ZSH_ALIAS"
