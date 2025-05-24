@@ -32,7 +32,7 @@ inputbar {
 
 entry {
   expand: true;
-  placeholder: " 🐾  Search / Choose Kitty theme";
+  placeholder: " 🐾  Choose Kitty theme: Enter to Preview; CTRL S to Apply";
 }
 
 /* ---- Listview ---- */
