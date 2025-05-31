@@ -11,9 +11,15 @@ DEBUG=false
 SPECIAL_WS="special:scratchpad"
 ADDR_FILE="/tmp/dropdown_terminal_addr"
 
+# Dropdown size and position configuration (percentages)
+WIDTH_PERCENT=50  # Width as percentage of screen width
+HEIGHT_PERCENT=50 # Height as percentage of screen height
+X_PERCENT=25      # X position as percentage from left (25% centers a 50% width window)
+Y_PERCENT=5       # Y position as percentage from top
+
 # Animation settings
 ANIMATION_DURATION=100  # milliseconds
-SLIDE_STEPS=10
+SLIDE_STEPS=5
 SLIDE_DELAY=5  # milliseconds between steps
 
 # Parse arguments
@@ -39,6 +45,12 @@ if [ -z "$TERMINAL_CMD" ]; then
     echo "  $0 -d foot (with debug output)"
     echo "  $0 'kitty -e zsh'"
     echo "  $0 'alacritty --working-directory /home/user'"
+    echo ""
+    echo "Edit the script to modify size and position:"
+    echo "  WIDTH_PERCENT  - Width as percentage of screen (default: 50)"
+    echo "  HEIGHT_PERCENT - Height as percentage of screen (default: 50)"
+    echo "  X_PERCENT      - X position from left as percentage (default: 25)"
+    echo "  Y_PERCENT      - Y position from top as percentage (default: 5)"
     exit 1
 fi
 
@@ -118,11 +130,11 @@ calculate_dropdown_position() {
     local mon_width=$(echo $monitor_info | cut -d' ' -f3)
     local mon_height=$(echo $monitor_info | cut -d' ' -f4)
     
-    # Calculate 50% width, 50% height, centered horizontally, 5% from top
-    local width=$((mon_width / 2))
-    local height=$((mon_height / 2))
-    local x=$((mon_x + (mon_width - width) / 2))
-    local y=$((mon_y + mon_height / 20))  # 5% from top
+    # Calculate position and size based on percentages
+    local width=$((mon_width * WIDTH_PERCENT / 100))
+    local height=$((mon_height * HEIGHT_PERCENT / 100))
+    local x=$((mon_x + (mon_width * X_PERCENT / 100)))
+    local y=$((mon_y + (mon_height * Y_PERCENT / 100)))
     
     echo "$x $y $width $height"
 }
@@ -175,7 +187,7 @@ spawn_terminal() {
     count_before=$(echo "$windows_before" | jq 'length')
     
     # Launch terminal directly in special workspace to avoid visible spawn
-    hyprctl dispatch exec "[float; size $width $height; workspace special:scratchpad silent] $TERMINAL_CMD"
+    hyprctl dispatch exec "[float; size $width $height; stayfocused; workspace special:scratchpad silent] $TERMINAL_CMD"
     
     # Wait for window to appear
     sleep 0.1
@@ -208,7 +220,8 @@ spawn_terminal() {
         sleep 0.2
         
         # Now bring it back with the same animation as subsequent shows
-        hyprctl dispatch movetoworkspace "$CURRENT_WS,address:$new_addr"
+        # Use movetoworkspacesilent to avoid affecting workspace history
+        hyprctl dispatch movetoworkspacesilent "$CURRENT_WS,address:$new_addr"
         hyprctl dispatch pin "address:$new_addr"
         animate_slide_down "$new_addr" "$target_x" "$target_y" "$width" "$height"
         
@@ -234,8 +247,8 @@ if terminal_exists; then
         width=$(echo $pos_info | cut -d' ' -f3)
         height=$(echo $pos_info | cut -d' ' -f4)
         
-        # Move to current workspace and pin
-        hyprctl dispatch movetoworkspace "$CURRENT_WS,address:$TERMINAL_ADDR"
+        # Use movetoworkspacesilent to avoid affecting workspace history
+        hyprctl dispatch movetoworkspacesilent "$CURRENT_WS,address:$TERMINAL_ADDR"
         hyprctl dispatch pin "address:$TERMINAL_ADDR"
         
         # Set size and animate slide down
@@ -276,8 +289,5 @@ else
         if [ -n "$TERMINAL_ADDR" ]; then
             hyprctl dispatch focuswindow "address:$TERMINAL_ADDR"
         fi
-    else
-        echo "Failed to create terminal"
-        exit 1
     fi
 fi
