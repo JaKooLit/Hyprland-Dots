@@ -5,7 +5,6 @@
 # Example: ./Dropdown.sh foot
 #          ./Dropdown.sh -d foot (with debug output)
 #          ./Dropdown.sh "kitty -e zsh"
-#          ./Dropdown.sh "alacritty --working-directory /home/user"
 
 DEBUG=false
 SPECIAL_WS="special:scratchpad"
