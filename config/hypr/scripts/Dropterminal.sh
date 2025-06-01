@@ -187,7 +187,7 @@ spawn_terminal() {
     count_before=$(echo "$windows_before" | jq 'length')
     
     # Launch terminal directly in special workspace to avoid visible spawn
-    hyprctl dispatch exec "[float; size $width $height; stayfocused; workspace special:scratchpad silent] $TERMINAL_CMD"
+    hyprctl dispatch exec "[float; size $width $height; workspace special:scratchpad silent] $TERMINAL_CMD"
     
     # Wait for window to appear
     sleep 0.1
