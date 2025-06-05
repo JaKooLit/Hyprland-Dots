@@ -30,7 +30,7 @@ listview {
   fixed-columns: false;
   scrollbar: false;
   colums: 1;
-  lines: 3;
+  lines: 4;
   spacing: 6px;
   cycle: true;
 }
