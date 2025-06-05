@@ -11,12 +11,12 @@
 
 <div align="center">
 <br>
-  <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
-  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/discussions"><kbd> <br> Discussions <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> FAQ <br> </kbd></a>&ensp;&ensp;
+  <a href="#instalare"><kbd> <br> Instalare <br> </kbd></a>  
+  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> YouTube <br> </kbd></a>  
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>  
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/discussions"><kbd> <br> Discuții <br> </kbd></a>  
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Comenzi rapide <br> </kbd></a>  
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> Întrebări frecvente <br> </kbd></a>  
   <a href="https://discord.gg/kool-tech-world"><kbd> <br> Discord <br> </kbd></a>
 </div><br>
 
@@ -29,7 +29,7 @@
 
 <h3 align="center">
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
-	KooL's Hyprland Dotfiles Showcase 
+	Prezentarea fișierelor Dotfiles Hyprland ale lui KooL 
 	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
 </h3>
 
@@ -39,173 +39,159 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 </div>
 
-### 📹 A video walkthroughs
-- at the bottom
+### 📹 Ghiduri video
+- la finalul paginii
 
-### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
+### 🎞️ Demo AGS Overview
+- în caz că te întrebi, aici este un demo scurt al AGS overview [Link YouTube](https://youtu.be/zY5SLNPBJTs)
 
 </details>
 
 ---
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=22&pause=1000&color=F7077E&vCenter=true&width=435&height=30&lines=INSTALLATION)](https://git.io/typing-svg)
-### 🚩 🏁 Auto Distro-Hyprland install scripts cloning and starting 🇵🇭
-> [!CAUTION] 
-> If you are using FISH SHELL, DO NOT use this function. Clone the Distro-Hyprland and ran install.sh instead
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=22&pause=1000&color=F7077E&vCenter=true&width=435&height=30&lines=INSTALARE)](https://git.io/typing-svg)
+### 🚩 🏁 Scripturi automate de instalare Hyprland pentru distribuții, clonare și pornire 🇵🇭
+> [!ATENȚIE] 
+> Dacă folosești FISH SHELL, NU utiliza această funcție. Clonează Distro-Hyprland și rulează install.sh în schimb.
 
-- NOTE: you need package `curl` for this to work
+- NOTĂ: ai nevoie de pachetul `curl` pentru ca aceasta să funcționeze
 
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distro-Hyprland.sh)
 ```
 
-- you can now use above command to automatically clone the Distro-Hyprland install scripts below
-- it will clone the install scripts and start the `install.sh` 😎
+- acum poți folosi comanda de mai sus pentru a clona automat scripturile de instalare Distro-Hyprland de mai jos
+- va clona scripturile de instalare și va porni `install.sh` 😎
 
-
-### 👁️‍🗨️ My Hyprland install Scripts 👁️‍🗨️
-- Automated Hyprland Scripts for Distro of choice which will pull this dotfiles if opted to install these configurations
+### 👁️‍🗨️ Scripturile mele de instalare Hyprland 👁️‍🗨️
+- Scripturi automate Hyprland pentru distribuția aleasă, care vor descărca aceste dotfiles dacă optezi pentru instalarea acestor configurații
 
 - [Arch-Linux](https://github.com/JaKooLit/Arch-Hyprland)
-
 - [OpenSUSE(Tumbleweed)](https://github.com/JaKooLit/OpenSuse-Hyprland)
-
 - [Fedora-Linux](https://github.com/JaKooLit/Fedora-Hyprland)
-
 - [Debian-Linux (Trixie & SID)](https://github.com/JaKooLit/Debian-Hyprland)
-
 - [NixOS](https://github.com/JaKooLit/NixOS-Hyprland)
-
 - [Ubuntu 24.04 LTS](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.04)
 - [Ubuntu 24.10](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/24.10)
-- [Ubuntu 25.04 - (ALPHA STAGE)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04)
+- [Ubuntu 25.04 - (FAZĂ ALPHA)](https://github.com/JaKooLit/Ubuntu-Hyprland/tree/25.04)
+
 ---
 
-### 🪧 Attention 🪧
-- This repo does NOT contain or will NOT install any packages. These are only pre-configured-hyprland configs or dotfiles
-- refer to install scripts what packages needed to install... but atleast, Hyprland packages is needed 😏😏😏 duh!!
-- This repo will be pulled by the Distro-Hyprland install scripts above if you opt to download pre-configured dots
+### 🪧 Atenție 🪧
+- Acest repo NU conține și NU va instala niciun pachet. Acestea sunt doar configurații Hyprland pre-configurate sau dotfiles
+- consultă scripturile de instalare pentru a vedea ce pachete trebuie instalate... dar cel puțin, pachetele Hyprland sunt necesare 😏😏😏 evident!!
+- Acest repo va fi descărcat de scripturile de instalare Distro-Hyprland de mai sus dacă optezi pentru descărcarea dotfiles-urilor pre-configurate
 
-### 👀 Screenshots 👀
-- All screenshots are collected here [Screenshots](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
+### 👀 Capturi de ecran 👀
+- Toate capturile de ecran sunt colectate aici [Capturi de ecran](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-ScreenShots)
 
-### 📦 Whats new?
-- To easily track changes, I will be updating the [CHANGELOGS](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)  Screenshots will be included if worth mentioning the changes!
+### 📦 Ce mai e nou?
+- Pentru a urmări ușor modificările, voi actualiza [Jurnalul de modificări](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs). Capturile de ecran vor fi incluse dacă modificările merită menționate!
 
-> [!NOTE]
-> Kindly note that by defeault, Kools Dots are adjusted / configured for 2k (1440p) display without scaling. 
+> [!NOTĂ]
+> Reține că, în mod implicit, dotfiles-urile lui Kool sunt ajustate/configurate pentru afișaje 2k (1440p) fără scalare.
 
-### 💥 Copying / Installation / Update instructions 💥
-- [`MORE INFO HERE`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
-> [!Note] 
-> The auto copy script "copy.sh" will create backups of intended directories to be copied. However, still a good idea to manually backup just incase script failed to backup!
-- clone this repo by using git. Change directory, make executable and run the script
+### 💥 Instrucțiuni de copiere / instalare / actualizare 💥
+- [`MAI MULTE INFORMAȚII AICI`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update) 
+> [!Notă] 
+> Scriptul automat de copiere „copy.sh” va crea copii de rezervă ale directoarelor care urmează să fie copiate. Totuși, este o idee bună să faci manual o copie de rezervă, în caz că scriptul nu reușește să o facă!
 
-> to download from Master branch
+- clonează acest repo folosind git. Schimbă directorul, fă scriptul executabil și rulează-l
+
+> pentru a descărca din ramura Master
 ```bash
 git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
 cd Hyprland-Dots
 ```
 
-> to download from Development branch (development and testing)
+> pentru a descărca din ramura Development (dezvoltare și testare)
 ```bash
 git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
 cd Hyprland-Dots
 ```
 
-- automatic copy/install of pre-configured dots (recommended for updating)
+- copiere/instalare automată a dotfiles-urilor pre-configurate (recomandat pentru actualizări)
 ```bash
 chmod +x copy.sh
 ./copy.sh
 ```
 
-- to copy/install from releases (stable) (note this is 1 version older than in main)
+- pentru a copia/instala din versiuni (stabile) (notă: aceasta este cu o versiune mai veche decât cea din ramura principală)
 ```bash
 chmod +x release.sh
 ./release.sh
 ```
 
-- UPGRADE.sh function
+- Funcția UPGRADE.sh
 > [!IMPORTANT]
-> You need rsync for it to work
-> you should have already up and running KooL's Hyprland before using this function
+> Ai nevoie de rsync pentru ca aceasta să funcționeze
+> trebuie să ai deja configurat și funcțional Hyprland-ul lui KooL înainte de a folosi această funcție
 ```bash
 chmod +x upgrade.sh
 ./upgrade.sh
 ```
 
-## ❗❗❗ DEBIAN AND UBUNTU HEADS UP!
-- I am getting ridiculously amount of messages for updating your KooL Hyprland dotfiles. I have made a BIG note on [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update)
+## ❗❗❗ ATENȚIE PENTRU UTILIZATORII DEBIAN ȘI UBUNTU!
+- Primesc o mulțime de mesaje despre actualizarea dotfiles-urilor Hyprland ale lui KooL. Am făcut o notă mare în [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Install_&_Update)
 
+#### ⚠️⚠️⚠️ ATENȚIE - COPII DE REZERVĂ CREATE DE SCRIPT
+> [!ATENȚIE]
+> copy.sh, release.sh și chiar upgrade.sh creează o copie de rezervă!
+> Verifică manual conținutul din $HOME/.config
+> Șterge manual toate copiile de rezervă de care nu ai nevoie
 
-#### ⚠️⚠️⚠️ ATTENTION - BACKUPS CREATED by SCRIPT
-> [!CAUTION]
-> copy.sh, release.sh and even upgrade.sh creates a backup!
-> Kindly investigate manually contents on your $HOME/.config
-> Delete manually all the backups which you dont need
+#### 🛎️ o mică notă despre imagini de fundal
+- în mod implicit, doar câteva imagini de fundal vor fi copiate (1 pentru modul întunecat și deschis, plus încă 3). Ți se va oferi opțiunea de a descărca mai multe imagini de fundal. Poți previzualiza/verifica imaginile de fundal suplimentare de la [`ACEST`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
 
-#### 🛎️ a small note on wallpapers
-- by default, only few wallpapers will be copied (1 each dark and light plus 3 more). You will be offered to download more wallpapers. You can preview/check the additional wallpapers from [`THIS`](https://github.com/JaKooLit/Wallpaper-Bank/tree/main/wallpapers) Link
+#### ⚠️⚠️⚠️ OBLIGATORIU! după copierea / instalarea acestor dotfiles
++ Apasă SUPER W și setează o imagine de fundal. Aceasta este și pentru a inițializa wallust pentru temele waybar, kitty (tty) și rofi. Totuși, dacă folosești copy.sh sau release.sh, va exista o imagine de fundal inițială presetată și nu va trebui să faci asta
 
++ Proprietari de Nvidia. Asigură-te că editezi `~/.config/hypr/UserConfigs/ENVariables.conf` (foarte recomandat).
+- Utilizatori / proprietari de Nvidia, după instalare, verifică [`ACESTA`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
 
-#### ⚠️⚠️⚠️ A MUST! after copying  / Installing these dots
-+ Press SUPER W and set a wallpaper. This is also to initiate wallust for waybar, kitty (tty) and rofi themes. However, If you use the copy.sh or the release.sh, there will be a preset initial Wallpaper and you dont have to do this
++ Dacă ți-ai setat deja propriile comenzi rapide, monitoare etc., doar copiază-le din copia de rezervă creată înainte de a te deconecta sau reporni. (recomandat)
 
-+ Nvidia Owners. Make sure to edit your `~/.config/hypr/UserConfigs/ENVariables.conf` (highly recommended).
-- NVIDIA users / owners, after installation, check [`THIS`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Notes_to_remember#--for-nvidia-gpu-users)
+#### 📖 Probleme cunoscute și posibile soluții
+- verifică această pagină [Întrebări frecvente](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) și [PROBLEME NESOLUȚIONATE](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known_Issues)
 
-+ If you have already set your own keybinds, monitors, etc.... Just copy over from backup created before log-out or reboot. (recommended)
+#### 🙋 ÎNTREBĂRI ?!?! ⁉️
+- Întrebări frecvente! Da, poți folosi aceste dotfiles pe alte distribuții! Asigură-te doar că instalezi pachetele corespunzătoare mai întâi! Dacă te face să te simți mai bine, folosesc aceeași configurație pe Gentoo-ul meu :)
+- SFAT RAPID! Apasă pe modulul HINT! din Waybar (notă: disponibil doar în layout-urile Waybar implicit și Simple-L [SUS]). Poate fi lansat cu comanda rapidă `SUPER H`
+- Mai multe întrebări? click aici pentru a răsfoi acest [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/)
+- Dacă vrei vechile configurații, acestea sunt colectate în repo-ul meu „Archive”. Vezi [AICI](https://github.com/JaKooLit/Hyprland-Dots-releases-Archive)
 
+#### ⌨ Comenzi rapide
+- Comenzi rapide [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 
-#### 📖 Known issues and possible solutions
-- check out this page [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [UNSOLVED ISSUES](https://github.com/JaKooLit/Hyprland-Dots/wiki/Known_Issues)
+#### 🙏 Cerere specială
+- Dacă ai îmbunătățiri pentru dotfiles sau configurații, nu ezita să trimiți un PR pentru îmbunătățiri. Întotdeauna primesc cu bucurie îmbunătățiri, deoarece și eu învăț, la fel ca voi!
 
+#### ✍️ Contribuții
+- Vrei să contribui? Click [`AICI`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CONTRIBUTING.md) pentru un ghid despre cum să contribui
 
-#### 🙋 QUESTIONS ?!?! ⁉️
-- FAQ! Yes you can use these dotfiles to other distro! Just ensure to install proper packages first! If it makes you feel better, I use same config on my Gentoo:)
-- QUICK HINT! Click the HINT! Waybar module (note only available in Waybar default and Simple-L [TOP] layout). Can be launched by Keybind `SUPER H`
-- More question? click here browse through this [WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki/)
-- If you want the old configs, it is collected on my "Archive" repo. See [HERE](https://github.com/JaKooLit/Hyprland-Dots-releases-Archive)
+#### 🤷‍♂️ DE FĂCUT!
+- [ ] Ajustarea dotfiles-urilor - 🚧 în progres constant 
+- ~~[ ] Posibil trecerea la starship? Deși starship are teme limitate comparativ cu oh-my-zsh.~~ fără planuri pentru moment
 
-#### ⌨ Keybinds
-- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
+#### 🔮 Server Discord
+- te invit să te alături serverului meu [Discord](https://discord.com/invite/kool-tech-world)
 
-#### 🙏 Special request
-- If you have improvements on the dotfiles or configuration, feel free to submit a PR for improvement. I always welcome improvements as I am also just learning just like you guys!
+#### 💖 Suport
+- o stea pe repo-urile mele de Github ar fi minunată 🌟
 
+- Abonează-te la canalul meu de YouTube [YouTube](https://www.youtube.com/@Ja.KooLit) 
 
-#### ✍️ Contributing
-- Want to contribute? Click [`HERE`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CONTRIBUTING.md) for a guide how to contribute
-
-
-#### 🤷‍♂️ TO DO!
-- [ ] Tweak dots - 🚧 in constant progress 
-- ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
-
-
-#### 🔮 Discord Server
-- kindly join my [Discord](https://discord.com/invite/kool-tech-world)
-
-
-#### 💖 Support
-- a Star on my Github repos would be nice 🌟
-
-- Subscribe to my Youtube Channel [YouTube](https://www.youtube.com/@Ja.KooLit) 
-
-- you can also give support through coffee's or btc 😊
+- de asemenea, poți oferi suport prin cafele sau btc 😊
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jakoolit)
 
-or
+sau
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/JaKooLit)
 
-Or you can donate cryto on my btc wallet :)  
+Sau poți dona criptomonede pe portofelul meu btc :)  
 > 1N3MeV2dsX6gQB42HXU6MF2hAix1mqjo8i
 
 ![Bitcoin](https://github.com/user-attachments/assets/7ed32f8f-c499-46f0-a53c-3f6fbd343699)
 
-
-                        
-## 🫰	Thank you for the stars 🩷
+## 🫰 Mulțumesc pentru stele 🩷
 [![Stargazers over time](https://starchart.cc/JaKooLit/Hyprland-Dots.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Hyprland-Dots)
