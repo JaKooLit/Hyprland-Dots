@@ -1,8 +1,8 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# This is for polkits, it will start from top and will stop if the top is executed
+# This script starts the first available Polkit agent from a list of possible locations
 
-# Polkit possible paths files to check
+# List of potential Polkit agent file paths
 polkit=(
   "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
   "/usr/libexec/hyprpolkitagent"
@@ -16,19 +16,19 @@ polkit=(
   "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
 )
 
-executed=false  # Flag to track if a file has been executed
+executed=false
 
-# Loop through the list of files
+# Loop through the list of paths
 for file in "${polkit[@]}"; do
-  if [ -e "$file" ]; then
-    echo "File $file found, executing command..."
-    exec "$file"  
+  if [ -e "$file" ] && [ ! -d "$file" ]; then
+    echo "Found: $file — executing..."
+    exec "$file"
     executed=true
     break
   fi
 done
 
-# If none of the files were found, you can add a fallback command here
+# Fallback message if nothing executed
 if [ "$executed" == false ]; then
-  echo "None of the specified files were found. Install a Polkit"
+  echo "No valid Polkit agent found. Please install one."
 fi
