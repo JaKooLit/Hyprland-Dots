@@ -108,15 +108,15 @@ main
 sleep 1
 
 if [[ -n "$choice" ]]; then
-  sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
-  if [ -d "$sddm_sequoia" ]; then
+  sddm_simple="/usr/share/sddm/themes/simple_sddm_2"
+  if [ -d "$sddm_simple" ]; then
   
 	# Check if yad is running to avoid multiple yad notification
 	if pidof yad > /dev/null; then
 	  killall yad
 	fi
 	
-	if yad --info --text="Set current wallpaper as SDDM background?\n\nNOTE: This only applies to SEQUOIA SDDM Theme" \
+	if yad --info --text="Set current wallpaper as SDDM background?\n\nNOTE: This only applies to SIMPLE SDDM v2 Theme" \
     --text-align=left \
     --title="SDDM Background" \
     --timeout=5 \
@@ -133,7 +133,7 @@ if [[ -n "$choice" ]]; then
 
       # Open terminal and set the wallpaper
     $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
-    sudo cp -r $wallpaper_output '$sddm_sequoia/backgrounds/default' && \
+    sudo cp -r $wallpaper_output '$sddm_simple/Backgrounds/default' && \
     notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
     fi
   fi
