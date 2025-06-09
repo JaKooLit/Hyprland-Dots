@@ -20,7 +20,7 @@ Singleton {
     property real workpaceTransparency: 0.8
     // property real transparency: 0.15
     // property real contentTransparency: 0.5
-    property string background_image: "file:///home/itachi/.config/rofi/.current_wallpaper"
+    property string background_image: Directories.config + "/rofi/.current_wallpaper"
     
     m3colors: QtObject {
         property bool darkmode: true
