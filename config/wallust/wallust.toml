@@ -49,6 +49,9 @@ waybar.target = '~/.config/waybar/wallust/colors-waybar.css'
 kitty.template = 'colors-kitty.conf'
 kitty.target = '~/.config/kitty/kitty-themes/01-Wallust.conf'
 
+quickshell.template = 'qml_color.json'
+quickshell.target = '~/.config/quickshell/qml_color.json'
+
 #swaync.template = 'colors-swaync.css'
 #swaync.target = '~/.config/swaync/wallust/colors-wallust.css'
 
