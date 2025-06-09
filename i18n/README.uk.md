@@ -14,7 +14,7 @@
 
 <div align="center">
 <br>
-  <a href="#-copying--installation--update-instructions-"><kbd> <br> Встановлення <br> </kbd></a>  
+  <a href="#-інструкції-з-копіювання--встановлення--оновлення-"><kbd> <br> Встановлення <br> </kbd></a>  
   <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> YouTube <br> </kbd></a>  
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Вікі <br> </kbd></a>  
   <a href="https://github.com/JaKooLit/Hyprland-Dots/discussions"><kbd> <br> Обговорення <br> </kbd></a>  
