@@ -24,7 +24,7 @@
     "arbitraryRaceConditionDelay": 20
   },
   "search": {
-    "searchEnabled": false,
+    "searchEnabled": true,
     "nonAppResultDelay": 30,
     "prefix": {
       "action": "/",
