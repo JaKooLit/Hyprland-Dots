@@ -14,12 +14,11 @@
 
 <div align="center">
 <br>
-  <a href="#встановлення"><kbd> <br> Встановлення <br> </kbd></a>  
+  <a href="#-інструкції-з-копіювання--встановлення--оновлення-"><kbd> <br> Встановлення <br> </kbd></a>  
   <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> YouTube <br> </kbd></a>  
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Вікі <br> </kbd></a>  
   <a href="https://github.com/JaKooLit/Hyprland-Dots/discussions"><kbd> <br> Обговорення <br> </kbd></a>  
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Гарячі клавіші <br> </kbd></a>  
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> Поширені запитання <br> </kbd></a>  
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Гарячі клавіші <br> </kbd></a>   
   <a href="https://discord.gg/kool-tech-world"><kbd> <br> Discord <br> </kbd></a>
 </div><br>
 
