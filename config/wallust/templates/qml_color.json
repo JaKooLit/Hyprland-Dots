@@ -1,0 +1,21 @@
+{
+    "background": "#1e1e2e",
+    "onBackground": "#bac2de",
+    "surfaceContainerLow": "{{color4}}",
+    "surfaceContainer": "{{color6}}",
+    "surfaceContainerHigh": "{{color3}}",
+    "surfaceContainerHighest": "{{color2}}",
+    "onSurface": "#EAE0E7",
+    "onSurfaceVariant": "#CFC3CD",
+    "outline": "{{color7}}",
+    "scrim": "#000000",
+    "shadow": "#000000",
+    "primary": "{{color7}}",
+    "primaryContainer": "{{color7}}",
+    "secondary": "#D5C0D7",
+    "secondaryContainer": "{{color5}}",
+    "onPrimary": "#FFFFFF",
+    "onPrimaryContainer": "#21005D",
+    "onSecondaryContainer": "#F2DCF3",
+    "outlineVariant": "{{color5}}"
+}
