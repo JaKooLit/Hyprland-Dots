@@ -15,7 +15,8 @@
     "numOfCols": 5,
     "showXwaylandIndicator": true,
     "windowPadding": 6,
-    "position": 1
+    "position": 1,
+    "workspaceNumberSize": 220
   },
   "resources": {
     "updateInterval": 3000
@@ -34,5 +35,26 @@
   },
   "bar": {
     "bottom": false
+  },
+  "font": {
+    "family": {
+      "main": "Open Sans",
+      "title": "JetBrains Mono NF",
+      "iconMaterial": "FiraConde Nerd Font",
+      "iconNerd": "SpaceMono NF",
+      "monospace": "JetBrains Mono NF",
+      "reading": "Readex Pro"
+    },
+    "pixelSize": {
+      "smallest": 10,
+      "smaller": 13,
+      "small": 15,
+      "normal": 16,
+      "large": 17,
+      "larger": 19,
+      "huge": 22,
+      "hugeass": 23,
+      "title": 28
+    }
   }
 }

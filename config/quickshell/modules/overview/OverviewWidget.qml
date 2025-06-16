@@ -35,7 +35,9 @@ Item {
         ((monitor.height - monitorData?.reserved[1] - monitorData?.reserved[3]) * root.scale / monitor.scale))
 
     property real workspaceNumberMargin: 80
-    property real workspaceNumberSize: Math.min(workspaceImplicitHeight, workspaceImplicitWidth) * monitor.scale
+    property real workspaceNumberSize: (ConfigOptions.overview.workspaceNumberSize > 0) 
+        ? ConfigOptions.overview.workspaceNumberSize 
+        : Math.min(workspaceImplicitHeight, workspaceImplicitWidth) * monitor.scale
     property int workspaceZ: 0
     property int windowZ: 1
     property int windowDraggingZ: 99999
