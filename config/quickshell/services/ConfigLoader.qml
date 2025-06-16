@@ -29,7 +29,32 @@ Singleton {
         try {
             const json = JSON.parse(fileContent);
 
-            ObjectUtils.applyToQtObject(ConfigOptions, json);
+            // Extract font configuration if it exists
+            let fontConfig = null;
+            let configForOptions = {};
+            
+            // Copy all properties except font to configForOptions
+            for (let key in json) {
+                if (key !== "font") {
+                    configForOptions[key] = json[key];
+                } else {
+                    fontConfig = json[key];
+                }
+            }
+
+            // Apply the non-font configuration to ConfigOptions
+            ObjectUtils.applyToQtObject(ConfigOptions, configForOptions);
+            
+            // Apply font configuration to Appearance if it exists
+            if (fontConfig && typeof Appearance !== 'undefined') {
+                if (fontConfig.family && Appearance.font && Appearance.font.family) {
+                    ObjectUtils.applyToQtObject(Appearance.font.family, fontConfig.family);
+                }
+                if (fontConfig.pixelSize && Appearance.font && Appearance.font.pixelSize) {
+                    ObjectUtils.applyToQtObject(Appearance.font.pixelSize, fontConfig.pixelSize);
+                }
+            }
+
             if (root.firstLoad) {
                 root.firstLoad = false;
             } else {
@@ -39,13 +64,19 @@ Singleton {
             console.error("[ConfigLoader] Error reading file:", e);
             Hyprland.dispatch(`exec notify-send "${qsTr("Shell configuration failed to load")}" "${root.filePath}"`)
             return;
-
         }
     }
 
     function setLiveConfigValue(nestedKey, value) {
         let keys = nestedKey.split(".");
-        let obj = ConfigOptions;
+        let targetObject = ConfigOptions;
+        
+        // Check if this is a font-related configuration
+        if (keys[0] === "font" && typeof Appearance !== 'undefined') {
+            targetObject = Appearance;
+        }
+        
+        let obj = targetObject;
         let parents = [obj];
 
         // Traverse and collect parent objects
