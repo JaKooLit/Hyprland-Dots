@@ -17,6 +17,13 @@
 	"tooltip": true,
 },
 
+"custom/hyprpicker": {
+	"format": "",
+	"on-click": "hyprpicker | wl-copy",
+	"tooltip": true,
+	"tooltip-format": "Hyprpicker",
+},
+
 "custom/file_manager": {
 	"format": " ",
 	"on-click": "$HOME/.config/hypr/scripts/WaybarScripts.sh --files",
