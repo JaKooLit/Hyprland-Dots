@@ -32,7 +32,7 @@ Rectangle { // Window
     property var xwaylandIndicatorToIconRatio: 0.35
     property var iconToWindowRatioCompact: 0.6
     property var iconPath: Quickshell.iconPath(AppSearch.guessIcon(windowData?.class), "image-missing")
-    property bool compactMode: Appearance.font.pixelSize.smaller * 4 > targetWindowHeight || Appearance.font.pixelSize.smaller * 4 > targetWindowWidth
+    property bool compactMode: Appearance.font.pixelSize.textSmall * 4 > targetWindowHeight || Appearance.font.pixelSize.textSmall * 4 > targetWindowWidth
 
     property bool indicateXWayland: (ConfigOptions.overview.showXwaylandIndicator && windowData?.xwayland) ?? false
     
@@ -44,7 +44,7 @@ Rectangle { // Window
     radius: Appearance.rounding.windowRounding * root.scale
     color: pressed ? Appearance.colors.colLayer2Active : hovered ? Appearance.colors.colLayer2Hover : Appearance.colors.colLayer2
     // border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.9)
-    border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.4)
+    border.color : ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.4)
     border.pixelAligned : false
     border.width : 2
 
@@ -65,7 +65,7 @@ Rectangle { // Window
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
-        spacing: Appearance.font.pixelSize.smaller * 0.5
+        spacing: Appearance.font.pixelSize.textSmall * 0.5
 
         IconImage {
             id: windowIcon
@@ -85,7 +85,7 @@ Rectangle { // Window
             Layout.fillWidth: true
             Layout.fillHeight: true
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: Appearance.font.pixelSize.smaller
+            font.pixelSize: Appearance.font.pixelSize.textSmall
             font.italic: indicateXWayland ? true : false
             elide: Text.ElideRight
             text: windowData?.title ?? ""

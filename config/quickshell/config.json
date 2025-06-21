@@ -38,23 +38,16 @@
   },
   "font": {
     "family": {
-      "main": "Open Sans",
-      "title": "JetBrains Mono NF",
-      "iconMaterial": "FiraConde Nerd Font",
-      "iconNerd": "SpaceMono NF",
-      "monospace": "JetBrains Mono NF",
-      "reading": "Readex Pro"
+      "uiFont": "Open Sans",
+      "iconFont": "FiraConde Nerd Font",
+      "codeFont": "JetBrains Mono NF"
     },
     "pixelSize": {
-      "smallest": 10,
-      "smaller": 13,
-      "small": 15,
-      "normal": 16,
-      "large": 17,
-      "larger": 19,
-      "huge": 22,
-      "hugeass": 23,
-      "title": 28
+      "textSmall": 13,
+      "textBase": 15,
+      "textMedium": 16,
+      "textLarge": 19,
+      "iconLarge": 22
     }
   }
 }

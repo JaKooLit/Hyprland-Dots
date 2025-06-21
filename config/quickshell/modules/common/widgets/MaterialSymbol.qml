@@ -1,17 +1,16 @@
 import "root:/modules/common/"
 import QtQuick
-import QtQuick.Layouts
 
 Text {
     id: root
-    property real iconSize: Appearance?.font.pixelSize.small ?? 16
+    property real iconSize: Appearance?.font.pixelSize.textBase ?? 16
     property real fill: 0
     renderType: Text.NativeRendering
     font.hintingPreference: Font.PreferFullHinting
     verticalAlignment: Text.AlignVCenter
-    font.family: Appearance?.font.family.iconMaterial ?? "Material Symbols Rounded"
+    font.family: Appearance?.font.family.iconFont ?? "Material Symbols Rounded"
     font.pixelSize: iconSize
-    color: Appearance.m3colors.m3onBackground
+    color: Appearance.m3colors.m3primaryText
 
     Behavior on fill {
         NumberAnimation {
@@ -23,8 +22,6 @@ Text {
 
     font.variableAxes: { 
         "FILL": fill,
-        // "wght": font.weight,
-        // "GRAD": 0,
         "opsz": iconSize,
     }
 }

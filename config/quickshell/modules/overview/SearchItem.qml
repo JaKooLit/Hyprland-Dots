@@ -22,7 +22,7 @@ RippleButton {
     property string itemName: entry?.name
     property string itemIcon: entry?.icon ?? ""
     property var itemExecute: entry?.execute
-    property string fontType: entry?.fontType ?? "main"
+    property string fontType: entry?.fontType ?? "uiFont"
     property string itemClickActionName: entry?.clickActionName
     property string bigText: entry?.bigText ?? ""
     property string materialSymbol: entry?.materialSymbol ?? ""
@@ -31,7 +31,7 @@ RippleButton {
     property string highlightPrefix: `<u><font color="${Appearance.colors.colPrimary}">`
     property string highlightSuffix: `</font></u>`
     function highlightContent(content, query) {
-        if (!query || query.length === 0 || content == query || fontType === "monospace")
+        if (!query || query.length === 0 || content == query || fontType === "codeFont")
             return StringUtils.escapeHtml(content);
 
         let contentLower = content.toLowerCase();
@@ -80,7 +80,7 @@ RippleButton {
     buttonRadius: Appearance.rounding.normal
     colBackground: (root.down || root.keyboardDown) ? Appearance.colors.colLayer1Active : 
         ((root.hovered || root.focus) ? Appearance.colors.colLayer1Hover : 
-        ColorUtils.transparentize(Appearance.m3colors.m3surfaceContainerHigh, 1))
+        ColorUtils.transparentize(Appearance.m3colors.m3layerBackground3, 1))
     colBackgroundHover: Appearance.colors.colLayer1Hover
     colRipple: Appearance.colors.colLayer1Active
 
@@ -140,7 +140,7 @@ RippleButton {
             MaterialSymbol {
                 text: root.materialSymbol
                 iconSize: 30
-                color: Appearance.m3colors.m3onSurface
+                color: Appearance.m3colors.m3surfaceText
             }
         }
 
@@ -148,8 +148,8 @@ RippleButton {
             id: bigTextComponent
             StyledText {
                 text: root.bigText
-                font.pixelSize: Appearance.font.pixelSize.larger
-                color: Appearance.m3colors.m3onSurface
+                font.pixelSize: Appearance.font.pixelSize.textLarge
+                color: Appearance.m3colors.m3surfaceText
             }
         }
 
@@ -160,7 +160,7 @@ RippleButton {
             Layout.alignment: Qt.AlignVCenter
             spacing: 0
             StyledText {
-                font.pixelSize: Appearance.font.pixelSize.smaller
+                font.pixelSize: Appearance.font.pixelSize.textSmall
                 color: Appearance.colors.colSubtext
                 visible: root.itemType && root.itemType != qsTr("App")
                 text: root.itemType
@@ -178,8 +178,8 @@ RippleButton {
                             id: activeText
                             anchors.centerIn: parent
                             text: "check"
-                            font.pixelSize: Appearance.font.pixelSize.normal
-                            color: Appearance.m3colors.m3onPrimary
+                            font.pixelSize: Appearance.font.pixelSize.textMedium
+                            color: Appearance.m3colors.m3accentPrimaryText
                         }
                     }
                 }
@@ -187,9 +187,9 @@ RippleButton {
                     Layout.fillWidth: true
                     id: nameText
                     textFormat: Text.StyledText // RichText also works, but StyledText ensures elide work
-                    font.pixelSize: Appearance.font.pixelSize.small
+                    font.pixelSize: Appearance.font.pixelSize.textBase
                     font.family: Appearance.font.family[root.fontType]
-                    color: Appearance.m3colors.m3onSurface
+                    color: Appearance.m3colors.m3surfaceText
                     horizontalAlignment: Text.AlignLeft
                     elide: Text.ElideRight
                     text: `${root.displayContent}`
@@ -211,7 +211,7 @@ RippleButton {
             Layout.fillWidth: false
             visible: (root.hovered || root.focus)
             id: clickAction
-            font.pixelSize: Appearance.font.pixelSize.normal
+            font.pixelSize: Appearance.font.pixelSize.textMedium
             color: Appearance.colors.colSubtext
             horizontalAlignment: Text.AlignRight
             text: root.itemClickActionName

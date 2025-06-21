@@ -18,53 +18,47 @@ Singleton {
     property real transparency: 0.5
     property real contentTransparency: 0.1
     property real workpaceTransparency: 0.8
-    // property real transparency: 0.15
-    // property real contentTransparency: 0.5
     property string background_image: Directories.config + "/rofi/.current_wallpaper"
     
     m3colors: QtObject {
         property bool darkmode: true
         property bool transparent: true
 
-        property color m3background: "#161217"
-        property color m3onBackground: "#EAE0E7"
-        property color m3surfaceContainerLow: "#1F1A1F"
-        property color m3surfaceContainer: "#231E23"
-        property color m3surfaceContainerHigh: "#2D282E"
-        property color m3surfaceContainerHighest: "#383339"
-        property color m3onSurface: "#EAE0E7"
-        property color m3onSurfaceVariant: "#CFC3CD"
-        property color m3outline: "#cba6f7"
-        property color m3scrim: "#000000"
-        property color m3shadow: "#000000"
-        property color m3primary: "#E5B6F2"
-        property color m3primaryContainer: "#5D386A"
-        property color m3secondary: "#D5C0D7"
-        property color m3secondaryContainer: "#534457"
-        property color m3onPrimary: "#452152"
-        property color m3onPrimaryContainer: "#F9D8FF"
-        property color m3onSecondaryContainer: "#F2DCF3"
-        property color m3outlineVariant: "#4C444D"
+        property color m3windowBackground: "#161217"
+        property color m3primaryText: "#EAE0E7"
+        property color m3layerBackground1: "#1F1A1F"
+        property color m3layerBackground2: "#231E23"
+        property color m3layerBackground3: "#2D282E"
+        property color m3surfaceText: "#EAE0E7"
+        property color m3secondaryText: "#CFC3CD"
+        property color m3borderPrimary: "#cba6f7"
+        property color m3shadowColor: "#000000"
+        property color m3accentPrimary: "#E5B6F2"
+        property color m3accentSecondary: "#D5C0D7"
+        property color m3selectionBackground: "#534457"
+        property color m3accentPrimaryText: "#452152"
+        property color m3selectionText: "#F2DCF3"
+        property color m3borderSecondary: "#4C444D"
 
         property color colTooltip: "#1e1e2e"
         property color colOnTooltip: "#F8F9FA"
     }
 
     colors: QtObject {
-        property color colSubtext: m3colors.m3outline
-        property color colLayer0: ColorUtils.transparentize(m3colors.m3background, root.transparency)
-        property color colLayer1: ColorUtils.transparentize(ColorUtils.mix(m3colors.m3surfaceContainerLow, m3colors.m3background, 0.7), root.contentTransparency);
-        property color colOnLayer1: m3colors.m3onSurfaceVariant;
-        property color colLayer2: ColorUtils.transparentize(ColorUtils.mix(m3colors.m3surfaceContainer, m3colors.m3surfaceContainerHigh, 0.55), root.contentTransparency)
-        property color colOnLayer2: m3colors.m3onSurface;
+        property color colSubtext: m3colors.m3borderPrimary
+        property color colLayer0: ColorUtils.transparentize(m3colors.m3windowBackground, root.transparency)
+        property color colLayer1: ColorUtils.transparentize(ColorUtils.mix(m3colors.m3layerBackground1, m3colors.m3windowBackground, 0.7), root.contentTransparency);
+        property color colOnLayer1: m3colors.m3secondaryText;
+        property color colLayer2: ColorUtils.transparentize(ColorUtils.mix(m3colors.m3layerBackground2, m3colors.m3layerBackground3, 0.55), root.contentTransparency)
+        property color colOnLayer2: m3colors.m3surfaceText;
         property color colLayer1Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer1, colOnLayer1, 0.92), root.contentTransparency)
         property color colLayer1Active: ColorUtils.transparentize(ColorUtils.mix(colLayer1, colOnLayer1, 0.85), root.contentTransparency);
         property color colLayer2Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer2, colOnLayer2, 0.90), root.contentTransparency)
         property color colLayer2Active: ColorUtils.transparentize(ColorUtils.mix(colLayer2, colOnLayer2, 0.80), root.contentTransparency);
-        property color colPrimary: m3colors.m3primary
+        property color colPrimary: m3colors.m3accentPrimary
         property color colPrimaryHover: ColorUtils.mix(colors.colPrimary, colLayer1Hover, 0.87)
         property color colPrimaryActive: ColorUtils.mix(colors.colPrimary, colLayer1Active, 0.7)
-        property color colShadow: ColorUtils.transparentize(m3colors.m3shadow, 0.7)
+        property color colShadow: ColorUtils.transparentize(m3colors.m3shadowColor, 0.7)
     }
 
     rounding: QtObject {
@@ -82,23 +76,16 @@ Singleton {
 
     font: QtObject {
         property QtObject family: QtObject {
-            property string main: "Open Sans"
-            property string title: "JetBrains Mono NF"
-            property string iconMaterial: "FiraConde Nerd Font"
-            property string iconNerd: "SpaceMono NF"
-            property string monospace: "JetBrains Mono NF"
-            property string reading: "Readex Pro"
+            property string uiFont: "Open Sans"
+            property string iconFont: "FiraConde Nerd Font"
+            property string codeFont: "JetBrains Mono NF"
         }
         property QtObject pixelSize: QtObject {
-            property int smallest: 10
-            property int smaller: 13
-            property int small: 15
-            property int normal: 16
-            property int large: 17
-            property int larger: 19
-            property int huge: 22
-            property int hugeass: 23
-            property int title: 28
+            property int textSmall: 13
+            property int textBase: 15
+            property int textMedium: 16
+            property int textLarge: 19
+            property int iconLarge: 22
         }
     }
 

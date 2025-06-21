@@ -18,7 +18,7 @@ RippleButton {
     buttonRadius: Appearance?.rounding.full ?? 9999
 
     property color colEnabled: Appearance?.colors.colPrimary
-    property color colDisabled: Appearance?.m3colors.m3outline
+    property color colDisabled: Appearance?.m3colors.m3borderPrimary
 
     contentItem: StyledText {
         id: buttonTextWidget
@@ -27,7 +27,7 @@ RippleButton {
         anchors.rightMargin: 15
         text: buttonText
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Appearance?.font.pixelSize.small ?? 12
+        font.pixelSize: Appearance?.font.pixelSize.textBase ?? 12
         color: button.enabled ? button.colEnabled : button.colDisabled
 
         Behavior on color {

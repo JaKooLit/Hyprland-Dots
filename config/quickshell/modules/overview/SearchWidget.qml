@@ -201,8 +201,8 @@ Item { // Wrapper
                 MaterialSymbol {
                     id: searchIcon
                     Layout.leftMargin: 15
-                    iconSize: Appearance.font.pixelSize.huge
-                    color: Appearance.m3colors.m3onSurface
+                    iconSize: Appearance.font.pixelSize.iconLarge
+                    color: Appearance.m3colors.m3surfaceText
                     text: root.searchingText.startsWith(ConfigOptions.search.prefix.clipboard) ? 'content_paste_search' : ''
                 }
                 TextField { // Search box
@@ -213,15 +213,15 @@ Item { // Wrapper
                     padding: 15
                     renderType: Text.NativeRendering
                     font {
-                        family: Appearance?.font.family.main ?? "sans-serif"
-                        pixelSize: Appearance?.font.pixelSize.small ?? 15
+                        family: Appearance?.font.family.uiFont ?? "sans-serif"
+                        pixelSize: Appearance?.font.pixelSize.textBase ?? 15
                         hintingPreference: Font.PreferFullHinting
                     }
-                    color: activeFocus ? Appearance.m3colors.m3onSurface : Appearance.m3colors.m3onSurfaceVariant
-                    selectedTextColor: Appearance.m3colors.m3onSecondaryContainer
-                    selectionColor: Appearance.m3colors.m3secondaryContainer
+                    color: activeFocus ? Appearance.m3colors.m3surfaceText : Appearance.m3colors.m3secondaryText
+                    selectedTextColor: Appearance.m3colors.m3selectionText
+                    selectionColor: Appearance.m3colors.m3selectionBackground
                     placeholderText: qsTr("Search, calculate or run")
-                    placeholderTextColor: Appearance.m3colors.m3outline
+                    placeholderTextColor: Appearance.m3colors.m3borderPrimary
                     implicitWidth: root.searchingText == "" ? Appearance.sizes.searchWidthCollapsed : Appearance.sizes.searchWidth
 
                     Behavior on implicitWidth {
@@ -260,7 +260,7 @@ Item { // Wrapper
                 visible: root.showResults
                 Layout.fillWidth: true
                 height: 1
-                color: Appearance.m3colors.m3outlineVariant
+                color: Appearance.m3colors.m3borderSecondary
             }
 
             ListView { // App results
