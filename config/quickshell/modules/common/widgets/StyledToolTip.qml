@@ -50,7 +50,7 @@ ToolTip {
                 id: tooltipTextObject
                 anchors.centerIn: parent
                 text: content
-                font.pixelSize: Appearance?.font.pixelSize.smaller ?? 14
+                font.pixelSize: Appearance?.font.pixelSize.textSmall ?? 14
                 font.hintingPreference: Font.PreferNoHinting // Prevent shaky text
                 color: Appearance?.m3colors.colOnTooltip ?? "#FFFFFF"
                 wrapMode: Text.Wrap

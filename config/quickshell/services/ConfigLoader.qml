@@ -72,7 +72,7 @@ Singleton {
         let targetObject = ConfigOptions;
         
         // Check if this is a font-related configuration
-        if (keys[0] === "font" && typeof Appearance !== 'undefined') {
+        if (keys[0] === "font") {
             targetObject = Appearance;
         }
         
@@ -101,13 +101,12 @@ Singleton {
             }
         }
 
-        console.log(parents.join("."));
         console.log(`[ConfigLoader] Setting live config value: ${nestedKey} = ${convertedValue}`);
         obj[keys[keys.length - 1]] = convertedValue;
     }
 
     function saveConfig() {
-        const plainConfig = ObjectUtils.toPlainObject(ConfigOptions)
+        const plainConfig = ObjectUtils.toPlainObject(ConfigOptions);
         Hyprland.dispatch(`exec echo '${StringUtils.shellSingleQuoteEscape(JSON.stringify(plainConfig, null, 2))}' > '${root.filePath}'`)
     }
 
