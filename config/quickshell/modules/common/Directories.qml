@@ -16,5 +16,5 @@ Singleton {
     // Other dirs used by the shell, without "file://"
     property string shellConfig: FileUtils.trimFileProtocol(`${Directories.config}/quickshell`)
     property string shellConfigPath: `${Directories.shellConfig}/config.json`
-    property string generatedMaterialThemePath: `${Directories.gen_cache}/hellwal/qml_color.json`
+    property string generatedMaterialThemePath: `${Directories.shellConfig}/qml_color.json`
 }
