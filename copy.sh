@@ -33,7 +33,7 @@ fi
 
 # Function to print colorful text
 print_color() {
-    printf "%b%s%b\n" "$1" "$2" "$CLEAR"
+    printf "%b%s%b\n" "$1" "$2" "$RESET"
 }
 
 # Check /etc/os-release to see if this is an Ubuntu or Debian based distro
