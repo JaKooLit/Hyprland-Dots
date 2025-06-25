@@ -75,11 +75,6 @@ if [ ! -d Copy-Logs ]; then
     mkdir Copy-Logs
 fi
 
-# Function to print colorful text
-print_color() {
-    printf "%b%s%b\n" "$1" "$2" "$CLEAR"
-}
-
 # Set the name of the log file to include the current date and time
 LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 
