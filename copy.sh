@@ -240,11 +240,11 @@ if command -v blueman-applet >/dev/null 2>&1; then
     sed -i '/^\s*#exec-once = blueman-applet/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
-# Check if ags is installed edit ags behaviour on configs
-if command -v ags >/dev/null 2>&1; then
-    sed -i '/^\s*#exec-once = ags/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
-    sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
-    sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
+# Check if quickshell is installed edit quickshell behaviour on configs
+if command -v qs >/dev/null 2>&1; then
+    sed -i '/^\s*#exec-once = qs/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+    sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
+    sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
 fi
 
 printf "\n%.0s" {1..1}
@@ -461,7 +461,7 @@ fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
-DIRS="ags fastfetch kitty rofi swaync"
+DIRS="fastfetch kitty rofi swaync"
 
 for DIR2 in $DIRS; do
   DIRPATH="$HOME/.config/$DIR2"
@@ -669,6 +669,43 @@ for DIR_NAME in $DIR; do
 done
 
 printf "\n%.0s" {1..1}
+
+# quickshell (ags alternative)
+# Check if quickshell is running
+if pgrep -x "qs" >/dev/null; then
+  echo -e "${NOTE} - ${YELLOW}quickshell${RESET} is currently installed and running."
+
+  DIRPATH_QS="$HOME/.config/quickshell"
+
+  if [ ! -d "$DIRPATH_QS" ]; then
+    echo "${INFO} - quickshell config not found, copying new config."
+    if [ -d "config/quickshell" ]; then
+      cp -r "config/quickshell/" "$DIRPATH" 2>&1 | tee -a "$LOG"
+    fi
+  else
+    read -p "${CAT} Do you want to overwrite your existing ${YELLOW}quickshell${RESET} config? [y/N] " answer_qs
+    case "$answer_qs" in
+      [Yy]* )
+        BACKUP_DIR=$(get_backup_dirname)
+        mv "$DIRPATH_QS" "$DIRPATH_QS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+        echo -e "${NOTE} - Backed up quickshell to $DIRPATH_QS-backup-$BACKUP_DIR"
+
+        cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
+        if [ $? -eq 0 ]; then
+          echo "${OK} - ${YELLOW}quickshell${RESET} overwritten successfully."
+        else
+          echo "${ERROR} - Failed to copy ${YELLOW}quickshell${RESET} config."
+          exit 1
+        fi
+        ;;
+      * )
+        echo "${NOTE} - Skipping overwrite of quickshell config."
+        ;;
+    esac
+  fi
+fi
+printf "\n%.0s" {1..1}
+
 
 # Restore automatically Animations and Monitor-Profiles
 # including monitors.conf and workspaces.conf
