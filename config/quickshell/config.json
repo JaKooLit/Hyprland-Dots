@@ -1,0 +1,53 @@
+{
+  "ui": {
+    "theme": "dark",
+    "scale": 1.25
+  },
+  "features": {
+    "animations": true
+  },
+  "appearance": {
+    "fakeScreenRounding": 1
+  },
+  "overview": {
+    "scale": 0.15,
+    "numOfRows": 2,
+    "numOfCols": 5,
+    "showXwaylandIndicator": true,
+    "windowPadding": 6,
+    "position": 1,
+    "workspaceNumberSize": 220
+  },
+  "resources": {
+    "updateInterval": 3000
+  },
+  "hacks": {
+    "arbitraryRaceConditionDelay": 20
+  },
+  "search": {
+    "searchEnabled": true,
+    "nonAppResultDelay": 30,
+    "prefix": {
+      "action": "/",
+      "clipboard": ";",
+      "emojis": ":"
+    }
+  },
+  "bar": {
+    "bottom": false
+  },
+  "font": {
+    "family": {
+      "uiFont": "Open Sans",
+      "iconFont": "FiraConde Nerd Font",
+      "codeFont": "JetBrains Mono NF"
+    },
+    "pixelSize": {
+      "textSmall": 13,
+      "textBase": 15,
+      "textMedium": 16,
+      "textLarge": 19,
+      "iconLarge": 22
+    }
+  }
+}
