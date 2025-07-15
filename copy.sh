@@ -929,11 +929,11 @@ rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
 
 printf "\n%.0s" {1..1}
 
-# for SDDM (sequoia_2)
-sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
-if [ -d "$sddm_sequioa" ]; then
+# for SDDM (simple_sddm_2)
+sddm_simple_sddm_2="/usr/share/sddm/themes/simple_sddm_2"
+if [ -d "$sddm_simple_sddm_2" ]; then
   while true; do
-    echo -n "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
+    echo -n "${CAT} SDDM simple_sddm_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
     read SDDM_WALL
     
     # Remove any leading/trailing whitespace or newlines from input
@@ -942,7 +942,7 @@ if [ -d "$sddm_sequioa" ]; then
     case $SDDM_WALL in
       [Yy])
         # Copy the wallpaper, ignore errors if the file exists or fails
-        sudo cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/sequoia_2/backgrounds/default" || true
+        sudo cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/simple_sddm_2/backgrounds/default" || true
         echo "${NOTE} Current wallpaper applied as default SDDM background" 2>&1 | tee -a "$LOG"
         break
         ;;
