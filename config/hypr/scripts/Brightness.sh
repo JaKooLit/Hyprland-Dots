@@ -18,7 +18,7 @@ get_icon_path() {
     if (( level > 100 )); then
         level=100
     fi
-    echo "$ICON_DIR/brightness-${level}.png"
+    echo "$iDIR/brightness-${level}.png"
 }
 
 # Send notification
@@ -58,10 +58,10 @@ case "$1" in
         get_brightness
         ;;
     "--inc")
-        change_brightness "$STEP"
+        change_brightness "$step"
         ;;
     "--dec")
-        change_brightness "-$STEP"
+        change_brightness "-$step"
         ;;
     *)
         get_brightness
