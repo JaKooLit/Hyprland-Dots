@@ -131,10 +131,8 @@ if [[ -n "$choice" ]]; then
     exit 1
     fi
 
-      # Open terminal and set the wallpaper
-    $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
-    sudo cp -r $wallpaper_output '$sddm_simple/Backgrounds/default' && \
-    notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
+	exec $SCRIPTSDIR/sddm_wallpaper.sh --effects
+    
     fi
   fi
 fi
