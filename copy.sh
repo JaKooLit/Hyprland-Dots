@@ -942,7 +942,7 @@ if [ -d "$sddm_simple_sddm_2" ]; then
     case $SDDM_WALL in
       [Yy])
         # Copy the wallpaper, ignore errors if the file exists or fails
-        sudo cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/simple_sddm_2/backgrounds/default" || true
+        sudo cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/simple_sddm_2/Backgrounds/default" || true
         echo "${NOTE} Current wallpaper applied as default SDDM background" 2>&1 | tee -a "$LOG"
         break
         ;;
