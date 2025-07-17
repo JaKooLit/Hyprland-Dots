@@ -666,16 +666,16 @@ done
 printf "\n%.0s" {1..1}
 
 # quickshell (ags alternative)
-# Check if quickshell is running
-if pgrep -x "qs" >/dev/null; then
-  echo -e "${NOTE} - ${YELLOW}quickshell${RESET} is currently installed and running."
+# Check if quickshell is installed
+if command -v qs >/dev/null 2>&1; then
+  echo -e "${NOTE} - ${YELLOW}quickshell${RESET} is detected as installed"
 
   DIRPATH_QS="$HOME/.config/quickshell"
 
   if [ ! -d "$DIRPATH_QS" ]; then
     echo "${INFO} - quickshell config not found, copying new config."
     if [ -d "config/quickshell" ]; then
-      cp -r "config/quickshell/" "$DIRPATH" 2>&1 | tee -a "$LOG"
+      cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
     fi
   else
     read -p "${CAT} Do you want to overwrite your existing ${YELLOW}quickshell${RESET} config? [y/N] " answer_qs
@@ -684,7 +684,7 @@ if pgrep -x "qs" >/dev/null; then
         BACKUP_DIR=$(get_backup_dirname)
         mv "$DIRPATH_QS" "$DIRPATH_QS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
         echo -e "${NOTE} - Backed up quickshell to $DIRPATH_QS-backup-$BACKUP_DIR"
-
+                
         cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
         if [ $? -eq 0 ]; then
           echo "${OK} - ${YELLOW}quickshell${RESET} overwritten successfully."
