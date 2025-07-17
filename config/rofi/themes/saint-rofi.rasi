@@ -1,0 +1,204 @@
+@theme "~/.config/rofi/wallust/colors-rofi.rasi"
+
+* {
+    background-alt:              @color1;
+    selected:                    @color12;
+    active:                      @color11;
+    urgent:                      red;
+    text-selected:               @background;
+    text-color:                  @foreground;
+    border-color:                @selected;
+}
+
+window {
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       600px;
+    height:                      400px;
+    x-offset:                    0;
+    y-offset:                    0;
+    transparency:                "real";
+    background-color:            transparent;
+    border:                      0px;
+    border-radius:               0px;
+    border-color:                transparent;
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      1px;
+    border-radius:               0px;
+    border-color:                @color4;
+    background-color:            @color1;
+    children:                    [ "inputbar", "listview" ];
+}
+
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     10px;
+    border:                      0px;
+    border-color:                transparent;
+    background-color:            @color1;
+    text-color:                  @foreground;
+    children:                    [ "prompt", "entry" ];
+}
+
+prompt {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "";
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+entry {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      text;
+    placeholder-color:           @color9;
+}
+
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       5;
+    cycle:                       true;
+    dynamic:                     false;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     8px;
+    border:                      0px;
+    border-color:                @color4;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      "default";
+}
+
+scrollbar {
+    handle-width:                5px;
+    handle-color:                @selected;
+    background-color:            @background-alt;
+}
+
+element {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     8px 10px;
+    border:                      0px;
+    border-color:                transparent;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+}
+
+element normal.normal {
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+element normal.urgent {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+
+element normal.active {
+    background-color:            transparent;
+    text-color:                  @active;
+}
+
+element selected.normal {
+    background-color:            @selected;
+    text-color:                  @text-selected;
+}
+
+element selected.urgent {
+    background-color:            @urgent;
+    text-color:                  @text-selected;
+}
+
+element selected.active {
+    background-color:            @active;
+    text-color:                  @text-selected;
+}
+
+element-icon {
+    size: 20;
+    margin:0 10 0 0;
+    vertical-align: 0.5;
+    background-color: inherit;
+    cursor:                      inherit;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+mode-switcher {
+    enabled:                     true;
+    expand:                      false;
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px;
+    border-radius:               0px;
+    border-color:                transparent;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+button {
+    padding:                     5px 10px;
+    border:                      0px;
+    border-radius:               0px;
+    border-color:                transparent;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+}
+
+button selected {
+    background-color:            @selected;
+    text-color:                  @text-selected;
+}
+
+message {
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     12px;
+    border:                      0px;
+    border-color:                transparent;
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+
+textbox {
+    background-color:            transparent;
+    text-color:                  @foreground;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    highlight:                   none;
+}
