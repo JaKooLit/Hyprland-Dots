@@ -1,0 +1,207 @@
+
+
+/* ---- Configuration ---- */
+configuration {
+    modi:                    "drun,run,filebrowser";
+    show-icons:              true;
+    display-drun:            " apps";
+    display-run:             " term";
+    display-filebrowser:     " files";
+    display-window:          " window";
+    drun-display-format:     "{name}";
+    hover-select:            true;
+    me-select-entry:         "MouseSecondary";
+    me-accept-entry:         "MousePrimary";
+    window-format:           "{w} · {c} · {t}";
+}
+
+/* ---- Load wallust colors ---- */
+@theme "~/.config/rofi/wallust/colors-rofi.rasi"
+
+/* ---- Global Properties ---- */
+* {
+    background-alt:          @color1;
+    selected:                @color12;
+    active:                  @color11;
+    urgent:                  red;
+    text-selected:           @background;
+    text-color:              @foreground;
+    border-color:            @selected;
+}
+
+/* ---- Window ---- */
+window {
+    enabled:                 true;
+    fullscreen:              false;
+    transparency:            "real";
+    cursor:                  "default";
+    spacing:                 0px;
+    border:                  2px;
+    border-radius:           0px; 
+    location:                center;
+    anchor:                  center;
+    width:                   40%; 
+    background-color:        #1a1a1a99;
+}
+
+/* ----- Main Box ----- */
+mainbox {
+    enabled:                 true;
+    orientation:             vertical;
+    children:                [ "inputbar", "listbox" ];
+    background-color:        transparent;
+}
+
+/* ---- Inputbar ---- */
+inputbar {
+    enabled:                 true;
+    padding:                 8px; 
+    margin:                  10px;
+    background-color:        transparent;
+    border-radius:           0px; 
+    orientation:             horizontal;
+    children:                ["entry"];
+  
+}
+
+/* ---- Entry input ---- */
+entry {
+    enabled:                 true;
+    expand:                  true; 
+    width:                   100%; 
+    padding:                 8px; 
+    border-radius:           0px; 
+    background-color:        transparent;
+    text-color:              inherit;
+    cursor:                  text;
+    placeholder:             "Search ";
+    placeholder-color:       inherit;
+}
+
+/* ---- Listbox ---- */
+listbox {
+    spacing:                 0px; 
+    padding:                 0px 10px 10px 10px; 
+    background-color:        transparent;
+    orientation:             vertical;
+    children:                [ "message", "listview" ];
+}
+
+/* ---- Listview ---- */
+listview {
+    enabled:                 true;
+    columns:                 1; 
+    lines:                   7; 
+    cycle:                   true;
+    dynamic:                 true;
+    scrollbar:               false;
+    layout:                  vertical;
+    reverse:                 false;
+    fixed-height:            true;
+    fixed-columns:           true;
+    spacing:                 0px; 
+    padding:                 0px;  
+    background-color:        transparent;
+    border:                  0px;
+}
+
+/* ---- Scrollbar ---- */
+scrollbar {
+    border:                  0px;
+    border-radius:           0px; 
+    background-color:        transparent;
+    handle-color:            @active;
+    handle-width:            2px ;
+    padding:                 0;
+}
+
+
+
+/* ---- Elements ---- */
+element {
+    enabled:                 true;
+    spacing:                 8px; 
+    padding:                 8px; 
+    border-radius:           0px; 
+    background-color:        transparent;
+    cursor:                  pointer;
+}
+
+element normal.normal {
+    background-color:        inherit;
+    text-color:              inherit;
+}
+element normal.urgent {
+    background-color:        @urgent;
+    text-color:              @foreground;
+}
+
+element-text selected,
+element normal.active {
+    background-color:        @active;
+    text-color:              @foreground;
+}
+
+element selected.normal {
+    background-color:        @color11;
+    text-color:              @text-selected;
+}
+element selected.urgent {
+    background-color:        @urgent;
+    text-color:              @text-selected;
+}
+element selected.active {
+    background-color:        @urgent;
+    text-color:              @text-selected;
+}
+
+element alternate.normal {
+    background-color:        transparent;
+    text-color:              inherit;
+}
+element alternate.urgent {
+    background-color:        transparent;
+    text-color:              inherit;
+}
+element alternate.active {
+    background-color:        transparent;
+    text-color:              inherit;
+}
+
+element-icon {
+    background-color:        transparent;
+    text-color:              inherit;
+    size:                    28px; 
+    cursor:                  inherit;
+}
+
+element-text {
+    background-color:        transparent;
+    text-color:              inherit;
+    cursor:                  inherit;
+    vertical-align:          0.5;
+    horizontal-align:        0.0;
+}
+
+/* ---- Message ---- */
+message {
+    background-color:        @background;
+    border:                  0px;
+}
+
+textbox {
+    margin:                  10px;
+    padding:                 8px; 
+    border-radius:           0px; 
+    background-color:        @active;
+    text-color:              @foreground;
+    vertical-align:          0.5;
+    horizontal-align:        0.5;
+}
+
+error-message {
+    padding:                 8px; 
+    border-radius:           0px; 
+    background-color:        @background;
+    text-color:              @foreground;
+}
