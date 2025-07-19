@@ -11,8 +11,17 @@ window {
 
 /* ---- Mainbox ---- */
 mainbox {
-  children:
-    [ "inputbar", "listview"];
+  children: [ "inputbar", "message", "listview" ];
+}
+
+/* ---- Custombox ---- */
+/* Override custombox to ensure listview is visible for themes that use it */
+custombox {
+  spacing:                     0px;
+  background-color:            inherit;
+  text-color:                  inherit;
+  orientation:                 vertical;
+  children:                    [ "listview" ];
 }
 
 /* ---- Entry input ---- */
@@ -41,4 +50,16 @@ element-text {
   vertical-align: 0.5;
   margin: 0px;
   padding: 0px;
+}
+
+/* ---- Message ---- */
+message {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: inherit;
+}
+
+textbox {
+  text-color: inherit;
+  background-color: inherit;
 }
