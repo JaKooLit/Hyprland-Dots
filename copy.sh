@@ -241,30 +241,25 @@ if command -v ags >/dev/null 2>&1; then
     sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
     sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
 
-    # Uncomment the ags overview keybind (tolerates spaces/tabs)
-    sed -i '/^\s*#\s*bind\s*=\s*\$mainMod,\s*A,\s*exec,\s*pkill rofi\s*\|\|\s*true\s*&&\s*ags\s*-t\s*'\''overview'\''/s/^\s*#\s*//' config/hypr/UserConfigs/UserKeybinds.conf
+    # Uncomment the ags overview keybind
+    sed -i '/^#bind = \$mainMod, A, exec, pkill rofi || true && ags -t '\''overview'\''/s/^#//' config/hypr/UserConfigs/UserKeybinds.conf
 
-    # Comment the quickshell line if not already commented (tolerates spaces/tabs)
-    sed -i '/^\s*bind\s*=\s*\$mainMod,\s*A,\s*global,\s*quickshell:overviewToggle/{
-        s/^\s*/#/
-    }' config/hypr/UserConfigs/UserKeybinds.conf
+    # Comment the quickshell line if not already commented
+    sed -i '/^\s*bind\s*=\s*\$mainMod,\s*A,\s*global,\s*quickshell:overviewToggle/{s/^\s*/#/}' config/hypr/UserConfigs/UserKeybinds.conf
 fi
 
-# Check if quickshell is installed edit quickshell behaviour on configs
+# Check if quickshell is installed; edit quickshell behaviour on configs
 if command -v qs >/dev/null 2>&1; then
     sed -i '/^\s*#exec-once = qs/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
     sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
     sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
 
-    # Uncomment the quickshell keybind line (tolerates spaces/tabs)
-    sed -i '/^\s*#\s*bind\s*=\s*\$mainMod,\s*A,\s*global,\s*quickshell:overviewToggle/s/^\s*#\s*//' config/hypr/UserConfigs/UserKeybinds.conf
+    # Uncomment the quickshell keybind line 
+    sed -i "/^#bind = \$mainMod, A, global, quickshell:overviewToggle/s/^#//" config/hypr/UserConfigs/UserKeybinds.conf
 
-    # Ensure the ags overview keybind is commented (tolerates spaces/tabs)
-    sed -i '/^\s*bind\s*=\s*\$mainMod,\s*A,\s*exec,\s*pkill rofi\s*\|\|\s*true\s*&&\s*ags\s*-t\s*'\''overview'\''/{
-        s/^\s*/#/
-    }' config/hypr/UserConfigs/UserKeybinds.conf
+    # Ensure the ags overview keybind is commented 
+    sed -i "/^\s*bind\s*=\s*\\\$mainMod,\s*A,\s*exec,\s*pkill rofi\s*||\s*true\s*&&\s*ags\s*-t\s*'overview'/{s/^\s*/#/}" config/hypr/UserConfigs/UserKeybinds.conf
 fi
-
 
 printf "\n%.0s" {1..1}
 
