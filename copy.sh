@@ -235,12 +235,36 @@ if command -v blueman-applet >/dev/null 2>&1; then
     sed -i '/^\s*#exec-once = blueman-applet/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
 fi
 
+# Check if ags is installed edit ags behaviour on configs
+if command -v ags >/dev/null 2>&1; then
+    sed -i '/^\s*#exec-once = ags/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+    sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
+    sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
+
+    # Uncomment the ags overview keybind (tolerates spaces/tabs)
+    sed -i '/^\s*#\s*bind\s*=\s*\$mainMod,\s*A,\s*exec,\s*pkill rofi\s*\|\|\s*true\s*&&\s*ags\s*-t\s*'\''overview'\''/s/^\s*#\s*//' config/hypr/UserConfigs/UserKeybinds.conf
+
+    # Comment the quickshell line if not already commented (tolerates spaces/tabs)
+    sed -i '/^\s*bind\s*=\s*\$mainMod,\s*A,\s*global,\s*quickshell:overviewToggle/{
+        s/^\s*/#/
+    }' config/hypr/UserConfigs/UserKeybinds.conf
+fi
+
 # Check if quickshell is installed edit quickshell behaviour on configs
 if command -v qs >/dev/null 2>&1; then
     sed -i '/^\s*#exec-once = qs/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
     sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
     sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
+
+    # Uncomment the quickshell keybind line (tolerates spaces/tabs)
+    sed -i '/^\s*#\s*bind\s*=\s*\$mainMod,\s*A,\s*global,\s*quickshell:overviewToggle/s/^\s*#\s*//' config/hypr/UserConfigs/UserKeybinds.conf
+
+    # Ensure the ags overview keybind is commented (tolerates spaces/tabs)
+    sed -i '/^\s*bind\s*=\s*\$mainMod,\s*A,\s*exec,\s*pkill rofi\s*\|\|\s*true\s*&&\s*ags\s*-t\s*'\''overview'\''/{
+        s/^\s*/#/
+    }' config/hypr/UserConfigs/UserKeybinds.conf
 fi
+
 
 printf "\n%.0s" {1..1}
 
@@ -662,6 +686,42 @@ for DIR_NAME in $DIR; do
     echo "${ERROR} - Directory config/$DIR_NAME does not exist to copy."
   fi
 done
+
+printf "\n%.0s" {1..1}
+
+# ags config
+# Check if ags is installed
+if command -v ags >/dev/null 2>&1; then
+  echo -e "${NOTE} - ${YELLOW}ags${RESET} is detected as installed"
+
+  DIRPATH_AGS="$HOME/.config/ags"
+
+  if [ ! -d "$DIRPATH_AGS" ]; then
+    echo "${INFO} - ags config not found, copying new config."
+    if [ -d "config/ags" ]; then
+      cp -r "config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"
+    fi
+  else
+    read -p "${CAT} Do you want to overwrite your existing ${YELLOW}ags${RESET} config? [y/N] " answer_ags
+    case "$answer_ags" in
+      [Yy]* )
+        BACKUP_DIR=$(get_backup_dirname)
+        mv "$DIRPATH_AGS" "$DIRPATH_AGS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+        echo -e "${NOTE} - Backed up ags config to $DIRPATH_AGS-backup-$BACKUP_DIR"
+                
+        if cp -r "config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"; then
+          echo "${OK} - ${YELLOW}ags configs${RESET} overwritten successfully."
+        else
+          echo "${ERROR} - Failed to copy ${YELLOW}ags${RESET} config."
+          exit 1
+        fi
+        ;;
+      * )
+        echo "${NOTE} - Skipping overwrite of ags config."
+        ;;
+    esac
+  fi
+fi
 
 printf "\n%.0s" {1..1}
 
