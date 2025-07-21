@@ -28,55 +28,49 @@ elif [[ "$1" == "--effects" ]]; then
     mode="effects"
 fi
 
-
-
 # Extract colors from rofi wallust config
-get_color() {
-    grep -oP "$1:\s*\K#[A-Fa-f0-9]+" "$rofi_wallust"
-}
+color14=$(grep -oP 'color14:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
+color13=$(grep -oP 'color13:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
+color12=$(grep -oP 'color12:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
+color1=$(grep -oP 'color1:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
+color0=$(grep -oP 'color0:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
+color10=$(grep -oP 'color10:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
+foreground=$(grep -oP 'foreground:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
+#background-color=$(grep -oP 'background:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
 
-color11=$(get_color 'color11')
-HeaderTextColor=$(get_color 'color12')
-DateTextColor=$(get_color 'color13')
-bg_color=$(get_color 'color0')
-placeholder_color="$accent_color"
-icon_color=$(get_color 'foreground')
-color11=$(get_color 'color11')
-
-# Define an array of key-value pairs for SDDM config updates
-declare -A color_updates=(
-    [HeaderTextColor]="$HeaderTextColor"
-    [DateTextColor]="$DateTextColor"
-    [TimeTextColor]="$DateTextColor"
-    [SystemButtonsIconsColor]="$DateTextColor"
-    [SessionButtonTextColor]="$DateTextColor"
-    [VirtualKeyboardButtonTextColor]="$DateTextColor"
-    [BackgroundColor]="$bg_color"
-    [PlaceholderTextColor]="$placeholder_color"
-    [IconColor]="$icon_color"
-	[DropdownBackgroundColor]="$bg_color"
-	[HighlightBackgroundColor]="$color11"
-)
-
-# Apply changes via terminal and sudo
-$terminal -e bash -c "
-echo 'Enter your password to update SDDM wallpapers and colors';
-$(for key in "${!color_updates[@]}"; do
-    value="${color_updates[$key]}"
-    echo "sudo sed -i \"s/${key}=\\\"#.*\\\"/${key}=\\\"$value\\\"/\" \"$sddm_theme_conf\""
-done)
-"
-
-# Set wallpaper path based on mode
-wallpaper_path=$([[ "$mode" == "normal" ]] && echo "$wallpaper_current" || echo "$wallpaper_modified")
-
-# Copy wallpaper safely
-if [[ -f "$wallpaper_path" ]]; then
-    sudo cp "$wallpaper_path" "$sddm_simple/Backgrounds/default"
-    notify-send -i "$iDIR/ja.png" "SDDM" "Background SET"
+# wallpaper to use
+if [[ "$mode" == "normal" ]]; then
+    wallpaper_path="$wallpaper_current"
 else
-    notify-send -i "$iDIR/ja.png" "SDDM" "Wallpaper not found: $wallpaper_path"
-    echo "Error: Wallpaper file not found: $wallpaper_path"
-    exit 1
+    wallpaper_path="$wallpaper_modified"
 fi
 
+# Launch terminal and apply changes
+$terminal -e bash -c "
+echo 'Enter your password to update SDDM wallpapers and colors';
+
+# Update the colors in the SDDM config
+sudo sed -i \"s/HeaderTextColor=\\\"#.*\\\"/HeaderTextColor=\\\"$color13\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/DateTextColor=\\\"#.*\\\"/DateTextColor=\\\"$color13\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/TimeTextColor=\\\"#.*\\\"/TimeTextColor=\\\"$color13\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/DropdownSelectedBackgroundColor=\\\"#.*\\\"/DropdownSelectedBackgroundColor=\\\"$color13\\\"/\" \"$sddm_theme_conf\"
+
+sudo sed -i \"s/SystemButtonsIconsColor=\\\"#.*\\\"/SystemButtonsIconsColor=\\\"$color12\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/SessionButtonTextColor=\\\"#.*\\\"/SessionButtonTextColor=\\\"$color12\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/VirtualKeyboardButtonTextColor=\\\"#.*\\\"/VirtualKeyboardButtonTextColor=\\\"$color12\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/HighlightBackgroundColor=\\\"#.*\\\"/HighlightBackgroundColor=\\\"$color12\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/LoginFieldTextColor=\\\"#.*\\\"/LoginFieldTextColor=\\\"$color12\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/PasswordFieldTextColor=\\\"#.*\\\"/PasswordFieldTextColor=\\\"$color12\\\"/\" \"$sddm_theme_conf\"
+
+sudo sed -i \"s/DropdownBackgroundColor=\\\"#.*\\\"/DropdownBackgroundColor=\\\"$color0\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/HighlightTextColor=\\\"#.*\\\"/HighlightTextColor=\\\"$color10\\\"/\" \"$sddm_theme_conf\"
+
+sudo sed -i \"s/PlaceholderTextColor=\\\"#.*\\\"/PlaceholderTextColor=\\\"$color14\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/UserIconColor=\\\"#.*\\\"/UserIconColor=\\\"$color14\\\"/\" \"$sddm_theme_conf\"
+sudo sed -i \"s/PasswordIconColor=\\\"#.*\\\"/PasswordIconColor=\\\"$color14\\\"/\" \"$sddm_theme_conf\"
+
+# Copy wallpaper to SDDM theme
+sudo cp \"$wallpaper_path\" \"$sddm_simple/Backgrounds/default\"
+
+notify-send -i \"$iDIR/ja.png\" \"SDDM\" \"Background SET\"
+"
