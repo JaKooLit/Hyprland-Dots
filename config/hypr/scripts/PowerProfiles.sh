@@ -9,11 +9,6 @@ fi
 # Variables
 iDIR="$HOME/.config/swaync/images"
 
-# Check if powerprofilesctl exists and it is executable
-if [ ! -x powerprofilesctl ]; then
-    notify-send -u low -i "$iDIR/ja.png" "powerprofilesctl is not found"
-fi
-
 # list of Monitor Profiles, sorted alphabetically with numbers first
 power_profiles_list=$(powerprofilesctl list | grep -oP '([a-z-]+):$' | sed 's/:$//')
 
