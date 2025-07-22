@@ -96,6 +96,12 @@ main() {
             qt5ct ;;
         "Choose Hyprland Animations") $scriptsDir/Animations.sh ;;
         "Choose Monitor Profiles") $scriptsDir/MonitorProfiles.sh ;;
+    "Choose Power Profiles") 
+            if ! command -v powerprofilesctl &>/dev/null; then
+                notify-send -i "$iDIR/error.png" "E-R-R-O-R" "powerprofilesctl is not found"
+                exit 1
+            fi
+            $scriptsDir/PowerProfiles.sh ;;
         "Choose Rofi Themes") $scriptsDir/RofiThemeSelector.sh ;;
         "Search for Keybinds") $scriptsDir/KeyBinds.sh ;;
         "Toggle Game Mode") $scriptsDir/GameMode.sh ;;
