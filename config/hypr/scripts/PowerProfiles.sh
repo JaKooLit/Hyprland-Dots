@@ -8,8 +8,9 @@ if pidof rofi > /dev/null; then
 fi
 # Variables
 iDIR="$HOME/.config/swaync/images"
+rofi_theme="$HOME/.config/rofi/config-Power.rasi"
 
-# list of Monitor Profiles, sorted alphabetically with numbers first
+# list of Power Profiles
 power_profiles_list=$(powerprofilesctl list | grep -oP '([a-z-]+):$' | sed 's/:$//')
 
 # Rofi Menu
