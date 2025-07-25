@@ -31,7 +31,7 @@ main() {
     default_row=0
     for i in "${!options[@]}"; do
         if [[ "${options[i]}" == "$current_name" ]]; then
-            options[i]="${options[i]} ⮕"
+            options[i]="👉 ${options[i]}"
             default_row=$i
             break
         fi
