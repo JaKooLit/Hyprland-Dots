@@ -25,6 +25,9 @@ done
 # added since wallust sometimes not applying
 killall -SIGUSR2 waybar 
 
+# quit ags & relaunch ags
+#ags -q && ags &
+
 # quit quickshell & relaunch quickshell
 #pkill qs && qs &
 
