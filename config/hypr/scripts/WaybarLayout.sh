@@ -29,9 +29,10 @@ main() {
 
     # Mark and locate the active layout
     default_row=0
+    MARKER="👉"
     for i in "${!options[@]}"; do
         if [[ "${options[i]}" == "$current_name" ]]; then
-            options[i]="👉 ${options[i]}"
+            options[i]="$MARKER ${options[i]}"
             default_row=$i
             break
         fi
@@ -49,7 +50,7 @@ main() {
     [[ -z "$choice" ]] && { echo "No option selected. Exiting."; exit 0; }
 
     # Strip marker before applying
-    choice=${choice% ⮕}
+    choice=${choice# $MARKER}
 
     case "$choice" in
         "no panel")

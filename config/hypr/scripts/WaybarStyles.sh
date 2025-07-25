@@ -31,9 +31,10 @@ main() {
 
     # mark the active style and record its index
     default_row=0
+    MARKER="👉"
     for i in "${!options[@]}"; do
         if [[ "${options[i]}" == "$current_name" ]]; then
-            options[i]="👉 ${options[i]}"
+            options[i]="$MARKER ${options[i]}"
             default_row=$i
             break
         fi
@@ -50,7 +51,7 @@ main() {
     [[ -z "$choice" ]] && { echo "No option selected. Exiting."; exit 0; }
 
     # remove annotation and apply
-    choice=${choice% ⮕}
+    choice=${choice# $MARKER}
     apply_style "$choice"
 }
 
