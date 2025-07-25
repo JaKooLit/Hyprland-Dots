@@ -36,7 +36,8 @@
 	
 "modules-right": [
 	"pulseaudio#1",
-	"backlight#2", 
+	"backlight#2",
+	"power-profiles-daemon", 
 	"battery"
 	],
 

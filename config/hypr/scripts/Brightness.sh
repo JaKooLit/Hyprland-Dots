@@ -6,69 +6,64 @@ iDIR="$HOME/.config/swaync/icons"
 notification_timeout=1000
 step=10  # INCREASE/DECREASE BY THIS VALUE
 
-# Get brightness
-get_backlight() {
-	brightnessctl -m | cut -d, -f4 | sed 's/%//'
+# Get current brightness as an integer (without %)
+get_brightness() {
+    brightnessctl -m | cut -d, -f4 | tr -d '%'
 }
 
-# Get icons
-get_icon() {
-	current=$(get_backlight)
-	if   [ "$current" -le "20" ]; then
-		icon="$iDIR/brightness-20.png"
-	elif [ "$current" -le "40" ]; then
-		icon="$iDIR/brightness-40.png"
-	elif [ "$current" -le "60" ]; then
-		icon="$iDIR/brightness-60.png"
-	elif [ "$current" -le "80" ]; then
-		icon="$iDIR/brightness-80.png"
-	else
-		icon="$iDIR/brightness-100.png"
-	fi
+# Determine the icon based on brightness level
+get_icon_path() {
+    local brightness=$1
+    local level=$(( (brightness + 19) / 20 * 20 ))  # Round up to next 20
+    if (( level > 100 )); then
+        level=100
+    fi
+    echo "$iDIR/brightness-${level}.png"
 }
 
-# Notify
-notify_user() {
-	notify-send -e -h string:x-canonical-private-synchronous:brightness_notif -h int:value:$current -u low -i $icon "Screen" "Brightness:$current%"
+# Send notification
+send_notification() {
+    local brightness=$1
+    local icon_path=$2
+
+    notify-send -e \
+        -h string:x-canonical-private-synchronous:brightness_notif \
+        -h int:value:"$brightness" \
+        -u low \
+        -i "$icon_path" \
+        "Screen" "Brightness: ${brightness}%"
 }
 
-# Change brightness
-change_backlight() {
-	local current_brightness
-	current_brightness=$(get_backlight)
+# Change brightness and notify
+change_brightness() {
+    local delta=$1
+    local current new icon
 
-	# Calculate new brightness
-	if [[ "$1" == "+${step}%" ]]; then
-		new_brightness=$((current_brightness + step))
-	elif [[ "$1" == "${step}%-" ]]; then
-		new_brightness=$((current_brightness - step))
-	fi
+    current=$(get_brightness)
+    new=$((current + delta))
 
-	# Ensure new brightness is within valid range
-	if (( new_brightness < 5 )); then
-		new_brightness=5
-	elif (( new_brightness > 100 )); then
-		new_brightness=100
-	fi
+    # Clamp between 5 and 100
+    (( new < 5 )) && new=5
+    (( new > 100 )) && new=100
 
-	brightnessctl set "${new_brightness}%"
-	get_icon
-	current=$new_brightness
-	notify_user
+    brightnessctl set "${new}%"
+
+    icon=$(get_icon_path "$new")
+    send_notification "$new" "$icon"
 }
 
-# Execute accordingly
+# Main
 case "$1" in
-	"--get")
-		get_backlight
-		;;
-	"--inc")
-		change_backlight "+${step}%"
-		;;
-	"--dec")
-		change_backlight "${step}%-"
-		;;
-	*)
-		get_backlight
-		;;
+    "--get")
+        get_brightness
+        ;;
+    "--inc")
+        change_brightness "$step"
+        ;;
+    "--dec")
+        change_brightness "-$step"
+        ;;
+    *)
+        get_brightness
+        ;;
 esac

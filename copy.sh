@@ -33,7 +33,7 @@ fi
 
 # Function to print colorful text
 print_color() {
-    printf "%b%s%b\n" "$1" "$2" "$CLEAR"
+    printf "%b%s%b\n" "$1" "$2" "$RESET"
 }
 
 # Check /etc/os-release to see if this is an Ubuntu or Debian based distro
@@ -75,11 +75,6 @@ if [ ! -d Copy-Logs ]; then
     mkdir Copy-Logs
 fi
 
-# Function to print colorful text
-print_color() {
-    printf "%b%s%b\n" "$1" "$2" "$CLEAR"
-}
-
 # Set the name of the log file to include the current date and time
 LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 
@@ -92,6 +87,8 @@ if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
   sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = NVD_BACKEND,direct/s/^#//' config/hypr/UserConfigs/ENVariables.conf
+  sed -i '/env = GSK_RENDERER,ngl/s/^#//' config/hypr/UserConfigs/ENVariables.conf
+
   # no hardware cursors if nvidia detected 
   sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1 1/' config/hypr/UserConfigs/UserSettings.conf 
   #sed -i 's/^\([[:space:]]*explicit_sync[[:space:]]*=[[:space:]]*\)2/\1 0/' config/hypr/UserConfigs/UserSettings.conf
@@ -245,6 +242,25 @@ if command -v ags >/dev/null 2>&1; then
     sed -i '/^\s*#exec-once = ags/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
     sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
     sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
+
+    # Uncomment the ags overview keybind
+    sed -i '/^#bind = \$mainMod, A, exec, pkill rofi || true && ags -t '\''overview'\''/s/^#//' config/hypr/UserConfigs/UserKeybinds.conf
+
+    # Comment the quickshell line if not already commented
+    sed -i '/^\s*bind\s*=\s*\$mainMod,\s*A,\s*global,\s*quickshell:overviewToggle/{s/^\s*/#/}' config/hypr/UserConfigs/UserKeybinds.conf
+fi
+
+# Check if quickshell is installed; edit quickshell behaviour on configs
+if command -v qs >/dev/null 2>&1; then
+    sed -i '/^\s*#exec-once = qs/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+    sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
+    sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
+
+    # Uncomment the quickshell keybind line 
+    sed -i "/^#bind = \$mainMod, A, global, quickshell:overviewToggle/s/^#//" config/hypr/UserConfigs/UserKeybinds.conf
+
+    # Ensure the ags overview keybind is commented 
+    sed -i "/^\s*bind\s*=\s*\\\$mainMod,\s*A,\s*exec,\s*pkill rofi\s*||\s*true\s*&&\s*ags\s*-t\s*'overview'/{s/^\s*/#/}" config/hypr/UserConfigs/UserKeybinds.conf
 fi
 
 printf "\n%.0s" {1..1}
@@ -392,7 +408,7 @@ while true; do
 
       # Applying to different SDDM themes
       apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm"
-      apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm-2"
+      apply_sddm_12h_format "/usr/share/sddm/themes/simple_sddm_2"
 
       # For SDDM (sequoia_2)
       sddm_directory_3="/usr/share/sddm/themes/sequoia_2"
@@ -461,7 +477,7 @@ fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
 # Config directories which will ask the user whether to replace or not
-DIRS="ags fastfetch kitty rofi swaync"
+DIRS="fastfetch kitty rofi swaync"
 
 for DIR2 in $DIRS; do
   DIRPATH="$HOME/.config/$DIR2"
@@ -669,6 +685,79 @@ for DIR_NAME in $DIR; do
 done
 
 printf "\n%.0s" {1..1}
+
+# ags config
+# Check if ags is installed
+if command -v ags >/dev/null 2>&1; then
+  echo -e "${NOTE} - ${YELLOW}ags${RESET} is detected as installed"
+
+  DIRPATH_AGS="$HOME/.config/ags"
+
+  if [ ! -d "$DIRPATH_AGS" ]; then
+    echo "${INFO} - ags config not found, copying new config."
+    if [ -d "config/ags" ]; then
+      cp -r "config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"
+    fi
+  else
+    read -p "${CAT} Do you want to overwrite your existing ${YELLOW}ags${RESET} config? [y/N] " answer_ags
+    case "$answer_ags" in
+      [Yy]* )
+        BACKUP_DIR=$(get_backup_dirname)
+        mv "$DIRPATH_AGS" "$DIRPATH_AGS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+        echo -e "${NOTE} - Backed up ags config to $DIRPATH_AGS-backup-$BACKUP_DIR"
+                
+        if cp -r "config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"; then
+          echo "${OK} - ${YELLOW}ags configs${RESET} overwritten successfully."
+        else
+          echo "${ERROR} - Failed to copy ${YELLOW}ags${RESET} config."
+          exit 1
+        fi
+        ;;
+      * )
+        echo "${NOTE} - Skipping overwrite of ags config."
+        ;;
+    esac
+  fi
+fi
+
+printf "\n%.0s" {1..1}
+
+# quickshell (ags alternative)
+# Check if quickshell is installed
+if command -v qs >/dev/null 2>&1; then
+  echo -e "${NOTE} - ${YELLOW}quickshell${RESET} is detected as installed"
+
+  DIRPATH_QS="$HOME/.config/quickshell"
+
+  if [ ! -d "$DIRPATH_QS" ]; then
+    echo "${INFO} - quickshell config not found, copying new config."
+    if [ -d "config/quickshell" ]; then
+      cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
+    fi
+  else
+    read -p "${CAT} Do you want to overwrite your existing ${YELLOW}quickshell${RESET} config? [y/N] " answer_qs
+    case "$answer_qs" in
+      [Yy]* )
+        BACKUP_DIR=$(get_backup_dirname)
+        mv "$DIRPATH_QS" "$DIRPATH_QS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+        echo -e "${NOTE} - Backed up quickshell to $DIRPATH_QS-backup-$BACKUP_DIR"
+                
+        cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
+        if [ $? -eq 0 ]; then
+          echo "${OK} - ${YELLOW}quickshell${RESET} overwritten successfully."
+        else
+          echo "${ERROR} - Failed to copy ${YELLOW}quickshell${RESET} config."
+          exit 1
+        fi
+        ;;
+      * )
+        echo "${NOTE} - Skipping overwrite of quickshell config."
+        ;;
+    esac
+  fi
+fi
+printf "\n%.0s" {1..1}
+
 
 # Restore automatically Animations and Monitor-Profiles
 # including monitors.conf and workspaces.conf
@@ -897,11 +986,11 @@ rm -rf "$HOME/.config/waybar/configs/[TOP] Default$config_remove" \
 
 printf "\n%.0s" {1..1}
 
-# for SDDM (sequoia_2)
-sddm_sequioa="/usr/share/sddm/themes/sequoia_2"
-if [ -d "$sddm_sequioa" ]; then
+# for SDDM (simple_sddm_2)
+sddm_simple_sddm_2="/usr/share/sddm/themes/simple_sddm_2"
+if [ -d "$sddm_simple_sddm_2" ]; then
   while true; do
-    echo -n "${CAT} SDDM sequoia_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
+    echo -n "${CAT} SDDM simple_sddm_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
     read SDDM_WALL
     
     # Remove any leading/trailing whitespace or newlines from input
@@ -910,7 +999,7 @@ if [ -d "$sddm_sequioa" ]; then
     case $SDDM_WALL in
       [Yy])
         # Copy the wallpaper, ignore errors if the file exists or fails
-        sudo cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/sequoia_2/backgrounds/default" || true
+        sudo cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/simple_sddm_2/Backgrounds/default" || true
         echo "${NOTE} Current wallpaper applied as default SDDM background" 2>&1 | tee -a "$LOG"
         break
         ;;

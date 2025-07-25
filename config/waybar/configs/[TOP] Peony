@@ -42,7 +42,8 @@
 	"pulseaudio",
 	"custom/separator#blank",
 	"temperature",
-	"custom/separator#blank",	
+	"custom/separator#blank",
+	"group/mobo_drawer",	
 	"network"],
 
 }	

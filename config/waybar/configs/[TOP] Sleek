@@ -38,6 +38,7 @@
 	"custom/separator#blank_2",
 	"pulseaudio",
 	"custom/separator#blank",
+	"group/mobo_drawer",
 	"custom/power",					
 	],
 }
