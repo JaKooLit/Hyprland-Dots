@@ -226,6 +226,7 @@
 		"class<vlc>": "󰕼 ",
 		"title<.*cmus.*>": " ",
 		"class<[Ss]potify>": " ",
+	  "class<Plex>": "󰚺 ",
 
 		"class<virt-manager>": " ",
 		"class<.virt-manager-wrapped>": " ",
