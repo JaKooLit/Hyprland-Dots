@@ -28,6 +28,9 @@ killall -SIGUSR2 waybar
 # quit ags & relaunch ags
 #ags -q && ags &
 
+# quit quickshell & relaunch quickshell
+#pkill qs && qs &
+
 # some process to kill
 for pid in $(pidof waybar rofi swaync ags swaybg); do
     kill -SIGUSR1 "$pid"

@@ -44,9 +44,6 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 ### 📹 A video walkthroughs
 - at the bottom
 
-### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
-
 </details>
 
 ---
@@ -182,8 +179,6 @@ chmod +x upgrade.sh
 
 #### 🤷‍♂️ TO DO!
 - [ ] Tweak dots - 🚧 in constant progress 
-- ~~[ ] Quite possibly switch to starship? Although starship has limited themes compared to oh-my-zsh.~~ no plans for now
-
 
 #### 🔮 Discord Server
 - kindly join my [Discord](https://discord.com/invite/kool-tech-world)

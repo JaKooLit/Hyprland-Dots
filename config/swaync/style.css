@@ -12,6 +12,7 @@
 * {
     font-family: "JetBrains Mono Nerd Font";
     font-weight: bold;
+    font-size: 1rem;
 }
 
 .control-center .notification-row:focus,
@@ -23,20 +24,14 @@
 
 .notification-row {
     outline: none;
-    margin: 0px;
 }
 
 .notification {
-	border-radius: 10px;
-}
-
-.notification-content{
 	/*color: @text-color;*/
     background: @noti-bg;
     padding: 3px 10px 3px 6px;
     border-radius: 10px;
-    border: 1px solid @noti-border-color;
-    margin: 0px;
+    border: 2px solid @noti-border-color;
 }
 
 .notification-default-action {
@@ -210,7 +205,7 @@
     padding: 3px 6px;
     margin: 5px;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.5rem;
     color: @noti-border-color;
 }
 
@@ -331,22 +326,4 @@
     border-radius: 10px;
     font-size: x-large;
     color: @text-color
-}
-
-.low {
-  background: @text-color;
-  padding: 0px;
-  border-radius: 10px;
-}
-
-.normal {
-  background: @text-color;
-  padding: 0px;
-  border-radius: 10px;
-}
-
-.critical {
-  background: red;
-  padding: 0px;
-  border-radius: 10px;
 }

@@ -123,11 +123,9 @@ set_sddm_wallpaper() {
         notify-send -i "$iDIR/error.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
         exit 1
       fi
-
-      # Open terminal to enter password
-      $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
-            sudo cp -r $wallpaper_current '$sddm_simple/Backgrounds/default' && \
-            notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
+	  
+	  exec $SCRIPTSDIR/sddm_wallpaper.sh --normal
+    
     fi
   fi
 }
