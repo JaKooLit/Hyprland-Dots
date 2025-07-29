@@ -18,8 +18,8 @@ Rectangle { // Window
     property var availableWorkspaceWidth
     property var availableWorkspaceHeight
     property bool restrictToWorkspace: true
-    property real initX: Math.max((windowData?.at[0] - monitorData?.reserved[0]) * root.scale, 0) + xOffset
-    property real initY: Math.max((windowData?.at[1] - monitorData?.reserved[1]) * root.scale, 0) + yOffset
+    property real initX: Math.max((windowData?.at[0] - monitorData?.reserved[0] - monitorData?.x) * root.scale, 0) + xOffset
+    property real initY: Math.max((windowData?.at[1] - monitorData?.reserved[1] - monitorData?.y) * root.scale, 0) + yOffset
     property real xOffset: 0
     property real yOffset: 0
     
