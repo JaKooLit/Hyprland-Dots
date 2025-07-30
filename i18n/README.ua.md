@@ -3,14 +3,14 @@
 [![ro](https://img.shields.io/badge/lang-ro-green.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ro.md)
 [![uk](https://img.shields.io/badge/lang-uk-white.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.uk.md)
 [![de](https://img.shields.io/badge/lang-de-magenta.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.de.md)
-[![de](https://img.shields.io/badge/lang-ua-blue.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ua.md)
+[![ua](https://img.shields.io/badge/lang-ua-blue.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ua.md)
 
 <h3 align="center">
 <img align="center" width="80%" src=https://github.com/user-attachments/assets/bc18bd4d-944b-4d5f-a119-7578fa38f9b4 />
 </h3>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
+  <img src="h[![ua](https://img.shields.io/badge/lang-ua-blue.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ua.md)ttps://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
 </p>
 
 <div align="center">
