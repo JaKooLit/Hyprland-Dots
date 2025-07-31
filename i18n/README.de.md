@@ -2,7 +2,7 @@
 [![jp](https://img.shields.io/badge/lang-jp-blue.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.jp.md)
 [![ro](https://img.shields.io/badge/lang-ro-green.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ro.md)
 [![ru](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ru.md)
-[![uk](https://img.shields.io/badge/lang-uk-white.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.uk.md)
+[![ua](https://img.shields.io/badge/lang-ua-white.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ua.md)
 
 <h3 align="center">
 <img align="center" width="80%" src=https://github.com/user-attachments/assets/bc18bd4d-944b-4d5f-a119-7578fa38f9b4 />
