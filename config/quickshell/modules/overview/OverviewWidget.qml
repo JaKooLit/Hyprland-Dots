@@ -239,8 +239,8 @@ Item {
                 delegate: OverviewWindow {
                     id: window
                     windowData: windowByAddress[modelData]
-                    monitorData: HyprlandData.monitors.find(m => m.id === windowData?.monitor) // use monitorData of the monitor the window is on
-                    scale: root.scale * (monitorData?.scale / root.monitor?.scale) // adjust window scale to the monitor where the overview is displayed
+                    monitorData: root.monitorData
+                    scale: root.scale
                     availableWorkspaceWidth: root.workspaceImplicitWidth
                     availableWorkspaceHeight: root.workspaceImplicitHeight
 
