@@ -262,16 +262,21 @@ Item {
                             // Get the window's actual monitor for position calculations
                             var actualMonitorData = HyprlandData.monitors.find(m => m.id === windowData?.monitor) || root.monitorData
                             
-                            // Calculate position relative to the window's actual monitor, but scale using overview monitor's scale
-                            var relativeX = Math.max((windowData?.at[0] - actualMonitorData?.reserved[0] - actualMonitorData?.x), 0)
-                            var relativeY = Math.max((windowData?.at[1] - actualMonitorData?.reserved[1] - actualMonitorData?.y), 0)
+                            // Calculate position relative to the window's actual monitor
+                            var relativeX = Math.max((windowData?.at[0] - actualMonitorData?.reserved[0] - actualMonitorData?.x) / (actualMonitorData?.scale ?? 1), 0)
+                            var relativeY = Math.max((windowData?.at[1] - actualMonitorData?.reserved[1] - actualMonitorData?.y) / (actualMonitorData?.scale ?? 1), 0)
                             
-                            // Scale the relative position to fit within the overview workspace
-                            var scaleFactorX = root.workspaceImplicitWidth / Math.max(1, (actualMonitorData?.width - (actualMonitorData?.reserved[0] ?? 0) - (actualMonitorData?.reserved[2] ?? 0)) / (actualMonitorData?.scale ?? 1))
-                            var scaleFactorY = root.workspaceImplicitHeight / Math.max(1, (actualMonitorData?.height - (actualMonitorData?.reserved[1] ?? 0) - (actualMonitorData?.reserved[3] ?? 0)) / (actualMonitorData?.scale ?? 1))
+                            // Get actual monitor dimensions (accounting for reserved areas and scale)
+                            var actualMonitorWidth = (actualMonitorData?.width - (actualMonitorData?.reserved[0] ?? 0) - (actualMonitorData?.reserved[2] ?? 0)) / (actualMonitorData?.scale ?? 1)
+                            var actualMonitorHeight = (actualMonitorData?.height - (actualMonitorData?.reserved[1] ?? 0) - (actualMonitorData?.reserved[3] ?? 0)) / (actualMonitorData?.scale ?? 1)
                             
-                            window.x = (relativeX * scaleFactorX) + xOffset
-                            window.y = (relativeY * scaleFactorY) + yOffset
+                            // Calculate overview workspace dimensions (already scaled)
+                            var overviewWidth = root.workspaceImplicitWidth / root.scale
+                            var overviewHeight = root.workspaceImplicitHeight / root.scale
+                            
+                            // Scale the position proportionally to fit within the overview workspace
+                            window.x = (relativeX * overviewWidth / actualMonitorWidth) * root.scale + xOffset
+                            window.y = (relativeY * overviewHeight / actualMonitorHeight) * root.scale + yOffset
                         }
                     }
 
