@@ -28,11 +28,11 @@ Item {
     property color activeBorderColor: Appearance.m3colors.m3accentSecondary
 
     property real workspaceImplicitWidth: Math.max(100, (monitorData?.transform % 2 === 1) ? 
-        ((monitor.height - monitorData?.reserved[0] - monitorData?.reserved[2]) * root.scale / monitor.scale) :
-        ((monitor.width - monitorData?.reserved[0] - monitorData?.reserved[2]) * root.scale / monitor.scale))
+        ((monitor.height - (monitorData?.reserved[0] ?? 0) - (monitorData?.reserved[2] ?? 0)) * root.scale) / (monitorData?.scale ?? 1) :
+        ((monitor.width - (monitorData?.reserved[0] ?? 0) - (monitorData?.reserved[2] ?? 0)) * root.scale) / (monitorData?.scale ?? 1))
     property real workspaceImplicitHeight: Math.max(60, (monitorData?.transform % 2 === 1) ? 
-        ((monitor.width - monitorData?.reserved[1] - monitorData?.reserved[3]) * root.scale / monitor.scale) :
-        ((monitor.height - monitorData?.reserved[1] - monitorData?.reserved[3]) * root.scale / monitor.scale))
+        ((monitor.width - (monitorData?.reserved[1] ?? 0) - (monitorData?.reserved[3] ?? 0)) * root.scale) / (monitorData?.scale ?? 1) :
+        ((monitor.height - (monitorData?.reserved[1] ?? 0) - (monitorData?.reserved[3] ?? 0)) * root.scale) / (monitorData?.scale ?? 1))
 
     property real workspaceNumberMargin: 80
     property real workspaceNumberSize: (ConfigOptions.overview.workspaceNumberSize > 0) 
