@@ -119,15 +119,13 @@ animate_slide_up() {
     debug_echo "Slide up animation completed"
 }
 
-# Function to get monitor info including scale
+# Function to get monitor info including scale and name of focused monitor
 get_monitor_info() {
-    local monitor_data=$(hyprctl monitors -j | jq -r '.[0] | "\(.x) \(.y) \(.width) \(.height) \(.scale)"')
-    
-    if [ -z "$monitor_data" ] || [ "$monitor_data" = "null null null null null" ]; then
-        debug_echo "Error: Could not get monitor information"
+    local monitor_data=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | "\(.x) \(.y) \(.width) \(.height) \(.scale) \(.name)"')
+    if [ -z "$monitor_data" ] || [[ "$monitor_data" =~ ^null ]]; then
+        debug_echo "Error: Could not get focused monitor information"
         return 1
     fi
-    
     echo "$monitor_data"
 }
 
@@ -137,7 +135,7 @@ calculate_dropdown_position() {
     
     if [ $? -ne 0 ] || [ -z "$monitor_info" ]; then
         debug_echo "Error: Failed to get monitor info, using fallback values"
-        echo "100 100 800 600"
+        echo "100 100 800 600 fallback-monitor"
         return 1
     fi
     
@@ -146,6 +144,7 @@ calculate_dropdown_position() {
     local mon_width=$(echo $monitor_info | cut -d' ' -f3)
     local mon_height=$(echo $monitor_info | cut -d' ' -f4)
     local mon_scale=$(echo $monitor_info | cut -d' ' -f5)
+    local mon_name=$(echo $monitor_info | cut -d' ' -f6)
     
     debug_echo "Monitor info: x=$mon_x, y=$mon_y, width=$mon_width, height=$mon_height, scale=$mon_scale"
     
@@ -195,7 +194,7 @@ calculate_dropdown_position() {
     debug_echo "Final position: x=$final_x, y=$final_y (logical coordinates)"
     debug_echo "Hyprland will scale these to physical coordinates automatically"
     
-    echo "$final_x $final_y $width $height"
+    echo "$final_x $final_y $width $height $mon_name"
 }
 
 # Get the current workspace
@@ -204,7 +203,14 @@ CURRENT_WS=$(hyprctl activeworkspace -j | jq -r '.id')
 # Function to get stored terminal address
 get_terminal_address() {
     if [ -f "$ADDR_FILE" ] && [ -s "$ADDR_FILE" ]; then
-        cat "$ADDR_FILE"
+        cut -d' ' -f1 "$ADDR_FILE"
+    fi
+}
+
+# Function to get stored monitor name
+get_terminal_monitor() {
+    if [ -f "$ADDR_FILE" ] && [ -s "$ADDR_FILE" ]; then
+        cut -d' ' -f2- "$ADDR_FILE"
     fi
 }
 
@@ -242,6 +248,7 @@ spawn_terminal() {
     local target_y=$(echo $pos_info | cut -d' ' -f2)
     local width=$(echo $pos_info | cut -d' ' -f3)
     local height=$(echo $pos_info | cut -d' ' -f4)
+    local monitor_name=$(echo $pos_info | cut -d' ' -f5)
     
     debug_echo "Target position: ${target_x},${target_y}, size: ${width}x${height}"
     
@@ -275,9 +282,9 @@ spawn_terminal() {
     fi
     
     if [ -n "$new_addr" ] && [ "$new_addr" != "null" ]; then
-        # Store the address
-        echo "$new_addr" > "$ADDR_FILE"
-        debug_echo "Terminal created with address: $new_addr in special workspace"
+        # Store the address and monitor name
+        echo "$new_addr $monitor_name" > "$ADDR_FILE"
+        debug_echo "Terminal created with address: $new_addr in special workspace on monitor $monitor_name"
         
         # Small delay to ensure it's properly in special workspace
         sleep 0.2
@@ -299,6 +306,23 @@ spawn_terminal() {
 if terminal_exists; then
     TERMINAL_ADDR=$(get_terminal_address)
     debug_echo "Found existing terminal: $TERMINAL_ADDR"
+    focused_monitor=$(get_monitor_info | awk '{print $6}')
+    dropdown_monitor=$(get_terminal_monitor)
+    if [ "$focused_monitor" != "$dropdown_monitor" ]; then
+        debug_echo "Monitor focus changed: moving dropdown to $focused_monitor"
+        # Calculate new position for focused monitor
+        pos_info=$(calculate_dropdown_position)
+        target_x=$(echo $pos_info | cut -d' ' -f1)
+        target_y=$(echo $pos_info | cut -d' ' -f2)
+        width=$(echo $pos_info | cut -d' ' -f3)
+        height=$(echo $pos_info | cut -d' ' -f4)
+        monitor_name=$(echo $pos_info | cut -d' ' -f5)
+        # Move and resize window
+        hyprctl dispatch movewindowpixel "exact $target_x $target_y,address:$TERMINAL_ADDR"
+        hyprctl dispatch resizewindowpixel "exact $width $height,address:$TERMINAL_ADDR"
+        # Update ADDR_FILE
+        echo "$TERMINAL_ADDR $monitor_name" > "$ADDR_FILE"
+    fi
 
     if terminal_in_special; then
         debug_echo "Bringing terminal from scratchpad with slide down animation"
