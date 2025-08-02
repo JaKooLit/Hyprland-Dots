@@ -235,7 +235,7 @@ Item {
                                     id: window
                                     windowData: root.windowByAddress[modelData]
                                     monitorData: workspaceMonitor
-                                    scale: root.scale
+                                    scale: workspace.workspaceScale
                                     availableWorkspaceWidth: workspaceImplicitWidth
                                     availableWorkspaceHeight: workspaceImplicitHeight
 
