@@ -27,7 +27,7 @@ Item {
     property real scale: ConfigOptions.overview.scale
     property color activeBorderColor: Appearance.m3colors.m3accentSecondary
 
-    // Use consistent workspace dimensions based on the overview's monitor
+    // Simplified workspace dimensions - always use the overview's monitor
     property real workspaceImplicitWidth: Math.max(100, (monitorData?.transform % 2 === 1) ? 
         ((monitor.height - (monitorData?.reserved[0] ?? 0) - (monitorData?.reserved[2] ?? 0)) * root.scale) / (monitorData?.scale ?? 1) :
         ((monitor.width - (monitorData?.reserved[0] ?? 0) - (monitorData?.reserved[2] ?? 0)) * root.scale) / (monitorData?.scale ?? 1))
@@ -53,6 +53,14 @@ Item {
     property Component windowComponent: OverviewWindow {}
     property list<OverviewWindow> windowWidgets: []
 
+    // Only show overview if this monitor is focused (key change for multi-monitor)
+    visible: monitorIsFocused
+    opacity: monitorIsFocused ? 1.0 : 0.0
+    
+    Behavior on opacity {
+        NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
+    }
+
     // Shared wallpaper image - loaded once and reused
     Image {
         id: sharedWallpaper
@@ -61,12 +69,13 @@ Item {
         cache: true
         asynchronous: true
         smooth: true
-        opacity: Appearance.workpaceTransparency // Adds slight transparency (0.0 = fully transparent, 1.0 = fully opaque)
+        opacity: Appearance.workpaceTransparency
     }
 
     StyledRectangularShadow {
         target: overviewBackground
     }
+    
     Rectangle { // Background
         id: overviewBackground
         property real padding: 10
@@ -80,13 +89,12 @@ Item {
         radius: Appearance.rounding.screenRounding * root.scale + padding
         color: Appearance.colors.colLayer0
 
-
         ColumnLayout { // Workspaces
             id: workspaceColumnLayout
-
             z: root.workspaceZ
             anchors.centerIn: parent
             spacing: workspaceSpacing
+            
             Repeater {
                 model: ConfigOptions.overview.numOfRows
                 delegate: RowLayout {
@@ -116,16 +124,15 @@ Item {
                             color: "transparent"
                             radius: Appearance.rounding.screenRounding * root.scale
                             clip: true
-                            opacity: Appearance.workpaceTransparency // Adds slight transparency (0.0 = fully transparent, 1.0 = fully opaque)
+                            opacity: Appearance.workpaceTransparency
 
-
-                            // Efficient wallpaper using ShaderEffectSource
+                            // Wallpaper background
                             Rectangle {
                                 id: wallpaperContainer
                                 anchors.fill: parent
-                                anchors.margins: 2 // Leave space for border
+                                anchors.margins: 2
                                 radius: workspace.radius - 2
-                                color: workspace.defaultWorkspaceColor // Fallback color
+                                color: workspace.defaultWorkspaceColor
                                 clip: true
                                 
                                 ShaderEffectSource {
@@ -135,7 +142,6 @@ Item {
                                     visible: sharedWallpaper.status === Image.Ready
                                     smooth: true
                                     
-                                    // Scale to fill while preserving aspect ratio
                                     transform: Scale {
                                         property real aspectRatio: sharedWallpaper.implicitWidth / Math.max(1, sharedWallpaper.implicitHeight)
                                         property real containerRatio: wallpaperContainer.width / Math.max(1, wallpaperContainer.height)
@@ -150,14 +156,12 @@ Item {
                                     }
                                 }
                                 
-                                // Fallback when image fails to load or isn't ready
                                 Rectangle {
                                     anchors.fill: parent
                                     color: workspace.defaultWorkspaceColor
                                     visible: sharedWallpaper.status !== Image.Ready
                                 }
                                 
-                                // Optional: Add overlay for better text readability and hover effects
                                 Rectangle {
                                     anchors.fill: parent
                                     color: hoveredWhileDragging ? hoveredWorkspaceColor : "black"
@@ -165,22 +169,21 @@ Item {
                                 }
                             }
 
-                            // Border overlay - on top of wallpaper
+                            // Border overlay
                             Rectangle {
                                 anchors.fill: parent
                                 color: "transparent"
                                 radius: parent.radius
                                 border.width: 1
                                 border.color: hoveredWhileDragging ? hoveredBorderColor : ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.6)
-                                z: 10 // Ensure it's on top
+                                z: 10
                             }
 
                             StyledText {
-                                // Position in top-left corner with padding
                                 anchors.top: parent.top
                                 anchors.left: parent.left
-                                anchors.topMargin: 12  // Padding from top edge
-                                anchors.leftMargin: 12 // Padding from left edge
+                                anchors.topMargin: 12
+                                anchors.leftMargin: 12
                                 
                                 text: workspaceId
                                 font.pixelSize: root.workspaceNumberSize * root.scale
@@ -188,14 +191,14 @@ Item {
                                 color: ColorUtils.transparentize(Appearance.colors.colOnLayer1, 0.8)
                                 horizontalAlignment: Text.AlignLeft
                                 verticalAlignment: Text.AlignTop
-                                z: 15 // Above border
+                                z: 15
                             }
 
                             MouseArea {
                                 id: workspaceArea
                                 anchors.fill: parent
                                 acceptedButtons: Qt.LeftButton
-                                z: 20 // Above all visual elements
+                                z: 20
                                 onClicked: {
                                     if (root.draggingTargetWorkspace === -1) {
                                         GlobalStates.overviewOpen = false
@@ -206,7 +209,7 @@ Item {
 
                             DropArea {
                                 anchors.fill: parent
-                                z: 20 // Same level as MouseArea
+                                z: 20
                                 onEntered: {
                                     root.draggingTargetWorkspace = workspaceId
                                     if (root.draggingFromWorkspace == root.draggingTargetWorkspace) return;
@@ -229,17 +232,20 @@ Item {
             implicitWidth: workspaceColumnLayout.implicitWidth
             implicitHeight: workspaceColumnLayout.implicitHeight
 
-            Repeater { // Window repeater
+            Repeater { // Window repeater - ONLY show windows from the current monitor
                 model: ScriptModel {
                     values: windowAddresses.filter((address) => {
                         var win = windowByAddress[address]
-                        return (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
+                        // Key change: Only show windows from this monitor AND in the current workspace group
+                        return win?.monitor === root.monitor.id && 
+                               (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && 
+                                win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
                     })
                 }
                 delegate: OverviewWindow {
                     id: window
                     windowData: windowByAddress[modelData]
-                    // Always use the overview's monitor data for consistent scaling
+                    // Since we're only showing windows from this monitor, use this monitor's data
                     monitorData: root.monitorData
                     scale: root.scale
                     availableWorkspaceWidth: root.workspaceImplicitWidth
@@ -259,30 +265,16 @@ Item {
                         repeat: false
                         running: false
                         onTriggered: {
-                            // Get the window's actual monitor for position calculations
-                            var actualMonitorData = HyprlandData.monitors.find(m => m.id === windowData?.monitor) || root.monitorData
-                            
-                            // Calculate position relative to the window's actual monitor
-                            var relativeX = Math.max((windowData?.at[0] - actualMonitorData?.reserved[0] - actualMonitorData?.x) / (actualMonitorData?.scale ?? 1), 0)
-                            var relativeY = Math.max((windowData?.at[1] - actualMonitorData?.reserved[1] - actualMonitorData?.y) / (actualMonitorData?.scale ?? 1), 0)
-                            
-                            // Get actual monitor dimensions (accounting for reserved areas and scale)
-                            var actualMonitorWidth = (actualMonitorData?.width - (actualMonitorData?.reserved[0] ?? 0) - (actualMonitorData?.reserved[2] ?? 0)) / (actualMonitorData?.scale ?? 1)
-                            var actualMonitorHeight = (actualMonitorData?.height - (actualMonitorData?.reserved[1] ?? 0) - (actualMonitorData?.reserved[3] ?? 0)) / (actualMonitorData?.scale ?? 1)
-                            
-                            // Calculate overview workspace dimensions (already scaled)
-                            var overviewWidth = root.workspaceImplicitWidth / root.scale
-                            var overviewHeight = root.workspaceImplicitHeight / root.scale
-                            
-                            // Scale the position proportionally to fit within the overview workspace
-                            window.x = (relativeX * overviewWidth / actualMonitorWidth) * root.scale + xOffset
-                            window.y = (relativeY * overviewHeight / actualMonitorHeight) * root.scale + yOffset
+                            // Simplified: since all windows are from the same monitor, no cross-monitor scaling needed
+                            window.x = Math.max((windowData?.at[0] - root.monitorData?.reserved[0] - root.monitorData?.x) * root.scale, 0) + xOffset
+                            window.y = Math.max((windowData?.at[1] - root.monitorData?.reserved[1] - root.monitorData?.y) * root.scale, 0) + yOffset
                         }
                     }
 
                     z: atInitPosition ? root.windowZ : root.windowDraggingZ
                     Drag.hotSpot.x: targetWindowWidth / 2
                     Drag.hotSpot.y: targetWindowHeight / 2
+                    
                     MouseArea {
                         id: dragArea
                         anchors.fill: parent
