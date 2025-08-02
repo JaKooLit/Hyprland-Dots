@@ -17,9 +17,14 @@ Rectangle { // Window
     property var scale
     property var availableWorkspaceWidth
     property var availableWorkspaceHeight
-    property bool restrictToWorkspace: true
-    property real initX: Math.max((windowData?.at[0] - monitorData?.reserved[0] - monitorData?.x) * root.scale, 0) + xOffset
-    property real initY: Math.max((windowData?.at[1] - monitorData?.reserved[1] - monitorData?.y) * root.scale, 0) + yOffset
+    property bool restrictToWorkspace: true``
+    property real safeScale: monitorData?.scale ?? 1
+    property real safeReserved0: monitorData?.reserved[0] ?? 0
+    property real safeReserved1: monitorData?.reserved[1] ?? 0
+    property real safeX: monitorData?.x ?? 0
+    property real safeY: monitorData?.y ?? 0
+    property real initX: Math.max((windowData?.at[0] - safeReserved0 - safeX) * scale, 0) + xOffset
+    property real initY: Math.max((windowData?.at[1] - safeReserved1 - safeY) * scale, 0) + yOffset
     property real xOffset: 0
     property real yOffset: 0
     
@@ -38,10 +43,10 @@ Rectangle { // Window
     
     x: initX
     y: initY
-    width: Math.min(windowData?.size[0] * root.scale, (restrictToWorkspace ? windowData?.size[0] : availableWorkspaceWidth - x + xOffset))
-    height: Math.min(windowData?.size[1] * root.scale, (restrictToWorkspace ? windowData?.size[1] : availableWorkspaceHeight - y + yOffset))
+    width: Math.min(windowData?.size[0] * scale, (restrictToWorkspace ? windowData?.size[0] : availableWorkspaceWidth - x + xOffset))
+    height: Math.min(windowData?.size[1] * scale, (restrictToWorkspace ? windowData?.size[1] : availableWorkspaceHeight - y + yOffset))
 
-    radius: Appearance.rounding.windowRounding * root.scale
+    radius: Appearance.rounding.windowRounding * scale
     color: pressed ? Appearance.colors.colLayer2Active : hovered ? Appearance.colors.colLayer2Hover : Appearance.colors.colLayer2
     // border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.9)
     border.color : ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.4)
