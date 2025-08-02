@@ -27,13 +27,64 @@ Item {
     property real scale: ConfigOptions.overview.scale
     property color activeBorderColor: Appearance.m3colors.m3accentSecondary
 
-    // Simplified workspace dimensions - always use the overview's monitor
-    property real workspaceImplicitWidth: Math.max(100, (monitorData?.transform % 2 === 1) ? 
-        ((monitor.height - (monitorData?.reserved[0] ?? 0) - (monitorData?.reserved[2] ?? 0)) * root.scale) / (monitorData?.scale ?? 1) :
-        ((monitor.width - (monitorData?.reserved[0] ?? 0) - (monitorData?.reserved[2] ?? 0)) * root.scale) / (monitorData?.scale ?? 1))
-    property real workspaceImplicitHeight: Math.max(60, (monitorData?.transform % 2 === 1) ? 
-        ((monitor.width - (monitorData?.reserved[1] ?? 0) - (monitorData?.reserved[3] ?? 0)) * root.scale) / (monitorData?.scale ?? 1) :
-        ((monitor.height - (monitorData?.reserved[1] ?? 0) - (monitorData?.reserved[3] ?? 0)) * root.scale) / (monitorData?.scale ?? 1))
+    // Robust reference monitor selection with comprehensive error handling
+    property var referenceMonitor: {
+        if (!HyprlandData.monitors || HyprlandData.monitors.length === 0) {
+            console.warn("No monitors found, using current monitor as reference")
+            return root.monitorData
+        }
+        
+        var smallest = null
+        var smallestArea = Number.MAX_VALUE
+        
+        for (var i = 0; i < HyprlandData.monitors.length; i++) {
+            var current = HyprlandData.monitors[i]
+            if (!current || current.disabled) continue
+            
+            // Ensure valid dimensions and scale
+            var width = Math.max(current.width ?? 1920, 640)
+            var height = Math.max(current.height ?? 1080, 480)
+            var scale = Math.max(current.scale ?? 1, 0.1)
+            var reserved0 = Math.max(current.reserved?.[0] ?? 0, 0)
+            var reserved1 = Math.max(current.reserved?.[1] ?? 0, 0)
+            var reserved2 = Math.max(current.reserved?.[2] ?? 0, 0)
+            var reserved3 = Math.max(current.reserved?.[3] ?? 0, 0)
+            
+            // Calculate usable area
+            var usableWidth = Math.max((width - reserved0 - reserved2) / scale, 100)
+            var usableHeight = Math.max((height - reserved1 - reserved3) / scale, 60)
+            var logicalArea = usableWidth * usableHeight
+            
+            if (logicalArea < smallestArea) {
+                smallestArea = logicalArea
+                smallest = current
+            }
+        }
+        
+        return smallest || root.monitorData || { width: 1920, height: 1080, scale: 1, reserved: [0, 0, 0, 0] }
+    }
+    
+    property real referenceWidth: {
+        if (!referenceMonitor) return 1920
+        var width = Math.max(referenceMonitor.width ?? 1920, 640)
+        var scale = Math.max(referenceMonitor.scale ?? 1, 0.1)
+        var reserved0 = Math.max(referenceMonitor.reserved?.[0] ?? 0, 0)
+        var reserved2 = Math.max(referenceMonitor.reserved?.[2] ?? 0, 0)
+        return Math.max((width - reserved0 - reserved2) / scale, 100)
+    }
+    
+    property real referenceHeight: {
+        if (!referenceMonitor) return 1080
+        var height = Math.max(referenceMonitor.height ?? 1080, 480)
+        var scale = Math.max(referenceMonitor.scale ?? 1, 0.1)
+        var reserved1 = Math.max(referenceMonitor.reserved?.[1] ?? 0, 0)
+        var reserved3 = Math.max(referenceMonitor.reserved?.[3] ?? 0, 0)
+        return Math.max((height - reserved1 - reserved3) / scale, 60)
+    }
+    
+    // All workspaces use the same size based on the reference monitor (smallest logical size)
+    property real workspaceImplicitWidth: Math.max(100, referenceWidth * root.scale)
+    property real workspaceImplicitHeight: Math.max(60, referenceHeight * root.scale)
 
     property real workspaceNumberMargin: 80
     property real workspaceNumberSize: (ConfigOptions.overview.workspaceNumberSize > 0) 
@@ -53,13 +104,9 @@ Item {
     property Component windowComponent: OverviewWindow {}
     property list<OverviewWindow> windowWidgets: []
 
-    // Only show overview if this monitor is focused (key change for multi-monitor)
-    visible: monitorIsFocused
-    opacity: monitorIsFocused ? 1.0 : 0.0
-    
-    Behavior on opacity {
-        NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
-    }
+    // Show on all monitors always
+    visible: true
+    opacity: 1.0
 
     // Shared wallpaper image - loaded once and reused
     Image {
@@ -232,20 +279,25 @@ Item {
             implicitWidth: workspaceColumnLayout.implicitWidth
             implicitHeight: workspaceColumnLayout.implicitHeight
 
-            Repeater { // Window repeater - ONLY show windows from the current monitor
+            Repeater { // Window repeater - Show ALL windows with error handling
                 model: ScriptModel {
                     values: windowAddresses.filter((address) => {
+                        if (!address) return false
                         var win = windowByAddress[address]
-                        // Key change: Only show windows from this monitor AND in the current workspace group
-                        return win?.monitor === root.monitor.id && 
-                               (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && 
-                                win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
+                        if (!win || !win.workspace) return false
+                        
+                        var workspaceId = win.workspace.id
+                        if (typeof workspaceId !== 'number' || workspaceId <= 0) return false
+                        
+                        // Show all windows in the current workspace group, regardless of monitor
+                        return (root.workspaceGroup * root.workspacesShown < workspaceId && 
+                                workspaceId <= (root.workspaceGroup + 1) * root.workspacesShown)
                     })
                 }
                 delegate: OverviewWindow {
                     id: window
                     windowData: windowByAddress[modelData]
-                    // Since we're only showing windows from this monitor, use this monitor's data
+                    // Always use this overview's monitor data for consistent workspace sizing
                     monitorData: root.monitorData
                     scale: root.scale
                     availableWorkspaceWidth: root.workspaceImplicitWidth
@@ -265,9 +317,60 @@ Item {
                         repeat: false
                         running: false
                         onTriggered: {
-                            // Simplified: since all windows are from the same monitor, no cross-monitor scaling needed
-                            window.x = Math.max((windowData?.at[0] - root.monitorData?.reserved[0] - root.monitorData?.x) * root.scale, 0) + xOffset
-                            window.y = Math.max((windowData?.at[1] - root.monitorData?.reserved[1] - root.monitorData?.y) * root.scale, 0) + yOffset
+                            // Comprehensive error handling for window positioning
+                            if (!windowData || !windowData.at || windowData.at.length < 2) {
+                                console.warn("Invalid window data, skipping positioning")
+                                return
+                            }
+                            
+                            // Get the window's actual monitor data with fallbacks
+                            var actualMonitorData = HyprlandData.monitors.find(m => m?.id === windowData?.monitor) || root.monitorData
+                            if (!actualMonitorData) {
+                                console.warn("Monitor data not found for window, using reference monitor")
+                                actualMonitorData = root.referenceMonitor
+                            }
+                            
+                            // Ensure valid monitor data
+                            var monitorWidth = Math.max(actualMonitorData.width ?? 1920, 640)
+                            var monitorHeight = Math.max(actualMonitorData.height ?? 1080, 480)
+                            var monitorScale = Math.max(actualMonitorData.scale ?? 1, 0.1)
+                            var monitorX = actualMonitorData.x ?? 0
+                            var monitorY = actualMonitorData.y ?? 0
+                            var reserved = actualMonitorData.reserved || [0, 0, 0, 0]
+                            
+                            // Ensure reserved values are valid
+                            var reservedLeft = Math.max(reserved[0] ?? 0, 0)
+                            var reservedTop = Math.max(reserved[1] ?? 0, 0)
+                            var reservedRight = Math.max(reserved[2] ?? 0, 0)
+                            var reservedBottom = Math.max(reserved[3] ?? 0, 0)
+                            
+                            // Calculate usable monitor dimensions
+                            var usableWidth = Math.max((monitorWidth - reservedLeft - reservedRight) / monitorScale, 100)
+                            var usableHeight = Math.max((monitorHeight - reservedTop - reservedBottom) / monitorScale, 60)
+                            
+                            // Get window position with bounds checking
+                            var windowX = Math.max((windowData.at[0] - reservedLeft - monitorX) / monitorScale, 0)
+                            var windowY = Math.max((windowData.at[1] - reservedTop - monitorY) / monitorScale, 0)
+                            
+                            // Clamp window position to monitor bounds
+                            windowX = Math.min(windowX, usableWidth)
+                            windowY = Math.min(windowY, usableHeight)
+                            
+                            // Calculate relative position (0.0 to 1.0) with safety checks
+                            var relativeX = usableWidth > 0 ? Math.min(Math.max(windowX / usableWidth, 0), 1) : 0.5
+                            var relativeY = usableHeight > 0 ? Math.min(Math.max(windowY / usableHeight, 0), 1) : 0.5
+                            
+                            // Map to reference workspace dimensions
+                            var padding = Math.max(ConfigOptions.overview.windowPadding ?? 0, 0)
+                            var targetWidth = Math.max(root.workspaceImplicitWidth - (padding * 2), 50)
+                            var targetHeight = Math.max(root.workspaceImplicitHeight - (padding * 2), 30)
+                            
+                            // Final position calculation with bounds
+                            var finalX = Math.max(Math.min((relativeX * targetWidth) + xOffset + padding, root.workspaceImplicitWidth - 10), xOffset + padding)
+                            var finalY = Math.max(Math.min((relativeY * targetHeight) + yOffset + padding, root.workspaceImplicitHeight - 10), yOffset + padding)
+                            
+                            window.x = finalX
+                            window.y = finalY
                         }
                     }
 
