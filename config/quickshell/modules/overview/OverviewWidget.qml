@@ -344,33 +344,50 @@ Item {
                             var reservedRight = Math.max(reserved[2] ?? 0, 0)
                             var reservedBottom = Math.max(reserved[3] ?? 0, 0)
                             
-                            // Calculate usable monitor dimensions
+                            // Calculate usable monitor dimensions (logical pixels)
                             var usableWidth = Math.max((monitorWidth - reservedLeft - reservedRight) / monitorScale, 100)
                             var usableHeight = Math.max((monitorHeight - reservedTop - reservedBottom) / monitorScale, 60)
                             
-                            // Get window position with bounds checking
-                            var windowX = Math.max((windowData.at[0] - reservedLeft - monitorX) / monitorScale, 0)
-                            var windowY = Math.max((windowData.at[1] - reservedTop - monitorY) / monitorScale, 0)
+                            // Get raw window position (physical pixels)
+                            var rawWindowX = windowData.at[0]
+                            var rawWindowY = windowData.at[1]
                             
-                            // Clamp window position to monitor bounds
-                            windowX = Math.min(windowX, usableWidth)
-                            windowY = Math.min(windowY, usableHeight)
+                            // Convert to monitor-relative position (subtract monitor offset)
+                            var monitorRelativeX = rawWindowX - monitorX
+                            var monitorRelativeY = rawWindowY - monitorY
                             
-                            // Calculate relative position (0.0 to 1.0) with safety checks
-                            var relativeX = usableWidth > 0 ? Math.min(Math.max(windowX / usableWidth, 0), 1) : 0.5
-                            var relativeY = usableHeight > 0 ? Math.min(Math.max(windowY / usableHeight, 0), 1) : 0.5
+                            // Convert to logical pixels and adjust for reserved areas
+                            var logicalX = Math.max((monitorRelativeX - reservedLeft) / monitorScale, 0)
+                            var logicalY = Math.max((monitorRelativeY - reservedTop) / monitorScale, 0)
                             
-                            // Map to reference workspace dimensions
-                            var padding = Math.max(ConfigOptions.overview.windowPadding ?? 0, 0)
-                            var targetWidth = Math.max(root.workspaceImplicitWidth - (padding * 2), 50)
-                            var targetHeight = Math.max(root.workspaceImplicitHeight - (padding * 2), 30)
+                            // Calculate relative position (0.0 to 1.0) within the usable area
+                            var relativeX = usableWidth > 0 ? Math.min(Math.max(logicalX / usableWidth, 0), 1) : 0
+                            var relativeY = usableHeight > 0 ? Math.min(Math.max(logicalY / usableHeight, 0), 1) : 0
                             
-                            // Final position calculation with bounds
-                            var finalX = Math.max(Math.min((relativeX * targetWidth) + xOffset + padding, root.workspaceImplicitWidth - 10), xOffset + padding)
-                            var finalY = Math.max(Math.min((relativeY * targetHeight) + yOffset + padding, root.workspaceImplicitHeight - 10), yOffset + padding)
+                            // Map to workspace coordinates
+                            var padding = Math.max(ConfigOptions.overview.windowPadding ?? 4, 0)
+                            var workspaceWidth = Math.max(root.workspaceImplicitWidth - (padding * 2), 50)
+                            var workspaceHeight = Math.max(root.workspaceImplicitHeight - (padding * 2), 30)
                             
-                            window.x = finalX
-                            window.y = finalY
+                            // Calculate final position within the workspace
+                            var workspaceX = relativeX * workspaceWidth
+                            var workspaceY = relativeY * workspaceHeight
+                            
+                            // Add workspace offset and padding
+                            window.x = workspaceX + xOffset + padding
+                            window.y = workspaceY + yOffset + padding
+                            
+                            // Debug logging
+                            console.log("Window positioning debug:")
+                            console.log("  Raw position:", rawWindowX, rawWindowY)
+                            console.log("  Monitor:", actualMonitorData.name, "Scale:", monitorScale)
+                            console.log("  Monitor offset:", monitorX, monitorY)
+                            console.log("  Reserved areas:", reserved)
+                            console.log("  Logical position:", logicalX, logicalY)
+                            console.log("  Usable dimensions:", usableWidth, usableHeight)
+                            console.log("  Relative position:", relativeX, relativeY)
+                            console.log("  Workspace offset:", xOffset, yOffset)
+                            console.log("  Final position:", window.x, window.y)
                         }
                     }
 
