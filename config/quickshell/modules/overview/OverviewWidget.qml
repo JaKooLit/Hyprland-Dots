@@ -27,64 +27,13 @@ Item {
     property real scale: ConfigOptions.overview.scale
     property color activeBorderColor: Appearance.m3colors.m3accentSecondary
 
-    // Robust reference monitor selection with comprehensive error handling
-    property var referenceMonitor: {
-        if (!HyprlandData.monitors || HyprlandData.monitors.length === 0) {
-            console.warn("No monitors found, using current monitor as reference")
-            return root.monitorData
-        }
-        
-        var smallest = null
-        var smallestArea = Number.MAX_VALUE
-        
-        for (var i = 0; i < HyprlandData.monitors.length; i++) {
-            var current = HyprlandData.monitors[i]
-            if (!current || current.disabled) continue
-            
-            // Ensure valid dimensions and scale
-            var width = Math.max(current.width ?? 1920, 640)
-            var height = Math.max(current.height ?? 1080, 480)
-            var scale = Math.max(current.scale ?? 1, 0.1)
-            var reserved0 = Math.max(current.reserved?.[0] ?? 0, 0)
-            var reserved1 = Math.max(current.reserved?.[1] ?? 0, 0)
-            var reserved2 = Math.max(current.reserved?.[2] ?? 0, 0)
-            var reserved3 = Math.max(current.reserved?.[3] ?? 0, 0)
-            
-            // Calculate usable area
-            var usableWidth = Math.max((width - reserved0 - reserved2) / scale, 100)
-            var usableHeight = Math.max((height - reserved1 - reserved3) / scale, 60)
-            var logicalArea = usableWidth * usableHeight
-            
-            if (logicalArea < smallestArea) {
-                smallestArea = logicalArea
-                smallest = current
-            }
-        }
-        
-        return smallest || root.monitorData || { width: 1920, height: 1080, scale: 1, reserved: [0, 0, 0, 0] }
-    }
-    
-    property real referenceWidth: {
-        if (!referenceMonitor) return 1920
-        var width = Math.max(referenceMonitor.width ?? 1920, 640)
-        var scale = Math.max(referenceMonitor.scale ?? 1, 0.1)
-        var reserved0 = Math.max(referenceMonitor.reserved?.[0] ?? 0, 0)
-        var reserved2 = Math.max(referenceMonitor.reserved?.[2] ?? 0, 0)
-        return Math.max((width - reserved0 - reserved2) / scale, 100)
-    }
-    
-    property real referenceHeight: {
-        if (!referenceMonitor) return 1080
-        var height = Math.max(referenceMonitor.height ?? 1080, 480)
-        var scale = Math.max(referenceMonitor.scale ?? 1, 0.1)
-        var reserved1 = Math.max(referenceMonitor.reserved?.[1] ?? 0, 0)
-        var reserved3 = Math.max(referenceMonitor.reserved?.[3] ?? 0, 0)
-        return Math.max((height - reserved1 - reserved3) / scale, 60)
-    }
-    
-    // All workspaces use the same size based on the reference monitor (smallest logical size)
-    property real workspaceImplicitWidth: Math.max(100, referenceWidth * root.scale)
-    property real workspaceImplicitHeight: Math.max(60, referenceHeight * root.scale)
+    // Updated workspace size calculation with proper multi-monitor scaling
+    property real workspaceImplicitWidth: Math.max(100, (monitorData?.transform % 2 === 1) ? 
+        ((monitor.height - monitorData?.reserved[0] - monitorData?.reserved[2]) * root.scale / monitor.scale) :
+        ((monitor.width - monitorData?.reserved[0] - monitorData?.reserved[2]) * root.scale / monitor.scale))
+    property real workspaceImplicitHeight: Math.max(60, (monitorData?.transform % 2 === 1) ? 
+        ((monitor.width - monitorData?.reserved[1] - monitorData?.reserved[3]) * root.scale / monitor.scale) :
+        ((monitor.height - monitorData?.reserved[1] - monitorData?.reserved[3]) * root.scale / monitor.scale))
 
     property real workspaceNumberMargin: 80
     property real workspaceNumberSize: (ConfigOptions.overview.workspaceNumberSize > 0) 
@@ -104,9 +53,60 @@ Item {
     property Component windowComponent: OverviewWindow {}
     property list<OverviewWindow> windowWidgets: []
 
-    // Show on all monitors always
-    visible: true
-    opacity: 1.0
+    // Debug multi-monitor info when overview opens
+    Connections {
+        target: GlobalStates
+        function onOverviewOpenChanged() {
+            if (GlobalStates.overviewOpen) {
+                // Delay debug call to ensure data is loaded
+                Qt.callLater(debugMultiMonitorInfo)
+            }
+        }
+    }
+
+    // Helper function to get monitor data for a window
+    function getMonitorForWindow(windowData) {
+        if (!windowData || !windowData.monitor) return null
+        return HyprlandData.monitors.find(m => m.id === windowData.monitor)
+    }
+
+    // Helper function to calculate window position relative to its monitor
+    function calculateWindowPosition(windowData, windowMonitor) {
+        if (!windowData || !windowMonitor) return { x: 0, y: 0 }
+        
+        // Calculate position relative to the window's monitor
+        const relativeX = windowData.at[0] - windowMonitor.x - windowMonitor.reserved[0]
+        const relativeY = windowData.at[1] - windowMonitor.y - windowMonitor.reserved[1]
+        
+        // Apply scaling based on the window's monitor scale
+        const scaledX = Math.max(relativeX * root.scale / windowMonitor.scale, 0)
+        const scaledY = Math.max(relativeY * root.scale / windowMonitor.scale, 0)
+        
+        return { x: scaledX, y: scaledY }
+    }
+
+    // Debug function to log monitor and window information
+    function debugMultiMonitorInfo() {
+        console.log("=== Multi-Monitor Debug Info ===")
+        console.log("Current monitor ID:", root.monitor.id)
+        console.log("Current monitor name:", root.monitor.name)
+        console.log("Current monitor scale:", root.monitor.scale)
+        console.log("Current monitor position:", root.monitor.x, root.monitor.y)
+        console.log("Total monitors:", HyprlandData.monitors.length)
+        
+        HyprlandData.monitors.forEach((mon, idx) => {
+            console.log(`Monitor ${idx}: ID=${mon.id}, Name=${mon.name}, Scale=${mon.scale}, Pos=(${mon.x},${mon.y})`)
+        })
+        
+        console.log("Total windows:", windowAddresses.length)
+        windowAddresses.forEach((address, idx) => {
+            const win = windowByAddress[address]
+            if (win) {
+                console.log(`Window ${idx}: ${win.class} on monitor ${win.monitor}, workspace ${win.workspace?.id}, pos=(${win.at[0]},${win.at[1]})`)
+            }
+        })
+        console.log("=== End Debug Info ===")
+    }
 
     // Shared wallpaper image - loaded once and reused
     Image {
@@ -116,13 +116,12 @@ Item {
         cache: true
         asynchronous: true
         smooth: true
-        opacity: Appearance.workpaceTransparency
+        opacity: Appearance.workpaceTransparency // Adds slight transparency (0.0 = fully transparent, 1.0 = fully opaque)
     }
 
     StyledRectangularShadow {
         target: overviewBackground
     }
-    
     Rectangle { // Background
         id: overviewBackground
         property real padding: 10
@@ -136,12 +135,13 @@ Item {
         radius: Appearance.rounding.screenRounding * root.scale + padding
         color: Appearance.colors.colLayer0
 
+
         ColumnLayout { // Workspaces
             id: workspaceColumnLayout
+
             z: root.workspaceZ
             anchors.centerIn: parent
             spacing: workspaceSpacing
-            
             Repeater {
                 model: ConfigOptions.overview.numOfRows
                 delegate: RowLayout {
@@ -154,7 +154,7 @@ Item {
                         Rectangle { // Workspace
                             id: workspace
                             property int colIndex: index
-                            property int workspaceId: root.workspaceGroup * workspacesShown + rowIndex * ConfigOptions.overview.numOfCols + colIndex + 1
+                            property int workspaceValue: root.workspaceGroup * workspacesShown + rowIndex * ConfigOptions.overview.numOfCols + colIndex + 1
                             property color defaultWorkspaceColor: Appearance.colors.colLayer1
                             property color hoveredWorkspaceColor: ColorUtils.mix(defaultWorkspaceColor, Appearance.colors.colLayer1Hover, 0.1)
                             property color hoveredBorderColor: Appearance.colors.colLayer2Hover
@@ -171,15 +171,16 @@ Item {
                             color: "transparent"
                             radius: Appearance.rounding.screenRounding * root.scale
                             clip: true
-                            opacity: Appearance.workpaceTransparency
+                            opacity: Appearance.workpaceTransparency // Adds slight transparency (0.0 = fully transparent, 1.0 = fully opaque)
 
-                            // Wallpaper background
+
+                            // Efficient wallpaper using ShaderEffectSource
                             Rectangle {
                                 id: wallpaperContainer
                                 anchors.fill: parent
-                                anchors.margins: 2
+                                anchors.margins: 2 // Leave space for border
                                 radius: workspace.radius - 2
-                                color: workspace.defaultWorkspaceColor
+                                color: workspace.defaultWorkspaceColor // Fallback color
                                 clip: true
                                 
                                 ShaderEffectSource {
@@ -189,6 +190,7 @@ Item {
                                     visible: sharedWallpaper.status === Image.Ready
                                     smooth: true
                                     
+                                    // Scale to fill while preserving aspect ratio
                                     transform: Scale {
                                         property real aspectRatio: sharedWallpaper.implicitWidth / Math.max(1, sharedWallpaper.implicitHeight)
                                         property real containerRatio: wallpaperContainer.width / Math.max(1, wallpaperContainer.height)
@@ -203,12 +205,14 @@ Item {
                                     }
                                 }
                                 
+                                // Fallback when image fails to load or isn't ready
                                 Rectangle {
                                     anchors.fill: parent
                                     color: workspace.defaultWorkspaceColor
                                     visible: sharedWallpaper.status !== Image.Ready
                                 }
                                 
+                                // Optional: Add overlay for better text readability and hover effects
                                 Rectangle {
                                     anchors.fill: parent
                                     color: hoveredWhileDragging ? hoveredWorkspaceColor : "black"
@@ -216,57 +220,59 @@ Item {
                                 }
                             }
 
-                            // Border overlay
+                            // Border overlay - on top of wallpaper
                             Rectangle {
                                 anchors.fill: parent
                                 color: "transparent"
                                 radius: parent.radius
                                 border.width: 1
                                 border.color: hoveredWhileDragging ? hoveredBorderColor : ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.6)
-                                z: 10
+                                z: 10 // Ensure it's on top
                             }
 
                             StyledText {
+                                // Position in top-left corner with padding
                                 anchors.top: parent.top
                                 anchors.left: parent.left
-                                anchors.topMargin: 12
-                                anchors.leftMargin: 12
+                                anchors.topMargin: 12  // Padding from top edge
+                                anchors.leftMargin: 12 // Padding from left edge
                                 
-                                text: workspaceId
+                                text: workspaceValue
                                 font.pixelSize: root.workspaceNumberSize * root.scale
                                 font.weight: Font.DemiBold
                                 color: ColorUtils.transparentize(Appearance.colors.colOnLayer1, 0.8)
                                 horizontalAlignment: Text.AlignLeft
                                 verticalAlignment: Text.AlignTop
-                                z: 15
+                                z: 15 // Above border
                             }
 
                             MouseArea {
                                 id: workspaceArea
                                 anchors.fill: parent
                                 acceptedButtons: Qt.LeftButton
-                                z: 20
+                                z: 20 // Above all visual elements
                                 onClicked: {
                                     if (root.draggingTargetWorkspace === -1) {
                                         GlobalStates.overviewOpen = false
-                                        Hyprland.dispatch(`workspace ${workspaceId}`)
+                                        Hyprland.dispatch(`workspace ${workspaceValue}`)
                                     }
                                 }
                             }
 
                             DropArea {
                                 anchors.fill: parent
-                                z: 20
+                                z: 20 // Same level as MouseArea
                                 onEntered: {
-                                    root.draggingTargetWorkspace = workspaceId
+                                    root.draggingTargetWorkspace = workspaceValue
                                     if (root.draggingFromWorkspace == root.draggingTargetWorkspace) return;
                                     hoveredWhileDragging = true
                                 }
                                 onExited: {
                                     hoveredWhileDragging = false
-                                    if (root.draggingTargetWorkspace == workspaceId) root.draggingTargetWorkspace = -1
+                                    if (root.draggingTargetWorkspace == workspaceValue) root.draggingTargetWorkspace = -1
                                 }
                             }
+
                         }
                     }
                 }
@@ -279,25 +285,27 @@ Item {
             implicitWidth: workspaceColumnLayout.implicitWidth
             implicitHeight: workspaceColumnLayout.implicitHeight
 
-            Repeater { // Window repeater - Show ALL windows with error handling
+            Repeater { // Window repeater
                 model: ScriptModel {
                     values: windowAddresses.filter((address) => {
-                        if (!address) return false
                         var win = windowByAddress[address]
-                        if (!win || !win.workspace) return false
+                        if (!win) return false
                         
-                        var workspaceId = win.workspace.id
-                        if (typeof workspaceId !== 'number' || workspaceId <= 0) return false
+                        // Filter by workspace group AND monitor
+                        const inWorkspaceGroup = (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
+                        const inMonitor = root.monitor.id === win.monitor
                         
-                        // Show all windows in the current workspace group, regardless of monitor
-                        return (root.workspaceGroup * root.workspacesShown < workspaceId && 
-                                workspaceId <= (root.workspaceGroup + 1) * root.workspacesShown)
+                        // Debug logging for filtered windows
+                        if (inWorkspaceGroup && inMonitor) {
+                            console.log(`[OverviewWidget] Showing window: ${win.class} on monitor ${win.monitor}, workspace ${win.workspace?.id}`)
+                        }
+                        
+                        return inWorkspaceGroup && inMonitor
                     })
                 }
                 delegate: OverviewWindow {
                     id: window
                     windowData: windowByAddress[modelData]
-                    // Always use this overview's monitor data for consistent workspace sizing
                     monitorData: root.monitorData
                     scale: root.scale
                     availableWorkspaceWidth: root.workspaceImplicitWidth
@@ -311,90 +319,34 @@ Item {
                     xOffset: (root.workspaceImplicitWidth + workspaceSpacing) * workspaceColIndex
                     yOffset: (root.workspaceImplicitHeight + workspaceSpacing) * workspaceRowIndex
 
+                    // Updated initialization using helper functions
+                    property var windowPosition: root.calculateWindowPosition(windowData, root.monitorData)
+                    property real initX: windowPosition.x + xOffset
+                    property real initY: windowPosition.y + yOffset
+                    
+                    // Debug logging for window positioning
+                    Component.onCompleted: {
+                        if (windowData) {
+                            console.log(`[OverviewWindow] Window ${windowData.class}: monitor=${windowData.monitor}, pos=(${windowData.at[0]},${windowData.at[1]}), size=(${windowData.size[0]},${windowData.size[1]})`)
+                            console.log(`[OverviewWindow] Calculated position: (${initX}, ${initY}), size: (${targetWindowWidth}, ${targetWindowHeight})`)
+                        }
+                    }
+
                     Timer {
                         id: updateWindowPosition
                         interval: ConfigOptions.hacks.arbitraryRaceConditionDelay
                         repeat: false
                         running: false
                         onTriggered: {
-                            // Comprehensive error handling for window positioning
-                            if (!windowData || !windowData.at || windowData.at.length < 2) {
-                                console.warn("Invalid window data, skipping positioning")
-                                return
-                            }
-                            
-                            // Get the window's actual monitor data with fallbacks
-                            var actualMonitorData = HyprlandData.monitors.find(m => m?.id === windowData?.monitor) || root.monitorData
-                            if (!actualMonitorData) {
-                                console.warn("Monitor data not found for window, using reference monitor")
-                                actualMonitorData = root.referenceMonitor
-                            }
-                            
-                            // Ensure valid monitor data
-                            var monitorWidth = Math.max(actualMonitorData.width ?? 1920, 640)
-                            var monitorHeight = Math.max(actualMonitorData.height ?? 1080, 480)
-                            var monitorScale = Math.max(actualMonitorData.scale ?? 1, 0.1)
-                            var monitorX = actualMonitorData.x ?? 0
-                            var monitorY = actualMonitorData.y ?? 0
-                            var reserved = actualMonitorData.reserved || [0, 0, 0, 0]
-                            
-                            // Ensure reserved values are valid
-                            var reservedLeft = Math.max(reserved[0] ?? 0, 0)
-                            var reservedTop = Math.max(reserved[1] ?? 0, 0)
-                            var reservedRight = Math.max(reserved[2] ?? 0, 0)
-                            var reservedBottom = Math.max(reserved[3] ?? 0, 0)
-                            
-                            // Calculate usable monitor dimensions (logical pixels)
-                            var usableWidth = Math.max((monitorWidth - reservedLeft - reservedRight) / monitorScale, 100)
-                            var usableHeight = Math.max((monitorHeight - reservedTop - reservedBottom) / monitorScale, 60)
-                            
-                            // Get raw window position (physical pixels)
-                            var rawWindowX = windowData.at[0]
-                            var rawWindowY = windowData.at[1]
-                            
-                            // Convert to monitor-relative position (subtract monitor offset)
-                            var monitorRelativeX = rawWindowX - monitorX
-                            var monitorRelativeY = rawWindowY - monitorY
-                            
-                            // Convert to logical pixels and adjust for reserved areas
-                            var logicalX = Math.max((monitorRelativeX - reservedLeft) / monitorScale, 0)
-                            var logicalY = Math.max((monitorRelativeY - reservedTop) / monitorScale, 0)
-                            
-                            // Calculate relative position (0.0 to 1.0) within the usable area
-                            var relativeX = usableWidth > 0 ? Math.min(Math.max(logicalX / usableWidth, 0), 1) : 0
-                            var relativeY = usableHeight > 0 ? Math.min(Math.max(logicalY / usableHeight, 0), 1) : 0
-                            
-                            // Map to workspace coordinates
-                            var padding = Math.max(ConfigOptions.overview.windowPadding ?? 4, 0)
-                            var workspaceWidth = Math.max(root.workspaceImplicitWidth - (padding * 2), 50)
-                            var workspaceHeight = Math.max(root.workspaceImplicitHeight - (padding * 2), 30)
-                            
-                            // Calculate final position within the workspace
-                            var workspaceX = relativeX * workspaceWidth
-                            var workspaceY = relativeY * workspaceHeight
-                            
-                            // Add workspace offset and padding
-                            window.x = workspaceX + xOffset + padding
-                            window.y = workspaceY + yOffset + padding
-                            
-                            // Debug logging
-                            console.log("Window positioning debug:")
-                            console.log("  Raw position:", rawWindowX, rawWindowY)
-                            console.log("  Monitor:", actualMonitorData.name, "Scale:", monitorScale)
-                            console.log("  Monitor offset:", monitorX, monitorY)
-                            console.log("  Reserved areas:", reserved)
-                            console.log("  Logical position:", logicalX, logicalY)
-                            console.log("  Usable dimensions:", usableWidth, usableHeight)
-                            console.log("  Relative position:", relativeX, relativeY)
-                            console.log("  Workspace offset:", xOffset, yOffset)
-                            console.log("  Final position:", window.x, window.y)
+                            const position = root.calculateWindowPosition(windowData, root.monitorData)
+                            window.x = position.x + xOffset
+                            window.y = position.y + yOffset
                         }
                     }
 
                     z: atInitPosition ? root.windowZ : root.windowDraggingZ
                     Drag.hotSpot.x: targetWindowWidth / 2
                     Drag.hotSpot.y: targetWindowHeight / 2
-                    
                     MouseArea {
                         id: dragArea
                         anchors.fill: parent
