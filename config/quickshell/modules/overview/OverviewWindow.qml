@@ -17,15 +17,31 @@ Rectangle { // Window
     property var scale
     property var availableWorkspaceWidth
     property var availableWorkspaceHeight
-    property bool restrictToWorkspace: true
-    property real initX: Math.max((windowData?.at[0] - monitorData?.reserved[0] - monitorData?.x) * root.scale, 0) + xOffset
-    property real initY: Math.max((windowData?.at[1] - monitorData?.reserved[1] - monitorData?.y) * root.scale, 0) + yOffset
+    property bool restrictToWorkspace: true``
+    property var sourceMonitor: HyprlandData.monitors.find(m => m.id === windowData?.monitor) || HyprlandData.monitors[0] || { scale: 1.0, x: 0, y: 0, reserved: [0,0,0,0] }
+    property real monitorScaleFactor: sourceMonitor?.scale || 1.0
+    property real targetScaleFactor: monitorData?.scale || monitorScaleFactor || 1.0
+    property var focusedMonitor: Hyprland.focusedMonitor
+    property real focusedMonitorScale: focusedMonitor?.scale || 1.0
+    property real effectiveScale: root.scale * (
+        ConfigOptions.overview.showAllMonitors 
+            ? (focusedMonitorScale / monitorScaleFactor)  // Scale relative to focused monitor when showing all
+            : (targetScaleFactor / monitorScaleFactor)    // Scale relative to target monitor normally
+    )
+
+    // Calculate position relative to source monitor
+    property real relativeX: (windowData?.at[0] - sourceMonitor?.x - sourceMonitor?.reserved[0]) || 0
+    property real relativeY: (windowData?.at[1] - sourceMonitor?.y - sourceMonitor?.reserved[1]) || 0
+
+    // Scale position based on monitor differences
+    property real initX: Math.max(relativeX * effectiveScale, 0) + xOffset
+    property real initY: Math.max(relativeY * effectiveScale, 0) + yOffset
     property real xOffset: 0
     property real yOffset: 0
     
-    // Updated window size calculation to use the window's monitor scale
-    property var targetWindowWidth: windowData?.size[0] * scale / (monitorData?.scale || 1.0)
-    property var targetWindowHeight: windowData?.size[1] * scale / (monitorData?.scale || 1.0)
+    // Scale window size based on monitor differences
+    property var targetWindowWidth: (windowData?.size[0] || 0) * effectiveScale
+    property var targetWindowHeight: (windowData?.size[1] || 0) * effectiveScale
     property bool hovered: false
     property bool pressed: false
 
@@ -39,8 +55,8 @@ Rectangle { // Window
     
     x: initX
     y: initY
-    width: Math.min(targetWindowWidth, (restrictToWorkspace ? targetWindowWidth : availableWorkspaceWidth - x + xOffset))
-    height: Math.min(targetWindowHeight, (restrictToWorkspace ? targetWindowHeight : availableWorkspaceHeight - y + yOffset))
+    width: Math.min(windowData?.size[0] * root.scale, (restrictToWorkspace ? windowData?.size[0] : availableWorkspaceWidth - x + xOffset))
+    height: Math.min(windowData?.size[1] * root.scale, (restrictToWorkspace ? windowData?.size[1] : availableWorkspaceHeight - y + yOffset))
 
     radius: Appearance.rounding.windowRounding * root.scale
     color: pressed ? Appearance.colors.colLayer2Active : hovered ? Appearance.colors.colLayer2Hover : Appearance.colors.colLayer2

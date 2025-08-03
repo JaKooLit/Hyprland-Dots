@@ -27,7 +27,6 @@ Item {
     property real scale: ConfigOptions.overview.scale
     property color activeBorderColor: Appearance.m3colors.m3accentSecondary
 
-    // Updated workspace size calculation with proper multi-monitor scaling
     property real workspaceImplicitWidth: Math.max(100, (monitorData?.transform % 2 === 1) ? 
         ((monitor.height - monitorData?.reserved[0] - monitorData?.reserved[2]) * root.scale / monitor.scale) :
         ((monitor.width - monitorData?.reserved[0] - monitorData?.reserved[2]) * root.scale / monitor.scale))
@@ -47,45 +46,7 @@ Item {
     property int draggingFromWorkspace: -1
     property int draggingTargetWorkspace: -1
 
-    implicitWidth: overviewBackground.implicitWidth + Appearance.sizes.elevationMargin * 2
-    implicitHeight: overviewBackground.implicitHeight + Appearance.sizes.elevationMargin * 2
-
-    property Component windowComponent: OverviewWindow {}
-    property list<OverviewWindow> windowWidgets: []
-
-    // Debug multi-monitor info when overview opens
-    Connections {
-        target: GlobalStates
-        function onOverviewOpenChanged() {
-            if (GlobalStates.overviewOpen) {
-                // Delay debug call to ensure data is loaded
-                Qt.callLater(debugMultiMonitorInfo)
-            }
-        }
-    }
-
-    // Helper function to get monitor data for a window
-    function getMonitorForWindow(windowData) {
-        if (!windowData || !windowData.monitor) return null
-        return HyprlandData.monitors.find(m => m.id === windowData.monitor)
-    }
-
-    // Helper function to calculate window position relative to its monitor
-    function calculateWindowPosition(windowData, windowMonitor) {
-        if (!windowData || !windowMonitor) return { x: 0, y: 0 }
-        
-        // Calculate position relative to the window's monitor
-        const relativeX = windowData.at[0] - windowMonitor.x - windowMonitor.reserved[0]
-        const relativeY = windowData.at[1] - windowMonitor.y - windowMonitor.reserved[1]
-        
-        // Apply scaling based on the window's monitor scale
-        const scaledX = Math.max(relativeX * root.scale / windowMonitor.scale, 0)
-        const scaledY = Math.max(relativeY * root.scale / windowMonitor.scale, 0)
-        
-        return { x: scaledX, y: scaledY }
-    }
-
-    // Debug function to log monitor and window information
+    // Debug logging function
     function debugMultiMonitorInfo() {
         console.log("=== Multi-Monitor Debug Info ===")
         console.log("Current monitor ID:", root.monitor.id)
@@ -95,7 +56,7 @@ Item {
         console.log("Total monitors:", HyprlandData.monitors.length)
         
         HyprlandData.monitors.forEach((mon, idx) => {
-            console.log(`Monitor ${idx}: ID=${mon.id}, Name=${mon.name}, Scale=${mon.scale}, Pos=(${mon.x},${mon.y})`)
+            console.log(`Monitor ${idx}: ID=${mon.id}, Name=${mon.name}, Scale=${mon.scale}, Pos=(${mon.x},${mon.y}), Size=${mon.width}x${mon.height}, Reserved=[${mon.reserved.join(",")}]`)
         })
         
         console.log("Total windows:", windowAddresses.length)
@@ -107,6 +68,16 @@ Item {
         })
         console.log("=== End Debug Info ===")
     }
+
+    Component.onCompleted: {
+        debugMultiMonitorInfo()
+    }
+
+    implicitWidth: overviewBackground.implicitWidth + Appearance.sizes.elevationMargin * 2
+    implicitHeight: overviewBackground.implicitHeight + Appearance.sizes.elevationMargin * 2
+
+    property Component windowComponent: OverviewWindow {}
+    property list<OverviewWindow> windowWidgets: []
 
     // Shared wallpaper image - loaded once and reused
     Image {
@@ -291,14 +262,10 @@ Item {
                         var win = windowByAddress[address]
                         if (!win) return false
                         
-                        // Filter by workspace group AND monitor
-                        const inWorkspaceGroup = (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
-                        const inMonitor = root.monitor.id === win.monitor
-                        
-                        // Debug logging for filtered windows
-                        if (inWorkspaceGroup && inMonitor) {
-                            console.log(`[OverviewWidget] Showing window: ${win.class} on monitor ${win.monitor}, workspace ${win.workspace?.id}`)
-                        }
+                        // Filter by workspace group AND monitor if configured
+                        const inWorkspaceGroup = (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && 
+                            win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
+                        const inMonitor = ConfigOptions.overview.showAllMonitors || win.monitor === root.monitor.id
                         
                         return inWorkspaceGroup && inMonitor
                     })
@@ -319,28 +286,14 @@ Item {
                     xOffset: (root.workspaceImplicitWidth + workspaceSpacing) * workspaceColIndex
                     yOffset: (root.workspaceImplicitHeight + workspaceSpacing) * workspaceRowIndex
 
-                    // Updated initialization using helper functions
-                    property var windowPosition: root.calculateWindowPosition(windowData, root.monitorData)
-                    property real initX: windowPosition.x + xOffset
-                    property real initY: windowPosition.y + yOffset
-                    
-                    // Debug logging for window positioning
-                    Component.onCompleted: {
-                        if (windowData) {
-                            console.log(`[OverviewWindow] Window ${windowData.class}: monitor=${windowData.monitor}, pos=(${windowData.at[0]},${windowData.at[1]}), size=(${windowData.size[0]},${windowData.size[1]})`)
-                            console.log(`[OverviewWindow] Calculated position: (${initX}, ${initY}), size: (${targetWindowWidth}, ${targetWindowHeight})`)
-                        }
-                    }
-
                     Timer {
                         id: updateWindowPosition
                         interval: ConfigOptions.hacks.arbitraryRaceConditionDelay
                         repeat: false
                         running: false
                         onTriggered: {
-                            const position = root.calculateWindowPosition(windowData, root.monitorData)
-                            window.x = position.x + xOffset
-                            window.y = position.y + yOffset
+                            window.x = Math.max((windowData?.at[0] - monitorData?.reserved[0] - monitorData?.x) * root.scale, 0) + xOffset
+                            window.y = Math.max((windowData?.at[1] - monitorData?.reserved[1] - monitorData?.y) * root.scale, 0) + yOffset
                         }
                     }
 
