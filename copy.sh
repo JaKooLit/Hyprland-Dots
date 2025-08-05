@@ -64,9 +64,6 @@ printf "\n%.0s" {1..1}
 
 ####### Announcement
 echo "${WARNING}A T T E N T I O N !${RESET}"
-echo "${SKY_BLUE}This version (v2.3.13) no extra packages!${RESET}"
-echo "${SKY_BLUE}If you ran through (Distro-Hyprland install scripts), no need to do anything${RESET}"
-echo "${YELLOW}previous version: nwg-displays & Some Keybinds changes${RESET}"
 echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for changelogs${RESET}"
 printf "\n%.0s" {1..1}
 
