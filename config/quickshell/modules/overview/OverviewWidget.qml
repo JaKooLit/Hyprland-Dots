@@ -46,6 +46,33 @@ Item {
     property int draggingFromWorkspace: -1
     property int draggingTargetWorkspace: -1
 
+    // Debug logging function
+    function debugMultiMonitorInfo() {
+        console.log("=== Multi-Monitor Debug Info ===")
+        console.log("Current monitor ID:", root.monitor.id)
+        console.log("Current monitor name:", root.monitor.name)
+        console.log("Current monitor scale:", root.monitor.scale)
+        console.log("Current monitor position:", root.monitor.x, root.monitor.y)
+        console.log("Total monitors:", HyprlandData.monitors.length)
+        
+        HyprlandData.monitors.forEach((mon, idx) => {
+            console.log(`Monitor ${idx}: ID=${mon.id}, Name=${mon.name}, Scale=${mon.scale}, Pos=(${mon.x},${mon.y}), Size=${mon.width}x${mon.height}, Reserved=[${mon.reserved.join(",")}]`)
+        })
+        
+        console.log("Total windows:", windowAddresses.length)
+        windowAddresses.forEach((address, idx) => {
+            const win = windowByAddress[address]
+            if (win) {
+                console.log(`Window ${idx}: ${win.class} on monitor ${win.monitor}, workspace ${win.workspace?.id}, pos=(${win.at[0]},${win.at[1]})`)
+            }
+        })
+        console.log("=== End Debug Info ===")
+    }
+
+    Component.onCompleted: {
+        debugMultiMonitorInfo()
+    }
+
     implicitWidth: overviewBackground.implicitWidth + Appearance.sizes.elevationMargin * 2
     implicitHeight: overviewBackground.implicitHeight + Appearance.sizes.elevationMargin * 2
 
@@ -233,14 +260,21 @@ Item {
                 model: ScriptModel {
                     values: windowAddresses.filter((address) => {
                         var win = windowByAddress[address]
-                        return (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
+                        if (!win) return false
+                        
+                        // Filter by workspace group AND monitor if configured
+                        const inWorkspaceGroup = (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && 
+                            win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
+                        const inMonitor = ConfigOptions.overview.showAllMonitors || win.monitor === root.monitor.id
+                        
+                        return inWorkspaceGroup && inMonitor
                     })
                 }
                 delegate: OverviewWindow {
                     id: window
                     windowData: windowByAddress[modelData]
-                    monitorData: HyprlandData.monitors.find(m => m.id === windowData?.monitor) // use monitorData of the monitor the window is on
-                    scale: root.scale * (monitorData?.scale / root.monitor?.scale) // adjust window scale to the monitor where the overview is displayed
+                    monitorData: root.monitorData
+                    scale: root.scale
                     availableWorkspaceWidth: root.workspaceImplicitWidth
                     availableWorkspaceHeight: root.workspaceImplicitHeight
 
