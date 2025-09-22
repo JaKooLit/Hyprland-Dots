@@ -59,8 +59,20 @@ status = html_data("div[data-testid='wxPhrase']").text()
 status = f"{status[:16]}.." if len(status) > 17 else status
 
 # status code
-# Fix provided by mio-dokuhaki 
-status_code = html_data("#regionHeader").attr("class").split(" ")[1].split("-")[0]
+try:
+    class_attr = html_data("#regionHeader").attr("class")
+    # class_list[0] and class_list[1] exist
+    class_list = class_attr.split(" ")
+    # Check if the class contains a hyphen and an expected value exists
+    if '-' in class_list[0]:
+        status_code = class_list[0].split("-")[0]
+    elif '-' in class_list[1]:
+        status_code = class_list[1].split("-")[0]
+    else:
+        status_code = class_list[0]
+except (AttributeError, IndexError):
+    # This will catch any errors if the element or attribute doesn't exist
+    status_code = "N/A"
 
 # status icon
 icon = (
