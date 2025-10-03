@@ -119,7 +119,7 @@ animate_slide_up() {
 
 # Function to get monitor info for centering
 get_monitor_info() {
-    hyprctl monitors -j | jq -r '.[0] | "\(.x) \(.y) \(.width) \(.height)"'
+    hyprctl monitors -j | jq -r '.[] | select(.focused == true) | "\(.x) \(.y) \(.width) \(.height)"'
 }
 
 # Function to calculate dropdown position
