@@ -3,7 +3,7 @@
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
-waybar_style="$HOME/.config/waybar/style/[Extra] Modern-Combined - Transparent.css"
+waybar_style="$HOME/.config/waybar/style/[Extra] Neon Circuit.css"
 waybar_config="$HOME/.config/waybar/configs/[TOP] Default"
 waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop" 
 
