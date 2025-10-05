@@ -104,6 +104,17 @@
 	"tooltip-format": "Left Click: Switch Dark-Light Themes\nMiddle Click: Wallpaper Menu\nRight Click: Waybar Styles Menu",
 },
 
+// Night light (Hyprsunset)
+"custom/nightlight": {
+	"return-type": "json",
+	"exec": "$HOME/.config/hypr/scripts/Hyprsunset.sh status",
+	"interval": 5,
+	"format": "{}",
+	"on-click": "$HOME/.config/hypr/scripts/Hyprsunset.sh toggle",
+	"tooltip": true,
+	"tooltip-format": "Night light toggle"
+},
+
 "custom/lock": {
 	"format": "󰌾",
 	"on-click": "$HOME/.config/hypr/scripts/LockScreen.sh",

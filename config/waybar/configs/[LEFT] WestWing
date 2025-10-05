@@ -39,6 +39,7 @@
 	"backlight#vertical",
 	"pulseaudio#microphone_vertical",
 	"pulseaudio#vertical",
+	"custom/nightlight",
 	"custom/power_vertical",
 	"custom/menu",
 ],
