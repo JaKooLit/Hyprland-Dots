@@ -21,20 +21,21 @@ ensure_state() {
 
 # Render icons using pango markup to allow colorization
 icon_off() {
-  # bright sun when not activated
-  printf "<span foreground='gold'></span>"
+  # bright sun when not activated (plain glyph; styling via Waybar CSS by class)
+  printf ""
 }
 
 icon_on() {
   case "$ICON_MODE" in
     sunset)
-      printf "<span foreground='orange'></span>"
+      # fallback to same glyph; color can be handled by CSS if desired
+      printf ""
       ;;
     blue)
-      printf "<span foreground='deepskyblue'></span>"
+      printf ""
       ;;
     *)
-      printf "<span foreground='orange'></span>"
+      printf ""
       ;;
   esac
 }
@@ -50,7 +51,7 @@ cmd_toggle() {
     sleep 0.2
   fi
 
-  if [[ "$state" == "on" ]]; then
+if [[ "$state" == "on" ]]; then
     # Turning OFF: set identity and exit
     if command -v hyprsunset >/dev/null 2>&1; then
       nohup hyprsunset -i >/dev/null 2>&1 &
@@ -58,12 +59,14 @@ cmd_toggle() {
       sleep 0.3 && pkill -x hyprsunset || true
     fi
     echo off > "$STATE_FILE"
+    notify-send -u low "Hyprsunset: Disabled" || true
   else
     # Turning ON: start hyprsunset at target temp in background
     if command -v hyprsunset >/dev/null 2>&1; then
       nohup hyprsunset -t "$TARGET_TEMP" >/dev/null 2>&1 &
     fi
     echo on > "$STATE_FILE"
+    notify-send -u low "Hyprsunset: Enabled" "${TARGET_TEMP}K" || true
   fi
 }
 
