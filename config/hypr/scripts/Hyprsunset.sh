@@ -21,21 +21,22 @@ ensure_state() {
 
 # Render icons using pango markup to allow colorization
 icon_off() {
-  # bright sun when not activated (plain glyph; styling via Waybar CSS by class)
-  printf ""
+  # universally available sun symbol
+  printf "☀"
 }
 
 icon_on() {
   case "$ICON_MODE" in
     sunset)
-      # fallback to same glyph; color can be handled by CSS if desired
-      printf ""
+      # sunset emoji (falls back to tofu if no emoji font)
+      printf "🌇"
       ;;
     blue)
-      printf ""
+      # no color in text; rely on CSS .on to style if desired
+      printf "☀"
       ;;
     *)
-      printf ""
+      printf "☀"
       ;;
   esac
 }

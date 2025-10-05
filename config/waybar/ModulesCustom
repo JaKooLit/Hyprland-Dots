@@ -109,7 +109,7 @@
 	"return-type": "json",
 	"exec": "$HOME/.config/hypr/scripts/Hyprsunset.sh status",
 	"interval": 5,
-	"format": "{}",
+	"format": "{text}",
 	"on-click": "$HOME/.config/hypr/scripts/Hyprsunset.sh toggle",
 	"tooltip": true,
 	"tooltip-format": "Night light toggle",
