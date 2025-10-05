@@ -42,14 +42,26 @@ icon_on() {
 cmd_toggle() {
   ensure_state
   state="$(cat "$STATE_FILE" || echo off)"
+
+  # Always stop any running hyprsunset first to avoid CTM manager conflicts
+  if pgrep -x hyprsunset >/dev/null 2>&1; then
+    pkill -x hyprsunset || true
+    # give it a moment to release the CTM manager
+    sleep 0.2
+  fi
+
   if [[ "$state" == "on" ]]; then
+    # Turning OFF: set identity and exit
     if command -v hyprsunset >/dev/null 2>&1; then
-      hyprsunset -r || true
+      nohup hyprsunset -i >/dev/null 2>&1 &
+      # if hyprsunset persists, stop it shortly after applying identity
+      sleep 0.3 && pkill -x hyprsunset || true
     fi
     echo off > "$STATE_FILE"
   else
+    # Turning ON: start hyprsunset at target temp in background
     if command -v hyprsunset >/dev/null 2>&1; then
-      hyprsunset -t "$TARGET_TEMP" || true
+      nohup hyprsunset -t "$TARGET_TEMP" >/dev/null 2>&1 &
     fi
     echo on > "$STATE_FILE"
   fi
@@ -57,8 +69,14 @@ cmd_toggle() {
 
 cmd_status() {
   ensure_state
-  state="$(cat "$STATE_FILE" || echo off)"
-  if [[ "$state" == "on" ]]; then
+  # Prefer live process detection; fall back to state file
+  if pgrep -x hyprsunset >/dev/null 2>&1; then
+    onoff="on"
+  else
+    onoff="$(cat "$STATE_FILE" || echo off)"
+  fi
+
+  if [[ "$onoff" == "on" ]]; then
     txt="$(icon_on)"
     cls="on"
     tip="Night light on @ ${TARGET_TEMP}K"
