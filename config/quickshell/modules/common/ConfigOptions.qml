@@ -17,6 +17,7 @@ Singleton {
         property real windowPadding: 6 
         property real position: 1 // 0: top | 1: middle | 2: bottom
         property real workspaceNumberSize: 120 // Set 0, dynamic calculation based on monitor size
+        property bool showAllMonitors: true // Show windows from all monitors
     }
 
     property QtObject resources: QtObject {

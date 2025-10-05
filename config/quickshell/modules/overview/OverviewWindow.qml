@@ -17,14 +17,31 @@ Rectangle { // Window
     property var scale
     property var availableWorkspaceWidth
     property var availableWorkspaceHeight
-    property bool restrictToWorkspace: true
-    property real initX: Math.max((windowData?.at[0] - monitorData?.reserved[0] - monitorData?.x) * root.scale, 0) + xOffset
-    property real initY: Math.max((windowData?.at[1] - monitorData?.reserved[1] - monitorData?.y) * root.scale, 0) + yOffset
+    property bool restrictToWorkspace: true``
+    property var sourceMonitor: HyprlandData.monitors.find(m => m.id === windowData?.monitor) || HyprlandData.monitors[0] || { scale: 1.0, x: 0, y: 0, reserved: [0,0,0,0] }
+    property real monitorScaleFactor: sourceMonitor?.scale || 1.0
+    property real targetScaleFactor: monitorData?.scale || monitorScaleFactor || 1.0
+    property var focusedMonitor: Hyprland.focusedMonitor
+    property real focusedMonitorScale: focusedMonitor?.scale || 1.0
+    property real effectiveScale: root.scale * (
+        ConfigOptions.overview.showAllMonitors 
+            ? (focusedMonitorScale / monitorScaleFactor)  // Scale relative to focused monitor when showing all
+            : (targetScaleFactor / monitorScaleFactor)    // Scale relative to target monitor normally
+    )
+
+    // Calculate position relative to source monitor
+    property real relativeX: (windowData?.at[0] - sourceMonitor?.x - sourceMonitor?.reserved[0]) || 0
+    property real relativeY: (windowData?.at[1] - sourceMonitor?.y - sourceMonitor?.reserved[1]) || 0
+
+    // Scale position based on monitor differences
+    property real initX: Math.max(relativeX * effectiveScale, 0) + xOffset
+    property real initY: Math.max(relativeY * effectiveScale, 0) + yOffset
     property real xOffset: 0
     property real yOffset: 0
     
-    property var targetWindowWidth: windowData?.size[0] * scale
-    property var targetWindowHeight: windowData?.size[1] * scale
+    // Scale window size based on monitor differences
+    property var targetWindowWidth: (windowData?.size[0] || 0) * effectiveScale
+    property var targetWindowHeight: (windowData?.size[1] || 0) * effectiveScale
     property bool hovered: false
     property bool pressed: false
 
