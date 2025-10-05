@@ -108,8 +108,9 @@
 "custom/nightlight": {
 	"return-type": "json",
 	"exec": "$HOME/.config/hypr/scripts/Hyprsunset.sh status",
-	"interval": 5,
+	"interval": 3,
 	"format": "{text}",
+	"min-length": 2,
 	"on-click": "$HOME/.config/hypr/scripts/Hyprsunset.sh toggle",
 	"tooltip": true,
 	"tooltip-format": "Night light toggle",

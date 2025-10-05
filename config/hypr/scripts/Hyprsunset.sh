@@ -81,11 +81,11 @@ cmd_status() {
   fi
 
   if [[ "$onoff" == "on" ]]; then
-    txt="$(icon_on)"
+    txt="<span size='18pt'>$(icon_on)</span>"
     cls="on"
     tip="Night light on @ ${TARGET_TEMP}K"
   else
-    txt="$(icon_off)"
+    txt="<span size='16pt'>$(icon_off)</span>"
     cls="off"
     tip="Night light off"
   fi
