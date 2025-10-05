@@ -10,7 +10,7 @@ BAR_HEIGHT=${BAR_HEIGHT:-50}  # height of your bottom bar
 TRIGGER_ZONE=${TRIGGER_ZONE:-20}         # pixels from bottom to trigger show
 POLL_INTERVAL=${POLL_INTERVAL:-0.12}     # how often to check cursor (sec)
 MON_REFRESH_SEC=${MON_REFRESH_SEC:-2}    # refresh monitors JSON every N seconds
-TOGGLE_CMD="kill -SIGUSR1 $(pgrep -f 'waybar -c /home/tak_0/.config/waybar/config-bottom.jsonc')"
+TOGGLE_CMD="kill -SIGUSR1 $(pgrep -f 'waybar -c ~/.config/waybar/config-bottom.jsonc')"
   # command to toggle waybar
 STATE_FILE=${STATE_FILE:-/tmp/waybar_hover_visible}
 # ---------------------
