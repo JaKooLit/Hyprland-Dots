@@ -1,0 +1,46 @@
+{
+  "include": [
+    "$HOME/.config/waybar/Modules",
+    "$HOME/.config/waybar/ModulesWorkspaces",
+    "$HOME/.config/waybar/ModulesCustom",
+    "$HOME/.config/waybar/ModulesGroups",
+    "$HOME/.config/waybar/UserModules"
+  ],
+  "name": "bottombar",
+  "layer": "top",
+  "position": "bottom",
+  "height": 50,
+  "mode": "dock",
+  "exclusive": true,
+  "spacing": 2,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "reload_style_on_change": true,
+  "autohide": false,
+  "start_hidden": true,
+  "hide-delay": 10000,
+  "modules-left" : [
+  "custom/separator#blank_3", "custom/playerctl", "custom/separator#blank_3", "group/audio"
+  ],
+  "modules-center": [
+    "custom/menu", "wlr/taskbar"
+  ],
+  "modules-right" : [
+  "custom/weather", "custom/tty"
+  ],
+
+
+
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "tooltip": false,
+    "icon-size": 40,
+    "max-length": 0,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "active-first": true
+  }
+}
+
+

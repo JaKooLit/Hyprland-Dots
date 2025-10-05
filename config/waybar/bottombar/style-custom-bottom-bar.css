@@ -1,0 +1,37 @@
+@import '../../.config/waybar/wallust/colors-waybar.css';
+
+window#waybar {
+    background-color: rgba(17, 17, 27, 1); /* 30% opacity dark background */
+    border-radius: 0;
+    border-bottom: 3px solid @color4; /* Wallust color line below icons */
+    padding-bottom: 4px;
+}
+
+
+#custom-rofi {
+background: @color4;
+color: @background;
+border-radius: 4px;
+padding: 6px 10px;
+margin: 0 8px;
+font-weight: bold;
+}
+
+window#waybar {
+    background-color: rgba(17, 17, 27, 0.3);
+    border-radius: 0;
+    border-bottom: 3px solid @color4;
+}
+
+#custom-rofi {
+background: #5a5a5a;      /* optional: subtle background */
+color: #ffffff;            /* glyph color */
+border-radius: 6px;
+padding: 0;                /* let max-click-area control spacing */
+margin: 0 4px;
+font-weight: bold;
+}
+
+
+
+
