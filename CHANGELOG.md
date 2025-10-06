@@ -3,9 +3,9 @@
 ## 2025-10-06
 
 ### 🐛 Fixes
-- `windowrule` syntax error.
--  wallpaper selector applies wallpaper to SDDM.
--  update theme colors when a new wallpaper is selected.
+- Correct `windowrule` syntax error.
+- Ensure wallpaper selector applies wallpaper to SDDM.
+- Update theme colors when a new wallpaper is selected.
 
 ### 🌦️ Weather.py
 - ♻️ Substantial refactor.
@@ -19,5 +19,12 @@
 
 ### 🖱️ Gestures
 - 🔧 Updated to accommodate Hyprland 0.5x changes.
+
+### 👥 Contributors
+
+- [CharlyMH](https://github.com/CharlyMH)
+- [ndeekshith](https://github.com/ndeekshith)
+- [SherLock707](https://github.com/SherLock707)
+- [SVIGHNESH](https://github.com/SVIGHNESH)
 
 If you have any questions, feel free to contact via [GitHub Discussions](https://github.com/JaKooLit/Hyprland-Dots/discussions) or [Through Discord Server](https://discord.gg/kool-tech-world)
