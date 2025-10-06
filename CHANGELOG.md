@@ -3,9 +3,9 @@
 ## 2025-10-06
 
 ### 🐛 Fixes
-- Correct `windowrule` syntax error.
-- Ensure wallpaper selector applies wallpaper to SDDM.
-- Update theme colors when a new wallpaper is selected.
+- `windowrule` syntax error.
+-  wallpaper selector applies wallpaper to SDDM.
+-  update theme colors when a new wallpaper is selected.
 
 ### 🌦️ Weather.py
 - ♻️ Substantial refactor.
