@@ -18,15 +18,15 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
-# Check /etc/os-release to see if this is an Ubuntu or Debian based distro
-if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
+# Check /etc/os-release to see if this is an Ubuntu based distro
+if grep -iq '^\(ID_LIKE\|ID\)=.*ubuntu' /etc/os-release >/dev/null 2>&1; then
 	printf "\n%.0s" {1..1}
     print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
                  KOOL DOTS version INCOMPATIBLE
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    Debian / Ubuntu detected. Refer to Hyprland-Dots README
+    Ubuntu detected. Refer to Hyprland-Dots README
     For instruction on how to update your KooL Hyprland Dots
 
     exiting ....
