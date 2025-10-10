@@ -5,14 +5,14 @@
 # variables
 time=$(date "+%d-%b_%H-%M-%S")
 dir="$(xdg-user-dir PICTURES)/Screenshots"
-file="Screenshot_${time}_${RANDOM}.png"
+file="Screenshot_${time}_${RANDOM}.jpg"
 
 iDIR="$HOME/.config/swaync/icons"
 iDoR="$HOME/.config/swaync/images"
 sDIR="$HOME/.config/hypr/scripts"
 
 active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
-active_window_file="Screenshot_${time}_${active_window_class}.png"
+active_window_file="Screenshot_${time}_${active_window_class}.jpg"
 active_window_path="${dir}/${active_window_file}"
 
 notify_cmd_base="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify"
@@ -81,38 +81,37 @@ countdown() {
 
 # take shots
 shotnow() {
-	cd ${dir} && grim - | tee "$file" | wl-copy
+	cd ${dir} && grim - | tee >(pngquant --quality=65-85 - | wl-copy --type image/png) | convert - -quality 85 jpg:- > "$file"
 	sleep 2
 	notify_view
 }
 
 shot5() {
 	countdown '5'
-	sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
+	sleep 1 && cd ${dir} && grim - | tee >(pngquant --quality=65-85 - | wl-copy --type image/png) | convert - -quality 85 jpg:- > "$file"
 	sleep 1
 	notify_view
 }
 
 shot10() {
 	countdown '10'
-	sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
+	sleep 1 && cd ${dir} && grim - | tee >(pngquant --quality=65-85 - | wl-copy --type image/png) | convert - -quality 85 jpg:- > "$file"
 	notify_view
 }
 
 shotwin() {
 	w_pos=$(hyprctl activewindow | grep 'at:' | cut -d':' -f2 | tr -d ' ' | tail -n1)
 	w_size=$(hyprctl activewindow | grep 'size:' | cut -d':' -f2 | tr -d ' ' | tail -n1 | sed s/,/x/g)
-	cd ${dir} && grim -g "$w_pos $w_size" - | tee "$file" | wl-copy
+	cd ${dir} && grim -g "$w_pos $w_size" - | tee >(pngquant --quality=65-85 - | wl-copy --type image/png) | convert - -quality 85 jpg:- > "$file"
 	notify_view
 }
 
 shotarea() {
 	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile"
+	grim -g "$(slurp)" - | tee >(pngquant --quality=65-85 - | wl-copy --type image/png) | convert - -quality 85 jpg:- >"$tmpfile"
 
   # Copy with saving
 	if [[ -s "$tmpfile" ]]; then
-		wl-copy <"$tmpfile"
 		mv "$tmpfile" "$dir/$file"
 	fi
 	notify_view
@@ -120,21 +119,20 @@ shotarea() {
 
 shotactive() {
     active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
-    active_window_file="Screenshot_${time}_${active_window_class}.png"
+    active_window_file="Screenshot_${time}_${active_window_class}.jpg"
     active_window_path="${dir}/${active_window_file}"
 
-    hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -g - "${active_window_path}"
+    hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -g - - | tee >(pngquant --quality=65-85 - | wl-copy --type image/png) | convert - -quality 85 jpg:- > "${active_window_path}"
 	sleep 1
     notify_view "active"
 }
 
 shotswappy() {
 	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile" 
+	grim -g "$(slurp)" - | tee >(pngquant --quality=65-85 - | wl-copy --type image/png) | convert - -quality 85 jpg:- >"$tmpfile" 
 
   # Copy without saving
   if [[ -s "$tmpfile" ]]; then
-		wl-copy <"$tmpfile"
     notify_view "swappy"
   fi
 }
