@@ -1,23 +1,31 @@
 # Changelog — JAK's Hyprland Dotfiles
 
-## 2025-10-06
+## October 2025
 
 ### 🐛 Fixes
+
 - Correct `windowrule` syntax error.
 - Ensure wallpaper selector applies wallpaper to SDDM.
 - Update theme colors when a new wallpaper is selected.
 
 ### 🌦️ Weather.py
-- ♻️ Substantial refactor.
+
+- ♻️ Substantial rewrite.
 - ✅ Launches properly in Waybar.
 - 📍 Improved location detection; overridable variables exposed.
 - 🌐 Switched to Open-Meteo for weather data with fallback providers.
 
 ### 🖥️ Drop-down terminal
+
 - 🔧 Start on login via `TerminalDropDown.sh` so first invocation works.
 - 🐱 Use Kitty explicitly instead of `$TERM` for consistent behavior.
 
+### 🌇 HyprSunset
+
+- 🔧 Availble from waybar or`SUPER + N`
+
 ### 🖱️ Gestures
+
 - 🔧 Updated to accommodate Hyprland 0.5x changes.
 
 ### 👥 Contributors
