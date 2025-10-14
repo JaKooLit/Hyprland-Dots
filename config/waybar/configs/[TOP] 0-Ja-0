@@ -48,6 +48,7 @@
 	"custom/separator#dot-line",
 	"mpris",
 	"custom/separator#blank", 
+	"custom/nightlight",
 	"group/status",
 	],
 }

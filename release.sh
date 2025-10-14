@@ -18,21 +18,30 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
-# Check /etc/os-release to see if this is an Ubuntu or Debian based distro
-if grep -iq '^\(ID_LIKE\|ID\)=.*\(debian\|ubuntu\)' /etc/os-release >/dev/null 2>&1; then
-	printf "\n%.0s" {1..1}
-    print_color $WARNING "
-    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-                 KOOL DOTS version INCOMPATIBLE
-    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
-
-    Debian / Ubuntu detected. Refer to Hyprland-Dots README
-    For instruction on how to update your KooL Hyprland Dots
-
-    exiting ....
-    "
-  printf "\n%.0s" {1..3}
-  exit 1
+# Check /etc/os-release for Ubuntu or Debian and warn about Hyprland version requirement
+if grep -iqE '^(ID_LIKE|ID)=.*(ubuntu|debian)' /etc/os-release >/dev/null 2>&1; then
+  printf "\n%.0s" {1..1}
+  echo "${WARNING} These Dotfiles are only supported on Hyprland 0.51.1 or greater. Do not install on older revisions.${RESET}"
+  while true; do
+    echo -n "${CAT} Do you want to continue anyway? (y/N): ${RESET}"
+    read _continue
+    _continue=$(echo "${_continue}" | tr '[:upper:]' '[:lower:]')
+    case "${_continue}" in
+      y|yes)
+        echo "${NOTE} Proceeding on Ubuntu/Debian by user confirmation." 
+        break
+        ;;
+      n|no|"")
+        printf "\n%.0s" {1..1}
+        echo "${INFO} Aborting per user choice. No changes made." 
+        printf "\n%.0s" {1..1}
+        exit 1
+        ;;
+      *)
+        echo "${WARN} Please answer 'y' or 'n'." 
+        ;;
+    esac
+  done
 fi
 
 
