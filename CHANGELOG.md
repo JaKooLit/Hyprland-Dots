@@ -15,6 +15,10 @@
 - 📍 Improved location detection; overridable variables exposed.
 - 🌐 Switched to Open-Meteo for weather data with fallback providers.
 
+### 🖥️ Support for debian and ubuntu installs
+
+- Providing they are using Hyprland 0.51.1 or greater
+
 ### 🖥️ Drop-down terminal
 
 - 🔧 Start on login via `TerminalDropDown.sh` so first invocation works.
