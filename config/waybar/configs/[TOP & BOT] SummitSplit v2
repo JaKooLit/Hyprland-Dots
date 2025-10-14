@@ -28,13 +28,14 @@
       "network",
     ],
     "modules-center": ["hyprland/window"],
-    "modules-right": [
+"modules-right": [
       "mpris",
       "battery",
       "backlight",
       "pulseaudio",
       "group/mobo_drawer", 
       "idle_inhibitor",
+      "custom/nightlight",
       "group/power"
     ],
 

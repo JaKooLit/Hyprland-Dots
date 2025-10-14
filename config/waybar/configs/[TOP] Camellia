@@ -44,7 +44,8 @@
 	"power-profiles-daemon",
 	"battery",
 	"clock#3", 
-	"network"],
+	"network",
+	"custom/nightlight"],
 
 // Additional modules //
 "pulseaudio/slider": {

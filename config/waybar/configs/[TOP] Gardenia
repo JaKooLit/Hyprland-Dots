@@ -37,7 +37,8 @@
 "modules-right": [
 	"pulseaudio#1",
 	"backlight#2", 
-	"battery"
+	"battery",
+	"custom/nightlight"
 	],
 
 }
