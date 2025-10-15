@@ -39,7 +39,8 @@ else
 
   if [[ -f "$cache_file" ]]; then
     # The first non-filter line is the original wallpaper path
-    wallpaper_path="$(grep -v 'Lanczos3' "$cache_file" | head -n 1)"
+    # wallpaper_path="$(grep -v 'Lanczos3' "$cache_file" | head -n 1)"
+    wallpaper_path=$(swww query | grep $current_monitor | awk '{print $9}')
   fi
 fi
 
