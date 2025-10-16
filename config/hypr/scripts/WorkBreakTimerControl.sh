@@ -17,7 +17,7 @@ is_daemon_running() {
 start_daemon() {
     if ! is_daemon_running; then
         python3 "$TIMER_DAEMON" daemon > /dev/null 2>&1 &
-        notify-send "Work Break Timer" "Timer started" -i appointment-soon -u normal
+        notify-send "Work Break Timer" "Timer started" -i appointment-soon -u normal -t 10000
         sleep 1
     fi
 }
@@ -26,7 +26,7 @@ start_daemon() {
 stop_daemon() {
     if is_daemon_running; then
         pkill -f "WorkBreakTimer.py daemon"
-        notify-send "Work Break Timer" "Timer stopped" -i appointment-soon -u normal
+        notify-send "Work Break Timer" "Timer stopped" -i appointment-soon -u normal -t 10000
     fi
 }
 
@@ -39,9 +39,9 @@ toggle_pause() {
         # Check if paused
         PAUSED=$(jq -r '.paused // false' "$STATE_FILE" 2>/dev/null)
         if [[ "$PAUSED" == "true" ]]; then
-            notify-send "Work Break Timer" "Timer paused" -i appointment-soon -u normal
+            notify-send "Work Break Timer" "Timer paused" -i appointment-soon -u normal -t 10000
         else
-            notify-send "Work Break Timer" "Timer resumed" -i appointment-soon -u normal
+            notify-send "Work Break Timer" "Timer resumed" -i appointment-soon -u normal -t 10000
         fi
     else
         start_daemon
@@ -53,7 +53,7 @@ skip_break() {
     if is_daemon_running; then
         touch "$CONFIG_DIR/skip.marker"
         pkill -f "BreakOverlay.sh"
-        notify-send "Work Break Timer" "Break skipped" -i appointment-soon -u normal
+        notify-send "Work Break Timer" "Break skipped" -i appointment-soon -u normal -t 10000
     fi
 }
 
@@ -62,7 +62,7 @@ postpone_break() {
     if is_daemon_running; then
         touch "$CONFIG_DIR/postpone.marker"
         pkill -f "BreakOverlay.sh"
-        notify-send "Work Break Timer" "Break postponed for 5 minutes" -i appointment-soon -u normal
+        notify-send "Work Break Timer" "Break postponed for 5 minutes" -i appointment-soon -u normal -t 10000
     fi
 }
 
@@ -70,7 +70,7 @@ postpone_break() {
 open_settings() {
     # Check if jq is available
     if ! command -v jq &> /dev/null; then
-        notify-send "Error" "jq is required for settings editor" -u critical
+        notify-send "Error" "jq is required for settings editor" -u critical -t 10000
         xdg-open "$CONFIG_FILE"
         return
     fi
@@ -97,7 +97,7 @@ open_settings() {
             if [[ -n "$NEW_VAL" && "$NEW_VAL" =~ ^[0-9]+$ ]]; then
                 jq ".timers.short_break_interval = $((NEW_VAL * 60))" "$CONFIG_FILE" > "$CONFIG_FILE.tmp"
                 mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
-                notify-send "Settings Updated" "Short break interval: ${NEW_VAL} minutes"
+                notify-send "Settings Updated" "Short break interval: ${NEW_VAL} minutes" -t 10000
             fi
             ;;
         2)
@@ -105,7 +105,7 @@ open_settings() {
             if [[ -n "$NEW_VAL" && "$NEW_VAL" =~ ^[0-9]+$ ]]; then
                 jq ".timers.long_break_interval = $((NEW_VAL * 60))" "$CONFIG_FILE" > "$CONFIG_FILE.tmp"
                 mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
-                notify-send "Settings Updated" "Long break interval: ${NEW_VAL} minutes"
+                notify-send "Settings Updated" "Long break interval: ${NEW_VAL} minutes" -t 10000
             fi
             ;;
         3)
@@ -113,7 +113,7 @@ open_settings() {
             if [[ -n "$NEW_VAL" && "$NEW_VAL" =~ ^[0-9]+$ ]]; then
                 jq ".timers.short_break_duration = $NEW_VAL" "$CONFIG_FILE" > "$CONFIG_FILE.tmp"
                 mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
-                notify-send "Settings Updated" "Short break duration: ${NEW_VAL} seconds"
+                notify-send "Settings Updated" "Short break duration: ${NEW_VAL} seconds" -t 10000
             fi
             ;;
         4)
@@ -121,7 +121,7 @@ open_settings() {
             if [[ -n "$NEW_VAL" && "$NEW_VAL" =~ ^[0-9]+$ ]]; then
                 jq ".timers.long_break_duration = $((NEW_VAL * 60))" "$CONFIG_FILE" > "$CONFIG_FILE.tmp"
                 mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
-                notify-send "Settings Updated" "Long break duration: ${NEW_VAL} minutes"
+                notify-send "Settings Updated" "Long break duration: ${NEW_VAL} minutes" -t 10000
             fi
             ;;
         5)
@@ -158,7 +158,7 @@ open_settings() {
   }
 }
 EOF
-                notify-send "Settings Reset" "Configuration reset to defaults"
+                notify-send "Settings Reset" "Configuration reset to defaults" -t 10000
             fi
             ;;
         7)
@@ -175,7 +175,7 @@ EOF
 
                 notify-send "Statistics" "$STATS" -i appointment-soon -t 10000
             else
-                notify-send "Statistics" "No statistics available yet" -i appointment-soon
+                notify-send "Statistics" "No statistics available yet" -i appointment-soon -t 10000
             fi
             ;;
     esac

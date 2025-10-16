@@ -88,8 +88,8 @@ class WorkBreakTimer:
         self.save_state()
         sys.exit(0)
 
-    def notify(self, title: str, message: str, urgency: str = "normal"):
-        """Send desktop notification"""
+    def notify(self, title: str, message: str, urgency: str = "normal", timeout: int = 10000):
+        """Send desktop notification with timeout"""
         if not self.config["notifications"]["enabled"]:
             return
 
@@ -97,6 +97,7 @@ class WorkBreakTimer:
             subprocess.run([
                 "notify-send",
                 "-u", urgency,
+                "-t", str(timeout),
                 "-i", "appointment-soon",
                 "-a", "Work Break Timer",
                 title,

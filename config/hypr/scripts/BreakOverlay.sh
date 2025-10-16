@@ -225,9 +225,16 @@ kitty --class "break-overlay-fullscreen" \
 
 OVERLAY_PID=$!
 
+# Store current workspace to lock it
+CURRENT_WORKSPACE=$(hyprctl activeworkspace -j | jq -r '.id')
+
 # Set window rules before window is created
 hyprctl keyword windowrulev2 'immediate, class:(break-overlay-fullscreen)' 2>/dev/null
 hyprctl keyword windowrulev2 'fullscreen, class:(break-overlay-fullscreen)' 2>/dev/null
+hyprctl keyword windowrulev2 "workspace $CURRENT_WORKSPACE, class:(break-overlay-fullscreen)" 2>/dev/null
+
+# Hide Waybar during break
+pkill -SIGUSR1 waybar 2>/dev/null
 
 # Wait for kitty to start
 sleep 0.8
@@ -246,20 +253,42 @@ if [[ -n "$WINDOW_ADDRESS" ]]; then
     hyprctl dispatch focuswindow address:$WINDOW_ADDRESS 2>/dev/null
     sleep 0.2
 
-    # Toggle fullscreen (without parameter = real fullscreen)
-    hyprctl dispatch fullscreen 2>/dev/null
+    # Toggle fullscreen (mode 1 = real fullscreen, hides bars)
+    hyprctl dispatch fullscreen 1 2>/dev/null
     sleep 0.1
 
     # Pin on top
     hyprctl dispatch pin 2>/dev/null
 fi
 
-# Monitor for skip/postpone markers from external sources
+# Cleanup function
+cleanup_break() {
+    # Show Waybar again
+    pkill -SIGUSR1 waybar 2>/dev/null
+
+    # Cleanup marker files
+    rm -f "$CONFIG_DIR/skip.marker" "$CONFIG_DIR/postpone.marker" 2>/dev/null
+}
+
+# Monitor for skip/postpone markers and enforce workspace lock
 while ps -p $OVERLAY_PID > /dev/null 2>&1; do
+    # Check if user switched workspace - force them back
+    ACTIVE_WORKSPACE=$(hyprctl activeworkspace -j 2>/dev/null | jq -r '.id')
+    if [[ "$ACTIVE_WORKSPACE" != "$CURRENT_WORKSPACE" ]]; then
+        # User switched workspace - force back to break workspace
+        hyprctl dispatch workspace "$CURRENT_WORKSPACE" 2>/dev/null
+        # Refocus the break window
+        if [[ -n "$WINDOW_ADDRESS" ]]; then
+            hyprctl dispatch focuswindow address:$WINDOW_ADDRESS 2>/dev/null
+        fi
+    fi
+
+    # Check for skip/postpone markers
     if [[ -f "$CONFIG_DIR/skip.marker" ]]; then
         rm -f "$CONFIG_DIR/skip.marker"
         pkill -P $OVERLAY_PID 2>/dev/null
         kill $OVERLAY_PID 2>/dev/null
+        cleanup_break
         exit 0
     fi
 
@@ -267,11 +296,12 @@ while ps -p $OVERLAY_PID > /dev/null 2>&1; do
         rm -f "$CONFIG_DIR/postpone.marker"
         pkill -P $OVERLAY_PID 2>/dev/null
         kill $OVERLAY_PID 2>/dev/null
+        cleanup_break
         exit 0
     fi
 
-    sleep 0.5
+    sleep 0.1
 done
 
-# Cleanup
-rm -f "$CONFIG_DIR/skip.marker" "$CONFIG_DIR/postpone.marker" 2>/dev/null
+# Cleanup when break ends normally
+cleanup_break
