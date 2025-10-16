@@ -26,6 +26,7 @@ else
 	sleep 0.1
 	${SCRIPTSDIR}/WallustSwww.sh
 	sleep 0.5
+  hyprctl reload
 	${SCRIPTSDIR}/Refresh.sh	 
     notify-send -e -u normal -i "$notif" " Gamemode:" " disabled"
     exit
