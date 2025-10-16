@@ -1,0 +1,27 @@
+{
+  "timers": {
+    "short_break_interval": 600,
+    "short_break_duration": 10,
+    "long_break_interval": 3600,
+    "long_break_duration": 600,
+    "postpone_duration": 300
+  },
+  "notifications": {
+    "enabled": true,
+    "sound_enabled": false,
+    "warning_before_break": 30
+  },
+  "overlay": {
+    "dim_screen": true,
+    "dim_opacity": 0.8,
+    "show_skip_button": true,
+    "show_postpone_button": true,
+    "theme": "dark"
+  },
+  "behavior": {
+    "auto_start": true,
+    "reset_on_idle": true,
+    "idle_threshold": 300,
+    "strict_mode": false
+  }
+}

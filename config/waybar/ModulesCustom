@@ -206,6 +206,19 @@
 	"tooltip": true,
 	"tooltip-format": "Left Click: Update System\nArch (w/ notification)\nFedora, OpenSuse, Debian/Ubuntu click to update",
 },
+
+// Work Break Timer
+"custom/work_break_timer": {
+	"format": "{}",
+	"return-type": "json",
+	"interval": 1,
+	"exec": "$HOME/.config/hypr/scripts/WorkBreakTimerStatus.sh",
+	"on-click": "$HOME/.config/hypr/scripts/WorkBreakTimerControl.sh toggle",
+	"on-click-right": "$HOME/.config/hypr/scripts/WorkBreakTimerControl.sh settings",
+	"on-click-middle": "$HOME/.config/hypr/scripts/WorkBreakTimerControl.sh menu",
+	"tooltip": true,
+},
+
 // Separators
 "custom/separator#dot": {
 	"format": "",
