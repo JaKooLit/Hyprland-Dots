@@ -306,10 +306,14 @@ class WorkBreakTimer:
                         if idle_start is None:
                             idle_start = now
                         elif (now - idle_start) > idle_threshold:
-                            # User has been idle too long - reset timers
+                            # User has been idle too long - reset short break timer only
+                            # This prevents interrupting the user when they return from being away
                             if not self.state["in_break"]:
                                 self.state["last_short_break"] = now
-                                self.state["last_long_break"] = now
+                                # Only reset long break if it would have triggered
+                                time_since_long = now - self.state["last_long_break"]
+                                if time_since_long >= self.config["timers"]["long_break_interval"]:
+                                    self.state["last_long_break"] = now
                                 self.save_state()
                                 # Reset idle_start to avoid repeated resets
                                 idle_start = now
