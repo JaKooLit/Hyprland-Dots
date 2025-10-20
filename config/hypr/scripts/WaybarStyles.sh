@@ -51,7 +51,7 @@ main() {
     [[ -z "$choice" ]] && { echo "No option selected. Exiting."; exit 0; }
 
     # remove annotation and apply
-    choice=${choice# $MARKER}
+    choice=${choice#"$MARKER "}
     apply_style "$choice"
 }
 
