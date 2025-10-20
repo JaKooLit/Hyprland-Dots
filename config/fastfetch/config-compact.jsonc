@@ -29,14 +29,14 @@
         },
         {
             "type": "custom",
-            "key": " ",
+            "key": " ",
             "format": "JaKooLit: {$DOTS_VERSION}",
-            "keyColor": "magenta"
+            "keyColor": "blue"
         },
         {
             "type": "wm",
             "key": " ",
-            "keyColor": "blue"
+            "keyColor": "magenta"
         },
         {
             "type": "shell",

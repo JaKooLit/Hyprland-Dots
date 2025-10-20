@@ -25,7 +25,7 @@
     },    
     {
     "type": "custom",
-    "key": "│ ├",
+    "key": "│ ├",
     "format": "JaKooLit Version: {$DOTS_VERSION}",
     "keyColor": "yellow"
     },
