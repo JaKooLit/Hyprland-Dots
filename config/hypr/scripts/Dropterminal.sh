@@ -121,7 +121,7 @@ animate_slide_up() {
 
 # Function to get monitor info including scale and name of focused monitor
 get_monitor_info() {
-    local monitor_data=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | "\(.x) \(.y) \(.width) \(.height) \(.scale) \(.name)"')
+    local monitor_data=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | "\(.x) \(.y) \(.width) \(.height) \(.scale) \(.name) \(.transform)"')
     if [ -z "$monitor_data" ] || [[ "$monitor_data" =~ ^null ]]; then
         debug_echo "Error: Could not get focused monitor information"
         return 1
@@ -145,9 +145,17 @@ calculate_dropdown_position() {
     local mon_height=$(echo $monitor_info | cut -d' ' -f4)
     local mon_scale=$(echo $monitor_info | cut -d' ' -f5)
     local mon_name=$(echo $monitor_info | cut -d' ' -f6)
-    
-    debug_echo "Monitor info: x=$mon_x, y=$mon_y, width=$mon_width, height=$mon_height, scale=$mon_scale"
-    
+    local mon_transform=$(echo $monitor_info | cut -d' ' -f7)
+
+    debug_echo "Monitor info: x=$mon_x, y=$mon_y, width=$mon_width, height=$mon_height, scale=$mon_scale, transform=$mon_transform"
+
+    # Check for vertical monitors
+    if [ "$mon_transform" -eq 1 ] || [ "$mon_transform" -eq 3 ]; then
+        local temp_width=$mon_width
+        mon_width=$mon_height
+        mon_height=$temp_width
+    fi
+
     # Validate scale value and provide fallback
     if [ -z "$mon_scale" ] || [ "$mon_scale" = "null" ] || [ "$mon_scale" = "0" ]; then
         debug_echo "Invalid scale value, using 1.0 as fallback"
@@ -177,9 +185,14 @@ calculate_dropdown_position() {
     debug_echo "Logical resolution: ${logical_width}x${logical_height} (physical ÷ scale)"
     
     # Calculate window dimensions based on LOGICAL space percentages
-    local width=$((logical_width * WIDTH_PERCENT / 100))
-    local height=$((logical_height * HEIGHT_PERCENT / 100))
-    
+    if [ "$mon_transform" -eq 1 ] || [ "$mon_transform" -eq 3 ]; then
+        local height=$((logical_width * WIDTH_PERCENT / 100))
+        local width=$((logical_height * HEIGHT_PERCENT / 100))
+    else
+        local width=$((logical_width * WIDTH_PERCENT / 100))
+        local height=$((logical_height * HEIGHT_PERCENT / 100))
+    fi
+
     # Calculate Y position from top based on percentage of LOGICAL height
     local y_offset=$((logical_height * Y_PERCENT / 100))
     
@@ -193,7 +206,7 @@ calculate_dropdown_position() {
     debug_echo "Window size: ${width}x${height} (logical pixels)"
     debug_echo "Final position: x=$final_x, y=$final_y (logical coordinates)"
     debug_echo "Hyprland will scale these to physical coordinates automatically"
-    
+
     echo "$final_x $final_y $width $height $mon_name"
 }
 
