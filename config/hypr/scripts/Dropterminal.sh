@@ -121,7 +121,7 @@ animate_slide_up() {
 
 # Function to get monitor info including scale and name of focused monitor
 get_monitor_info() {
-    local monitor_data=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | "\(.x) \(.y) \(.width) \(.height) \(.scale) \(.name) \(.transform)"')
+    local monitor_data=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | "\(.x) \(.y) \(.width) \(.height) \(.scale) \(.transform) \(.name)"')
     if [ -z "$monitor_data" ] || [[ "$monitor_data" =~ ^null ]]; then
         debug_echo "Error: Could not get focused monitor information"
         return 1
@@ -144,13 +144,13 @@ calculate_dropdown_position() {
     local mon_width=$(echo $monitor_info | cut -d' ' -f3)
     local mon_height=$(echo $monitor_info | cut -d' ' -f4)
     local mon_scale=$(echo $monitor_info | cut -d' ' -f5)
-    local mon_name=$(echo $monitor_info | cut -d' ' -f6)
-    local mon_transform=$(echo $monitor_info | cut -d' ' -f7)
+    local mon_transform=$(echo $monitor_info | cut -d' ' -f6)
+    local mon_name=$(echo $monitor_info | cut -d' ' -f7)
 
     debug_echo "Monitor info: x=$mon_x, y=$mon_y, width=$mon_width, height=$mon_height, scale=$mon_scale, transform=$mon_transform"
 
     # Check for vertical monitors
-    if [ "$mon_transform" -eq 1 ] || [ "$mon_transform" -eq 3 ]; then
+    if [ $(($mon_transform % 2)) -ne 0 ]; then
         local temp_width=$mon_width
         mon_width=$mon_height
         mon_height=$temp_width
@@ -185,12 +185,12 @@ calculate_dropdown_position() {
     debug_echo "Logical resolution: ${logical_width}x${logical_height} (physical ÷ scale)"
     
     # Calculate window dimensions based on LOGICAL space percentages
-    if [ "$mon_transform" -eq 1 ] || [ "$mon_transform" -eq 3 ]; then
-        local height=$((logical_width * WIDTH_PERCENT / 100))
-        local width=$((logical_height * HEIGHT_PERCENT / 100))
-    else
+    if [ $(($mon_transform % 2)) -eq 0 ]; then
         local width=$((logical_width * WIDTH_PERCENT / 100))
         local height=$((logical_height * HEIGHT_PERCENT / 100))
+    else
+        local height=$((logical_width * WIDTH_PERCENT / 100))
+        local width=$((logical_height * HEIGHT_PERCENT / 100))
     fi
 
     # Calculate Y position from top based on percentage of LOGICAL height
