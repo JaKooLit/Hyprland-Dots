@@ -206,7 +206,7 @@ calculate_dropdown_position() {
     debug_echo "Window size: ${width}x${height} (logical pixels)"
     debug_echo "Final position: x=$final_x, y=$final_y (logical coordinates)"
     debug_echo "Hyprland will scale these to physical coordinates automatically"
-
+    
     echo "$final_x $final_y $width $height $mon_name"
 }
 
