@@ -3,12 +3,15 @@
 # Rewritten to use Open-Meteo APIs (worldwide, no API key) for robust weather data.
 # Outputs Waybar-compatible JSON and a simple text cache.
 
+from __future__ import annotations
+
 import json
 import os
 import sys
 import time
 import html
-from typing import Any, Dict, List, Optional, Tuple
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple, TypeVar, Union, cast
 
 import requests
 
@@ -27,9 +30,9 @@ import requests
 #   export WEATHER_TOOLTIP_MARKUP=1   # 1 to enable Pango markup, 0 to disable
 #   export WEATHER_LOC_ICON="📍"      # or "*" for ASCII-only
 #
-CACHE_DIR = os.path.expanduser("~/.cache")
-API_CACHE_PATH = os.path.join(CACHE_DIR, "open_meteo_cache.json")
-SIMPLE_TEXT_CACHE_PATH = os.path.join(CACHE_DIR, ".weather_cache")
+CACHE_DIR: Path = Path.home() / ".cache"
+API_CACHE_PATH: Path = CACHE_DIR / "open_meteo_cache.json"
+SIMPLE_TEXT_CACHE_PATH: Path = CACHE_DIR / ".weather_cache"
 CACHE_TTL_SECONDS = int(os.getenv("WEATHER_CACHE_TTL", "600"))  # default 10 minutes
 
 # Units: metric or imperial (default metric)
@@ -138,19 +141,22 @@ def log_debug(msg: str) -> None:
 
 def ensure_cache_dir() -> None:
     try:
-        os.makedirs(CACHE_DIR, exist_ok=True)
+        # CACHE_DIR is a Path
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
     except Exception as e:
         print(f"Error creating cache dir: {e}", file=sys.stderr)
 
 
 def read_api_cache() -> Optional[Dict[str, Any]]:
     try:
-        if not os.path.exists(API_CACHE_PATH):
+        if not API_CACHE_PATH.exists():
             return None
-        with open(API_CACHE_PATH, "r", encoding="utf-8") as f:
+        with API_CACHE_PATH.open("r", encoding="utf-8") as f:
             data = json.load(f)
-        if (time.time() - data.get("timestamp", 0)) <= CACHE_TTL_SECONDS:
-            return data
+        # cast for type checkers
+        data_dict = cast(Dict[str, Any], data)
+        if (time.time() - data_dict.get("timestamp", 0)) <= CACHE_TTL_SECONDS:
+            return data_dict
         return None
     except Exception as e:
         print(f"Error reading cache: {e}", file=sys.stderr)
@@ -161,7 +167,7 @@ def write_api_cache(payload: Dict[str, Any]) -> None:
     try:
         ensure_cache_dir()
         payload["timestamp"] = time.time()
-        with open(API_CACHE_PATH, "w", encoding="utf-8") as f:
+        with API_CACHE_PATH.open("w", encoding="utf-8") as f:
             json.dump(payload, f)
     except Exception as e:
         print(f"Error writing API cache: {e}", file=sys.stderr)
@@ -170,7 +176,7 @@ def write_api_cache(payload: Dict[str, Any]) -> None:
 def write_simple_text_cache(text: str) -> None:
     try:
         ensure_cache_dir()
-        with open(SIMPLE_TEXT_CACHE_PATH, "w", encoding="utf-8") as f:
+        with SIMPLE_TEXT_CACHE_PATH.open("w", encoding="utf-8") as f:
             f.write(text)
     except Exception as e:
         print(f"Error writing simple cache: {e}", file=sys.stderr)
@@ -187,10 +193,12 @@ def get_coords() -> Tuple[float, float]:
     # 2) Try cached coordinates from last successful forecast
     try:
         cached = read_api_cache()
-        if cached and isinstance(cached, dict):
-            fc = cached.get("forecast") or {}
-            lat = fc.get("latitude")
-            lon = fc.get("longitude")
+        if cached:
+            # cached is already typed as Dict[str, Any] by read_api_cache
+            # annotate the nested forecast field specifically for static checkers
+            fc = ensure_dict(cached.get("forecast"))
+            lat = safe_get(fc, "latitude")
+            lon = safe_get(fc, "longitude")
             if isinstance(lat, (int, float)) and isinstance(lon, (int, float)):
                 return float(lat), float(lon)
     except Exception as e:
@@ -272,7 +280,7 @@ def format_visibility(meters: Optional[float]) -> str:
 
 def fetch_open_meteo(lat: float, lon: float) -> Dict[str, Any]:
     base = "https://api.open-meteo.com/v1/forecast"
-    params = {
+    params: Dict[str, Union[str, float]] = {
         "latitude": lat,
         "longitude": lon,
         "current": "temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,wind_direction_10m,weather_code,visibility,precipitation,pressure_msl,is_day",
@@ -289,7 +297,7 @@ def fetch_open_meteo(lat: float, lon: float) -> Dict[str, Any]:
 def fetch_aqi(lat: float, lon: float) -> Optional[Dict[str, Any]]:
     try:
         base = "https://air-quality-api.open-meteo.com/v1/air-quality"
-        params = {
+        params: Dict[str, Union[str, float]] = {
             "latitude": lat,
             "longitude": lon,
             "current": "european_aqi",
@@ -310,7 +318,7 @@ def fetch_place(lat: float, lon: float) -> Optional[str]:
     # 1) Nominatim (OpenStreetMap)
     try:
         base = "https://nominatim.openstreetmap.org/reverse"
-        params = {
+        params: Dict[str, Union[str, float]] = {
             "lat": lat,
             "lon": lon,
             "format": "jsonv2",
@@ -320,8 +328,9 @@ def fetch_place(lat: float, lon: float) -> Optional[str]:
         resp = SESSION.get(base, params=params, headers=headers, timeout=TIMEOUT)
         resp.raise_for_status()
         data = resp.json()
-        address = data.get("address", {})
-        name = data.get("name") or address.get("city") or address.get("town") or address.get("village") or address.get("hamlet")
+        data_dict = cast(Dict[str, Any], data)
+        address = cast(Dict[str, Any], data_dict.get("address", {}))
+        name = data_dict.get("name") or address.get("city") or address.get("town") or address.get("village") or address.get("hamlet")
         admin1 = address.get("state")
         country = address.get("country")
         parts = [part for part in [name, admin1, country] if part]
@@ -333,7 +342,7 @@ def fetch_place(lat: float, lon: float) -> Optional[str]:
     # 2) Open-Meteo reverse (fallback)
     try:
         base = "https://geocoding-api.open-meteo.com/v1/reverse"
-        params = {
+        params: Dict[str, Union[str, float]] = {
             "latitude": lat,
             "longitude": lon,
             "language": lang,
@@ -342,7 +351,8 @@ def fetch_place(lat: float, lon: float) -> Optional[str]:
         resp = SESSION.get(base, params=params, timeout=TIMEOUT)
         resp.raise_for_status()
         data = resp.json()
-        results = data.get("results") or []
+        data_dict = cast(Dict[str, Any], data)
+        results = cast(List[Dict[str, Any]], data_dict.get("results") or [])
         if results:
             p = results[0]
             name = p.get("name")
@@ -359,31 +369,61 @@ def fetch_place(lat: float, lon: float) -> Optional[str]:
 
 # =============== Build Output ===============
 
-def safe_get(dct: Dict[str, Any], *keys, default=None):
-    cur: Any = dct
-    for k in keys:
+_T = TypeVar("_T")
+
+JSONValue = Union[str, int, float, bool, None, "JSONDict", "JSONList"]
+JSONDict = Dict[str, JSONValue]
+JSONList = List[JSONValue]
+
+
+def ensure_dict(value: Any) -> JSONDict:
+    """Return a JSON-like dict when the incoming value looks like one."""
+    if isinstance(value, dict):
+        return cast(JSONDict, value)
+    return cast(JSONDict, {})
+
+
+def ensure_list(value: Any) -> JSONList:
+    """Return a JSON-like list when the incoming value looks like one."""
+    if isinstance(value, list):
+        return cast(JSONList, value)
+    return cast(JSONList, [])
+
+
+def safe_get(
+    obj: JSONValue | None,
+    *keys: Union[str, int],
+    default: _T | None = None,
+) -> _T | JSONValue | None:
+    """Safely traverse nested dict/list structures.
+
+    Keys may be strings (for mapping lookups) or ints (for list indices).
+    Returns ``default`` if any lookup fails.
+    """
+
+    cur: JSONValue | None = obj
+    for key in keys:
         if isinstance(cur, dict):
-            if k not in cur:
+            if not isinstance(key, str) or key not in cur:
                 return default
-            cur = cur[k]
+            cur = cur[key]
         elif isinstance(cur, list):
-            try:
-                cur = cur[k]  # type: ignore[index]
-            except Exception:
+            if not isinstance(key, int) or key < 0 or key >= len(cur):
                 return default
+            cur = cur[key]
         else:
             return default
-    return cur
+    return cast(_T | JSONValue | None, cur)
 
 
-def build_hourly_precip(forecast: Dict[str, Any]) -> str:
+def build_hourly_precip(forecast: JSONDict) -> str:
     try:
-        times: List[str] = safe_get(forecast, "hourly", "time", default=[]) or []
-        probs: List[Optional[float]] = safe_get(
-            forecast, "hourly", "precipitation_probability", default=[]
-        ) or []
-        cur_time: Optional[str] = safe_get(forecast, "current", "time")
-        idx = times.index(cur_time) if cur_time in times else 0
+        times_raw = safe_get(forecast, "hourly", "time")
+        probs_raw = safe_get(forecast, "hourly", "precipitation_probability")
+        times: List[str] = cast(List[str], ensure_list(times_raw))
+        probs: List[Optional[float]] = cast(List[Optional[float]], ensure_list(probs_raw))
+        cur_time: Optional[str] = cast(Optional[str], safe_get(forecast, "current", "time"))
+        idx = times.index(cur_time) if (cur_time is not None and cur_time in times) else 0
         window = probs[idx : idx + 6]
         if not window:
             return ""
@@ -393,35 +433,49 @@ def build_hourly_precip(forecast: Dict[str, Any]) -> str:
         return ""
 
 
-def build_output(lat: float, lon: float, forecast: Dict[str, Any], aqi: Optional[Dict[str, Any]], place: Optional[str] = None) -> Tuple[Dict[str, Any], str]:
-    cur = forecast.get("current", {})
-    cur_units = forecast.get("current_units", {})
-    daily = forecast.get("daily", {})
-    daily_units = forecast.get("daily_units", {})
+def build_output(
+    lat: float,
+    lon: float,
+    forecast: Optional[Dict[str, Any]],
+    aqi: Optional[Dict[str, Any]],
+    place: Optional[str] = None,
+) -> Tuple[Dict[str, Any], str]:
+    # Accept None for forecast (stale or missing). Normalize to empty dict.
+    forecast_dict = ensure_dict(forecast)
+    cur = ensure_dict(forecast_dict.get("current"))
+    cur_units = ensure_dict(forecast_dict.get("current_units"))
+    daily = ensure_dict(forecast_dict.get("daily"))
+    daily_units = ensure_dict(forecast_dict.get("daily_units"))
 
     temp_val = cur.get("temperature_2m")
-    temp_unit = cur_units.get("temperature_2m", "")
+    temp_unit = cast(str, cur_units.get("temperature_2m", ""))
     temp_str = f"{int(round(temp_val))}{temp_unit}" if isinstance(temp_val, (int, float)) else "N/A"
 
     feels_val = cur.get("apparent_temperature")
-    feels_unit = cur_units.get("apparent_temperature", "")
-    feels_str = f"Feels like {int(round(feels_val))}{feels_unit}" if isinstance(feels_val, (int, float)) else ""
+    feels_unit = cast(str, cur_units.get("apparent_temperature", ""))
+    feels_str = (
+        f"Feels like {int(round(feels_val))}{feels_unit}"
+        if isinstance(feels_val, (int, float))
+        else ""
+    )
 
-    is_day = int(cur.get("is_day", 1) or 1)
-    code = int(cur.get("weather_code", -1) or -1)
+    is_day_val = cur.get("is_day")
+    is_day = int(is_day_val) if isinstance(is_day_val, (int, float)) else 1
+    weather_code_val = cur.get("weather_code")
+    code = int(weather_code_val) if isinstance(weather_code_val, (int, float)) else -1
     icon = wmo_to_icon(code, is_day)
     status = wmo_to_status(code)
 
     # min/max today (index 0)
     tmin_val = safe_get(daily, "temperature_2m_min", 0)
     tmax_val = safe_get(daily, "temperature_2m_max", 0)
-    dtemp_unit = daily_units.get("temperature_2m_min", temp_unit)
+    dtemp_unit = cast(str, daily_units.get("temperature_2m_min", temp_unit))
     tmin_str = f"{int(round(tmin_val))}{dtemp_unit}" if isinstance(tmin_val, (int, float)) else ""
     tmax_str = f"{int(round(tmax_val))}{dtemp_unit}" if isinstance(tmax_val, (int, float)) else ""
     min_max = f"  {tmin_str}\t\t  {tmax_str}" if tmin_str and tmax_str else ""
 
     wind_val = cur.get("wind_speed_10m")
-    wind_unit = cur_units.get("wind_speed_10m", "")
+    wind_unit = cast(str, cur_units.get("wind_speed_10m", ""))
     wind_text = f"  {int(round(wind_val))}{wind_unit}" if isinstance(wind_val, (int, float)) else ""
 
     hum_val = cur.get("relative_humidity_2m")
@@ -430,14 +484,15 @@ def build_output(lat: float, lon: float, forecast: Dict[str, Any], aqi: Optional
     vis_val = cur.get("visibility")
     visibility_text = f"  {format_visibility(vis_val)}" if isinstance(vis_val, (int, float)) else ""
 
-    aqi_val = safe_get(aqi or {}, "current", "european_aqi")
+    aqi_dict = ensure_dict(aqi)
+    aqi_val = cast(Optional[float], safe_get(aqi_dict, "current", "european_aqi"))
     aqi_text = f"AQI {int(aqi_val)}" if isinstance(aqi_val, (int, float)) else "AQI N/A"
 
-    hourly_precip = build_hourly_precip(forecast)
+    hourly_precip = build_hourly_precip(forecast_dict)
     prediction = f"\n\n{hourly_precip}" if hourly_precip else ""
 
     # Build place string (priority: MANUAL_PLACE > ENV_PLACE > reverse geocode > lat,lon)
-    place_str = (MANUAL_PLACE or ENV_PLACE or place or f"{lat:.3f}, {lon:.3f}")
+    place_str = MANUAL_PLACE or ENV_PLACE or place or f"{lat:.3f}, {lon:.3f}"
     location_text = f"{LOC_ICON}  {place_str}"
 
     # Build tooltip (markup or plain)
@@ -465,8 +520,12 @@ def build_output(lat: float, lon: float, forecast: Dict[str, Any], aqi: Optional
             lines.append(feels_str)
         if min_max:
             lines.append(min_max)
-        lines.append(f"{wind_text} {humidity_text}".strip())
-        lines.append(f"{visibility_text} {aqi_text}".strip())
+        combined_wind = f"{wind_text} {humidity_text}".strip()
+        if combined_wind:
+            lines.append(combined_wind)
+        combined_visibility = f"{visibility_text} {aqi_text}".strip()
+        if combined_visibility:
+            lines.append(combined_visibility)
         if prediction:
             lines.append(hourly_precip)
         tooltip_text = "\n".join([ln for ln in lines if ln])
@@ -494,7 +553,8 @@ def main() -> None:
 
     # Try cache first
     cached = read_api_cache()
-    if cached and isinstance(cached, dict):
+    if cached:
+        # cached is Optional[Dict[str,Any]]; fields may be missing
         forecast = cached.get("forecast")
         aqi = cached.get("aqi")
         cached_place = cached.get("place") if isinstance(cached.get("place"), str) else None
@@ -521,10 +581,11 @@ def main() -> None:
         print(f"Open-Meteo fetch failed: {e}", file=sys.stderr)
         # Last resort: try stale cache without TTL
         try:
-            if os.path.exists(API_CACHE_PATH):
-                with open(API_CACHE_PATH, "r", encoding="utf-8") as f:
+            if API_CACHE_PATH.exists():
+                with API_CACHE_PATH.open("r", encoding="utf-8") as f:
                     stale = json.load(f)
-                out, simple = build_output(lat, lon, stale.get("forecast", {}), stale.get("aqi"), stale.get("place") if isinstance(stale.get("place"), str) else None)
+                stale_dict = cast(Dict[str, Any], stale)
+                out, simple = build_output(lat, lon, stale_dict.get("forecast"), stale_dict.get("aqi"), stale_dict.get("place") if isinstance(stale_dict.get("place"), str) else None)
                 print(json.dumps(out, ensure_ascii=False))
                 write_simple_text_cache(simple)
                 return
