@@ -744,7 +744,7 @@ def build_output(loc: Location, forecast: Optional[Dict[str, Any]], aqi: Optiona
         )
     )
 
-    out_data: Dict[str, str] = {
+    out_data: Dict[str, Any] = {
         "text": f"{data.icon}  {data.temp_str}",
         "alt": data.status,
         "tooltip": tooltip_text,
