@@ -207,9 +207,9 @@ def coerce_number(value: Any) -> Union[int, float, None]:
         return value
     if isinstance(value, str):
         try:
-            # Try float first, then int if no decimal
+            # Parse to float, then return int if it has no fractional part
             f = float(value)
-            return f if '.' in value or 'e' in value.lower() else int(f)
+            return int(f) if f.is_integer() else f
         except (ValueError, TypeError):
             return None
     return None
@@ -508,6 +508,11 @@ def ensure_dict(value: Any) -> JSONDict:
     """Return a JSON-like dict when the incoming value looks like one."""
     if isinstance(value, dict):
         return cast(JSONDict, value)
+    # Warn about unexpected type to catch API shape mismatches
+    val_repr = repr(value) if value is not None else "None"
+    if len(val_repr) > 100:
+        val_repr = val_repr[:100] + "..."
+    print(f"Warning: ensure_dict received {type(value).__name__} instead of dict: {val_repr}", file=sys.stderr)
     return cast(JSONDict, {})
 
 
@@ -515,6 +520,11 @@ def ensure_list(value: Any) -> JSONList:
     """Return a JSON-like list when the incoming value looks like one."""
     if isinstance(value, list):
         return cast(JSONList, value)
+    # Warn about unexpected type to catch API shape mismatches
+    val_repr = repr(value) if value is not None else "None"
+    if len(val_repr) > 100:
+        val_repr = val_repr[:100] + "..."
+    print(f"Warning: ensure_list received {type(value).__name__} instead of list: {val_repr}", file=sys.stderr)
     return cast(JSONList, [])
 
 
