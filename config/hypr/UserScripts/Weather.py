@@ -57,7 +57,7 @@ class WeatherData:
 CACHE_DIR: Path = Path.home() / ".cache"
 API_CACHE_PATH: Path = CACHE_DIR / "open_meteo_cache.json"
 SIMPLE_TEXT_CACHE_PATH: Path = CACHE_DIR / ".weather_cache"
-CACHE_TTL_SECONDS = int(os.getenv("WEATHER_CACHE_TTL", "600"))  # default 10 minutes
+CACHE_TTL_SECONDS = int(os.getenv("WEATHER_CACHE_TTL", "300"))  # default 5 minutes
 
 # Units: metric or imperial (default metric)
 UNITS = os.getenv("WEATHER_UNITS", "metric").strip().lower()  # metric|imperial
@@ -74,7 +74,7 @@ MANUAL_PLACE: Optional[str] = None
 # Location icon in tooltip (default to a standard emoji to avoid missing glyphs)
 LOC_ICON = os.getenv("WEATHER_LOC_ICON", "📍")
 # Enable/disable Pango markup in tooltip (1/0, true/false)
-TOOLTIP_MARKUP = os.getenv("WEATHER_TOOLTIP_MARKUP", "1").lower() not in ("0", "false", "no")
+TOOLTIP_MARKUP = os.getenv("WEATHER_TOOLTIP_MARKUP", "0").lower() in ("1", "true", "yes")
 # Optional debug logging to stderr (set WEATHER_DEBUG=1 to enable)
 DEBUG = os.getenv("WEATHER_DEBUG", "0").lower() not in ("0", "false", "no")
 
@@ -430,9 +430,12 @@ def extract_place_parts_open_meteo(p: JSONDict) -> List[str]:
     admin1 = cast(Optional[str], p.get("admin1"))
     country = cast(Optional[str], p.get("country"))
     parts: List[str] = []
-    for part in [name, admin1, country]:
-        if part is not None:
-            parts.append(part)
+    if name is not None:
+        parts.append(name)
+    if admin1 is not None:
+        parts.append(admin1)
+    if country is not None:
+        parts.append(country)
     return parts
 
 
@@ -592,9 +595,11 @@ def build_weather_strings(cur: JSONDict, cur_units: JSONDict, daily: JSONDict, d
     feels_str = f"Feels like {int(round(feels_val))}{feels_unit}" if feels_val is not None else ""
 
     is_day_val = cur.get("is_day")
-    is_day = coerce_int(is_day_val) or 1
+    is_day_int = coerce_int(is_day_val)
+    is_day = is_day_int if is_day_int is not None else 1
     weather_code_val = cur.get("weather_code")
-    code = coerce_int(weather_code_val) or -1
+    code_int = coerce_int(weather_code_val)
+    code = code_int if code_int is not None else -1
     icon = wmo_to_icon(code, is_day)
     status = wmo_to_status(code)
 
@@ -641,7 +646,10 @@ def build_aqi_info(aqi: Optional[Dict[str, Any]]) -> str:
 
 
 def build_place_str(lat: float, lon: float, place: Optional[str]) -> str:
-    return MANUAL_PLACE or ENV_PLACE or place or f"{lat:.3f}, {lon:.3f}"
+    effective_place = MANUAL_PLACE or ENV_PLACE or place
+    if effective_place:
+        return f"{effective_place} ({lat:.3f}, {lon:.3f})"
+    return f"{lat:.3f}, {lon:.3f}"
 
 
 
@@ -752,11 +760,12 @@ def build_output(loc: Location, forecast: Optional[Dict[str, Any]], aqi: Optiona
     }
 
     simple_weather = (
+        f"{place_str}\n"
         f"{data.icon}  {data.status}\n"
         + f"  {data.temp_str} ({data.feels_str})\n"
-        + (f"{data.wind_text} \n" if data.wind_text else "")
-        + (f"{data.humidity_text} \n" if data.humidity_text else "")
-        + f"{data.visibility_text} {data.aqi_text}\n"
+        + (f" {data.wind_text} \n" if data.wind_text else "")
+        + (f" {data.humidity_text} \n" if data.humidity_text else "")
+        + f" {data.visibility_text} {data.aqi_text}\n"
     )
 
     return out_data, simple_weather
@@ -769,9 +778,8 @@ def try_cached_weather(lat: float, lon: float) -> Optional[Tuple[Dict[str, str],
         aqi = cast(Optional[Dict[str, Any]], cached.get("aqi"))
         place_val = cached.get("place")
         cached_place = place_val if isinstance(place_val, str) else None
-        place_effective = MANUAL_PLACE or ENV_PLACE or cached_place
         try:
-            return build_output(Location(lat, lon, place_effective), forecast, aqi)
+            return build_output(Location(lat, lon, cached_place), forecast, aqi)
         except Exception as e:
             print(f"Cached data build failed, refetching: {e}", file=sys.stderr)
     return None
@@ -781,9 +789,9 @@ def fetch_fresh_weather(lat: float, lon: float) -> Optional[Tuple[Dict[str, str]
     try:
         forecast = fetch_open_meteo(lat, lon)
         aqi = fetch_aqi(lat, lon)
-        place_effective = MANUAL_PLACE or ENV_PLACE or fetch_place(lat, lon)
-        write_api_cache({"forecast": forecast, "aqi": aqi, "place": place_effective})
-        return build_output(Location(lat, lon, place_effective), forecast, aqi)
+        place = fetch_place(lat, lon)
+        write_api_cache({"forecast": forecast, "aqi": aqi, "place": place})
+        return build_output(Location(lat, lon, place), forecast, aqi)
     except Exception as e:
         print(f"Open-Meteo fetch failed: {e}", file=sys.stderr)
     return None
