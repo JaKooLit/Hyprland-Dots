@@ -416,11 +416,11 @@ def extract_place_parts_nominatim(data_dict: JSONDict) -> List[str]:
     admin1 = cast(Optional[str], address.get("state"))
     country = cast(Optional[str], address.get("country"))
     parts: List[str] = []
-    if name:
+    if name is not None:
         parts.append(name)
-    if admin1:
+    if admin1 is not None:
         parts.append(admin1)
-    if country:
+    if country is not None:
         parts.append(country)
     return parts
 
@@ -430,11 +430,11 @@ def extract_place_parts_open_meteo(p: JSONDict) -> List[str]:
     admin1 = cast(Optional[str], p.get("admin1"))
     country = cast(Optional[str], p.get("country"))
     parts: List[str] = []
-    if name:
+    if name is not None:
         parts.append(name)
-    if admin1:
+    if admin1 is not None:
         parts.append(admin1)
-    if country:
+    if country is not None:
         parts.append(country)
     return parts
 
@@ -644,8 +644,9 @@ def build_aqi_info(aqi: Optional[Dict[str, Any]]) -> str:
 
 
 def build_place_str(lat: float, lon: float, place: Optional[str]) -> str:
-    if place:
-        return f"{place} ({lat:.3f}, {lon:.3f})"
+    effective_place = MANUAL_PLACE or ENV_PLACE or place
+    if effective_place:
+        return f"{effective_place} ({lat:.3f}, {lon:.3f})"
     return f"{lat:.3f}, {lon:.3f}"
 
 
