@@ -74,7 +74,7 @@ MANUAL_PLACE: Optional[str] = None
 # Location icon in tooltip (default to a standard emoji to avoid missing glyphs)
 LOC_ICON = os.getenv("WEATHER_LOC_ICON", "📍")
 # Enable/disable Pango markup in tooltip (1/0, true/false)
-TOOLTIP_MARKUP = os.getenv("WEATHER_TOOLTIP_MARKUP", "1").lower() not in ("0", "false", "no")
+TOOLTIP_MARKUP = os.getenv("WEATHER_TOOLTIP_MARKUP", "0").lower() not in ("0", "false", "no")
 # Optional debug logging to stderr (set WEATHER_DEBUG=1 to enable)
 DEBUG = os.getenv("WEATHER_DEBUG", "0").lower() not in ("0", "false", "no")
 
@@ -416,11 +416,11 @@ def extract_place_parts_nominatim(data_dict: JSONDict) -> List[str]:
     admin1 = cast(Optional[str], address.get("state"))
     country = cast(Optional[str], address.get("country"))
     parts: List[str] = []
-    if name is not None:
+    if name:
         parts.append(name)
-    if admin1 is not None:
+    if admin1:
         parts.append(admin1)
-    if country is not None:
+    if country:
         parts.append(country)
     return parts
 
@@ -430,9 +430,12 @@ def extract_place_parts_open_meteo(p: JSONDict) -> List[str]:
     admin1 = cast(Optional[str], p.get("admin1"))
     country = cast(Optional[str], p.get("country"))
     parts: List[str] = []
-    for part in [name, admin1, country]:
-        if part is not None:
-            parts.append(part)
+    if name:
+        parts.append(name)
+    if admin1:
+        parts.append(admin1)
+    if country:
+        parts.append(country)
     return parts
 
 
@@ -641,7 +644,9 @@ def build_aqi_info(aqi: Optional[Dict[str, Any]]) -> str:
 
 
 def build_place_str(lat: float, lon: float, place: Optional[str]) -> str:
-    return MANUAL_PLACE or ENV_PLACE or place or f"{lat:.3f}, {lon:.3f}"
+    if place:
+        return f"{place} ({lat:.3f}, {lon:.3f})"
+    return f"{lat:.3f}, {lon:.3f}"
 
 
 
@@ -752,11 +757,12 @@ def build_output(loc: Location, forecast: Optional[Dict[str, Any]], aqi: Optiona
     }
 
     simple_weather = (
+        f"{place_str}\n"
         f"{data.icon}  {data.status}\n"
         + f"  {data.temp_str} ({data.feels_str})\n"
-        + (f"{data.wind_text} \n" if data.wind_text else "")
-        + (f"{data.humidity_text} \n" if data.humidity_text else "")
-        + f"{data.visibility_text} {data.aqi_text}\n"
+        + (f" {data.wind_text} \n" if data.wind_text else "")
+        + (f" {data.humidity_text} \n" if data.humidity_text else "")
+        + f" {data.visibility_text} {data.aqi_text}\n"
     )
 
     return out_data, simple_weather
