@@ -595,9 +595,11 @@ def build_weather_strings(cur: JSONDict, cur_units: JSONDict, daily: JSONDict, d
     feels_str = f"Feels like {int(round(feels_val))}{feels_unit}" if feels_val is not None else ""
 
     is_day_val = cur.get("is_day")
-    is_day = coerce_int(is_day_val) or 1
+    is_day_int = coerce_int(is_day_val)
+    is_day = is_day_int if is_day_int is not None else 1
     weather_code_val = cur.get("weather_code")
-    code = coerce_int(weather_code_val) or -1
+    code_int = coerce_int(weather_code_val)
+    code = code_int if code_int is not None else -1
     icon = wmo_to_icon(code, is_day)
     status = wmo_to_status(code)
 
