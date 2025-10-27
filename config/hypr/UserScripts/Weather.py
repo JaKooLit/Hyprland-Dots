@@ -430,11 +430,11 @@ def extract_place_parts_open_meteo(p: JSONDict) -> List[str]:
     admin1 = cast(Optional[str], p.get("admin1"))
     country = cast(Optional[str], p.get("country"))
     parts: List[str] = []
-    if name:
+    if name is not None:
         parts.append(name)
-    if admin1:
+    if admin1 is not None:
         parts.append(admin1)
-    if country:
+    if country is not None:
         parts.append(country)
     return parts
 
@@ -775,7 +775,7 @@ def try_cached_weather(lat: float, lon: float) -> Optional[Tuple[Dict[str, str],
         aqi = cast(Optional[Dict[str, Any]], cached.get("aqi"))
         place_val = cached.get("place")
         cached_place = place_val if isinstance(place_val, str) else None
-        place_effective = MANUAL_PLACE or ENV_PLACE or cached_place
+        place_effective = MANUAL_PLACE if MANUAL_PLACE is not None else (ENV_PLACE if ENV_PLACE is not None else cached_place)
         try:
             return build_output(Location(lat, lon, place_effective), forecast, aqi)
         except Exception as e:
@@ -787,7 +787,7 @@ def fetch_fresh_weather(lat: float, lon: float) -> Optional[Tuple[Dict[str, str]
     try:
         forecast = fetch_open_meteo(lat, lon)
         aqi = fetch_aqi(lat, lon)
-        place_effective = MANUAL_PLACE or ENV_PLACE or fetch_place(lat, lon)
+        place_effective = MANUAL_PLACE if MANUAL_PLACE is not None else (ENV_PLACE if ENV_PLACE is not None else fetch_place(lat, lon))
         write_api_cache({"forecast": forecast, "aqi": aqi, "place": place_effective})
         return build_output(Location(lat, lon, place_effective), forecast, aqi)
     except Exception as e:
@@ -803,9 +803,10 @@ def try_stale_weather(lat: float, lon: float) -> Optional[Tuple[Dict[str, str], 
             stale_dict = ensure_dict(stale)
             place_val = stale_dict.get("place")
             place = place_val if isinstance(place_val, str) else None
+            place_effective = MANUAL_PLACE if MANUAL_PLACE is not None else (ENV_PLACE if ENV_PLACE is not None else place)
             forecast = cast(Optional[Dict[str, Any]], stale_dict.get("forecast"))
             aqi = cast(Optional[Dict[str, Any]], stale_dict.get("aqi"))
-            return build_output(Location(lat, lon, place), forecast, aqi)
+            return build_output(Location(lat, lon, place_effective), forecast, aqi)
     except Exception as e2:
         print(f"Failed to use stale cache: {e2}", file=sys.stderr)
     return None
