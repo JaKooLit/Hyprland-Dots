@@ -74,7 +74,7 @@ MANUAL_PLACE: Optional[str] = None
 # Location icon in tooltip (default to a standard emoji to avoid missing glyphs)
 LOC_ICON = os.getenv("WEATHER_LOC_ICON", "📍")
 # Enable/disable Pango markup in tooltip (1/0, true/false)
-TOOLTIP_MARKUP = os.getenv("WEATHER_TOOLTIP_MARKUP", "0").lower() not in ("0", "false", "no")
+TOOLTIP_MARKUP = os.getenv("WEATHER_TOOLTIP_MARKUP", "0").lower() in ("1", "true", "yes")
 # Optional debug logging to stderr (set WEATHER_DEBUG=1 to enable)
 DEBUG = os.getenv("WEATHER_DEBUG", "0").lower() not in ("0", "false", "no")
 
