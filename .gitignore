@@ -1,3 +1,43 @@
 WARP.md 
 .warp.md 
 result
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+eggs/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.cache/
+.tox/
+htmlcov/
+
+# Type checking and linting
+.mypy_cache/
+.pytype/
+.flake8
+.ruff_cache/
+
+# IDE and editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
