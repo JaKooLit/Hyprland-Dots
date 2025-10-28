@@ -4,16 +4,26 @@
 
 ### 🐛 Fixes
 
+- Updated `/bin/bash` to `/usr/bin/env bash`
 - Correct `windowrule` syntax error.
 - Ensure wallpaper selector applies wallpaper to SDDM.
 - Update theme colors when a new wallpaper is selected.
 
+### 🖥️ Jak dotfiles version now in `fastfetch` output.
+
 ### 🌦️ Weather.py
 
+Key Changes:
+
+- 2nd Weather.py Update by prabinpanta0
 - ♻️ Substantial rewrite.
-- ✅ Launches properly in Waybar.
-- 📍 Improved location detection; overridable variables exposed.
-- 🌐 Switched to Open-Meteo for weather data with fallback providers.
+- ✨ New unified weather entrypoint (weatherWrap.sh)
+  - With Python-first execution
+- 🔒 Automatic weather updates before screen lock
+- 🚀 Weather cache initialization at session startup
+- 🛡️ Enhanced error handling and fallback mechanisms
+- 📍 Automatic location detection via IP geolocation
+- 🎨 Improved weather condition mapping and JSON output
 
 ### 🖥️ Support for debian and ubuntu installs
 
@@ -34,6 +44,7 @@
 
 ### 👥 Contributors
 
+- [prabinpanta0](https://github.com/prabinpanta0)
 - [CharlyMH](https://github.com/CharlyMH)
 - [ndeekshith](https://github.com/ndeekshith)
 - [SherLock707](https://github.com/SherLock707)
