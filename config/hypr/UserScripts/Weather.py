@@ -354,29 +354,36 @@ def get_coords_from_place_name(name: str) -> Optional[Tuple[float, float]]:
 
 
 def get_coords() -> Tuple[float, float]:
-    # 1) Explicit env coordinates
-    coords = get_coords_from_env()
-    if coords:
-        return coords
-
-    # 2) Forward geocode from a specified place name (manual takes precedence over env)
-    place_name = (MANUAL_PLACE or "").strip() or (ENV_PLACE or "").strip()
-    if place_name:
+    # 1) Forward geocode from MANUAL_PLACE first (highest priority)
+    if MANUAL_PLACE:
+        place_name = MANUAL_PLACE.strip()
         coords = get_coords_from_place_name(place_name)
         if coords:
             return coords
 
-    # 3) Try cached coordinates
+    # 2) Explicit env coordinates
+    coords = get_coords_from_env()
+    if coords:
+        return coords
+
+    # 3) Forward geocode from ENV_PLACE
+    if ENV_PLACE:
+        place_name = ENV_PLACE.strip()
+        coords = get_coords_from_place_name(place_name)
+        if coords:
+            return coords
+
+    # 4) Try cached coordinates
     coords = get_coords_from_cache()
     if coords:
         return coords
 
-    # 4) IP-based geolocation
+    # 5) IP-based geolocation
     coords = get_coords_from_ipwho() or get_coords_from_ipapi() or get_coords_from_ipinfo()
     if coords:
         return coords
 
-    # 5) Last resort
+    # 6) Last resort
     print("IP geolocation failed: no providers succeeded", file=sys.stderr)
     return 0.0, 0.0
 
@@ -832,7 +839,8 @@ def fetch_fresh_weather(lat: float, lon: float) -> Optional[Tuple[Dict[str, str]
     try:
         forecast = fetch_open_meteo(lat, lon)
         aqi = fetch_aqi(lat, lon)
-        place = fetch_place(lat, lon)
+        # If MANUAL_PLACE is set, don't reverse geocode - use the manual place instead
+        place = MANUAL_PLACE if MANUAL_PLACE else fetch_place(lat, lon)
         write_api_cache({"forecast": forecast, "aqi": aqi, "place": place})
         return build_output(Location(lat, lon, place), forecast, aqi)
     except Exception as e:
