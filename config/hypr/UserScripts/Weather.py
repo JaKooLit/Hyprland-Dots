@@ -65,11 +65,12 @@ UNITS = os.getenv("WEATHER_UNITS", "metric").strip().lower()  # metric|imperial
 # Optional manual coordinates
 ENV_LAT = os.getenv("WEATHER_LAT")
 ENV_LON = os.getenv("WEATHER_LON")
-# Optional manual place override for tooltip
+# Optional manual place override for tooltip (and optional forward geocoding)
 ENV_PLACE = os.getenv("WEATHER_PLACE")
-# Manual place name set inside this file. If set (non-empty), this takes top priority.
+# Manual place name set inside this file. If set (non-empty), this takes top priority for display
+# and, if coordinates are not provided, will be used to geocode latitude/longitude.
 # Example: MANUAL_PLACE = "Concord, NH, US"
-MANUAL_PLACE: Optional[str] = None
+MANUAL_PLACE: Optional[str] = "" #Set your city HERE
 
 # Location icon in tooltip (default to a standard emoji to avoid missing glyphs)
 LOC_ICON = os.getenv("WEATHER_LOC_ICON", "📍")
@@ -324,23 +325,58 @@ def get_coords_from_ipinfo() -> Optional[Tuple[float, float]]:
     return None
 
 
+def get_coords_from_place_name(name: str) -> Optional[Tuple[float, float]]:
+    """Forward geocode a place name to coordinates using Open-Meteo Geocoding API.
+
+    Returns (lat, lon) if found, else None.
+    """
+    try:
+        base = "https://geocoding-api.open-meteo.com/v1/search"
+        params: Dict[str, Union[str, float]] = {
+            "name": name,
+            "count": 1,
+            "language": os.getenv("WEATHER_LANG", "en"),
+            "format": "json",
+        }
+        resp = SESSION.get(base, params=params, timeout=TIMEOUT)
+        resp.raise_for_status()
+        data = ensure_dict(resp.json())
+        results = ensure_list(data.get("results"))
+        if results:
+            p = ensure_dict(results[0])
+            lat = coerce_float(p.get("latitude"))
+            lon = coerce_float(p.get("longitude"))
+            if lat is not None and lon is not None:
+                return float(lat), float(lon)
+    except Exception as e:
+        print(f"Place geocoding failed: {e}", file=sys.stderr)
+    return None
+
+
 def get_coords() -> Tuple[float, float]:
-    # 1) Explicit env
+    # 1) Explicit env coordinates
     coords = get_coords_from_env()
     if coords:
         return coords
 
-    # 2) Try cached coordinates
+    # 2) Forward geocode from a specified place name (manual takes precedence over env)
+    place_name = (MANUAL_PLACE or "").strip() or (ENV_PLACE or "").strip()
+    if place_name:
+        coords = get_coords_from_place_name(place_name)
+        if coords:
+            return coords
+
+    # 3) Try cached coordinates
     coords = get_coords_from_cache()
     if coords:
         return coords
 
-    # 3) IP-based geolocation
+    # 4) IP-based geolocation
     coords = get_coords_from_ipwho() or get_coords_from_ipapi() or get_coords_from_ipinfo()
     if coords:
         return coords
 
-    # 4) Last resort
+    # 5) Last resort
     print("IP geolocation failed: no providers succeeded", file=sys.stderr)
     return 0.0, 0.0
 
@@ -778,6 +814,13 @@ def try_cached_weather(lat: float, lon: float) -> Optional[Tuple[Dict[str, str],
         aqi = cast(Optional[Dict[str, Any]], cached.get("aqi"))
         place_val = cached.get("place")
         cached_place = place_val if isinstance(place_val, str) else None
+        # Ensure the cached forecast corresponds to the requested lat/lon
+        fc = ensure_dict(cached.get("forecast"))
+        c_lat = coerce_float(safe_get(fc, "latitude"))
+        c_lon = coerce_float(safe_get(fc, "longitude"))
+        if c_lat is not None and c_lon is not None:
+            if abs(c_lat - lat) > 0.1 or abs(c_lon - lon) > 0.1:
+                return None  # force fresh fetch for new location
         try:
             return build_output(Location(lat, lon, cached_place), forecast, aqi)
         except Exception as e:
