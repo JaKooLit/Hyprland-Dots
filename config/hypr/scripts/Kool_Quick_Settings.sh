@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Rofi menu for KooL Hyprland Quick Settings (SUPER SHIFT E)
 

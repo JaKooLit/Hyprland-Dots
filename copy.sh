@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 
 clear
@@ -111,8 +111,17 @@ fi
 # Proper Polkit for NixOS
 if hostnamectl | grep -q 'Operating System: NixOS'; then
   echo "${INFO} NixOS Distro Detected. Setting up proper env's and configs." 2>&1 | tee -a "$LOG" || true
-  sed -i -E '/^#?exec-once = \$scriptsDir\/Polkit-NixOS\.sh/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
-  sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
+  # Ensure NixOS polkit is enabled via overlay and default polkit is disabled via disable list
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  DISABLE_SA="config/hypr/UserConfigs/Startup_Apps.disable"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA" "$DISABLE_SA"
+  if ! grep -qx 'exec-once = $scriptsDir/Polkit-NixOS.sh' "$OVERLAY_SA"; then
+    echo 'exec-once = $scriptsDir/Polkit-NixOS.sh' >> "$OVERLAY_SA"
+  fi
+  if ! grep -qx '\$scriptsDir/Polkit.sh' "$DISABLE_SA"; then
+    echo '$scriptsDir/Polkit.sh' >> "$DISABLE_SA"
+  fi
 fi
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
@@ -236,17 +245,23 @@ done
 
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
-  sed -i '/^\s*#exec-once = rog-control-center/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  mkdir -p "$(dirname "$OVERLAY_SA")"; touch "$OVERLAY_SA"
+  grep -qx 'exec-once = rog-control-center' "$OVERLAY_SA" || echo 'exec-once = rog-control-center' >> "$OVERLAY_SA"
 fi
 
 # Check if blueman-applet is installed and add blueman-applet on Startup
 if command -v blueman-applet >/dev/null 2>&1; then
-  sed -i '/^\s*#exec-once = blueman-applet/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  mkdir -p "$(dirname "$OVERLAY_SA")"; touch "$OVERLAY_SA"
+  grep -qx 'exec-once = blueman-applet' "$OVERLAY_SA" || echo 'exec-once = blueman-applet' >> "$OVERLAY_SA"
 fi
 
 # Check if ags is installed edit ags behaviour on configs
 if command -v ags >/dev/null 2>&1; then
-  sed -i '/^\s*#exec-once = ags/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  mkdir -p "$(dirname "$OVERLAY_SA")"; touch "$OVERLAY_SA"
+  grep -qx 'exec-once = ags' "$OVERLAY_SA" || echo 'exec-once = ags' >> "$OVERLAY_SA"
   sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
   sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
 
@@ -259,7 +274,9 @@ fi
 
 # Check if quickshell is installed; edit quickshell behaviour on configs
 if command -v qs >/dev/null 2>&1; then
-  sed -i '/^\s*#exec-once = qs/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  mkdir -p "$(dirname "$OVERLAY_SA")"; touch "$OVERLAY_SA"
+  grep -qx 'exec-once = qs' "$OVERLAY_SA" || echo 'exec-once = qs' >> "$OVERLAY_SA"
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
 
@@ -814,6 +831,37 @@ FILES_TO_RESTORE=(
   "WindowRules.conf"
 )
 
+# Helper to extract overlay (additions) and optional disables from a previous user file compared to vendor base
+compose_overlay_from_backup() {
+  local type="$1" # startup|windowrules
+  local base_file="$2"
+  local old_user_file="$3"
+  local new_user_file="$4"
+  local disable_file="$5"
+
+  mkdir -p "$(dirname "$new_user_file")"
+  : >"$new_user_file"
+  : >"$disable_file"
+
+  if [ "$type" = "startup" ]; then
+    # additions: exec-once lines present in old user but not in base
+    grep -E '^\s*exec-once\s*=' "$old_user_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$old_user_file.tmp.exec"
+    grep -E '^\s*exec-once\s*=' "$base_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$base_file.tmp.exec"
+    comm -23 "$old_user_file.tmp.exec" "$base_file.tmp.exec" >"$new_user_file"
+    # treat commented exec-once in old user as disables
+    grep -E '^\s*#\s*exec-once\s*=' "$old_user_file" | sed -E 's/^\s*#\s*exec-once\s*=\s*//' | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$disable_file"
+    rm -f "$old_user_file.tmp.exec" "$base_file.tmp.exec"
+  elif [ "$type" = "windowrules" ]; then
+    # additions
+    grep -E '^(windowrule|layerrule)\s*=' "$old_user_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$old_user_file.tmp.rules"
+    grep -E '^(windowrule|layerrule)\s*=' "$base_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$base_file.tmp.rules"
+    comm -23 "$old_user_file.tmp.rules" "$base_file.tmp.rules" >"$new_user_file"
+    # disables: lines commented in old user
+    grep -E '^\s*#\s*(windowrule|layerrule)\s*=' "$old_user_file" | sed -E 's/^\s*#\s*//' | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$disable_file"
+    rm -f "$old_user_file.tmp.rules" "$base_file.tmp.rules"
+  fi
+}
+
 DIRPATH="$HOME/.config/$DIRH"
 BACKUP_DIR=$(get_backup_dirname)
 BACKUP_DIR_PATH="$DIRPATH-backup-$BACKUP_DIR/UserConfigs"
@@ -830,14 +878,27 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
             NOTES for RESTORING PREVIOUS CONFIGS
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    If you decide to restore your old configs, make sure to
-    handle the updates or changes manually !!!
+    We now auto-migrate Startup_Apps and WindowRules by extracting
+    your additions into overlay files and optional disable lists.
+    This keeps new defaults while preserving your custom changes.
     "
   echo -e "${MAGENTA}Kindly Visit and check KooL's Hyprland-Dots GitHub page for the history of commits.${RESET}"
 
   for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
     BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
     if [ -f "$BACKUP_FILE" ]; then
+      # Special handling for Startup_Apps.conf and WindowRules.conf
+      if [ "$FILE_NAME" = "Startup_Apps.conf" ]; then
+        compose_overlay_from_backup "startup" "$DIRPATH/configs/Startup_Apps.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/Startup_Apps.conf" "$DIRPATH/UserConfigs/Startup_Apps.disable"
+        echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
+        continue
+      fi
+      if [ "$FILE_NAME" = "WindowRules.conf" ]; then
+        compose_overlay_from_backup "windowrules" "$DIRPATH/configs/WindowRules.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/WindowRules.conf" "$DIRPATH/UserConfigs/WindowRules.disable"
+        echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
+        continue
+      fi
+
       printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
       echo -n "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (y/N): "
       read file_restore
@@ -853,6 +914,11 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
       fi
     fi
   done
+fi
+
+# Compose merged configs (Startup_Apps and WindowRules)
+if [ -x "$DIRPATH/scripts/ComposeHyprConfigs.sh" ]; then
+  "$DIRPATH/scripts/ComposeHyprConfigs.sh" 2>&1 | tee -a "$LOG" || true
 fi
 
 printf "\n%.0s" {1..1}

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # for Semi-Manual upgrading your system.
 # NOTE: requires rsync 
@@ -196,7 +196,12 @@ if version_gt "$latest_version" "$stored_version"; then
         chmod +x "$HOME/.config/hypr/scripts/"* 2>&1 | tee -a "$LOG"
         chmod +x "$HOME/.config/hypr/UserScripts/"* 2>&1 | tee -a "$LOG"
         # Set executable for initial-boot.sh
-        chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"		
+        chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"
+        
+        # Compose merged configs (Startup_Apps and WindowRules)
+        if [ -x "$HOME/.config/hypr/scripts/ComposeHyprConfigs.sh" ]; then
+          "$HOME/.config/hypr/scripts/ComposeHyprConfigs.sh" 2>&1 | tee -a "$LOG" || true
+        fi		
     else
         echo "$MAGENTA Upgrade declined. No files or directories changed" 2>&1 | tee -a "$LOG"
     fi
