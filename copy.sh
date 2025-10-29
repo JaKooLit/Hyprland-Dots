@@ -38,25 +38,25 @@ print_color() {
 # Check /etc/os-release for Ubuntu or Debian and warn about Hyprland version requirement
 if grep -iqE '^(ID_LIKE|ID)=.*(ubuntu|debian)' /etc/os-release >/dev/null 2>&1; then
   printf "\n%.0s" {1..1}
-  print_color $WARNING "\nThese Dotfiles are only supported on Hyprland 0.51.1 or greater. Do not install on older revisions.\n"
+  print_color $WARNING "\nThese Dotfiles are only supported on Hyprland v0.50 or greater. Do not install on older versions of Hyprland.\n"
   while true; do
     echo -n "${CAT} Do you want to continue anyway? (y/N): "
     read _continue
     _continue=$(echo "${_continue}" | tr '[:upper:]' '[:lower:]')
     case "${_continue}" in
-      y|yes)
-        echo "${NOTE} Proceeding on Ubuntu/Debian by user confirmation." 
-        break
-        ;;
-      n|no|"")
-        printf "\n%.0s" {1..1}
-        echo "${INFO} Aborting per user choice. No changes made." 
-        printf "\n%.0s" {1..1}
-        exit 1
-        ;;
-      *)
-        echo "${WARN} Please answer 'y' or 'n'." 
-        ;;
+    y | yes)
+      echo "${NOTE} Proceeding on Ubuntu/Debian by user confirmation."
+      break
+      ;;
+    n | no | "")
+      printf "\n%.0s" {1..1}
+      echo "${INFO} Aborting per user choice. No changes made."
+      printf "\n%.0s" {1..1}
+      exit 1
+      ;;
+    *)
+      echo "${WARN} Please answer 'y' or 'n'."
+      ;;
     esac
   done
 fi
@@ -117,10 +117,10 @@ if hostnamectl | grep -q 'Operating System: NixOS'; then
   mkdir -p "$(dirname "$OVERLAY_SA")"
   touch "$OVERLAY_SA" "$DISABLE_SA"
   if ! grep -qx 'exec-once = $scriptsDir/Polkit-NixOS.sh' "$OVERLAY_SA"; then
-    echo 'exec-once = $scriptsDir/Polkit-NixOS.sh' >> "$OVERLAY_SA"
+    echo 'exec-once = $scriptsDir/Polkit-NixOS.sh' >>"$OVERLAY_SA"
   fi
   if ! grep -qx '\$scriptsDir/Polkit.sh' "$DISABLE_SA"; then
-    echo '$scriptsDir/Polkit.sh' >> "$DISABLE_SA"
+    echo '$scriptsDir/Polkit.sh' >>"$DISABLE_SA"
   fi
 fi
 
@@ -246,22 +246,25 @@ done
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
   OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
-  mkdir -p "$(dirname "$OVERLAY_SA")"; touch "$OVERLAY_SA"
-  grep -qx 'exec-once = rog-control-center' "$OVERLAY_SA" || echo 'exec-once = rog-control-center' >> "$OVERLAY_SA"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA"
+  grep -qx 'exec-once = rog-control-center' "$OVERLAY_SA" || echo 'exec-once = rog-control-center' >>"$OVERLAY_SA"
 fi
 
 # Check if blueman-applet is installed and add blueman-applet on Startup
 if command -v blueman-applet >/dev/null 2>&1; then
   OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
-  mkdir -p "$(dirname "$OVERLAY_SA")"; touch "$OVERLAY_SA"
-  grep -qx 'exec-once = blueman-applet' "$OVERLAY_SA" || echo 'exec-once = blueman-applet' >> "$OVERLAY_SA"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA"
+  grep -qx 'exec-once = blueman-applet' "$OVERLAY_SA" || echo 'exec-once = blueman-applet' >>"$OVERLAY_SA"
 fi
 
 # Check if ags is installed edit ags behaviour on configs
 if command -v ags >/dev/null 2>&1; then
   OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
-  mkdir -p "$(dirname "$OVERLAY_SA")"; touch "$OVERLAY_SA"
-  grep -qx 'exec-once = ags' "$OVERLAY_SA" || echo 'exec-once = ags' >> "$OVERLAY_SA"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA"
+  grep -qx 'exec-once = ags' "$OVERLAY_SA" || echo 'exec-once = ags' >>"$OVERLAY_SA"
   sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
   sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
 
@@ -275,8 +278,9 @@ fi
 # Check if quickshell is installed; edit quickshell behaviour on configs
 if command -v qs >/dev/null 2>&1; then
   OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
-  mkdir -p "$(dirname "$OVERLAY_SA")"; touch "$OVERLAY_SA"
-  grep -qx 'exec-once = qs' "$OVERLAY_SA" || echo 'exec-once = qs' >> "$OVERLAY_SA"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA"
+  grep -qx 'exec-once = qs' "$OVERLAY_SA" || echo 'exec-once = qs' >>"$OVERLAY_SA"
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
 
@@ -1089,6 +1093,7 @@ printf "\n%.0s" {1..1}
 echo "${MAGENTA}By default only a few wallpapers are copied${RESET}..."
 
 while true; do
+  echo "${NOTE} A number of these wallpapers are AI generated or enhanced. Select (N/n) if this is an issue for you. "
   echo -n "${CAT} Would you like to download additional wallpapers? ${WARN} This is 1GB in size (y/n): "
   read WALL
 
@@ -1197,4 +1202,3 @@ printf "${INFO} However, it is ${MAGENTA}HIGHLY SUGGESTED${RESET} to logout and 
 printf "\n%.0s" {1..1}
 printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Configuration${RESET}... ${YELLOW}ENJOY!!!${RESET}"
 printf "\n%.0s" {1..3}
-
