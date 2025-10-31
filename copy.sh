@@ -911,7 +911,7 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
         continue
       fi
       if [ "$FILE_NAME" = "WindowRules.conf" ]; then
-        compose_overlay_from_backup "windowrules" "$DIRPATH/configs/WindowRules.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/WindowRules.conf" "$DIRPATH/UserConfigs/WindowRules.disable"
+        compose_overlay_from_backup "windowrules" "$DIRPATH/configs/WindowRules.conf" "$BACKUP_FILE" "$DIRPATH/configs/WindowRules.conf" "$DIRPATH/configs/WindowRules.disable"
         echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
         continue
       fi
