@@ -2,6 +2,14 @@
 
 ## October 2025
 
+### ⌨️ Keybinds
+
+- Convert Hyprland keybinds to description form (`bindd`, `bindld`, `binded`,
+  `bindmd`, `bindlnd`) in `config/hypr/...`.
+- Add concise descriptions for each keybind; keep the name "powermenu".
+- Update `config/hypr/scripts/KeyBinds.sh` to parse and display descriptions
+  as: MODS+KEY — DESCRIPTION — DISPATCHER [PARAMS].
+
 ### 🐛 Fixes
 
 - Updated `/bin/bash` to `/usr/bin/env bash`
