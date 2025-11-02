@@ -259,37 +259,30 @@ if command -v blueman-applet >/dev/null 2>&1; then
   grep -qx 'exec-once = blueman-applet' "$OVERLAY_SA" || echo 'exec-once = blueman-applet' >>"$OVERLAY_SA"
 fi
 
-# Check if ags is installed edit ags behaviour on configs
+# Check if ags is installed and enable it
 if command -v ags >/dev/null 2>&1; then
+  echo "${INFO} AGS detected - enabling in startup and refresh scripts" 2>&1 | tee -a "$LOG"
   OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
   mkdir -p "$(dirname "$OVERLAY_SA")"
   touch "$OVERLAY_SA"
   grep -qx 'exec-once = ags' "$OVERLAY_SA" || echo 'exec-once = ags' >>"$OVERLAY_SA"
   sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
   sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
-
-  # Uncomment the ags overview keybind
-  sed -i '/^#bind = \$mainMod, A, exec, pkill rofi || true && ags -t '\''overview'\''/s/^#//' config/hypr/UserConfigs/UserKeybinds.conf
-
-  # Comment the quickshell line if not already commented
-  sed -i '/^\s*bind\s*=\s*\$mainMod,\s*A,\s*global,\s*quickshell:overviewToggle/{s/^\s*/#/}' config/hypr/UserConfigs/UserKeybinds.conf
 fi
 
-# Check if quickshell is installed; edit quickshell behaviour on configs
+# Check if quickshell is installed and enable it
 if command -v qs >/dev/null 2>&1; then
+  echo "${INFO} Quickshell detected - enabling in startup and refresh scripts" 2>&1 | tee -a "$LOG"
   OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
   mkdir -p "$(dirname "$OVERLAY_SA")"
   touch "$OVERLAY_SA"
   grep -qx 'exec-once = qs' "$OVERLAY_SA" || echo 'exec-once = qs' >>"$OVERLAY_SA"
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
-
-  # Uncomment the quickshell keybind line
-  sed -i "/^#bind = \$mainMod, A, global, quickshell:overviewToggle/s/^#//" config/hypr/UserConfigs/UserKeybinds.conf
-
-  # Ensure the ags overview keybind is commented
-  sed -i "/^\s*bind\s*=\s*\\\$mainMod,\s*A,\s*exec,\s*pkill rofi\s*||\s*true\s*&&\s*ags\s*-t\s*'overview'/{s/^\s*/#/}" config/hypr/UserConfigs/UserKeybinds.conf
 fi
+
+# Note: The SUPER+A keybind now uses OverviewToggle.sh which automatically
+# tries quickshell first and falls back to AGS, so both can be installed
 
 printf "\n%.0s" {1..1}
 
