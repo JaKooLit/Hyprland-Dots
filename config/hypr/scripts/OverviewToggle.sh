@@ -1,26 +1,35 @@
 #!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
-# Overview toggle wrapper - tries quickshell first, falls back to AGS
+# Overview toggle wrapper - tries Quickshell first, falls back to AGS
 
-# Try quickshell first if installed
+set -euo pipefail
+
+# 1) Try Quickshell via Hyprland global dispatch (works if QS is running and listening)
+if hyprctl dispatch global quickshell:overviewToggle >/dev/null 2>&1; then
+  exit 0
+fi
+
+# If QS isn't running, try starting it and retry once
 if command -v qs >/dev/null 2>&1; then
-  # Check if quickshell is running
-  if pgrep -x qs >/dev/null 2>&1; then
-    # Try to toggle quickshell overview
-    hyprctl dispatch global quickshell:overviewToggle 2>/dev/null && exit 0
+  qs >/dev/null 2>&1 &
+  sleep 0.6
+  if hyprctl dispatch global quickshell:overviewToggle >/dev/null 2>&1; then
+    exit 0
   fi
 fi
 
-# Fall back to AGS if quickshell failed or isn't available
+# 2) Fall back to AGS template
 if command -v ags >/dev/null 2>&1; then
-  # Check if AGS is running, start it if not
-  if ! pgrep -x ags >/dev/null 2>&1; then
-    ags &
-    sleep 0.5
-  fi
-  # Toggle AGS overview
   pkill rofi || true
-  ags -t 'overview' 2>/dev/null && exit 0
+  if ags -t 'overview' >/dev/null 2>&1; then
+    exit 0
+  fi
+  # If it failed, try starting AGS daemon then call the template
+  ags >/dev/null 2>&1 &
+  sleep 0.6
+  if ags -t 'overview' >/dev/null 2>&1; then
+    exit 0
+  fi
 fi
 
 # If we get here, neither worked
