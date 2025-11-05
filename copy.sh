@@ -281,6 +281,14 @@ if command -v qs >/dev/null 2>&1; then
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
 fi
 
+# Ensure layout-aware keybinds init runs on startup (adds to user overlay so it survives composes)
+OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+mkdir -p "$(dirname "$OVERLAY_SA")"
+if ! grep -qx 'exec-once = \$scriptsDir/KeybindsLayoutInit.sh' "$OVERLAY_SA"; then
+  echo 'exec-once = $scriptsDir/KeybindsLayoutInit.sh' >>"$OVERLAY_SA"
+  echo "${INFO} Added KeybindsLayoutInit.sh to user Startup_Apps overlay" 2>&1 | tee -a "$LOG"
+fi
+
 # Note: The SUPER+A keybind now uses OverviewToggle.sh which automatically
 # tries quickshell first and falls back to AGS, so both can be installed
 
