@@ -58,6 +58,10 @@ compose_startup_apps() {
     while IFS= read -r d; do
       d="$(echo "$d" | trim)"
       [[ -z "$d" || "$d" =~ ^# ]] && continue
+      # Never disable our layout-aware keybind init unless user re-enables via explicit edit here
+      if [[ "$d" == "\$scriptsDir/KeybindsLayoutInit.sh" ]]; then
+        continue
+      fi
       unset 'cmds[$d]'
     done <"$disable_file"
   fi

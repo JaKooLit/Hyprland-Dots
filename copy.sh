@@ -281,6 +281,14 @@ if command -v qs >/dev/null 2>&1; then
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
 fi
 
+# Ensure layout-aware keybinds init runs on startup (adds to user overlay so it survives composes)
+OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+mkdir -p "$(dirname "$OVERLAY_SA")"
+if ! grep -qx 'exec-once = \$scriptsDir/KeybindsLayoutInit.sh' "$OVERLAY_SA"; then
+  echo 'exec-once = $scriptsDir/KeybindsLayoutInit.sh' >>"$OVERLAY_SA"
+  echo "${INFO} Added KeybindsLayoutInit.sh to user Startup_Apps overlay" 2>&1 | tee -a "$LOG"
+fi
+
 # Note: The SUPER+A keybind now uses OverviewToggle.sh which automatically
 # tries quickshell first and falls back to AGS, so both can be installed
 
@@ -406,11 +414,19 @@ while true; do
     sed -i 's#^\(\s*\)\("format": "{:%a %d | %H:%M}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
 
     # for hyprlock
-    sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    HYPRLOCK_FILE="config/hypr/hyprlock.conf"
+    if [ ! -f "$HYPRLOCK_FILE" ] && [ -f "config/hypr/hyprlock-1080p.conf" ]; then
+      HYPRLOCK_FILE="config/hypr/hyprlock-1080p.conf"
+    fi
+    if [ -f "$HYPRLOCK_FILE" ]; then
+      sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
+      sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
 
-    sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+      sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
+      sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
+    else
+      echo "${WARN} hyprlock template not found; skipping 12H lock format edits" 2>&1 | tee -a "$LOG"
+    fi
 
     echo "${OK} 12H format set on waybar clocks succesfully." 2>&1 | tee -a "$LOG"
 
@@ -846,7 +862,11 @@ compose_overlay_from_backup() {
     grep -E '^\s*exec-once\s*=' "$base_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$base_file.tmp.exec"
     comm -23 "$old_user_file.tmp.exec" "$base_file.tmp.exec" >"$new_user_file"
     # treat commented exec-once in old user as disables
-    grep -E '^\s*#\s*exec-once\s*=' "$old_user_file" | sed -E 's/^\s*#\s*exec-once\s*=\s*//' | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$disable_file"
+    grep -E '^\s*#\s*exec-once\s*=' "$old_user_file" \
+      | sed -E 's/^\s*#\s*exec-once\s*=\s*//' \
+      | sed -E 's/^\s+//;s/\s+$//' \
+      | grep -Ev '^\$scriptsDir/KeybindsLayoutInit\.sh$' \
+      | sort -u >"$disable_file"
     rm -f "$old_user_file.tmp.exec" "$base_file.tmp.exec"
   elif [ "$type" = "windowrules" ]; then
     # additions
