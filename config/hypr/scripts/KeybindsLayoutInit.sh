@@ -20,7 +20,8 @@ case "$LAYOUT" in
     hyprctl keyword unbind SUPER,K
     hyprctl keyword unbind SUPER,O
     hyprctl keyword bind SUPER,J,cyclenext
-    hyprctl keyword bind SUPER,K,cyclenext,prev
+hyprctl keyword bind SUPER,K,cyclenext,prev
+# ensure SUPER+O togglesplit is available on dwindle
     hyprctl keyword bind SUPER,O,togglesplit
     ;;
   *)
