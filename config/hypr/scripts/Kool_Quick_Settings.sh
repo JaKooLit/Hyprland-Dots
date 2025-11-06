@@ -55,7 +55,7 @@ main() {
     case "$choice" in
     	"view/edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
         "view/edit ENV variables") file="$UserConfigs/ENVariables.conf" ;;
-        "view/edit Window Rules") file="$UserConfigs/WindowRules.conf" ;;
+        "view/edit Window Rules") file="$configs/WindowRules.conf" ;;
         "view/edit User Keybinds") file="$UserConfigs/UserKeybinds.conf" ;;
         "view/edit User Settings") file="$UserConfigs/UserSettings.conf" ;;
         "view/edit Startup Apps") file="$configs/Startup_Apps.conf" ;;

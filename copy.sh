@@ -933,10 +933,6 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
   done
 fi
 
-# Compose merged configs (Startup_Apps and WindowRules)
-if [ -x "$DIRPATH/scripts/ComposeHyprConfigs.sh" ]; then
-  "$DIRPATH/scripts/ComposeHyprConfigs.sh" 2>&1 | tee -a "$LOG" || true
-fi
 
 printf "\n%.0s" {1..1}
 
