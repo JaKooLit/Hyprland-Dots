@@ -8,12 +8,12 @@ set -euo pipefail
 # - On: sunset icon if available, otherwise a blue sun
 #
 # Customize via env vars:
-#   HYPERSUNSET_TEMP   default 4500 (K)
-#   HYPERSUNSET_ICON_MODE  sunset|blue  (default: sunset)
+#   HYPRSUNSET_TEMP   default 4500 (K)
+#   HYPRSUNSET_ICON_MODE  sunset|blue  (default: sunset)
 
 STATE_FILE="$HOME/.cache/.hyprsunset_state"
-TARGET_TEMP="${HYPERSUNSET_TEMP:-4500}"
-ICON_MODE="${HYPERSUNSET_ICON_MODE:-sunset}"
+TARGET_TEMP="${HYPRSUNSET_TEMP:-4500}"
+ICON_MODE="${HYPRSUNSET_ICON_MODE:-sunset}"
 
 ensure_state() {
   [[ -f "$STATE_FILE" ]] || echo "off" > "$STATE_FILE"
