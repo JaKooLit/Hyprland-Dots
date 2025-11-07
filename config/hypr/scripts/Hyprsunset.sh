@@ -92,8 +92,20 @@ cmd_status() {
   printf '{"text":"%s","class":"%s","tooltip":"%s"}\n' "$txt" "$cls" "$tip"
 }
 
+cmd_init() {
+  ensure_state
+  state="$(cat "$STATE_FILE" || echo off)"
+
+  if [[ "$state" == "on" ]]; then
+    if command -v hyprsunset >/dev/null 2>&1; then
+      nohup hyprsunset -t "$TARGET_TEMP" >/dev/null 2>&1 &
+    fi
+  fi
+}
+
 case "${1:-}" in
   toggle) cmd_toggle ;;
   status) cmd_status ;;
-  *) echo "usage: $0 [toggle|status]" >&2; exit 2 ;;
+  init) cmd_init ;;
+  *) echo "usage: $0 [toggle|status|init]" >&2; exit 2 ;;
  esac
