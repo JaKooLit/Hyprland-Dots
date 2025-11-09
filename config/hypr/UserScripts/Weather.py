@@ -44,7 +44,7 @@ class WeatherData:
 # Examples (zsh):
 #   # One-off run
 #   # WEATHER_UNITS can be "metric" or "imperial"
-#   WEATHER_UNITS=imperial WEATHER_PLACE="Concord, NH" python3 /home/dwilliams/Projects/Weather.py
+#   WEATHER_UNITS=imperial WEATHER_PLACE="Concord, NH" python3 ~/.config/hypr/UserScripts/Weather.py
 #
 #   # Persist in current shell session
 #   export WEATHER_UNITS=imperial
