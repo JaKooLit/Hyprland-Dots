@@ -8,12 +8,12 @@ set -euo pipefail
 # - On: sunset icon if available, otherwise a blue sun
 #
 # Customize via env vars:
-#   HYPERSUNSET_TEMP   default 4500 (K)
-#   HYPERSUNSET_ICON_MODE  sunset|blue  (default: sunset)
+#   HYPRSUNSET_TEMP   default 4500 (K)
+#   HYPRSUNSET_ICON_MODE  sunset|blue  (default: sunset)
 
 STATE_FILE="$HOME/.cache/.hyprsunset_state"
-TARGET_TEMP="${HYPERSUNSET_TEMP:-4500}"
-ICON_MODE="${HYPERSUNSET_ICON_MODE:-sunset}"
+TARGET_TEMP="${HYPRSUNSET_TEMP:-4500}"
+ICON_MODE="${HYPRSUNSET_ICON_MODE:-sunset}"
 
 ensure_state() {
   [[ -f "$STATE_FILE" ]] || echo "off" > "$STATE_FILE"
@@ -92,8 +92,20 @@ cmd_status() {
   printf '{"text":"%s","class":"%s","tooltip":"%s"}\n' "$txt" "$cls" "$tip"
 }
 
+cmd_init() {
+  ensure_state
+  state="$(cat "$STATE_FILE" || echo off)"
+
+  if [[ "$state" == "on" ]]; then
+    if command -v hyprsunset >/dev/null 2>&1; then
+      nohup hyprsunset -t "$TARGET_TEMP" >/dev/null 2>&1 &
+    fi
+  fi
+}
+
 case "${1:-}" in
   toggle) cmd_toggle ;;
   status) cmd_status ;;
-  *) echo "usage: $0 [toggle|status]" >&2; exit 2 ;;
+  init) cmd_init ;;
+  *) echo "usage: $0 [toggle|status|init]" >&2; exit 2 ;;
  esac

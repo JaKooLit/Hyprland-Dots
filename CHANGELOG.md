@@ -1,5 +1,14 @@
 # Changelog — JAK's Hyprland Dotfiles
 
+## v2.3.18 — 2025-11-05
+
+- Keybinds: initialize SUPER+J/K at login to match the default layout (master or dwindle).
+  - Adds scripts/KeybindsLayoutInit.sh and wires it to Startup_Apps so J/K and O (togglesplit) are correct on first session.
+  - ChangeLayout.sh continues to rebind dynamically when layouts are toggled.
+  - Credits: [Suresh Thagunna](https://github.com/suresh466) for identifying the mismatch and proposing an auto-alignment approach.
+- Startup config sourcing: load vendor Startup_Apps and WindowRules first, then user overlays, restoring baseline autostarts while keeping user additions.
+- Quick Settings: “Edit Startup Apps” opens the full vendor defaults for clarity.
+
 ## October 2025
 
 ### ⌨️ Keybinds
