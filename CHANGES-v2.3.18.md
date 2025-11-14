@@ -3,21 +3,21 @@
 ## FIXES:
 
 - Fixed: Overview Toggle keyind SUPER + A now properly detects QuickShell
-- If QS fails, or not installed AGS will be started instead
-- Fixed Super J/K cycle next/prev weren't working in both master / dwindle
-- Fixed Weather.py one-off run
-- Removed Hyprsunt from status group.
+  - If QS fails, or not installed AGS will be started instead
+- Fixed: Super J/K cycle next/prev weren't working in both master / dwindle
+- Fixed: Weather.py one-off run
+- Removed: Hyprsunt from status group.
   - Credit: Alberson Miranda
-- Added more application icons for waybars
+- Added: more application icons for waybars
 - Weather.py basically rewritten to improve look and functionality
   - Credit: Prabin Panta
   - The Jak team also heavily contributed to the rewrite
-- Waybar fixed
-  - Changing the waybar config would sometimes require it to be done twice
+- Fixed: Waybar
+  - Changing the waybar config `SUPERALT + B` would sometimes need to be done twice
   - Cause: options were incorrect annotated with "👉 ${name}"
-- `GameMode.sh` fixed to function consistently
-- Updated `WalllustSwww.sh` wallpaper path
-- Corrected typo in Show Open Apps
+- Fixed: `GameMode.sh` to function consistently
+- Updated: `WalllustSwww.sh` wallpaper path
+- Corrected: Typo in Show Open Apps
 
 ## CHANGES:
 
@@ -25,7 +25,7 @@
   - No longer built from source
   - Hyprland Version @ v0.51.1
   - If/When SID it updated, updates will be done as normal process
-- Lock screen
+- Lock screen:
   - Clock now horizontal and smaller
   - Adjust spacing margines of the various fields
   - Small changes to color variabbles Trying to balance colors
