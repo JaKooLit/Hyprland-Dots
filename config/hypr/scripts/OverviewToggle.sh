@@ -5,11 +5,15 @@
 set -euo pipefail
 
 # 1) Try Quickshell via Hyprland global dispatch (works if QS is running and listening)
-if hyprctl dispatch global quickshell:overviewToggle >/dev/null 2>&1; then
-  exit 0
+# Only attempt this if a Quickshell process is running; otherwise Hyprland will
+# still return success for the dispatch and we'll never fall back to AGS.
+if pgrep -x quickshell >/dev/null 2>&1; then
+  if hyprctl dispatch global quickshell:overviewToggle >/dev/null 2>&1; then
+    exit 0
+  fi
 fi
 
-# If QS isn't running, try starting it and retry once
+# If QS isn't running, but the CLI exists, try starting it and retry once
 if command -v qs >/dev/null 2>&1; then
   qs >/dev/null 2>&1 &
   sleep 0.6
