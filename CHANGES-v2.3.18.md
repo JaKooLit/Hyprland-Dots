@@ -6,11 +6,12 @@
 - If QS fails, or not installed AGS will be started instead
 - Fixed Super J/K cycle next/prev weren't working in both master / dwindle
 - Fixed Weather.py one-off run
-- Removed Hyprsunt from status group. -- Credit: Alberson Miranda
+- Removed Hyprsunt from status group.
+  - Credit: Alberson Miranda
 - Added more application icons for waybars
 - Weather.py basically rewritten to improve look and functionality
-- Credit: Prabin Panta  
-   The Jak team also heavily contributed to the rewrite
+  - Credit: Prabin Panta
+  - The Jak team also heavily contributed to the rewrite
 - Waybar fixed
   - Changing the waybar config would sometimes require it to be done twice
   - Cause: options were incorrect annotated with "👉 ${name}"
@@ -44,7 +45,7 @@
 - Changed: `/usr/bin/bash` to `/usr/bin/evn bash` for better portability
 - Adjusted: Small change to `DropDownterminal.sh`
   - Increased top margin % to center it more
-  - Widdened it.
+  - Widened it.
   - These options are settable in the script.
 
 ## FEATURES:
