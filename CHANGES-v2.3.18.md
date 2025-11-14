@@ -2,11 +2,7 @@
 
 ## FIXES:
 
-- Changed to Hyprland (only) Packages from SID
-  - No longer built from source
-  - Hyprland Version @ v0.51.1
-  - If/When SID it updated, updates will be done as normal process
-- Overview Toggle keyind SUPER + A now properly detects QuickShell
+- Fixed: Overview Toggle keyind SUPER + A now properly detects QuickShell
 - If QS fails, or not installed AGS will be started instead
 - Fixed Super J/K cycle next/prev weren't working in both master / dwindle
 - Fixed Weather.py one-off run
@@ -24,28 +20,32 @@
 
 ## CHANGES:
 
+- Changed: Hyprland Packages from SID
+  - No longer built from source
+  - Hyprland Version @ v0.51.1
+  - If/When SID it updated, updates will be done as normal process
 - Lock screen
   - Clock now horizontal and smaller
   - Adjust spacing margines of the various fields
   - Small changes to color variabbles Trying to balance colors
   - Fixed both 1080 and 2K+ configurations
 - `UserConfigs/Startup_App.conf` is now sourced in `hyprland.conf`
-- It was being sourced twice
+  - It was being sourced twice
 - Some scripts weren't executable
   - `scripts/Battery.sh`
   - `scripts/ComposeHyprConfigs.sh`
   - `scripts/OverviewToggle.sh`
   - `scripts/sddm_wallpaper.sh`
-- SWWW updated to v0.11.2
-- Fixes numerous issues
-- Portrait monitors especially
-- SWWW isn't being maintained In future will switch to AWWWW
-- Added a message before installing wallpapers that some are AI generated or enhanced
-- Changed `/usr/bin/bash` to `/usr/bin/evn bash` for better portability
-- Small adjustment to `DropDownterminal.sh`
-- Increased top margin % to center it more
-- Widdened it.
-- These options are settable in the script.
+- Updated: SWWW to v0.11.2
+  - Fixes numerous issues
+  - Portrait monitors especially
+  - SWWW isn't being maintained In future will switch to AWWWW
+- Added: A message before installing wallpapers that some are AI generated or enhanced
+- Changed: `/usr/bin/bash` to `/usr/bin/evn bash` for better portability
+- Adjusted: Small change to `DropDownterminal.sh`
+  - Increased top margin % to center it more
+  - Widdened it.
+  - These options are settable in the script.
 
 ## FEATURES:
 
@@ -59,6 +59,8 @@
   - Along with that KeybindsLayoutInit script reads current default layout
   - Then it adjusts the SUPER J/K keybindings appropriately
 - RofiBeats dynamic music system added
-- Binds now included descriptions.
-- Switched from `bind` to `bindd`
-- Improves usability of keybind search
+- Binds now include descriptions.
+  - Switched from `bind` to `bindd`
+  - Improves usability of keybind search
+
+Thanks to everyone that contributed, or reported issues.
