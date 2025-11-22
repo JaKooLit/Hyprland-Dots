@@ -17,9 +17,16 @@
     "key": " DISTRO",
     "keyColor": "yellow"
     },
+
     {
     "type": "kernel",
     "key": "│ ├",
+    "keyColor": "yellow"
+    },    
+    {
+    "type": "custom",
+    "key": "│ ├",
+    "format": "JaKooLit Version: {$DOTS_VERSION}",
     "keyColor": "yellow"
     },
     {
@@ -50,12 +57,12 @@
     {
         "type": "cursor",
         "key": "│ ├",
-        "keyColor": "blue",
+        "keyColor": "blue"
     },
     {
         "type": "terminalfont",
         "key": "│ ├",
-        "keyColor": "blue",
+        "keyColor": "blue"
     },
     {
     "type": "terminal",
@@ -124,6 +131,6 @@
     "type": "custom",
     "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m  \u001b[38m  \u001b[39m  \u001b[39m    \u001b[38m  \u001b[37m  \u001b[36m  \u001b[35m  \u001b[34m  \u001b[33m  \u001b[32m  \u001b[31m  \u001b[90m "
     },
-    "break",
+    "break"
     ]
 }

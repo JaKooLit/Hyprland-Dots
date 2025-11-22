@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Script for waybar layout or configs
 
@@ -50,7 +50,7 @@ main() {
     [[ -z "$choice" ]] && { echo "No option selected. Exiting."; exit 0; }
 
     # Strip marker before applying
-    choice=${choice# $MARKER}
+    choice=${choice#"$MARKER "}
 
     case "$choice" in
         "no panel")

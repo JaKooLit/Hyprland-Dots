@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 
 clear
@@ -38,25 +38,25 @@ print_color() {
 # Check /etc/os-release for Ubuntu or Debian and warn about Hyprland version requirement
 if grep -iqE '^(ID_LIKE|ID)=.*(ubuntu|debian)' /etc/os-release >/dev/null 2>&1; then
   printf "\n%.0s" {1..1}
-  print_color $WARNING "\nThese Dotfiles are only supported on Hyprland 0.51.1 or greater. Do not install on older revisions.\n"
+  print_color $WARNING "\nThese Dotfiles are only supported on Hyprland v0.50 or greater. Do not install on older versions of Hyprland.\n"
   while true; do
     echo -n "${CAT} Do you want to continue anyway? (y/N): "
     read _continue
     _continue=$(echo "${_continue}" | tr '[:upper:]' '[:lower:]')
     case "${_continue}" in
-      y|yes)
-        echo "${NOTE} Proceeding on Ubuntu/Debian by user confirmation." 
-        break
-        ;;
-      n|no|"")
-        printf "\n%.0s" {1..1}
-        echo "${INFO} Aborting per user choice. No changes made." 
-        printf "\n%.0s" {1..1}
-        exit 1
-        ;;
-      *)
-        echo "${WARN} Please answer 'y' or 'n'." 
-        ;;
+    y | yes)
+      echo "${NOTE} Proceeding on Ubuntu/Debian by user confirmation."
+      break
+      ;;
+    n | no | "")
+      printf "\n%.0s" {1..1}
+      echo "${INFO} Aborting per user choice. No changes made."
+      printf "\n%.0s" {1..1}
+      exit 1
+      ;;
+    *)
+      echo "${WARN} Please answer 'y' or 'n'."
+      ;;
     esac
   done
 fi
@@ -111,8 +111,17 @@ fi
 # Proper Polkit for NixOS
 if hostnamectl | grep -q 'Operating System: NixOS'; then
   echo "${INFO} NixOS Distro Detected. Setting up proper env's and configs." 2>&1 | tee -a "$LOG" || true
-  sed -i -E '/^#?exec-once = \$scriptsDir\/Polkit-NixOS\.sh/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
-  sed -i '/^exec-once = \$scriptsDir\/Polkit\.sh$/ s/^#*/#/' config/hypr/UserConfigs/Startup_Apps.conf
+  # Ensure NixOS polkit is enabled via overlay and default polkit is disabled via disable list
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  DISABLE_SA="config/hypr/UserConfigs/Startup_Apps.disable"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA" "$DISABLE_SA"
+  if ! grep -qx 'exec-once = $scriptsDir/Polkit-NixOS.sh' "$OVERLAY_SA"; then
+    echo 'exec-once = $scriptsDir/Polkit-NixOS.sh' >>"$OVERLAY_SA"
+  fi
+  if ! grep -qx '\$scriptsDir/Polkit.sh' "$DISABLE_SA"; then
+    echo '$scriptsDir/Polkit.sh' >>"$DISABLE_SA"
+  fi
 fi
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
@@ -236,39 +245,52 @@ done
 
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
-  sed -i '/^\s*#exec-once = rog-control-center/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA"
+  grep -qx 'exec-once = rog-control-center' "$OVERLAY_SA" || echo 'exec-once = rog-control-center' >>"$OVERLAY_SA"
 fi
 
 # Check if blueman-applet is installed and add blueman-applet on Startup
 if command -v blueman-applet >/dev/null 2>&1; then
-  sed -i '/^\s*#exec-once = blueman-applet/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA"
+  grep -qx 'exec-once = blueman-applet' "$OVERLAY_SA" || echo 'exec-once = blueman-applet' >>"$OVERLAY_SA"
 fi
 
-# Check if ags is installed edit ags behaviour on configs
+# Check if ags is installed and enable it
 if command -v ags >/dev/null 2>&1; then
-  sed -i '/^\s*#exec-once = ags/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  echo "${INFO} AGS detected - enabling in startup and refresh scripts" 2>&1 | tee -a "$LOG"
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA"
+  grep -qx 'exec-once = ags' "$OVERLAY_SA" || echo 'exec-once = ags' >>"$OVERLAY_SA"
   sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
   sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
-
-  # Uncomment the ags overview keybind
-  sed -i '/^#bind = \$mainMod, A, exec, pkill rofi || true && ags -t '\''overview'\''/s/^#//' config/hypr/UserConfigs/UserKeybinds.conf
-
-  # Comment the quickshell line if not already commented
-  sed -i '/^\s*bind\s*=\s*\$mainMod,\s*A,\s*global,\s*quickshell:overviewToggle/{s/^\s*/#/}' config/hypr/UserConfigs/UserKeybinds.conf
 fi
 
-# Check if quickshell is installed; edit quickshell behaviour on configs
+# Check if quickshell is installed and enable it
 if command -v qs >/dev/null 2>&1; then
-  sed -i '/^\s*#exec-once = qs/s/^#//' config/hypr/UserConfigs/Startup_Apps.conf
+  echo "${INFO} Quickshell detected - enabling in startup and refresh scripts" 2>&1 | tee -a "$LOG"
+  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  mkdir -p "$(dirname "$OVERLAY_SA")"
+  touch "$OVERLAY_SA"
+  grep -qx 'exec-once = qs' "$OVERLAY_SA" || echo 'exec-once = qs' >>"$OVERLAY_SA"
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
   sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
-
-  # Uncomment the quickshell keybind line
-  sed -i "/^#bind = \$mainMod, A, global, quickshell:overviewToggle/s/^#//" config/hypr/UserConfigs/UserKeybinds.conf
-
-  # Ensure the ags overview keybind is commented
-  sed -i "/^\s*bind\s*=\s*\\\$mainMod,\s*A,\s*exec,\s*pkill rofi\s*||\s*true\s*&&\s*ags\s*-t\s*'overview'/{s/^\s*/#/}" config/hypr/UserConfigs/UserKeybinds.conf
 fi
+
+# Ensure layout-aware keybinds init runs on startup (adds to user overlay so it survives composes)
+OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+mkdir -p "$(dirname "$OVERLAY_SA")"
+if ! grep -qx 'exec-once = \$scriptsDir/KeybindsLayoutInit.sh' "$OVERLAY_SA"; then
+  echo 'exec-once = $scriptsDir/KeybindsLayoutInit.sh' >>"$OVERLAY_SA"
+  echo "${INFO} Added KeybindsLayoutInit.sh to user Startup_Apps overlay" 2>&1 | tee -a "$LOG"
+fi
+
+# Note: The SUPER+A keybind now uses OverviewToggle.sh which automatically
+# tries quickshell first and falls back to AGS, so both can be installed
 
 printf "\n%.0s" {1..1}
 
@@ -392,11 +414,19 @@ while true; do
     sed -i 's#^\(\s*\)\("format": "{:%a %d | %H:%M}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
 
     # for hyprlock
-    sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+    HYPRLOCK_FILE="config/hypr/hyprlock.conf"
+    if [ ! -f "$HYPRLOCK_FILE" ] && [ -f "config/hypr/hyprlock-1080p.conf" ]; then
+      HYPRLOCK_FILE="config/hypr/hyprlock-1080p.conf"
+    fi
+    if [ -f "$HYPRLOCK_FILE" ]; then
+      sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
+      sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
 
-    sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
-    sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' config/hypr/hyprlock.conf 2>&1 | tee -a "$LOG"
+      sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
+      sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
+    else
+      echo "${WARN} hyprlock template not found; skipping 12H lock format edits" 2>&1 | tee -a "$LOG"
+    fi
 
     echo "${OK} 12H format set on waybar clocks succesfully." 2>&1 | tee -a "$LOG"
 
@@ -814,6 +844,41 @@ FILES_TO_RESTORE=(
   "WindowRules.conf"
 )
 
+# Helper to extract overlay (additions) and optional disables from a previous user file compared to vendor base
+compose_overlay_from_backup() {
+  local type="$1" # startup|windowrules
+  local base_file="$2"
+  local old_user_file="$3"
+  local new_user_file="$4"
+  local disable_file="$5"
+
+  mkdir -p "$(dirname "$new_user_file")"
+  : >"$new_user_file"
+  : >"$disable_file"
+
+  if [ "$type" = "startup" ]; then
+    # additions: exec-once lines present in old user but not in base
+    grep -E '^\s*exec-once\s*=' "$old_user_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$old_user_file.tmp.exec"
+    grep -E '^\s*exec-once\s*=' "$base_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$base_file.tmp.exec"
+    comm -23 "$old_user_file.tmp.exec" "$base_file.tmp.exec" >"$new_user_file"
+    # treat commented exec-once in old user as disables
+    grep -E '^\s*#\s*exec-once\s*=' "$old_user_file" \
+      | sed -E 's/^\s*#\s*exec-once\s*=\s*//' \
+      | sed -E 's/^\s+//;s/\s+$//' \
+      | grep -Ev '^\$scriptsDir/KeybindsLayoutInit\.sh$' \
+      | sort -u >"$disable_file"
+    rm -f "$old_user_file.tmp.exec" "$base_file.tmp.exec"
+  elif [ "$type" = "windowrules" ]; then
+    # additions
+    grep -E '^(windowrule|layerrule)\s*=' "$old_user_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$old_user_file.tmp.rules"
+    grep -E '^(windowrule|layerrule)\s*=' "$base_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$base_file.tmp.rules"
+    comm -23 "$old_user_file.tmp.rules" "$base_file.tmp.rules" >"$new_user_file"
+    # disables: lines commented in old user
+    grep -E '^\s*#\s*(windowrule|layerrule)\s*=' "$old_user_file" | sed -E 's/^\s*#\s*//' | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$disable_file"
+    rm -f "$old_user_file.tmp.rules" "$base_file.tmp.rules"
+  fi
+}
+
 DIRPATH="$HOME/.config/$DIRH"
 BACKUP_DIR=$(get_backup_dirname)
 BACKUP_DIR_PATH="$DIRPATH-backup-$BACKUP_DIR/UserConfigs"
@@ -830,14 +895,27 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
             NOTES for RESTORING PREVIOUS CONFIGS
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    If you decide to restore your old configs, make sure to
-    handle the updates or changes manually !!!
+    We now auto-migrate Startup_Apps and WindowRules by extracting
+    your additions into overlay files and optional disable lists.
+    This keeps new defaults while preserving your custom changes.
     "
   echo -e "${MAGENTA}Kindly Visit and check KooL's Hyprland-Dots GitHub page for the history of commits.${RESET}"
 
   for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
     BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
     if [ -f "$BACKUP_FILE" ]; then
+      # Special handling for Startup_Apps.conf and WindowRules.conf
+      if [ "$FILE_NAME" = "Startup_Apps.conf" ]; then
+        compose_overlay_from_backup "startup" "$DIRPATH/configs/Startup_Apps.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/Startup_Apps.conf" "$DIRPATH/UserConfigs/Startup_Apps.disable"
+        echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
+        continue
+      fi
+      if [ "$FILE_NAME" = "WindowRules.conf" ]; then
+        compose_overlay_from_backup "windowrules" "$DIRPATH/configs/WindowRules.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/WindowRules.conf" "$DIRPATH/UserConfigs/WindowRules.disable"
+        echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
+        continue
+      fi
+
       printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
       echo -n "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (y/N): "
       read file_restore
@@ -854,6 +932,7 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
     fi
   done
 fi
+
 
 printf "\n%.0s" {1..1}
 
@@ -1023,6 +1102,7 @@ printf "\n%.0s" {1..1}
 echo "${MAGENTA}By default only a few wallpapers are copied${RESET}..."
 
 while true; do
+  echo "${NOTE} A number of these wallpapers are AI generated or enhanced. Select (N/n) if this is an issue for you. "
   echo -n "${CAT} Would you like to download additional wallpapers? ${WARN} This is 1GB in size (y/n): "
   read WALL
 
@@ -1131,4 +1211,3 @@ printf "${INFO} However, it is ${MAGENTA}HIGHLY SUGGESTED${RESET} to logout and 
 printf "\n%.0s" {1..1}
 printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Configuration${RESET}... ${YELLOW}ENJOY!!!${RESET}"
 printf "\n%.0s" {1..3}
-

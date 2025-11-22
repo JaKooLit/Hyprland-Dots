@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # USAGE / ІНСТРУКЦІЯ:
 # 1) Run from terminal:
 #    ./dispatch.sh <application_command> <target_workspace_number>
