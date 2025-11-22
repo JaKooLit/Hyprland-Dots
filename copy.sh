@@ -859,6 +859,12 @@ compose_overlay_from_backup() {
   fi
 }
 
+# Function to compare versions
+version_gte() {
+  # Returns 0 if $1 >= $2, 1 otherwise
+  [ "$1" = "$(echo -e "$1\n$2" | sort -V | tail -n1)" ]
+}
+
 DIRH="hypr"
 DIRPATH="$HOME/.config/$DIRH"
 BACKUP_DIR=$(get_backup_dirname)
@@ -870,6 +876,15 @@ if [ -z "$BACKUP_DIR" ]; then
 fi
 
 if [ -d "$BACKUP_DIR_PATH" ]; then
+  # Detect version
+  VERSION_FILE=$(find "$DIRPATH" -maxdepth 1 -name "v*.*.*" | head -n 1)
+  CURRENT_VERSION="999.9.9"
+  if [ -n "$VERSION_FILE" ]; then
+    CURRENT_VERSION=$(basename "$VERSION_FILE" | sed 's/^v//')
+  fi
+
+  TARGET_VERSION="2.3.19"
+
   echo -e "${NOTE} Restoring previous ${MAGENTA}User-Configs${RESET}... "
   print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
@@ -881,32 +896,67 @@ if [ -d "$BACKUP_DIR_PATH" ]; then
     so your customizations are not lost when you update.
     "
 
-  printf "\n${INFO} Found previous UserConfigs in backup...\n"
-  echo -n "${CAT} Do you want to restore your previous UserConfigs directory? (This will restore all files from the backup) (Y/n): "
-  read -r restore_userconfigs_dir
+  if version_gte "$CURRENT_VERSION" "$TARGET_VERSION"; then
+    # NEW BEHAVIOR (>= 2.3.19) - Bulk Restore
+    echo -n "${CAT} Do you want to restore your previous UserConfigs directory? (Y/n): "
+    read -r restore_userconfigs_dir
 
-  if [[ "$restore_userconfigs_dir" != [Nn]* ]]; then
-    echo "${NOTE} Restoring UserConfigs directory..." 2>&1 | tee -a "$LOG"
-    # Use rsync to copy contents, overwriting existing files.
-    rsync -a "$BACKUP_DIR_PATH/" "$DIRPATH/UserConfigs/" 2>&1 | tee -a "$LOG"
-    echo "${OK} - UserConfigs directory restored." 2>&1 | tee -a "$LOG"
+    if [[ "$restore_userconfigs_dir" != [Nn]* ]]; then
+      echo "${NOTE} Restoring UserConfigs directory..." 2>&1 | tee -a "$LOG"
+      # Use rsync to copy contents, overwriting existing files.
+      rsync -a "$BACKUP_DIR_PATH/" "$DIRPATH/UserConfigs/" 2>&1 | tee -a "$LOG"
+      echo "${OK} - UserConfigs directory restored." 2>&1 | tee -a "$LOG"
+    else
+      echo "${NOTE} - Skipped restoring UserConfigs." 2>&1 | tee -a "$LOG"
+    fi
+
   else
-    echo "${NOTE} - Skipped restoring UserConfigs." 2>&1 | tee -a "$LOG"
-  fi
+    # OLD BEHAVIOR (<= 2.3.18) - Selective Restore
+    echo -e "${NOTE} Detected version ${YELLOW}v$CURRENT_VERSION${RESET} (older than v$TARGET_VERSION). Using legacy restoration mode."
 
-  # Always perform smart migration for specific files to ensure compatibility
-  echo -e "\n${NOTE} Performing smart migration for Startup_Apps and WindowRules..." 2>&1 | tee -a "$LOG"
+    FILES_TO_RESTORE=(
+      "01-UserDefaults.conf"
+      "ENVariables.conf"
+      "LaptopDisplay.conf"
+      "Laptops.conf"
+      "Startup_Apps.conf"
+      "UserDecorations.conf"
+      "UserAnimations.conf"
+      "UserKeybinds.conf"
+      "UserSettings.conf"
+      "WindowRules.conf"
+    )
 
-  BACKUP_STARTUP_FILE="$BACKUP_DIR_PATH/Startup_Apps.conf"
-  if [ -f "$BACKUP_STARTUP_FILE" ]; then
-    compose_overlay_from_backup "startup" "$DIRPATH/configs/Startup_Apps.conf" "$BACKUP_STARTUP_FILE" "$DIRPATH/UserConfigs/Startup_Apps.conf" "$DIRPATH/UserConfigs/Startup_Apps.disable"
-    echo "${OK} - Migrated overlay for ${YELLOW}Startup_Apps.conf${RESET}" 2>&1 | tee -a "$LOG"
-  fi
+    for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
+      BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
+      if [ -f "$BACKUP_FILE" ]; then
+        # Special handling for Startup_Apps.conf and WindowRules.conf
+        if [ "$FILE_NAME" = "Startup_Apps.conf" ]; then
+          compose_overlay_from_backup "startup" "$DIRPATH/configs/Startup_Apps.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/Startup_Apps.conf" "$DIRPATH/UserConfigs/Startup_Apps.disable"
+          echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
+          continue
+        fi
+        if [ "$FILE_NAME" = "WindowRules.conf" ]; then
+          compose_overlay_from_backup "windowrules" "$DIRPATH/configs/WindowRules.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/WindowRules.conf" "$DIRPATH/UserConfigs/WindowRules.disable"
+          echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
+          continue
+        fi
 
-  BACKUP_WINDOWRULES_FILE="$BACKUP_DIR_PATH/WindowRules.conf"
-  if [ -f "$BACKUP_WINDOWRULES_FILE" ]; then
-    compose_overlay_from_backup "windowrules" "$DIRPATH/configs/WindowRules.conf" "$BACKUP_WINDOWRULES_FILE" "$DIRPATH/configs/WindowRules.conf" "$DIRPATH/configs/WindowRules.disable"
-    echo "${OK} - Migrated overlay for ${YELLOW}WindowRules.conf${RESET}" 2>&1 | tee -a "$LOG"
+        printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
+        echo -n "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (Y/n): "
+        read file_restore
+
+        if [[ "$file_restore" != [Nn]* ]]; then
+          if cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME"; then
+            echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
+          else
+            echo "${ERROR} - Failed to restore $FILE_NAME!" 2>&1 | tee -a "$LOG"
+          fi
+        else
+          echo "${NOTE} - Skipped restoring $FILE_NAME." 2>&1 | tee -a "$LOG"
+        fi
+      fi
+    done
   fi
 fi
 
