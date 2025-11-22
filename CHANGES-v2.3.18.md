@@ -67,5 +67,6 @@
 - Binds now include descriptions.
   - Switched from `bind` to `bindd`
   - Improves usability of keybind search
+- Add new laptop gesture for zoom system. 
 
 Thanks to everyone that contributed, or reported issues.
