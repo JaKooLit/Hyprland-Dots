@@ -18,6 +18,10 @@
 - Fixed: `GameMode.sh` to function consistently
 - Updated: `WalllustSwww.sh` wallpaper path
 - Corrected: Typo in Show Open Apps
+- GameMode.sh / Refresh.sh  
+  - Enabling / Disabling repeatedly would result in multiple waybars 
+  - Added additional `sleep` commands in `GameMode.sh` and `Refresh.sh`
+  - Resolves [Issue 870](https://github.com/JaKooLit/Hyprland-Dots/issues/870)
 
 ## CHANGES:
 

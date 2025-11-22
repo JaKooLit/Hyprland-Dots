@@ -24,6 +24,9 @@ done
 
 # added since wallust sometimes not applying
 killall -SIGUSR2 waybar 
+# Added sleep for GameMode causing multiple waybar
+sleep 0.1
+
 
 # quit ags & relaunch ags
 #ags -q && ags &
@@ -34,6 +37,7 @@ killall -SIGUSR2 waybar
 # some process to kill
 for pid in $(pidof waybar rofi swaync ags swaybg); do
     kill -SIGUSR1 "$pid"
+    sleep 0.3
 done
 
 #Restart waybar
