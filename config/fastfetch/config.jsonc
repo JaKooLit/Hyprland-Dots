@@ -24,9 +24,9 @@
     "keyColor": "yellow"
     },    
     {
-    "type": "custom",
+    "type": "command",
     "key": "│ ├",
-    "format": "JaKooLit Version: {$DOTS_VERSION}",
+    "text": "echo JaKooLit Version: ${DOTS_VERSION}",
     "keyColor": "yellow"
     },
     {
@@ -126,10 +126,6 @@
     "type": "media",
     "key": "│ └󰝚",
     "keyColor": "magenta"
-    },
-    {
-    "type": "custom",
-    "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m  \u001b[38m  \u001b[39m  \u001b[39m    \u001b[38m  \u001b[37m  \u001b[36m  \u001b[35m  \u001b[34m  \u001b[33m  \u001b[32m  \u001b[31m  \u001b[90m "
     },
     "break"
     ]

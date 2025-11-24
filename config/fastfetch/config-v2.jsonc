@@ -28,9 +28,9 @@
     "keyColor": "31"
   },
   {
-    "type": "custom",
+    "type": "command",
     "key": " ├  ",
-    "format": "JaKooLit Version: {$DOTS_VERSION}",
+    "format": "echo JaKooLit Version: ${DOTS_VERSION}",
     "keyColor": "31"
   },
   {

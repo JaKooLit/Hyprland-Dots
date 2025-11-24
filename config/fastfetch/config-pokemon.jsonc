@@ -27,10 +27,10 @@
             "keyColor": "yellow"
         },
         {
-            "type": "custom",
+            "type": "command",
             "key": " ",
             "keyColor": "blue",
-            "format": "JaKooLit Version: {$DOTS_VERSION}"
+            "text": "echo JaKooLit Version: ${DOTS_VERSION}"
         },
         {
             "type": "wm",
