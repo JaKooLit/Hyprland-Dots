@@ -109,7 +109,7 @@ if [[ -z "$raw_keybinds" ]]; then
     exit 1
 fi
 
-# transform into a readable list: MODS+KEY — DESCRIPTION — DISPATCHER [PARAMS]
+# transform into a readable list: MODS+KEY — DESCRIPTION (for bindd) or DISPATCHER [PARAMS] (for bind)
 display_keybinds=$(echo "$raw_keybinds" | awk -F'=' '
   function trim(s){ gsub(/^[ \t]+|[ \t]+$/,"",s); return s }
   /^[[:space:]]*bind/ {
@@ -138,13 +138,8 @@ display_keybinds=$(echo "$raw_keybinds" | awk -F'=' '
 
     combo = (mods && key) ? mods "+" key : (key?key:mods);
 
-    if (desc != "") {
-      if (dispatcher != "" && params != "")
-        print combo, " — ", desc, " — ", dispatcher, " ", params;
-      else if (dispatcher != "")
-        print combo, " — ", desc, " — ", dispatcher;
-      else
-        print combo, " — ", desc;
+    if (hasdesc && desc != "") {
+      print combo, " — ", desc;
     } else {
       if (dispatcher != "" && params != "")
         print combo, " — ", dispatcher, " ", params;
