@@ -64,18 +64,18 @@ main() {
     
     # Map choices to corresponding files
     case "$choice" in
-    	"edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
-        "edit User ENV variables") file="$UserConfigs/ENVariables.conf" ;;
-        "edit User Startup Apps (overlay)") file="$UserConfigs/Startup_Apps.conf" ;;
-        "edit User Window Rules (overlay)") file="$UserConfigs/WindowRules.conf" ;;
-        "edit User Settings") file="$configs/SystemSettings.conf"; show_info "Editing default settings. Copy to UserConfigs/UserSettings.conf to override." ;;
-        "edit User Decorations") file="$UserConfigs/UserDecorations.conf" ;;
-        "edit User Animations") file="$UserConfigs/UserAnimations.conf" ;;
-        "edit User Laptop Settings") file="$UserConfigs/Laptops.conf" ;;
-        "view System Default Keybinds") file="$configs/Keybinds.conf" ;;
-        "view System Default Startup Apps") file="$configs/Startup_Apps.conf" ;;
-        "view System Default Window Rules") file="$configs/WindowRules.conf" ;;
-        "view System Default Settings") file="$configs/SystemSettings.conf" ;;
+    	"Edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
+        "Edit User ENV variables") file="$UserConfigs/ENVariables.conf" ;;
+        "Edit User Startup Apps (overlay)") file="$UserConfigs/Startup_Apps.conf" ;;
+        "Edit User Window Rules (overlay)") file="$UserConfigs/WindowRules.conf" ;;
+        "Edit User Settings") file="$configs/SystemSettings.conf"; show_info "Editing default settings. Copy to UserConfigs/UserSettings.conf to override." ;;
+        "Edit User Decorations") file="$UserConfigs/UserDecorations.conf" ;;
+        "Edit User Animations") file="$UserConfigs/UserAnimations.conf" ;;
+        "Edit User Laptop Settings") file="$UserConfigs/Laptops.conf" ;;
+        "Edit System Default Keybinds") file="$configs/Keybinds.conf" ;;
+        "Edit System Default Startup Apps") file="$configs/Startup_Apps.conf" ;;
+        "Edit System Default Window Rules") file="$configs/WindowRules.conf" ;;
+        "Edit System Default Settings") file="$configs/SystemSettings.conf" ;;
         "Choose Kitty Terminal Theme") $scriptsDir/Kitty_themes.sh ;;
         "Configure Monitors (nwg-displays)") 
             if ! command -v nwg-displays &>/dev/null; then
