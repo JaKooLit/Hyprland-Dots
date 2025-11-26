@@ -85,26 +85,24 @@ LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 # update home directories
 xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 
-# setting up for nvidia
+# setting up for NVIDIA
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
   echo "${INFO} Nvidia GPU detected. Setting up proper env's and configs" 2>&1 | tee -a "$LOG" || true
-  sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  sed -i '/env = NVD_BACKEND,direct/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  sed -i '/env = GSK_RENDERER,ngl/s/^#//' config/hypr/UserConfigs/ENVariables.conf
+  sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/configs/ENVariables.conf
+  sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/configs/ENVariables.conf
+  sed -i '/env = NVD_BACKEND,direct/s/^#//' config/hypr/configs/ENVariables.conf
+  sed -i '/env = GSK_RENDERER,ngl/s/^#//' config/hypr/configs/ENVariables.conf
 
   # no hardware cursors if nvidia detected
-  sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1 1/' config/hypr/UserConfigs/UserSettings.conf
-  #sed -i 's/^\([[:space:]]*explicit_sync[[:space:]]*=[[:space:]]*\)2/\1 0/' config/hypr/UserConfigs/UserSettings.conf
+  sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1 1/' config/hypr/configs/SystemSettings.conf
 fi
 
 # uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
 if hostnamectl | grep -q 'Chassis: vm'; then
   echo "${INFO} System is running in a virtual machine. Setting up proper env's and configs" 2>&1 | tee -a "$LOG" || true
-  sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1 1/' config/hypr/UserConfigs/UserSettings.conf
+  sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1 1/' config/hypr/configs/SystemSettings.conf
   # enabling proper ENV's for Virtual Environment which should help
-  sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
-  #sed -i '/env = LIBGL_ALWAYS_SOFTWARE,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
+  sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/configs/ENVariables.conf
   sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/monitors.conf
 fi
 
@@ -112,8 +110,8 @@ fi
 if hostnamectl | grep -q 'Operating System: NixOS'; then
   echo "${INFO} NixOS Distro Detected. Setting up proper env's and configs." 2>&1 | tee -a "$LOG" || true
   # Ensure NixOS polkit is enabled via overlay and default polkit is disabled via disable list
-  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
-  DISABLE_SA="config/hypr/UserConfigs/Startup_Apps.disable"
+  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
+  DISABLE_SA="config/hypr/configs/Startup_Apps.disable"
   mkdir -p "$(dirname "$OVERLAY_SA")"
   touch "$OVERLAY_SA" "$DISABLE_SA"
   if ! grep -qx 'exec-once = $scriptsDir/Polkit-NixOS.sh' "$OVERLAY_SA"; then
@@ -126,7 +124,7 @@ fi
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
 if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
-  HYPRCURSOR_ENV_FILE="config/hypr/UserConfigs/ENVariables.conf"
+  HYPRCURSOR_ENV_FILE="config/hypr/configs/ENVariables.conf"
   echo "${INFO} Bibata-Hyprcursor directory detected. Activating Hyprcursor...." 2>&1 | tee -a "$LOG" || true
   sed -i 's/^#env = HYPRCURSOR_THEME,Bibata-Modern-Ice/env = HYPRCURSOR_THEME,Bibata-Modern-Ice/' "$HYPRCURSOR_ENV_FILE"
   sed -i 's/^#env = HYPRCURSOR_SIZE,24/env = HYPRCURSOR_SIZE,24/' "$HYPRCURSOR_ENV_FILE"
@@ -199,8 +197,8 @@ while true; do
 
   case $keyboard_layout in
   [yY])
-    awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/UserConfigs/UserSettings.conf >temp.conf
-    mv temp.conf config/hypr/UserConfigs/UserSettings.conf
+    awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/configs/SystemSettings.conf >temp.conf
+    mv temp.conf config/hypr/configs/SystemSettings.conf
 
     echo "${NOTE} kb_layout ${MAGENTA}$layout${RESET} configured in settings." 2>&1 | tee -a "$LOG"
     break
@@ -232,8 +230,8 @@ ${MAGENTA} NOTE:${RESET}
     echo -n "${CAT} - Please enter the correct keyboard layout: "
     read new_layout
 
-    awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/UserConfigs/UserSettings.conf >temp.conf
-    mv temp.conf config/hypr/UserConfigs/UserSettings.conf
+    awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/configs/SystemSettings.conf >temp.conf
+    mv temp.conf config/hypr/configs/SystemSettings.conf
     echo "${OK} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG"
     break
     ;;
@@ -245,7 +243,7 @@ done
 
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
-  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
   mkdir -p "$(dirname "$OVERLAY_SA")"
   touch "$OVERLAY_SA"
   grep -qx 'exec-once = rog-control-center' "$OVERLAY_SA" || echo 'exec-once = rog-control-center' >>"$OVERLAY_SA"
@@ -253,7 +251,7 @@ fi
 
 # Check if blueman-applet is installed and add blueman-applet on Startup
 if command -v blueman-applet >/dev/null 2>&1; then
-  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
   mkdir -p "$(dirname "$OVERLAY_SA")"
   touch "$OVERLAY_SA"
   grep -qx 'exec-once = blueman-applet' "$OVERLAY_SA" || echo 'exec-once = blueman-applet' >>"$OVERLAY_SA"
@@ -262,7 +260,7 @@ fi
 # Check if ags is installed and enable it
 if command -v ags >/dev/null 2>&1; then
   echo "${INFO} AGS detected - enabling in startup and refresh scripts" 2>&1 | tee -a "$LOG"
-  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
   mkdir -p "$(dirname "$OVERLAY_SA")"
   touch "$OVERLAY_SA"
   grep -qx 'exec-once = ags' "$OVERLAY_SA" || echo 'exec-once = ags' >>"$OVERLAY_SA"
@@ -273,7 +271,7 @@ fi
 # Check if quickshell is installed and enable it
 if command -v qs >/dev/null 2>&1; then
   echo "${INFO} Quickshell detected - enabling in startup and refresh scripts" 2>&1 | tee -a "$LOG"
-  OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
   mkdir -p "$(dirname "$OVERLAY_SA")"
   touch "$OVERLAY_SA"
   grep -qx 'exec-once = qs' "$OVERLAY_SA" || echo 'exec-once = qs' >>"$OVERLAY_SA"
@@ -282,15 +280,12 @@ if command -v qs >/dev/null 2>&1; then
 fi
 
 # Ensure layout-aware keybinds init runs on startup (adds to user overlay so it survives composes)
-OVERLAY_SA="config/hypr/UserConfigs/Startup_Apps.conf"
+OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
 mkdir -p "$(dirname "$OVERLAY_SA")"
 if ! grep -qx 'exec-once = \$scriptsDir/KeybindsLayoutInit.sh' "$OVERLAY_SA"; then
   echo 'exec-once = $scriptsDir/KeybindsLayoutInit.sh' >>"$OVERLAY_SA"
   echo "${INFO} Added KeybindsLayoutInit.sh to user Startup_Apps overlay" 2>&1 | tee -a "$LOG"
 fi
-
-# Note: The SUPER+A keybind now uses OverviewToggle.sh which automatically
-# tries quickshell first and falls back to AGS, so both can be installed
 
 printf "\n%.0s" {1..1}
 
@@ -488,8 +483,8 @@ if [[ "$border_choice" =~ ^[Yy]$ ]]; then
   mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
 
   # Comment out the exec-once and animation lines
-  sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh/s/^/#/' config/hypr/UserConfigs/Startup_Apps.conf
-  sed -i '/^[[:space:]]*animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/UserConfigs/UserAnimations.conf
+  sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh/s/^/#/' config/hypr/configs/Startup_Apps.conf
+  sed -i '/^[[:space:]]*animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/configs/UserAnimations.conf
 
   echo "${OK} Rainbow borders are now disabled." 2>&1 | tee -a "$LOG"
 else
@@ -808,7 +803,6 @@ if [ -d "$BACKUP_HYPR_PATH" ]; then
   # Restore directories automatically
   for DIR_RESTORE in "${DIR_B[@]}"; do
     BACKUP_SUBDIR="$BACKUP_HYPR_PATH/$DIR_RESTORE"
-
     if [ -d "$BACKUP_SUBDIR" ]; then
       cp -r "$BACKUP_SUBDIR" "$HYPR_DIR/"
       echo "${OK} - Restored directory: ${MAGENTA}$DIR_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
@@ -830,20 +824,6 @@ fi
 printf "\n%.0s" {1..1}
 
 # Restoring UserConfigs and UserScripts
-DIRH="hypr"
-FILES_TO_RESTORE=(
-  "01-UserDefaults.conf"
-  "ENVariables.conf"
-  "LaptopDisplay.conf"
-  "Laptops.conf"
-  "Startup_Apps.conf"
-  "UserDecorations.conf"
-  "UserAnimations.conf"
-  "UserKeybinds.conf"
-  "UserSettings.conf"
-  "WindowRules.conf"
-)
-
 # Helper to extract overlay (additions) and optional disables from a previous user file compared to vendor base
 compose_overlay_from_backup() {
   local type="$1" # startup|windowrules
@@ -862,11 +842,11 @@ compose_overlay_from_backup() {
     grep -E '^\s*exec-once\s*=' "$base_file" | sed -E 's/^\s+//;s/\s+$//' | sort -u >"$base_file.tmp.exec"
     comm -23 "$old_user_file.tmp.exec" "$base_file.tmp.exec" >"$new_user_file"
     # treat commented exec-once in old user as disables
-    grep -E '^\s*#\s*exec-once\s*=' "$old_user_file" \
-      | sed -E 's/^\s*#\s*exec-once\s*=\s*//' \
-      | sed -E 's/^\s+//;s/\s+$//' \
-      | grep -Ev '^\$scriptsDir/KeybindsLayoutInit\.sh$' \
-      | sort -u >"$disable_file"
+    grep -E '^\s*#\s*exec-once\s*=' "$old_user_file" |
+      sed -E 's/^\s*#\s*exec-once\s*=\s*//' |
+      sed -E 's/^\s+//;s/\s+$//' |
+      grep -Ev '^\$scriptsDir/KeybindsLayoutInit\.sh$' |
+      sort -u >"$disable_file"
     rm -f "$old_user_file.tmp.exec" "$base_file.tmp.exec"
   elif [ "$type" = "windowrules" ]; then
     # additions
@@ -879,6 +859,13 @@ compose_overlay_from_backup() {
   fi
 }
 
+# Function to compare versions
+version_gte() {
+  # Returns 0 if $1 >= $2, 1 otherwise
+  [ "$1" = "$(echo -e "$1\n$2" | sort -V | tail -n1)" ]
+}
+
+DIRH="hypr"
 DIRPATH="$HOME/.config/$DIRH"
 BACKUP_DIR=$(get_backup_dirname)
 BACKUP_DIR_PATH="$DIRPATH-backup-$BACKUP_DIR/UserConfigs"
@@ -889,50 +876,89 @@ if [ -z "$BACKUP_DIR" ]; then
 fi
 
 if [ -d "$BACKUP_DIR_PATH" ]; then
+  # Detect version
+  VERSION_FILE=$(find "$DIRPATH" -maxdepth 1 -name "v*.*.*" | head -n 1)
+  CURRENT_VERSION="999.9.9"
+  if [ -n "$VERSION_FILE" ]; then
+    CURRENT_VERSION=$(basename "$VERSION_FILE" | sed 's/^v//')
+  fi
+
+  TARGET_VERSION="2.3.19"
+
   echo -e "${NOTE} Restoring previous ${MAGENTA}User-Configs${RESET}... "
   print_color $WARNING "
     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
             NOTES for RESTORING PREVIOUS CONFIGS
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 
-    We now auto-migrate Startup_Apps and WindowRules by extracting
-    your additions into overlay files and optional disable lists.
-    This keeps new defaults while preserving your custom changes.
+    The 'UserConfigs' directory is for all your personal settings.
+    Files in this directory will override the default configurations,
+    so your customizations are not lost when you update.
     "
-  echo -e "${MAGENTA}Kindly Visit and check KooL's Hyprland-Dots GitHub page for the history of commits.${RESET}"
 
-  for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
-    BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
-    if [ -f "$BACKUP_FILE" ]; then
-      # Special handling for Startup_Apps.conf and WindowRules.conf
-      if [ "$FILE_NAME" = "Startup_Apps.conf" ]; then
-        compose_overlay_from_backup "startup" "$DIRPATH/configs/Startup_Apps.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/Startup_Apps.conf" "$DIRPATH/UserConfigs/Startup_Apps.disable"
-        echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
-        continue
-      fi
-      if [ "$FILE_NAME" = "WindowRules.conf" ]; then
-        compose_overlay_from_backup "windowrules" "$DIRPATH/configs/WindowRules.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/WindowRules.conf" "$DIRPATH/UserConfigs/WindowRules.disable"
-        echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
-        continue
-      fi
+  if version_gte "$CURRENT_VERSION" "$TARGET_VERSION"; then
+    # NEW BEHAVIOR (>= 2.3.19) - Bulk Restore
+    echo -n "${CAT} Do you want to restore your previous UserConfigs directory? (Y/n): "
+    read -r restore_userconfigs_dir
 
-      printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
-      echo -n "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (y/N): "
-      read file_restore
-
-      if [[ "$file_restore" == [Yy]* ]]; then
-        if cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME"; then
-          echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
-        else
-          echo "${ERROR} - Failed to restore $FILE_NAME!" 2>&1 | tee -a "$LOG"
-        fi
-      else
-        echo "${NOTE} - Skipped restoring $FILE_NAME." 2>&1 | tee -a "$LOG"
-      fi
+    if [[ "$restore_userconfigs_dir" != [Nn]* ]]; then
+      echo "${NOTE} Restoring UserConfigs directory..." 2>&1 | tee -a "$LOG"
+      # Use rsync to copy contents, overwriting existing files.
+      rsync -a "$BACKUP_DIR_PATH/" "$DIRPATH/UserConfigs/" 2>&1 | tee -a "$LOG"
+      echo "${OK} - UserConfigs directory restored." 2>&1 | tee -a "$LOG"
+    else
+      echo "${NOTE} - Skipped restoring UserConfigs." 2>&1 | tee -a "$LOG"
     fi
-  done
-fi
 
+  else
+    # OLD BEHAVIOR (<= 2.3.18) - Selective Restore
+    echo -e "${NOTE} Detected version ${YELLOW}v$CURRENT_VERSION${RESET} (older than v$TARGET_VERSION). Using legacy restoration mode."
+
+    FILES_TO_RESTORE=(
+      "01-UserDefaults.conf"
+      "ENVariables.conf"
+      "LaptopDisplay.conf"
+      "Laptops.conf"
+      "Startup_Apps.conf"
+      "UserDecorations.conf"
+      "UserAnimations.conf"
+      "UserKeybinds.conf"
+      "UserSettings.conf"
+      "WindowRules.conf"
+    )
+
+    for FILE_NAME in "${FILES_TO_RESTORE[@]}"; do
+      BACKUP_FILE="$BACKUP_DIR_PATH/$FILE_NAME"
+      if [ -f "$BACKUP_FILE" ]; then
+        # Special handling for Startup_Apps.conf and WindowRules.conf
+        if [ "$FILE_NAME" = "Startup_Apps.conf" ]; then
+          compose_overlay_from_backup "startup" "$DIRPATH/configs/Startup_Apps.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/Startup_Apps.conf" "$DIRPATH/UserConfigs/Startup_Apps.disable"
+          echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
+          continue
+        fi
+        if [ "$FILE_NAME" = "WindowRules.conf" ]; then
+          compose_overlay_from_backup "windowrules" "$DIRPATH/configs/WindowRules.conf" "$BACKUP_FILE" "$DIRPATH/UserConfigs/WindowRules.conf" "$DIRPATH/UserConfigs/WindowRules.disable"
+          echo "${OK} - Migrated overlay for ${YELLOW}$FILE_NAME${RESET}" 2>&1 | tee -a "$LOG"
+          continue
+        fi
+
+        printf "\n${INFO} Found ${YELLOW}$FILE_NAME${RESET} in hypr backup...\n"
+        echo -n "${CAT} Do you want to restore ${YELLOW}$FILE_NAME${RESET} from backup? (Y/n): "
+        read file_restore
+
+        if [[ "$file_restore" != [Nn]* ]]; then
+          if cp "$BACKUP_FILE" "$DIRPATH/UserConfigs/$FILE_NAME"; then
+            echo "${OK} - $FILE_NAME restored!" 2>&1 | tee -a "$LOG"
+          else
+            echo "${ERROR} - Failed to restore $FILE_NAME!" 2>&1 | tee -a "$LOG"
+          fi
+        else
+          echo "${NOTE} - Skipped restoring $FILE_NAME." 2>&1 | tee -a "$LOG"
+        fi
+      fi
+    done
+  fi
+fi
 
 printf "\n%.0s" {1..1}
 
