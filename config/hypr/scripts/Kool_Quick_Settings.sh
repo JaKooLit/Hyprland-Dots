@@ -22,16 +22,18 @@ UserScripts="$HOME/.config/hypr/UserScripts"
 # Function to display the menu options without numbers
 menu() {
     cat <<EOF
-view/edit User Defaults
-view/edit ENV variables
-view/edit Window Rules
-view/edit User Keybinds
-view/edit User Settings
-view/edit Startup Apps
-view/edit Decorations
-view/edit Animations
-view/edit Laptop Keybinds
-view/edit Default Keybinds
+Edit User Defaults
+Edit User ENV variables
+Edit User Keybinds
+Edit User Settings
+Edit User Startups
+Edit User Window Rules
+Edit User Decorations
+Edit User Animations
+Edit User Laptop Keybinds
+Edit System Keybinds
+Edit System Startup Apps
+Edit System Window Rules
 Choose Kitty Terminal Theme
 Configure Monitors (nwg-displays)
 Configure Workspace Rules (nwg-displays)
@@ -53,16 +55,18 @@ main() {
     
     # Map choices to corresponding files
     case "$choice" in
-    	"view/edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
-        "view/edit ENV variables") file="$UserConfigs/ENVariables.conf" ;;
-        "view/edit Window Rules") file="$configs/WindowRules.conf" ;;
-        "view/edit User Keybinds") file="$UserConfigs/UserKeybinds.conf" ;;
-        "view/edit User Settings") file="$UserConfigs/UserSettings.conf" ;;
-        "view/edit Startup Apps") file="$configs/Startup_Apps.conf" ;;
-        "view/edit Decorations") file="$UserConfigs/UserDecorations.conf" ;;
-        "view/edit Animations") file="$UserConfigs/UserAnimations.conf" ;;
-        "view/edit Laptop Keybinds") file="$UserConfigs/Laptops.conf" ;;
-        "view/edit Default Keybinds") file="$configs/Keybinds.conf" ;;
+    	"Edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
+        "Edit User ENV variables") file="$UserConfigs/ENVariables.conf" ;;
+        "Edit User Keybinds") file="$UserConfigs/UserKeybinds.conf" ;;
+        "Edit User Settings") file="$UserConfigs/UserSettings.conf" ;;
+        "Edit User Startups") file="$UserConfigs/Startup_Apps.conf" ;;
+        "Edit User Window Rules") file="$UserConfigs/WindowRules.conf" ;;
+        "Edit User Decorations") file="$UserConfigs/UserDecorations.conf" ;;
+        "Edit User Animations") file="$UserConfigs/UserAnimations.conf" ;;
+        "Edit User Laptop Keybinds") file="$UserConfigs/Laptops.conf" ;;
+        "Edit System Keybinds") file="$configs/Keybinds.conf" ;;
+        "Edit System Startup Apps") file="$configs/Startup_Apps.conf" ;;
+        "Edit System Window Rules") file="$configs/WindowRules.conf" ;;
         "Choose Kitty Terminal Theme") $scriptsDir/Kitty_themes.sh ;;
         "Configure Monitors (nwg-displays)") 
             if ! command -v nwg-displays &>/dev/null; then
