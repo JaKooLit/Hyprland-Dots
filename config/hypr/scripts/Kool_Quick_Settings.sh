@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Rofi menu for KooL Hyprland Quick Settings (SUPER SHIFT E)
+# Updated for UserConfigs/configs separation
 
 # Modify this config file for default terminal and EDITOR
 config_file="$HOME/.config/hypr/UserConfigs/01-UserDefaults.conf"
@@ -19,21 +20,29 @@ iDIR="$HOME/.config/swaync/images"
 scriptsDir="$HOME/.config/hypr/scripts"
 UserScripts="$HOME/.config/hypr/UserScripts"
 
+# Function to show info notification
+show_info() {
+    notify-send -i "$iDIR/info.png" "Info" "$1"
+}
+
 # Function to display the menu options without numbers
 menu() {
     cat <<EOF
-Edit User Defaults
-Edit User ENV variables
-Edit User Keybinds
-Edit User Settings
-Edit User Startups
-Edit User Window Rules
-Edit User Decorations
-Edit User Animations
-Edit User Laptop Keybinds
-Edit System Keybinds
-Edit System Startup Apps
-Edit System Window Rules
+--- USER CUSTOMIZATIONS ---
+edit User Defaults
+edit User ENV variables
+edit User Startup Apps (overlay)
+edit User Window Rules (overlay)
+edit User Settings
+edit User Decorations
+edit User Animations
+edit User Laptop Settings
+--- SYSTEM DEFAULTS (View Only) ---
+view System Default Keybinds
+view System Default Startup Apps
+view System Default Window Rules
+view System Default Settings
+--- UTILITIES ---
 Choose Kitty Terminal Theme
 Configure Monitors (nwg-displays)
 Configure Workspace Rules (nwg-displays)
@@ -55,18 +64,18 @@ main() {
     
     # Map choices to corresponding files
     case "$choice" in
-    	"Edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
-        "Edit User ENV variables") file="$UserConfigs/ENVariables.conf" ;;
-        "Edit User Keybinds") file="$UserConfigs/UserKeybinds.conf" ;;
-        "Edit User Settings") file="$UserConfigs/UserSettings.conf" ;;
-        "Edit User Startups") file="$UserConfigs/Startup_Apps.conf" ;;
-        "Edit User Window Rules") file="$UserConfigs/WindowRules.conf" ;;
-        "Edit User Decorations") file="$UserConfigs/UserDecorations.conf" ;;
-        "Edit User Animations") file="$UserConfigs/UserAnimations.conf" ;;
-        "Edit User Laptop Keybinds") file="$UserConfigs/Laptops.conf" ;;
-        "Edit System Keybinds") file="$configs/Keybinds.conf" ;;
-        "Edit System Startup Apps") file="$configs/Startup_Apps.conf" ;;
-        "Edit System Window Rules") file="$configs/WindowRules.conf" ;;
+    	"edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
+        "edit User ENV variables") file="$UserConfigs/ENVariables.conf" ;;
+        "edit User Startup Apps (overlay)") file="$UserConfigs/Startup_Apps.conf" ;;
+        "edit User Window Rules (overlay)") file="$UserConfigs/WindowRules.conf" ;;
+        "edit User Settings") file="$configs/SystemSettings.conf"; show_info "Editing default settings. Copy to UserConfigs/UserSettings.conf to override." ;;
+        "edit User Decorations") file="$UserConfigs/UserDecorations.conf" ;;
+        "edit User Animations") file="$UserConfigs/UserAnimations.conf" ;;
+        "edit User Laptop Settings") file="$UserConfigs/Laptops.conf" ;;
+        "view System Default Keybinds") file="$configs/Keybinds.conf" ;;
+        "view System Default Startup Apps") file="$configs/Startup_Apps.conf" ;;
+        "view System Default Window Rules") file="$configs/WindowRules.conf" ;;
+        "view System Default Settings") file="$configs/SystemSettings.conf" ;;
         "Choose Kitty Terminal Theme") $scriptsDir/Kitty_themes.sh ;;
         "Configure Monitors (nwg-displays)") 
             if ! command -v nwg-displays &>/dev/null; then
