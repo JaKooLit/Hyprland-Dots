@@ -29,19 +29,19 @@ show_info() {
 menu() {
     cat <<EOF
 --- USER CUSTOMIZATIONS ---
-edit User Defaults
-edit User ENV variables
-edit User Startup Apps (overlay)
-edit User Window Rules (overlay)
-edit User Settings
-edit User Decorations
-edit User Animations
-edit User Laptop Settings
---- SYSTEM DEFAULTS (View Only) ---
-view System Default Keybinds
-view System Default Startup Apps
-view System Default Window Rules
-view System Default Settings
+Edit User Defaults
+Edit User ENV variables
+Edit User Startup Apps (overlay)
+Edit User Window Rules (overlay)
+Edit User Settings
+Edit User Decorations
+Edit User Animations
+Edit User Laptop Settings
+--- SYSTEM DEFAULTS  ---
+Edit System Default Keybinds
+Edit System Default Startup Apps
+Edit System Default Window Rules
+Edit System Default Settings
 --- UTILITIES ---
 Choose Kitty Terminal Theme
 Configure Monitors (nwg-displays)
