@@ -1,13 +1,19 @@
 # Changelog — JAK's Hyprland Dotfiles
 
-## v2.3.18 — 2025-11-05
+## v2.3.18 — 2025-12-01
 
-- Keybinds: initialize SUPER+J/K at login to match the default layout (master or dwindle).
-  - Adds scripts/KeybindsLayoutInit.sh and wires it to Startup_Apps so J/K and O (togglesplit) are correct on first session.
+- FIXED: Not all waybars had `custom/nightlight`
+- Keybinds: initialize SUPER+J/K at login to match the default layout (master or
+  dwindle).
+  - Adds scripts/KeybindsLayoutInit.sh and wires it to Startup_Apps so J/K and O
+    (togglesplit) are correct on first session.
   - ChangeLayout.sh continues to rebind dynamically when layouts are toggled.
-  - Credits: [Suresh Thagunna](https://github.com/suresh466) for identifying the mismatch and proposing an auto-alignment approach.
-- Startup config sourcing: load vendor Startup_Apps and WindowRules first, then user overlays, restoring baseline autostarts while keeping user additions.
-- Quick Settings: “Edit Startup Apps” opens the full vendor defaults for clarity.
+  - Credits: [Suresh Thagunna](https://github.com/suresh466) for identifying the
+    mismatch and proposing an auto-alignment approach.
+- Startup config sourcing: load vendor Startup_Apps and WindowRules first, then
+  user overlays, restoring baseline autostarts while keeping user additions.
+- Quick Settings: “Edit Startup Apps” opens the full vendor defaults for
+  clarity.
 
 ## October 2025
 
@@ -16,8 +22,8 @@
 - Convert Hyprland keybinds to description form (`bindd`, `bindld`, `binded`,
   `bindmd`, `bindlnd`) in `config/hypr/...`.
 - Add concise descriptions for each keybind; keep the name "powermenu".
-- Update `config/hypr/scripts/KeyBinds.sh` to parse and display descriptions
-  as: MODS+KEY — DESCRIPTION — DISPATCHER [PARAMS].
+- Update `config/hypr/scripts/KeyBinds.sh` to parse and display descriptions as:
+  MODS+KEY — DESCRIPTION — DISPATCHER [PARAMS].
 
 ### 🐛 Fixes
 
@@ -67,4 +73,6 @@ Key Changes:
 - [SherLock707](https://github.com/SherLock707)
 - [SVIGHNESH](https://github.com/SVIGHNESH)
 
-If you have any questions, feel free to contact via [GitHub Discussions](https://github.com/JaKooLit/Hyprland-Dots/discussions) or [Through Discord Server](https://discord.gg/kool-tech-world)
+If you have any questions, feel free to contact via
+[GitHub Discussions](https://github.com/JaKooLit/Hyprland-Dots/discussions) or
+[Through Discord Server](https://discord.gg/kool-tech-world)
