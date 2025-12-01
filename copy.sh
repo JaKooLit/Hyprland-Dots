@@ -767,6 +767,13 @@ if command -v qs >/dev/null 2>&1; then
       cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
     fi
   else
+    # If default shell.qml exists, it blocks named config subdirectory detection
+    # Remove it to enable the overview config to be found
+    if [ -f "$DIRPATH_QS/shell.qml" ]; then
+      echo "${NOTE} - Removing default shell.qml to enable quickshell overview config detection" 2>&1 | tee -a "$LOG"
+      rm "$DIRPATH_QS/shell.qml"
+    fi
+    
     read -p "${CAT} Do you want to overwrite your existing ${YELLOW}quickshell${RESET} config? [y/N] " answer_qs
     case "$answer_qs" in
     [Yy]*)
@@ -777,6 +784,8 @@ if command -v qs >/dev/null 2>&1; then
       cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
       if [ $? -eq 0 ]; then
         echo "${OK} - ${YELLOW}quickshell${RESET} overwritten successfully."
+        # Remove default shell.qml from new copy to enable overview detection
+        rm -f "$DIRPATH_QS/shell.qml" 2>&1 | tee -a "$LOG"
       else
         echo "${ERROR} - Failed to copy ${YELLOW}quickshell${RESET} config."
         exit 1
@@ -786,6 +795,26 @@ if command -v qs >/dev/null 2>&1; then
       echo "${NOTE} - Skipping overwrite of quickshell config."
       ;;
     esac
+  fi
+  
+  # Ensure overview subdirectory exists and is up to date
+  DIRPATH_OVERVIEW="$DIRPATH_QS/overview"
+  if [ ! -d "$DIRPATH_OVERVIEW" ] && [ -d "config/quickshell/overview" ]; then
+    echo "${INFO} - Copying quickshell overview config..." 2>&1 | tee -a "$LOG"
+    cp -r "config/quickshell/overview" "$DIRPATH_QS/" 2>&1 | tee -a "$LOG"
+    echo "${OK} - Quickshell overview config copied successfully" 2>&1 | tee -a "$LOG"
+  fi
+  
+  # Check for old quickshell startup commands and update them
+  HYPR_STARTUP="$HOME/.config/hypr/configs/Startup_Apps.conf"
+  if [ -f "$HYPR_STARTUP" ]; then
+    if grep -q '^exec-once = qs\s*$\|^exec-once = qs &' "$HYPR_STARTUP"; then
+      echo "${NOTE} - Found old Quickshell startup command, updating to new overview config..." 2>&1 | tee -a "$LOG"
+      # Replace old 'qs' or 'qs &' with new 'qs -c overview'
+      sed -i 's/^\(\s*\)exec-once = qs\s*$/\1exec-once = qs -c overview  # Quickshell Overview/' "$HYPR_STARTUP" 2>&1 | tee -a "$LOG"
+      sed -i 's/^\(\s*\)exec-once = qs &$/\1exec-once = qs -c overview  # Quickshell Overview/' "$HYPR_STARTUP" 2>&1 | tee -a "$LOG"
+      echo "${OK} - Updated Quickshell startup command to use overview config" 2>&1 | tee -a "$LOG"
+    fi
   fi
 fi
 printf "\n%.0s" {1..1}
