@@ -52,6 +52,8 @@
 	"custom/separator#line",  
 	"group/audio",
 	"custom/separator#dot-line", 
+	"custom/nightlight",
+	"custom/separator#dot-line", 
 	"group/status",
 	],
 }

@@ -55,6 +55,7 @@
 	"custom/separator#line",
 	"keyboard-state",
 	"custom/keyboard",
+	"custom/nightlight",
 	"custom/lock",
 	"custom/power",
 	],

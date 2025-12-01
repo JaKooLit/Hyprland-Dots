@@ -36,6 +36,7 @@
 	"hyprland/window",  
 	"battery",
  	"group/audio", 
+	"custom/nightlight",
 	"custom/power",
 	],
 }
