@@ -1,7 +1,9 @@
 # CHANGES: Hyprland-Dots v2.3.18
 
 ## FIXES:
-
+- Fixed: Wallpapers with periods in names truncated
+   - https://github.com/JaKooLit/Hyprland-Dots/pull/873
+   - Thanks to @godlyfast for the fix.
 - Fixed: Overview Toggle keyind SUPER + A now properly detects QuickShell
   - If QS fails, or not installed AGS will be started instead
 - Fixed: Super J/K cycle next/prev weren't working in both master / dwindle
@@ -70,3 +72,10 @@
 - Add new laptop gesture for zoom system. 
 
 Thanks to everyone that contributed, or reported issues.
+
+Contributors:
+
+Alberson Miranda
+Prabin Panta
+Suresh Thagunna
+@goldlyfast
