@@ -455,15 +455,15 @@ def fetch_aqi(lat: float, lon: float) -> Optional[Dict[str, Any]]:
 def extract_place_parts_nominatim(data_dict: JSONDict) -> List[str]:
     address = ensure_dict(data_dict.get("address"))
     candidates = [data_dict.get("name"), address.get("city"), address.get("town"), address.get("village"), address.get("hamlet")]
-    name = cast(Optional[str], next((c for c in candidates if c is not None), None))
+    name = cast(Optional[str], next((c for c in candidates if c is not None and c != ""), None))
     admin1 = cast(Optional[str], address.get("state"))
     country = cast(Optional[str], address.get("country"))
     parts: List[str] = []
-    if name is not None:
+    if name is not None and name != "":
         parts.append(name)
-    if admin1 is not None:
+    if admin1 is not None and admin1 != "":
         parts.append(admin1)
-    if country is not None:
+    if country is not None and country != "":
         parts.append(country)
     return parts
 
@@ -691,7 +691,7 @@ def build_aqi_info(aqi: Optional[Dict[str, Any]]) -> str:
 def build_place_str(lat: float, lon: float, place: Optional[str]) -> str:
     effective_place = MANUAL_PLACE or ENV_PLACE or place
     if effective_place:
-        return f"{effective_place} ({lat:.3f}, {lon:.3f})"
+        return effective_place
     return f"{lat:.3f}, {lon:.3f}"
 
 
