@@ -224,6 +224,12 @@ def read_api_cache() -> Optional[Dict[str, Any]]:
             data = json.load(f)
         # Use ensure_dict for safety
         data_dict = ensure_dict(data)
+
+        # Invalidate cache if units mismatch
+        if data_dict.get("units") != UNITS:
+            log_debug(f"Cache units '{data_dict.get('units')}' mismatch current '{UNITS}'.")
+            return None
+
         timestamp_val = data_dict.get("timestamp", 0)
         timestamp = coerce_float(timestamp_val) or 0
         if (time.time() - timestamp) <= CACHE_TTL_SECONDS:
@@ -238,6 +244,7 @@ def write_api_cache(payload: Dict[str, Any]) -> None:
     try:
         ensure_cache_dir()
         payload["timestamp"] = time.time()
+        payload["units"] = UNITS
         with API_CACHE_PATH.open("w", encoding="utf-8") as f:
             json.dump(payload, f)
     except Exception as e:
