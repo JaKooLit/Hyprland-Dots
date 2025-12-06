@@ -10,7 +10,7 @@
   - https://github.com/JaKooLit/Hyprland-Dots/pull/873
   - Thanks to @godlyfast for the fix.
 - Fixed: Overview Toggle keyind SUPER + A now properly detects QuickShell
-  - If QS i`overview` fails, or not installed AGS `overview` will be started instead
+  - If QS `overview` fails, or is not installed, AGS `overview` will be started instead
 - Fixed: `Super J/K` cycle next/prev weren't working in both master / dwindle
 - Fixed: `Weather.py` one-off run
 - Removed: `Hyprsunset` from status group.
