@@ -1,9 +1,12 @@
 # Changelog — JAK's Hyprland Dotfiles
 
-## v2.3.18 — 2025-12-06
+## v2.3.18 — 2025-12-09
 
 ## FIXES:
 
+- Fixed: Waybar Modules, locale not included in clock format
+  - Always showed US-EN
+  - Thanks to albersonmiranda for finding and fixing it
 - Fixed: Not all waybars had `custom/nightlight`
 - Fixed: `Weather.py` cache wasn't updating when UNITS changed from C to F
 - Fixed: Wallpapers with periods in names truncated
@@ -84,6 +87,7 @@ Thanks to everyone that contributed, or reported issues.
 Contributors:
 
 Alberson Miranda
+TheAhumMaitra
 Prabin Panta
 Suresh Thagunna
 @goldlyfast
