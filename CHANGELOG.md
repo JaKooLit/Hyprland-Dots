@@ -1,10 +1,11 @@
 # Changelog — JAK's Hyprland Dotfiles
 
-## v2.3.18 — 2025-12-09
+## v2.3.18 — 2025-12-10
 
 ## FIXES:
 
-- Fixed: Quickshell `overview` not working
+- Fixed: Opacity for `vscode` configured multiple times
+- Fixed: Quickshell `overview` not working, error "Quickshell or AGS not installed"
   - If `shell.qml` exists in `~/.config/quickshell` that blocks overview
   - That file isn't configured for overview
   - Without that file, it will look in the `overview` directory and load the QML code
