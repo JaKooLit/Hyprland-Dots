@@ -4,6 +4,10 @@
 
 ## FIXES:
 
+- Fixed: Quickshell `overview` not working
+  - If `shell.qml` exists in `~/.config/quickshell` that blocks overview
+  - That file isn't configured for overview
+  - Without that file, it will look in the `overview` directory and load the QML code
 - Fixed: Waybar Modules, locale not included in clock format
   - Always showed US-EN
   - Thanks to albersonmiranda for finding and fixing it
