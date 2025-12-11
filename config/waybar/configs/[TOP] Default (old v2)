@@ -52,6 +52,7 @@
 	"keyboard-state",
 	"custom/keyboard",
 	"custom/lock",
+	"custom/nightlight",
 	"custom/separator#dot-line",
 	"custom/power",
 	],

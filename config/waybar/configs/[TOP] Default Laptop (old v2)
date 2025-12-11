@@ -53,6 +53,7 @@
 	"mpris", 
 	"group/audio",
 	"custom/separator#line",
+	"custom/nightlight",
 	"keyboard-state",
 	"custom/keyboard",
 	"custom/lock",

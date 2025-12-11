@@ -99,7 +99,7 @@
 	"interval": 1,
     //"format": " {:%I:%M %p}", // AM PM format
     "format": " {:%H:%M:%S}", // 24H
-	"format-alt": " {:%H:%M   %Y, %d %B, %A}",
+	"format-alt": " {:L%H:%M   %Y, %d %B, %A}",
 	"tooltip-format": "<tt><small>{calendar}</small></tt>",
 	"calendar": {
 		"mode": "year",
@@ -127,28 +127,28 @@
 "clock#2": {
     //"format": " {:%I:%M %p}", // AM PM format
     "format": "  {:%H:%M}", // 24H
-    "format-alt": "{:%A  |  %H:%M  |  %e %B}",
+    "format-alt": "{:L%A  |  %H:%M  |  %e %B}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
 },
 
 "clock#3": {
-    //"format": "{:%I:%M %p - %d/%b}", //for AM/PM
-    "format": "{:%H:%M - %d/%b}", // 24H
+    //"format": "{:L%I:%M %p - %d/%b}", //for AM/PM
+    "format": "{:L%H:%M - %d/%b}", // 24H
 	"tooltip": false
 },
 
 "clock#4": {
 	"interval": 60,
-    //"format": "{:%B | %a %d, %Y | %I:%M %p}", // AM PM format
-    "format": "{:%B | %a %d, %Y | %H:%M}", // 24H
-	"format-alt": "{:%a %b %d, %G}",
+    //"format": "{:L%B | %a %d, %Y | %I:%M %p}", // AM PM format
+    "format": "{:L%B | %a %d, %Y | %H:%M}", // 24H
+	"format-alt": "{:L%a %b %d, %G}",
 	"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
 },
 
 "clock#5": {
     //"format": "{:%A, %I:%M %P}", // AM PM format
     "format": "{:%a %d | %H:%M}", // 24H
-	"format-alt": "{:%A, %d %B, %Y (%R)}",
+	"format-alt": "{:L%A, %d %B, %Y (%R)}",
 	"tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
 },
 

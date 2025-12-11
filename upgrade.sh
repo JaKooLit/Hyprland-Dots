@@ -91,6 +91,7 @@ declare -A directories=(
     ["config/waybar/"]="$HOME/.config/waybar/"
     ["config/cava/"]="$HOME/.config/cava/"
     ["config/ags/"]="$HOME/.config/ags/"
+    ["config/quickshell/"]="$HOME/.config/quickshell/"
     ["config/fastfetch/"]="$HOME/.config/fastfetch/"
     ["config/wallust/"]="$HOME/.config/wallust/"
     ["config/wlogout/"]="$HOME/.config/wlogout/"
@@ -102,6 +103,7 @@ declare -A exclusions=(
     ["config/hypr/"]="--exclude=UserConfigs/ --exclude=UserScripts/"
     ["config/waybar/"]="--exclude=config --exclude=style.css"
     ["config/rofi/"]="--exclude=.current_wallpaper"
+    ["config/quickshell/"]="--exclude=shell.qml"
     # Add more exclusions as needed
 )
 

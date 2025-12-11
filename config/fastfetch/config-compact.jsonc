@@ -28,10 +28,10 @@
             "keyColor": "yellow"
         },
         {
-            "type": "custom",
+            "keyColor": "blue",
             "key": " ",
-            "format": "JaKooLit: {$DOTS_VERSION}",
-            "keyColor": "blue"
+            "text": "echo Jakoolit: v${DOTS_VERSION}",
+	    "type": "command"
         },
         {
             "type": "wm",
@@ -66,6 +66,12 @@
             "type": "uptime",
             "key": "󰔛 ",
             "keyColor": "green"
+        },
+        {
+            "type": "command",
+            "key": "󱦟 ",
+            "keyColor": "magenta",
+            "text": "echo $(( ($(date +%s) - $(stat -c %W /)) / 86400 )) days"
         },
         {
             "type": "custom",
