@@ -100,9 +100,9 @@ declare -A directories=(
 
 # Update the exclusion rules
 declare -A exclusions=(
-    ["config/hypr/"]="--exclude=UserConfigs/ --exclude=UserScripts/"
-    ["config/waybar/"]="--exclude=config --exclude=style.css"
-    ["config/rofi/"]="--exclude=.current_wallpaper"
+    # ["config/hypr/"]="--exclude=UserConfigs/ --exclude=UserScripts/"
+    # ["config/waybar/"]="--exclude=config --exclude=style.css"
+    # ["config/rofi/"]="--exclude=.current_wallpaper"
     ["config/quickshell/"]="--exclude=shell.qml"
     # Add more exclusions as needed
 )
@@ -199,7 +199,6 @@ if version_gt "$latest_version" "$stored_version"; then
         chmod +x "$HOME/.config/hypr/UserScripts/"* 2>&1 | tee -a "$LOG"
         # Set executable for initial-boot.sh
         chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"
-        
     else
         echo "$MAGENTA Upgrade declined. No files or directories changed" 2>&1 | tee -a "$LOG"
     fi
