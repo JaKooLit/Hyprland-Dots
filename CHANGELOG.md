@@ -1,5 +1,11 @@
 # Changelog — JAK's Hyprland Dotfiles
 
+## v2.3.19 — 2025-12-22
+- Added:
+  - Optional keybinding to increment/decrement audio in 1% steps vs. 5%
+    - Thanks [rgarofono](https://github.com/rgarofano) for the code
+  
+
 ## v2.3.18 — 2025-12-10
 
 ## FIXES:
