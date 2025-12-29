@@ -1,5 +1,22 @@
 # Changelog — JAK's Hyprland Dotfiles
 
+## v2.3.19
+
+- 2025-12-29
+  - Fixed pathing in Wallust script
+    - Thank you [Lumethra](https://github.com/Lumethra)
+
+— 2025-12-22
+
+- Added:
+  - Optional keybinding to increment/decrement audio in 1% steps vs. 5%
+    - Thanks [rgarofono](https://github.com/rgarofano) for the code
+- Fixed:
+  - Switch Layout was looking in wrong location
+  - SUPER - J/K not working in both `master` and `dwindle` layouts
+    - You also get notification message on layout change
+    - Thanks [@suresh466](https://github.com/suresh466) for fixing it
+
 ## v2.3.18 — 2025-12-10
 
 ## FIXES:

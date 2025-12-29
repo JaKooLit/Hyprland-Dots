@@ -44,7 +44,7 @@ inc_volume() {
     if [ "$(pamixer --get-mute)" == "true" ]; then
         toggle_mute
     else
-        pamixer -i 5 --allow-boost --set-limit 150 && notify_user
+        pamixer -i "$1" --allow-boost --set-limit 150 && notify_user
     fi
 }
 
@@ -53,7 +53,7 @@ dec_volume() {
     if [ "$(pamixer --get-mute)" == "true" ]; then
         toggle_mute
     else
-        pamixer -d 5 && notify_user
+        pamixer -d "$1" && notify_user
     fi
 }
 
@@ -120,24 +120,41 @@ dec_mic_volume() {
 }
 
 # Execute accordingly
-if [[ "$1" == "--get" ]]; then
-	get_volume
-elif [[ "$1" == "--inc" ]]; then
-	inc_volume
-elif [[ "$1" == "--dec" ]]; then
-	dec_volume
-elif [[ "$1" == "--toggle" ]]; then
-	toggle_mute
-elif [[ "$1" == "--toggle-mic" ]]; then
-	toggle_mic
-elif [[ "$1" == "--get-icon" ]]; then
-	get_icon
-elif [[ "$1" == "--get-mic-icon" ]]; then
-	get_mic_icon
-elif [[ "$1" == "--mic-inc" ]]; then
-	inc_mic_volume
-elif [[ "$1" == "--mic-dec" ]]; then
-	dec_mic_volume
-else
-	get_volume
-fi
+case "$1" in
+"--get")
+  get_volume
+  ;;
+"--inc")
+  inc_volume 5
+  ;;
+"--inc-precise")
+  inc_volume 1
+  ;;
+"--dec")
+  dec_volume 5
+  ;;
+"--dec-precise")
+  dec_volume 1
+  ;;
+"--toggle")
+  toggle_mute
+  ;;
+"--toggle-mic")
+  toggle_mic
+  ;;
+"--get-icon")
+  get_icon
+  ;;
+"--get-mic-icon")
+  get_mic_icon
+  ;;
+"--mic-inc")
+  inc_mic_volume
+  ;;
+"--mic-dec")
+  dec_mic_volume
+  ;;
+*)
+  get_volume
+  ;;
+esac
