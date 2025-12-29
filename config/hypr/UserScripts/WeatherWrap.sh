@@ -6,6 +6,30 @@ SCRIPT_DIR="$(dirname "$0")"
 PY_SCRIPT="$SCRIPT_DIR/Weather.py"
 BASH_FALLBACK="$SCRIPT_DIR/Weather.sh"
 
+# Function to check network connectivity
+check_network() {
+    # Try multiple methods to check network
+    if ping -c1 -W2 8.8.8.8 >/dev/null 2>&1; then
+        return 0
+    fi
+    
+    if ping -c1 -W2 1.1.1.1 >/dev/null 2>&1; then
+        return 0
+    fi
+    
+    if curl -s --connect-timeout 3 "https://ipinfo.io" >/dev/null 2>&1; then
+        return 0
+    fi
+    
+    return 1
+}
+
+# If no network, return offline status immediately
+if ! check_network; then
+    echo '{"text":"󰖪", "alt":"Offline", "tooltip":"No network connection"}'
+    exit 0
+fi
+
 run_fallback() {
     if [ -f "$BASH_FALLBACK" ]; then
         # Invoke via bash to avoid requiring +x and ensure consistent shell
