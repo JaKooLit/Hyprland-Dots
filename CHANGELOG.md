@@ -1,6 +1,12 @@
 # Changelog — JAK's Hyprland Dotfiles
 
-## v2.3.19 — 2025-12-22
+## v2.3.19
+
+- 2025-12-29
+  - Fixed pathing in Wallust script
+    - Thank you [Lumethra](https://github.com/Lumethra)
+
+— 2025-12-22
 
 - Added:
   - Optional keybinding to increment/decrement audio in 1% steps vs. 5%
