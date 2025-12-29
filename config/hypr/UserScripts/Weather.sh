@@ -2,15 +2,49 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # weather info from wttr. https://github.com/chubin/wttr.in
 # Remember to add city 
+# Function to get current city from IP address with fallback
 
-city=""
+# Get your current location with your IP adress 
+get_current_city() {
+    local city
+    
+    # First try: ipinfo.io
+    local location_data=$(curl -fsS "https://ipinfo.io/json" 2>/dev/null)
+    if [ $? -eq 0 ] && [ -n "$location_data" ]; then
+        city=$(echo "$location_data" | grep -o '"city"[[:space:]]*:[[:space:]]*"[^"]*"' | cut -d'"' -f4)
+        if [ -n "$city" ]; then
+            echo "$city"
+            return 0
+        fi
+    fi
+    
+    # Fallback: ipapi.co
+    city=$(curl -fsS "https://ipapi.co/json" 2>/dev/null | grep -o '"city"[[:space:]]*:[[:space:]]*"[^"]*"' | cut -d'"' -f4)
+    if [ -n "$city" ]; then
+        echo "$city"
+        return 0
+    fi
+    
+    # Last resort: ipwho.is
+    city=$(curl -fsS "https://ipwho.is/" 2>/dev/null | grep -o '"city"[[:space:]]*:[[:space:]]*"[^"]*"' | cut -d'"' -f4)
+    if [ -n "$city" ]; then
+        echo "$city"
+        return 0
+    fi
+    
+    # If all fail
+    echo "Unknown" >&2
+    return 1
+}
 
+city=$(get_current_city)
 
-# if city is blank, use https://ipapi.co/json to get location from IP
-if [ -z "$city" ]; then
-    city=$(curl -fsS https://ipapi.co/json | grep city | cut -f4 -d'"')
+# If city is empty, that means the IP check failed, which means, we should use manual setting 
+if [ -z "$city" ] || [ "$city" = "Unknown" ]; then
+    # SET YOUR MANUAL CITY HERE
+    city=" "  # ← Change this to your preferred city
+    echo "Using manual city: $city" >&2
 fi
-
 
 # URL-encode city for safe use in URLs
 encoded_city="$city"
