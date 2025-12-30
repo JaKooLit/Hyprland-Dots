@@ -6,7 +6,7 @@
 
 # variables
 terminal=kitty
-wallDIR="$HOME/Pictures/wallpapers"
+wallDIR="$(xdg-user-dir PICTURES)/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 wallpaper_modified="$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified"
