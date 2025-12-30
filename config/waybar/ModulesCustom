@@ -90,10 +90,10 @@
 },
 
 "custom/keyboard": {
-	"exec": "cat $HOME/.cache/kb_layout",
+	"exec": "$HOME/.config/hypr/scripts/KeyboardLayout.sh status",
 	"interval": 1,
 	"format": " {}",
-	"on-click": "$HOME/.config/hypr/scripts/SwitchKeyboardLayout.sh",
+	"on-click": "$HOME/.config/hypr/scripts/KeyboardLayout.sh switch",
 },
 
 "custom/light_dark": {
