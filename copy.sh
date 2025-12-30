@@ -1087,8 +1087,9 @@ fi
 printf "\n%.0s" {1..1}
 
 # wallpaper stuff
-mkdir -p $(xdg-user-dir PICTURES)/wallpapers
-if cp -r wallpapers $(xdg-user-dir PICTURES)/; then
+PICTURES_DIR="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
+mkdir -p "$PICTURES_DIR/wallpapers"
+if cp -r wallpapers "$PICTURES_DIR/"; then
   echo "${OK} Some ${MAGENTA}wallpapers${RESET} copied successfully!" | tee -a "$LOG"
 else
   echo "${ERROR} Failed to copy some ${YELLOW}wallpapers${RESET}" | tee -a "$LOG"
@@ -1168,12 +1169,12 @@ while true; do
       echo "${OK} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
       # Check if wallpapers directory exists and create it if not
-      if [ ! -d "$(xdg-user-dir PICTURES)/wallpapers" ]; then
-        mkdir -p "$(xdg-user-dir PICTURES)/wallpapers"
+      if [ ! -d "$PICTURES_DIR/wallpapers" ]; then
+        mkdir -p "$PICTURES_DIR/wallpapers"
         echo "${OK} Created wallpapers directory." 2>&1 | tee -a "$LOG"
       fi
 
-      if cp -R Wallpaper-Bank/wallpapers/* "$(xdg-user-dir PICTURES)/wallpapers/" >>"$LOG" 2>&1; then
+      if cp -R Wallpaper-Bank/wallpapers/* "$PICTURES_DIR/wallpapers/" >>"$LOG" 2>&1; then
         echo "${OK} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
         rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
         break
