@@ -2,6 +2,19 @@
 
 ## v2.3.19
 
+- 2025-12-31
+  - Fixed rule for `Gnome Calculator`
+    - Thanks Warlord for finding/fixing that
+  - Fixed rule for `yad`
+    - Size was being overridden by `settings` tag
+  - `~/Pictures` now follows `XDG dir` vs. hard coded
+    - Thanks for Jaël Champagne Gareau for the code
+  - Fixed `opache toggle`
+  - `Weather.py` and `Weather.sh` updated and improved
+    - Thank you Lumethra
+  - Added netowrk check to `WeatherWrap` script
+    - Thank you Maximilian Zhu
+
 - 2025-12-29
   - Fixed pathing in Wallust script
     - Thank you [Lumethra](https://github.com/Lumethra)
