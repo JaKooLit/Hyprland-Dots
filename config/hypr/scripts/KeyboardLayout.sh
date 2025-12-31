@@ -39,15 +39,15 @@ get_current_layout_info() {
     if ! is_ignored "$name"; then
       found_kb=true
       local layout_mapping_str=$(hyprctl devices -j |
-        jq -r ".keyboards[] | select(.name==\"$name\").layout")
+        jq -r --arg name "$name" '.keyboards[] | select(.name==$name).layout')
       IFS="," read -r -a layout_mapping <<<"$layout_mapping_str"
 
       local variant_mapping_str=$(hyprctl devices -j |
-        jq -r ".keyboards[] | select(.name==\"$name\").variant")
+        jq -r --arg name "$name" '.keyboards[] | select(.name==$name).variant')
       IFS="," read -r -a variant_mapping <<<"$variant_mapping_str"
 
       layout_index=$(hyprctl devices -j |
-        jq -r ".keyboards[] | select(.name==\"$name\").active_layout_index")
+        jq -r --arg name "$name" '.keyboards[] | select(.name==$name).active_layout_index')
       break
     fi
   done <<< "$(get_keyboard_names)"
@@ -89,8 +89,8 @@ if ! get_current_layout_info; then
   exit 1
 fi
 
-current_layout=${layout_mapping[layout_index]}
-current_variant=${variant_mapping[layout_index]}
+current_layout=${layout_mapping[$layout_index]}
+current_variant=${variant_mapping[$layout_index]}
 
 if [[ "$1" == "status" ]]; then
   echo "$current_layout${current_variant:+($current_variant)}"
@@ -101,8 +101,8 @@ elif [[ "$1" == "switch" ]]; then
   echo "Number of layouts: $layout_count"
 
   next_index=$(( (layout_index + 1) % layout_count ))
-  new_layout="${layout_mapping[next_index]}"
-  new_variant="${variant_mapping[next_index]}"
+  new_layout="${layout_mapping[$next_index]}"
+  new_variant="${variant_mapping[$next_index]}"
   echo "Next layout: $new_layout"
 
   # Execute layout change and notify
