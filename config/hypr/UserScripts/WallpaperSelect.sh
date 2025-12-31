@@ -4,7 +4,8 @@
 
 # WALLPAPERS PATH
 terminal=kitty
-wallDIR="$HOME/Pictures/wallpapers"
+PICTURES_DIR="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
+wallDIR="$PICTURES_DIR/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 
