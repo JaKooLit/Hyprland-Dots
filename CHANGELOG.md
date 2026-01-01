@@ -1,9 +1,49 @@
 # Changelog — JAK's Hyprland Dotfiles
 
-## v2.3.18 — 2025-12-06
+## v2.3.19
+
+- 2025-12-31
+  - Fixed rule for `Gnome Calculator`
+    - Thanks Warlord for finding/fixing that
+  - Fixed rule for `yad`
+    - Size was being overridden by `settings` tag
+  - `~/Pictures` now follows `XDG dir` vs. hard coded
+    - Thanks for Jaël Champagne Gareau for the code
+  - Fixed `opache toggle`
+  - `Weather.py` and `Weather.sh` updated and improved
+    - Thank you Lumethra
+  - Added netowrk check to `WeatherWrap` script
+    - Thank you Maximilian Zhu
+  - Added sample workspace rules to start apps on specific workspaces
+    - They are commented out but serve as references
+
+- 2025-12-29
+  - Fixed pathing in Wallust script
+    - Thank you [Lumethra](https://github.com/Lumethra)
+
+— 2025-12-22
+
+- Added:
+  - Optional keybinding to increment/decrement audio in 1% steps vs. 5%
+    - Thanks [rgarofono](https://github.com/rgarofano) for the code
+- Fixed:
+  - Switch Layout was looking in wrong location
+  - SUPER - J/K not working in both `master` and `dwindle` layouts
+    - You also get notification message on layout change
+    - Thanks [@suresh466](https://github.com/suresh466) for fixing it
+
+## v2.3.18 — 2025-12-10
 
 ## FIXES:
 
+- Fixed: Opacity for `vscode` configured multiple times
+- Fixed: Quickshell `overview` not working, error "Quickshell or AGS not installed"
+  - If `shell.qml` exists in `~/.config/quickshell` that blocks overview
+  - That file isn't configured for overview
+  - Without that file, it will look in the `overview` directory and load the QML code
+- Fixed: Waybar Modules, locale not included in clock format
+  - Always showed US-EN
+  - Thanks to albersonmiranda for finding and fixing it
 - Fixed: Not all waybars had `custom/nightlight`
 - Fixed: `Weather.py` cache wasn't updating when UNITS changed from C to F
 - Fixed: Wallpapers with periods in names truncated
@@ -84,6 +124,7 @@ Thanks to everyone that contributed, or reported issues.
 Contributors:
 
 Alberson Miranda
+TheAhumMaitra
 Prabin Panta
 Suresh Thagunna
 @goldlyfast
