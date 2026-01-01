@@ -32,7 +32,8 @@ fi
 
 # Function to print colorful text
 print_color() {
-  printf "%b%s%b\n" "$1" "$2" "$RESET"
+  # Use %b for the message to interpret backslash escapes like \n, \t, etc.
+  printf "%b%b%b\n" "$1" "$2" "$RESET"
 }
 
 # Check /etc/os-release for Ubuntu or Debian and warn about Hyprland version requirement
