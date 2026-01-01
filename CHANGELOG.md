@@ -2,6 +2,10 @@
 
 ## v2.3.19
 
+- 2026-01-01
+- Added more blur and enabled xray
+  - Thank you [TheAhumMaitra](https://github.com/TheAhumMaitra)
+
 - 2025-12-31
   - Fixed rule for `Gnome Calculator`
     - Thanks Warlord for finding/fixing that
@@ -12,7 +16,7 @@
   - Fixed `opache toggle`
   - `Weather.py` and `Weather.sh` updated and improved
     - Thank you Lumethra
-  - Added netowrk check to `WeatherWrap` script
+  - Added network check to `WeatherWrap` script
     - Thank you Maximilian Zhu
   - Added sample workspace rules to start apps on specific workspaces
     - They are commented out but serve as references
