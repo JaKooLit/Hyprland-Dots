@@ -14,6 +14,8 @@
     - Thank you Lumethra
   - Added netowrk check to `WeatherWrap` script
     - Thank you Maximilian Zhu
+  - Added sample workspace rules to start apps on specific workspaces
+    - They are commented out but serve as references
 
 - 2025-12-29
   - Fixed pathing in Wallust script
