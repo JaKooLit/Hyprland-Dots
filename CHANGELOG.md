@@ -2,6 +2,20 @@
 
 ## v2.3.19
 
+- 2026-01-04
+- Fullscreen or maxixmized would exit using `ALT-TAB` (cycle next/bring-to-front)
+  - User `GoodBorn` found this fix
+  ```
+  misc {
+   on_focus_under_fullscreen = 1
+   # 0 - Default, no change
+   # 1 - New focused window takes over fullscreen (Windows-like Alt-Tab)
+   # 2 - New focused window stays behind the fullscreen one
+   }
+  ```
+- Added: modal rule so popup diaglog, like `Save as` or `Open File` center and float by default
+  - `windowrule = float on, center on, match:modal:1`
+
 - 2026-01-01
 - Added more blur and enabled xray
   - Thank you [TheAhumMaitra](https://github.com/TheAhumMaitra)
