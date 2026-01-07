@@ -42,8 +42,8 @@ configuration {
     selected-normal-foreground:  @background;
     selected-urgent-background:  @active;
     selected-urgent-foreground:  @background;
-    selected-active-background:  @urgent;
-    selected-active-foreground:  @color12;
+    selected-active-background:  @active;
+    selected-active-foreground:  @background;
     alternate-normal-background: @background;
     alternate-normal-foreground: @foreground;
     alternate-urgent-background: @urgent;
