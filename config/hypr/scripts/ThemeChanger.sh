@@ -84,6 +84,8 @@ if wallust theme -- "${choice}"; then
     sleep 0.5
   fi
 
+  # Small cushion before refresh to mirror wallpaper flow
+  sleep 0.2
   # Refresh bars/menus after files are ready
   if [ -x "$HOME/.config/hypr/scripts/Refresh.sh" ]; then
     "$HOME/.config/hypr/scripts/Refresh.sh" >/dev/null 2>&1 || true
