@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 # SPDX-FileCopyrightText: 2025-present Ahum Maitra theahummaitra@gmail.com
@@ -8,20 +7,47 @@ set -euo pipefail
 
 # Repository url : https://github.com/TheAhumMaitra/cautious-waddle
 
-# User choice
-choice=$(wallust theme list \
-  | sed '1d' \
-  | sed 's/^- //' \
-  | rofi -dmenu -p "Select Global Theme")
+require() {
+  command -v "$1" >/dev/null 2>&1 || {
+    printf '%s\n' "Missing dependency: $1" >&2
+    exit 127
+  }
+}
 
-# If user requested to exit, then exit
-[[ -z "$choice" ]] && exit 0
+require wallust
+require rofi
 
-# Apply the theme
-wallust theme "$choice"
+# notify-send is optional
+have_notify() { command -v notify-send >/dev/null 2>&1; }
 
-# Inform user about theme changed
-notify-send "Global theme changed" "Global Theme selected $choice"
+# Prompt for theme; guard -e on cancel
+set +e
+choice="$(wallust theme list \
+  | sed -e '1d' -e 's/^- //' \
+  | rofi -dmenu -i -p 'Select Global Theme')"
+prompt_status=$?
+set -e
 
-# Give warning to user for Waybar theme refresh
-notify-send "Press SUPER+ALT+R to Refresh Waybar Theme"
+# Exit cleanly on cancel or empty selection
+if (( prompt_status != 0 )) || [[ -z "${choice}" ]]; then
+  exit 0
+fi
+
+# Apply the theme and report result
+if wallust theme -- "${choice}"; then
+  have_notify && notify-send -a ThemeChanger \
+    -h string:x-dunst-stack-tag:themechanger \
+    "Global theme changed" "Selected: ${choice}"
+
+  # Try to refresh Waybar automatically; ignore failures
+  if command -v waybar-msg >/dev/null 2>&1; then
+    waybar-msg cmd reload >/dev/null 2>&1 || true
+  else
+    pkill -SIGUSR2 waybar >/dev/null 2>&1 || true
+  fi
+else
+  have_notify && notify-send -u critical -a ThemeChanger \
+    -h string:x-dunst-stack-tag:themechanger \
+    "Failed to apply theme" "${choice}"
+  exit 1
+fi
