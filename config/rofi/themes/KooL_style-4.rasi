@@ -22,7 +22,7 @@ configuration {
 
 /*****----- Global Properties -----*****/
 * {
-    background-alt: @color1;
+    background-alt: @color0;
     /* selected uses color12, active uses color11 (match other working styles) */
     selected:       @color12;
     active:         @color11;
