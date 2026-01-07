@@ -33,21 +33,21 @@ if (( prompt_status != 0 )) || [[ -z "${choice}" ]]; then
   exit 0
 fi
 
+# Record time before applying so we can wait for fresh template outputs
+start_ts=$(date +%s)
+
 # Apply the theme and report result
 if wallust theme -- "${choice}"; then
   have_notify && notify-send -a ThemeChanger \
     -h string:x-dunst-stack-tag:themechanger \
     "Global theme changed" "Selected: ${choice}"
 
-  # Regenerate templates from the current wallpaper to ensure Wallust rewrites waybar/rofi files
-  start_ts=$(date +%s)
-  wp_cur="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
-  if [ -f "$wp_cur" ]; then
-    wallust run -s "$wp_cur" >/dev/null 2>&1 || true
-  fi
-
   # Wait until template targets exist and are non-empty/newer than the start time
-  targets=("$HOME/.config/waybar/wallust/colors-waybar.css" "$HOME/.config/rofi/wallust/colors-rofi.rasi")
+  targets=(
+    "$HOME/.config/waybar/wallust/colors-waybar.css"
+    "$HOME/.config/rofi/wallust/colors-rofi.rasi"
+    "$HOME/.config/kitty/kitty-themes/01-Wallust.conf"
+  )
   for i in $(seq 1 40); do
     ok=1
     for f in "${targets[@]}"; do
@@ -68,6 +68,11 @@ if wallust theme -- "${choice}"; then
     else
       pkill -SIGUSR2 waybar >/dev/null 2>&1 || true
     fi
+  fi
+
+  # Ask kitty to reload its config so the new 01-Wallust.conf is picked up
+  if pidof kitty >/dev/null; then
+    for pid in $(pidof kitty); do kill -SIGUSR1 "$pid" 2>/dev/null || true; done
   fi
 else
   have_notify && notify-send -u critical -a ThemeChanger \
