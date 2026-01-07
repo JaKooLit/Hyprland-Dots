@@ -153,8 +153,8 @@ element normal.normal {
 element-text selected,
 element selected.normal {
 	border-radius:               30px;
-    background-color:            @color11;
-    text-color:                  @foreground;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 element-icon {
     padding:                     0px;
