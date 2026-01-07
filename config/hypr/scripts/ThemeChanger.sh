@@ -42,24 +42,49 @@ if wallust theme -- "${choice}"; then
     -h string:x-dunst-stack-tag:themechanger \
     "Global theme changed" "Selected: ${choice}"
 
-  # Wait until template targets exist and are non-empty/newer than the start time
+  # Wait until template targets exist, are newer than start_ts, and are stable (size/mtime stops changing)
   targets=(
     "$HOME/.config/waybar/wallust/colors-waybar.css"
     "$HOME/.config/rofi/wallust/colors-rofi.rasi"
     "$HOME/.config/kitty/kitty-themes/01-Wallust.conf"
   )
-  for i in $(seq 1 40); do
+
+  # Phase 1: appearance + freshness
+  for _ in $(seq 1 100); do # up to ~10s
     ok=1
     for f in "${targets[@]}"; do
-      if [ ! -s "$f" ]; then ok=0; break; fi
+      [ -s "$f" ] || { ok=0; break; }
       mtime=$(stat -c %Y "$f" 2>/dev/null || echo 0)
-      if [ "$mtime" -lt "$start_ts" ]; then ok=0; break; fi
+      [ "$mtime" -ge "$start_ts" ] || { ok=0; break; }
     done
     [ $ok -eq 1 ] && break
     sleep 0.1
   done
 
-  # Refresh bars/menus after files are in place
+  # Phase 2: stability (avoid reading half-written files)
+  if [ $ok -eq 1 ]; then
+    for _ in 1 2 3; do
+      sizes_a=(); mtimes_a=()
+      for f in "${targets[@]}"; do
+        sizes_a+=("$(stat -c %s "$f" 2>/dev/null || echo 0)")
+        mtimes_a+=("$(stat -c %Y "$f" 2>/dev/null || echo 0)")
+      done
+      sleep 0.15
+      sizes_b=(); mtimes_b=()
+      for f in "${targets[@]}"; do
+        sizes_b+=("$(stat -c %s "$f" 2>/dev/null || echo 0)")
+        mtimes_b+=("$(stat -c %Y "$f" 2>/dev/null || echo 0)")
+      done
+      if [ "${sizes_a[*]}" = "${sizes_b[*]}" ] && [ "${mtimes_a[*]}" = "${mtimes_b[*]}" ]; then
+        break
+      fi
+    done
+  else
+    # As a safety net, wait a bit to avoid racing rofi reload against template writes
+    sleep 0.5
+  fi
+
+  # Refresh bars/menus after files are ready
   if [ -x "$HOME/.config/hypr/scripts/Refresh.sh" ]; then
     "$HOME/.config/hypr/scripts/Refresh.sh" >/dev/null 2>&1 || true
   else
