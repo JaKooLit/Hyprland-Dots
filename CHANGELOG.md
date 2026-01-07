@@ -2,9 +2,18 @@
 
 ## v2.3.19
 
+- 2026-01-06
+  - Added Global Theme Changer.
+    - There are many themes to choose from
+    - `SUPER + T`
+  - Added "Glass Style" taken from `ML4W` dotfiles
+    - Thank you [TheAhumMaitra](https://github.com/TheAhumMaitra)
+  - Fixed more WindowRules
+
 - 2026-01-04
-- Fullscreen or maxixmized would exit using `ALT-TAB` (cycle next/bring-to-front)
+- Fullscreen or maximized would exit using `ALT-TAB` (cycle next/bring-to-front)
   - User `GoodBorn` found this fix
+
   ```
   misc {
    on_focus_under_fullscreen = 1
@@ -13,6 +22,11 @@
    # 2 - New focused window stays behind the fullscreen one
    }
   ```
+
+  > Note: The above change only works on Hyprland v0.53+.
+  > Users with lower will have to comment that line out.
+  > `~/.config/hypr/UserSettings/SystemSettings.conf`
+
 - Added: modal rule so popup diaglog, like `Save as` or `Open File` center and float by default
   - `windowrule = float on, center on, match:modal:1`
 
