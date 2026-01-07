@@ -24,8 +24,9 @@ configuration {
 /*****----- Global Properties -----*****/
 * {
     background-alt:              @color1;
-    selected:                    @color12;
-    active:                      @color11;
+    /* swap accents: selected uses color11, active uses color12 */
+    selected:                    @color11;
+    active:                      @color12;
     urgent:                      @color13;
 }
 
