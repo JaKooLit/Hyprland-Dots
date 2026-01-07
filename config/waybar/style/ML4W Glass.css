@@ -23,7 +23,7 @@ General
   font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
-@import "ML4W/glass.css";
+@import "style/ML4W/glass.css";
 
 window#waybar {
   background: transparent;
@@ -32,7 +32,8 @@ window#waybar {
 .modules-left {
   background-color: @surface;
   border-radius: 12px;
-  background: radial-gradient(
+  background:
+    radial-gradient(
         circle at 50% 250%,
         alpha(darker(@surface), 0.9),
         alpha(@surface_dim, 0.9)
@@ -49,7 +50,8 @@ window#waybar {
 .modules-right {
   background-color: @surface;
   border-radius: 12px;
-  background: radial-gradient(
+  background:
+    radial-gradient(
         circle at 50% 250%,
         alpha(darker(@surface), 0.9),
         alpha(@surface_dim, 0.9)
@@ -66,7 +68,8 @@ window#waybar {
 .modules-center {
   background-color: @surface;
   border-radius: 12px;
-  background: radial-gradient(
+  background:
+    radial-gradient(
         circle at 50% 250%,
         alpha(darker(@surface), 0.9),
         alpha(@surface_dim, 0.9)
@@ -91,7 +94,8 @@ label.module {
   color: @on_surface;
   padding: 3px 10px;
   transition: all 0.3s ease-out;
-  background: radial-gradient(
+  background:
+    radial-gradient(
         circle at 50% 250%,
         @on_tertiary_fixed_variant,
         @on_tertiary_fixed
@@ -130,7 +134,8 @@ label.module:hover {
   transition: all 0.3s ease-in-out;
   min-width: 30px;
   border-radius: 8px;
-  box-shadow: inset 1px 2px 2px rgba(255, 255, 255, 0.5),
+  box-shadow:
+    inset 1px 2px 2px rgba(255, 255, 255, 0.5),
     inset 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
@@ -146,8 +151,8 @@ label.module:hover {
 tooltip {
   background-color: @surface;
   border-radius: 12px;
-  background: radial-gradient(circle at 50% 250%, @surface, @surface_dim)
-      padding-box,
+  background:
+    radial-gradient(circle at 50% 250%, @surface, @surface_dim) padding-box,
     linear-gradient(#ffffff, @on_primary) border-box;
   border: 1px solid transparent;
   opacity: 0.7;
