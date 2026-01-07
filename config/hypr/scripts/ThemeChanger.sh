@@ -39,11 +39,19 @@ if wallust theme -- "${choice}"; then
     -h string:x-dunst-stack-tag:themechanger \
     "Global theme changed" "Selected: ${choice}"
 
-  # Try to refresh Waybar automatically; ignore failures
-  if command -v waybar-msg >/dev/null 2>&1; then
-    waybar-msg cmd reload >/dev/null 2>&1 || true
+  # Give wallust a brief moment to finish writing templates
+  sleep 0.15
+
+  # Prefer the same refresh path used by WallpaperSelect to avoid CSS race/fallbacks
+  if [ -x "$HOME/.config/hypr/scripts/Refresh.sh" ]; then
+    "$HOME/.config/hypr/scripts/Refresh.sh" >/dev/null 2>&1 || true
   else
-    pkill -SIGUSR2 waybar >/dev/null 2>&1 || true
+    # Fallback: reload Waybar only
+    if command -v waybar-msg >/dev/null 2>&1; then
+      waybar-msg cmd reload >/dev/null 2>&1 || true
+    else
+      pkill -SIGUSR2 waybar >/dev/null 2>&1 || true
+    fi
   fi
 else
   have_notify && notify-send -u critical -a ThemeChanger \
