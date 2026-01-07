@@ -19,7 +19,7 @@ configuration {
     background-alt:              @color0;
     selected:                    @color13;
     active:                      @color12;
-    urgent:                      #8E3596;
+    urgent:                      @color13;
 }
 
 /*****----- Main Window -----*****/
