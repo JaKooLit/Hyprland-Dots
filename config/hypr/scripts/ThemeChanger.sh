@@ -43,10 +43,14 @@ if wallust theme -- "${choice}"; then
     "Global theme changed" "Selected: ${choice}"
 
   # Wait until template targets exist, are newer than start_ts, and are stable (size/mtime stops changing)
+  # Ensure Ghostty directory exists so Wallust can write target even if Ghostty isn't installed
+  mkdir -p "$HOME/.config/ghostty" || true
+
   targets=(
     "$HOME/.config/waybar/wallust/colors-waybar.css"
     "$HOME/.config/rofi/wallust/colors-rofi.rasi"
     "$HOME/.config/kitty/kitty-themes/01-Wallust.conf"
+    "$HOME/.config/ghostty/wallust.conf"
   )
 
   # Phase 1: appearance + freshness

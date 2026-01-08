@@ -55,6 +55,9 @@ ln -sf "$wallpaper_path" "$rofi_link" || true
 mkdir -p "$(dirname "$wallpaper_current")"
 cp -f "$wallpaper_path" "$wallpaper_current" || true
 
+# Ensure Ghostty directory exists so Wallust can write target even if Ghostty isn't installed
+mkdir -p "$HOME/.config/ghostty" || true
+
 # Run wallust (silent) to regenerate templates defined in ~/.config/wallust/wallust.toml
 # -s is used in this repo to keep things quiet and avoid extra prompts
 wallust run -s "$wallpaper_path" || true
