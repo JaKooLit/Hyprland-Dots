@@ -10,7 +10,14 @@
     - Thank you [TheAhumMaitra](https://github.com/TheAhumMaitra)
   - Fixed more WindowRules
   - Fixed rofi themes to work with Theme changer
-  - Added `ghostty` terminal config file integrated with `wallust` and themes
+  - Added `ghostty` terminal config file integrated with Themes
+    - `ghostty` is not installed by default
+    - The `COPR` is already there for Fedora
+      - `sudo dnf install ghostty`
+  - The `COPR` repo for `wezterm` is also available
+    - `sudo dnf install wezterm`
+    - A config file is already available when you install it
+    - Most other distros have these terminals in their repo
 
 - 2026-01-04
 - Fullscreen or maximized would exit using `ALT-TAB` (cycle next/bring-to-front)

@@ -734,6 +734,19 @@ else
   echo "${ERROR} - $GHOSTTY_SRC not found; skipping Ghostty config install." 2>&1 | tee -a "$LOG"
 fi
 
+# Install WezTerm config
+WEZTERM_SRC="config/wezterm/wezterm.lua"
+WEZTERM_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/wezterm"
+WEZTERM_DEST="$WEZTERM_DIR/wezterm.lua"
+
+if [ -f "$WEZTERM_SRC" ]; then
+  mkdir -p "$WEZTERM_DIR"
+  install -m 0644 "$WEZTERM_SRC" "$WEZTERM_DEST" 2>&1 | tee -a "$LOG"
+  echo "${OK} - Installed WezTerm config to ${MAGENTA}$WEZTERM_DEST${RESET}" 2>&1 | tee -a "$LOG"
+else
+  echo "${ERROR} - $WEZTERM_SRC not found; skipping WezTerm config install." 2>&1 | tee -a "$LOG"
+fi
+
 printf "\\n%.0s" {1..1}
 
 # ags config
