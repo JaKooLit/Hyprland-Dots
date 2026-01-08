@@ -16,12 +16,12 @@ alternate-normal-foreground: {{foreground}};
 alternate-urgent-background: {{background}};
 alternate-urgent-foreground: {{foreground}};
 
-selected-active-background: {{color13}};
-selected-active-foreground: {{foreground}};
-selected-normal-background: {{color13}};
-selected-normal-foreground: {{foreground}};
-selected-urgent-background: {{color12}};
-selected-urgent-foreground: {{foreground}};
+selected-active-background: {{color12}};
+selected-active-foreground: {{background}};
+selected-normal-background: {{color12}};
+selected-normal-foreground: {{background}};
+selected-urgent-background: {{color11}};
+selected-urgent-foreground: {{background}};
 
 background-color: {{background}};
 background: rgba(0,0,0,0.7);
