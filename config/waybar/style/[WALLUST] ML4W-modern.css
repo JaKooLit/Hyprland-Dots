@@ -25,7 +25,7 @@
 
 window#waybar {
     background-color: rgba(0,0,0,0.8);
-    border-bottom: 0px solid #ffffff;
+border-bottom: 0px solid @foreground;
     /* color: #FFFFFF; */
     background: transparent;
     transition-property: background-color;
@@ -201,7 +201,7 @@ window#waybar.empty #window {
     margin-right: 15px;
     font-size: 100%;
     font-weight: bold;
-    color: #dc2f2f;
+color: @color13;
 }
 
 #custom-menu {
@@ -240,12 +240,12 @@ window#waybar.empty #window {
 }
 
 #custom-updates.yellow {
-    background-color: #ff9a3c;
+background-color: @color11;
     color: #FFFFFF;
 }
 
 #custom-updates.red {
-    background-color: #dc2f2f;
+background-color: @color13;
     color: #FFFFFF;
 }
 
@@ -337,7 +337,7 @@ window#waybar.empty #window {
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+background-color: @color13;
     color: @textcolor3;
 	animation-name: blink;
 	animation-duration: 3.0s;

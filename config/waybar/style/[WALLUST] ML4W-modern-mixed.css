@@ -4,14 +4,14 @@
 @import '../../.config/waybar/wallust/colors-waybar.css';
 
 @define-color backgroundlight @color12;
-@define-color backgrounddark #FFFFFF;
+@define-color backgrounddark @background;
 @define-color workspacesbackground1 @color12;
-@define-color workspacesbackground2 #FFFFFF;
+@define-color workspacesbackground2 @background;
 @define-color bordercolor @color11;
-@define-color textcolor1 @color12;
-@define-color textcolor2 #FFFFFF;
-@define-color textcolor3 #FFFFFF;
-@define-color iconcolor #FFFFFF;
+@define-color textcolor1 @foreground;
+@define-color textcolor2 @background;
+@define-color textcolor3 @foreground;
+@define-color iconcolor @foreground;
 
 * {
 	font-family: "JetBrainsMono Nerd Font";
@@ -25,7 +25,7 @@
 
 window#waybar {
     background-color: rgba(0,0,0,0.8);
-    border-bottom: 0px solid #ffffff;
+border-bottom: 0px solid @foreground;
     /* color: #FFFFFF; */
     background: transparent;
     transition-property: background-color;
@@ -241,12 +241,12 @@ window#waybar.empty #window {
 }
 
 #custom-updates.yellow {
-    background-color: #ff9a3c;
-    color: #FFFFFF;
+background-color: @color11;
+color: @foreground;
 }
 
 #custom-updates.red {
-    background-color: #dc2f2f;
+background-color: @color13;
     color: #FFFFFF;
 }
 
@@ -344,7 +344,7 @@ window#waybar.empty #window {
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+background-color: @color13;
     color: @textcolor3;
 	animation-name: blink;
 	animation-duration: 3.0s;
