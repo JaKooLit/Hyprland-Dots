@@ -145,8 +145,8 @@ button {
     cursor:                      pointer;
 }
 button selected {
-    background-color:            @active;
-    text-color:                  @text-selected;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 
 
@@ -176,16 +176,16 @@ element normal.active {
 }
 
 element selected.normal {
-    background-color:            @color11;
-    text-color:                  @text-selected;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 element selected.urgent {
-    background-color:            @urgent;
-    text-color:                  @text-selected;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 element selected.active {
-    background-color:            @urgent;
-    text-color:                  @text-selected;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 // Adapt rofi theme
 element alternate.normal {

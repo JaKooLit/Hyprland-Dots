@@ -131,8 +131,8 @@ button {
 }
 
 button selected {
-    background-color:            @color12;
-    text-color:                  @foreground;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 
 /* ---- Scrollbar ---- */
@@ -156,8 +156,8 @@ element {
 
 element-text selected,
 element selected.normal {
-    background-color:            @color11;
-    text-color:                  @foreground;
+    background-color:            @selected;
+    text-color:                  @background;
     border-radius:               1.5em;
 }
 

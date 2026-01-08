@@ -23,10 +23,10 @@ configuration {
 /* ---- Global Properties ---- */
 * {
 
-    background-alt:              @selected-active-background; // Buttons background
-    selected:                    @selected-urgent-background; // Button selected
-    active:                      @selected-normal-background; // Window activated
-    urgent:                      @selected; // When hovering the activated window (maybe more?)
+    background-alt:              @color0; // neutral background
+    selected:                    @color12; // accent
+    active:                      @color11; // secondary
+    urgent:                      @color13; // alert
 
     text-selected:               @background;
     text-color:                  @foreground;
@@ -150,7 +150,7 @@ button {
 }
 button selected {
     background-color:            @selected;
-    text-color:                  @text-selected;
+    text-color:                  @background;
 }
 
 /* ---- Scrollbar ---- */
@@ -191,8 +191,8 @@ element selected.normal {
     border:                      0px 3px 0px 3px;
     border-radius:               16px;
     border-color:                @selected;
-    background-color:            transparent;
-    text-color:                  @background-alt;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 
 element selected.urgent {
