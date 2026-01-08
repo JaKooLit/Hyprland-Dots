@@ -2,6 +2,11 @@
 
 ## v2.3.19
 
+- 2026-01-08
+- Fixed: MPRIS artwork in Sway notification center only 10 pixels
+  - Adjusted to 96 pixels
+  - Thank you @godlyfas for fixing this
+
 - 2026-01-06
   - Added Global Theme Changer.
     - There are many themes to choose from
