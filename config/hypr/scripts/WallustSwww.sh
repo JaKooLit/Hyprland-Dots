@@ -66,3 +66,12 @@ wallust run -s "$wallpaper_path" || true
 if [ -f "$HOME/.config/ghostty/wallust.conf" ]; then
   sed -i -E 's/^(\s*palette\s*=\s*)([0-9]{1,2}):/\1\2=/' "$HOME/.config/ghostty/wallust.conf" 2>/dev/null || true
 fi
+
+# Light wait for Ghostty colors file to be present then signal Ghostty to reload (SIGUSR2)
+for _ in 1 2 3; do
+  [ -s "$HOME/.config/ghostty/wallust.conf" ] && break
+  sleep 0.1
+done
+if pidof ghostty >/dev/null; then
+  for pid in $(pidof ghostty); do kill -SIGUSR2 "$pid" 2>/dev/null || true; done
+fi

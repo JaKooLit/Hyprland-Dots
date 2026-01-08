@@ -126,6 +126,11 @@ if wallust theme -- "${choice}"; then
   if pidof kitty >/dev/null; then
     for pid in $(pidof kitty); do kill -SIGUSR1 "$pid" 2>/dev/null || true; done
   fi
+
+  # Ask ghostty to reload its config so the updated wallust.conf is applied
+  if pidof ghostty >/dev/null; then
+    for pid in $(pidof ghostty); do kill -SIGUSR2 "$pid" 2>/dev/null || true; done
+  fi
 else
   have_notify && notify-send -u critical -a ThemeChanger \
     -h string:x-dunst-stack-tag:themechanger \
