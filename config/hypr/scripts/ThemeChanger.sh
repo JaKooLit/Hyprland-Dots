@@ -53,6 +53,12 @@ if wallust theme -- "${choice}"; then
     "$HOME/.config/ghostty/wallust.conf"
   )
 
+  # Normalize Ghostty palette syntax in case upstream templates or older targets used ':'
+  ghostty_conf="$HOME/.config/ghostty/wallust.conf"
+  if [ -f "$ghostty_conf" ]; then
+    sed -i -E 's/^(\s*palette\s*=\s*)([0-9]{1,2}):/\1\2=/' "$ghostty_conf" 2>/dev/null || true
+  fi
+
   # Phase 1: appearance + freshness
   for _ in $(seq 1 100); do # up to ~10s
     ok=1

@@ -726,11 +726,15 @@ if [ -f "$GHOSTTY_SRC" ]; then
   mkdir -p "$GHOSTTY_DIR"
   install -m 0644 "$GHOSTTY_SRC" "$GHOSTTY_DEST" 2>&1 | tee -a "$LOG"
   echo "${OK} - Installed Ghostty config to ${MAGENTA}$GHOSTTY_DEST${RESET}" 2>&1 | tee -a "$LOG"
+  # Normalize existing wallust.conf palette syntax if present (convert ':' to '=')
+  if [ -f "$GHOSTTY_DIR/wallust.conf" ]; then
+    sed -i -E 's/^(\s*palette\s*=\s*)([0-9]{1,2}):/\1\2=/' "$GHOSTTY_DIR/wallust.conf" 2>&1 | tee -a "$LOG" || true
+  fi
 else
   echo "${ERROR} - $GHOSTTY_SRC not found; skipping Ghostty config install." 2>&1 | tee -a "$LOG"
 fi
 
-printf "\n%.0s" {1..1}
+printf "\\n%.0s" {1..1}
 
 # ags config
 # Check if ags is installed

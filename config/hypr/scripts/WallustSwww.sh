@@ -61,3 +61,8 @@ mkdir -p "$HOME/.config/ghostty" || true
 # Run wallust (silent) to regenerate templates defined in ~/.config/wallust/wallust.toml
 # -s is used in this repo to keep things quiet and avoid extra prompts
 wallust run -s "$wallpaper_path" || true
+
+# Normalize Ghostty palette syntax in case ':' was used by older files
+if [ -f "$HOME/.config/ghostty/wallust.conf" ]; then
+  sed -i -E 's/^(\s*palette\s*=\s*)([0-9]{1,2}):/\1\2=/' "$HOME/.config/ghostty/wallust.conf" 2>/dev/null || true
+fi
