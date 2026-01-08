@@ -9,6 +9,8 @@
   - Added "Glass Style" taken from `ML4W` dotfiles
     - Thank you [TheAhumMaitra](https://github.com/TheAhumMaitra)
   - Fixed more WindowRules
+  - Fixed rofi themes to work with Theme changer
+  - Added `ghostty` terminal config file integrated with `wallust` and themes
 
 - 2026-01-04
 - Fullscreen or maximized would exit using `ALT-TAB` (cycle next/bring-to-front)
