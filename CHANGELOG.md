@@ -4,6 +4,9 @@
 
 ## FIXES:
 
+- Updated: Made the WindowRules file for 0.53+ the default
+  - There are more distros now running 0.53.1 vs. earlier versions
+  - The older file is still there for those users not yet up to date
 - Fixed: Opacity for `vscode` configured multiple times
 - Fixed: Quickshell `overview` not working, error "Quickshell or AGS not installed"
   - If `shell.qml` exists in `~/.config/quickshell` that blocks overview
