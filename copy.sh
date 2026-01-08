@@ -717,6 +717,19 @@ for DIR_NAME in $DIR; do
   fi
 done
 
+# Install Ghostty config
+GHOSTTY_SRC="config/ghostty/ghostty.config"
+GHOSTTY_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ghostty"
+GHOSTTY_DEST="$GHOSTTY_DIR/config"
+
+if [ -f "$GHOSTTY_SRC" ]; then
+  mkdir -p "$GHOSTTY_DIR"
+  install -m 0644 "$GHOSTTY_SRC" "$GHOSTTY_DEST" 2>&1 | tee -a "$LOG"
+  echo "${OK} - Installed Ghostty config to ${MAGENTA}$GHOSTTY_DEST${RESET}" 2>&1 | tee -a "$LOG"
+else
+  echo "${ERROR} - $GHOSTTY_SRC not found; skipping Ghostty config install." 2>&1 | tee -a "$LOG"
+fi
+
 printf "\n%.0s" {1..1}
 
 # ags config
