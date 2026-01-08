@@ -23,6 +23,13 @@ configuration {
 /* ---- Global Properties ---- */
 * {
 
+    /* Define palette mappings used below */
+    selected:      @color12;   /* accent */
+    active:        @color11;   /* secondary */
+    urgent:        @color13;   /* alerts */
+    text-selected: @background; /* readable over accent */
+    text-color:    @foreground;
+
     border-width: 2px;
     border-radius: 12px;
 }

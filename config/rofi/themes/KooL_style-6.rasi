@@ -169,7 +169,12 @@ element normal.urgent {
     text-color:                  @foreground;
 }
 
-element-text selected,
+/* Separate rules so selected text does not paint a second background */
+element-text selected {
+    background-color:            transparent;
+    text-color:                  @background;
+}
+
 element normal.active {
     background-color:            @active;
     text-color:                  @foreground;
