@@ -22,6 +22,31 @@ GREEN="$(tput setaf 2)"
 BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
+MIN_EXPRESS_VERSION="2.3.18"
+
+version_gte() {
+  [ "$1" = "$(echo -e "$1\n$2" | sort -V | tail -n1)" ]
+}
+
+get_installed_dotfiles_version() {
+  local hypr_dir="$HOME/.config/hypr"
+  local version_file
+  if [ -d "$hypr_dir" ]; then
+    version_file=$(find "$hypr_dir" -maxdepth 1 -name "v*.*.*" | head -n 1)
+    if [ -n "$version_file" ]; then
+      basename "$version_file" | sed 's/^v//'
+    fi
+  fi
+}
+
+express_supported() {
+  local current_version
+  current_version=$(get_installed_dotfiles_version)
+  if [ -z "$current_version" ]; then
+    return 1
+  fi
+  version_gte "$current_version" "$MIN_EXPRESS_VERSION"
+}
 print_usage() {
   cat <<'EOF'
 Usage: copy.sh [--upgrade] [--express-upgrade] [--help]
@@ -57,6 +82,15 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
+EXPRESS_SUPPORTED=0
+if express_supported; then
+  EXPRESS_SUPPORTED=1
+fi
+
+if [ "$EXPRESS_MODE" -eq 1 ] && [ "$EXPRESS_SUPPORTED" -eq 0 ]; then
+  echo "${WARN} Express upgrade requires installed dotfiles v${MIN_EXPRESS_VERSION} or newer. Falling back to standard upgrade."
+  EXPRESS_MODE=0
+fi
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -535,25 +569,29 @@ fi
 printf "\n%.0s" {1..1}
 
 if [ "$UPGRADE_MODE" -eq 1 ] && [ "$EXPRESS_MODE" -eq 0 ]; then
-  while true; do
-    echo "${NOTE} Express mode skips config restore prompts, SDDM/background questions, and trims old backups."
-    echo -n "${CAT} Do you want to continue with EXPRESS upgrade mode? (y/N): "
-    read express_choice
-    case "$express_choice" in
-    [Yy])
-      EXPRESS_MODE=1
-      echo "${INFO} Express mode enabled for this upgrade." 2>&1 | tee -a "$LOG"
-      break
-      ;;
-    [Nn] | "")
-      echo "${NOTE} Continuing with standard upgrade prompts." 2>&1 | tee -a "$LOG"
-      break
-      ;;
-    *)
-      echo "${WARN} Please answer y or n."
-      ;;
-    esac
-  done
+  if [ "$EXPRESS_SUPPORTED" -eq 0 ]; then
+    echo "${NOTE} Express mode requires installed dotfiles v${MIN_EXPRESS_VERSION} or newer. Continuing with standard upgrade prompts." 2>&1 | tee -a "$LOG"
+  else
+    while true; do
+      echo "${NOTE} Express mode skips config restore prompts, SDDM/background questions, and trims old backups."
+      echo -n "${CAT} Do you want to continue with EXPRESS upgrade mode? (y/N): "
+      read express_choice
+      case "$express_choice" in
+      [Yy])
+        EXPRESS_MODE=1
+        echo "${INFO} Express mode enabled for this upgrade." 2>&1 | tee -a "$LOG"
+        break
+        ;;
+      [Nn] | "")
+        echo "${NOTE} Continuing with standard upgrade prompts." 2>&1 | tee -a "$LOG"
+        break
+        ;;
+      *)
+        echo "${WARN} Please answer y or n."
+        ;;
+      esac
+    done
+  fi
 fi
 
 set -e
@@ -986,11 +1024,6 @@ compose_overlay_from_backup() {
   fi
 }
 
-# Function to compare versions
-version_gte() {
-  # Returns 0 if $1 >= $2, 1 otherwise
-  [ "$1" = "$(echo -e "$1\n$2" | sort -V | tail -n1)" ]
-}
 
 DIRH="hypr"
 DIRPATH="$HOME/.config/$DIRH"
