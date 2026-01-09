@@ -80,10 +80,39 @@ cp -f "$wallpaper_path" "$wallpaper_current" || true
 
 # Ensure Ghostty directory exists so Wallust can write target even if Ghostty isn't installed
 mkdir -p "$HOME/.config/ghostty" || true
+wait_for_templates() {
+  local start_ts="$1"
+  shift
+  local files=("$@")
+  for _ in {1..50}; do
+    local ready=true
+    for file in "${files[@]}"; do
+      if [[ ! -s "$file" ]]; then
+        ready=false
+        break
+      fi
+      local mtime
+      mtime=$(stat -c %Y "$file" 2>/dev/null || echo 0)
+      if (( mtime < start_ts )); then
+        ready=false
+        break
+      fi
+    done
+    $ready && return 0
+    sleep 0.1
+  done
+  return 1
+}
 
 # Run wallust (silent) to regenerate templates defined in ~/.config/wallust/wallust.toml
 # -s is used in this repo to keep things quiet and avoid extra prompts
+start_ts=$(date +%s)
 wallust run -s "$wallpaper_path" || true
+wallust_targets=(
+  "$HOME/.config/waybar/wallust/colors-waybar.css"
+  "$HOME/.config/rofi/wallust/colors-rofi.rasi"
+)
+wait_for_templates "$start_ts" "${wallust_targets[@]}" || true
 
 # Normalize Ghostty palette syntax in case ':' was used by older files
 if [ -f "$HOME/.config/ghostty/wallust.conf" ]; then
@@ -97,4 +126,11 @@ for _ in 1 2 3; do
 done
 if pidof ghostty >/dev/null; then
   for pid in $(pidof ghostty); do kill -SIGUSR2 "$pid" 2>/dev/null || true; done
+fi
+
+# Prompt Waybar to reload colors
+if command -v waybar-msg >/dev/null 2>&1; then
+  waybar-msg cmd reload >/dev/null 2>&1 || true
+elif pidof waybar >/dev/null; then
+  killall -SIGUSR2 waybar 2>/dev/null || true
 fi
