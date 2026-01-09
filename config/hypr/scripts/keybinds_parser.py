@@ -86,6 +86,13 @@ def parse_files(files):
                         if file_path == user_conf_path:
                             unbound_user[combo] = True
                             
+                        # If unbind is found, we should remove the bind from our map
+                        # so it doesn't show up in the menu.
+                        if combo in binding_map:
+                            del binding_map[combo]
+                        if combo in source_map:
+                            del source_map[combo]
+                            
         except Exception as e:
             # Silently ignore read errors to mimic bash behavior or log to stderr
             sys.stderr.write(f"Error reading {file_path}: {e}\n")

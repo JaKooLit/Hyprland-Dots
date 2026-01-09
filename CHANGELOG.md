@@ -2,6 +2,11 @@
 
 ## v2.3.19
 
+- 2026-01-09
+  - Fixed: Keybind parser latency
+    - Changed the parsing login to python instead of bash
+    - Also fixed duplicate bindings when you unmap / remap keybinds
+
 - 2026-01-08
 - Fixed: MPRIS artwork in Sway notification center only 10 pixels
   - Adjusted to 96 pixels
