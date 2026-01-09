@@ -14,10 +14,10 @@ show_copy_menu() {
   local quit_tag="Quit"
   local express_tag="Express"
 
-  local install_body="nstall - Fresh copy"
-  local upgrade_body="pgrade - Backups + prompts"
-  local quit_body="uit - Exit without changes"
-  local express_body="xpress upgrade - skips restores & wallpapers"
+  local install_body="Fresh copy"
+  local upgrade_body="Backups + prompts"
+  local quit_body="Exit without changes"
+  local express_body="Upgrade - skips restores & wallpapers"
   if [ "$express_supported" -ne 1 ]; then
     express_body="xpress - Requires dots >= ${MIN_EXPRESS_VERSION}"
   fi
@@ -30,16 +30,16 @@ show_copy_menu() {
       supports_colors=1
     fi
 
-    local desc_install="I$install_body"
-    local desc_upgrade="U$upgrade_body"
-    local desc_quit="Q$quit_body"
-    local desc_express="E$express_body"
+    local desc_install="I - $install_body"
+    local desc_upgrade="U - $upgrade_body"
+    local desc_quit="Q - $quit_body"
+    local desc_express="E - $express_body"
 
     if [ "$supports_colors" -eq 1 ]; then
-      desc_install="\\Z2I\\Zn$install_body"
-      desc_upgrade="\\Z6U\\Zn$upgrade_body"
-      desc_quit="\\Z1Q\\Zn$quit_body"
-      desc_express="\\Z5E\\Zn$express_body"
+      desc_install="\\Z2I\\Zn - $install_body"
+      desc_upgrade="\\Z6U\\Zn - $upgrade_body"
+      desc_quit="\\Z1Q\\Zn - $quit_body"
+      desc_express="\\Z5E\\Zn - $express_body"
     fi
 
     if [ "$supports_colors" -eq 1 ]; then
@@ -75,10 +75,10 @@ show_copy_menu() {
     while true; do
       printf "\n%s\n" "$menu_title"
       printf "%s\n" "$prompt"
-      printf "  1) %s%s%s%s\n" "$c_green" "I" "$c_reset" "$install_body"
-      printf "  2) %s%s%s%s\n" "$c_cyan" "U" "$c_reset" "$upgrade_body"
-      printf "  3) %s%s%s%s\n" "$c_magenta" "E" "$c_reset" "$express_body"
-      printf "  4) %s%s%s%s\n" "$c_red" "Q" "$c_reset" "$quit_body"
+      printf "  1) %s%s%s - %s\n" "$c_green" "I" "$c_reset" "$install_body"
+      printf "  2) %s%s%s - %s\n" "$c_cyan" "U" "$c_reset" "$upgrade_body"
+      printf "  3) %s%s%s - %s\n" "$c_magenta" "E" "$c_reset" "$express_body"
+      printf "  4) %s%s%s - %s\n" "$c_red" "Q" "$c_reset" "$quit_body"
       printf "     Express skips restores, SDDM wallpaper, and wallpaper downloads.\n"
       printf "Enter choice [1-4]: "
       read -r text_choice
