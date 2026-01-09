@@ -20,6 +20,10 @@ kitty_conf="$HOME/.config/kitty/kitty.conf"
 wallust_config="$HOME/.config/wallust/wallust.toml"
 pallete_dark="dark16"
 pallete_light="light16"
+qt5ct_dark="$HOME/.config/qt5ct/colors/Catppuccin-Mocha.conf"
+qt5ct_light="$HOME/.config/qt5ct/colors/Catppuccin-Latte.conf"
+qt6ct_dark="$HOME/.config/qt6ct/colors/Catppuccin-Mocha.conf"
+qt6ct_light="$HOME/.config/qt6ct/colors/Catppuccin-Latte.conf"
 
 # intial kill process
 for pid in waybar rofi swaync ags swaybg; do
@@ -43,6 +47,14 @@ else
     next_mode="Light"
     # Logic for Light mode
     wallpaper_path="$light_wallpapers"
+fi
+# Select Qt color scheme templates for the upcoming mode
+if [ "$next_mode" = "Dark" ]; then
+    qt5ct_color_scheme="$qt5ct_dark"
+    qt6ct_color_scheme="$qt6ct_dark"
+else
+    qt5ct_color_scheme="$qt5ct_light"
+    qt6ct_color_scheme="$qt6ct_light"
 fi
 
 # Function to update theme mode for the next cycle
