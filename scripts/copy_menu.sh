@@ -65,6 +65,5 @@ show_copy_menu() {
     done
   fi
 
-  COPY_MENU_CHOICE="$choice"
-}
+COPY_MENU_CHOICE="$choice"
 }
