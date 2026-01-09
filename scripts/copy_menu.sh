@@ -47,8 +47,8 @@ show_copy_menu() {
       if ! choice=$(whiptail --title "$menu_title" --colors --menu "$prompt\n$info_line" 18 70 8 \
         "$install_tag" "$desc_install" \
         "$upgrade_tag" "$desc_upgrade" \
-        "$quit_tag" "$desc_quit" \
-        "$express_tag" "$desc_express" 3>&1 1>&2 2>&3); then
+        "$express_tag" "$desc_express" \
+        "$quit_tag" "$desc_quit" 3>&1 1>&2 2>&3); then
         COPY_MENU_CHOICE="quit"
         return 1
       fi
@@ -56,8 +56,8 @@ show_copy_menu() {
       if ! choice=$(whiptail --title "$menu_title" --menu "$prompt\n$info_line" 18 70 8 \
         "$install_tag" "$desc_install" \
         "$upgrade_tag" "$desc_upgrade" \
-        "$quit_tag" "$desc_quit" \
-        "$express_tag" "$desc_express" 3>&1 1>&2 2>&3); then
+        "$express_tag" "$desc_express" \
+        "$quit_tag" "$desc_quit" 3>&1 1>&2 2>&3); then
         COPY_MENU_CHOICE="quit"
         return 1
       fi
@@ -78,16 +78,16 @@ show_copy_menu() {
       printf "%s\n" "$prompt"
       printf "  1) %s%s%s%s\n" "$c_green" "I" "$c_reset" "$install_body"
       printf "  2) %s%s%s%s\n" "$c_cyan" "U" "$c_reset" "$upgrade_body"
-      printf "  3) %s%s%s%s\n" "$c_red" "Q" "$c_reset" "$quit_body"
-      printf "  4) %s%s%s%s\n" "$c_magenta" "E" "$c_reset" "$express_body"
+      printf "  3) %s%s%s%s\n" "$c_magenta" "E" "$c_reset" "$express_body"
+      printf "  4) %s%s%s%s\n" "$c_red" "Q" "$c_reset" "$quit_body"
       printf "     %s\n" "$info_line"
       printf "Enter choice [1-4]: "
       read -r text_choice
       case "$text_choice" in
       1) choice="$install_tag"; break ;;
       2) choice="$upgrade_tag"; break ;;
-      3) choice="$quit_tag"; break ;;
-      4) choice="$express_tag"; break ;;
+      3) choice="$express_tag"; break ;;
+      4) choice="$quit_tag"; break ;;
       *) echo "Invalid selection. Please choose 1-4." ;;
       esac
     done
