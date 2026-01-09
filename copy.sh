@@ -23,6 +23,12 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 MIN_EXPRESS_VERSION="2.3.18"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MENU_HELPER="$SCRIPT_DIR/scripts/copy_menu.sh"
+if [ -f "$MENU_HELPER" ]; then
+  # shellcheck source=./scripts/copy_menu.sh
+  . "$MENU_HELPER"
+fi
 
 version_gte() {
   [ "$1" = "$(echo -e "$1\n$2" | sort -V | tail -n1)" ]
@@ -60,15 +66,18 @@ EOF
 
 UPGRADE_MODE=0
 EXPRESS_MODE=0
+RUN_MODE=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
   --upgrade)
     UPGRADE_MODE=1
+    RUN_MODE="upgrade"
     ;;
   --express-upgrade)
     UPGRADE_MODE=1
     EXPRESS_MODE=1
+    RUN_MODE="express"
     ;;
   -h | --help)
     print_usage
@@ -90,6 +99,47 @@ fi
 if [ "$EXPRESS_MODE" -eq 1 ] && [ "$EXPRESS_SUPPORTED" -eq 0 ]; then
   echo "${WARN} Express upgrade requires installed dotfiles v${MIN_EXPRESS_VERSION} or newer. Falling back to standard upgrade."
   EXPRESS_MODE=0
+  RUN_MODE="upgrade"
+fi
+
+if [ -z "$RUN_MODE" ]; then
+  if declare -f show_copy_menu >/dev/null 2>&1; then
+    while [ -z "$RUN_MODE" ]; do
+      show_copy_menu "$EXPRESS_SUPPORTED"
+      choice_lower=$(echo "$COPY_MENU_CHOICE" | tr '[:upper:]' '[:lower:]')
+      case "$choice_lower" in
+      install)
+        RUN_MODE="install"
+        UPGRADE_MODE=0
+        EXPRESS_MODE=0
+        ;;
+      upgrade)
+        RUN_MODE="upgrade"
+        UPGRADE_MODE=1
+        EXPRESS_MODE=0
+        ;;
+      express)
+        if [ "$EXPRESS_SUPPORTED" -eq 0 ]; then
+          echo "${WARN} Express mode requires installed dotfiles v${MIN_EXPRESS_VERSION} or newer. Please choose another option."
+          continue
+        fi
+        RUN_MODE="express"
+        UPGRADE_MODE=1
+        EXPRESS_MODE=1
+        ;;
+      quit)
+        echo "${NOTE} Exiting per user selection."
+        exit 0
+        ;;
+      *)
+        echo "${WARN} Invalid selection."
+        ;;
+      esac
+    done
+  else
+    echo "${NOTE} Menu helper not found; defaulting to install workflow."
+    RUN_MODE="install"
+  fi
 fi
 
 # Check if running as root. If root, script will exit
@@ -154,6 +204,7 @@ LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 
 # update home directories
 xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
+echo "${INFO} Selected workflow: ${RUN_MODE}" 2>&1 | tee -a "$LOG"
 if [ "$UPGRADE_MODE" -eq 1 ]; then
   echo "${INFO} Upgrade mode enabled." 2>&1 | tee -a "$LOG"
 fi
