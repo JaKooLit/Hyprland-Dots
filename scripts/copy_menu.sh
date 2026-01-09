@@ -6,9 +6,8 @@
 # Sets global COPY_MENU_CHOICE to one of: install, upgrade, express, quit
 show_copy_menu() {
   local express_supported="${1:-0}"
-  local menu_title="KooL's Hyprland Dotfiles"
+  local menu_title="      KooL's Hyprland Dotfiles      "
   local prompt="Select what you would like to do:"
-  local info_line="Express skips restores, SDDM wallpaper, and wallpaper downloads."
 
   local install_tag="Install"
   local upgrade_tag="Upgrade"
@@ -18,7 +17,7 @@ show_copy_menu() {
   local install_body="nstall - Fresh copy"
   local upgrade_body="pgrade - Backups + prompts"
   local quit_body="uit - Exit without changes"
-  local express_body="xpress - For upgrades only"
+  local express_body="xpress - For upgrades only; skips restores, SDDM wallpaper, wallpapers"
   if [ "$express_supported" -ne 1 ]; then
     express_body="xpress - Requires dots >= ${MIN_EXPRESS_VERSION}"
   fi
@@ -44,7 +43,7 @@ show_copy_menu() {
     fi
 
     if [ "$supports_colors" -eq 1 ]; then
-      if ! choice=$(whiptail --title "$menu_title" --colors --menu "$prompt\n$info_line" 18 70 8 \
+      if ! choice=$(whiptail --title "$menu_title" --colors --menu "$prompt" 18 70 8 \
         "$install_tag" "$desc_install" \
         "$upgrade_tag" "$desc_upgrade" \
         "$express_tag" "$desc_express" \
@@ -53,7 +52,7 @@ show_copy_menu() {
         return 1
       fi
     else
-      if ! choice=$(whiptail --title "$menu_title" --menu "$prompt\n$info_line" 18 70 8 \
+      if ! choice=$(whiptail --title "$menu_title" --menu "$prompt" 18 70 8 \
         "$install_tag" "$desc_install" \
         "$upgrade_tag" "$desc_upgrade" \
         "$express_tag" "$desc_express" \
@@ -80,7 +79,7 @@ show_copy_menu() {
       printf "  2) %s%s%s%s\n" "$c_cyan" "U" "$c_reset" "$upgrade_body"
       printf "  3) %s%s%s%s\n" "$c_magenta" "E" "$c_reset" "$express_body"
       printf "  4) %s%s%s%s\n" "$c_red" "Q" "$c_reset" "$quit_body"
-      printf "     %s\n" "$info_line"
+      printf "     Express skips restores, SDDM wallpaper, and wallpaper downloads.\n"
       printf "Enter choice [1-4]: "
       read -r text_choice
       case "$text_choice" in
