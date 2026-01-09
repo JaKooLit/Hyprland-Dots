@@ -17,7 +17,7 @@ show_copy_menu() {
   local install_body="nstall - Fresh copy"
   local upgrade_body="pgrade - Backups + prompts"
   local quit_body="uit - Exit without changes"
-  local express_body="xpress - For upgrades only; skips restores, SDDM wallpaper, wallpapers"
+  local express_body="xpress - Fast upgrade; skips restores + SDDM + wallpapers"
   if [ "$express_supported" -ne 1 ]; then
     express_body="xpress - Requires dots >= ${MIN_EXPRESS_VERSION}"
   fi
@@ -43,7 +43,7 @@ show_copy_menu() {
     fi
 
     if [ "$supports_colors" -eq 1 ]; then
-      if ! choice=$(whiptail --title "$menu_title" --colors --menu "$prompt" 18 70 8 \
+      if ! choice=$(whiptail --title "$menu_title" --colors --menu "$prompt" 16 60 8 \
         "$install_tag" "$desc_install" \
         "$upgrade_tag" "$desc_upgrade" \
         "$express_tag" "$desc_express" \
@@ -52,7 +52,7 @@ show_copy_menu() {
         return 1
       fi
     else
-      if ! choice=$(whiptail --title "$menu_title" --menu "$prompt" 18 70 8 \
+      if ! choice=$(whiptail --title "$menu_title" --menu "$prompt" 16 60 8 \
         "$install_tag" "$desc_install" \
         "$upgrade_tag" "$desc_upgrade" \
         "$express_tag" "$desc_express" \
