@@ -22,6 +22,41 @@ GREEN="$(tput setaf 2)"
 BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
+print_usage() {
+  cat <<'EOF'
+Usage: copy.sh [--upgrade] [--express-upgrade] [--help]
+
+Options:
+  --upgrade           Run the script in upgrade mode (can still prompt for express).
+  --express-upgrade   Upgrade with express behavior (no restore prompts, trims backups).
+  -h, --help          Show this help message and exit.
+EOF
+}
+
+UPGRADE_MODE=0
+EXPRESS_MODE=0
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  --upgrade)
+    UPGRADE_MODE=1
+    ;;
+  --express-upgrade)
+    UPGRADE_MODE=1
+    EXPRESS_MODE=1
+    ;;
+  -h | --help)
+    print_usage
+    exit 0
+    ;;
+  *)
+    echo "${ERROR} Unknown option: $1"
+    print_usage
+    exit 1
+    ;;
+  esac
+  shift
+done
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -85,6 +120,12 @@ LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 
 # update home directories
 xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
+if [ "$UPGRADE_MODE" -eq 1 ]; then
+  echo "${INFO} Upgrade mode enabled." 2>&1 | tee -a "$LOG"
+fi
+if [ "$EXPRESS_MODE" -eq 1 ]; then
+  echo "${INFO} Express mode enabled. Optional restore prompts will be skipped." 2>&1 | tee -a "$LOG"
+fi
 
 # setting up for NVIDIA
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
@@ -493,6 +534,28 @@ else
 fi
 printf "\n%.0s" {1..1}
 
+if [ "$UPGRADE_MODE" -eq 1 ] && [ "$EXPRESS_MODE" -eq 0 ]; then
+  while true; do
+    echo "${NOTE} Express mode skips config restore prompts, SDDM/background questions, and trims old backups."
+    echo -n "${CAT} Do you want to continue with EXPRESS upgrade mode? (y/N): "
+    read express_choice
+    case "$express_choice" in
+    [Yy])
+      EXPRESS_MODE=1
+      echo "${INFO} Express mode enabled for this upgrade." 2>&1 | tee -a "$LOG"
+      break
+      ;;
+    [Nn] | "")
+      echo "${NOTE} Continuing with standard upgrade prompts." 2>&1 | tee -a "$LOG"
+      break
+      ;;
+    *)
+      echo "${WARN} Please answer y or n."
+      ;;
+    esac
+  done
+fi
+
 set -e
 
 # Function to create a unique backup directory name with month, day, hours, and minutes
@@ -857,28 +920,32 @@ BACKUP_DIR=$(get_backup_dirname)
 BACKUP_HYPR_PATH="$HYPR_DIR-backup-$BACKUP_DIR"
 
 if [ -d "$BACKUP_HYPR_PATH" ]; then
-  echo -e "\n${NOTE} Restoring ${SKY_BLUE}Animations & Monitor Profiles${RESET} directories into ${YELLOW}$HYPR_DIR${RESET}..."
+  if [ "$EXPRESS_MODE" -eq 1 ]; then
+    echo "${NOTE} Express mode: skipping automatic restoration of animations and monitor profiles." 2>&1 | tee -a "$LOG"
+  else
+    echo -e "\n${NOTE} Restoring ${SKY_BLUE}Animations & Monitor Profiles${RESET} directories into ${YELLOW}$HYPR_DIR${RESET}..."
 
-  DIR_B=("Monitor_Profiles" "animations" "wallpaper_effects")
-  # Restore directories automatically
-  for DIR_RESTORE in "${DIR_B[@]}"; do
-    BACKUP_SUBDIR="$BACKUP_HYPR_PATH/$DIR_RESTORE"
-    if [ -d "$BACKUP_SUBDIR" ]; then
-      cp -r "$BACKUP_SUBDIR" "$HYPR_DIR/"
-      echo "${OK} - Restored directory: ${MAGENTA}$DIR_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
-    fi
-  done
+    DIR_B=("Monitor_Profiles" "animations" "wallpaper_effects")
+    # Restore directories automatically
+    for DIR_RESTORE in "${DIR_B[@]}"; do
+      BACKUP_SUBDIR="$BACKUP_HYPR_PATH/$DIR_RESTORE"
+      if [ -d "$BACKUP_SUBDIR" ]; then
+        cp -r "$BACKUP_SUBDIR" "$HYPR_DIR/"
+        echo "${OK} - Restored directory: ${MAGENTA}$DIR_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
+      fi
+    done
 
-  # Restore files automatically
-  FILE_B=("monitors.conf" "workspaces.conf")
-  for FILE_RESTORE in "${FILE_B[@]}"; do
-    BACKUP_FILE="$BACKUP_HYPR_PATH/$FILE_RESTORE"
+    # Restore files automatically
+    FILE_B=("monitors.conf" "workspaces.conf")
+    for FILE_RESTORE in "${FILE_B[@]}"; do
+      BACKUP_FILE="$BACKUP_HYPR_PATH/$FILE_RESTORE"
 
-    if [ -f "$BACKUP_FILE" ]; then
-      cp "$BACKUP_FILE" "$HYPR_DIR/$FILE_RESTORE"
-      echo "${OK} - Restored file: ${MAGENTA}$FILE_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
-    fi
-  done
+      if [ -f "$BACKUP_FILE" ]; then
+        cp "$BACKUP_FILE" "$HYPR_DIR/$FILE_RESTORE"
+        echo "${OK} - Restored file: ${MAGENTA}$FILE_RESTORE${RESET}" 2>&1 | tee -a "$LOG"
+      fi
+    done
+  fi
 fi
 
 printf "\n%.0s" {1..1}
@@ -935,7 +1002,11 @@ if [ -z "$BACKUP_DIR" ]; then
   exit 1
 fi
 
-if [ -d "$BACKUP_DIR_PATH" ]; then
+if [ -d "$BACKUP_DIR_PATH" ] && [ "$EXPRESS_MODE" -eq 1 ]; then
+  echo "${NOTE} Express mode: skipping UserConfigs restoration prompts." 2>&1 | tee -a "$LOG"
+fi
+
+if [ -d "$BACKUP_DIR_PATH" ] && [ "$EXPRESS_MODE" -eq 0 ]; then
   # Detect version
   VERSION_FILE=$(find "$DIRPATH" -maxdepth 1 -name "v*.*.*" | head -n 1)
   CURRENT_VERSION="999.9.9"
@@ -1033,7 +1104,11 @@ SCRIPTS_TO_RESTORE=(
 DIRSHPATH="$HOME/.config/$DIRSH"
 BACKUP_DIR_PATH_S="$DIRSHPATH-backup-$BACKUP_DIR/UserScripts"
 
-if [ -d "$BACKUP_DIR_PATH_S" ]; then
+if [ -d "$BACKUP_DIR_PATH_S" ] && [ "$EXPRESS_MODE" -eq 1 ]; then
+  echo "${NOTE} Express mode: skipping UserScripts restoration prompts." 2>&1 | tee -a "$LOG"
+fi
+
+if [ -d "$BACKUP_DIR_PATH_S" ] && [ "$EXPRESS_MODE" -eq 0 ]; then
   echo -e "${NOTE} Restoring previous ${MAGENTA}User-Scripts${RESET}..."
 
   for SCRIPT_NAME in "${SCRIPTS_TO_RESTORE[@]}"; do
@@ -1070,7 +1145,11 @@ DIRPATH="$HOME/.config/$DIR_H"
 BACKUP_DIR=$(get_backup_dirname)
 BACKUP_DIR_PATH_F="$DIRPATH-backup-$BACKUP_DIR"
 
-if [ -d "$BACKUP_DIR_PATH_F" ]; then
+if [ -d "$BACKUP_DIR_PATH_F" ] && [ "$EXPRESS_MODE" -eq 1 ]; then
+  echo "${NOTE} Express mode: skipping individual hypr file restoration prompts." 2>&1 | tee -a "$LOG"
+fi
+
+if [ -d "$BACKUP_DIR_PATH_F" ] && [ "$EXPRESS_MODE" -eq 0 ]; then
   echo -e "${NOTE} Restoring some files in ${MAGENTA}$HOME/.config/hypr directory${RESET}..."
 
   for FILE_RESTORE in "${FILES_2_RESTORE[@]}"; do
@@ -1158,7 +1237,9 @@ printf "\n%.0s" {1..1}
 
 # for SDDM (simple_sddm_2)
 sddm_simple_sddm_2="/usr/share/sddm/themes/simple_sddm_2"
-if [ -d "$sddm_simple_sddm_2" ]; then
+if [ -d "$sddm_simple_sddm_2" ] && [ "$EXPRESS_MODE" -eq 1 ]; then
+  echo "${NOTE} Express mode: skipping SDDM wallpaper prompt." 2>&1 | tee -a "$LOG"
+elif [ -d "$sddm_simple_sddm_2" ]; then
   while true; do
     echo -n "${CAT} SDDM simple_sddm_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
     read SDDM_WALL
@@ -1188,46 +1269,51 @@ fi
 printf "\n%.0s" {1..1}
 echo "${MAGENTA}By default only a few wallpapers are copied${RESET}..."
 
-while true; do
-  echo "${NOTE} A number of these wallpapers are AI generated or enhanced. Select (N/n) if this is an issue for you. "
-  echo -n "${CAT} Would you like to download additional wallpapers? ${WARN} This is 1GB in size (y/n): "
-  read WALL
+if [ "$EXPRESS_MODE" -eq 1 ]; then
+  echo "${NOTE} Express mode: skipping additional wallpaper download prompt." 2>&1 | tee -a "$LOG"
+else
+  while true; do
+    echo "${NOTE} A number of these wallpapers are AI generated or enhanced. Select (N/n) if this is an issue for you. "
+    echo -n "${CAT} Would you like to download additional wallpapers? ${WARN} This is 1GB in size (y/n): "
+    read WALL
 
-  case $WALL in
-  [Yy])
-    echo "${NOTE} Downloading additional wallpapers..."
-    if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
-      echo "${OK} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
+    case $WALL in
+    [Yy])
+      echo "${NOTE} Downloading additional wallpapers..."
+      if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
+        echo "${OK} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
-      # Check if wallpapers directory exists and create it if not
-      if [ ! -d "$PICTURES_DIR/wallpapers" ]; then
-        mkdir -p "$PICTURES_DIR/wallpapers"
-        echo "${OK} Created wallpapers directory." 2>&1 | tee -a "$LOG"
-      fi
+        # Check if wallpapers directory exists and create it if not
+        if [ ! -d "$PICTURES_DIR/wallpapers" ]; then
+          mkdir -p "$PICTURES_DIR/wallpapers"
+          echo "${OK} Created wallpapers directory." 2>&1 | tee -a "$LOG"
+        fi
 
-      if cp -R Wallpaper-Bank/wallpapers/* "$PICTURES_DIR/wallpapers/" >>"$LOG" 2>&1; then
-        echo "${OK} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
-        rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
-        break
+        if cp -R Wallpaper-Bank/wallpapers/* "$PICTURES_DIR/wallpapers/" >>"$LOG" 2>&1; then
+          echo "${OK} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
+          rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
+          break
+        else
+          echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
+        fi
       else
-        echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
+        echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
       fi
-    else
-      echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
-    fi
-    ;;
-  [Nn])
-    echo "${NOTE} You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
-    break
-    ;;
-  *)
-    echo "Please enter 'y' or 'n' to proceed."
-    ;;
-  esac
-done
+      ;;
+    [Nn])
+      echo "${NOTE} You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
+      break
+      ;;
+    *)
+      echo "Please enter 'y' or 'n' to proceed."
+      ;;
+    esac
+  done
+fi
 
 # CLeaning up of ~/.config/ backups
 cleanup_backups() {
+  local mode="${1:-prompt}"
   CONFIG_DIR="$HOME/.config"
   BACKUP_PREFIX="-backup"
 
@@ -1245,6 +1331,21 @@ cleanup_backups() {
 
       # If more than one backup found
       if [ ${#BACKUP_DIRS[@]} -gt 1 ]; then
+        if [ "$mode" = "auto" ]; then
+          latest_backup="${BACKUP_DIRS[0]}"
+          for BACKUP in "${BACKUP_DIRS[@]}"; do
+            if [ "$BACKUP" -nt "$latest_backup" ]; then
+              latest_backup="$BACKUP"
+            fi
+          done
+          for BACKUP in "${BACKUP_DIRS[@]}"; do
+            if [ "$BACKUP" != "$latest_backup" ]; then
+              rm -rf "$BACKUP"
+            fi
+          done
+          echo "${INFO} Express mode: trimmed backups for ${YELLOW}${DIR##*/}${RESET}, keeping ${MAGENTA}${latest_backup##*/}${RESET}." 2>&1 | tee -a "$LOG"
+          continue
+        fi
         printf "\n%.0s" {1..2}
         echo -e "${INFO} Found ${MAGENTA}multiple backups${RESET} for: ${YELLOW}${DIR##*/}${RESET}"
         echo "${YELLOW}Backups: ${RESET}"
@@ -1279,7 +1380,11 @@ cleanup_backups() {
   done
 }
 # Execute the cleanup function
-cleanup_backups
+if [ "$EXPRESS_MODE" -eq 1 ]; then
+  cleanup_backups auto
+else
+  cleanup_backups prompt
+fi
 
 # Check if ~/.config/waybar/style.css does not exist or is a symlink
 if [ ! -e "$HOME/.config/waybar/style.css" ] || [ -L "$HOME/.config/waybar/style.css" ]; then
