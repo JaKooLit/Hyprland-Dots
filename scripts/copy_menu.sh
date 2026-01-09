@@ -26,25 +26,53 @@ show_copy_menu() {
   local choice=""
 
   if command -v whiptail >/dev/null 2>&1; then
-    local hi_install="\\Z2I\\Zn$install_body"
-    local hi_upgrade="\\Z6U\\Zn$upgrade_body"
-    local hi_quit="\\Z1Q\\Zn$quit_body"
-    local hi_express="\\Z5E\\Zn$express_body"
+    local supports_colors=0
+    if whiptail --help 2>&1 | grep -q -- '--colors'; then
+      supports_colors=1
+    fi
 
-    choice=$(whiptail --title "$menu_title" --colors --menu "$prompt\n$info_line" 18 70 8 \
-      "$install_tag" "$hi_install" \
-      "$upgrade_tag" "$hi_upgrade" \
-      "$quit_tag" "$hi_quit" \
-      "$express_tag" "$hi_express" 3>&1 1>&2 2>&3) || {
-      COPY_MENU_CHOICE="quit"
-      return 1
-    }
+    local desc_install="I$install_body"
+    local desc_upgrade="U$upgrade_body"
+    local desc_quit="Q$quit_body"
+    local desc_express="E$express_body"
+
+    if [ "$supports_colors" -eq 1 ]; then
+      desc_install="\\Z2I\\Zn$install_body"
+      desc_upgrade="\\Z6U\\Zn$upgrade_body"
+      desc_quit="\\Z1Q\\Zn$quit_body"
+      desc_express="\\Z5E\\Zn$express_body"
+    fi
+
+    if [ "$supports_colors" -eq 1 ]; then
+      if ! choice=$(whiptail --title "$menu_title" --colors --menu "$prompt\n$info_line" 18 70 8 \
+        "$install_tag" "$desc_install" \
+        "$upgrade_tag" "$desc_upgrade" \
+        "$quit_tag" "$desc_quit" \
+        "$express_tag" "$desc_express" 3>&1 1>&2 2>&3); then
+        COPY_MENU_CHOICE="quit"
+        return 1
+      fi
+    else
+      if ! choice=$(whiptail --title "$menu_title" --menu "$prompt\n$info_line" 18 70 8 \
+        "$install_tag" "$desc_install" \
+        "$upgrade_tag" "$desc_upgrade" \
+        "$quit_tag" "$desc_quit" \
+        "$express_tag" "$desc_express" 3>&1 1>&2 2>&3); then
+        COPY_MENU_CHOICE="quit"
+        return 1
+      fi
+    fi
   else
-    local c_green="$(tput setaf 2 2>/dev/null || printf '')"
-    local c_cyan="$(tput setaf 6 2>/dev/null || printf '')"
-    local c_red="$(tput setaf 1 2>/dev/null || printf '')"
-    local c_magenta="$(tput setaf 5 2>/dev/null || printf '')"
-    local c_reset="$(tput sgr0 2>/dev/null || printf '')"
+    local c_green
+    c_green="$(tput setaf 2 2>/dev/null || printf '')"
+    local c_cyan
+    c_cyan="$(tput setaf 6 2>/dev/null || printf '')"
+    local c_red
+    c_red="$(tput setaf 1 2>/dev/null || printf '')"
+    local c_magenta
+    c_magenta="$(tput setaf 5 2>/dev/null || printf '')"
+    local c_reset
+    c_reset="$(tput sgr0 2>/dev/null || printf '')"
     while true; do
       printf "\n%s\n" "$menu_title"
       printf "%s\n" "$prompt"
@@ -65,5 +93,6 @@ show_copy_menu() {
     done
   fi
 
-COPY_MENU_CHOICE="$choice"
+  # shellcheck disable=SC2034  # used by parent script after sourcing this file
+  COPY_MENU_CHOICE="$choice"
 }
