@@ -17,7 +17,7 @@ show_copy_menu() {
   local install_body="nstall - Fresh copy"
   local upgrade_body="pgrade - Backups + prompts"
   local quit_body="uit - Exit without changes"
-  local express_body="xpress - Fast upgrade\n           skips restores + SDDM + wallpapers"
+  local express_body="xpress - Quick upgrade (skips restores + SDDM + walls)"
   if [ "$express_supported" -ne 1 ]; then
     express_body="xpress - Requires dots >= ${MIN_EXPRESS_VERSION}"
   fi
@@ -77,8 +77,7 @@ show_copy_menu() {
       printf "%s\n" "$prompt"
       printf "  1) %s%s%s%s\n" "$c_green" "I" "$c_reset" "$install_body"
       printf "  2) %s%s%s%s\n" "$c_cyan" "U" "$c_reset" "$upgrade_body"
-      printf "  3) %s%s%s%s\n" "$c_magenta" "E" "$c_reset" "xpress - Fast upgrade"
-      printf "     %s\n" "           skips restores + SDDM + wallpapers"
+      printf "  3) %s%s%s%s\n" "$c_magenta" "E" "$c_reset" "$express_body"
       printf "  4) %s%s%s%s\n" "$c_red" "Q" "$c_reset" "$quit_body"
       printf "     Express skips restores, SDDM wallpaper, and wallpaper downloads.\n"
       printf "Enter choice [1-4]: "
