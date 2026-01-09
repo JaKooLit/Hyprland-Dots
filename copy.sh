@@ -106,7 +106,8 @@ if [ -z "$RUN_MODE" ]; then
   if declare -f show_copy_menu >/dev/null 2>&1; then
     while [ -z "$RUN_MODE" ]; do
       show_copy_menu "$EXPRESS_SUPPORTED"
-      case "$COPY_MENU_CHOICE" in
+      choice_lower=$(echo "$COPY_MENU_CHOICE" | tr '[:upper:]' '[:lower:]')
+      case "$choice_lower" in
       install)
         RUN_MODE="install"
         UPGRADE_MODE=0
