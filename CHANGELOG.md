@@ -16,6 +16,9 @@
   - `RofiSearch.sh` verifies that `jq` is available, captures the user’s query explicitly, URL-encodes it via `jq` `@uri`,
     - opens the configured search engine with the encoded query instead of dropping the term.
   - `Sounds.sh` now tries `pw-play`, then `paplay`, then `aplay`, emitting a clear error if none are installed, so the script no longer calls the non-existent pa-play.
+  - `Tak0-Per-Window-Switch.sh` now records the listener PID in `~/.cache/kb_layout_per_window.listener.pid` and reuses it if still running, preventing multiple background listeners, and reports missing Hyprland sockets without exiting the main script.
+  - `WaybarScripts.sh` adds a `launch_files()` helper that checks `$files` before execution; if unset, it shows a notification instead of running an empty command.
+  - `sddm_wallpaper.sh` validates `~/.config/rofi/wallust/colors-rofi.rasi` before use, extracts colors via a helper, and aborts with a notification if any required colors are missing.
 
 - 2026-01-06
   - Added Global Theme Changer.
