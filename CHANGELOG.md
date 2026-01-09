@@ -6,6 +6,16 @@
 - Fixed: MPRIS artwork in Sway notification center only 10 pixels
   - Adjusted to 96 pixels
   - Thank you @godlyfas for fixing this
+- Fixing scripts
+  - `TouchPad.sh` never expands `$TOUCHPAD_ENABLED` (and doesn’t source the file that defines it)
+  - `Volume.sh` has multiple microphone-control bugs (bad `pamixer` arguments, typoed function name, invalid notification payloads) that break mic toggling and volume feedback.
+  - `DarkLight.sh` wipes the Qt theme paths each run because the `qt5ct/qt6ct` palette variables are commented out.
+  - `KooLsDotsUpdate.sh` contains a malformed `notify-send` string that crashes the script when no local version is detected.
+  - `Distro_update.sh` runs `sudo apt upgrade` outside the kitty window, so the Debian/Ubuntu flow never finishes inside the terminal.
+  - `Hypridle.sh` now launches `hypridle` in the background (`& disown`) when enabling the daemon, preventing the toggle command from hanging Waybar.
+  - `RofiSearch.sh` verifies that `jq` is available, captures the user’s query explicitly, URL-encodes it via `jq` `@uri`,
+    - opens the configured search engine with the encoded query instead of dropping the term.
+  - `Sounds.sh` now tries `pw-play`, then `paplay`, then `aplay`, emitting a clear error if none are installed, so the script no longer calls the non-existent pa-play.
 
 - 2026-01-06
   - Added Global Theme Changer.
