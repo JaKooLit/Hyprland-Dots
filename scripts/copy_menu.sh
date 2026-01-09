@@ -17,7 +17,7 @@ show_copy_menu() {
   local install_body="nstall - Fresh copy"
   local upgrade_body="pgrade - Backups + prompts"
   local quit_body="uit - Exit without changes"
-  local express_body="xpress - Quick upgrade (skips restores + SDDM + walls)"
+  local express_body="xpress upgrade - skips restores & wallpapers"
   if [ "$express_supported" -ne 1 ]; then
     express_body="xpress - Requires dots >= ${MIN_EXPRESS_VERSION}"
   fi
