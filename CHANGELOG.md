@@ -5,8 +5,11 @@
 - 2026-01-09
   - Fixed: Keybind parser latency
     - Changed the parsing login to python instead of bash
-    - Also fixed duplicate bindings when you unmap / remap keybinds
+    - Also fixed duplicates when you unmap, then remap keybinds
+      - Ex. Change keybind for `file manger`
+        - Both the old and new keybind were show in keybind menu
   - Added: `--express-update` to `copy.sh`
+    - `./copy.sh --express-update`
     - This will bypass some of the questions
       - Updating SDDM wallpaper
       - Downloading wallpaper from repo
@@ -16,7 +19,8 @@
         - `Rofibeats.sh`
         - etc.
       - Automatically trims the backed up directories leaving just latest backup
-      - This dramatically reduces the time/effort to udpate dotfiles
+      - This dramatically reduces the time/effort to update dotfiles
+        - Most users don't restore these custom files on upgrades
 
 - 2026-01-08
 - Fixed: MPRIS artwork in Sway notification center only 10 pixels
