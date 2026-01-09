@@ -6,6 +6,17 @@
   - Fixed: Keybind parser latency
     - Changed the parsing login to python instead of bash
     - Also fixed duplicate bindings when you unmap / remap keybinds
+  - Added: `--express-update` to `copy.sh`
+    - This will bypass some of the questions
+      - Updating SDDM wallpaper
+      - Downloading wallpaper from repo
+        - Mostly like that was done at install time or previous upgrade
+      - Restoring User configs :
+        - `Weather.sh` and `Weather.sh`
+        - `Rofibeats.sh`
+        - etc.
+      - Automatically trims the backed up directories leaving just latest backup
+      - This dramatically reduces the time/effort to udpate dotfiles
 
 - 2026-01-08
 - Fixed: MPRIS artwork in Sway notification center only 10 pixels
