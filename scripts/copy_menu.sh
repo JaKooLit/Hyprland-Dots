@@ -11,13 +11,13 @@ show_copy_menu() {
 
   local install_tag="Install"
   local upgrade_tag="Upgrade"
-  local quit_tag="Quit"
   local express_tag="Express"
+  local quit_tag="Quit"
 
-  local install_body="Fresh copy"
-  local upgrade_body="Backups + prompts"
-  local quit_body="Exit without changes"
-  local express_body="Upgrade - skips restores & wallpapers"
+  local install_desc="Fresh copy"
+  local upgrade_desc="Backups + prompts"
+  local express_desc="Skips restores & wallpapers"
+  local quit_desc="Exit without changes"
   if [ "$express_supported" -ne 1 ]; then
     express_body="xpress - Requires dots >= ${MIN_EXPRESS_VERSION}"
   fi
@@ -25,61 +25,22 @@ show_copy_menu() {
   local choice=""
 
   if command -v whiptail >/dev/null 2>&1; then
-    local supports_colors=0
-    if whiptail --help 2>&1 | grep -q -- '--colors'; then
-      supports_colors=1
-    fi
-
-    local desc_install="I - $install_body"
-    local desc_upgrade="U - $upgrade_body"
-    local desc_quit="Q - $quit_body"
-    local desc_express="E - $express_body"
-
-    if [ "$supports_colors" -eq 1 ]; then
-      desc_install="\\Z2I\\Zn - $install_body"
-      desc_upgrade="\\Z6U\\Zn - $upgrade_body"
-      desc_quit="\\Z1Q\\Zn - $quit_body"
-      desc_express="\\Z5E\\Zn - $express_body"
-    fi
-
-    if [ "$supports_colors" -eq 1 ]; then
-      if ! choice=$(whiptail --title "$menu_title" --colors --menu "$prompt" 17 60 8 \
-        "$install_tag" "$desc_install" \
-        "$upgrade_tag" "$desc_upgrade" \
-        "$express_tag" "$desc_express" \
-        "$quit_tag" "$desc_quit" 3>&1 1>&2 2>&3); then
-        COPY_MENU_CHOICE="quit"
-        return 1
-      fi
-    else
-      if ! choice=$(whiptail --title "$menu_title" --menu "$prompt" 17 60 8 \
-        "$install_tag" "$desc_install" \
-        "$upgrade_tag" "$desc_upgrade" \
-        "$express_tag" "$desc_express" \
-        "$quit_tag" "$desc_quit" 3>&1 1>&2 2>&3); then
-        COPY_MENU_CHOICE="quit"
-        return 1
-      fi
+    if ! choice=$(whiptail --title "$menu_title" --menu "$prompt" 17 60 8 \
+      "$install_tag" "$install_desc" \
+      "$upgrade_tag" "$upgrade_desc" \
+      "$express_tag" "$express_desc" \
+      "$quit_tag" "$quit_desc" 3>&1 1>&2 2>&3); then
+      COPY_MENU_CHOICE="quit"
+      return 1
     fi
   else
-    local c_green
-    c_green="$(tput setaf 2 2>/dev/null || printf '')"
-    local c_cyan
-    c_cyan="$(tput setaf 6 2>/dev/null || printf '')"
-    local c_red
-    c_red="$(tput setaf 1 2>/dev/null || printf '')"
-    local c_magenta
-    c_magenta="$(tput setaf 5 2>/dev/null || printf '')"
-    local c_reset
-    c_reset="$(tput sgr0 2>/dev/null || printf '')"
     while true; do
       printf "\n%s\n" "$menu_title"
       printf "%s\n" "$prompt"
-      printf "  1) %s%s%s - %s\n" "$c_green" "I" "$c_reset" "$install_body"
-      printf "  2) %s%s%s - %s\n" "$c_cyan" "U" "$c_reset" "$upgrade_body"
-      printf "  3) %s%s%s - %s\n" "$c_magenta" "E" "$c_reset" "$express_body"
-      printf "  4) %s%s%s - %s\n" "$c_red" "Q" "$c_reset" "$quit_body"
-      printf "     Express skips restores, SDDM wallpaper, and wallpaper downloads.\n"
+      printf "  1) Install - %s\n" "$install_desc"
+      printf "  2) Upgrade - %s\n" "$upgrade_desc"
+      printf "  3) Express - %s\n" "$express_desc"
+      printf "  4) Quit    - %s\n" "$quit_desc"
       printf "Enter choice [1-4]: "
       read -r text_choice
       case "$text_choice" in
