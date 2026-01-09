@@ -10,6 +10,27 @@ passed_path="${1:-}"
 cache_dir="$HOME/.cache/swww/"
 rofi_link="$HOME/.config/rofi/.current_wallpaper"
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
+read_cached_wallpaper() {
+  local cache_file="$1"
+  if [[ -f "$cache_file" ]]; then
+    awk 'NF && $0 !~ /^filter/ {print; exit}' "$cache_file"
+  fi
+}
+
+read_wallpaper_from_query() {
+  local monitor="$1"
+  swww query | awk -v mon="$monitor" '
+    /^Monitor/ {
+      cur=$2
+      gsub(":", "", cur)
+    }
+    /image:/ && cur==mon {
+      sub(/^.*image: /,"")
+      print
+      exit
+    }
+  '
+}
 
 # Helper: get focused monitor name (prefer JSON)
 get_focused_monitor() {
@@ -39,9 +60,11 @@ else
 
   if [[ -f "$cache_file" ]]; then
     # The first non-filter line is the original wallpaper path
-    # wallpaper_path="$(grep -v 'Lanczos3' "$cache_file" | head -n 1)"
-    # wallpaper_path=$(swww query | grep $current_monitor | awk '{print $9}')
-    wallpaper_path=$(swww query | sed 's/.*image: //')
+    wallpaper_path="$(read_cached_wallpaper "$cache_file")"
+  fi
+
+  if [[ -z "$wallpaper_path" ]]; then
+    wallpaper_path="$(read_wallpaper_from_query "$current_monitor")"
   fi
 fi
 

@@ -19,6 +19,12 @@
   - `Tak0-Per-Window-Switch.sh` now records the listener PID in `~/.cache/kb_layout_per_window.listener.pid` and reuses it if still running, preventing multiple background listeners, and reports missing Hyprland sockets without exiting the main script.
   - `WaybarScripts.sh` adds a `launch_files()` helper that checks `$files` before execution; if unset, it shows a notification instead of running an empty command.
   - `sddm_wallpaper.sh` validates `~/.config/rofi/wallust/colors-rofi.rasi` before use, extracts colors via a helper, and aborts with a notification if any required colors are missing.
+  - `WallustSwww.sh` now reads the focused monitor’s cache file (or parses swww query per-monitor) to pick the correct wallpaper path
+    - Eliminating the previous “last line wins” bug on multi-monitor setups.
+  - `PortalHyprland.sh` suppresses harmless killall errors and launches only the first available portal binary in each category (hyprland + general)
+    - Avoiding duplicate processes when both `/usr/lib` and `/usr/libexec` variants exist.
+  - `KillActiveProcess.sh` checks that Hyprland returned a numeric PID before calling kill
+    - Notifies the user when no active window is available instead of throwing kill usage errors.
 
 - 2026-01-06
   - Added Global Theme Changer.
