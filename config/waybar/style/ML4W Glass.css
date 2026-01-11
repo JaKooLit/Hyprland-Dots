@@ -64,8 +64,7 @@ window#waybar {
   margin: 10px;
   box-shadow:
     inset 0 -2px 0 alpha(@accent, 0.45),
-    inset 1px 2px 2px rgba(255, 255, 255, 0.3);
- inset 1px 2px 2px rgba(255, 255, 255, 0.2);
+    inset 1px 2px 2px rgba(255, 255, 255, 0.2);
 }
 
 .modules-right {
@@ -83,7 +82,9 @@ window#waybar {
   opacity: 0.8;
   padding: 0px;
   margin: 10px;
-  box-shadow: inset 1px 2px 2px rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 -2px 0 alpha(@accent, 0.45),
+    inset 1px 2px 2px rgba(255, 255, 255, 0.3);
 }
 
 .modules-center {
