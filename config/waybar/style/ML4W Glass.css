@@ -26,6 +26,12 @@ General
 }
 
 @import "style/ML4W/glass.css";
+/* Override ML4W defaults so wallust doesn't force a red accent.
+ * Using neutral background-derived tones keeps the bar aligned with current palette. */
+@define-color surface       @background-alt;
+@define-color surface_dim   @background;
+@define-color primary       @foreground;
+@define-color on_primary    @background;
 
 window#waybar {
   background: transparent;
