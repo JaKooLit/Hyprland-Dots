@@ -171,10 +171,19 @@ tooltip label {
 
 #window {
   background-color: transparent;
+  /* Override global margin/padding so the window pill hugs the bar edges */
+  margin: 0;
+  padding: 0;
 }
 
 window#waybar.empty #window {
   background-color: transparent;
+}
+
+/* Tighter content padding specifically for the window title */
+#window label {
+  margin: 0;
+  padding: 4px 10px;
 }
 
 /* -----------------------------------------------------
