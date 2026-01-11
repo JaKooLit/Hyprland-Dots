@@ -214,8 +214,11 @@ prompt_rainbow_borders() {
   local log="$1"
   echo "${NOTE} ${SKY_BLUE}By default, Rainbow Borders animation is enabled"
   echo "${WARN} However, this uses a bit more CPU and Memory resources."
-  echo -n "${CAT} Do you want to disable Rainbow Borders animation? (y/N): "
-  read border_choice
+  if ! read -r -p "${CAT} Do you want to disable Rainbow Borders animation? (y/N): " border_choice </dev/tty; then
+    echo "${ERROR} Unable to read input for rainbow borders; leaving as-is." 2>&1 | tee -a "$log"
+    echo "kept"
+    return
+  fi
   if [[ "$border_choice" =~ ^[Yy]$ ]]; then
     mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
     sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh/s/^/#/' config/hypr/configs/Startup_Apps.conf
@@ -243,8 +246,10 @@ prompt_express_upgrade() {
     else
       while true; do
         echo "${NOTE} Express mode skips config restore prompts, SDDM/background questions, and trims old backups."
-        echo -n "${CAT} Do you want to continue with EXPRESS upgrade mode? (y/N): "
-        read express_choice
+        if ! read -r -p "${CAT} Do you want to continue with EXPRESS upgrade mode? (y/N): " express_choice </dev/tty; then
+          echo "${ERROR} Unable to read input for express choice; defaulting to standard prompts." 2>&1 | tee -a "$log"
+          break
+        fi
         case "$express_choice" in
           [Yy])
             EXPRESS_MODE=1
