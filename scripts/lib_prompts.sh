@@ -111,6 +111,7 @@ ${MAGENTA} NOTE:${RESET}
 prompt_resolution_choice() {
   local choice
   while true; do
+    echo "${INFO:-[INFO]} Resolution selection required (1 = <1440p, 2 = ≥1440p)"
     echo "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured for 1440p or 2k."
     echo "${WARN} If you dont select proper resolution, Hyprlock will look FUNKY!"
     echo "${INFO} If you are not sure what is your resolution, choose 1 here!"
