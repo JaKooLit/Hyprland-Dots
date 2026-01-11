@@ -1,5 +1,31 @@
 #!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
+# Purpose:
+#   Orchestrates copying/upgrading JaKooLit's Hyprland dotfiles into ~/.config.
+#   Handles interactive prompts, backups/restores, per-app tweaks, and express mode.
+#
+# Layout (high-level; future modularization targets):
+#   - Constants/colors, helper sourcing (copy_menu.sh).
+#   - Version helpers and CLI parsing (install/upgrade/express).
+#   - Safety checks (non-root), banners/notices.
+#   - Environment/distro checks and warnings.
+#   - GPU/VM/NixOS detection tweaks.
+#   - Input prompts (keyboard, resolution, clock format, animations).
+#   - Workflow selection effects (express vs standard).
+#   - Backup/restore helpers (inline today; planned to move to scripts/lib_backup.sh).
+#   - Copy phases:
+#       * Part 1: fastfetch/kitty/rofi/swaync (prompted replace).
+#       * Waybar special handling (symlinks, configs/styles restore).
+#       * Part 2: other configs (btop, cava, hypr, etc.).
+#       * App-specific installs (ghostty, wezterm, ags, quickshell).
+#   - UserConfigs/UserScripts and hypr file restores.
+#   - Wallpaper handling (default + optional 1GB pack).
+#   - Backup cleanup (auto in express).
+#   - Final symlinks (waybar) and wallust init.
+#
+# Next modular step:
+#   Extract backup/restore/cleanup functions into scripts/lib_backup.sh
+#   and source them similar to scripts/copy_menu.sh.
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
@@ -25,9 +51,17 @@ RESET="$(tput sgr0)"
 MIN_EXPRESS_VERSION="2.3.18"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MENU_HELPER="$SCRIPT_DIR/scripts/copy_menu.sh"
+BACKUP_HELPER="$SCRIPT_DIR/scripts/lib_backup.sh"
 if [ -f "$MENU_HELPER" ]; then
   # shellcheck source=./scripts/copy_menu.sh
   . "$MENU_HELPER"
+fi
+if [ -f "$BACKUP_HELPER" ]; then
+  # shellcheck source=./scripts/lib_backup.sh
+  . "$BACKUP_HELPER"
+else
+  echo "${ERROR} Backup helper not found at $BACKUP_HELPER. Exiting."
+  exit 1
 fi
 
 version_gte() {
@@ -646,13 +680,6 @@ if [ "$UPGRADE_MODE" -eq 1 ] && [ "$EXPRESS_MODE" -eq 0 ]; then
 fi
 
 set -e
-
-# Function to create a unique backup directory name with month, day, hours, and minutes
-get_backup_dirname() {
-  local timestamp
-  timestamp=$(date +"%m%d_%H%M")
-  echo "back-up_${timestamp}"
-}
 
 # Check if the ~/.config/ directory exists
 if [ ! -d "$HOME/.config" ]; then
@@ -1395,79 +1422,11 @@ else
   done
 fi
 
-# CLeaning up of ~/.config/ backups
-cleanup_backups() {
-  local mode="${1:-prompt}"
-  CONFIG_DIR="$HOME/.config"
-  BACKUP_PREFIX="-backup"
-
-  # Loop through directories in $HOME/.config
-  for DIR in "$CONFIG_DIR"/*; do
-    if [ -d "$DIR" ]; then
-      BACKUP_DIRS=()
-
-      # Check for backup directories
-      for BACKUP in "$DIR"$BACKUP_PREFIX*; do
-        if [ -d "$BACKUP" ]; then
-          BACKUP_DIRS+=("$BACKUP")
-        fi
-      done
-
-      # If more than one backup found
-      if [ ${#BACKUP_DIRS[@]} -gt 1 ]; then
-        if [ "$mode" = "auto" ]; then
-          latest_backup="${BACKUP_DIRS[0]}"
-          for BACKUP in "${BACKUP_DIRS[@]}"; do
-            if [ "$BACKUP" -nt "$latest_backup" ]; then
-              latest_backup="$BACKUP"
-            fi
-          done
-          for BACKUP in "${BACKUP_DIRS[@]}"; do
-            if [ "$BACKUP" != "$latest_backup" ]; then
-              rm -rf "$BACKUP"
-            fi
-          done
-          echo "${INFO} Express mode: trimmed backups for ${YELLOW}${DIR##*/}${RESET}, keeping ${MAGENTA}${latest_backup##*/}${RESET}." 2>&1 | tee -a "$LOG"
-          continue
-        fi
-        printf "\n%.0s" {1..2}
-        echo -e "${INFO} Found ${MAGENTA}multiple backups${RESET} for: ${YELLOW}${DIR##*/}${RESET}"
-        echo "${YELLOW}Backups: ${RESET}"
-
-        # List the backups
-        for BACKUP in "${BACKUP_DIRS[@]}"; do
-          echo "  - ${BACKUP##*/}"
-        done
-
-        echo -n "${CAT} Do you want to delete the older backups of ${YELLOW}${DIR##*/}${RESET} and keep the latest backup only? (y/N): "
-        read back_choice
-
-        if [[ "$back_choice" == [Yy]* ]]; then
-          # Sort backups by modification time
-          latest_backup="${BACKUP_DIRS[0]}"
-          for BACKUP in "${BACKUP_DIRS[@]}"; do
-            if [ "$BACKUP" -nt "$latest_backup" ]; then
-              latest_backup="$BACKUP"
-            fi
-          done
-
-          for BACKUP in "${BACKUP_DIRS[@]}"; do
-            if [ "$BACKUP" != "$latest_backup" ]; then
-              echo "Deleting: ${BACKUP##*/}"
-              rm -rf "$BACKUP"
-            fi
-          done
-          echo "Old backups of ${YELLOW}${DIR##*/}${RESET} deleted, keeping: ${MAGENTA}${latest_backup##*/}${RESET}"
-        fi
-      fi
-    fi
-  done
-}
 # Execute the cleanup function
 if [ "$EXPRESS_MODE" -eq 1 ]; then
-  cleanup_backups auto
+  cleanup_backups auto "$LOG"
 else
-  cleanup_backups prompt
+  cleanup_backups prompt "$LOG"
 fi
 
 # Check if ~/.config/waybar/style.css does not exist or is a symlink
