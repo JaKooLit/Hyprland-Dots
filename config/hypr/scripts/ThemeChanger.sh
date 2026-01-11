@@ -50,6 +50,7 @@ if wallust theme -- "${choice}"; then
     "$HOME/.config/waybar/wallust/colors-waybar.css"
     "$HOME/.config/rofi/wallust/colors-rofi.rasi"
     "$HOME/.config/kitty/kitty-themes/01-Wallust.conf"
+    "$HOME/.config/hypr/wallust/wallust-hyprland.conf"
     "$HOME/.config/ghostty/wallust.conf"
   )
 
@@ -109,6 +110,11 @@ if wallust theme -- "${choice}"; then
       sed -i -E "s|^(\s*selected-active-foreground:\s*).*$|\1#000000;|" "$rofi_colors"
       sed -i -E "s|^(\s*selected-urgent-foreground:\s*).*$|\1#000000;|" "$rofi_colors"
     fi
+  fi
+
+  # Reload Hyprland so new border colors from wallust-hyprland.conf take effect
+  if command -v hyprctl >/dev/null 2>&1; then
+    hyprctl reload >/dev/null 2>&1 || true
   fi
 
   # Refresh bars/menus after files are ready
