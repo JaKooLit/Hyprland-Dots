@@ -52,6 +52,7 @@ MIN_EXPRESS_VERSION="2.3.18"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MENU_HELPER="$SCRIPT_DIR/scripts/copy_menu.sh"
 BACKUP_HELPER="$SCRIPT_DIR/scripts/lib_backup.sh"
+DETECT_HELPER="$SCRIPT_DIR/scripts/lib_detect.sh"
 if [ -f "$MENU_HELPER" ]; then
   # shellcheck source=./scripts/copy_menu.sh
   . "$MENU_HELPER"
@@ -61,6 +62,13 @@ if [ -f "$BACKUP_HELPER" ]; then
   . "$BACKUP_HELPER"
 else
   echo "${ERROR} Backup helper not found at $BACKUP_HELPER. Exiting."
+  exit 1
+fi
+if [ -f "$DETECT_HELPER" ]; then
+  # shellcheck source=./scripts/lib_detect.sh
+  . "$DETECT_HELPER"
+else
+  echo "${ERROR} Detect helper not found at $DETECT_HELPER. Exiting."
   exit 1
 fi
 
@@ -246,42 +254,9 @@ if [ "$EXPRESS_MODE" -eq 1 ]; then
   echo "${INFO} Express mode enabled. Optional restore prompts will be skipped." 2>&1 | tee -a "$LOG"
 fi
 
-# setting up for NVIDIA
-if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-  echo "${INFO} Nvidia GPU detected. Setting up proper env's and configs" 2>&1 | tee -a "$LOG" || true
-  sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/configs/ENVariables.conf
-  sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/configs/ENVariables.conf
-  sed -i '/env = NVD_BACKEND,direct/s/^#//' config/hypr/configs/ENVariables.conf
-  sed -i '/env = GSK_RENDERER,ngl/s/^#//' config/hypr/configs/ENVariables.conf
-
-  # no hardware cursors if nvidia detected
-  sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1 1/' config/hypr/configs/SystemSettings.conf
-fi
-
-# uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
-if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "${INFO} System is running in a virtual machine. Setting up proper env's and configs" 2>&1 | tee -a "$LOG" || true
-  sed -i 's/^\([[:space:]]*no_hardware_cursors[[:space:]]*=[[:space:]]*\)2/\1 1/' config/hypr/configs/SystemSettings.conf
-  # enabling proper ENV's for Virtual Environment which should help
-  sed -i '/env = WLR_RENDERER_ALLOW_SOFTWARE,1/s/^#//' config/hypr/configs/ENVariables.conf
-  sed -i '/monitor = Virtual-1, 1920x1080@60,auto,1/s/^#//' config/hypr/monitors.conf
-fi
-
-# Proper Polkit for NixOS
-if hostnamectl | grep -q 'Operating System: NixOS'; then
-  echo "${INFO} NixOS Distro Detected. Setting up proper env's and configs." 2>&1 | tee -a "$LOG" || true
-  # Ensure NixOS polkit is enabled via overlay and default polkit is disabled via disable list
-  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
-  DISABLE_SA="config/hypr/configs/Startup_Apps.disable"
-  mkdir -p "$(dirname "$OVERLAY_SA")"
-  touch "$OVERLAY_SA" "$DISABLE_SA"
-  if ! grep -qx 'exec-once = $scriptsDir/Polkit-NixOS.sh' "$OVERLAY_SA"; then
-    echo 'exec-once = $scriptsDir/Polkit-NixOS.sh' >>"$OVERLAY_SA"
-  fi
-  if ! grep -qx '\$scriptsDir/Polkit.sh' "$DISABLE_SA"; then
-    echo '$scriptsDir/Polkit.sh' >>"$DISABLE_SA"
-  fi
-fi
+detect_nvidia_adjust "$LOG"
+detect_vm_adjust "$LOG"
+detect_nixos_adjust "$LOG"
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
 if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
@@ -1322,8 +1297,8 @@ chmod +x "$HOME/.config/hypr/UserScripts/"* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"
 
-# Waybar config to symlink & retain based on machine type
-if hostnamectl | grep -q 'Chassis: desktop'; then
+chassis_type=$(detect_waybar_config)
+if [ "$chassis_type" = "desktop" ]; then
   config_file="$waybar_config"
   config_remove=" Laptop"
 else
