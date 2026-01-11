@@ -26,19 +26,6 @@ General
 }
 
 @import "style/ML4W/glass.css";
-/* Override ML4W defaults to a cooler wallust-derived accent (avoid harsh reds). */
-@define-color surface       @color9;
-@define-color surface_dim   @color1;
-@define-color primary       @color6;   /* cooler accent */
-@define-color on_primary    @color15;
-@define-color on_primary_fixed         @color15;
-@define-color on_primary_fixed_variant @color6;
-@define-color secondary     @color4;
-@define-color on_secondary  @color15;
-@define-color on_tertiary_fixed         @color15;
-@define-color on_tertiary_fixed_variant @color10;
-@define-color error         @color3;
-@define-color on_error      @color15;
 
 window#waybar {
   background: transparent;
