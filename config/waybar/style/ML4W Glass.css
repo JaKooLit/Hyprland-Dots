@@ -26,6 +26,19 @@ General
 }
 
 @import "style/ML4W/glass.css";
+/* Soft-neutral override: keeps glass gradients but avoids red-dominant palettes */
+@define-color surface       @background-alt;
+@define-color surface_dim   @background;
+@define-color primary       @foreground;
+@define-color on_primary    @background;
+@define-color on_primary_fixed         @background;
+@define-color on_primary_fixed_variant @foreground;
+@define-color secondary     @foreground;
+@define-color on_secondary  @background;
+@define-color on_tertiary_fixed         @background;
+@define-color on_tertiary_fixed_variant @foreground;
+@define-color error         @foreground;
+@define-color on_error      @background;
 
 window#waybar {
   background: transparent;
