@@ -182,8 +182,11 @@ apply_sddm_12h_format() {
   local log="$2"
   if [ -d "$sddm_directory" ]; then
     echo "Editing ${SKY_BLUE}$sddm_directory${RESET} to 12H format" 2>&1 | tee -a "$log"
-    sudo sed -i 's|^## HourFormat=\"hh:mm AP\"|HourFormat=\"hh:mm AP\"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$log" || true
-    sudo sed -i 's|^HourFormat=\"HH:mm\"|## HourFormat=\"HH:mm\"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$log" || true
+    if ! sudo -n sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$log"; then
+      echo "${WARN:-[WARN]} Skipping SDDM 12H edit (sudo password required)." 2>&1 | tee -a "$log"
+      return
+    fi
+    sudo -n sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$log" || true
   fi
 }
 
@@ -192,9 +195,12 @@ apply_sddm_12h_format_sequoia() {
   local log="$2"
   if [ -d "$sddm_directory" ]; then
     echo "${YELLOW}sddm sequoia_2${RESET} theme exists. Editing to 12H format" 2>&1 | tee -a "$log"
-    sudo sed -i 's|^clockFormat=\"HH:mm\"|## clockFormat=\"HH:mm\"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$log" || true
-    if ! grep -q 'clockFormat=\"hh:mm AP\"' "$sddm_directory/theme.conf"; then
-      sudo sed -i '/^clockFormat=/a clockFormat=\"hh:mm AP\"' "$sddm_directory/theme.conf" 2>&1 | tee -a "$log" || true
+    if ! sudo -n sed -i 's|^clockFormat="HH:mm"|## clockFormat="HH:mm"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$log"; then
+      echo "${WARN:-[WARN]} Skipping sequoia SDDM 12H edit (sudo password required)." 2>&1 | tee -a "$log"
+      return
+    fi
+    if ! grep -q 'clockFormat="hh:mm AP"' "$sddm_directory/theme.conf"; then
+      sudo -n sed -i '/^clockFormat=/a clockFormat="hh:mm AP"' "$sddm_directory/theme.conf" 2>&1 | tee -a "$log" || true
     fi
     echo "${OK} 12H format set to SDDM successfully." 2>&1 | tee -a "$log"
   fi
