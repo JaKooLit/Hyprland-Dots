@@ -111,13 +111,9 @@ ${MAGENTA} NOTE:${RESET}
 prompt_resolution_choice() {
   local choice
   while true; do
-    echo "${INFO:-[INFO]} Resolution selection required (1 = <1440p, 2 = ≥1440p)"
-    echo "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured for 1440p or 2k."
-    echo "${WARN} If you dont select proper resolution, Hyprlock will look FUNKY!"
-    echo "${INFO} If you are not sure what is your resolution, choose 1 here!"
-    echo "${MAGENTA}Select monitor resolution to properly configure appearance and fonts:"
-    echo "$YELLOW  -- Enter 1. for monitor resolution less than 1440p (< 1440p)"
-    echo "$YELLOW  -- Enter 2. for monitor resolution equal to or higher than 1440p (≥ 1440p)"
+    echo "${INFO:-[INFO]} Select monitor resolution for scaling:"
+    echo "  1) < 1440p   (lower DPI; smaller displays)"
+    echo "  2) ≥ 1440p   (default; 1440p/2k/4k)"
 
     read -r -p "${CAT} Enter the number of your choice (1 or 2): " choice
     case "$choice" in
