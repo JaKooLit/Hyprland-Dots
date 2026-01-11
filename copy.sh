@@ -360,7 +360,6 @@ if [[ "$EDITOR_SET" -eq 0 ]] && command -v vim &>/dev/null; then
 fi
 
 printf "\n"
-echo "${INFO} Awaiting monitor resolution selection (1=<1440p, 2=≥1440p)..." 2>&1 | tee -a "$LOG"
 resolution=$(prompt_resolution_choice)
 echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 if [ "$resolution" == "< 1440p" ]; then

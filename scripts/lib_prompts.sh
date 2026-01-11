@@ -119,9 +119,8 @@ prompt_resolution_choice() {
     echo "$YELLOW  -- Enter 1. for monitor resolution less than 1440p (< 1440p)"
     echo "$YELLOW  -- Enter 2. for monitor resolution equal to or higher than 1440p (≥ 1440p)"
 
-    echo -n "$CAT Enter the number of your choice (1 or 2): "
-    read choice
-    case $choice in
+    read -r -p "${CAT} Enter the number of your choice (1 or 2): " choice
+    case "$choice" in
       1) echo "< 1440p"; return ;;
       2) echo "≥ 1440p"; return ;;
       *) echo "${ERROR} Invalid choice. Please enter 1 for < 1440p or 2 for ≥ 1440p." ;;
