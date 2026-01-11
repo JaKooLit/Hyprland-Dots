@@ -360,7 +360,19 @@ if [[ "$EDITOR_SET" -eq 0 ]] && command -v vim &>/dev/null; then
 fi
 
 printf "\n"
-resolution=$(prompt_resolution_choice)
+resolution=""
+while true; do
+  echo "${INFO} Select monitor resolution for scaling:"
+  echo "  1) < 1440p   (lower DPI; smaller displays)"
+  echo "  2) ≥ 1440p   (default; 1440p/2k/4k)"
+  echo -n "${CAT} Enter the number of your choice (1 or 2): "
+  read -r choice
+  case "$choice" in
+    1) resolution="< 1440p"; break ;;
+    2) resolution="≥ 1440p"; break ;;
+    *) echo "${ERROR} Invalid choice. Please enter 1 or 2.";;
+  esac
+done
 echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 if [ "$resolution" == "< 1440p" ]; then
   # kitty font size
