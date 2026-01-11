@@ -162,10 +162,13 @@ prompt_clock_12h() {
         echo "${WARN} hyprlock template not found; skipping 12H lock format edits" 2>&1 | tee -a "$log"
       fi
 
-      # SDDM themes
-      apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm" "$log"
-      apply_sddm_12h_format "/usr/share/sddm/themes/simple_sddm_2" "$log"
-      apply_sddm_12h_format_sequoia "/usr/share/sddm/themes/sequoia_2" "$log"
+      if [ "${EXPRESS_MODE:-0}" -eq 0 ]; then
+        apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm" "$log"
+        apply_sddm_12h_format "/usr/share/sddm/themes/simple_sddm_2" "$log"
+        apply_sddm_12h_format_sequoia "/usr/share/sddm/themes/sequoia_2" "$log"
+      else
+        echo "${NOTE:-[NOTE]} Express mode: skipping SDDM 12H edits to avoid sudo prompts." 2>&1 | tee -a "$log"
+      fi
       echo "${OK} 12H format set on waybar clocks succesfully." 2>&1 | tee -a "$log"
       return
     elif [[ "$answer" == "n" ]]; then
