@@ -2,6 +2,15 @@
 
 ## v2.3.19
 
+- 2026-01-11
+  - Improved `ML4W Glass` theme
+    - Now has proper 3d gradient look
+    - Theme based nightlight color
+  - `copy.sh` is now more modular
+    - Helper scripts in `scripts` dir per function
+    - Making `copy.sh` smaller (1200 lines to 800 so far)
+    - Easier to maintain going forward
+
 - 2026-01-09
   - Fixed: Keybind parser latency
     - Changed the parsing login to python instead of bash
