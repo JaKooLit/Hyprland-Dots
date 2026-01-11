@@ -5,7 +5,7 @@
 #   Handles interactive prompts, backups/restores, per-app tweaks, and express mode.
 #
 # Layout (high-level; future modularization targets):
-#   - Constants/colors, helper sourcing (copy_menu.sh, lib_backup.sh, lib_detect.sh, lib_prompts.sh, lib_apps.sh).
+#   - Constants/colors, helper sourcing (copy_menu.sh, lib_backup.sh, lib_detect.sh, lib_prompts.sh, lib_apps.sh, lib_copy.sh).
 #   - Version helpers and CLI parsing (install/upgrade/express).
 #   - Safety checks (non-root), banners/notices.
 #   - Environment/distro checks and warnings.
@@ -14,19 +14,18 @@
 #   - Workflow selection effects (express vs standard).
 #   - Backup/restore helpers (in scripts/lib_backup.sh).
 #   - App enablement/editor selection (lib_apps.sh).
-#   - Copy phases:
+#   - Copy phases (lib_copy.sh):
 #       * Part 1: fastfetch/kitty/rofi/swaync (prompted replace).
 #       * Waybar special handling (symlinks, configs/styles restore).
-#       * Part 2: other configs (btop, cava, hypr, etc.).
-#       * App-specific installs (ghostty, wezterm, ags, quickshell).
+#       * Part 2: other configs (btop, cava, hypr, etc.) + ghostty/wezterm installs.
 #   - UserConfigs/UserScripts and hypr file restores.
 #   - Wallpaper handling (default + optional 1GB pack).
 #   - Backup cleanup (auto in express).
 #   - Final symlinks (waybar) and wallust init.
 #
 # Next modular step:
-#   Split copy phases into dedicated helpers (phase1, waybar, phase2) and consider
-#   moving ghostty/wezterm install logic into lib_apps.sh.
+#   Move ghostty/wezterm install logic into lib_apps.sh (optional) and consider
+#   breaking user restore logic into helpers for clarity.
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
@@ -56,6 +55,7 @@ BACKUP_HELPER="$SCRIPT_DIR/scripts/lib_backup.sh"
 DETECT_HELPER="$SCRIPT_DIR/scripts/lib_detect.sh"
 PROMPTS_HELPER="$SCRIPT_DIR/scripts/lib_prompts.sh"
 APPS_HELPER="$SCRIPT_DIR/scripts/lib_apps.sh"
+COPY_HELPER="$SCRIPT_DIR/scripts/lib_copy.sh"
 if [ -f "$MENU_HELPER" ]; then
   # shellcheck source=./scripts/copy_menu.sh
   . "$MENU_HELPER"
@@ -86,6 +86,13 @@ if [ -f "$APPS_HELPER" ]; then
   . "$APPS_HELPER"
 else
   echo "${ERROR} Apps helper not found at $APPS_HELPER. Exiting."
+  exit 1
+fi
+if [ -f "$COPY_HELPER" ]; then
+  # shellcheck source=./scripts/lib_copy.sh
+  . "$COPY_HELPER"
+else
+  echo "${ERROR} Copy helper not found at $COPY_HELPER. Exiting."
   exit 1
 fi
 
@@ -346,244 +353,12 @@ if [ ! -d "$HOME/.config" ]; then
 fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
-# Config directories which will ask the user whether to replace or not
-DIRS="fastfetch kitty rofi swaync"
-
-for DIR2 in $DIRS; do
-  DIRPATH="$HOME/.config/$DIR2"
-
-  if [ -d "$DIRPATH" ]; then
-    while true; do
-      printf "\n${INFO} Found ${YELLOW}$DIR2${RESET} config found in ~/.config/\n"
-      echo -n "${CAT} Do you want to replace ${YELLOW}$DIR2${RESET} config? (y/n): "
-      read DIR1_CHOICE
-
-      case "$DIR1_CHOICE" in
-      [Yy]*)
-        BACKUP_DIR=$(get_backup_dirname)
-        # Backup the existing directory
-        mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-        echo -e "${NOTE} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
-
-        # Copy the new config
-        cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$LOG"
-        echo -e "${OK} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$LOG"
-
-        # Restoring rofi themes directory unique themes
-        if [ "$DIR2" = "rofi" ]; then
-          if [ -d "$DIRPATH-backup-$BACKUP_DIR/themes" ]; then
-            for file in "$DIRPATH-backup-$BACKUP_DIR/themes"/*; do
-              [ -e "$file" ] || continue # Skip if no files are found
-              echo "Copying $file to $HOME/.config/rofi/themes/" >>"$LOG"
-              cp -n "$file" "$HOME/.config/rofi/themes/" >>"$LOG" 2>&1
-            done || true
-          fi
-
-          # restoring global 0-shared-fonts.rasi
-          if [ -f "$DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi" ]; then
-            echo "Restoring $DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi to $HOME/.config/rofi/" >>"$LOG"
-            cp "$DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi" "$HOME/.config/rofi/0-shared-fonts.rasi" >>"$LOG" 2>&1
-          fi
-
-        fi
-
-        break
-        ;;
-      [Nn]*)
-        echo -e "${NOTE} - Skipping ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
-        break
-        ;;
-      *)
-        echo -e "${WARN} - Invalid choice. Please enter Y or N."
-        ;;
-      esac
-    done
-  else
-    # Copy new config if directory does not exist
-    cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$LOG"
-    echo -e "${OK} - Copy completed for ${YELLOW}$DIR2${RESET}" 2>&1 | tee -a "$LOG"
-  fi
-done
-
+copy_phase1 "$LOG"
 printf "\n%.0s" {1..1}
-
-# for waybar special part since it contains symlink
-DIRW="waybar"
-DIRPATHw="$HOME/.config/$DIRW"
-if [ -d "$DIRPATHw" ]; then
-  while true; do
-    echo -n "${CAT} Do you want to replace ${YELLOW}$DIRW${RESET} config? (y/n): "
-    read DIR1_CHOICE
-
-    case "$DIR1_CHOICE" in
-    [Yy]*)
-      BACKUP_DIR=$(get_backup_dirname)
-      cp -r "$DIRPATHw" "$DIRPATHw-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-      echo -e "${NOTE} - Backed up $DIRW to $DIRPATHw-backup-$BACKUP_DIR." 2>&1 | tee -a "$LOG"
-
-      # Remove the old $DIRPATHw and copy the new one
-      rm -rf "$DIRPATHw" && cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$LOG"
-
-      # Step 1: Handle waybar symlinks
-      for file in "config" "style.css"; do
-        symlink="$DIRPATHw-backup-$BACKUP_DIR/$file"
-        target_file="$DIRPATHw/$file"
-
-        if [ -L "$symlink" ]; then
-          symlink_target=$(readlink "$symlink")
-          if [ -f "$symlink_target" ]; then
-            rm -f "$target_file" && cp -f "$symlink_target" "$target_file"
-            echo -e "${NOTE} - Copied $file as a regular file."
-          else
-            echo -e "${WARN} - Symlink target for $file does not exist."
-          fi
-        fi
-      done
-
-      # Step 2: Copy non-existing directories and files under waybar/configs
-      for dir in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
-        [ -e "$dir" ] || continue # Skip if no files are found
-        if [ -d "$dir" ]; then
-          target_dir="$HOME/.config/waybar/configs/$(basename "$dir")"
-          if [ ! -d "$target_dir" ]; then
-            echo "Copying directory $dir to $HOME/.config/waybar/configs/" >>"$LOG"
-            cp -r "$dir" "$HOME/.config/waybar/configs/"
-          else
-            echo "Directory $target_dir already exists. Skipping." >>"$LOG"
-          fi
-        fi
-      done
-
-      for file in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
-        [ -e "$file" ] || continue
-        target_file="$HOME/.config/waybar/configs/$(basename "$file")"
-        if [ ! -e "$target_file" ]; then
-          echo "Copying $file to $HOME/.config/waybar/configs/" >>"$LOG"
-          cp "$file" "$HOME/.config/waybar/configs/"
-        else
-          echo "File $target_file already exists. Skipping." >>"$LOG"
-        fi
-      done || true
-
-      # Step 3: Copy unique files in waybar/style
-      for file in "$DIRPATHw-backup-$BACKUP_DIR/style"/*; do
-        [ -e "$file" ] || continue
-
-        if [ -d "$file" ]; then
-          target_dir="$HOME/.config/waybar/style/$(basename "$file")"
-          if [ ! -d "$target_dir" ]; then
-            echo "Copying directory $file to $HOME/.config/waybar/style/" >>"$LOG"
-            cp -r "$file" "$HOME/.config/waybar/style/"
-          else
-            echo "Directory $target_dir already exists. Skipping." >>"$LOG"
-          fi
-        else
-          target_file="$HOME/.config/waybar/style/$(basename "$file")"
-          if [ ! -e "$target_file" ]; then
-            echo "Copying file $file to $HOME/.config/waybar/style/" >>"$LOG"
-            cp "$file" "$HOME/.config/waybar/style/"
-          else
-            echo "File $target_file already exists. Skipping." >>"$LOG"
-          fi
-        fi
-      done || true
-
-      # Step 4: restore Modules_Extras
-      BACKUP_FILEw="$DIRPATHw-backup-$BACKUP_DIR/UserModules"
-      if [ -f "$BACKUP_FILEw" ]; then
-        cp -f "$BACKUP_FILEw" "$DIRPATHw/UserModules"
-      fi
-
-      break
-      ;;
-    [Nn]*)
-      echo -e "${NOTE} - Skipping ${YELLOW}$DIRW${RESET} config replacement." 2>&1 | tee -a "$LOG"
-      break
-      ;;
-    *)
-      echo -e "${WARN} - Invalid choice. Please enter Y or N."
-      ;;
-    esac
-  done
-else
-  cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$LOG"
-  echo -e "${OK} - Copy completed for ${YELLOW}$DIRW${RESET}" 2>&1 | tee -a "$LOG"
-fi
-
+copy_waybar "$LOG"
 printf "\n%.0s" {1..1}
-
 printf "${INFO} - Copying dotfiles ${SKY_BLUE}second${RESET} part\n"
-
-# Check if the config directory exists
-if [ ! -d "config" ]; then
-  echo "${ERROR} - The 'config' directory does not exist."
-  exit 1
-fi
-
-DIR="btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout"
-
-for DIR_NAME in $DIR; do
-  DIRPATH="$HOME/.config/$DIR_NAME"
-
-  # Backup the existing directory if it exists
-  if [ -d "$DIRPATH" ]; then
-    echo -e "\n${NOTE} - Config for ${YELLOW}$DIR_NAME${RESET} found, attempting to back up."
-    BACKUP_DIR=$(get_backup_dirname)
-
-    # Backup the existing directory
-    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-    if [ $? -eq 0 ]; then
-      echo -e "${NOTE} - Backed up $DIR_NAME to $DIRPATH-backup-$BACKUP_DIR."
-    else
-      echo "${ERROR} - Failed to back up $DIR_NAME."
-      exit 1
-    fi
-  fi
-
-  # Copy the new config
-  if [ -d "config/$DIR_NAME" ]; then
-    cp -r "config/$DIR_NAME/" "$HOME/.config/$DIR_NAME" 2>&1 | tee -a "$LOG"
-    if [ $? -eq 0 ]; then
-      echo "${OK} - Copy of config for ${YELLOW}$DIR_NAME${RESET} completed!"
-    else
-      echo "${ERROR} - Failed to copy $DIR_NAME."
-      exit 1
-    fi
-  else
-    echo "${ERROR} - Directory config/$DIR_NAME does not exist to copy."
-  fi
-done
-
-# Install Ghostty config
-GHOSTTY_SRC="config/ghostty/ghostty.config"
-GHOSTTY_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ghostty"
-GHOSTTY_DEST="$GHOSTTY_DIR/config"
-
-if [ -f "$GHOSTTY_SRC" ]; then
-  mkdir -p "$GHOSTTY_DIR"
-  install -m 0644 "$GHOSTTY_SRC" "$GHOSTTY_DEST" 2>&1 | tee -a "$LOG"
-  echo "${OK} - Installed Ghostty config to ${MAGENTA}$GHOSTTY_DEST${RESET}" 2>&1 | tee -a "$LOG"
-  # Normalize existing wallust.conf palette syntax if present (convert ':' to '=')
-  if [ -f "$GHOSTTY_DIR/wallust.conf" ]; then
-    sed -i -E 's/^(\s*palette\s*=\s*)([0-9]{1,2}):/\1\2=/' "$GHOSTTY_DIR/wallust.conf" 2>&1 | tee -a "$LOG" || true
-  fi
-else
-  echo "${ERROR} - $GHOSTTY_SRC not found; skipping Ghostty config install." 2>&1 | tee -a "$LOG"
-fi
-
-# Install WezTerm config
-WEZTERM_SRC="config/wezterm/wezterm.lua"
-WEZTERM_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/wezterm"
-WEZTERM_DEST="$WEZTERM_DIR/wezterm.lua"
-
-if [ -f "$WEZTERM_SRC" ]; then
-  mkdir -p "$WEZTERM_DIR"
-  install -m 0644 "$WEZTERM_SRC" "$WEZTERM_DEST" 2>&1 | tee -a "$LOG"
-  echo "${OK} - Installed WezTerm config to ${MAGENTA}$WEZTERM_DEST${RESET}" 2>&1 | tee -a "$LOG"
-else
-  echo "${ERROR} - $WEZTERM_SRC not found; skipping WezTerm config install." 2>&1 | tee -a "$LOG"
-fi
-
+copy_phase2 "$LOG"
 printf "\\n%.0s" {1..1}
 
 # ags config
