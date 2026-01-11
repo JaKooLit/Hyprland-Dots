@@ -1,4 +1,4 @@
-/* ML4W GLASS THEME - CRYSTAL CLEAR */
+/* ML4W GLASS THEME */
 
 /* SPDX-FileCopyrightText: 2026-present Ahum Maitra theahummaitra@gmail.com
 SPDX-License-Identifier: 	GPL-3.0-or-later */
@@ -21,6 +21,8 @@ General
   /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
   font-size: 97%;
   font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+  margin-top: 3px;
+  padding-bottom: 2px;
 }
 
 @import "style/ML4W/glass.css";
