@@ -39,9 +39,12 @@ General
 @define-color on_tertiary_fixed_variant @foreground;
 @define-color error         @foreground;
 @define-color on_error      @background;
+@define-color accent        @color12; /* wallust primary for subtle highlights */
 
 window#waybar {
   background: transparent;
+  box-shadow:
+    inset 0 -2px 0 alpha(@accent, 0.35); /* soft accent strip on bottom edge */
 }
 
 .modules-left {
