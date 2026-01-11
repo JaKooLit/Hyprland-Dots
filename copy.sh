@@ -5,14 +5,14 @@
 #   Handles interactive prompts, backups/restores, per-app tweaks, and express mode.
 #
 # Layout (high-level; future modularization targets):
-#   - Constants/colors, helper sourcing (copy_menu.sh).
+#   - Constants/colors, helper sourcing (copy_menu.sh, lib_backup.sh, lib_detect.sh, lib_prompts.sh).
 #   - Version helpers and CLI parsing (install/upgrade/express).
 #   - Safety checks (non-root), banners/notices.
 #   - Environment/distro checks and warnings.
-#   - GPU/VM/NixOS detection tweaks.
-#   - Input prompts (keyboard, resolution, clock format, animations).
+#   - GPU/VM/NixOS detection tweaks (lib_detect.sh).
+#   - Input prompts (keyboard, resolution, clock format, animations) (lib_prompts.sh).
 #   - Workflow selection effects (express vs standard).
-#   - Backup/restore helpers (inline today; planned to move to scripts/lib_backup.sh).
+#   - Backup/restore helpers (in scripts/lib_backup.sh).
 #   - Copy phases:
 #       * Part 1: fastfetch/kitty/rofi/swaync (prompted replace).
 #       * Waybar special handling (symlinks, configs/styles restore).
@@ -24,8 +24,8 @@
 #   - Final symlinks (waybar) and wallust init.
 #
 # Next modular step:
-#   Extract backup/restore/cleanup functions into scripts/lib_backup.sh
-#   and source them similar to scripts/copy_menu.sh.
+#   Extract per-app installers (ags/quickshell/ghostty/wezterm) and editor selection
+#   into scripts/lib_apps.sh; then consider splitting copy phases into dedicated helpers.
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
@@ -53,6 +53,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MENU_HELPER="$SCRIPT_DIR/scripts/copy_menu.sh"
 BACKUP_HELPER="$SCRIPT_DIR/scripts/lib_backup.sh"
 DETECT_HELPER="$SCRIPT_DIR/scripts/lib_detect.sh"
+PROMPTS_HELPER="$SCRIPT_DIR/scripts/lib_prompts.sh"
 if [ -f "$MENU_HELPER" ]; then
   # shellcheck source=./scripts/copy_menu.sh
   . "$MENU_HELPER"
@@ -69,6 +70,13 @@ if [ -f "$DETECT_HELPER" ]; then
   . "$DETECT_HELPER"
 else
   echo "${ERROR} Detect helper not found at $DETECT_HELPER. Exiting."
+  exit 1
+fi
+if [ -f "$PROMPTS_HELPER" ]; then
+  # shellcheck source=./scripts/lib_prompts.sh
+  . "$PROMPTS_HELPER"
+else
+  echo "${ERROR} Prompts helper not found at $PROMPTS_HELPER. Exiting."
   exit 1
 fi
 
@@ -137,7 +145,6 @@ EXPRESS_SUPPORTED=0
 if express_supported; then
   EXPRESS_SUPPORTED=1
 fi
-
 if [ "$EXPRESS_MODE" -eq 1 ] && [ "$EXPRESS_SUPPORTED" -eq 0 ]; then
   echo "${WARN} Express upgrade requires installed dotfiles v${MIN_EXPRESS_VERSION} or newer. Falling back to standard upgrade."
   EXPRESS_MODE=0
@@ -268,114 +275,8 @@ fi
 
 printf "\n%.0s" {1..1}
 
-# Function to detect keyboard layout using localectl or setxkbmap
-detect_layout() {
-  if command -v localectl >/dev/null 2>&1; then
-    layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
-    if [ -n "$layout" ]; then
-      echo "$layout"
-    fi
-  elif command -v setxkbmap >/dev/null 2>&1; then
-    layout=$(setxkbmap -query | grep layout | awk '{print $2}')
-    if [ -n "$layout" ]; then
-      echo "$layout"
-    fi
-  fi
-}
-
-# Detect the current keyboard layout
-layout=$(detect_layout)
-
-if [ "$layout" = "(unset)" ]; then
-  while true; do
-    printf "\n%.0s" {1..1}
-    print_color $WARNING "
-    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-            STOP AND READ
-    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
-
-    !!! IMPORTANT WARNING !!!
-
-The Default Keyboard Layout could not be detected
-You need to set it Manually
-
-    !!! WARNING !!!
-
-Setting a wrong Keyboard Layout will cause Hyprland to crash
-If you are not sure, just type ${YELLOW}us${RESET}
-${SKYBLUE}You can change later in ~/.config/hypr/UserConfigs/UserSettings.conf${RESET}
-
-${MAGENTA} NOTE:${RESET}
-•  You can also set more than 2 keyboard layouts
-•  For example: ${YELLOW}us, kr, gb, ru${RESET}
-"
-    printf "\n%.0s" {1..1}
-
-    echo -n "${CAT} - Please enter the correct keyboard layout: "
-    read new_layout
-
-    if [ -n "$new_layout" ]; then
-      layout="$new_layout"
-      break
-    else
-      echo "${CAT} Please enter a keyboard layout."
-    fi
-  done
-fi
-
-printf "${NOTE} Detecting keyboard layout to prepare proper Hyprland Settings\n"
-
-# Prompt the user to confirm whether the detected layout is correct
-while true; do
-  printf "${INFO} Current keyboard layout is ${MAGENTA}$layout${RESET}\n"
-  echo -n "${CAT} Is this correct? [y/n] "
-  read keyboard_layout
-
-  case $keyboard_layout in
-  [yY])
-    awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout = " layout} 1' config/hypr/configs/SystemSettings.conf >temp.conf
-    mv temp.conf config/hypr/configs/SystemSettings.conf
-
-    echo "${NOTE} kb_layout ${MAGENTA}$layout${RESET} configured in settings." 2>&1 | tee -a "$LOG"
-    break
-    ;;
-  [nN])
-    printf "\n%.0s" {1..2}
-    print_color $WARNING "
-    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-            STOP AND READ
-    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
-
-    !!! IMPORTANT WARNING !!!
-
-The Default Keyboard Layout could not be detected
-You need to set it Manually
-
-    !!! WARNING !!!
-
-Setting a wrong Keyboard Layout will cause Hyprland to crash
-If you are not sure, just type ${YELLOW}us${RESET}
-${SKYBLUE}You can change later in ~/.config/hypr/UserConfigs/UserSettings.conf${RESET}
-
-${MAGENTA} NOTE:${RESET}
-•  You can also set more than 2 keyboard layouts
-•  For example: ${YELLOW}us, kr, gb, ru${RESET}
-"
-    printf "\n%.0s" {1..1}
-
-    echo -n "${CAT} - Please enter the correct keyboard layout: "
-    read new_layout
-
-    awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout = " new_layout} 1' config/hypr/configs/SystemSettings.conf >temp.conf
-    mv temp.conf config/hypr/configs/SystemSettings.conf
-    echo "${OK} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG"
-    break
-    ;;
-  *)
-    echo "${ERROR} Please enter either 'y' or 'n'."
-    ;;
-  esac
-done
+layout=$(prompt_detect_layout)
+prompt_keyboard_layout "$layout" "$LOG"
 
 # Check if asusctl is installed and add rog-control-center on Startup
 if command -v asusctl >/dev/null 2>&1; then
@@ -460,37 +361,8 @@ fi
 
 printf "\n"
 
-# Action to do for better appearance
-while true; do
-  echo "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured for 1440p or 2k."
-  echo "${WARN} If you dont select proper resolution, Hyprlock will look FUNKY!"
-  echo "${INFO} If you are not sure what is your resolution, choose 1 here!"
-  echo "${MAGENTA}Select monitor resolution to properly configure appearance and fonts:"
-  echo "$YELLOW  -- Enter 1. for monitor resolution less than 1440p (< 1440p)"
-  echo "$YELLOW  -- Enter 2. for monitor resolution equal to or higher than 1440p (≥ 1440p)"
-
-  echo -n "$CAT Enter the number of your choice (1 or 2): "
-  read res_choice
-
-  case $res_choice in
-  1)
-    resolution="< 1440p"
-    break
-    ;;
-  2)
-    resolution="≥ 1440p"
-    break
-    ;;
-  *)
-    echo "${ERROR} Invalid choice. Please enter 1 for < 1440p or 2 for ≥ 1440p."
-    ;;
-  esac
-done
-
-# Use the selected resolution in your existing script
+resolution=$(prompt_resolution_choice)
 echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
-
-# actions if < 1440p is chosen
 if [ "$resolution" == "< 1440p" ]; then
   # kitty font size
   sed -i 's/font_size 16.0/font_size 14.0/' config/kitty/kitty.conf
@@ -513,146 +385,11 @@ fi
 
 printf "\n%.0s" {1..1}
 
-# Ask whether to change to 12hr format
-while true; do
-  echo -e "${NOTE} ${SKY_BLUE} By default, KooL's Dots are configured in 24H clock format."
-  echo -n "$CAT Do you want to change to 12H (AM/PM) clock format? (y/n): "
-  read answer
-
-  # Convert the answer to lowercase for comparison
-  answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
-
-  # Check if the answer is valid
-  if [[ "$answer" == "y" ]]; then
-    # Modify waybar clock modules if 12hr is selected
-    # Clock 1
-    sed -i 's#^\(\s*\)//\("format": " {:%I:%M %p}",\) #\1\2 #g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-    sed -i 's#^\(\s*\)\("format": " {:%H:%M:%S}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-
-    # Clock 2
-    sed -i 's#^\(\s*\)\("format": "  {:%H:%M}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-
-    # Clock 3
-    sed -i 's#^\(\s*\)//\("format": "{:%I:%M %p - %d/%b}",\) #\1\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-    sed -i 's#^\(\s*\)\("format": "{:%H:%M - %d/%b}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-
-    # Clock 4
-    sed -i 's#^\(\s*\)//\("format": "{:%B | %a %d, %Y | %I:%M %p}",\) #\1\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-    sed -i 's#^\(\s*\)\("format": "{:%B | %a %d, %Y | %H:%M}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-
-    # Clock 5
-    sed -i 's#^\(\s*\)//\("format": "{:%A, %I:%M %P}",\) #\1\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-    sed -i 's#^\(\s*\)\("format": "{:%a %d | %H:%M}",\) #\1//\2#g' config/waybar/Modules 2>&1 | tee -a "$LOG"
-
-    # for hyprlock
-    HYPRLOCK_FILE="config/hypr/hyprlock.conf"
-    if [ ! -f "$HYPRLOCK_FILE" ] && [ -f "config/hypr/hyprlock-1080p.conf" ]; then
-      HYPRLOCK_FILE="config/hypr/hyprlock-1080p.conf"
-    fi
-    if [ -f "$HYPRLOCK_FILE" ]; then
-      sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%H")"/# &/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
-      sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%I")" #AM\/PM/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
-
-      sed -i 's/^\s*text = cmd\[update:1000\] echo "\$(date +"%S")"/# &/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
-      sed -i 's/^\(\s*\)# *text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/\1    text = cmd\[update:1000\] echo "\$(date +"%S %p")" #AM\/PM/' "$HYPRLOCK_FILE" 2>&1 | tee -a "$LOG"
-    else
-      echo "${WARN} hyprlock template not found; skipping 12H lock format edits" 2>&1 | tee -a "$LOG"
-    fi
-
-    echo "${OK} 12H format set on waybar clocks succesfully." 2>&1 | tee -a "$LOG"
-
-    # Function to apply 12H format to SDDM themes
-    apply_sddm_12h_format() {
-      local sddm_directory=$1
-
-      # Check if the directory exists
-      if [ -d "$sddm_directory" ]; then
-        echo "Editing ${SKY_BLUE}$sddm_directory${RESET} to 12H format" 2>&1 | tee -a "$LOG"
-
-        sudo sed -i 's|^## HourFormat="hh:mm AP"|HourFormat="hh:mm AP"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
-        sudo sed -i 's|^HourFormat="HH:mm"|## HourFormat="HH:mm"|' "$sddm_directory/theme.conf" 2>&1 | tee -a "$LOG" || true
-      fi
-    }
-
-    # Applying to different SDDM themes
-    apply_sddm_12h_format "/usr/share/sddm/themes/simple-sddm"
-    apply_sddm_12h_format "/usr/share/sddm/themes/simple_sddm_2"
-
-    # For SDDM (sequoia_2)
-    sddm_directory_3="/usr/share/sddm/themes/sequoia_2"
-    if [ -d "$sddm_directory_3" ]; then
-      echo "${YELLOW}sddm sequoia_2${RESET} theme exists. Editing to 12H format" 2>&1 | tee -a "$LOG"
-
-      # Comment out the existing clockFormat="HH:mm" line
-      sudo sed -i 's|^clockFormat="HH:mm"|## clockFormat="HH:mm"|' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
-
-      # Insert the new clockFormat="hh:mm AP" line if it's not already present
-      if ! grep -q 'clockFormat="hh:mm AP"' "$sddm_directory_3/theme.conf"; then
-        sudo sed -i '/^clockFormat=/a clockFormat="hh:mm AP"' "$sddm_directory_3/theme.conf" 2>&1 | tee -a "$LOG" || true
-      fi
-
-      echo "${OK} 12H format set to SDDM successfully." 2>&1 | tee -a "$LOG"
-    fi
-
-    break
-
-  elif [[ "$answer" == "n" ]]; then
-    echo "${NOTE} You chose not to change to 12H format." 2>&1 | tee -a "$LOG"
-    break # Exit the loop if the user chooses "n"
-  else
-    echo "${ERROR} Invalid choice. Please enter y for yes or n for no."
-  fi
-done
+prompt_clock_12h "$LOG"
 printf "\n%.0s" {1..1}
-
-# Check if the user wants to disable Rainbow borders
-echo "${NOTE} ${SKY_BLUE}By default, Rainbow Borders animation is enabled"
-echo "${WARN} However, this uses a bit more CPU and Memory resources."
-
-# Ask whether to disable Rainbow Borders animation
-echo -n "${CAT} Do you want to disable Rainbow Borders animation? (y/N): "
-read border_choice
-
-# Check user's choice
-if [[ "$border_choice" =~ ^[Yy]$ ]]; then
-  # Disable Rainbow Borders
-  mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
-
-  # Comment out the exec-once and animation lines
-  sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh/s/^/#/' config/hypr/configs/Startup_Apps.conf
-  sed -i '/^[[:space:]]*animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/configs/UserAnimations.conf
-
-  echo "${OK} Rainbow borders are now disabled." 2>&1 | tee -a "$LOG"
-else
-  echo "${NOTE} No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$LOG"
-fi
+prompt_rainbow_borders "$LOG" >/dev/null
 printf "\n%.0s" {1..1}
-
-if [ "$UPGRADE_MODE" -eq 1 ] && [ "$EXPRESS_MODE" -eq 0 ]; then
-  if [ "$EXPRESS_SUPPORTED" -eq 0 ]; then
-    echo "${NOTE} Express mode requires installed dotfiles v${MIN_EXPRESS_VERSION} or newer. Continuing with standard upgrade prompts." 2>&1 | tee -a "$LOG"
-  else
-    while true; do
-      echo "${NOTE} Express mode skips config restore prompts, SDDM/background questions, and trims old backups."
-      echo -n "${CAT} Do you want to continue with EXPRESS upgrade mode? (y/N): "
-      read express_choice
-      case "$express_choice" in
-      [Yy])
-        EXPRESS_MODE=1
-        echo "${INFO} Express mode enabled for this upgrade." 2>&1 | tee -a "$LOG"
-        break
-        ;;
-      [Nn] | "")
-        echo "${NOTE} Continuing with standard upgrade prompts." 2>&1 | tee -a "$LOG"
-        break
-        ;;
-      *)
-        echo "${WARN} Please answer y or n."
-        ;;
-      esac
-    done
-  fi
-fi
+prompt_express_upgrade "$EXPRESS_SUPPORTED" "$LOG"
 
 set -e
 
