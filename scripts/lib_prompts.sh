@@ -115,7 +115,11 @@ prompt_resolution_choice() {
     echo "  1) < 1440p   (lower DPI; smaller displays)"
     echo "  2) ≥ 1440p   (default; 1440p/2k/4k)"
 
-    read -r -p "${CAT} Enter the number of your choice (1 or 2): " choice
+    if ! read -r -p "${CAT} Enter the number of your choice (1 or 2): " choice </dev/tty; then
+      echo "${ERROR} Unable to read input (tty unavailable)."
+      continue
+    fi
+    echo "${INFO:-[INFO]} You entered: '$choice'"
     case "$choice" in
       1) echo "< 1440p"; return ;;
       2) echo "≥ 1440p"; return ;;
