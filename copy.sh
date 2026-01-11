@@ -5,7 +5,7 @@
 #   Handles interactive prompts, backups/restores, per-app tweaks, and express mode.
 #
 # Layout (high-level; future modularization targets):
-#   - Constants/colors, helper sourcing (copy_menu.sh, lib_backup.sh, lib_detect.sh, lib_prompts.sh).
+#   - Constants/colors, helper sourcing (copy_menu.sh, lib_backup.sh, lib_detect.sh, lib_prompts.sh, lib_apps.sh).
 #   - Version helpers and CLI parsing (install/upgrade/express).
 #   - Safety checks (non-root), banners/notices.
 #   - Environment/distro checks and warnings.
@@ -13,6 +13,7 @@
 #   - Input prompts (keyboard, resolution, clock format, animations) (lib_prompts.sh).
 #   - Workflow selection effects (express vs standard).
 #   - Backup/restore helpers (in scripts/lib_backup.sh).
+#   - App enablement/editor selection (lib_apps.sh).
 #   - Copy phases:
 #       * Part 1: fastfetch/kitty/rofi/swaync (prompted replace).
 #       * Waybar special handling (symlinks, configs/styles restore).
@@ -24,8 +25,8 @@
 #   - Final symlinks (waybar) and wallust init.
 #
 # Next modular step:
-#   Extract per-app installers (ags/quickshell/ghostty/wezterm) and editor selection
-#   into scripts/lib_apps.sh; then consider splitting copy phases into dedicated helpers.
+#   Split copy phases into dedicated helpers (phase1, waybar, phase2) and consider
+#   moving ghostty/wezterm install logic into lib_apps.sh.
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
@@ -54,6 +55,7 @@ MENU_HELPER="$SCRIPT_DIR/scripts/copy_menu.sh"
 BACKUP_HELPER="$SCRIPT_DIR/scripts/lib_backup.sh"
 DETECT_HELPER="$SCRIPT_DIR/scripts/lib_detect.sh"
 PROMPTS_HELPER="$SCRIPT_DIR/scripts/lib_prompts.sh"
+APPS_HELPER="$SCRIPT_DIR/scripts/lib_apps.sh"
 if [ -f "$MENU_HELPER" ]; then
   # shellcheck source=./scripts/copy_menu.sh
   . "$MENU_HELPER"
@@ -77,6 +79,13 @@ if [ -f "$PROMPTS_HELPER" ]; then
   . "$PROMPTS_HELPER"
 else
   echo "${ERROR} Prompts helper not found at $PROMPTS_HELPER. Exiting."
+  exit 1
+fi
+if [ -f "$APPS_HELPER" ]; then
+  # shellcheck source=./scripts/lib_apps.sh
+  . "$APPS_HELPER"
+else
+  echo "${ERROR} Apps helper not found at $APPS_HELPER. Exiting."
   exit 1
 fi
 
@@ -278,88 +287,15 @@ printf "\n%.0s" {1..1}
 layout=$(prompt_detect_layout)
 prompt_keyboard_layout "$layout" "$LOG"
 
-# Check if asusctl is installed and add rog-control-center on Startup
-if command -v asusctl >/dev/null 2>&1; then
-  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
-  mkdir -p "$(dirname "$OVERLAY_SA")"
-  touch "$OVERLAY_SA"
-  grep -qx 'exec-once = rog-control-center' "$OVERLAY_SA" || echo 'exec-once = rog-control-center' >>"$OVERLAY_SA"
-fi
-
-# Check if blueman-applet is installed and add blueman-applet on Startup
-if command -v blueman-applet >/dev/null 2>&1; then
-  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
-  mkdir -p "$(dirname "$OVERLAY_SA")"
-  touch "$OVERLAY_SA"
-  grep -qx 'exec-once = blueman-applet' "$OVERLAY_SA" || echo 'exec-once = blueman-applet' >>"$OVERLAY_SA"
-fi
-
-# Check if ags is installed and enable it
-if command -v ags >/dev/null 2>&1; then
-  echo "${INFO} AGS detected - enabling in startup and refresh scripts" 2>&1 | tee -a "$LOG"
-  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
-  mkdir -p "$(dirname "$OVERLAY_SA")"
-  touch "$OVERLAY_SA"
-  grep -qx 'exec-once = ags' "$OVERLAY_SA" || echo 'exec-once = ags' >>"$OVERLAY_SA"
-  sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
-  sed -i '/#ags -q && ags &/s/^#//' config/hypr/scripts/Refresh.sh
-fi
-
-# Check if quickshell is installed and enable it
-if command -v qs >/dev/null 2>&1; then
-  echo "${INFO} Quickshell detected - enabling in startup and refresh scripts" 2>&1 | tee -a "$LOG"
-  OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
-  mkdir -p "$(dirname "$OVERLAY_SA")"
-  touch "$OVERLAY_SA"
-  grep -qx 'exec-once = qs' "$OVERLAY_SA" || echo 'exec-once = qs' >>"$OVERLAY_SA"
-  sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/RefreshNoWaybar.sh
-  sed -i '/#pkill qs && qs &/s/^#//' config/hypr/scripts/Refresh.sh
-fi
-
-# Ensure layout-aware keybinds init runs on startup (adds to user overlay so it survives composes)
-OVERLAY_SA="config/hypr/configs/Startup_Apps.conf"
-mkdir -p "$(dirname "$OVERLAY_SA")"
-if ! grep -qx 'exec-once = \$scriptsDir/KeybindsLayoutInit.sh' "$OVERLAY_SA"; then
-  echo 'exec-once = $scriptsDir/KeybindsLayoutInit.sh' >>"$OVERLAY_SA"
-  echo "${INFO} Added KeybindsLayoutInit.sh to user Startup_Apps overlay" 2>&1 | tee -a "$LOG"
-fi
+enable_asusctl "$LOG"
+enable_blueman "$LOG"
+enable_ags "$LOG"
+enable_quickshell "$LOG"
+ensure_keybinds_init "$LOG"
 
 printf "\n%.0s" {1..1}
 
-# Checking if neovim or vim is installed and offer user if they want to make as default editor
-# Function to modify the ENVariables.conf file
-update_editor() {
-  local editor=$1
-  sed -i "s/#env = EDITOR,.*/env = EDITOR,$editor #default editor/" config/hypr/UserConfigs/01-UserDefaults.conf
-  echo "${OK} Default editor set to ${MAGENTA}$editor${RESET}." 2>&1 | tee -a "$LOG"
-}
-
-EDITOR_SET=0
-# Check for neovim if installed
-if command -v nvim &>/dev/null; then
-  printf "${INFO} ${MAGENTA}neovim${RESET} is detected as installed\n"
-  echo -n "${CAT} Do you want to make ${MAGENTA}neovim${RESET} the default editor? (y/N): "
-  read EDITOR_CHOICE
-  if [[ "$EDITOR_CHOICE" == "y" || "$EDITOR_CHOICE" == "Y" ]]; then
-    update_editor "nvim"
-    EDITOR_SET=1
-  fi
-fi
-
-printf "\n"
-
-# Check for vim if installed, but only if neovim wasn't chosen
-if [[ "$EDITOR_SET" -eq 0 ]] && command -v vim &>/dev/null; then
-  printf "${INFO} ${MAGENTA}vim${RESET} is detected as installed\n"
-  echo -n "${CAT} Do you want to make ${MAGENTA}vim${RESET} the default editor? (y/N): "
-  read EDITOR_CHOICE
-  if [[ "$EDITOR_CHOICE" == "y" || "$EDITOR_CHOICE" == "Y" ]]; then
-    update_editor "vim"
-    EDITOR_SET=1
-  fi
-fi
-
-printf "\n"
+choose_default_editor "$LOG"
 resolution=""
 while true; do
   echo "${INFO} Select monitor resolution for scaling:"
