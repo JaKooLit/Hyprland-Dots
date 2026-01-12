@@ -24,7 +24,7 @@
 #   - Final symlinks (waybar) and wallust init.
 #
 # Next modular step:
-#   Move ghostty/wezterm install logic into lib_apps.sh (optional) and consider
+#   Ghostty/WezTerm install logic lives in lib_apps.sh now; consider
 #   breaking user restore logic into helpers for clarity.
 
 clear

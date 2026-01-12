@@ -115,27 +115,5 @@ copy_phase2() {
       echo "${ERROR:-[ERROR]} - Directory config/$DIR_NAME does not exist to copy." 2>&1 | tee -a "$log"
     fi
   done
-  # Ghostty
-  local GHOSTTY_SRC="config/ghostty/ghostty.config"
-  local GHOSTTY_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ghostty"
-  local GHOSTTY_DEST="$GHOSTTY_DIR/config"
-  if [ -f "$GHOSTTY_SRC" ]; then
-    mkdir -p "$GHOSTTY_DIR"
-    install -m 0644 "$GHOSTTY_SRC" "$GHOSTTY_DEST" 2>&1 | tee -a "$log"
-    if [ -f "$GHOSTTY_DIR/wallust.conf" ]; then
-      sed -i -E 's/^(\\s*palette\\s*=\\s*)([0-9]{1,2}):/\\1\\2=/' "$GHOSTTY_DIR/wallust.conf" 2>&1 | tee -a "$log" || true
-    fi
-  else
-    echo "${ERROR:-[ERROR]} - $GHOSTTY_SRC not found; skipping Ghostty config install." 2>&1 | tee -a "$log"
-  fi
-  # WezTerm
-  local WEZTERM_SRC="config/wezterm/wezterm.lua"
-  local WEZTERM_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/wezterm"
-  local WEZTERM_DEST="$WEZTERM_DIR/wezterm.lua"
-  if [ -f "$WEZTERM_SRC" ]; then
-    mkdir -p "$WEZTERM_DIR"
-    install -m 0644 "$WEZTERM_SRC" "$WEZTERM_DEST" 2>&1 | tee -a "$log"
-  else
-    echo "${ERROR:-[ERROR]} - $WEZTERM_SRC not found; skipping WezTerm config install." 2>&1 | tee -a "$log"
-  fi
+  install_terminal_configs "$log"
 }
