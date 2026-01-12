@@ -23,9 +23,10 @@
 #   - Backup cleanup (auto in express).
 #   - Final symlinks (waybar) and wallust init.
 #
-# Next modular step:
-#   Ghostty/WezTerm install logic lives in lib_apps.sh now; consider
-#   breaking user restore logic into helpers for clarity.
+# Next modular steps:
+#   - Restore logic has been moved into lib_copy helpers; review for further
+#     consolidation or tests.
+#   - Consider modularizing remaining app-specific tweaks/prompts.
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
