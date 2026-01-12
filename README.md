@@ -14,12 +14,12 @@
 
 <div align="center">
 <br>
-  <a href="#-copying--installation--update-instructions-"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
-  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/discussions"><kbd> <br> Discussions <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
-  <a href="https://discord.gg/kool-tech-world"><kbd> <br> Discord <br> </kbd></a>
+  <a href="#-copying--installation--update-instructions-"><kbd>	<br>	Installation	<br>	</kbd></a>&ensp;&ensp;
+  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd>	<br>	Youtube	<br>	</kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd>	<br>	Wiki	<br>	</kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/discussions"><kbd>	<br>	Discussions	<br>	</kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd>	<br>	Keybinds	<br>	</kbd></a>&ensp;&ensp;
+  <a href="https://discord.gg/kool-tech-world"><kbd>	<br>	Discord	<br>	</kbd></a>
 </div><br>
 
 <div align="center">
@@ -245,3 +245,8 @@ Or you can donate cryto on my btc wallet :)
 ## 🫰 Thank you for the stars 🩷
 
 [![Stargazers over time](https://starchart.cc/JaKooLit/Hyprland-Dots.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Hyprland-Dots)
+
+
+### Document translations
+
+- Spanish: [Código de Conducta](./CODE_OF_CONDUCT.es.md) · [Guía de mensajes de commit](./COMMIT_MESSAGE_GUIDELINES.es.md) · [Guía de contribución](./CONTRIBUTING.es.md)
