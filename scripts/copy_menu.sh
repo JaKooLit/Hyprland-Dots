@@ -12,11 +12,13 @@ show_copy_menu() {
   local install_tag="Install"
   local upgrade_tag="Upgrade"
   local express_tag="Express"
+  local update_tag="Update"
   local quit_tag="Quit"
 
   local install_desc="Fresh copy"
   local upgrade_desc="Backups + prompts"
   local express_desc="Skips restores & wallpapers"
+  local update_desc="Stash + git pull"
   local quit_desc="Exit without changes"
   if [ "$express_supported" -ne 1 ]; then
     express_body="xpress - Requires dots >= ${MIN_EXPRESS_VERSION}"
@@ -29,6 +31,7 @@ show_copy_menu() {
       "$install_tag" "$install_desc" \
       "$upgrade_tag" "$upgrade_desc" \
       "$express_tag" "$express_desc" \
+      "$update_tag" "$update_desc" \
       "$quit_tag" "$quit_desc" 3>&1 1>&2 2>&3); then
       COPY_MENU_CHOICE="quit"
       return 1
@@ -40,15 +43,17 @@ show_copy_menu() {
       printf "  1) Install - %s\n" "$install_desc"
       printf "  2) Upgrade - %s\n" "$upgrade_desc"
       printf "  3) Express - %s\n" "$express_desc"
-      printf "  4) Quit    - %s\n" "$quit_desc"
-      printf "Enter choice [1-4]: "
+      printf "  4) Update  - %s\n" "$update_desc"
+      printf "  5) Quit    - %s\n" "$quit_desc"
+      printf "Enter choice [1-5]: "
       read -r text_choice
       case "$text_choice" in
       1) choice="$install_tag"; break ;;
       2) choice="$upgrade_tag"; break ;;
       3) choice="$express_tag"; break ;;
-      4) choice="$quit_tag"; break ;;
-      *) echo "Invalid selection. Please choose 1-4." ;;
+      4) choice="$update_tag"; break ;;
+      5) choice="$quit_tag"; break ;;
+      *) echo "Invalid selection. Please choose 1-5." ;;
       esac
     done
   fi

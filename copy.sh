@@ -6,6 +6,7 @@
 #
 # Layout (high-level; future modularization targets):
 #   - Constants/colors, helper sourcing (copy_menu.sh, lib_backup.sh, lib_detect.sh, lib_prompts.sh, lib_apps.sh, lib_copy.sh).
+#   - New update helper (lib_update.sh) provides menu-driven repo update: verifies Hyprland-Dots root, stashes changes, git pull, logs, summarizes, waits for keypress.
 #   - Version helpers and CLI parsing (install/upgrade/express).
 #   - Safety checks (non-root), banners/notices.
 #   - Environment/distro checks and warnings.
@@ -57,6 +58,7 @@ DETECT_HELPER="$SCRIPT_DIR/scripts/lib_detect.sh"
 PROMPTS_HELPER="$SCRIPT_DIR/scripts/lib_prompts.sh"
 APPS_HELPER="$SCRIPT_DIR/scripts/lib_apps.sh"
 COPY_HELPER="$SCRIPT_DIR/scripts/lib_copy.sh"
+UPDATE_HELPER="$SCRIPT_DIR/scripts/lib_update.sh"
 if [ -f "$MENU_HELPER" ]; then
   # shellcheck source=./scripts/copy_menu.sh
   . "$MENU_HELPER"
@@ -94,6 +96,13 @@ if [ -f "$COPY_HELPER" ]; then
   . "$COPY_HELPER"
 else
   echo "${ERROR} Copy helper not found at $COPY_HELPER. Exiting."
+  exit 1
+fi
+if [ -f "$UPDATE_HELPER" ]; then
+  # shellcheck source=./scripts/lib_update.sh
+  . "$UPDATE_HELPER"
+else
+  echo "${ERROR} Update helper not found at $UPDATE_HELPER. Exiting."
   exit 1
 fi
 
@@ -192,6 +201,11 @@ if [ -z "$RUN_MODE" ]; then
         RUN_MODE="express"
         UPGRADE_MODE=1
         EXPRESS_MODE=1
+        ;;
+      update)
+        run_repo_update "$SCRIPT_DIR"
+        # After update, continue showing the menu without exiting
+        continue
         ;;
       quit)
         echo "${NOTE} Exiting per user selection."
