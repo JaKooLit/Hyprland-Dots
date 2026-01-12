@@ -13,7 +13,7 @@ Thank you for your interest in contributing to KooL Hyprland Projects! We welcom
   - Use the following command to clone your forked repository to your local machine.
 
      ```bash
-     git clone --depth=1 -b development https://github.com/JaKooLit/Hyprland-Dots.git
+     git clone --depth=1 -b development https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor
      ```
 
 3. Create a new branch for your changes.

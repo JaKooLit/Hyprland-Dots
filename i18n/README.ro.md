@@ -102,13 +102,13 @@ sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distr
 
 > pentru a descărca din ramura Master
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor
 cd Hyprland-Dots
 ```
 
 > pentru a descărca din ramura Development (dezvoltare și testare)
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor -b development
 cd Hyprland-Dots
 ```
 

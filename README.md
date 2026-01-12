@@ -113,7 +113,7 @@ sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distr
 > to download from Master branch
 
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor
 cd Hyprland-Dots
 ```
 
@@ -121,7 +121,7 @@ cd Hyprland-Dots
 > Not recommeded for non-testing systems 
 
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor -b development
 cd Hyprland-Dots
 ```
 

@@ -58,7 +58,7 @@ else
   			exit 1
 		fi
         kitty -e bash -c "
-          git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git $KooL_Dots_DIR &&
+          git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor $KooL_Dots_DIR &&
           cd $KooL_Dots_DIR &&
           chmod +x copy.sh &&
           ./copy.sh &&

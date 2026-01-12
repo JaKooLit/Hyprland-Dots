@@ -101,13 +101,13 @@ sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distr
 
 > для завантаження з гілки Master
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor
 cd Hyprland-Dots
 ```
 
 > для завантаження з гілки Development (розробка та тестування)
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor -b development
 cd Hyprland-Dots
 ```
 

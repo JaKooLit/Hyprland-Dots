@@ -101,13 +101,13 @@ sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distr
 
 > для загрузки из ветки Master
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor
 cd Hyprland-Dots
 ```
 
 > для загрузки из ветки Development (разработка и тестирование)
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor -b development
 cd Hyprland-Dots
 ```
 

@@ -116,14 +116,14 @@ sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distr
 > Master ブランチからダウンロードする場合
 
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor
 cd Hyprland-Dots
 ```
 
 > 開発ブランチ（Development）からダウンロードする場合（開発およびテスト用）
 
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
+git clone --depth=1 https://github.com/VictorVilelaSilva/Hyprland-Dots-Victor -b development
 cd Hyprland-Dots
 ```
 
