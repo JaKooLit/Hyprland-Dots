@@ -27,26 +27,44 @@ show_info() {
 # Function to toggle Rainbow Borders script availability and refresh UI components
 toggle_rainbow_borders() {
     local rainbow_script="$UserScripts/RainbowBorders.sh"
-    local rainbow_backup="${rainbow_script}.bak"
+    local disabled_sh_bak="${rainbow_script}.bak"           # RainbowBorders.sh.bak
+    local disabled_bak_sh="$UserScripts/RainbowBorders.bak.sh" # RainbowBorders.bak.sh (created by copy.sh when disabled)
     local refresh_script="$scriptsDir/Refresh.sh"
     local status=""
 
+    # If both disabled variants exist, keep the newer one to avoid ambiguity
+    if [[ -f "$disabled_sh_bak" && -f "$disabled_bak_sh" ]]; then
+        if [[ "$disabled_sh_bak" -nt "$disabled_bak_sh" ]]; then
+            rm -f "$disabled_bak_sh"
+        else
+            rm -f "$disabled_sh_bak"
+        fi
+    fi
+
     if [[ -f "$rainbow_script" ]]; then
-        if mv "$rainbow_script" "$rainbow_backup"; then
+        # Currently enabled -> disable to canonical .sh.bak
+        if mv "$rainbow_script" "$disabled_sh_bak"; then
             status="disabled"
             if command -v hyprctl &>/dev/null; then
                 hyprctl reload >/dev/null 2>&1 || true
             fi
         fi
-    elif [[ -f "$rainbow_backup" ]]; then
-        if mv "$rainbow_backup" "$rainbow_script"; then
+    elif [[ -f "$disabled_sh_bak" ]]; then
+        # Disabled (.sh.bak) -> enable
+        if mv "$disabled_sh_bak" "$rainbow_script"; then
+            status="enabled"
+        fi
+    elif [[ -f "$disabled_bak_sh" ]]; then
+        # Disabled (.bak.sh) -> enable (normalize to .sh)
+        if mv "$disabled_bak_sh" "$rainbow_script"; then
             status="enabled"
         fi
     else
-        show_info "RainbowBorders.sh was not found in $UserScripts."
+        show_info "RainbowBorders script not found in $UserScripts (checked .sh, .sh.bak, .bak.sh)."
         return
     fi
 
+    # Run refresh if available
     if [[ -x "$refresh_script" ]]; then
         "$refresh_script" >/dev/null 2>&1 &
     fi
