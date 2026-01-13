@@ -2,6 +2,13 @@
 
 ## v2.3.19
 
+- 2026-01-13
+- Added `Toggle Rainbow borders` option to settings menu
+- `SUPERSHIFT+E` search for `Rainbow`
+- It will toggle the current state and run `Refresh.sh` to start or stop
+  - Thanks to @Arkboi for suggesting it.
+  - Later if there are more settings like this I will create a new menu
+
 - 2026-01-11
   - Improved `ML4W Glass` theme
     - Now has proper 3d gradient look
