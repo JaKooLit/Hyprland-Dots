@@ -24,6 +24,37 @@ UserScripts="$HOME/.config/hypr/UserScripts"
 show_info() {
     notify-send -i "$iDIR/info.png" "Info" "$1"
 }
+# Function to toggle Rainbow Borders script availability and refresh UI components
+toggle_rainbow_borders() {
+    local rainbow_script="$UserScripts/RainbowBorders.sh"
+    local rainbow_backup="${rainbow_script}.bak"
+    local refresh_script="$scriptsDir/Refresh.sh"
+    local status=""
+
+    if [[ -f "$rainbow_script" ]]; then
+        if mv "$rainbow_script" "$rainbow_backup"; then
+            status="disabled"
+            if command -v hyprctl &>/dev/null; then
+                hyprctl reload >/dev/null 2>&1 || true
+            fi
+        fi
+    elif [[ -f "$rainbow_backup" ]]; then
+        if mv "$rainbow_backup" "$rainbow_script"; then
+            status="enabled"
+        fi
+    else
+        show_info "RainbowBorders.sh was not found in $UserScripts."
+        return
+    fi
+
+    if [[ -x "$refresh_script" ]]; then
+        "$refresh_script" >/dev/null 2>&1 &
+    fi
+
+    if [[ -n "$status" ]]; then
+        show_info "Rainbow Borders ${status}."
+    fi
+}
 
 # Function to display the menu options without numbers
 menu() {
@@ -56,6 +87,7 @@ Choose Rofi Themes
 Search for Keybinds
 Toggle Game Mode
 Switch Dark-Light Theme
+Toggle Rainbow Borders
 EOF
 }
 
@@ -115,6 +147,7 @@ main() {
         "Search for Keybinds") $scriptsDir/KeyBinds.sh ;;
         "Toggle Game Mode") $scriptsDir/GameMode.sh ;;
         "Switch Dark-Light Theme") $scriptsDir/DarkLight.sh ;;
+        "Toggle Rainbow Borders") toggle_rainbow_borders ;;
         *) return ;;  # Do nothing for invalid choices
     esac
 
