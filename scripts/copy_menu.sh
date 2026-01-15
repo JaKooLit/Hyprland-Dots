@@ -22,26 +22,43 @@ show_copy_menu() {
   local quit_desc="Exit without changes"
 
   local choice=""
+  run_basic_menu() {
+    while true; do
+      printf "\n%s\n" "$menu_title"
+      printf "%s\n" "$prompt"
+      printf "  1) Install - %s\n" "$install_desc"
+      printf "  2) Upgrade - %s\n" "$upgrade_desc"
+      if [ "$express_supported" -eq 1 ]; then
+        printf "  3) Express - %s\n" "$express_desc"
+      else
+        printf "  3) Express - %s (disabled)\n" "$express_desc"
+      fi
+      printf "  4) Update  - %s\n" "$update_desc"
+      printf "  5) Quit    - %s\n" "$quit_desc"
+      printf "Enter choice [1-5]: "
+      read -r text_choice
+      case "$text_choice" in
+      1) choice="$install_tag"; break ;;
+      2) choice="$upgrade_tag"; break ;;
+      3)
+        if [ "$express_supported" -eq 1 ]; then
+          choice="$express_tag"
+          break
+        else
+          echo "Express is disabled on this system."
+        fi
+        ;;
+      4) choice="$update_tag"; break ;;
+      5) choice="$quit_tag"; break ;;
+      *) echo "Invalid selection. Please choose 1-5." ;;
+      esac
+    done
+  }
 
-  # Prefer Python TUI if available (mouse + keyboard, styled hotkeys, help)
-  # Determine repo dir robustly: prefer SCRIPT_DIR if set by caller (copy.sh); fallback to this file's parent
-  local __self_dir __repo_dir
-  __self_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  __repo_dir="${SCRIPT_DIR:-$(cd "${__self_dir}/.." 2>/dev/null && pwd)}"
-  local py_menu="${__repo_dir}/scripts/tui_menu.py"
-if command -v python3 >/dev/null 2>&1 && [ -f "$py_menu" ]; then
-    # Allow forcing backend via COPY_TUI_BACKEND=auto|textual|curses|basic
-    if [ -n "$COPY_TUI_BACKEND" ]; then
-      if choice=$(python3 "$py_menu" --express-supported "$express_supported" --backend "$COPY_TUI_BACKEND"); then
-        COPY_MENU_CHOICE="$choice"
-        return 0
-      fi
-    else
-      if choice=$(python3 "$py_menu" --express-supported "$express_supported"); then
-        COPY_MENU_CHOICE="$choice"
-        return 0
-      fi
-    fi
+  if [ "$COPY_TUI_BACKEND" = "basic" ]; then
+    run_basic_menu
+    COPY_MENU_CHOICE="$choice"
+    return 0
   fi
 
   # Fallback to whiptail if present
@@ -57,25 +74,7 @@ if command -v python3 >/dev/null 2>&1 && [ -f "$py_menu" ]; then
     fi
   else
     # Plain-text fallback
-    while true; do
-      printf "\n%s\n" "$menu_title"
-      printf "%s\n" "$prompt"
-      printf "  1) Install - %s\n" "$install_desc"
-      printf "  2) Upgrade - %s\n" "$upgrade_desc"
-      printf "  3) Express - %s\n" "$express_desc"
-      printf "  4) Update  - %s\n" "$update_desc"
-      printf "  5) Quit    - %s\n" "$quit_desc"
-      printf "Enter choice [1-5]: "
-      read -r text_choice
-      case "$text_choice" in
-      1) choice="$install_tag"; break ;;
-      2) choice="$upgrade_tag"; break ;;
-      3) choice="$express_tag"; break ;;
-      4) choice="$update_tag"; break ;;
-      5) choice="$quit_tag"; break ;;
-      *) echo "Invalid selection. Please choose 1-5." ;;
-      esac
-    done
+    run_basic_menu
   fi
 
   # shellcheck disable=SC2034  # used by parent script after sourcing this file
