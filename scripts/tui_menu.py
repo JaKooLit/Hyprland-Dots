@@ -35,20 +35,26 @@ HELP_TEXT = (
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--express-supported", default="0", choices=["0", "1"], help="Whether Express is allowed (1) or not (0)")
+    parser.add_argument("--backend", default=os.environ.get("COPY_TUI_BACKEND", "auto"), choices=["auto", "textual", "curses", "basic"], help="Choose UI backend")
     args = parser.parse_args()
     express_supported = args.express_supported == "1"
+    backend = args.backend
 
-    # Try Textual first
+    if backend == "textual":
+        return run_textual(express_supported)
+    if backend == "curses":
+        return run_curses(express_supported)
+    if backend == "basic":
+        return run_basic(express_supported)
+
+    # auto: Try Textual, then curses, then basic
     try:
         return run_textual(express_supported)
-    except Exception:  # noqa: BLE001 - silently fall back
+    except Exception:
         pass
-
-    # Then try curses
     try:
         return run_curses(express_supported)
     except Exception:
-        # Final fallback to a very simple stdin prompt to avoid breaking workflows
         return run_basic(express_supported)
 
 
@@ -180,7 +186,7 @@ def run_curses(express_supported: bool) -> int:
         h, w = stdscr.getmaxyx()
         title = "KooL's Hyprland Dotfiles"
         stdscr.attron(curses.A_BOLD)
-        stdscr.addstr(1, (w - len(title)) // 2, title)
+        stdscr.addstr(1, max(2, (w - len(title)) // 2), title)
         stdscr.attroff(curses.A_BOLD)
 
         y = 4
@@ -190,40 +196,36 @@ def run_curses(express_supported: bool) -> int:
             rest = name[1:]
             if i == idx:
                 stdscr.attron(curses.A_REVERSE)
-            if disabled:
-                color = curses.color_pair(2)
-            else:
-                color = curses.color_pair(1)
             # First letter styled
-            stdscr.attron(color | curses.A_BOLD)
+            stdscr.attron(curses.color_pair(1) | curses.A_BOLD)
             stdscr.addstr(y, 4, hk)
-            stdscr.attroff(color | curses.A_BOLD)
+            stdscr.attroff(curses.color_pair(1) | curses.A_BOLD)
+            if disabled:
+                stdscr.attron(curses.A_DIM)
             stdscr.addstr(y, 5, rest)
             if disabled:
                 msg = "  (requires newer installed dots)"
-                stdscr.attron(curses.color_pair(2))
-                stdscr.addstr(y, 5 + len(rest), msg)
-                stdscr.attroff(curses.color_pair(2))
+                stdscr.addstr(y, 5 + len(rest), msg, curses.A_DIM)
+                stdscr.attroff(curses.A_DIM)
             if i == idx:
                 stdscr.attroff(curses.A_REVERSE)
             y += 2
 
-        info = "Enter=Select  ↑/↓=Move  Mouse=Click  h/?=Help  q=Quit"
-        stdscr.addstr(h - 2, 2, info)
+        info = "Enter=Select  Up/Down=Move  Mouse=Click  h/?=Help  q=Quit"
+        stdscr.addstr(h - 2, 2, info[: max(0, w - 4)])
 
         if show_help:
             box_w = min(w - 6, 76)
             box_h = min(12, h - 6)
-            bx = (w - box_w) // 2
-            by = (h - box_h) // 2
-            # simple box
+            bx = max(2, (w - box_w) // 2)
+            by = max(2, (h - box_h) // 2)
             for yy in range(by, by + box_h):
-                stdscr.addstr(yy, bx, " " * box_w, curses.color_pair(3))
+                stdscr.addstr(yy, bx, " " * max(0, box_w), curses.color_pair(3))
             stdscr.attron(curses.A_BOLD)
             stdscr.addstr(by, bx + 2, "Help")
             stdscr.attroff(curses.A_BOLD)
-            for i, line in enumerate(HELP_TEXT.splitlines()[: box_h - 3]):
-                stdscr.addstr(by + 2 + i, bx + 2, line)
+            for i, line in enumerate(HELP_TEXT.splitlines()[: max(0, box_h - 3)]):
+                stdscr.addstr(by + 2 + i, bx + 2, line[: max(0, box_w - 4)])
             stdscr.addstr(by + box_h - 2, bx + 2, "Press q or Esc to close help")
 
         stdscr.refresh()
@@ -232,9 +234,18 @@ def run_curses(express_supported: bool) -> int:
         curses.curs_set(0)
         curses.mousemask(1)
         curses.start_color()
-        curses.init_pair(1, curses.COLOR_CYAN, -1)
-        curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_BLACK)
-        curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLUE)
+        try:
+            curses.use_default_colors()
+        except Exception:
+            pass
+        try:
+            curses.init_pair(1, curses.COLOR_CYAN, -1)
+        except Exception:
+            curses.init_pair(1, curses.COLOR_CYAN, 0)
+        try:
+            curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLUE)
+        except Exception:
+            curses.init_pair(3, curses.COLOR_WHITE, 0)
         idx = 0
         showing_help = False
 
@@ -257,7 +268,6 @@ def run_curses(express_supported: bool) -> int:
             elif ch == curses.KEY_MOUSE:
                 try:
                     _, mx, my, _, _ = curses.getmouse()
-                    # map click row to item
                     base_y = 4
                     if my >= base_y:
                         clicked = (my - base_y) // 2
@@ -280,8 +290,10 @@ def run_curses(express_supported: bool) -> int:
                 else:
                     return name
             else:
-                # hotkeys by first letter
-                key = chr(ch).lower() if 0 <= ch < 256 else ""
+                try:
+                    key = chr(ch).lower() if 0 <= ch < 256 else ""
+                except Exception:
+                    key = ""
                 mapping = {"i": "Install", "u": "Upgrade", "e": "Express", "d": "Update", "q": "Quit", "h": "Help"}
                 if key in mapping:
                     name = mapping[key]

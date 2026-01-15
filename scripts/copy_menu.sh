@@ -29,11 +29,18 @@ show_copy_menu() {
   __self_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
   __repo_dir="${SCRIPT_DIR:-$(cd "${__self_dir}/.." 2>/dev/null && pwd)}"
   local py_menu="${__repo_dir}/scripts/tui_menu.py"
-  if command -v python3 >/dev/null 2>&1 && [ -f "$py_menu" ]; then
-    if choice=$(python3 "$py_menu" --express-supported "$express_supported"); then
-      # shellcheck disable=SC2034  # used by parent script after sourcing this file
-      COPY_MENU_CHOICE="$choice"
-      return 0
+if command -v python3 >/dev/null 2>&1 && [ -f "$py_menu" ]; then
+    # Allow forcing backend via COPY_TUI_BACKEND=auto|textual|curses|basic
+    if [ -n "$COPY_TUI_BACKEND" ]; then
+      if choice=$(python3 "$py_menu" --express-supported "$express_supported" --backend "$COPY_TUI_BACKEND"); then
+        COPY_MENU_CHOICE="$choice"
+        return 0
+      fi
+    else
+      if choice=$(python3 "$py_menu" --express-supported "$express_supported"); then
+        COPY_MENU_CHOICE="$choice"
+        return 0
+      fi
     fi
   fi
 

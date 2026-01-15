@@ -112,12 +112,12 @@ version_gte() {
 
 get_installed_dotfiles_version() {
   local hypr_dir="$HOME/.config/hypr"
-  local version_file
   if [ -d "$hypr_dir" ]; then
-    version_file=$(find "$hypr_dir" -maxdepth 1 -name "v*.*.*" | head -n 1)
-    if [ -n "$version_file" ]; then
-      basename "$version_file" | sed 's/^v//'
-    fi
+    # Pick the highest semantic version among files named vX.Y.Z
+    find "$hypr_dir" -maxdepth 1 -type f -name 'v*.*.*' -printf '%f\n' 2>/dev/null \
+      | sed 's/^v//' \
+      | sort -V \
+      | tail -n1
   fi
 }
 
