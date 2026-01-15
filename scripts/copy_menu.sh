@@ -20,12 +20,24 @@ show_copy_menu() {
   local express_desc="Skips restores & wallpapers"
   local update_desc="Stash + git pull"
   local quit_desc="Exit without changes"
-  if [ "$express_supported" -ne 1 ]; then
-    express_body="xpress - Requires dots >= ${MIN_EXPRESS_VERSION}"
-  fi
 
   local choice=""
 
+  # Prefer Python TUI if available (mouse + keyboard, styled hotkeys, help)
+  # Determine repo dir robustly: prefer SCRIPT_DIR if set by caller (copy.sh); fallback to this file's parent
+  local __self_dir __repo_dir
+  __self_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  __repo_dir="${SCRIPT_DIR:-$(cd "${__self_dir}/.." 2>/dev/null && pwd)}"
+  local py_menu="${__repo_dir}/scripts/tui_menu.py"
+  if command -v python3 >/dev/null 2>&1 && [ -f "$py_menu" ]; then
+    if choice=$(python3 "$py_menu" --express-supported "$express_supported"); then
+      # shellcheck disable=SC2034  # used by parent script after sourcing this file
+      COPY_MENU_CHOICE="$choice"
+      return 0
+    fi
+  fi
+
+  # Fallback to whiptail if present
   if command -v whiptail >/dev/null 2>&1; then
     if ! choice=$(whiptail --title "$menu_title" --menu "$prompt" 17 60 8 \
       "$install_tag" "$install_desc" \
@@ -37,6 +49,7 @@ show_copy_menu() {
       return 1
     fi
   else
+    # Plain-text fallback
     while true; do
       printf "\n%s\n" "$menu_title"
       printf "%s\n" "$prompt"
