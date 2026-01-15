@@ -73,7 +73,7 @@
 
 "modules-left": [
 	"custom/menu",  
-	"wlr/taskbar",
+	// "wlr/taskbar",
 	"hyprland/window",
 	"mpris",
 	 ],
