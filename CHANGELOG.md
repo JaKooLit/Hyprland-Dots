@@ -2,6 +2,15 @@
 
 ## v2.3.19
 
+- 2026-01-15
+ - Created waybar configs for ML4W Glass style 
+  - `TOP & Bottom Summit - glass`
+  - `Default Laptop - Glass`
+  - `Everforest - Glass` 
+ - Fixed menu for express-update 
+ - Fixed `Toggle Rainbow` checked for wrong file  
+
+
 - 2026-01-13
 - Added `Toggle Rainbow borders` option to settings menu
 - `SUPERSHIFT+E` search for `Rainbow`
