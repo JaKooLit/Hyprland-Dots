@@ -22,7 +22,11 @@ UserScripts="$HOME/.config/hypr/UserScripts"
 
 # Function to show info notification
 show_info() {
-    notify-send -i "$iDIR/info.png" "Info" "$1"
+    if [[ -f "$iDIR/info.png" ]]; then
+        notify-send -i "$iDIR/info.png" "Info" "$1"
+    else
+        notify-send "Info" "$1"
+    fi
 }
 # Function to toggle Rainbow Borders script availability and refresh UI components
 toggle_rainbow_borders() {
@@ -148,9 +152,8 @@ rainbow_borders_menu() {
                     sed -i '1i EFFECT_TYPE="'"$mode"'"' "$rainbow_script"
                 fi
             fi
-            # Re-read to confirm
-            current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?([^"]*)"?/\1/')
-            [[ -z "$current" ]] && current="unknown"
+            # Set current to chosen mode
+            current="$mode"
             ;;
         *)
             return ;;
@@ -159,6 +162,11 @@ rainbow_borders_menu() {
     # Run refresh if available
     if [[ -x "$refresh_script" ]]; then
         "$refresh_script" >/dev/null 2>&1 &
+    fi
+
+    # Apply mode immediately (in case refresh doesn't trigger it)
+    if [[ "$current" != "disabled" && -x "$rainbow_script" ]]; then
+        "$rainbow_script" >/dev/null 2>&1 &
     fi
 
     # Notify only if changed (friendly display)
