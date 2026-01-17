@@ -169,19 +169,7 @@ rainbow_borders_menu() {
         "$rainbow_script" >/dev/null 2>&1 &
     fi
 
-    # Notify only if changed (friendly display)
-    local new_display="$current"
-    case "$current" in
-        wallust_random) new_display="Wallust Color" ;;
-        rainbow) new_display="Original Rainbow" ;;
-        gradient_flow) new_display="Gradient Flow" ;;
-        disabled) new_display="Disabled" ;;
-    esac
-    if [[ "$current" == "disabled" ]]; then
-        show_info "Rainbow Borders disabled."
-    else
-        show_info "Rainbow Borders: $new_display."
-    fi
+    # No notifications; mode is shown in the menu
 }
 
 # Function to display the menu options without numbers
