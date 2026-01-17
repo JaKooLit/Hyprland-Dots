@@ -2,14 +2,20 @@
 
 ## v2.3.19
 
-- 2026-01-15
- - Created waybar configs for ML4W Glass style 
-  - `TOP & Bottom Summit - glass`
-  - `Default Laptop - Glass`
-  - `Everforest - Glass` 
- - Fixed menu for express-update 
- - Fixed `Toggle Rainbow` checked for wrong file  
+- 2026-01-16
+- Added `Rainbow Borders sub memu`
+  - Code provided by [brunoorsolon](https://github.com/brunoorsolon)
+  - There are now mulitple modes for the Rainbow Borders feature
+  - `Disabled`, `Wallust Color`, `Rainbow`, `Gradient flow`
+  - Thank you for the submission
 
+- 2026-01-15
+- Created waybar configs for ML4W Glass style
+- `TOP & Bottom Summit - glass`
+- `Default Laptop - Glass`
+- `Everforest - Glass`
+- Fixed menu for express-update
+- Fixed `Toggle Rainbow` checked for wrong file
 
 - 2026-01-13
 - Added `Toggle Rainbow borders` option to settings menu

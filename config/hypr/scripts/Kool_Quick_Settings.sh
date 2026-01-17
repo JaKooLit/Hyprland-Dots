@@ -74,6 +74,76 @@ toggle_rainbow_borders() {
     fi
 }
 
+# Submenu to choose Rainbow Borders mode (disable, wallust_random, rainbow, gradient_flow)
+rainbow_borders_menu() {
+    local rainbow_script="$UserScripts/RainbowBorders.sh"
+    local disabled_sh_bak="${rainbow_script}.bak"
+    local disabled_bak_sh="$UserScripts/RainbowBorders.bak.sh"
+    local refresh_script="$scriptsDir/Refresh.sh"
+
+    # Determine current mode/status
+    local current="disabled"
+    if [[ -f "$rainbow_script" ]]; then
+        current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?([^"]*)"?.*/\1/')
+        [[ -z "$current" ]] && current="unknown"
+    fi
+
+    # Build options and prompt
+    local options="disable\nwallust_random\nrainbow\ngradient_flow"
+    local choice
+    choice=$(printf "%b" "$options" | rofi -i -dmenu -config "$rofi_theme" -mesg "Rainbow Borders: choose mode (current: $current)")
+
+    [[ -z "$choice" ]] && return
+
+    case "$choice" in
+        disable|Disable)
+            if [[ -f "$rainbow_script" ]]; then
+                mv "$rainbow_script" "$disabled_sh_bak"
+            fi
+            current="disabled"
+            ;;
+        wallust_random|rainbow|gradient_flow)
+            # Ensure script is enabled
+            if [[ ! -f "$rainbow_script" ]]; then
+                if   [[ -f "$disabled_sh_bak" ]]; then
+                    mv "$disabled_sh_bak" "$rainbow_script"
+                elif [[ -f "$disabled_bak_sh" ]]; then
+                    mv "$disabled_bak_sh" "$rainbow_script"
+                else
+                    show_info "RainbowBorders script not found in $UserScripts."
+                    return
+                fi
+            fi
+
+            # Update EFFECT_TYPE in place; insert if missing
+            if grep -q '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null; then
+                sed -i 's/^EFFECT_TYPE=.*/EFFECT_TYPE="'"$choice"'"/' "$rainbow_script"
+            else
+                if head -n1 "$rainbow_script" | grep -q '^#!'; then
+                    sed -i '1a EFFECT_TYPE="'"$choice"'"' "$rainbow_script"
+                else
+                    sed -i '1i EFFECT_TYPE="'"$choice"'"' "$rainbow_script"
+                fi
+            fi
+            current="$choice"
+            ;;
+        *)
+            return ;;
+    esac
+
+    # Run refresh if available
+    if [[ -x "$refresh_script" ]]; then
+        "$refresh_script" >/dev/null 2>&1 &
+    fi
+
+    # Notify
+    if [[ "$current" == "disabled" ]]; then
+        show_info "Rainbow Borders disabled."
+    else
+        show_info "Rainbow Borders: $current."
+    fi
+}
+
 # Function to display the menu options without numbers
 menu() {
     cat <<EOF
@@ -105,7 +175,7 @@ Choose Rofi Themes
 Search for Keybinds
 Toggle Game Mode
 Switch Dark-Light Theme
-Toggle Rainbow Borders
+Rainbow Borders Mode
 EOF
 }
 
@@ -165,7 +235,7 @@ main() {
         "Search for Keybinds") $scriptsDir/KeyBinds.sh ;;
         "Toggle Game Mode") $scriptsDir/GameMode.sh ;;
         "Switch Dark-Light Theme") $scriptsDir/DarkLight.sh ;;
-        "Toggle Rainbow Borders") toggle_rainbow_borders ;;
+        "Rainbow Borders Mode") rainbow_borders_menu ;;
         *) return ;;  # Do nothing for invalid choices
     esac
 
