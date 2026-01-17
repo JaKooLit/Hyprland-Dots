@@ -64,9 +64,11 @@ toggle_rainbow_borders() {
         return
     fi
 
-    # Run refresh if available
+    # Run refresh if available, otherwise apply borders directly
     if [[ -x "$refresh_script" ]]; then
         "$refresh_script" >/dev/null 2>&1 &
+    elif [[ "$current" != "disabled" && -x "$rainbow_script" ]]; then
+        "$rainbow_script" >/dev/null 2>&1 &
     fi
 
     if [[ -n "$status" ]]; then
@@ -90,7 +92,7 @@ rainbow_borders_menu() {
 
 
     # Build options and prompt
-    local options="Disable Rainbow Borders\nwallust_random\nrainbow\ngradient_flow"
+    local options="Disable Rainbow Borders\nWallust Color\nOriginal Rainbow\nGradient Flow"
     local choice
     choice=$(printf "%b" "$options" | rofi -i -dmenu -config "$rofi_theme" -mesg "Rainbow Borders: current = $current")
 
@@ -108,7 +110,13 @@ rainbow_borders_menu() {
                 hyprctl reload >/dev/null 2>&1 || true
             fi
             ;;
-        wallust_random|rainbow|gradient_flow)
+        "Wallust Color"|"Original Rainbow"|"Gradient Flow")
+            local mode=""
+            case "$choice" in
+                "Wallust Color") mode="wallust_random" ;;
+                "Original Rainbow") mode="rainbow" ;;
+                "Gradient Flow") mode="gradient_flow" ;;
+            esac
             # Ensure script is enabled
             if [[ ! -f "$rainbow_script" ]]; then
                 if   [[ -f "$disabled_sh_bak" ]]; then
@@ -123,15 +131,17 @@ rainbow_borders_menu() {
 
             # Update EFFECT_TYPE in place; insert if missing
             if grep -q '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null; then
-                sed -i 's/^EFFECT_TYPE=.*/EFFECT_TYPE="'"$choice"'"/' "$rainbow_script"
+                sed -i 's/^EFFECT_TYPE=.*/EFFECT_TYPE="'"$mode"'"/' "$rainbow_script"
             else
                 if head -n1 "$rainbow_script" | grep -q '^#!'; then
-                    sed -i '1a EFFECT_TYPE="'"$choice"'"' "$rainbow_script"
+                    sed -i '1a EFFECT_TYPE="'"$mode"'"' "$rainbow_script"
                 else
-                    sed -i '1i EFFECT_TYPE="'"$choice"'"' "$rainbow_script"
+                    sed -i '1i EFFECT_TYPE="'"$mode"'"' "$rainbow_script"
                 fi
             fi
-            current="$choice"
+            # Re-read to confirm
+            current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?(.*)"?/\1/')
+            [[ -z "$current" ]] && current="unknown"
             ;;
         *)
             return ;;
@@ -149,6 +159,8 @@ rainbow_borders_menu() {
         else
             show_info "Rainbow Borders: $current."
         fi
+    elif [[ "$choice" == "Wallust Color" || "$choice" == "Original Rainbow" || "$choice" == "Gradient Flow" ]]; then
+        show_info "Rainbow Borders unchanged: $current."
     fi
 }
 
