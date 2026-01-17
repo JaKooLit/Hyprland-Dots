@@ -1,4 +1,4 @@
-/* ML4W GLASS THEME - CRYSTAL CLEAR */
+/* CRYSTAL CLEAR Glass theme for Waybar */
 
 /* SPDX-FileCopyrightText: 2026-present Ahum Maitra theahummaitra@gmail.com
 SPDX-License-Identifier: 	GPL-3.0-or-later */
@@ -25,23 +25,12 @@ General
   padding-bottom: 2px;
 }
 
-@import "style/ML4W/glass.css";
-
 window#waybar {
   background: transparent;
 }
 
 .modules-left {
-  background-color: @surface;
   border-radius: 12px;
-  background:
-    radial-gradient(
-        circle at 50% 250%,
-        alpha(darker(@surface), 0.9),
-        alpha(@surface_dim, 0.9)
-      )
-      padding-box,
-    linear-gradient(@primary, @on_primary) border-box;
   border: 1px solid transparent;
   opacity: 0.8;
   padding: 0px;
@@ -50,16 +39,7 @@ window#waybar {
 }
 
 .modules-right {
-  background-color: @surface;
   border-radius: 12px;
-  background:
-    radial-gradient(
-        circle at 50% 250%,
-        alpha(darker(@surface), 0.9),
-        alpha(@surface_dim, 0.9)
-      )
-      padding-box,
-    linear-gradient(@primary, @on_primary) border-box;
   border: 1px solid transparent;
   opacity: 0.8;
   padding: 0px;
@@ -68,16 +48,7 @@ window#waybar {
 }
 
 .modules-center {
-  background-color: @surface;
   border-radius: 12px;
-  background:
-    radial-gradient(
-        circle at 50% 250%,
-        alpha(darker(@surface), 0.9),
-        alpha(@surface_dim, 0.9)
-      )
-      padding-box,
-    linear-gradient(@primary, @on_primary) border-box;
   border: 1px solid transparent;
   opacity: 0.8;
   margin: 10px;
@@ -93,17 +64,8 @@ label.module {
 
 label.module {
   font-size: 14px;
-  color: @on_surface;
   padding: 3px 10px;
   transition: all 0.3s ease-out;
-  background:
-    radial-gradient(
-        circle at 50% 250%,
-        @on_tertiary_fixed_variant,
-        @on_tertiary_fixed
-      )
-      padding-box,
-    linear-gradient(@on_primary_fixed_variant, @on_primary_fixed) border-box;
   border-radius: 10px;
   border: 0px solid transparent;
 }
@@ -122,7 +84,6 @@ label.module:hover {
 }
 
 #workspaces button {
-  color: @on_surface;
   border-radius: 3px;
   padding: 0px 5px 0px 5px;
   margin: 0px 2px 0px 2px;
@@ -131,7 +92,7 @@ label.module:hover {
 }
 
 #workspaces button.active {
-  background: alpha(@primary, 0.2);
+  background: alpha(0.2);
   border: 1px solid transparent;
   transition: all 0.3s ease-in-out;
   min-width: 30px;
@@ -142,7 +103,7 @@ label.module:hover {
 }
 
 #workspaces button:hover {
-  background: alpha(@secondary, 0.2);
+  background: alpha(0.2);
   border-radius: 15px;
 }
 
@@ -151,18 +112,10 @@ label.module:hover {
  * ----------------------------------------------------- */
 
 tooltip {
-  background-color: @surface;
   border-radius: 12px;
-  background:
-    radial-gradient(circle at 50% 250%, @surface, @surface_dim) padding-box,
-    linear-gradient(#ffffff, @on_primary) border-box;
   border: 1px solid transparent;
   opacity: 0.7;
   margin: 10px;
-}
-
-tooltip label {
-  color: @on_surface;
 }
 
 /* -----------------------------------------------------
@@ -190,25 +143,17 @@ window#waybar.empty #window {
   padding: 0px 5px 0px 5px;
 }
 
-#taskbar button:hover {
-  background: @primary;
-  color: @on_primary;
-}
 
 #custom-updates.yellow {
   border-radius: 8px;
   margin: 5px 0px 5px 5px;
   padding: 0px 6px 0px 6px;
-  background-color: @secondary;
-  color: @on_secondary;
 }
 
 #custom-updates.red {
   border-radius: 8px;
   margin: 6px 0px 6px 7px;
   padding: 0px 6px 0px 6px;
-  background-color: @error;
-  color: @on_error;
 }
 
 /* -----------------------------------------------------
@@ -222,8 +167,8 @@ window#waybar.empty #window {
 
 @keyframes blink {
   to {
-    background-color: @background;
-    color: @on_surface;
+    background-color: #ffffff;
+    color: #ffffff;
   }
 }
 
