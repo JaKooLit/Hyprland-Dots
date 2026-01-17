@@ -26,11 +26,8 @@ if [[ "$EFFECT_TYPE" == "wallust_random" || "$EFFECT_TYPE" == "gradient_flow" ]]
     )
 
     if (( ${#WALLUST_COLORS[@]} == 0 )); then
-        if [[ "$EFFECT_TYPE" == "wallust_random" ]]; then
-            echo "ERROR: wallust_random enabled but no colors loaded" >&2
-            exit 1
-        fi
-        # gradient_flow will fall back to random_hex later
+        # If wallust colors can't be loaded, fall back to random_hex
+        EFFECT_TYPE="rainbow"
     fi
 fi
 

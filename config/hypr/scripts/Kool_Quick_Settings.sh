@@ -170,19 +170,17 @@ rainbow_borders_menu() {
     fi
 
     # Notify only if changed (friendly display)
-    if [[ "$current" != "$previous" ]]; then
-        local new_display="$current"
-        case "$current" in
-            wallust_random) new_display="Wallust Color" ;;
-            rainbow) new_display="Original Rainbow" ;;
-            gradient_flow) new_display="Gradient Flow" ;;
-            disabled) new_display="Disabled" ;;
-        esac
-        if [[ "$current" == "disabled" ]]; then
-            show_info "Rainbow Borders disabled."
-        else
-            show_info "Rainbow Borders: $new_display."
-        fi
+    local new_display="$current"
+    case "$current" in
+        wallust_random) new_display="Wallust Color" ;;
+        rainbow) new_display="Original Rainbow" ;;
+        gradient_flow) new_display="Gradient Flow" ;;
+        disabled) new_display="Disabled" ;;
+    esac
+    if [[ "$current" == "disabled" ]]; then
+        show_info "Rainbow Borders disabled."
+    else
+        show_info "Rainbow Borders: $new_display."
     fi
 }
 
