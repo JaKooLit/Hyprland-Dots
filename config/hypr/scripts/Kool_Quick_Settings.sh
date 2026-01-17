@@ -84,23 +84,29 @@ rainbow_borders_menu() {
     # Determine current mode/status
     local current="disabled"
     if [[ -f "$rainbow_script" ]]; then
-        current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?([^"]*)"?.*/\1/')
+        current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?(.*)"?/\1/')
         [[ -z "$current" ]] && current="unknown"
     fi
 
+
     # Build options and prompt
-    local options="disable\nwallust_random\nrainbow\ngradient_flow"
+    local options="Disable Rainbow Borders\nwallust_random\nrainbow\ngradient_flow"
     local choice
-    choice=$(printf "%b" "$options" | rofi -i -dmenu -config "$rofi_theme" -mesg "Rainbow Borders: choose mode (current: $current)")
+    choice=$(printf "%b" "$options" | rofi -i -dmenu -config "$rofi_theme" -mesg "Rainbow Borders: current = $current")
 
     [[ -z "$choice" ]] && return
 
+    local previous="$current"
+
     case "$choice" in
-        disable|Disable)
+        "Disable Rainbow Borders")
             if [[ -f "$rainbow_script" ]]; then
                 mv "$rainbow_script" "$disabled_sh_bak"
             fi
             current="disabled"
+            if command -v hyprctl &>/dev/null; then
+                hyprctl reload >/dev/null 2>&1 || true
+            fi
             ;;
         wallust_random|rainbow|gradient_flow)
             # Ensure script is enabled
@@ -136,11 +142,13 @@ rainbow_borders_menu() {
         "$refresh_script" >/dev/null 2>&1 &
     fi
 
-    # Notify
-    if [[ "$current" == "disabled" ]]; then
-        show_info "Rainbow Borders disabled."
-    else
-        show_info "Rainbow Borders: $current."
+    # Notify only if changed
+    if [[ "$current" != "$previous" ]]; then
+        if [[ "$current" == "disabled" ]]; then
+            show_info "Rainbow Borders disabled."
+        else
+            show_info "Rainbow Borders: $current."
+        fi
     fi
 }
 
