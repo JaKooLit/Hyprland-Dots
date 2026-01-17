@@ -83,18 +83,27 @@ rainbow_borders_menu() {
     local disabled_bak_sh="$UserScripts/RainbowBorders.bak.sh"
     local refresh_script="$scriptsDir/Refresh.sh"
 
-    # Determine current mode/status
+    # Determine current mode/status (internal)
     local current="disabled"
     if [[ -f "$rainbow_script" ]]; then
-        current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?(.*)"?/\1/')
+        current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?([^"]*)"?/\1/')
         [[ -z "$current" ]] && current="unknown"
     fi
+
+    # Map internal mode to friendly display
+    local current_display="$current"
+    case "$current" in
+        wallust_random) current_display="Wallust Color" ;;
+        rainbow) current_display="Original Rainbow" ;;
+        gradient_flow) current_display="Gradient Flow" ;;
+        disabled) current_display="Disabled" ;;
+    esac
 
 
     # Build options and prompt
     local options="Disable Rainbow Borders\nWallust Color\nOriginal Rainbow\nGradient Flow"
     local choice
-    choice=$(printf "%b" "$options" | rofi -i -dmenu -config "$rofi_theme" -mesg "Rainbow Borders: current = $current")
+    choice=$(printf "%b" "$options" | rofi -i -dmenu -config "$rofi_theme" -mesg "Rainbow Borders: current = $current_display")
 
     [[ -z "$choice" ]] && return
 
@@ -140,7 +149,7 @@ rainbow_borders_menu() {
                 fi
             fi
             # Re-read to confirm
-            current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?(.*)"?/\1/')
+            current=$(grep -E '^EFFECT_TYPE=' "$rainbow_script" 2>/dev/null | sed -E 's/^EFFECT_TYPE="?([^"]*)"?/\1/')
             [[ -z "$current" ]] && current="unknown"
             ;;
         *)
@@ -152,15 +161,20 @@ rainbow_borders_menu() {
         "$refresh_script" >/dev/null 2>&1 &
     fi
 
-    # Notify only if changed
+    # Notify only if changed (friendly display)
     if [[ "$current" != "$previous" ]]; then
+        local new_display="$current"
+        case "$current" in
+            wallust_random) new_display="Wallust Color" ;;
+            rainbow) new_display="Original Rainbow" ;;
+            gradient_flow) new_display="Gradient Flow" ;;
+            disabled) new_display="Disabled" ;;
+        esac
         if [[ "$current" == "disabled" ]]; then
             show_info "Rainbow Borders disabled."
         else
-            show_info "Rainbow Borders: $current."
+            show_info "Rainbow Borders: $new_display."
         fi
-    elif [[ "$choice" == "Wallust Color" || "$choice" == "Original Rainbow" || "$choice" == "Gradient Flow" ]]; then
-        show_info "Rainbow Borders unchanged: $current."
     fi
 }
 
