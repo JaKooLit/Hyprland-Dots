@@ -8,6 +8,8 @@
   - There are now mulitple modes for the Rainbow Borders feature
   - `Disabled`, `Wallust Color`, `Rainbow`, `Gradient flow`
   - Thank you for the submission
+- Disabled `RainbowBorders.sh` by default
+- Use the quick setings menu `SUPERSHIFT + E` to enable, select mode
 
 - 2026-01-15
 - Created waybar configs for ML4W Glass style

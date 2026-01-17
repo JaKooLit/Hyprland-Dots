@@ -209,27 +209,6 @@ apply_sddm_12h_format_sequoia() {
   fi
 }
 
-# Rainbow borders toggle; returns "disabled" or "kept".
-prompt_rainbow_borders() {
-  local log="$1"
-  echo "${NOTE} ${SKY_BLUE}By default, Rainbow Borders animation is enabled"
-  echo "${WARN} However, this uses a bit more CPU and Memory resources."
-  if ! read -r -p "${CAT} Do you want to disable Rainbow Borders animation? (y/N): " border_choice </dev/tty; then
-    echo "${ERROR} Unable to read input for rainbow borders; leaving as-is." 2>&1 | tee -a "$log"
-    echo "kept"
-    return
-  fi
-  if [[ "$border_choice" =~ ^[Yy]$ ]]; then
-    mv config/hypr/UserScripts/RainbowBorders.sh config/hypr/UserScripts/RainbowBorders.bak.sh
-    sed -i '/exec-once = \$UserScripts\/RainbowBorders.sh/s/^/#/' config/hypr/configs/Startup_Apps.conf
-    sed -i '/^[[:space:]]*animation = borderangle, 1, 180, liner, loop/s/^/#/' config/hypr/configs/UserAnimations.conf
-    echo "${OK} Rainbow borders are now disabled." 2>&1 | tee -a "$log"
-    echo "disabled"
-  else
-    echo "${NOTE} No changes made. Rainbow borders remain enabled." 2>&1 | tee -a "$log"
-    echo "kept"
-  fi
-}
 
 # Express upgrade confirmation; may set EXPRESS_MODE=1.
 prompt_express_upgrade() {
