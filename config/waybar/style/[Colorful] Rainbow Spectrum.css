@@ -266,12 +266,14 @@ tooltip label{
 #custom-hypridle,
 #idle_inhibitor {
   	background-color: #86b4fa;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #bluetooth {

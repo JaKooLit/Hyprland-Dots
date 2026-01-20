@@ -137,6 +137,7 @@ window#waybar.hidden {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
+    border-bottom: 3px solid @sapphire;
 }
 
 #backlight {

@@ -214,12 +214,14 @@ tooltip {
 #custom-hypridle,
 #idle_inhibitor {
     color: @color5; /* Lighter */
+    border-bottom: 2px;
 }
 
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
     color: @color4; /* Slightly lighter */
+    border-bottom: 2px;
 }
 
 #tray {

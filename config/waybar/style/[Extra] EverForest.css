@@ -221,12 +221,14 @@ window#waybar.hidden {
   border-radius: 5px;
   margin-left: 5px;
   background-color: @blue;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
   color: @black;
 }
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
   background-color: @fg;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
   color: @bg0;
 }
 

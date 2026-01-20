@@ -250,12 +250,14 @@ tooltip {
 #custom-lock,
 #idle_inhibitor {
     color: @teal;
+    border-bottom: 2px solid @border-color;
 }
 
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
+    border-bottom: 2px solid @border-color;
 }
 
 #clock {

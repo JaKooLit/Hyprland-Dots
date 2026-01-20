@@ -158,6 +158,9 @@ window#waybar.empty #window {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
   color: #39ff14;
+    border-bottom-width: 5px;
+    border-bottom-color: @color12;
+    border-bottom-style: solid;
 }
 
 #network {

@@ -324,13 +324,15 @@ label:focus {
 }
 
 #idle_inhibitor {
-	/*background-color: #2d3436;*/
+	/*background-color: #2d3436;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);*/
 }
 
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #temperature {

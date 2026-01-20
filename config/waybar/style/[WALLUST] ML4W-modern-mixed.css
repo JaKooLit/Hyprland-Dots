@@ -193,6 +193,7 @@ window#waybar.empty #window {
     font-weight: bold;
     opacity: 0.8;
     color: @iconcolor;
+    border-bottom: 0px solid @foreground;
 }
 
 #idle_inhibitor.activated {
@@ -201,6 +202,7 @@ window#waybar.empty #window {
     font-weight: bold;
     opacity: 0.8;
     color: #dc2f2f;
+    border-bottom: 0px solid @foreground;
 }
 
 #custom-menu {

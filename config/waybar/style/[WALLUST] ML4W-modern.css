@@ -197,6 +197,7 @@ window#waybar.empty #window {
     font-size: 102%;
     font-weight: bold;
     color: @iconcolor;
+    border-bottom: 0px solid @foreground;
 }
 
 #idle_inhibitor.activated {
@@ -204,6 +205,7 @@ window#waybar.empty #window {
     font-size: 100%;
     font-weight: bold;
 color: @color13;
+    border-bottom: 0px solid @foreground;
 }
 
 #custom-menu {
