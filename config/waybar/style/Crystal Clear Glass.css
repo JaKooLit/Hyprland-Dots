@@ -33,6 +33,7 @@ window#waybar {
   border-radius: 12px;
   border: 1px solid transparent;
   opacity: 0.8;
+  padding-left: 5px;
   padding-right: 15px;
   margin: 10px;
   background-color: rgba(255, 255, 255, 0.25);
