@@ -99,6 +99,7 @@ tooltip {
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,
@@ -203,6 +204,7 @@ tooltip {
 }
 
 #custom-light_dark,
+#custom-nightlight,
 #temperature {
     color: #7287fd;
 }

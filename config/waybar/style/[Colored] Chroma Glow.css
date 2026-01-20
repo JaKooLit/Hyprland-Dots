@@ -123,6 +123,7 @@ tooltip label{
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,
@@ -215,6 +216,7 @@ label:focus {
 }
 
 #custom-light_dark,
+#custom-nightlight,
 #backlight {
     color: white;
 }
