@@ -14,12 +14,12 @@
 
 <div align="center">
 <br>
-  <a href="#-copying--installation--update-instructions-"><kbd>	<br>	Installation	<br>	</kbd></a>&ensp;&ensp;
-  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd>	<br>	Youtube	<br>	</kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd>	<br>	Wiki	<br>	</kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/discussions"><kbd>	<br>	Discussions	<br>	</kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd>	<br>	Keybinds	<br>	</kbd></a>&ensp;&ensp;
-  <a href="https://discord.gg/kool-tech-world"><kbd>	<br>	Discord	<br>	</kbd></a>
+  <a href="#-copying--installation--update-instructions-"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
+  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/discussions"><kbd> <br> Discussions <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
+  <a href="https://discord.gg/RZJgC7KAKm"><kbd> <br> Discord <br> </kbd></a>
 </div><br>
 
 <div align="center">
@@ -88,8 +88,8 @@ sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/Distr
 
 ### 🪧 Attention 🪧
 
-- This repo does not install any packages. This repo only contains pre-configured-hyprland configs aka `dotfiles`
-- Refer to the install scripts for what packages needed to install. At mimimum, the Hyprland packages are needed 😏😏😏 duh!!
+- This repo does NOT contain or will NOT install any packages. These are only pre-configured-hyprland configs or dotfiles
+- refer to install scripts what packages needed to install... but at least, Hyprland packages are required
 - This repo will be pulled by the Distro-Hyprland install scripts above if you opt to download pre-configured dots
 
 ### 👀 Screenshots 👀
@@ -125,8 +125,7 @@ cd Hyprland-Dots
 ```
 
 > to download from Development branch (development and testing)
-> Not recommeded for non-testing systems!! 
-> REALLY, not recommended. 
+> Not recommeded for non-testing systems
 
 ```bash
 git clone --depth=1 https://github.com/JaKooLit/Hyprland-Dots.git -b development
@@ -166,7 +165,7 @@ chmod +x upgrade.sh
 - Ubuntu 24.04/25.10
   - We are now using a PPA to get more current versions of Hyprland.
   - So the current version of these Dotfiles are compatible if you updated to the PPA based configuration.
-    
+
 #### ⚠️⚠️⚠️ ATTENTION - BACKUPS CREATED by SCRIPT
 
 > [!CAUTION]
