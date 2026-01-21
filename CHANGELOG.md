@@ -9,7 +9,7 @@
 - 2026-01-19
 - Removed "Set wallpaper SDDM prompt"
 - When changing wallpaper there is no longer a prompt to set it on SDDM
-- It's not a menu option under Quick Settings menu `SUPER SHIFT + E`
+- It's now a menu option under Quick Settings menu `SUPER SHIFT + E`
 - Fixed `Glass` style sheets
 
 - 2026-01-16
