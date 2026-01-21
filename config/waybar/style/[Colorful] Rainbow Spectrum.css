@@ -98,6 +98,7 @@ tooltip label{
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-nightlight,
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
@@ -106,6 +107,7 @@ tooltip label{
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,
@@ -260,15 +262,18 @@ tooltip label{
 
 #custom-power_vertical,
 #custom-light_dark,
+#custom-nightlight,
 #custom-hypridle,
 #idle_inhibitor {
   	background-color: #86b4fa;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #bluetooth {

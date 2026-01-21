@@ -80,6 +80,7 @@ button.active {
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-nightlight,
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
@@ -88,6 +89,7 @@ button.active {
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,
@@ -221,6 +223,7 @@ label:focus {
 
 #custom-lock,
 #custom-light_dark,
+#custom-nightlight,
 #backlight {
     background-color: #64b6ac;
     color: #2d353b;
@@ -296,10 +299,12 @@ label:focus {
 
 #idle_inhibitor {
     background-color: #2d3436;
+    border-bottom: 8px solid #1d2327;
 }
 
 #idle_inhibitor.activated {
     background-color: #ecf0f1;
+    border-bottom: 8px solid #7a8c37;
     color: #2d3436;
 }
 

@@ -15,7 +15,8 @@ elif [[ "$1" == "toggle" ]]; then
     if pgrep -x "$PROCESS" >/dev/null; then
         pkill "$PROCESS"
     else
-        "$PROCESS"
+        "$PROCESS" >/dev/null 2>&1 &
+        disown
     fi
 else
     echo "Usage: $0 {status|toggle}"

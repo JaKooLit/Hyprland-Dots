@@ -91,6 +91,7 @@ window#waybar.hidden {
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-nightlight,
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
@@ -99,6 +100,7 @@ window#waybar.hidden {
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,
@@ -135,6 +137,7 @@ window#waybar.hidden {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
+    border-bottom: 3px solid @sapphire;
 }
 
 #backlight {

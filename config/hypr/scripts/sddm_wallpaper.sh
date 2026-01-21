@@ -6,7 +6,8 @@
 
 # variables
 terminal=kitty
-wallDIR="$HOME/Pictures/wallpapers"
+PICTURES_DIR="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
+wallDIR="$PICTURES_DIR/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 wallpaper_modified="$HOME/.config/hypr/wallpaper_effects/.wallpaper_modified"
@@ -20,6 +21,10 @@ sddm_simple="$sddm_themes_dir/simple_sddm_2"
 # rofi-wallust-sddm colors path
 rofi_wallust="$HOME/.config/rofi/wallust/colors-rofi.rasi"
 sddm_theme_conf="$sddm_simple/theme.conf"
+if [[ ! -f "$rofi_wallust" ]]; then
+    notify-send -i "$iDIR/error.png" "SDDM" "Wallust colors file not found ($rofi_wallust). Aborting."
+    exit 1
+fi
 
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
@@ -33,15 +38,45 @@ elif [[ "$1" == "--effects" ]]; then
     mode="effects"
 fi
 
+# Abort if SDDM is not running (avoid errors on non-SDDM systems)
+if command -v systemctl >/dev/null 2>&1; then
+    if ! systemctl is-active --quiet sddm; then
+        notify-send -i "$iDIR/error.png" "SDDM" "SDDM is not running. Skipping SDDM wallpaper update."
+        exit 0
+    fi
+elif ! pidof sddm >/dev/null 2>&1; then
+    notify-send -i "$iDIR/error.png" "SDDM" "SDDM is not running. Skipping SDDM wallpaper update."
+    exit 0
+fi
+
 # Extract colors from rofi wallust config
 
-color0=$(grep -oP 'color1:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
-color1=$(grep -oP 'color0:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
-color7=$(grep -oP 'color14:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
-color10=$(grep -oP 'color10:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
-color12=$(grep -oP 'color12:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
-color13=$(grep -oP 'color13:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
-foreground=$(grep -oP 'foreground:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
+extract_color() {
+    local key="$1"
+    local value
+    value=$(grep -oP "$key:\s*\K#[A-Fa-f0-9]+" "$rofi_wallust" | head -n1)
+    echo "$value"
+}
+
+color0=$(extract_color "color1")
+color1=$(extract_color "color0")
+color7=$(extract_color "color14")
+color10=$(extract_color "color10")
+color12=$(extract_color "color12")
+color13=$(extract_color "color13")
+foreground=$(extract_color "foreground")
+
+missing_colors=()
+for var in color0 color1 color7 color10 color12 color13 foreground; do
+    if [[ -z "${!var}" ]]; then
+        missing_colors+=("$var")
+    fi
+done
+
+if [[ ${#missing_colors[@]} -gt 0 ]]; then
+    notify-send -i "$iDIR/error.png" "SDDM" "Missing color(s): ${missing_colors[*]}. Run Wallust first."
+    exit 1
+fi
 #background-color=$(grep -oP 'background:\s*\K#[A-Fa-f0-9]+' "$rofi_wallust")
 
 # wallpaper to use

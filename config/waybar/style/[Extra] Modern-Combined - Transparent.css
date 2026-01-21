@@ -139,6 +139,7 @@ tooltip {
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-nightlight,
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
@@ -147,6 +148,7 @@ tooltip {
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,
@@ -243,6 +245,7 @@ tooltip {
 #custom-lock,
 #idle_inhibitor {
     color: @teal;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #custom-weather,
@@ -265,6 +268,7 @@ tooltip {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #clock {

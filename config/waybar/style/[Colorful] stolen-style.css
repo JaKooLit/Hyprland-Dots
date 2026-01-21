@@ -51,12 +51,14 @@ window#waybar.empty #window {
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-nightlight,
 #custom-cycle_wall,
 #custom-github,
 #custom-hint,
 #custom-hyprWindowMode,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-menu,
 #custom-power,
@@ -115,6 +117,7 @@ window#waybar.empty #window {
 
 #idle_inhibitor {
   color: #7aa2f7;
+    border-bottom: 2px solid #455a64;
 }
 
 #backlight {

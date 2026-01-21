@@ -1,5 +1,166 @@
 # Changelog — JAK's Hyprland Dotfiles
 
+## v2.3.19
+
+- 2026-01-20
+- Fixed CSS to format the `custom/nightlight` module
+- Fixed padding on some CSS files
+
+- 2026-01-19
+- Removed "Set wallpaper SDDM prompt"
+- When changing wallpaper there is no longer a prompt to set it on SDDM
+- It's now a menu option under Quick Settings menu `SUPER SHIFT + E`
+- Fixed `Glass` style sheets
+
+- 2026-01-16
+- Added `Rainbow Borders sub memu`
+  - Code provided by [brunoorsolon](https://github.com/brunoorsolon)
+  - There are now mulitple modes for the Rainbow Borders feature
+  - `Disabled`, `Wallust Color`, `Rainbow`, `Gradient flow`
+  - Thank you for the submission
+- Disabled `RainbowBorders.sh` by default
+- Use the quick setings menu `SUPERSHIFT + E` to enable, select mode
+
+- 2026-01-15
+- Created waybar configs for ML4W Glass style
+- `TOP & Bottom Summit - glass`
+- `Default Laptop - Glass`
+- `Everforest - Glass`
+- Fixed menu for express-update
+- Fixed `Toggle Rainbow` checked for wrong file
+
+- 2026-01-13
+- Added `Toggle Rainbow borders` option to settings menu
+- `SUPERSHIFT+E` search for `Rainbow`
+- It will toggle the current state and run `Refresh.sh` to start or stop
+  - Thanks to @Arkboi for suggesting it.
+  - Later if there are more settings like this I will create a new menu
+
+- 2026-01-11
+  - Improved `ML4W Glass` theme
+    - Now has proper 3d gradient look
+    - Theme based nightlight color
+  - `copy.sh` is now more modular
+    - Helper scripts in `scripts` dir per function
+    - Making `copy.sh` smaller (1200 lines to 800 so far)
+    - Easier to maintain going forward
+
+- 2026-01-09
+  - Fixed: Keybind parser latency
+    - Changed the parsing login to python instead of bash
+    - Also fixed duplicates when you unmap, then remap keybinds
+      - Ex. Change keybind for `file manger`
+        - Both the old and new keybind were show in keybind menu
+  - Added: `--express-update` to `copy.sh`
+    - `./copy.sh --express-update`
+    - This will bypass some of the questions
+      - Updating SDDM wallpaper
+      - Downloading wallpaper from repo
+        - Mostly like that was done at install time or previous upgrade
+      - Restoring User configs :
+        - `Weather.sh` and `Weather.sh`
+        - `Rofibeats.sh`
+        - etc.
+      - Automatically trims the backed up directories leaving just latest backup
+      - This dramatically reduces the time/effort to update dotfiles
+        - Most users don't restore these custom files on upgrades
+
+- 2026-01-08
+- Fixed: MPRIS artwork in Sway notification center only 10 pixels
+  - Adjusted to 96 pixels
+  - Thank you @godlyfas for fixing this
+- Fixing scripts
+  - `TouchPad.sh` never expands `$TOUCHPAD_ENABLED` (and doesn’t source the file that defines it)
+  - `Volume.sh` has multiple microphone-control bugs (bad `pamixer` arguments, typoed function name, invalid notification payloads) that break mic toggling and volume feedback.
+  - `DarkLight.sh` wipes the Qt theme paths each run because the `qt5ct/qt6ct` palette variables are commented out.
+  - `KooLsDotsUpdate.sh` contains a malformed `notify-send` string that crashes the script when no local version is detected.
+  - `Distro_update.sh` runs `sudo apt upgrade` outside the kitty window, so the Debian/Ubuntu flow never finishes inside the terminal.
+  - `Hypridle.sh` now launches `hypridle` in the background (`& disown`) when enabling the daemon, preventing the toggle command from hanging Waybar.
+  - `RofiSearch.sh` verifies that `jq` is available, captures the user’s query explicitly, URL-encodes it via `jq` `@uri`,
+    - opens the configured search engine with the encoded query instead of dropping the term.
+  - `Sounds.sh` now tries `pw-play`, then `paplay`, then `aplay`, emitting a clear error if none are installed, so the script no longer calls the non-existent pa-play.
+  - `Tak0-Per-Window-Switch.sh` now records the listener PID in `~/.cache/kb_layout_per_window.listener.pid` and reuses it if still running, preventing multiple background listeners, and reports missing Hyprland sockets without exiting the main script.
+  - `WaybarScripts.sh` adds a `launch_files()` helper that checks `$files` before execution; if unset, it shows a notification instead of running an empty command.
+  - `sddm_wallpaper.sh` validates `~/.config/rofi/wallust/colors-rofi.rasi` before use, extracts colors via a helper, and aborts with a notification if any required colors are missing.
+  - `WallustSwww.sh` now reads the focused monitor’s cache file (or parses swww query per-monitor) to pick the correct wallpaper path
+    - Eliminating the previous “last line wins” bug on multi-monitor setups.
+    - Wallpaper and global theme changes are now dramatically faster
+  - `PortalHyprland.sh` suppresses harmless killall errors and launches only the first available portal binary in each category (hyprland + general)
+    - Avoiding duplicate processes when both `/usr/lib` and `/usr/libexec` variants exist.
+  - `KillActiveProcess.sh` checks that Hyprland returned a numeric PID before calling kill
+    - Notifies the user when no active window is available instead of throwing kill usage errors.
+
+- 2026-01-06
+  - Added Global Theme Changer.
+    - There are many themes to choose from
+    - `SUPER + T`
+  - Added "Glass Style" taken from `ML4W` dotfiles
+    - Thank you [TheAhumMaitra](https://github.com/TheAhumMaitra)
+  - Fixed more WindowRules
+  - Fixed rofi themes to work with Theme changer
+  - Added `ghostty` terminal config file integrated with Themes
+    - `ghostty` is not installed by default
+    - The `COPR` is already there for Fedora
+      - `sudo dnf install ghostty`
+  - The `COPR` repo for `wezterm` is also available
+    - `sudo dnf install wezterm`
+    - A config file is already available when you install it
+    - Most other distros have these terminals in their repo
+
+- 2026-01-04
+- Fullscreen or maximized would exit using `ALT-TAB` (cycle next/bring-to-front)
+  - User `GoodBorn` found this fix
+
+  ```
+  misc {
+   on_focus_under_fullscreen = 1
+   # 0 - Default, no change
+   # 1 - New focused window takes over fullscreen (Windows-like Alt-Tab)
+   # 2 - New focused window stays behind the fullscreen one
+   }
+  ```
+
+  > Note: The above change only works on Hyprland v0.53+.
+  > Users with lower will have to comment that line out.
+  > `~/.config/hypr/UserSettings/SystemSettings.conf`
+
+- Added: modal rule so popup diaglog, like `Save as` or `Open File` center and float by default
+  - `windowrule = float on, center on, match:modal:1`
+
+- 2026-01-01
+- Added more blur and enabled xray
+  - Thank you [TheAhumMaitra](https://github.com/TheAhumMaitra)
+
+- 2025-12-31
+  - Fixed rule for `Gnome Calculator`
+    - Thanks Warlord for finding/fixing that
+  - Fixed rule for `yad`
+    - Size was being overridden by `settings` tag
+  - `~/Pictures` now follows `XDG dir` vs. hard coded
+    - Thanks for Jaël Champagne Gareau for the code
+  - Fixed `opache toggle`
+  - `Weather.py` and `Weather.sh` updated and improved
+    - Thank you Lumethra
+  - Added network check to `WeatherWrap` script
+    - Thank you Maximilian Zhu
+  - Added sample workspace rules to start apps on specific workspaces
+    - They are commented out but serve as references
+
+- 2025-12-29
+  - Fixed pathing in Wallust script
+    - Thank you [Lumethra](https://github.com/Lumethra)
+
+— 2025-12-22
+
+- Added:
+  - Optional keybinding to increment/decrement audio in 1% steps vs. 5%
+    - Thanks [rgarofono](https://github.com/rgarofano) for the code
+- Fixed:
+  - Switch Layout was looking in wrong location
+  - SUPER - J/K not working in both `master` and `dwindle` layouts
+    - You also get notification message on layout change
+    - Thanks [@suresh466](https://github.com/suresh466) for fixing it
+
 ## v2.3.18 — 2025-12-10
 
 ## FIXES:

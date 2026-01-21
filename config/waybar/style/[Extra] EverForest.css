@@ -221,12 +221,14 @@ window#waybar.hidden {
   border-radius: 5px;
   margin-left: 5px;
   background-color: @blue;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
   color: @black;
 }
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
   background-color: @fg;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
   color: @bg0;
 }
 
@@ -286,6 +288,7 @@ window#waybar.hidden {
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-nightlight,
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
@@ -294,6 +297,7 @@ window#waybar.hidden {
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,

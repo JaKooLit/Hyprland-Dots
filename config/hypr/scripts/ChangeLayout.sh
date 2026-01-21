@@ -6,19 +6,34 @@ notif="$HOME/.config/swaync/images/ja.png"
 
 LAYOUT=$(hyprctl -j getoption general:layout | jq '.str' | sed 's/"//g')
 
+# Reverse layout value to reuse toggle logic. So layouts don't get swapped initially.
+if [ "$1" = "init" ]; then
+  if [ "$LAYOUT" = "master" ]; then
+    LAYOUT="dwindle"
+  else
+    LAYOUT="master"
+  fi
+fi
+
 case $LAYOUT in
 "master")
-	hyprctl keyword general:layout dwindle
-	# SUPER+J/K are global and managed by KeybindsLayoutInit.sh; only manage SUPER+O here
-	hyprctl keyword bind SUPER,O,togglesplit
+  hyprctl keyword general:layout dwindle
+  hyprctl keyword unbind SUPER,J
+  hyprctl keyword unbind SUPER,K
+  hyprctl keyword bind SUPER,J,cyclenext
+  hyprctl keyword bind SUPER,K,cyclenext,prev
+  hyprctl keyword bind SUPER,O,togglesplit
   notify-send -e -u low -i "$notif" " Dwindle Layout"
-	;;
+  ;;
 "dwindle")
-	hyprctl keyword general:layout master
-	# Drop togglesplit binding on SUPER+O when switching back to master
-	hyprctl keyword unbind SUPER,O
+  hyprctl keyword general:layout master
+  hyprctl keyword unbind SUPER,J
+  hyprctl keyword unbind SUPER,K
+  hyprctl keyword unbind SUPER,O
+  hyprctl keyword bind SUPER,J,layoutmsg,cyclenext
+  hyprctl keyword bind SUPER,K,layoutmsg,cycleprev
   notify-send -e -u low -i "$notif" " Master Layout"
-	;;
+  ;;
 *) ;;
 
 esac

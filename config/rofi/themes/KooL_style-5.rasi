@@ -26,7 +26,7 @@ configuration {
     background-alt:              @color1;
     selected:                    @color12;
     active:                      @color11;
-    urgent:                      red;
+    urgent:                      @color13;
 
     text-selected:               @background;
     text-color:                  @foreground;
@@ -140,10 +140,9 @@ button {
 
 button selected {
     background-color:          @selected;
-    text-color:                @foreground;
+    text-color:                @background;
     border:                    1px;
     border-color:              transparent;
-	
 }
 
 /* ---- Listview ---- */
@@ -203,8 +202,8 @@ element normal.active {
 
 element-text selected,
 element selected.normal {
-    background-color:           @active;
-    text-color:                 inherit;
+    background-color:           @selected;
+    text-color:                 @background;
 }
 
 element selected.urgent {

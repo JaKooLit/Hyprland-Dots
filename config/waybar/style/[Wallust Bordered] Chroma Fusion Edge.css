@@ -78,6 +78,7 @@ tooltip {
 #window,
 #wireplumber,
 #custom-backlight,
+#custom-nightlight,
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
@@ -86,6 +87,7 @@ tooltip {
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,
@@ -129,6 +131,7 @@ tooltip {
 	padding: 0px 2px 0px 6px;
 }
 #custom-light_dark,
+#custom-nightlight,
 #custom-menu{
     color: @flamingo;
     padding: 0px 8px 0px 4px;
@@ -181,12 +184,14 @@ tooltip {
 #custom-hypridle,
 #idle_inhibitor {
     color: @teal;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #custom-cava_mviz{

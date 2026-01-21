@@ -26,7 +26,7 @@ configuration {
     background-alt: @color7;
     selected:       @color12;
     active:         @color11;
-    urgent:         red;
+    urgent:         @color13;
     
     border-color:                @selected;
     handle-color:                @selected;

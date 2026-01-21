@@ -26,7 +26,7 @@ configuration {
     background-alt:              @color1;
     selected:                    @color12;
     active:                      @color11;
-    urgent:                      red;
+    urgent:                      @color13;
 
     text-selected:               @background;
     text-color:                  @foreground;
@@ -145,8 +145,8 @@ button {
     cursor:                      pointer;
 }
 button selected {
-    background-color:            @active;
-    text-color:                  @text-selected;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 
 
@@ -169,23 +169,28 @@ element normal.urgent {
     text-color:                  @foreground;
 }
 
-element-text selected,
+/* Separate rules so selected text does not paint a second background */
+element-text selected {
+    background-color:            transparent;
+    text-color:                  @background;
+}
+
 element normal.active {
     background-color:            @active;
     text-color:                  @foreground;
 }
 
 element selected.normal {
-    background-color:            @color11;
-    text-color:                  @text-selected;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 element selected.urgent {
-    background-color:            @urgent;
-    text-color:                  @text-selected;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 element selected.active {
-    background-color:            @urgent;
-    text-color:                  @text-selected;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 // Adapt rofi theme
 element alternate.normal {

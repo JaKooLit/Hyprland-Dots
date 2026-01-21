@@ -1,11 +1,11 @@
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */  
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
  /* wallust template - colors-waybar */
 
  @define-color foreground #F9E3DF;
  @define-color background #151316;
  @define-color background-alt rgba(21,19,22,0.25);
  @define-color cursor #F9E3DF;
- 
+
  @define-color color0 #3D3A3E;
  @define-color color1 #190E1E;
  @define-color color2 #191F64;
@@ -21,4 +21,4 @@
  @define-color color12 #7F4EA2;
  @define-color color13 #A0536C;
  @define-color color14 #EDAEA4;
- @define-color color15 #EECEC9; 
+ @define-color color15 #EECEC9;

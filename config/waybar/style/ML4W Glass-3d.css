@@ -1,0 +1,327 @@
+/* ML4W GLASS THEME */
+
+/* SPDX-FileCopyrightText: 2026-present Ahum Maitra theahummaitra@gmail.com
+SPDX-License-Identifier: 	GPL-3.0-or-later */
+
+/*
+-----------------------------------------------------
+General
+-----------------------------------------------------
+*/
+
+* {
+  background-color: transparent;
+  font-family: "JetBrainsMono Nerd Font";
+  border: none;
+  font-weight: bolder;
+  border-radius: 0px;
+
+  /* Extra tweaks */
+  min-height: 0;
+  /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+  font-size: 97%;
+  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+  margin-top: 3px;
+  padding-bottom: 2px;
+}
+
+@import "style/ML4W/glass.css";
+/* Soft-neutral override: keeps glass gradients but avoids red-dominant palettes */
+@define-color surface       @background-alt;
+@define-color surface_dim   @background;
+@define-color primary       @foreground;
+@define-color on_primary    @background;
+@define-color on_primary_fixed         @background;
+@define-color on_primary_fixed_variant @foreground;
+@define-color secondary     @foreground;
+@define-color on_secondary  @background;
+@define-color on_tertiary_fixed         @background;
+@define-color on_tertiary_fixed_variant @foreground;
+@define-color error         @foreground;
+@define-color on_error      @background;
+@define-color accent        @color12; /* wallust primary for subtle highlights */
+
+window#waybar {
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.modules-left {
+  background-color: @surface;
+  border-radius: 12px;
+  background:
+    radial-gradient(
+        circle at 50% 250%,
+        alpha(darker(@surface), 0.9),
+        alpha(@surface_dim, 0.9)
+      )
+      padding-box,
+    linear-gradient(@primary, @on_primary) border-box;
+  border: 1px solid transparent;
+  opacity: 0.8;
+  padding-right: 15px;
+  margin: 10px;
+  box-shadow:
+    inset 0 -2px 0 alpha(@accent, 0.45),
+    inset 1px 2px 2px rgba(255, 255, 255, 0.2);
+}
+
+.modules-right {
+  background-color: @surface;
+  border-radius: 12px;
+  background:
+    radial-gradient(
+        circle at 50% 250%,
+        alpha(darker(@surface), 0.9),
+        alpha(@surface_dim, 0.9)
+      )
+      padding-box,
+    linear-gradient(@primary, @on_primary) border-box;
+  border: 1px solid transparent;
+  opacity: 0.8;
+  padding-left: 15px;
+  margin: 10px;
+  box-shadow:
+    inset 0 -2px 0 alpha(@accent, 0.45),
+    inset 1px 2px 2px rgba(255, 255, 255, 0.3);
+}
+
+.modules-center {
+  background-color: @surface;
+  border-radius: 12px;
+  background:
+    radial-gradient(
+        circle at 50% 250%,
+        alpha(darker(@surface), 0.9),
+        alpha(@surface_dim, 0.9)
+      )
+      padding-box,
+    linear-gradient(@primary, @on_primary) border-box;
+  border: 1px solid transparent;
+  opacity: 0.8;
+  margin: 10px;
+  box-shadow:
+    inset 0 -2px 0 alpha(@accent, 0.45),
+    inset 0px 2px 2px rgba(255, 255, 255, 0.2);
+}
+
+label.module {
+  font-size: 14px;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 5px;
+}
+
+label.module {
+  font-size: 14px;
+  color: @on_surface;
+  padding: 3px 10px;
+  transition: all 0.3s ease-out;
+  background:
+    radial-gradient(
+        circle at 50% 250%,
+        @on_tertiary_fixed_variant,
+        @on_tertiary_fixed
+      )
+      padding-box,
+    linear-gradient(@on_primary_fixed_variant, @on_primary_fixed) border-box;
+  border-radius: 10px;
+  border: 0px solid transparent;
+}
+
+label.module:hover {
+}
+
+/* -----------------------------------------------------
+ * Workspaces
+ * ----------------------------------------------------- */
+
+#workspaces {
+  padding: 5px 3px 5px 3px;
+  min-width: 176px;
+  font-weight: 600;
+}
+
+#workspaces button {
+  color: @on_surface;
+  border-radius: 3px;
+  padding: 0px 5px 0px 5px;
+  margin: 0px 2px 0px 2px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+#workspaces button.active {
+  background: alpha(@accent, 0.2);
+  border: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  min-width: 30px;
+  border-radius: 8px;
+  box-shadow:
+    inset 0 -3px 0 alpha(@accent, 0.8),
+    inset 1px 2px 2px rgba(255, 255, 255, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+#workspaces button:hover {
+  background: alpha(@secondary, 0.2);
+  border-radius: 15px;
+}
+
+/* -----------------------------------------------------
+ * Tooltips
+ * ----------------------------------------------------- */
+
+tooltip {
+  background-color: @surface;
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 50% 250%, @surface, @surface_dim) padding-box,
+    linear-gradient(#ffffff, @on_primary) border-box;
+  border: 1px solid transparent;
+  opacity: 0.7;
+  margin: 10px;
+}
+
+tooltip label {
+  color: @on_surface;
+}
+
+/* -----------------------------------------------------
+ * Window
+ * ----------------------------------------------------- */
+
+#window {
+  background-color: transparent;
+  /* Override global margin/padding so the window pill hugs the bar edges */
+  margin: 0;
+  padding: 0;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+/* Tighter content padding specifically for the window title */
+#window label {
+  margin: 0;
+  padding: 4px 10px;
+}
+
+/* -----------------------------------------------------
+ * Taskbar
+ * ----------------------------------------------------- */
+
+#taskbar {
+  padding: 5px 0px 5px 0px;
+}
+
+#taskbar button {
+  border-radius: 6px;
+  padding: 0px 5px 0px 5px;
+}
+
+#taskbar button:hover {
+  background: @primary;
+  color: @on_primary;
+}
+
+#custom-updates.yellow {
+  border-radius: 8px;
+  margin: 5px 0px 5px 5px;
+  padding: 0px 6px 0px 6px;
+  background-color: @secondary;
+  color: @on_secondary;
+}
+
+#custom-updates.red {
+  border-radius: 8px;
+  margin: 6px 0px 6px 7px;
+  padding: 0px 6px 0px 6px;
+  background-color: @error;
+  color: @on_error;
+}
+
+/* -----------------------------------------------------
+ * Clock
+ * ----------------------------------------------------- */
+
+#clock {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+@keyframes blink {
+  to {
+    background-color: @background;
+    color: @on_surface;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: transparent;
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#power-profiles-daemon,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar button,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-nightlight,
+#custom-browser,
+#custom-cava_mviz,
+#custom-cycle_wall,
+#custom-dot_update,
+#custom-file_manager,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-nightlight,
+#custom-lock,
+#custom-hint,
+#custom-hypridle,
+#custom-menu,
+#custom-playerctl,
+#custom-power_vertical,
+#custom-power,
+#custom-quit,
+#custom-reboot,
+#custom-settings,
+#custom-spotify,
+#custom-swaync,
+#custom-tty,
+#custom-updater,
+#custom-hyprpicker,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default,
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+  background-color: transparent;
+}

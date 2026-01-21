@@ -73,5 +73,18 @@ if ! test -f "$sound_file"; then
     fi
 fi
 
-# pipewire priority, fallback pulseaudio
-pw-play "$sound_file" || pa-play "$sound_file"
+# Play the sound: prefer PipeWire, then PulseAudio, then ALSA
+if command -v pw-play >/dev/null 2>&1; then
+    pw-play "$sound_file" && exit 0
+fi
+
+if command -v paplay >/dev/null 2>&1; then
+    paplay "$sound_file" && exit 0
+fi
+
+if command -v aplay >/dev/null 2>&1; then
+    aplay "$sound_file" && exit 0
+fi
+
+echo "Error: No suitable audio player (pw-play/paplay/aplay) found."
+exit 1

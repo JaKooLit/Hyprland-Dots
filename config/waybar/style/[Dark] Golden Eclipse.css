@@ -54,6 +54,7 @@ window#waybar.hidden {
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-nightlight,
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
@@ -62,6 +63,7 @@ window#waybar.hidden {
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
+#custom-nightlight,
 #custom-lock,
 #custom-hint,
 #custom-hypridle,
@@ -115,6 +117,7 @@ window#waybar.hidden {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: cyan;
+    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #battery.critical:not(.charging) {

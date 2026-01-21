@@ -23,10 +23,11 @@ configuration {
 
 /*****----- Global Properties -----*****/
 * {
-    background-alt:              @color1;
+    background-alt:              @color0;
+    /* selected uses color12, active uses color11 (match other working styles) */
     selected:                    @color12;
     active:                      @color11;
-    urgent:                      #8E3596;
+    urgent:                      @color13;
 }
 
 /*****----- Main Window -----*****/
@@ -153,8 +154,8 @@ element normal.normal {
 element-text selected,
 element selected.normal {
 	border-radius:               30px;
-    background-color:            @color11;
-    text-color:                  @foreground;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 element-icon {
     padding:                     0px;

@@ -1,0 +1,93 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+// ### DUAL TOP and BOTTOM ### //
+
+[{
+"include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  "$HOME/.config/waybar/ModulesCustom",
+  "$HOME/.config/waybar/ModulesGroups",
+  "$HOME/.config/waybar/UserModules",
+  ],
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "bottom",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 1,
+"margin-left": 8,
+"margin-right": 8,
+
+"modules-left": [
+	"cpu",
+	"power-profiles-daemon", 
+	"temperature", 
+	"memory",
+	"disk", 
+	],
+  
+"modules-center": [
+	"idle_inhibitor",
+	"clock",  
+	"custom/light_dark",
+	], 
+
+"modules-right": [
+	"custom/weather",	  
+	"battery", 
+	"backlight",
+	"bluetooth",
+	"network",
+	"custom/updater",
+	"custom/cycle_wall",
+	"custom/nightlight",
+	"custom/lock", 
+	],
+},
+
+{
+"include": [
+  "$HOME/.config/waybar/Modules",
+  "$HOME/.config/waybar/ModulesWorkspaces",
+  "$HOME/.config/waybar/ModulesCustom",
+  "$HOME/.config/waybar/ModulesGroups",
+  "$HOME/.config/waybar/UserModules",
+  ],
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 5,
+"fixed-center": true,
+"ipc": true,
+"height": 0,
+"margin-left": 8,
+"margin-right": 8,
+//"gtk-layer-shell": true,
+//"margin-bottom": 0,
+
+"modules-left": [
+	"custom/menu",  
+	// "wlr/taskbar",
+	"hyprland/window",
+	"mpris",
+	 ],
+
+"modules-center": [
+	"hyprland/workspaces#rw", 
+	],
+
+"modules-right": [
+	"tray",
+	"group/notify",
+	"pulseaudio",
+	//"wireplumber", 
+	"pulseaudio#microphone",	  
+	"custom/power",
+	],  
+}],

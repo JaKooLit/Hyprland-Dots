@@ -23,7 +23,7 @@ configuration {
 /*****----- Global Properties -----*****/
 * {    
     BG:    @background;
-    BGA:   @color11;
+    BGA:   @color12;
     FG:    @foreground;
     FGA:   #F28FADff;
     BDR:   @color12;

@@ -1,0 +1,52 @@
+/* ML4W Glass theme for Kool's Hyprland  */
+
+/* SPDX-FileCopyrightText: 2025-present Ahum Maitra theahummaitra@gmail.com
+
+SPDX-License-Identifier: 	GPL-3.0-or-later */
+
+@import "../../wallust/colors-waybar.css";
+
+/* -------------------------
+ * Base surfaces
+ * ------------------------- */
+
+@define-color background        @background;
+@define-color surface           @color9;
+@define-color surface_dim       @color1;
+
+/* -------------------------
+ * Primary colors
+ * ------------------------- */
+
+@define-color primary                    @color12;
+@define-color on_primary                 @color7;
+
+@define-color on_primary_fixed           @color1;
+@define-color on_primary_fixed_variant   @color10;
+
+/* -------------------------
+ * Secondary colors
+ * ------------------------- */
+
+@define-color secondary          @color14;
+@define-color on_secondary       @color1;
+
+/* -------------------------
+ * Tertiary (used for module pills)
+ * ------------------------- */
+
+@define-color on_tertiary_fixed           @color1;
+@define-color on_tertiary_fixed_variant   @color11;
+
+/* -------------------------
+ * Text
+ * ------------------------- */
+
+@define-color on_surface         @foreground;
+
+/* -------------------------
+ * Error states
+ * ------------------------- */
+
+@define-color error              @color9;
+@define-color on_error           @color7;

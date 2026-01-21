@@ -25,7 +25,7 @@ configuration {
     background-alt:              @color10;
     selected:                    @color12;
     active:                      @color11;
-    urgent:                      red;
+    urgent:                      @color13;
 
     text-selected:               @background;
     text-color:                  @foreground;
