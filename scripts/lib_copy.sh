@@ -187,6 +187,88 @@ compose_overlay_from_backup() {
   fi
 }
 
+cleanup_duplicate_userconfigs() {
+  local current_version="$1"
+  local log="$2"
+
+  if [ -z "$current_version" ]; then
+    return
+  fi
+  if ! version_gte "$current_version" "2.3.18"; then
+    return
+  fi
+
+  local HYPR_DIR="$HOME/.config/hypr"
+  local BASE_DIR="$HYPR_DIR/configs"
+  local USER_DIR="$HYPR_DIR/UserConfigs"
+
+  local STARTUP_BASE="$BASE_DIR/Startup_Apps.conf"
+  local STARTUP_USER="$USER_DIR/Startup_Apps.conf"
+  local WINDOW_BASE="$BASE_DIR/WindowRules.conf"
+  local WINDOW_USER="$USER_DIR/WindowRules.conf"
+
+  if [ -f "$STARTUP_BASE" ] && [ -f "$STARTUP_USER" ]; then
+    local tmp_startup
+    local backup_startup
+    backup_startup="$STARTUP_USER.backup-dupfix-$(date +%Y%m%d-%H%M%S)"
+    tmp_startup=$(mktemp)
+    awk '
+      function trim(s){ gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+      FNR==NR {
+        if ($0 ~ /^[ \t]*exec-once[ \t]*=/) {
+          line=trim($0)
+          base[line]=1
+        }
+        next
+      }
+      {
+        if ($0 ~ /^[ \t]*exec-once[ \t]*=/) {
+          line=trim($0)
+          if (line in base) next
+        }
+        print
+      }
+    ' "$STARTUP_BASE" "$STARTUP_USER" >"$tmp_startup"
+    if ! cmp -s "$STARTUP_USER" "$tmp_startup"; then
+      cp "$STARTUP_USER" "$backup_startup"
+      mv "$tmp_startup" "$STARTUP_USER"
+      echo "${NOTE:-[NOTE]} - Removed duplicate Startup_Apps entries matching base config." 2>&1 | tee -a "$log"
+    else
+      rm -f "$tmp_startup"
+    fi
+  fi
+
+  if [ -f "$WINDOW_BASE" ] && [ -f "$WINDOW_USER" ]; then
+    local tmp_window
+    local backup_window
+    backup_window="$WINDOW_USER.backup-dupfix-$(date +%Y%m%d-%H%M%S)"
+    tmp_window=$(mktemp)
+    awk '
+      function trim(s){ gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+      FNR==NR {
+        if ($0 ~ /^[ \t]*(windowrule|layerrule)[ \t]*=/) {
+          line=trim($0)
+          base[line]=1
+        }
+        next
+      }
+      {
+        if ($0 ~ /^[ \t]*(windowrule|layerrule)[ \t]*=/) {
+          line=trim($0)
+          if (line in base) next
+        }
+        print
+      }
+    ' "$WINDOW_BASE" "$WINDOW_USER" >"$tmp_window"
+    if ! cmp -s "$WINDOW_USER" "$tmp_window"; then
+      cp "$WINDOW_USER" "$backup_window"
+      mv "$tmp_window" "$WINDOW_USER"
+      echo "${NOTE:-[NOTE]} - Removed duplicate WindowRules entries matching base config." 2>&1 | tee -a "$log"
+    else
+      rm -f "$tmp_window"
+    fi
+  fi
+}
 restore_user_configs() {
   local log="$1"
   local express_mode="$2"
@@ -279,6 +361,16 @@ restore_user_configs() {
           fi
         fi
       done
+    fi
+  fi
+
+  if [ -n "$CURRENT_VERSION" ]; then
+    cleanup_duplicate_userconfigs "$CURRENT_VERSION" "$log"
+  else
+    local detected_version
+    detected_version=$(get_installed_dotfiles_version)
+    if [ -n "$detected_version" ]; then
+      cleanup_duplicate_userconfigs "$detected_version" "$log"
     fi
   fi
 }
