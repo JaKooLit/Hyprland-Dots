@@ -204,9 +204,16 @@ cleanup_duplicate_userconfigs() {
   if [ -z "$current_version" ]; then
     return
   fi
-  if ! version_gte "$current_version" "2.3.18"; then
+
+  # Run de-dupe only for existing installs up to and including v2.3.19.
+  # For v2.3.20 and newer, the underlying duplication bug is fixed and
+  # this cleanup is no longer needed (and might mask future issues).
+  if version_gte "$current_version" "2.3.20"; then
+    echo "${INFO:-[INFO]} Skipping UserConfigs duplicate cleanup for detected version v$current_version (>= 2.3.20)." 2>&1 | tee -a "$log"
     return
   fi
+
+  echo "${INFO:-[INFO]} Running UserConfigs duplicate cleanup for detected version v$current_version (<= 2.3.19)." 2>&1 | tee -a "$log"
 
   local HYPR_DIR="$HOME/.config/hypr"
   local BASE_DIR="$HYPR_DIR/configs"
@@ -216,7 +223,11 @@ cleanup_duplicate_userconfigs() {
   local STARTUP_USER="$USER_DIR/Startup_Apps.conf"
   local WINDOW_BASE="$BASE_DIR/WindowRules.conf"
   local WINDOW_USER="$USER_DIR/WindowRules.conf"
+  local KEYBINDS_BASE="$BASE_DIR/Keybinds.conf"
+  local KEYBINDS_USER="$USER_DIR/UserKeybinds.conf"
 
+  # Startup_Apps: strip exec-once lines from UserConfigs that are exact
+  # duplicates of the base Startup_Apps.conf.
   if [ -f "$STARTUP_BASE" ] && [ -f "$STARTUP_USER" ]; then
     local tmp_startup
     local backup_startup
@@ -248,6 +259,8 @@ cleanup_duplicate_userconfigs() {
     fi
   fi
 
+  # WindowRules: strip windowrule/layerrule lines from UserConfigs that
+  # are exact duplicates of the base WindowRules.conf.
   if [ -f "$WINDOW_BASE" ] && [ -f "$WINDOW_USER" ]; then
     local tmp_window
     local backup_window
@@ -278,6 +291,41 @@ cleanup_duplicate_userconfigs() {
       rm -f "$tmp_window"
     fi
   fi
+
+  # Keybinds: strip bind* lines from UserKeybinds.conf that are exact
+  # duplicates of the base Keybinds.conf. Comments and unbinds are kept.
+  if [ -f "$KEYBINDS_BASE" ] && [ -f "$KEYBINDS_USER" ]; then
+    local tmp_keybinds
+    local backup_keybinds
+    backup_keybinds="$KEYBINDS_USER.backup-dupfix-$(date +%Y%m%d-%H%M%S)"
+    tmp_keybinds=$(mktemp)
+    awk '
+      function trim(s){ gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+      FNR==NR {
+        # Match any Hyprland bind variant: bindd, bindmd, bindld, binded,
+        # bindlnd, bindeld, etc.
+        if ($0 ~ /^[ \t]*bind[a-z]*[ \t]*=/) {
+          line=trim($0)
+          base[line]=1
+        }
+        next
+      }
+      {
+        if ($0 ~ /^[ \t]*bind[a-z]*[ \t]*=/) {
+          line=trim($0)
+          if (line in base) next
+        }
+        print
+      }
+    ' "$KEYBINDS_BASE" "$KEYBINDS_USER" >"$tmp_keybinds"
+    if ! cmp -s "$KEYBINDS_USER" "$tmp_keybinds"; then
+      cp "$KEYBINDS_USER" "$backup_keybinds"
+      mv "$tmp_keybinds" "$KEYBINDS_USER"
+      echo "${NOTE:-[NOTE]} - Removed duplicate UserKeybinds entries matching base Keybinds.conf." 2>&1 | tee -a "$log"
+    else
+      rm -f "$tmp_keybinds"
+    fi
+  fi
 }
 restore_user_configs() {
   local log="$1"
@@ -294,12 +342,17 @@ restore_user_configs() {
     exit 1
   fi
 
+  # In express mode we still want to run the de-dupe logic, but we skip
+  # the interactive restoration prompts so the workflow stays non-blocking.
+  local SKIP_RESTORE_PROMPTS=0
   if [ -d "$BACKUP_DIR_PATH" ] && [ "$express_mode" -eq 1 ]; then
     echo "${NOTE:-[NOTE]} Express mode: skipping UserConfigs restoration prompts." 2>&1 | tee -a "$log"
-    return
+    SKIP_RESTORE_PROMPTS=1
   fi
 
-  if [ -d "$BACKUP_DIR_PATH" ] && [ "$express_mode" -eq 0 ]; then
+  if [ -d "$BACKUP_DIR_PATH" ] && [ "$SKIP_RESTORE_PROMPTS" -eq 0 ]; then
+    local VERSION_FILE
+    VERSION_FILE=$(find "$DIRPATH" -maxdepth 1 -name "v*.*.*" | head -n 1)
     local CURRENT_VERSION="999.9.9"
     if [ -n "$old_version" ]; then
       CURRENT_VERSION="$old_version"
@@ -308,13 +361,13 @@ restore_user_configs() {
     local TARGET_VERSION="2.3.19"
 
     echo -e "${NOTE:-[NOTE]} Restoring previous ${MAGENTA:-}User-Configs${RESET:-}... " 2>&1 | tee -a "$log"
-    printf "${WARNING:-}\
-    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█\n\
-            NOTES for RESTORING PREVIOUS CONFIGS\n\
-    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█\n\n\
-    The 'UserConfigs' directory is for all your personal settings.\n\
-    Files in this directory will override the default configurations,\n\
-    so your customizations are not lost when you update.\n\
+    printf "${WARNING:-}\\
+    █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█\\n\\
+            NOTES for RESTORING PREVIOUS CONFIGS\\n\\
+    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█\\n\\n\\
+    The 'UserConfigs' directory is for all your personal settings.\\n\\
+    Files in this directory will override the default configurations,\\n\\
+    so your customizations are not lost when you update.\\n\\
 " >&2
 
     if version_gte "$CURRENT_VERSION" "$TARGET_VERSION"; then
@@ -373,14 +426,12 @@ restore_user_configs() {
     fi
   fi
 
-  if [ -n "$CURRENT_VERSION" ]; then
-    cleanup_duplicate_userconfigs "$CURRENT_VERSION" "$log"
-  else
-    local detected_version
-    detected_version=$(get_installed_dotfiles_version)
-    if [ -n "$detected_version" ]; then
-      cleanup_duplicate_userconfigs "$detected_version" "$log"
-    fi
+  # Always run de-dupe based on the installed dotfiles version so that
+  # express mode and standard mode behave consistently.
+  local detected_version
+  detected_version=$(get_installed_dotfiles_version)
+  if [ -n "$detected_version" ]; then
+    cleanup_duplicate_userconfigs "$detected_version" "$log"
   fi
 }
 
