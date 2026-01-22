@@ -12,25 +12,30 @@ copy_phase1() {
         echo -n "${CAT:-[ACTION]} Do you want to replace ${YELLOW:-}$DIR2${RESET:-} config? (y/n): "
         read DIR1_CHOICE
         case "$DIR1_CHOICE" in
-          [Yy]*) BACKUP_DIR=$(get_backup_dirname)
-                 mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$log"
-                 echo -e "${NOTE:-[NOTE]} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$log"
-                 cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$log"
-                 echo -e "${OK:-[OK]} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$log"
-                 if [ "$DIR2" = "rofi" ]; then
-                   if [ -d "$DIRPATH-backup-$BACKUP_DIR/themes" ]; then
-                     for file in "$DIRPATH-backup-$BACKUP_DIR/themes"/*; do
-                       [ -e "$file" ] || continue
-                       cp -n "$file" "$HOME/.config/rofi/themes/" >>"$log" 2>&1 || true
-                     done || true
-                   fi
-                   if [ -f "$DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi" ]; then
-                     cp "$DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi" "$HOME/.config/rofi/0-shared-fonts.rasi" >>"$log" 2>&1
-                   fi
-                 fi
-                 break ;;
-          [Nn]*) echo -e "${NOTE:-[NOTE]} - Skipping ${YELLOW:-}$DIR2${RESET:-}" 2>&1 | tee -a "$log"; break ;;
-          *) echo -e "${WARN:-[WARN]} - Invalid choice. Please enter Y or N." ;;
+        [Yy]*)
+          BACKUP_DIR=$(get_backup_dirname)
+          mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$log"
+          echo -e "${NOTE:-[NOTE]} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$log"
+          cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$log"
+          echo -e "${OK:-[OK]} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$log"
+          if [ "$DIR2" = "rofi" ]; then
+            if [ -d "$DIRPATH-backup-$BACKUP_DIR/themes" ]; then
+              for file in "$DIRPATH-backup-$BACKUP_DIR/themes"/*; do
+                [ -e "$file" ] || continue
+                cp -n "$file" "$HOME/.config/rofi/themes/" >>"$log" 2>&1 || true
+              done || true
+            fi
+            if [ -f "$DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi" ]; then
+              cp "$DIRPATH-backup-$BACKUP_DIR/0-shared-fonts.rasi" "$HOME/.config/rofi/0-shared-fonts.rasi" >>"$log" 2>&1
+            fi
+          fi
+          break
+          ;;
+        [Nn]*)
+          echo -e "${NOTE:-[NOTE]} - Skipping ${YELLOW:-}$DIR2${RESET:-}" 2>&1 | tee -a "$log"
+          break
+          ;;
+        *) echo -e "${WARN:-[WARN]} - Invalid choice. Please enter Y or N." ;;
         esac
       done
     else
@@ -49,47 +54,52 @@ copy_waybar() {
       echo -n "${CAT:-[ACTION]} Do you want to replace ${YELLOW:-}$DIRW${RESET:-} config? (y/n): "
       read DIR1_CHOICE
       case "$DIR1_CHOICE" in
-        [Yy]*) BACKUP_DIR=$(get_backup_dirname)
-               cp -r "$DIRPATHw" "$DIRPATHw-backup-$BACKUP_DIR" 2>&1 | tee -a "$log"
-               echo -e "${NOTE:-[NOTE]} - Backed up $DIRW to $DIRPATHw-backup-$BACKUP_DIR." 2>&1 | tee -a "$log"
-               rm -rf "$DIRPATHw" && cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$log"
-               for file in "config" "style.css"; do
-                 symlink="$DIRPATHw-backup-$BACKUP_DIR/$file"
-                 target_file="$DIRPATHw/$file"
-                 if [ -L "$symlink" ]; then
-                   symlink_target=$(readlink "$symlink")
-                   if [ -f "$symlink_target" ]; then
-                     rm -f "$target_file" && cp -f "$symlink_target" "$target_file"
-                   fi
-                 fi
-               done
-               for dir in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
-                 [ -e "$dir" ] || continue
-                 if [ -d "$dir" ]; then
-                   target_dir="$HOME/.config/waybar/configs/$(basename "$dir")"
-                   [ -d "$target_dir" ] || cp -r "$dir" "$HOME/.config/waybar/configs/"
-                 fi
-               done
-               for file in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
-                 [ -e "$file" ] || continue
-                 target_file="$HOME/.config/waybar/configs/$(basename "$file")"
-                 [ -e "$target_file" ] || cp "$file" "$HOME/.config/waybar/configs/"
-               done || true
-               for file in "$DIRPATHw-backup-$BACKUP_DIR/style"/*; do
-                 [ -e "$file" ] || continue
-                 if [ -d "$file" ]; then
-                   target_dir="$HOME/.config/waybar/style/$(basename "$file")"
-                   [ -d "$target_dir" ] || cp -r "$file" "$HOME/.config/waybar/style/"
-                 else
-                   target_file="$HOME/.config/waybar/style/$(basename "$file")"
-                   [ -e "$target_file" ] || cp "$file" "$HOME/.config/waybar/style/"
-                 fi
-               done || true
-               BACKUP_FILEw="$DIRPATHw-backup-$BACKUP_DIR/UserModules"
-               [ -f "$BACKUP_FILEw" ] && cp -f "$BACKUP_FILEw" "$DIRPATHw/UserModules"
-               break ;;
-        [Nn]*) echo -e "${NOTE:-[NOTE]} - Skipping ${YELLOW:-}$DIRW${RESET:-} config replacement." 2>&1 | tee -a "$log"; break ;;
-        *) echo -e "${WARN:-[WARN]} - Invalid choice. Please enter Y or N." ;;
+      [Yy]*)
+        BACKUP_DIR=$(get_backup_dirname)
+        cp -r "$DIRPATHw" "$DIRPATHw-backup-$BACKUP_DIR" 2>&1 | tee -a "$log"
+        echo -e "${NOTE:-[NOTE]} - Backed up $DIRW to $DIRPATHw-backup-$BACKUP_DIR." 2>&1 | tee -a "$log"
+        rm -rf "$DIRPATHw" && cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$log"
+        for file in "config" "style.css"; do
+          symlink="$DIRPATHw-backup-$BACKUP_DIR/$file"
+          target_file="$DIRPATHw/$file"
+          if [ -L "$symlink" ]; then
+            symlink_target=$(readlink "$symlink")
+            if [ -f "$symlink_target" ]; then
+              rm -f "$target_file" && cp -f "$symlink_target" "$target_file"
+            fi
+          fi
+        done
+        for dir in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
+          [ -e "$dir" ] || continue
+          if [ -d "$dir" ]; then
+            target_dir="$HOME/.config/waybar/configs/$(basename "$dir")"
+            [ -d "$target_dir" ] || cp -r "$dir" "$HOME/.config/waybar/configs/"
+          fi
+        done
+        for file in "$DIRPATHw-backup-$BACKUP_DIR/configs"/*; do
+          [ -e "$file" ] || continue
+          target_file="$HOME/.config/waybar/configs/$(basename "$file")"
+          [ -e "$target_file" ] || cp "$file" "$HOME/.config/waybar/configs/"
+        done || true
+        for file in "$DIRPATHw-backup-$BACKUP_DIR/style"/*; do
+          [ -e "$file" ] || continue
+          if [ -d "$file" ]; then
+            target_dir="$HOME/.config/waybar/style/$(basename "$file")"
+            [ -d "$target_dir" ] || cp -r "$file" "$HOME/.config/waybar/style/"
+          else
+            target_file="$HOME/.config/waybar/style/$(basename "$file")"
+            [ -e "$target_file" ] || cp "$file" "$HOME/.config/waybar/style/"
+          fi
+        done || true
+        BACKUP_FILEw="$DIRPATHw-backup-$BACKUP_DIR/UserModules"
+        [ -f "$BACKUP_FILEw" ] && cp -f "$BACKUP_FILEw" "$DIRPATHw/UserModules"
+        break
+        ;;
+      [Nn]*)
+        echo -e "${NOTE:-[NOTE]} - Skipping ${YELLOW:-}$DIRW${RESET:-} config replacement." 2>&1 | tee -a "$log"
+        break
+        ;;
+      *) echo -e "${WARN:-[WARN]} - Invalid choice. Please enter Y or N." ;;
       esac
     done
   else
@@ -272,6 +282,7 @@ cleanup_duplicate_userconfigs() {
 restore_user_configs() {
   local log="$1"
   local express_mode="$2"
+  local old_version="$3"
 
   local DIRPATH="$HOME/.config/hypr"
   local BACKUP_DIR
@@ -289,11 +300,9 @@ restore_user_configs() {
   fi
 
   if [ -d "$BACKUP_DIR_PATH" ] && [ "$express_mode" -eq 0 ]; then
-    local VERSION_FILE
-    VERSION_FILE=$(find "$DIRPATH" -maxdepth 1 -name "v*.*.*" | head -n 1)
     local CURRENT_VERSION="999.9.9"
-    if [ -n "$VERSION_FILE" ]; then
-      CURRENT_VERSION=$(basename "$VERSION_FILE" | sed 's/^v//')
+    if [ -n "$old_version" ]; then
+      CURRENT_VERSION="$old_version"
     fi
 
     local TARGET_VERSION="2.3.19"

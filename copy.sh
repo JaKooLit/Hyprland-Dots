@@ -167,6 +167,7 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
+INSTALLED_VERSION=$(get_installed_dotfiles_version)
 EXPRESS_SUPPORTED=0
 if express_supported; then
   EXPRESS_SUPPORTED=1
@@ -479,7 +480,7 @@ printf "\n%.0s" {1..1}
 restore_hypr_assets "$LOG" "$EXPRESS_MODE"
 printf "\n%.0s" {1..1}
 
-restore_user_configs "$LOG" "$EXPRESS_MODE"
+restore_user_configs "$LOG" "$EXPRESS_MODE" "$INSTALLED_VERSION"
 printf "\n%.0s" {1..1}
 
 restore_user_scripts "$LOG" "$EXPRESS_MODE"
