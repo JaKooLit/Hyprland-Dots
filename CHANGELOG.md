@@ -1,5 +1,15 @@
 # Changelog — JAK's Hyprland Dotfiles
 
+## v2.3.20
+
+- Bugfix release
+- Fixed issue with express-update
+  - It bypassed the code to remove duplicates in system vs. user
+  - Now checks for dups in version <= 2.3.19
+  - Improved the checking code for better matching system vs. User
+  - Merged `tak0dan` update to `Tak0-Autodispatch.sh` script
+  - Removed stale `nvim` config. It was never copied but not needed
+
 ## v2.3.19
 
 - 2026-01-20
