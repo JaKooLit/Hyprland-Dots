@@ -410,7 +410,12 @@ if command -v ags >/dev/null 2>&1; then
   fi
 fi
 
-printf "\n%.0s" {1..1}
+printf "\\n%.0s" {1..1}
+
+# Capture installed dotfiles version at the start of the workflow so we
+# can apply cleanup rules based on the pre-upgrade state, even if a newer
+# version marker is copied in later.
+INSTALLED_VERSION_AT_START="$(get_installed_dotfiles_version || true)"
 
 # quickshell (ags alternative)
 # Check if quickshell is installed
@@ -478,10 +483,10 @@ fi
 printf "\n%.0s" {1..1}
 
 restore_hypr_assets "$LOG" "$EXPRESS_MODE"
-printf "\n%.0s" {1..1}
+printf "\\n%.0s" {1..1}
 
-restore_user_configs "$LOG" "$EXPRESS_MODE" "$INSTALLED_VERSION"
-printf "\n%.0s" {1..1}
+restore_user_configs "$LOG" "$EXPRESS_MODE" "$INSTALLED_VERSION_AT_START"
+printf "\\n%.0s" {1..1}
 
 restore_user_scripts "$LOG" "$EXPRESS_MODE"
 printf "\n%.0s" {1..1}

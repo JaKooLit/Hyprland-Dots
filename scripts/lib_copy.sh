@@ -427,9 +427,14 @@ restore_user_configs() {
   fi
 
   # Always run de-dupe based on the installed dotfiles version so that
-  # express mode and standard mode behave consistently.
-  local detected_version
-  detected_version=$(get_installed_dotfiles_version)
+  # express mode and standard mode behave consistently. Prefer the
+  # pre-upgrade version (old_version) if provided so we still clean up
+  # legacy duplicates when upgrading to a newer release that no longer
+  # needs the fix.
+  local detected_version="$old_version"
+  if [ -z "$detected_version" ]; then
+    detected_version=$(get_installed_dotfiles_version)
+  fi
   if [ -n "$detected_version" ]; then
     cleanup_duplicate_userconfigs "$detected_version" "$log"
   fi
