@@ -1,16 +1,10 @@
 ##################################################################
-#                                                                #
-#                                                                #
 #                  TAK_0'S Per-Window-Switch                     #
-#                                                                #
-#                                                                #
 #                                                                #
 #  Just a little script that I made to switch keyboard layouts   #
 #       per-window instead of global switching for the more      #
 #                 smooth and comfortable workflow.               #
-#                                                                #
 ##################################################################
-
 # This is for changing kb_layouts. Set kb_layouts in
 
 MAP_FILE="$HOME/.cache/kb_layout_per_window"

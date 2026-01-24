@@ -17,12 +17,18 @@ fi
 # GitHub URL - KooL's dots
 branch="main"
 github_url="https://github.com/JaKooLit/Hyprland-Dots/tree/$branch/config/hypr/"
+# Check for required tools (curl)
+if ! command -v curl &> /dev/null; then
+  notify-send -i "$iDIR/error.png" "Need curl:" "curl not found. Please install curl."
+  exit 1
+fi
 
 # Fetch the version from GitHub URL - KooL's dots
-github_version=$(curl -s "$github_url" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -V | tail -n 1 | sed 's/v//')
+github_version=$(curl -fsSL -A "Mozilla/5.0" "$github_url" | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -V | tail -n 1 | sed 's/v//')
 
 # Cant find  GitHub URL - KooL's dots version
 if [ -z "$github_version" ]; then
+  notify-send -i "$iDIR/error.png" 'KooL Hyprland:' "Unable to determine GitHub version."
   exit 1
 fi
 

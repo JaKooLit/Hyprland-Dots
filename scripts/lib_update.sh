@@ -77,6 +77,20 @@ run_repo_update() {
   echo "  Pull status : $( [ $pull_status -eq 0 ] && echo success || echo failure )" | tee -a "$log_file"
   echo "----------------------------------------" | tee -a "$log_file"
 
+  # Also run the UserConfigs duplicate cleanup for existing installs,
+  # using the same version gating as the main copy workflow (<= v2.3.19).
+  if declare -f get_installed_dotfiles_version >/dev/null 2>&1 \
+     && declare -f cleanup_duplicate_userconfigs >/dev/null 2>&1; then
+    local installed_version
+    installed_version=$(get_installed_dotfiles_version)
+    if [ -n "$installed_version" ]; then
+      echo "${INFO:-[INFO]} Checking for duplicate UserConfigs entries after repo update (detected v$installed_version)..." | tee -a "$log_file"
+      cleanup_duplicate_userconfigs "$installed_version" "$log_file"
+    else
+      echo "${NOTE:-[NOTE]} Skipping UserConfigs duplicate cleanup; installed version could not be detected." | tee -a "$log_file"
+    fi
+  fi
+
   read -n1 -s -r -p "Press any key to return to the main menu..."
   echo
 
