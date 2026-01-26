@@ -136,7 +136,9 @@
 // This is a custom cava visualizer
 "custom/cava_mviz": {
 	"exec": "$HOME/.config/hypr/scripts/WaybarCava.sh",
-	"format": "{}"
+	"format": "{}",
+	"return-type": "text",
+	"tooltip": false
 },
 
 "custom/playerctl": {
