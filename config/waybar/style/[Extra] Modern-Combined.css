@@ -13,21 +13,22 @@
 @define-color teal-trans	rgba(1, 117, 84, 0.5);
 @define-color cyan			rgba(53, 140, 169, 1);
 
-@define-color background-module     @color1;
-@define-color background-module2	@color11;
+@define-color background-module     @background-alt;
+@define-color background-module2	@background;
 @define-color border-color          @color12;
 @define-color button-color          @color10;
 @define-color button-hover          @color13;
 
-@define-color backgroundlight @color12;
-@define-color backgrounddark #FFFFFF;
-@define-color workspacesbackground1 @color12;
-@define-color workspacesbackground2 #FFFFFF;
+/* Theme-aware base colors */
+@define-color backgroundlight @background-alt;
+@define-color backgrounddark @background;
+@define-color workspacesbackground1 @background-alt;
+@define-color workspacesbackground2 @background;
 @define-color bordercolor @color11;
-@define-color textcolor1 @color12;
-@define-color textcolor2 #FFFFFF;
-@define-color textcolor3 #FFFFFF;
-@define-color iconcolor #FFFFFF;
+@define-color textcolor1 @foreground;
+@define-color textcolor2 @foreground;
+@define-color textcolor3 @foreground;
+@define-color iconcolor @foreground;
 
 @import '../../.config/waybar/wallust/colors-waybar.css';
 @import "../waybar/style/catppuccin-themes/latte.css";

@@ -36,7 +36,7 @@ tooltip {
 .modules-right {
 	border: 3px solid @color12;
 	border-radius: 40px 0px 0px 0px;
-	background-color: @color1;
+	background-color: @background-alt;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
@@ -56,7 +56,7 @@ tooltip {
 .modules-left {
 	border: 3px solid @color12;
 	border-radius: 0px 0px 40px 0px;
-	background-color: @color1;
+	background-color: @background-alt;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
