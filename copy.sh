@@ -229,6 +229,11 @@ if [[ $EUID -eq 0 ]]; then
   printf "\n%.0s" {1..2}
   exit 1
 fi
+# Ensure rsync is available before proceeding
+if ! command -v rsync >/dev/null 2>&1; then
+  echo "${ERROR} Required dependency 'rsync' is not installed. Please install rsync and rerun this script."
+  exit 1
+fi
 
 # Function to print colorful text
 print_color() {
