@@ -62,7 +62,7 @@ window#waybar {
 }
 
 tooltip {
-    background: @color1; /* Slightly darker tooltip background */
+    background: @background-alt; /* Theme-neutral tooltip background */
     opacity: 0.8;
     border-radius: 6px;
     color: @color7; /* Light text */
