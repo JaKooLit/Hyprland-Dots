@@ -114,10 +114,10 @@ get_installed_dotfiles_version() {
   local hypr_dir="$HOME/.config/hypr"
   if [ -d "$hypr_dir" ]; then
     # Pick the highest semantic version among files named vX.Y.Z
-    find "$hypr_dir" -maxdepth 1 -type f -name 'v*.*.*' -printf '%f\n' 2>/dev/null \
-      | sed 's/^v//' \
-      | sort -V \
-      | tail -n1
+    find "$hypr_dir" -maxdepth 1 -type f -name 'v*.*.*' -printf '%f\n' 2>/dev/null |
+      sed 's/^v//' |
+      sort -V |
+      tail -n1
   fi
 }
 
@@ -332,9 +332,15 @@ while true; do
   echo -n "${CAT} Enter the number of your choice (1 or 2): "
   read -r choice
   case "$choice" in
-    1) resolution="< 1440p"; break ;;
-    2) resolution="≥ 1440p"; break ;;
-    *) echo "${ERROR} Invalid choice. Please enter 1 or 2.";;
+  1)
+    resolution="< 1440p"
+    break
+    ;;
+  2)
+    resolution="≥ 1440p"
+    break
+    ;;
+  *) echo "${ERROR} Invalid choice. Please enter 1 or 2." ;;
   esac
 done
 echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
@@ -373,7 +379,7 @@ if [ ! -d "$HOME/.config" ]; then
 fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
-copy_phase1 "$LOG"
+copy_phase1 "$LOG" "$RUN_MODE"
 printf "\n%.0s" {1..1}
 copy_waybar "$LOG"
 printf "\n%.0s" {1..1}
@@ -441,7 +447,7 @@ if command -v qs >/dev/null 2>&1; then
       echo "${NOTE} - Removing default shell.qml to enable quickshell overview config detection" 2>&1 | tee -a "$LOG"
       rm "$DIRPATH_QS/shell.qml"
     fi
-    
+
     read -p "${CAT} Do you want to overwrite your existing ${YELLOW}quickshell${RESET} config? [y/N] " answer_qs
     case "$answer_qs" in
     [Yy]*)
@@ -464,7 +470,7 @@ if command -v qs >/dev/null 2>&1; then
       ;;
     esac
   fi
-  
+
   # Ensure overview subdirectory exists and is up to date
   DIRPATH_OVERVIEW="$DIRPATH_QS/overview"
   if [ ! -d "$DIRPATH_OVERVIEW" ] && [ -d "config/quickshell/overview" ]; then
@@ -472,7 +478,7 @@ if command -v qs >/dev/null 2>&1; then
     cp -r "config/quickshell/overview" "$DIRPATH_QS/" 2>&1 | tee -a "$LOG"
     echo "${OK} - Quickshell overview config copied successfully" 2>&1 | tee -a "$LOG"
   fi
-  
+
   # Check for old quickshell startup commands and update them
   HYPR_STARTUP="$HOME/.config/hypr/configs/Startup_Apps.conf"
   if [ -f "$HYPR_STARTUP" ]; then
