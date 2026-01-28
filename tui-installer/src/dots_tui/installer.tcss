@@ -1,0 +1,193 @@
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+Screen {
+    layout: vertical;
+    align: center middle;
+    background: $surface-darken-1;
+    layers: base;
+}
+
+/* 
+   Shared Panel Styles 
+   These IDs correspond to the main containers in each screen.
+*/
+#menu, #config-container, #progress-container, #confirm, #modal-dialog {
+    layout: vertical;
+    background: $surface;
+    border: heavy $primary;
+    padding: 1 2;
+    width: 60;
+    max-width: 90%;
+    height: auto;
+    max-height: 90%;
+}
+
+#config-container {
+    width: 70;
+}
+
+#progress-container {
+    width: 80;
+}
+
+#modal-dialog {
+    width: 70;
+    height: auto;
+}
+
+#modal-actions {
+    layout: grid;
+    grid-size: 2;
+    grid-columns: 1fr 1fr;
+    grid-gutter: 2;
+    margin-top: 2;
+    height: auto;
+}
+
+#modal-actions Button {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+/* Typography */
+#title {
+    content-align: center middle;
+    text-style: bold;
+    color: $secondary;
+    margin-bottom: 1;
+    border-bottom: solid $primary;
+    padding-bottom: 1;
+    width: 100%;
+}
+
+#help {
+    content-align: center middle;
+    color: $text-muted;
+    margin-top: 1;
+    border-top: solid $primary;
+    padding-top: 1;
+    width: 100%;
+}
+
+Label {
+    color: $accent;
+    text-style: bold;
+    margin-top: 1;
+}
+
+/* Button Styling */
+Button {
+    width: 100%;
+    height: 3;
+    border: none;
+    margin-bottom: 1;
+    content-align: center middle;
+    background: $surface-lighten-1;
+}
+
+Button:focus {
+    background: $primary;
+    color: $text;
+    text-style: bold;
+    border-left: thick $secondary;
+}
+
+Button.success {
+    background: $success;
+    color: $text;
+}
+
+Button.error {
+    background: $error;
+    color: $text;
+}
+
+/* Menu Screen Specifics */
+#menu Button {
+    margin-bottom: 1;
+}
+
+/* Config Screen Specifics */
+#scroll {
+    height: 1fr;
+    max-height: 100%;
+    scrollbar-gutter: stable;
+}
+
+#resolution, #clock {
+    margin-bottom: 1;
+    height: auto;
+}
+
+#clock {
+    layout: horizontal;
+    height: auto;
+    align-vertical: middle;
+}
+
+#clock Label {
+    margin-top: 0;
+    margin-right: 2;
+    padding-top: 1;
+}
+
+#clock Switch {
+    margin-right: 2;
+}
+
+Input {
+    border: wide $surface-lighten-1;
+    background: $surface;
+    margin-bottom: 1;
+}
+
+Input:focus {
+    border: wide $accent;
+}
+
+Checkbox {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+/* Actions Button Group */
+#actions {
+    layout: grid;
+    grid-size: 2;
+    grid-columns: 1fr 1fr;
+    grid-gutter: 2;
+    margin-top: 2;
+    height: auto;
+}
+
+#actions Button {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+/* Progress Screen Specifics */
+#step {
+    content-align: center middle;
+    width: 100%;
+    margin-bottom: 1;
+    color: $text;
+}
+
+#bar {
+    width: 100%;
+    margin-bottom: 1;
+}
+
+#log {
+    height: 12;
+    border: solid $secondary;
+    background: $surface-darken-1;
+    color: $text;
+    padding: 0 1;
+    scrollbar-gutter: stable;
+    scrollbar-size: 1 1;
+    scrollbar-background: $surface-darken-1;
+    scrollbar-color: $surface-lighten-1;
+}
