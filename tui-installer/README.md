@@ -99,7 +99,7 @@ uv sync --locked --dev
 uv run pyinstaller build.spec
 ```
 
-**Artifact**: `dist/hyprdots-install`
+**Artifact**: `dist/dots-tui`
 
 *Note: Build on the oldest Linux distro you intend to support (e.g., Ubuntu 20.04) to ensure glibc compatibility for users.*
 
