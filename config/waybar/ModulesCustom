@@ -18,6 +18,14 @@
 	"tooltip": true,
 },
 
+"custom/weather2": {
+    "exec": "/usr/bin/waybar-weather",
+    "restart-interval": 60,
+    "return-type": "json",
+    "hide-empty-text": true,
+    "on-click": "pkill -USR1 waybar-weather"
+}
+
 "custom/hyprpicker": {
 	"format": "",
 	"on-click": "hyprpicker | wl-copy",
