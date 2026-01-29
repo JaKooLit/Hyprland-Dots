@@ -114,6 +114,20 @@ wallust_targets=(
 )
 wait_for_templates "$start_ts" "${wallust_targets[@]}" || true
 
+# Reload kitty colors when wallpaper-based theme is active
+kitty_wallust_theme="$HOME/.config/kitty/kitty-themes/01-Wallust.conf"
+if [ -s "$kitty_wallust_theme" ]; then
+  if command -v kitty >/dev/null 2>&1; then
+    kitty @ load-config >/dev/null 2>&1 || true
+    kitty @ set-colors --all --configured "$kitty_wallust_theme" >/dev/null 2>&1 || true
+  fi
+  if pidof kitty >/dev/null 2>&1; then
+    for pid in $(pidof kitty); do
+      kill -SIGUSR1 "$pid" 2>/dev/null || true
+    done
+  fi
+fi
+
 # Normalize Ghostty palette syntax in case ':' was used by older files
 if [ -f "$HOME/.config/ghostty/wallust.conf" ]; then
   sed -i -E 's/^(\s*palette\s*=\s*)([0-9]{1,2}):/\1\2=/' "$HOME/.config/ghostty/wallust.conf" 2>/dev/null || true
