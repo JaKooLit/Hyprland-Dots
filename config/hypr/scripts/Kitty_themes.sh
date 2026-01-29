@@ -16,6 +16,7 @@ notify_user() {
 # Function to apply the selected kitty theme
 apply_kitty_theme_to_config() {
   local theme_name_to_apply="$1"
+  local apply_mode="${2:-preview}"
   if [ -z "$theme_name_to_apply" ]; then
     echo "Error: No theme name provided to apply_kitty_theme_to_config." >&2
     return 1
@@ -51,7 +52,7 @@ apply_kitty_theme_to_config() {
   cp "$temp_kitty_config_file" "$kitty_config"
   rm "$temp_kitty_config_file"
   if pidof kitty >/dev/null 2>&1; then
-    if command -v kitty >/dev/null 2>&1; then
+    if [ "$apply_mode" = "apply" ] && command -v kitty >/dev/null 2>&1; then
       kitty @ load-config >/dev/null 2>&1
       kitty @ set-colors --all --configured "$theme_file_path_to_apply" >/dev/null 2>&1
     fi
@@ -124,7 +125,7 @@ while true; do
     if [[ "$chosen_index_from_rofi" =~ ^[0-9]+$ ]] && [ "$chosen_index_from_rofi" -lt "${#available_theme_names[@]}" ]; then
       current_selection_index="$chosen_index_from_rofi"
       theme_to_preview_now="${available_theme_names[$current_selection_index]}"
-      if ! apply_kitty_theme_to_config "$theme_to_preview_now"; then
+      if ! apply_kitty_theme_to_config "$theme_to_preview_now" "preview"; then
         echo "$original_kitty_config_content_backup" >"$kitty_config"
         for pid_kitty in $(pidof kitty); do if [ -n "$pid_kitty" ]; then kill -SIGUSR1 "$pid_kitty"; fi; done
         notify_user "$iDIR/error.png" "Preview Error" "Failed to apply $theme_to_preview_now. Reverted."
@@ -140,6 +141,7 @@ while true; do
     for pid_kitty in $(pidof kitty); do if [ -n "$pid_kitty" ]; then kill -SIGUSR1 "$pid_kitty"; fi; done
     break
   elif [ $rofi_exit_code -eq 10 ]; then # This is the exit code for -kb-custom-1
+    apply_kitty_theme_to_config "$theme_to_preview_now" "apply"
     notify_user "$iDIR/ja.png" "Kitty Theme Applied" "$theme_to_preview_now"
     break
   else
