@@ -20,10 +20,15 @@ apply_kitty_theme_to_config() {
     echo "Error: No theme name provided to apply_kitty_theme_to_config." >&2
     return 1
   fi
+  local theme_file_path_to_apply
+  if [ "$theme_name_to_apply" = "Set by wallpaper" ]; then
+    theme_file_path_to_apply="$kitty_themes_DiR/00-Default.conf"
+  else
+    theme_file_path_to_apply="$kitty_themes_DiR/$theme_name_to_apply.conf"
+  fi
 
-  local theme_file_path_to_apply="$kitty_themes_DiR/$theme_name_to_apply.conf"
   if [ ! -f "$theme_file_path_to_apply" ]; then
-    notify_user "$iDIR/error.png" "Error" "Theme file not found: $theme_name_to_apply.conf"
+    notify_user "$iDIR/error.png" "Error" "Theme file not found: $(basename "$theme_file_path_to_apply")"
     return 1
   fi
 
@@ -31,17 +36,24 @@ apply_kitty_theme_to_config() {
   temp_kitty_config_file=$(mktemp)
   cp "$kitty_config" "$temp_kitty_config_file"
 
+  local include_target
+  include_target="include ./kitty-themes/$(basename "$theme_file_path_to_apply")"
+
   if grep -q -E '^[#[:space:]]*include\s+\./kitty-themes/.*\.conf' "$temp_kitty_config_file"; then
-    sed -i -E "s|^([#[:space:]]*include\s+\./kitty-themes/).*\.conf|include ./kitty-themes/$theme_name_to_apply.conf|g" "$temp_kitty_config_file"
+    sed -i -E "s|^([#[:space:]]*include\s+\./kitty-themes/).*\.conf|$include_target|g" "$temp_kitty_config_file"
   else
     if [ -s "$temp_kitty_config_file" ] && [ "$(tail -c1 "$temp_kitty_config_file")" != "" ]; then
       echo >>"$temp_kitty_config_file"
     fi
-    echo "include ./kitty-themes/$theme_name_to_apply.conf" >>"$temp_kitty_config_file"
+    echo "$include_target" >>"$temp_kitty_config_file"
   fi
 
   cp "$temp_kitty_config_file" "$kitty_config"
   rm "$temp_kitty_config_file"
+  if command -v kitty >/dev/null 2>&1; then
+    kitty @ load-config >/dev/null 2>&1
+    kitty @ set-colors --all --configured "$theme_file_path_to_apply" >/dev/null 2>&1
+  fi
 
   for pid_kitty in $(pidof kitty); do
     if [ -n "$pid_kitty" ]; then
@@ -66,6 +78,7 @@ fi
 original_kitty_config_content_backup=$(cat "$kitty_config")
 
 mapfile -t available_theme_names < <(find "$kitty_themes_DiR" -maxdepth 1 -name "*.conf" -type f -printf "%f\n" | sed 's/\.conf$//' | sort)
+available_theme_names=("Set by wallpaper" "${available_theme_names[@]}")
 
 if [ ${#available_theme_names[@]} -eq 0 ]; then
   notify_user "$iDIR/error.png" "No Kitty Themes" "No .conf files found in $kitty_themes_DiR."
@@ -73,7 +86,10 @@ if [ ${#available_theme_names[@]} -eq 0 ]; then
 fi
 
 current_selection_index=0
-current_active_theme_name=$(awk -F'include ./kitty-themes/|\\.conf' '/^[[:space:]]*include \.\/kitty-themes\/.*\.conf/{print $2; exit}' "$kitty_config")
+current_active_theme_name=$(awk -F'include ./kitty-themes/|\\.conf' '/^[[:space:]]*include \\.\/kitty-themes\/.*\\.conf/{print $2; exit}' "$kitty_config")
+if [ "$current_active_theme_name" = "00-Default" ]; then
+  current_active_theme_name="Set by wallpaper"
+fi
 
 if [ -n "$current_active_theme_name" ]; then
   for i in "${!available_theme_names[@]}"; do
