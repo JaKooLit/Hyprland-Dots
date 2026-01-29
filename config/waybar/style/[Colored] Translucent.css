@@ -141,6 +141,8 @@ tooltip {
 #custom-updater,
 #custom-hyprpicker,
 #custom-weather,
+#custom-weather2,
+#custom-weather2,
 #custom-weather.clearNight,
 #custom-weather.cloudyFoggyDay,
 #custom-weather.cloudyFoggyNight,
@@ -268,6 +270,9 @@ label:focus {
 }
 
 #custom-weather {
+    color: #66cc99;
+}
+#custom-weather2 {
     color: #66cc99;
 }
 

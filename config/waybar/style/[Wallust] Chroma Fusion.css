@@ -105,6 +105,7 @@ tooltip {
 #custom-updater,
 #custom-hyprpicker,
 #custom-weather,
+#custom-weather2,
 #custom-weather.clearNight,
 #custom-weather.cloudyFoggyDay,
 #custom-weather.cloudyFoggyNight,
@@ -147,6 +148,7 @@ tooltip {
 
 #custom-swaync,
 #custom-weather,
+#custom-weather2,
 #custom-updater {
     color: @yellow;
 }
