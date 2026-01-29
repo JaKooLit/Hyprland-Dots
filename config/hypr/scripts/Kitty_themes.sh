@@ -130,6 +130,7 @@ while true; do
         notify_user "$iDIR/error.png" "Preview Error" "Failed to apply $theme_to_preview_now. Reverted."
         exit 1
       fi
+      continue
     else
       :
     fi
