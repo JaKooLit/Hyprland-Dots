@@ -24,7 +24,7 @@
     "return-type": "json",
     "hide-empty-text": true,
     "on-click": "pkill -USR1 waybar-weather"
-}
+},
 
 "custom/hyprpicker": {
 	"format": "",
