@@ -50,16 +50,17 @@ apply_kitty_theme_to_config() {
 
   cp "$temp_kitty_config_file" "$kitty_config"
   rm "$temp_kitty_config_file"
-  if command -v kitty >/dev/null 2>&1; then
-    kitty @ load-config >/dev/null 2>&1
-    kitty @ set-colors --all --configured "$theme_file_path_to_apply" >/dev/null 2>&1
-  fi
-
-  for pid_kitty in $(pidof kitty); do
-    if [ -n "$pid_kitty" ]; then
-      kill -SIGUSR1 "$pid_kitty"
+  if pidof kitty >/dev/null 2>&1; then
+    if command -v kitty >/dev/null 2>&1; then
+      kitty @ load-config >/dev/null 2>&1
+      kitty @ set-colors --all --configured "$theme_file_path_to_apply" >/dev/null 2>&1
     fi
-  done
+    for pid_kitty in $(pidof kitty); do
+      if [ -n "$pid_kitty" ]; then
+        kill -SIGUSR1 "$pid_kitty"
+      fi
+    done
+  fi
   return 0
 }
 
@@ -101,14 +102,6 @@ if [ -n "$current_active_theme_name" ]; then
 fi
 
 while true; do
-  theme_to_preview_now="${available_theme_names[$current_selection_index]}"
-
-  if ! apply_kitty_theme_to_config "$theme_to_preview_now"; then
-    echo "$original_kitty_config_content_backup" >"$kitty_config"
-    for pid_kitty in $(pidof kitty); do if [ -n "$pid_kitty" ]; then kill -SIGUSR1 "$pid_kitty"; fi; done
-    notify_user "$iDIR/error.png" "Preview Error" "Failed to apply $theme_to_preview_now. Reverted."
-    exit 1
-  fi
 
   rofi_input_list=""
   for theme_name_in_list in "${available_theme_names[@]}"; do
@@ -120,7 +113,7 @@ while true; do
     rofi -dmenu -i \
       -format 'i' \
       -p "Kitty Theme" \
-      -mesg "Preview: ${theme_to_preview_now} | Enter: Preview | Ctrl+S: Apply & Exit | Esc: Cancel" \
+      -mesg "Enter: Preview | Ctrl+S: Apply & Exit | Esc: Cancel" \
       -config "$rofi_theme_for_this_script" \
       -selected-row "$current_selection_index" \
       -kb-custom-1 "Control+s")
@@ -130,6 +123,13 @@ while true; do
   if [ $rofi_exit_code -eq 0 ]; then
     if [[ "$chosen_index_from_rofi" =~ ^[0-9]+$ ]] && [ "$chosen_index_from_rofi" -lt "${#available_theme_names[@]}" ]; then
       current_selection_index="$chosen_index_from_rofi"
+      theme_to_preview_now="${available_theme_names[$current_selection_index]}"
+      if ! apply_kitty_theme_to_config "$theme_to_preview_now"; then
+        echo "$original_kitty_config_content_backup" >"$kitty_config"
+        for pid_kitty in $(pidof kitty); do if [ -n "$pid_kitty" ]; then kill -SIGUSR1 "$pid_kitty"; fi; done
+        notify_user "$iDIR/error.png" "Preview Error" "Failed to apply $theme_to_preview_now. Reverted."
+        exit 1
+      fi
     else
       :
     fi
