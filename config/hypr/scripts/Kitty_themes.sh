@@ -79,7 +79,7 @@ fi
 
 original_kitty_config_content_backup=$(cat "$kitty_config")
 
-mapfile -t available_theme_names < <(find "$kitty_themes_DiR" -maxdepth 1 -name "*.conf" -type f -printf "%f\n" | sed 's/\.conf$//' | sort)
+mapfile -t available_theme_names < <(find "$kitty_themes_DiR" -maxdepth 1 -name "*.conf" -type f -printf "%f\n" | sed 's/\.conf$//' | grep -v -E '^(00-Default|01-Wallust)$' | sort)
 available_theme_names=("Set by wallpaper" "${available_theme_names[@]}")
 
 if [ ${#available_theme_names[@]} -eq 0 ]; then
