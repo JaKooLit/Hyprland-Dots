@@ -142,6 +142,7 @@ Usage: copy.sh [--upgrade] [--express-upgrade] [--help]
 Options:
   --upgrade           Run the script in upgrade mode (can still prompt for express).
   --express-upgrade   Upgrade with express behavior (no restore prompts, trims backups).
+  --tty               Force basic TTY prompts (no whiptail menu).
   -h, --help          Show this help message and exit.
 EOF
 }
@@ -160,6 +161,9 @@ while [[ $# -gt 0 ]]; do
     UPGRADE_MODE=1
     EXPRESS_MODE=1
     RUN_MODE="express"
+    ;;
+  --tty)
+    COPY_TUI_BACKEND="basic"
     ;;
   -h | --help)
     print_usage
@@ -315,7 +319,7 @@ detect_nixos_adjust "$LOG"
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
 if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
-  HYPRCURSOR_ENV_FILE="config/hypr/configs/ENVariables.conf"
+  HYPRCURSOR_ENV_FILE="$DOTFILES_DIR/config/hypr/configs/ENVariables.conf"
   echo "${INFO} Bibata-Hyprcursor directory detected. Activating Hyprcursor...." 2>&1 | tee -a "$LOG" || true
   sed -i 's/^#env = HYPRCURSOR_THEME,Bibata-Modern-Ice/env = HYPRCURSOR_THEME,Bibata-Modern-Ice/' "$HYPRCURSOR_ENV_FILE"
   sed -i 's/^#env = HYPRCURSOR_SIZE,24/env = HYPRCURSOR_SIZE,24/' "$HYPRCURSOR_ENV_FILE"
@@ -357,18 +361,18 @@ done
 echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 if [ "$resolution" == "< 1440p" ]; then
   # kitty font size
-  sed -i 's/font_size 16.0/font_size 14.0/' config/kitty/kitty.conf
+  sed -i 's/font_size 16.0/font_size 14.0/' "$DOTFILES_DIR/config/kitty/kitty.conf"
 
   # hyprlock matters
-  if [ -f config/hypr/hyprlock.conf ]; then
-    mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf
+  if [ -f "$DOTFILES_DIR/config/hypr/hyprlock.conf" ]; then
+    mv "$DOTFILES_DIR/config/hypr/hyprlock.conf" "$DOTFILES_DIR/config/hypr/hyprlock-2k.conf"
   fi
-  if [ -f config/hypr/hyprlock-1080p.conf ]; then
-    mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
+  if [ -f "$DOTFILES_DIR/config/hypr/hyprlock-1080p.conf" ]; then
+    mv "$DOTFILES_DIR/config/hypr/hyprlock-1080p.conf" "$DOTFILES_DIR/config/hypr/hyprlock.conf"
   fi
 
   # rofi fonts reduction
-  rofi_config_file="config/rofi/0-shared-fonts.rasi"
+  rofi_config_file="$DOTFILES_DIR/config/rofi/0-shared-fonts.rasi"
   if [ -f "$rofi_config_file" ]; then
     sed -i '/element-text {/,/}/s/[[:space:]]*font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$rofi_config_file" 2>&1 | tee -a "$LOG"
     sed -i '/configuration {/,/}/s/[[:space:]]*font: "JetBrainsMono Nerd Font SemiBold 15"/font: "JetBrainsMono Nerd Font SemiBold 13"/' "$rofi_config_file" 2>&1 | tee -a "$LOG"
@@ -407,8 +411,8 @@ if command -v ags >/dev/null 2>&1; then
 
   if [ ! -d "$DIRPATH_AGS" ]; then
     echo "${INFO} - ags config not found, copying new config."
-    if [ -d "config/ags" ]; then
-      cp -r "config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"
+    if [ -d "$DOTFILES_DIR/config/ags" ]; then
+      cp -r "$DOTFILES_DIR/config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"
     fi
   else
     read -p "${CAT} Do you want to overwrite your existing ${YELLOW}ags${RESET} config? [y/N] " answer_ags
@@ -418,7 +422,7 @@ if command -v ags >/dev/null 2>&1; then
       mv "$DIRPATH_AGS" "$DIRPATH_AGS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
       echo -e "${NOTE} - Backed up ags config to $DIRPATH_AGS-backup-$BACKUP_DIR"
 
-      if cp -r "config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"; then
+      if cp -r "$DOTFILES_DIR/config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"; then
         echo "${OK} - ${YELLOW}ags configs${RESET} overwritten successfully."
       else
         echo "${ERROR} - Failed to copy ${YELLOW}ags${RESET} config."
@@ -448,8 +452,8 @@ if command -v qs >/dev/null 2>&1; then
 
   if [ ! -d "$DIRPATH_QS" ]; then
     echo "${INFO} - quickshell config not found, copying new config."
-    if [ -d "config/quickshell" ]; then
-      cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
+    if [ -d "$DOTFILES_DIR/config/quickshell" ]; then
+      cp -r "$DOTFILES_DIR/config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
     fi
   else
     # If default shell.qml exists, it blocks named config subdirectory detection
@@ -466,7 +470,7 @@ if command -v qs >/dev/null 2>&1; then
       mv "$DIRPATH_QS" "$DIRPATH_QS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
       echo -e "${NOTE} - Backed up quickshell to $DIRPATH_QS-backup-$BACKUP_DIR"
 
-      cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
+      cp -r "$DOTFILES_DIR/config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
       if [ $? -eq 0 ]; then
         echo "${OK} - ${YELLOW}quickshell${RESET} overwritten successfully."
         # Remove default shell.qml from new copy to enable overview detection
@@ -484,9 +488,9 @@ if command -v qs >/dev/null 2>&1; then
 
   # Ensure overview subdirectory exists and is up to date
   DIRPATH_OVERVIEW="$DIRPATH_QS/overview"
-  if [ ! -d "$DIRPATH_OVERVIEW" ] && [ -d "config/quickshell/overview" ]; then
+  if [ ! -d "$DIRPATH_OVERVIEW" ] && [ -d "$DOTFILES_DIR/config/quickshell/overview" ]; then
     echo "${INFO} - Copying quickshell overview config..." 2>&1 | tee -a "$LOG"
-    cp -r "config/quickshell/overview" "$DIRPATH_QS/" 2>&1 | tee -a "$LOG"
+    cp -r "$DOTFILES_DIR/config/quickshell/overview" "$DIRPATH_QS/" 2>&1 | tee -a "$LOG"
     echo "${OK} - Quickshell overview config copied successfully" 2>&1 | tee -a "$LOG"
   fi
 
@@ -539,7 +543,7 @@ printf "\n%.0s" {1..1}
 # wallpaper stuff
 PICTURES_DIR="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
 mkdir -p "$PICTURES_DIR/wallpapers"
-if cp -r wallpapers "$PICTURES_DIR/"; then
+if cp -r "$SCRIPT_DIR/wallpapers" "$PICTURES_DIR/"; then
   echo "${OK} Some ${MAGENTA}wallpapers${RESET} copied successfully!" | tee -a "$LOG"
 else
   echo "${ERROR} Failed to copy some ${YELLOW}wallpapers${RESET}" | tee -a "$LOG"
@@ -590,7 +594,7 @@ printf "\n%.0s" {1..1}
 sddm_simple_sddm_2="/usr/share/sddm/themes/simple_sddm_2"
 if [ -d "$sddm_simple_sddm_2" ]; then
   # Apply the current wallpaper as SDDM background without prompting
-  sudo -n cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/simple_sddm_2/Backgrounds/default" || true
+  sudo -n cp -r "$DOTFILES_DIR/config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/simple_sddm_2/Backgrounds/default" || true
   echo "${NOTE} Current wallpaper applied as default SDDM background" 2>&1 | tee -a "$LOG"
 fi
 

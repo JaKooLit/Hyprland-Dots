@@ -226,11 +226,13 @@ install_waybar_weather_nixos() {
     return 1
   fi
 
-  cd "${tmp}/src" || { _err "cd failed"; return 1; }
-  _log "Fetching modules"
-  go mod download >/dev/null 2>&1 || _warn "go mod download returned non-zero; continuing"
-  _log "Building ${APP_NAME}"
-  if ! CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o "${APP_NAME}" ./cmd/${APP_NAME}; then
+  if ! (
+    cd "${tmp}/src" || { _err "cd failed"; exit 1; }
+    _log "Fetching modules"
+    go mod download >/dev/null 2>&1 || _warn "go mod download returned non-zero; continuing"
+    _log "Building ${APP_NAME}"
+    CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o "${APP_NAME}" ./cmd/${APP_NAME}
+  ); then
     _err "go build failed"
     return 1
   fi
