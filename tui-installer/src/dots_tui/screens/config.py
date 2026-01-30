@@ -34,6 +34,7 @@ class ConfigScreen(Screen[None]):
         ("space", "activate", "Toggle/Select"),
         ("enter", "activate", "Toggle/Select"),
         ("h", "back", "Back"),
+        ("q", "back", "Back"),
         ("escape", "back", "Back"),
     ]
 
@@ -45,6 +46,11 @@ class ConfigScreen(Screen[None]):
         self._detected_keyboard_layout: str | None = None
         self._has_nvim = False
         self._has_vim = False
+        # Track navigation for auto-advance feature
+        self._last_nav_direction: str | None = None  # "down" or "up"
+        self._prev_radio_states: dict[
+            str, int
+        ] = {}  # radioset_id -> previous pressed_index
 
     def compose(self):
         with Container(id="config-container"):
@@ -122,7 +128,7 @@ class ConfigScreen(Screen[None]):
                 yield Button("Next", id="next", variant="success")
                 yield Button("Back", id="back")
 
-            yield Static("hjkl/arrows: nav • space: toggle", id="help")
+            yield Static("hjkl/arrows/tab: nav • space: toggle • q: back", id="help")
 
     def _apply_distro_warning(self) -> None:
         """Show distro warning for Debian/Ubuntu users."""
@@ -242,8 +248,24 @@ class ConfigScreen(Screen[None]):
 
         rs.focus()
 
+    def _go_back(self) -> None:
+        """Return to menu when possible; otherwise switch to a new menu.
+
+        When ConfigScreen is reached from MenuScreen, pop_screen() restores the
+        existing menu. When the app starts directly in a config mode (e.g.
+        --upgrade), popping would return to Textual's default screen.
+        """
+
+        from dots_tui.screens.menu import MenuScreen
+
+        prev = self.app.screen_stack[-2] if len(self.app.screen_stack) >= 2 else None
+        if isinstance(prev, MenuScreen):
+            self.app.pop_screen()
+        else:
+            self.app.switch_screen(MenuScreen(dry_run=self._dry_run))
+
     def action_back(self) -> None:
-        self.app.pop_screen()
+        self._go_back()
 
     def action_activate(self) -> None:
         focused = self.app.focused
@@ -265,29 +287,88 @@ class ConfigScreen(Screen[None]):
 
     def on_key(self, event: events.Key) -> None:
         # Vim-style navigation:
-        # - When inside a RadioSet, use j/k to move the selection (like arrows).
-        # - Otherwise, use j/k to move focus between widgets.
+        # - Outside RadioSets, use j/k/arrows to move focus between widgets.
+        # - Inside RadioSets, j/k/arrows navigate options with auto-advance at boundaries.
         focused = self.app.focused
 
-        if event.key in {"j", "k"} and isinstance(focused, RadioSet):
-            if event.key == "j":
+        # Handle navigation inside RadioSet
+        if event.key in {"j", "k", "down", "up"} and isinstance(focused, RadioSet):
+            buttons = list(focused.query(RadioButton))
+            # Get enabled (visible) buttons only
+            enabled_buttons = [b for b in buttons if b.display and not b.disabled]
+
+            # Use _selected (cursor position) instead of pressed_index (filled circle)
+            # _selected tracks where the visual highlight/cursor is
+            cursor_idx = getattr(focused, "_selected", None)
+
+            if cursor_idx is not None and enabled_buttons and len(enabled_buttons) > 0:
+                # Find cursor position within enabled buttons
+                try:
+                    cursor_button = (
+                        buttons[cursor_idx] if cursor_idx < len(buttons) else None
+                    )
+                    if cursor_button and cursor_button in enabled_buttons:
+                        enabled_idx = enabled_buttons.index(cursor_button)
+                    else:
+                        enabled_idx = -1
+                except (IndexError, ValueError):
+                    enabled_idx = -1
+
+                is_going_down = event.key in {"j", "down"}
+                at_last = enabled_idx == len(enabled_buttons) - 1
+                at_first = enabled_idx == 0
+
+                # At boundary: advance to next/previous widget
+                if is_going_down and at_last:
+                    event.prevent_default()
+                    event.stop()
+                    self.app.action_focus_next()
+                    return
+
+                if not is_going_down and at_first:
+                    event.prevent_default()
+                    event.stop()
+                    # At top-most radioset, wrap to Back so focus doesn't disappear.
+                    if focused.id == "resolution":
+                        self.query_one("#back", Button).focus()
+                    else:
+                        self.app.action_focus_previous()
+                    return
+
+            # Not at boundary: navigate within RadioSet
+            if event.key in {"j", "down"}:
                 focused.action_next_button()
             else:
                 focused.action_previous_button()
             event.stop()
             return
 
-        if event.key == "j":
+        # Outside RadioSet: j/k/arrows move between widgets
+        if event.key in {"j", "down"}:
+            if isinstance(focused, Button) and focused.id == "back":
+                rs = self.query_one("#resolution", RadioSet)
+                rs.focus()
+                buttons = list(rs.query(RadioButton))
+                enabled_buttons = [b for b in buttons if b.display and not b.disabled]
+                if enabled_buttons:
+                    action_first = getattr(rs, "action_first_button", None)
+                    if callable(action_first):
+                        action_first()
+                    else:
+                        setattr(rs, "_selected", buttons.index(enabled_buttons[0]))
+                        rs.refresh()
+                event.stop()
+                return
             self.app.action_focus_next()
             event.stop()
             return
 
-        if event.key == "k":
+        if event.key in {"k", "up"}:
             self.app.action_focus_previous()
             event.stop()
             return
 
-        # Keep Tab navigation working even when we intercept j/k.
+        # Tab navigation
         if event.key == "tab":
             self.app.action_focus_next()
             event.stop()
@@ -319,7 +400,7 @@ class ConfigScreen(Screen[None]):
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "back":
-            self.app.pop_screen()
+            self._go_back()
             return
         if event.button.id != "next":
             return

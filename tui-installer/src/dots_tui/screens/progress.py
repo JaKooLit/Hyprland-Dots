@@ -37,11 +37,13 @@ class ProgressScreen(Screen[None]):
         ("right", "scroll_right", "Right"),
         ("g,home", "scroll_home", "Top"),
         ("G,end", "scroll_end", "Bottom"),
+        ("q", "back", "Back"),
     ]
 
     def __init__(self, *, task: ProgressTask) -> None:
         super().__init__()
         self._progress_task = task
+        self._is_finished = False
 
     @classmethod
     def for_install(cls, config: InstallConfig) -> "ProgressScreen":
@@ -58,13 +60,32 @@ class ProgressScreen(Screen[None]):
             ProgressBar(total=100, id="bar"),
             Log(id="log", highlight=False),
             Button("Back to Menu", id="back", classes="hidden"),
-            Static("hjkl/arrows: scroll log ", id="help"),
+            Static("hjkl/arrows/tab: nav • q: back", id="help"),
             id="progress-container",
         )
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "back":
-            self.app.pop_screen()
+            self.action_back()
+
+    def action_back(self) -> None:
+        """Handle back action based on current state."""
+        from dots_tui.screens.menu import MenuScreen
+
+        # If we finished the process, go all the way home or exit.
+        if self._is_finished:
+            # Seek the MenuScreen in the stack.
+            for screen in reversed(self.app.screen_stack):
+                if isinstance(screen, MenuScreen):
+                    while self.app.screen is not screen:
+                        self.app.pop_screen()
+                    return
+            # If no MenuScreen (direct CLI run), just exit.
+            self.app.exit()
+            return
+
+        # Otherwise just pop one level (e.g. abort and go back to config).
+        self.app.pop_screen()
 
     def on_key(self, event: events.Key) -> None:
         if event.key == "space":
@@ -250,4 +271,5 @@ class ProgressScreen(Screen[None]):
             log_fn(f"[ERROR] {e}")
             self._set_step("Failed.")
         finally:
+            self._is_finished = True
             self._show_back_button()

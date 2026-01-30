@@ -88,7 +88,7 @@ class MenuScreen(Screen[None]):
             Button("Express", id="express"),
             Button("Update Repo", id="update"),
             Button("Quit", id="quit", variant="error"),
-            Static("hjkl/arrows: nav • space: select • q: quit", id="help"),
+            Static("hjkl/arrows/tab: nav • space: select • q: quit", id="help"),
             id="menu",
         )
 

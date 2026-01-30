@@ -14,6 +14,7 @@ class ConfirmScreen(ModalScreen[bool]):
         ("k,up", "focus_previous", "Prev"),
         ("enter", "accept", "Accept"),
         ("space", "accept", "Accept"),
+        ("q", "no", "No"),
         ("escape", "no", "No"),
     ]
 

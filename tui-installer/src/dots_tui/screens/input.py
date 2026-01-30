@@ -8,6 +8,11 @@ from textual.widgets import Button, Input, Label
 
 
 class InputModal(ModalScreen[str | None]):
+    BINDINGS = [
+        ("escape", "cancel", "Cancel"),
+        ("q", "cancel", "Cancel"),
+    ]
+
     def __init__(
         self,
         title: str,
