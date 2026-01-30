@@ -535,6 +535,16 @@ else
   echo "${ERROR} Failed to copy some ${YELLOW}wallpapers${RESET}" | tee -a "$LOG"
 fi
 
+# Ensure a default desktop wallpaper is set once (no per-login changes)
+WALL_EFFECTS_DIR="$HOME/.config/hypr/wallpaper_effects"
+DEFAULT_IMG="$PICTURES_DIR/wallpapers/Northern Lights3.png"
+[ -f "$DEFAULT_IMG" ] || DEFAULT_IMG="$SCRIPT_DIR/wallpapers/Northern Lights3.png"
+
+mkdir -p "$WALL_EFFECTS_DIR"
+if [ ! -f "$WALL_EFFECTS_DIR/.wallpaper_current" ] && [ -f "$DEFAULT_IMG" ]; then
+  cp -f "$DEFAULT_IMG" "$WALL_EFFECTS_DIR/.wallpaper_current"
+  echo "${OK} Default desktop wallpaper initialized." | tee -a "$LOG"
+fi
 
 # Set some files as executable
 chmod +x "$HOME/.config/hypr/scripts/"* 2>&1 | tee -a "$LOG"
