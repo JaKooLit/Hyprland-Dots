@@ -281,16 +281,21 @@ echo "${WARNING}A T T E N T I O N !${RESET}"
 echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for changelogs${RESET}"
 printf "\n%.0s" {1..1}
 
-# Create Directory for Copy Logs
-if [ ! -d Copy-Logs ]; then
-  mkdir Copy-Logs
+# Create Directory for Copy Logs (use script dir to avoid CWD issues)
+LOG_DIR="$SCRIPT_DIR/Copy-Logs"
+if [ ! -d "$LOG_DIR" ]; then
+  mkdir -p "$LOG_DIR"
 fi
 
 # Set the name of the log file to include the current date and time
-LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
+LOG="$LOG_DIR/install-$(date +%d-%H%M%S)_dotfiles.log"
 
-# update home directories
-xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
+# update home directories (guard if command missing)
+if command -v xdg-user-dirs-update >/dev/null 2>&1; then
+  xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
+else
+  echo "${WARN} xdg-user-dirs-update not found; skipping home dir update." 2>&1 | tee -a "$LOG"
+fi
 echo "${INFO} Selected workflow: ${RUN_MODE}" 2>&1 | tee -a "$LOG"
 if [ "$UPGRADE_MODE" -eq 1 ]; then
   echo "${INFO} Upgrade mode enabled." 2>&1 | tee -a "$LOG"
