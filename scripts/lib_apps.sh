@@ -114,3 +114,73 @@ choose_default_editor() {
     fi
   fi
 }
+
+# Install waybar-weather: prefer Arch AUR, otherwise copy prebuilt asset to /usr/bin
+install_waybar_weather_binary() {
+  local log="$1"
+  local APP_NAME="waybar-weather"
+  local INSTALL_PATH="/usr/bin/${APP_NAME}"
+  local ASSET="${SCRIPT_DIR:-.}/assets/${APP_NAME}.gz"
+
+  # Helper: log wrappers may not be defined here; reuse INFO/WARN/ERROR if available
+  _log() { echo "[${APP_NAME}] $*" 2>&1 | tee -a "$log"; }
+  _warn() { echo "[${APP_NAME}] WARN: $*" 1>&2 | tee -a "$log"; }
+  _err() { echo "[${APP_NAME}] ERROR: $*" 1>&2 | tee -a "$log"; }
+
+  # Distro detection
+  if grep -qi '^ID=nixos' /etc/os-release 2>/dev/null; then
+    _warn "NixOS detected. Skipping ${APP_NAME} install in this script."
+    return 0
+  fi
+
+  if grep -qi '^ID=arch' /etc/os-release 2>/dev/null; then
+    if command -v pacman >/dev/null 2>&1 && pacman -Qi weather-waybar >/dev/null 2>&1; then
+      _log "weather-waybar already installed via pacman."
+      return 0
+    fi
+    if command -v yay >/dev/null 2>&1; then
+      _log "Attempting to install AUR package 'weather-waybar' via yay"
+      if yay -S --noconfirm weather-waybar; then
+        _log "AUR install succeeded."
+        return 0
+      else
+        _warn "AUR install failed; will fall back to bundled asset."
+      fi
+    else
+      _warn "yay not found on Arch; falling back to bundled asset."
+    fi
+  fi
+
+  # Asset path validation
+  if [[ ! -f "$ASSET" ]]; then
+    _err "Asset not found: $ASSET"
+    return 1
+  fi
+  if ! command -v gzip >/dev/null 2>&1; then
+    _err "Missing required command: gzip"
+    return 1
+  fi
+
+  # Sudo handling for /usr/bin
+  local SUDO=""
+  if [[ $EUID -ne 0 ]]; then
+    if command -v sudo >/dev/null 2>&1; then
+      SUDO="sudo"
+    else
+      _err "sudo not available; cannot write to ${INSTALL_PATH} as non-root"
+      return 1
+    fi
+  fi
+
+  _log "Installing prebuilt binary to ${INSTALL_PATH} from ${ASSET}"
+  if ${SUDO} sh -c "gzip -dc '$ASSET' > '${INSTALL_PATH}'" && ${SUDO} chmod 0755 "${INSTALL_PATH}"; then
+    if "${INSTALL_PATH}" -h >/dev/null 2>&1; then
+      _log "Installed ${APP_NAME} successfully."
+    else
+      _warn "${APP_NAME} installed, but a basic self-check did not run."
+    fi
+  else
+    _err "Failed to install ${APP_NAME} to ${INSTALL_PATH}"
+    return 1
+  fi
+}
