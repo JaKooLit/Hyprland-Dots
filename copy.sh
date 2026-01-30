@@ -316,6 +316,16 @@ fi
 detect_nvidia_adjust "$LOG"
 detect_vm_adjust "$LOG"
 detect_nixos_adjust "$LOG"
+# NixOS: report missing waybar-weather without attempting to install
+is_nixos() {
+  grep -qi '^ID=nixos' /etc/os-release 2>/dev/null
+}
+
+report_waybar_weather_missing() {
+  if ! command -v waybar-weather >/dev/null 2>&1; then
+    echo "${WARN} waybar-weather binary is missing." 2>&1 | tee -a "$LOG"
+  fi
+}
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
 if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
@@ -335,7 +345,11 @@ enable_blueman "$LOG"
 enable_ags "$LOG"
 enable_quickshell "$LOG"
 ensure_keybinds_init "$LOG"
-install_waybar_weather "$LOG"
+if is_nixos; then
+  report_waybar_weather_missing
+else
+  install_waybar_weather "$LOG"
+fi
 printf "\n%.0s" {1..1}
 
 choose_default_editor "$LOG"
@@ -660,6 +674,10 @@ printf "\n%.0s" {1..1}
 
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
+if is_nixos && ! command -v waybar-weather >/dev/null 2>&1; then
+  echo "${WARN} waybar-weather binary is missing." 2>&1 | tee -a "$LOG"
+  echo "Install the current NixOS-Hyprland version to install waybar-weather applet for Waybar" 2>&1 | tee -a "$LOG"
+fi
 
 printf "\n%.0s" {1..2}
 printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!! "
