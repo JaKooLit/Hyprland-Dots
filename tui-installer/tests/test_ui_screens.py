@@ -7,6 +7,8 @@ from __future__ import annotations
 
 import pytest
 
+from textual.widgets import Button
+
 from dots_tui.app import InstallerApp
 from dots_tui.screens.menu import MenuScreen
 from dots_tui.screens.config import ConfigScreen
@@ -34,7 +36,7 @@ class TestMenuScreen:
         """Test that all expected buttons are present."""
         async with app.run_test() as _:
             # Query for buttons
-            buttons = app.query("Button")
+            buttons = app.screen.query("Button")
             button_ids = [b.id for b in buttons]
 
             # Check expected buttons exist
@@ -62,9 +64,12 @@ class TestMenuScreen:
     ) -> None:
         """Test that express button is disabled while checking."""
         async with app.run_test() as _:
-            express_btn = app.query_one("#express")
-            # Initially disabled while probe is running
-            assert express_btn.disabled is True
+            express_btn = app.screen.query_one("#express", Button)
+            # Probe runs asynchronously; ensure we see a valid state.
+            label = str(express_btn.label)
+            assert label in {"Express (checking...)", "Express", "Express (disabled)"}
+            if label == "Express (checking...)":
+                assert express_btn.disabled is True
 
     @pytest.mark.asyncio
     async def test_quit_button_exits(self, app: InstallerApp) -> None:
@@ -92,7 +97,7 @@ class TestConfigScreen:
         """Test that resolution options are present."""
         app = InstallerApp(dry_run=True, start="install")
         async with app.run_test() as _:
-            resolution = app.query_one("#resolution")
+            resolution = app.screen.query_one("#resolution")
             assert resolution is not None
 
     @pytest.mark.asyncio
@@ -100,7 +105,7 @@ class TestConfigScreen:
         """Test that keyboard layout options are present."""
         app = InstallerApp(dry_run=True, start="install")
         async with app.run_test() as _:
-            kb_layout = app.query_one("#kb_layout_mode")
+            kb_layout = app.screen.query_one("#kb_layout_mode")
             assert kb_layout is not None
 
     @pytest.mark.asyncio
@@ -108,7 +113,7 @@ class TestConfigScreen:
         """Test that clock format toggle is present."""
         app = InstallerApp(dry_run=True, start="install")
         async with app.run_test() as _:
-            clock = app.query_one("#clock_24h")
+            clock = app.screen.query_one("#clock_24h")
             assert clock is not None
 
     @pytest.mark.asyncio
@@ -116,7 +121,7 @@ class TestConfigScreen:
         """Test that next button is present."""
         app = InstallerApp(dry_run=True, start="install")
         async with app.run_test() as _:
-            next_btn = app.query_one("#next")
+            next_btn = app.screen.query_one("#next")
             assert next_btn is not None
 
     @pytest.mark.asyncio

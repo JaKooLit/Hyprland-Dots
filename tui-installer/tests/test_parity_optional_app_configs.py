@@ -54,12 +54,8 @@ def test_quickshell_skip_overwrite_removes_shell_qml_and_installs_overview(
         return None
 
     monkeypatch.setattr("dots_tui.utils.which", which)
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_distro", lambda: ("arch", [])
-    )
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_chassis", lambda: "desktop"
-    )
+    monkeypatch.setattr("dots_tui.logic.system.detect_distro", lambda: ("arch", []))
+    monkeypatch.setattr("dots_tui.logic.system.detect_chassis", lambda: "desktop")
     monkeypatch.setattr("dots_tui.logic.system.detect_nvidia", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_vm", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_nixos", lambda: False)
@@ -148,12 +144,8 @@ def test_quickshell_overwrite_rewrites_startup_and_removes_new_shell_qml(
         return None
 
     monkeypatch.setattr("dots_tui.utils.which", which)
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_distro", lambda: ("arch", [])
-    )
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_chassis", lambda: "desktop"
-    )
+    monkeypatch.setattr("dots_tui.logic.system.detect_distro", lambda: ("arch", []))
+    monkeypatch.setattr("dots_tui.logic.system.detect_chassis", lambda: "desktop")
     monkeypatch.setattr("dots_tui.logic.system.detect_nvidia", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_vm", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_nixos", lambda: False)

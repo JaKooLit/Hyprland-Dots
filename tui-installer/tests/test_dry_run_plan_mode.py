@@ -36,12 +36,8 @@ def test_dry_run_mode_makes_no_changes_but_emits_plan(
     monkeypatch.setattr("dots_tui.utils.run_cmd", recorder.run)
     monkeypatch.setattr("dots_tui.utils.is_root", lambda: False)
     monkeypatch.setattr("dots_tui.utils.which", lambda _cmd: None)
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_distro", lambda: ("arch", [])
-    )
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_chassis", lambda: "desktop"
-    )
+    monkeypatch.setattr("dots_tui.logic.system.detect_distro", lambda: ("arch", []))
+    monkeypatch.setattr("dots_tui.logic.system.detect_chassis", lambda: "desktop")
     monkeypatch.setattr("dots_tui.logic.system.detect_nvidia", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_vm", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_nixos", lambda: False)

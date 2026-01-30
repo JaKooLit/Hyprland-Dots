@@ -45,17 +45,20 @@ class TestInputModal:
         async with app.run_test() as pilot:
             await pilot.pause()
             # Check title and prompt
-            assert app.query_one("#modal-title", Label).renderable == "Test Title"
-            assert app.query_one("#modal-prompt", Label).renderable == "Enter password:"
+            assert app.screen.query_one("#modal-title", Label).content == "Test Title"
+            assert (
+                app.screen.query_one("#modal-prompt", Label).content
+                == "Enter password:"
+            )
 
             # Check input properties
-            inp = app.query_one("#modal-input", Input)
+            inp = app.screen.query_one("#modal-input", Input)
             assert inp.password is True
             assert inp.placeholder == "Place..."
 
             # Check buttons exist
-            assert app.query_one("#submit", Button).label.plain == "Submit"
-            assert app.query_one("#cancel", Button).label.plain == "Cancel"
+            assert str(app.screen.query_one("#submit", Button).label) == "Submit"
+            assert str(app.screen.query_one("#cancel", Button).label) == "Cancel"
 
     async def test_submission_returns_value(self) -> None:
         """Test that submitting the form returns the input value."""

@@ -37,12 +37,8 @@ def test_rofi_dummy_theme_created_and_removed_when_themes_empty(
     monkeypatch.setattr("dots_tui.utils.run_cmd", recorder.run)
     monkeypatch.setattr("dots_tui.utils.is_root", lambda: False)
     monkeypatch.setattr("dots_tui.utils.which", lambda _cmd: None)
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_distro", lambda: ("arch", [])
-    )
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_chassis", lambda: "desktop"
-    )
+    monkeypatch.setattr("dots_tui.logic.system.detect_distro", lambda: ("arch", []))
+    monkeypatch.setattr("dots_tui.logic.system.detect_chassis", lambda: "desktop")
     monkeypatch.setattr("dots_tui.logic.system.detect_nvidia", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_vm", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_nixos", lambda: False)
