@@ -35,7 +35,7 @@
 	"group/notify",
 	"hyprland/workspaces#rw",
 	"clock",
-	"custom/weather",
+	"custom/weather2",
 	"idle_inhibitor",	
 	"custom/hint",	
 	],

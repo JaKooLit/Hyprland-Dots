@@ -37,7 +37,7 @@
 	], 
 
 "modules-right": [
-	"custom/weather",	  
+	"custom/weather2",	  
 	"battery", 
 	"backlight",
 	"bluetooth",

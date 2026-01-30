@@ -37,7 +37,7 @@
 "modules-right": [
   	"network",
   	"bluetooth",
-	"custom/weather",
+	"custom/weather2",
 	"custom/separator#blank_2",
 	"group/audio",
 	"custom/separator#blank_2",

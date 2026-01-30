@@ -17,7 +17,7 @@
 
 "modules-left": [
 	"clock",  
-	"custom/weather", 
+	"custom/weather2", 
 	],
 
 "modules-center": [
