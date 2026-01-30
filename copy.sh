@@ -53,6 +53,8 @@ SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 MIN_EXPRESS_VERSION="2.3.18"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$SCRIPT_DIR"
+export DOTFILES_DIR
 MENU_HELPER="$SCRIPT_DIR/scripts/copy_menu.sh"
 BACKUP_HELPER="$SCRIPT_DIR/scripts/lib_backup.sh"
 DETECT_HELPER="$SCRIPT_DIR/scripts/lib_detect.sh"
@@ -106,6 +108,9 @@ else
   echo "${ERROR} Update helper not found at $UPDATE_HELPER. Exiting."
   exit 1
 fi
+
+# Ensure we operate from the dotfiles root so relative paths resolve.
+cd "$SCRIPT_DIR" || { echo "${ERROR} Failed to cd to $SCRIPT_DIR"; exit 1; }
 
 version_gte() {
   [ "$1" = "$(echo -e "$1\n$2" | sort -V | tail -n1)" ]

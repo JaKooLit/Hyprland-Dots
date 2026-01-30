@@ -3,6 +3,7 @@
 
 copy_phase1() {
   local log="$1"
+  local base="${DOTFILES_DIR:-.}"
   local dirs="fastfetch kitty rofi swaync"
   for DIR2 in $dirs; do
     local DIRPATH="$HOME/.config/$DIR2"
@@ -16,7 +17,7 @@ copy_phase1() {
           BACKUP_DIR=$(get_backup_dirname)
           mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$log"
           echo -e "${NOTE:-[NOTE]} - Backed up $DIR2 to $DIRPATH-backup-$BACKUP_DIR." 2>&1 | tee -a "$log"
-          cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$log"
+          cp -r "$base/config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$log"
           echo -e "${OK:-[OK]} - Replaced $DIR2 with new configuration." 2>&1 | tee -a "$log"
           if [ "$DIR2" = "rofi" ]; then
             if [ -d "$DIRPATH-backup-$BACKUP_DIR/themes" ]; then
@@ -39,7 +40,7 @@ copy_phase1() {
         esac
       done
     else
-      cp -r "config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$log"
+      cp -r "$base/config/$DIR2" "$HOME/.config/$DIR2" 2>&1 | tee -a "$log"
       echo -e "${OK:-[OK]} - Copy completed for ${YELLOW:-}$DIR2${RESET:-}" 2>&1 | tee -a "$log"
     fi
   done
@@ -47,6 +48,7 @@ copy_phase1() {
 
 copy_waybar() {
   local log="$1"
+  local base="${DOTFILES_DIR:-.}"
   local DIRW="waybar"
   local DIRPATHw="$HOME/.config/$DIRW"
   if [ -d "$DIRPATHw" ]; then
@@ -58,7 +60,7 @@ copy_waybar() {
         BACKUP_DIR=$(get_backup_dirname)
         cp -r "$DIRPATHw" "$DIRPATHw-backup-$BACKUP_DIR" 2>&1 | tee -a "$log"
         echo -e "${NOTE:-[NOTE]} - Backed up $DIRW to $DIRPATHw-backup-$BACKUP_DIR." 2>&1 | tee -a "$log"
-        rm -rf "$DIRPATHw" && cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$log"
+        rm -rf "$DIRPATHw" && cp -r "$base/config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$log"
         for file in "config" "style.css"; do
           symlink="$DIRPATHw-backup-$BACKUP_DIR/$file"
           target_file="$DIRPATHw/$file"
@@ -103,13 +105,14 @@ copy_waybar() {
       esac
     done
   else
-    cp -r "config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$log"
+    cp -r "$base/config/$DIRW" "$DIRPATHw" 2>&1 | tee -a "$log"
     echo -e "${OK:-[OK]} - Copy completed for ${YELLOW:-}$DIRW${RESET:-}" 2>&1 | tee -a "$log"
   fi
 }
 
 copy_phase2() {
   local log="$1"
+  local base="${DOTFILES_DIR:-.}"
   local DIR="btop cava hypr Kvantum qt5ct qt6ct swappy wallust wlogout"
   for DIR_NAME in $DIR; do
     local DIRPATH="$HOME/.config/$DIR_NAME"
@@ -118,8 +121,8 @@ copy_phase2() {
       BACKUP_DIR=$(get_backup_dirname)
       mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$log"
     fi
-    if [ -d "config/$DIR_NAME" ]; then
-      cp -r "config/$DIR_NAME/" "$HOME/.config/$DIR_NAME" 2>&1 | tee -a "$log"
+    if [ -d "$base/config/$DIR_NAME" ]; then
+      cp -r "$base/config/$DIR_NAME/" "$HOME/.config/$DIR_NAME" 2>&1 | tee -a "$log"
       echo "${OK:-[OK]} - Copy of config for ${YELLOW:-}$DIR_NAME${RESET:-} completed!" 2>&1 | tee -a "$log"
     else
       echo "${ERROR:-[ERROR]} - Directory config/$DIR_NAME does not exist to copy." 2>&1 | tee -a "$log"
