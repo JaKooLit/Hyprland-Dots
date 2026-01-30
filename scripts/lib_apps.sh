@@ -180,7 +180,7 @@ install_waybar_weather_binary() {
   fi
 
   _log "Installing prebuilt binary to ${INSTALL_PATH} from ${ASSET}"
-  if ${SUDO} sh -c "gzip -dc '$ASSET' > '${INSTALL_PATH}'" && ${SUDO} chmod 0755 "${INSTALL_PATH}"; then
+  if ${SUDO} sh -c "tmp=\$(mktemp '${INSTALL_PATH}.XXXXXX') && gzip -dc '$ASSET' > \"\$tmp\" && chmod 0755 \"\$tmp\" && mv -f \"\$tmp\" '${INSTALL_PATH}'"; then
     if "${INSTALL_PATH}" -h >/dev/null 2>&1; then
       _log "Installed ${APP_NAME} successfully."
     else
