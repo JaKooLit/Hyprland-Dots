@@ -48,7 +48,7 @@ tooltip {
 #taskbar button,
 #workspaces button {
     background-color: transparent;
-    color: #ffffff;
+    color: @fgcolor;
     box-shadow: none;
 	text-shadow: none;
     padding: 4px;
@@ -59,8 +59,8 @@ tooltip {
 
 #taskbar button.active,
 #workspaces button.active {
-    background-color: transparent;
-    color: @accent1;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: @accent2;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
@@ -78,13 +78,14 @@ tooltip {
 }
 
 #workspaces button.focused {
-    background-color: #bbccdd;
-    color: @accent2;
+    background-color: rgba(0, 0, 0, 0.35);
+    color: @accent5;
     /* box-shadow: inset 0 -3px #ffffff; */
 }
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
+    color: #ffffff;
 }
 
 #mode {
