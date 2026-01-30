@@ -115,7 +115,7 @@ choose_default_editor() {
   fi
 }
 
-# Install waybar-weather: prefer Arch AUR, otherwise copy prebuilt asset to /usr/bin
+# Install waybar-weather on non-NixOS: prefer Arch AUR, otherwise copy prebuilt asset to /usr/bin
 install_waybar_weather_binary() {
   local log="$1"
   local APP_NAME="waybar-weather"
@@ -127,9 +127,9 @@ install_waybar_weather_binary() {
   _warn() { echo "[${APP_NAME}] WARN: $*" 1>&2 | tee -a "$log"; }
   _err() { echo "[${APP_NAME}] ERROR: $*" 1>&2 | tee -a "$log"; }
 
-  # Distro detection
+  # NixOS handled by a separate helper
   if grep -qi '^ID=nixos' /etc/os-release 2>/dev/null; then
-    _warn "NixOS detected. Skipping ${APP_NAME} install in this script."
+    _warn "NixOS detected. Use install_waybar_weather_nixos instead."
     return 0
   fi
 
@@ -182,5 +182,74 @@ install_waybar_weather_binary() {
   else
     _err "Failed to install ${APP_NAME} to ${INSTALL_PATH}"
     return 1
+  fi
+}
+
+# Install waybar-weather on NixOS using Go from the system (no version checks)
+install_waybar_weather_nixos() {
+  local log="$1"
+  local APP_NAME="waybar-weather"
+  local DEST="$HOME/.local/bin/${APP_NAME}"
+
+  _log() { echo "[${APP_NAME}] $*" 2>&1 | tee -a "$log"; }
+  _warn() { echo "[${APP_NAME}] WARN: $*" 1>&2 | tee -a "$log"; }
+  _err() { echo "[${APP_NAME}] ERROR: $*" 1>&2 | tee -a "$log"; }
+
+  if ! grep -qi '^ID=nixos' /etc/os-release 2>/dev/null; then
+    _warn "Not NixOS; skipping NixOS-specific build."
+    return 0
+  fi
+
+  if ! command -v go >/dev/null 2>&1; then
+    _err "Go toolchain not found in PATH. Ensure NixOS-Hyprland provides go, then re-run."
+    return 1
+  fi
+  if ! command -v git >/dev/null 2>&1; then
+    _err "git not found; install git and retry."
+    return 1
+  fi
+
+  local tmp
+  tmp=$(mktemp -d)
+  trap 'rm -rf "${tmp}"' RETURN
+
+  _log "Cloning waybar-weather source"
+  if ! git clone --depth 1 https://github.com/wneessen/waybar-weather.git "${tmp}/src" >/dev/null 2>&1; then
+    _err "git clone failed"
+    return 1
+  fi
+
+  cd "${tmp}/src" || { _err "cd failed"; return 1; }
+  _log "Fetching modules"
+  go mod download >/dev/null 2>&1 || _warn "go mod download returned non-zero; continuing"
+  _log "Building ${APP_NAME}"
+  if ! CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o "${APP_NAME}" ./cmd/${APP_NAME}; then
+    _err "go build failed"
+    return 1
+  fi
+
+  mkdir -p "$HOME/.local/bin"
+  install -m 0755 "${APP_NAME}" "${DEST}" || { _err "install to ${DEST} failed"; return 1; }
+
+  if printf '%s' "$PATH" | grep -q "$HOME/.local/bin"; then
+    :
+  else
+    _warn "~/.local/bin is not in PATH; add it so Waybar can find ${APP_NAME}."
+  fi
+
+  if "${DEST}" -h >/dev/null 2>&1; then
+    _log "Installed ${APP_NAME} to ${DEST}"
+  else
+    _warn "${APP_NAME} installed, but a basic self-check did not run."
+  fi
+}
+
+# Wrapper: choose NixOS builder or non-NixOS installer automatically
+install_waybar_weather() {
+  local log="$1"
+  if grep -qi '^ID=nixos' /etc/os-release 2>/dev/null; then
+    install_waybar_weather_nixos "$log"
+  else
+    install_waybar_weather_binary "$log"
   fi
 }

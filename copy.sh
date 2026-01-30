@@ -321,7 +321,7 @@ enable_blueman "$LOG"
 enable_ags "$LOG"
 enable_quickshell "$LOG"
 ensure_keybinds_init "$LOG"
-install_waybar_weather_binary "$LOG"
+install_waybar_weather "$LOG"
 printf "\n%.0s" {1..1}
 
 choose_default_editor "$LOG"
