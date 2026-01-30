@@ -26,9 +26,7 @@ def _copytree(src: Path, dst: Path) -> None:
     try:
         shutil.copytree(src, dst, symlinks=True)
     except PermissionError as e:
-        raise RuntimeError(
-            f"Permission denied copying to {dst}: {e}"
-        ) from e
+        raise RuntimeError(f"Permission denied copying to {dst}: {e}") from e
 
 
 def copy_config_dir(

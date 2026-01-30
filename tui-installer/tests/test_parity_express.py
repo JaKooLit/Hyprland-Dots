@@ -38,8 +38,8 @@ def test_express_upgrade_skips_restore_prompts_and_auto_cleans_backups(
     base = fake_home.config / "kitty"
     write_text(base / "kitty.conf", "font_size 16.0\n")
     # Create multiple backups sibling dirs
-    (fake_home.config / "kitty-backup-back-up_0101_0001").mkdir(parents=True)
-    (fake_home.config / "kitty-backup-back-up_0101_0002").mkdir(parents=True)
+    (fake_home.config / "kitty-backup-01_01_0001").mkdir(parents=True)
+    (fake_home.config / "kitty-backup-01_01_0002").mkdir(parents=True)
 
     # Stub system/commands
     recorder = CmdRecorder()
@@ -47,12 +47,8 @@ def test_express_upgrade_skips_restore_prompts_and_auto_cleans_backups(
     monkeypatch.setattr("dots_tui.utils.is_root", lambda: False)
     monkeypatch.setattr("dots_tui.utils.which", lambda _cmd: None)
 
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_distro", lambda: ("arch", [])
-    )
-    monkeypatch.setattr(
-        "dots_tui.logic.system.detect_chassis", lambda: "desktop"
-    )
+    monkeypatch.setattr("dots_tui.logic.system.detect_distro", lambda: ("arch", []))
+    monkeypatch.setattr("dots_tui.logic.system.detect_chassis", lambda: "desktop")
     monkeypatch.setattr("dots_tui.logic.system.detect_nvidia", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_vm", lambda: False)
     monkeypatch.setattr("dots_tui.logic.system.detect_nixos", lambda: False)
@@ -99,5 +95,5 @@ def test_express_upgrade_skips_restore_prompts_and_auto_cleans_backups(
     )
 
     # Assert: backup cleanup auto-trimmed old backups (keeps only latest by mtime).
-    backups = [p for p in fake_home.config.glob("kitty-backup-back-up_*") if p.is_dir()]
+    backups = [p for p in fake_home.config.glob("kitty-backup-*") if p.is_dir()]
     assert len(backups) == 1

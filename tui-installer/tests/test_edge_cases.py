@@ -180,7 +180,7 @@ class TestBackupEdgeCases:
         src.mkdir()
 
         path = backup_path(src)
-        assert "-backup_" in path.name
+        assert "-backup-" in path.name
         assert path.parent == src.parent
 
 

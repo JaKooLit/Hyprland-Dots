@@ -14,13 +14,35 @@ PromptConfirm = PromptConfirmFn
 
 
 def backup_suffix() -> str:
-    # Format: MMDD_HHMM (Clean timestamp)
-    return datetime.now().strftime("%m%d_%H%M")
+    # Format: MM_DD_HHMM
+    return datetime.now().strftime("%m_%d_%H%M")
 
 
 def backup_path(path: Path) -> Path:
-    # Target: {name}-backup-{MMDD}_{HHMM}
+    # Target: {name}-backup-{MM_DD_HHMM}
     return path.with_name(f"{path.name}-backup-{backup_suffix()}")
+
+
+def find_most_recent_backup(path: Path) -> Path | None:
+    """Find the most recent backup of a config directory.
+
+    Handles both formats:
+    - TUI format: {name}-backup-MM_DD_HHMM
+    - Legacy copy.sh format: {name}-backup-back-up_MMDD_HHMM
+
+    Returns the newest backup by mtime, or None if no backups exist.
+    """
+    if not path.parent.is_dir():
+        return None
+
+    pattern = f"{path.name}-backup*"
+    backups = [p for p in path.parent.glob(pattern) if p.is_dir()]
+
+    if not backups:
+        return None
+
+    # Return newest by modification time
+    return max(backups, key=lambda p: p.stat().st_mtime)
 
 
 def backup_dir(path: Path) -> Path | None:
@@ -32,11 +54,6 @@ def backup_dir(path: Path) -> Path | None:
 
 
 def backup_dir_copy(path: Path) -> Path | None:
-    """Backup directory via copy (shell waybar behavior).
-    Used when we want to preserve symlinks and file metadata without moving the
-    original directory out from under any running process.
-    """
-
     if not path.exists():
         return None
     dst = backup_path(path)
@@ -52,8 +69,7 @@ def cleanup_backups(
     config_root: Path | None = None,
 ) -> None:
     """Trim old backups in ~/.config
-    For each directory ~/.config/<name>, if multiple sibling directories named
-    '<name>-backup*' exist, keep the newest by mtime and delete older ones.
+    keep the newest by mtime and delete older ones.
     """
 
     root = config_root or (Path.home() / ".config")

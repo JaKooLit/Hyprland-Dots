@@ -608,11 +608,24 @@ class InstallerOrchestrator:
             if config.run_mode in {"upgrade", "express"}:
                 set_step("Restoring previous configs...", 82)
                 if plan is None:
+                    # If no backup was created this run, look for existing backups
+                    # (including legacy copy.sh format backups)
                     if hypr_backup is None:
-                        log(
-                            "[NOTE] No hypr backup found for this run; skipping restore."
-                        )
-                    else:
+                        from dots_tui.logic.backup import find_most_recent_backup
+                        
+                        hypr_dir = target_config_root / "hypr"
+                        hypr_backup = find_most_recent_backup(hypr_dir)
+                        
+                        if hypr_backup is not None:
+                            log(
+                                f"[NOTE] Found existing backup from previous installation: {hypr_backup.name}"
+                            )
+                        else:
+                            log(
+                                "[NOTE] No hypr backup found for this run; skipping restore."
+                            )
+                    
+                    if hypr_backup is not None:
                         hypr_dir = target_config_root / "hypr"
                         express = config.run_mode == "express"
                         restore_hypr_assets(
