@@ -114,6 +114,23 @@ wallust_targets=(
 )
 wait_for_templates "$start_ts" "${wallust_targets[@]}" || true
 
+# Run kitty-only wallust config to keep terminal palette separate
+run_wallust_with_config() {
+  local cfg="$1"
+  if wallust run --help 2>&1 | grep -q -E '(^|[[:space:]])-c([,[:space:]]|$)|--config'; then
+    wallust run -s -c "$cfg" "$wallpaper_path" || true
+  else
+    WALLUST_CONFIG="$cfg" wallust run -s "$wallpaper_path" || true
+  fi
+}
+
+kitty_cfg="$HOME/.config/wallust/wallust-kitty.toml"
+if [ -f "$kitty_cfg" ]; then
+  kitty_ts=$(date +%s)
+  run_wallust_with_config "$kitty_cfg"
+  wait_for_templates "$kitty_ts" "$HOME/.config/kitty/kitty-themes/01-Wallust.conf" || true
+fi
+
 # Reload kitty colors when wallpaper-based theme is active
 kitty_wallust_theme="$HOME/.config/kitty/kitty-themes/01-Wallust.conf"
 if [ -s "$kitty_wallust_theme" ]; then
