@@ -5,10 +5,16 @@ from __future__ import annotations
 import argparse
 import os
 
+from rich_argparse import RichHelpFormatter
+
 from dots_tui.app import run
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Hyprland-Dots Installer TUI")
+    parser = argparse.ArgumentParser(
+        prog="dots_tui",
+        description="[bold blue]Hyprland-Dots[/bold blue] [magenta]TUI Installer[/magenta]",
+        formatter_class=RichHelpFormatter,
+    )
     parser.add_argument(
         "--dry-run",
         action="store_true",

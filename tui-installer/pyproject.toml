@@ -3,7 +3,10 @@ name = "dots-tui"
 version = "2.3.20"
 description = "Textual TUI installer for Hyprland-Dots"
 requires-python = ">=3.11"
-dependencies = ["textual>=0.50.0"]
+dependencies = [
+    "rich-argparse>=1.7.2",
+    "textual>=0.50.0",
+]
 
 [project.scripts]
 dots-tui = "dots_tui.app:run"
