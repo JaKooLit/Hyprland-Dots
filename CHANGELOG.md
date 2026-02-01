@@ -7,6 +7,9 @@
 - Added check for `rsync` in `copy.sh`
 - Fixed two more style sheets with hardcoded colors that broke with global theme
 - Fixed Window Rules for `zapzap`
+- Added French Translations
+  - Moved docs to proper i18n locations
+  - Thank you @Loris383v
 
 ## v2.3.20
 
