@@ -1,9 +1,9 @@
-[![jp](https://img.shields.io/badge/lang-jp-blue.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.jp.md)
-[![ro](https://img.shields.io/badge/lang-ro-green.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ro.md)
-[![ru](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ru.md)
-[![ua](https://img.shields.io/badge/lang-ua-white.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ua.md)
-[![de](https://img.shields.io/badge/lang-de-magenta.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.de.md)
-[![fr](https://img.shields.io/badge/lang-fr-cyan.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.fr.md)
+[![jp](https://img.shields.io/badge/lang-jp-blue.svg)](./i18n/README/README.jp.md)
+[![ro](https://img.shields.io/badge/lang-ro-green.svg)](./i18n/README/README.ro.md)
+[![ru](https://img.shields.io/badge/lang-ru-red.svg)](./i18n/README/README.ru.md)
+[![ua](https://img.shields.io/badge/lang-ua-white.svg)](./i18n/README/README.ua.md)
+[![de](https://img.shields.io/badge/lang-de-magenta.svg)](./i18n/README/README.de.md)
+[![fr](https://img.shields.io/badge/lang-fr-cyan.svg)](./i18n/README/README.fr.md)
 
 <h3 align="center">
 <img align="center" width="80%" src=https://github.com/user-attachments/assets/bc18bd4d-944b-4d5f-a119-7578fa38f9b4 />
@@ -249,4 +249,4 @@ Or you can donate cryto on my btc wallet :)
 
 ### Document translations
 
-- Spanish: [Código de Conducta](./CODE_OF_CONDUCT.es.md) · [Guía de mensajes de commit](./COMMIT_MESSAGE_GUIDELINES.es.md) · [Guía de contribución](./CONTRIBUTING.es.md)
+- Spanish: [Código de Conducta](./i18n/CODE_OF_CONDUCT/CODE_OF_CONDUCT.es.md) · [Guía de mensajes de commit](./i18n/COMMIT_MESSAGE_GUIDELINES/COMMIT_MESSAGE_GUIDELINES.es.md) · [Guía de contribución](./i18n/CONTRIBUTING/CONTRIBUTING.es.md)
