@@ -31,9 +31,10 @@
 
 clear
 wallpaper=$HOME/.config/hypr/wallpaper_effects/.wallpaper_current
-waybar_style="$HOME/.config/waybar/style/[Extra] Neon Circuit.css"
-waybar_config="$HOME/.config/waybar/configs/[TOP] Default"
-waybar_config_laptop="$HOME/.config/waybar/configs/[TOP] Default Laptop"
+# Defaults updated to normalized names
+waybar_style="$HOME/.config/waybar/style/Extra-Prismatic-Glow.css"
+waybar_config="$HOME/.config/waybar/configs/TOP-Default"
+waybar_config_laptop="$HOME/.config/waybar/configs/TOP-Default-Laptop"
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -52,6 +53,8 @@ SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 MIN_EXPRESS_VERSION="2.3.18"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$SCRIPT_DIR"
+export DOTFILES_DIR
 MENU_HELPER="$SCRIPT_DIR/scripts/copy_menu.sh"
 BACKUP_HELPER="$SCRIPT_DIR/scripts/lib_backup.sh"
 DETECT_HELPER="$SCRIPT_DIR/scripts/lib_detect.sh"
@@ -106,6 +109,9 @@ else
   exit 1
 fi
 
+# Ensure we operate from the dotfiles root so relative paths resolve.
+cd "$SCRIPT_DIR" || { echo "${ERROR} Failed to cd to $SCRIPT_DIR"; exit 1; }
+
 version_gte() {
   [ "$1" = "$(echo -e "$1\n$2" | sort -V | tail -n1)" ]
 }
@@ -114,10 +120,10 @@ get_installed_dotfiles_version() {
   local hypr_dir="$HOME/.config/hypr"
   if [ -d "$hypr_dir" ]; then
     # Pick the highest semantic version among files named vX.Y.Z
-    find "$hypr_dir" -maxdepth 1 -type f -name 'v*.*.*' -printf '%f\n' 2>/dev/null \
-      | sed 's/^v//' \
-      | sort -V \
-      | tail -n1
+    find "$hypr_dir" -maxdepth 1 -type f -name 'v*.*.*' -printf '%f\n' 2>/dev/null |
+      sed 's/^v//' |
+      sort -V |
+      tail -n1
   fi
 }
 
@@ -136,6 +142,7 @@ Usage: copy.sh [--upgrade] [--express-upgrade] [--help]
 Options:
   --upgrade           Run the script in upgrade mode (can still prompt for express).
   --express-upgrade   Upgrade with express behavior (no restore prompts, trims backups).
+  --tty               Force basic TTY prompts (no whiptail menu).
   -h, --help          Show this help message and exit.
 EOF
 }
@@ -154,6 +161,9 @@ while [[ $# -gt 0 ]]; do
     UPGRADE_MODE=1
     EXPRESS_MODE=1
     RUN_MODE="express"
+    ;;
+  --tty)
+    COPY_TUI_BACKEND="basic"
     ;;
   -h | --help)
     print_usage
@@ -229,6 +239,11 @@ if [[ $EUID -eq 0 ]]; then
   printf "\n%.0s" {1..2}
   exit 1
 fi
+# Ensure rsync is available before proceeding
+if ! command -v rsync >/dev/null 2>&1; then
+  echo "${ERROR} Required dependency 'rsync' is not installed. Please install rsync and rerun this script."
+  exit 1
+fi
 
 # Function to print colorful text
 print_color() {
@@ -275,16 +290,21 @@ echo "${WARNING}A T T E N T I O N !${RESET}"
 echo "${MAGENTA}Kindly visit KooL Hyprland Own Wiki for changelogs${RESET}"
 printf "\n%.0s" {1..1}
 
-# Create Directory for Copy Logs
-if [ ! -d Copy-Logs ]; then
-  mkdir Copy-Logs
+# Create Directory for Copy Logs (use script dir to avoid CWD issues)
+LOG_DIR="$SCRIPT_DIR/Copy-Logs"
+if [ ! -d "$LOG_DIR" ]; then
+  mkdir -p "$LOG_DIR"
 fi
 
 # Set the name of the log file to include the current date and time
-LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
+LOG="$LOG_DIR/install-$(date +%d-%H%M%S)_dotfiles.log"
 
-# update home directories
-xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
+# update home directories (guard if command missing)
+if command -v xdg-user-dirs-update >/dev/null 2>&1; then
+  xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
+else
+  echo "${WARN} xdg-user-dirs-update not found; skipping home dir update." 2>&1 | tee -a "$LOG"
+fi
 echo "${INFO} Selected workflow: ${RUN_MODE}" 2>&1 | tee -a "$LOG"
 if [ "$UPGRADE_MODE" -eq 1 ]; then
   echo "${INFO} Upgrade mode enabled." 2>&1 | tee -a "$LOG"
@@ -296,10 +316,20 @@ fi
 detect_nvidia_adjust "$LOG"
 detect_vm_adjust "$LOG"
 detect_nixos_adjust "$LOG"
+# NixOS: report missing waybar-weather without attempting to install
+is_nixos() {
+  grep -qi '^ID=nixos' /etc/os-release 2>/dev/null
+}
+
+report_waybar_weather_missing() {
+  if ! command -v waybar-weather >/dev/null 2>&1; then
+    echo "${WARN} waybar-weather binary is missing." 2>&1 | tee -a "$LOG"
+  fi
+}
 
 # activating hyprcursor on env by checking if the directory ~/.icons/Bibata-Modern-Ice/hyprcursors exists
 if [ -d "$HOME/.icons/Bibata-Modern-Ice/hyprcursors" ]; then
-  HYPRCURSOR_ENV_FILE="config/hypr/configs/ENVariables.conf"
+  HYPRCURSOR_ENV_FILE="$DOTFILES_DIR/config/hypr/configs/ENVariables.conf"
   echo "${INFO} Bibata-Hyprcursor directory detected. Activating Hyprcursor...." 2>&1 | tee -a "$LOG" || true
   sed -i 's/^#env = HYPRCURSOR_THEME,Bibata-Modern-Ice/env = HYPRCURSOR_THEME,Bibata-Modern-Ice/' "$HYPRCURSOR_ENV_FILE"
   sed -i 's/^#env = HYPRCURSOR_SIZE,24/env = HYPRCURSOR_SIZE,24/' "$HYPRCURSOR_ENV_FILE"
@@ -315,7 +345,11 @@ enable_blueman "$LOG"
 enable_ags "$LOG"
 enable_quickshell "$LOG"
 ensure_keybinds_init "$LOG"
-
+if is_nixos; then
+  report_waybar_weather_missing
+else
+  install_waybar_weather "$LOG"
+fi
 printf "\n%.0s" {1..1}
 
 choose_default_editor "$LOG"
@@ -327,26 +361,32 @@ while true; do
   echo -n "${CAT} Enter the number of your choice (1 or 2): "
   read -r choice
   case "$choice" in
-    1) resolution="< 1440p"; break ;;
-    2) resolution="≥ 1440p"; break ;;
-    *) echo "${ERROR} Invalid choice. Please enter 1 or 2.";;
+  1)
+    resolution="< 1440p"
+    break
+    ;;
+  2)
+    resolution="≥ 1440p"
+    break
+    ;;
+  *) echo "${ERROR} Invalid choice. Please enter 1 or 2." ;;
   esac
 done
 echo "${OK} You have chosen $resolution resolution." 2>&1 | tee -a "$LOG"
 if [ "$resolution" == "< 1440p" ]; then
   # kitty font size
-  sed -i 's/font_size 16.0/font_size 14.0/' config/kitty/kitty.conf
+  sed -i 's/font_size 16.0/font_size 14.0/' "$DOTFILES_DIR/config/kitty/kitty.conf"
 
   # hyprlock matters
-  if [ -f config/hypr/hyprlock.conf ]; then
-    mv config/hypr/hyprlock.conf config/hypr/hyprlock-2k.conf
+  if [ -f "$DOTFILES_DIR/config/hypr/hyprlock.conf" ]; then
+    mv "$DOTFILES_DIR/config/hypr/hyprlock.conf" "$DOTFILES_DIR/config/hypr/hyprlock-2k.conf"
   fi
-  if [ -f config/hypr/hyprlock-1080p.conf ]; then
-    mv config/hypr/hyprlock-1080p.conf config/hypr/hyprlock.conf
+  if [ -f "$DOTFILES_DIR/config/hypr/hyprlock-1080p.conf" ]; then
+    mv "$DOTFILES_DIR/config/hypr/hyprlock-1080p.conf" "$DOTFILES_DIR/config/hypr/hyprlock.conf"
   fi
 
   # rofi fonts reduction
-  rofi_config_file="config/rofi/0-shared-fonts.rasi"
+  rofi_config_file="$DOTFILES_DIR/config/rofi/0-shared-fonts.rasi"
   if [ -f "$rofi_config_file" ]; then
     sed -i '/element-text {/,/}/s/[[:space:]]*font: "JetBrainsMono Nerd Font SemiBold 13"/font: "JetBrainsMono Nerd Font SemiBold 11"/' "$rofi_config_file" 2>&1 | tee -a "$LOG"
     sed -i '/configuration {/,/}/s/[[:space:]]*font: "JetBrainsMono Nerd Font SemiBold 15"/font: "JetBrainsMono Nerd Font SemiBold 13"/' "$rofi_config_file" 2>&1 | tee -a "$LOG"
@@ -368,7 +408,7 @@ if [ ! -d "$HOME/.config" ]; then
 fi
 
 printf "${INFO} - copying dotfiles ${SKY_BLUE}first${RESET} part\n"
-copy_phase1 "$LOG"
+copy_phase1 "$LOG" "$RUN_MODE"
 printf "\n%.0s" {1..1}
 copy_waybar "$LOG"
 printf "\n%.0s" {1..1}
@@ -385,8 +425,8 @@ if command -v ags >/dev/null 2>&1; then
 
   if [ ! -d "$DIRPATH_AGS" ]; then
     echo "${INFO} - ags config not found, copying new config."
-    if [ -d "config/ags" ]; then
-      cp -r "config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"
+    if [ -d "$DOTFILES_DIR/config/ags" ]; then
+      cp -r "$DOTFILES_DIR/config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"
     fi
   else
     read -p "${CAT} Do you want to overwrite your existing ${YELLOW}ags${RESET} config? [y/N] " answer_ags
@@ -396,7 +436,7 @@ if command -v ags >/dev/null 2>&1; then
       mv "$DIRPATH_AGS" "$DIRPATH_AGS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
       echo -e "${NOTE} - Backed up ags config to $DIRPATH_AGS-backup-$BACKUP_DIR"
 
-      if cp -r "config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"; then
+      if cp -r "$DOTFILES_DIR/config/ags/" "$DIRPATH_AGS" 2>&1 | tee -a "$LOG"; then
         echo "${OK} - ${YELLOW}ags configs${RESET} overwritten successfully."
       else
         echo "${ERROR} - Failed to copy ${YELLOW}ags${RESET} config."
@@ -426,8 +466,8 @@ if command -v qs >/dev/null 2>&1; then
 
   if [ ! -d "$DIRPATH_QS" ]; then
     echo "${INFO} - quickshell config not found, copying new config."
-    if [ -d "config/quickshell" ]; then
-      cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
+    if [ -d "$DOTFILES_DIR/config/quickshell" ]; then
+      cp -r "$DOTFILES_DIR/config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
     fi
   else
     # If default shell.qml exists, it blocks named config subdirectory detection
@@ -436,7 +476,7 @@ if command -v qs >/dev/null 2>&1; then
       echo "${NOTE} - Removing default shell.qml to enable quickshell overview config detection" 2>&1 | tee -a "$LOG"
       rm "$DIRPATH_QS/shell.qml"
     fi
-    
+
     read -p "${CAT} Do you want to overwrite your existing ${YELLOW}quickshell${RESET} config? [y/N] " answer_qs
     case "$answer_qs" in
     [Yy]*)
@@ -444,7 +484,7 @@ if command -v qs >/dev/null 2>&1; then
       mv "$DIRPATH_QS" "$DIRPATH_QS-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
       echo -e "${NOTE} - Backed up quickshell to $DIRPATH_QS-backup-$BACKUP_DIR"
 
-      cp -r "config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
+      cp -r "$DOTFILES_DIR/config/quickshell/" "$DIRPATH_QS" 2>&1 | tee -a "$LOG"
       if [ $? -eq 0 ]; then
         echo "${OK} - ${YELLOW}quickshell${RESET} overwritten successfully."
         # Remove default shell.qml from new copy to enable overview detection
@@ -459,15 +499,15 @@ if command -v qs >/dev/null 2>&1; then
       ;;
     esac
   fi
-  
+
   # Ensure overview subdirectory exists and is up to date
   DIRPATH_OVERVIEW="$DIRPATH_QS/overview"
-  if [ ! -d "$DIRPATH_OVERVIEW" ] && [ -d "config/quickshell/overview" ]; then
+  if [ ! -d "$DIRPATH_OVERVIEW" ] && [ -d "$DOTFILES_DIR/config/quickshell/overview" ]; then
     echo "${INFO} - Copying quickshell overview config..." 2>&1 | tee -a "$LOG"
-    cp -r "config/quickshell/overview" "$DIRPATH_QS/" 2>&1 | tee -a "$LOG"
+    cp -r "$DOTFILES_DIR/config/quickshell/overview" "$DIRPATH_QS/" 2>&1 | tee -a "$LOG"
     echo "${OK} - Quickshell overview config copied successfully" 2>&1 | tee -a "$LOG"
   fi
-  
+
   # Check for old quickshell startup commands and update them
   HYPR_STARTUP="$HOME/.config/hypr/configs/Startup_Apps.conf"
   if [ -f "$HYPR_STARTUP" ]; then
@@ -517,10 +557,21 @@ printf "\n%.0s" {1..1}
 # wallpaper stuff
 PICTURES_DIR="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
 mkdir -p "$PICTURES_DIR/wallpapers"
-if cp -r wallpapers "$PICTURES_DIR/"; then
+if cp -r "$SCRIPT_DIR/wallpapers" "$PICTURES_DIR/"; then
   echo "${OK} Some ${MAGENTA}wallpapers${RESET} copied successfully!" | tee -a "$LOG"
 else
   echo "${ERROR} Failed to copy some ${YELLOW}wallpapers${RESET}" | tee -a "$LOG"
+fi
+
+# Ensure a default desktop wallpaper is set once (no per-login changes)
+WALL_EFFECTS_DIR="$HOME/.config/hypr/wallpaper_effects"
+DEFAULT_IMG="$PICTURES_DIR/wallpapers/Northern Lights3.png"
+[ -f "$DEFAULT_IMG" ] || DEFAULT_IMG="$SCRIPT_DIR/wallpapers/Northern Lights3.png"
+
+mkdir -p "$WALL_EFFECTS_DIR"
+if [ ! -f "$WALL_EFFECTS_DIR/.wallpaper_current" ] && [ -f "$DEFAULT_IMG" ]; then
+  cp -f "$DEFAULT_IMG" "$WALL_EFFECTS_DIR/.wallpaper_current"
+  echo "${OK} Default desktop wallpaper initialized." | tee -a "$LOG"
 fi
 
 # Set some files as executable
@@ -538,9 +589,22 @@ else
   config_remove=""
 fi
 
-# Check if ~/.config/waybar/config does not exist or is a symlink
-if [ ! -e "$HOME/.config/waybar/config" ] || [ -L "$HOME/.config/waybar/config" ]; then
-  ln -sf "$config_file" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
+# Ensure waybar config uses the normalized default.
+# - If the current path is not a symlink (regular file), convert it to a symlink.
+# - If the symlink points somewhere else (or is broken), reset it to the new default.
+WAYBAR_CONFIG_LINK="$HOME/.config/waybar/config"
+WAYBAR_CONFIG_TARGET="$config_file"
+if [ -e "$WAYBAR_CONFIG_TARGET" ]; then
+  if [ -L "$WAYBAR_CONFIG_LINK" ]; then
+    current_target=$(readlink "$WAYBAR_CONFIG_LINK" || true)
+    if [ "$current_target" != "$WAYBAR_CONFIG_TARGET" ] || [ ! -e "$WAYBAR_CONFIG_LINK" ]; then
+      ln -sf "$WAYBAR_CONFIG_TARGET" "$WAYBAR_CONFIG_LINK" 2>&1 | tee -a "$LOG"
+    fi
+  else
+    ln -sf "$WAYBAR_CONFIG_TARGET" "$WAYBAR_CONFIG_LINK" 2>&1 | tee -a "$LOG"
+  fi
+else
+  echo "${WARN} Waybar default config target not found at $WAYBAR_CONFIG_TARGET; leaving $WAYBAR_CONFIG_LINK as-is." 2>&1 | tee -a "$LOG"
 fi
 
 # Remove inappropriate waybar configs
@@ -555,32 +619,10 @@ printf "\n%.0s" {1..1}
 
 # for SDDM (simple_sddm_2)
 sddm_simple_sddm_2="/usr/share/sddm/themes/simple_sddm_2"
-if [ -d "$sddm_simple_sddm_2" ] && [ "$EXPRESS_MODE" -eq 1 ]; then
-  echo "${NOTE} Express mode: skipping SDDM wallpaper prompt." 2>&1 | tee -a "$LOG"
-elif [ -d "$sddm_simple_sddm_2" ]; then
-  while true; do
-    echo -n "${CAT} SDDM simple_sddm_2 theme detected! Apply current wallpaper as SDDM background? (y/n): "
-    read SDDM_WALL
-
-    # Remove any leading/trailing whitespace or newlines from input
-    SDDM_WALL=$(echo "$SDDM_WALL" | tr -d '\n' | tr -d ' ')
-
-    case $SDDM_WALL in
-    [Yy])
-      # Copy the wallpaper, ignore errors if the file exists or fails
-      sudo -n cp -r "config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/simple_sddm_2/Backgrounds/default" || true
-      echo "${NOTE} Current wallpaper applied as default SDDM background" 2>&1 | tee -a "$LOG"
-      break
-      ;;
-    [Nn])
-      echo "${NOTE} You chose not to apply the current wallpaper to SDDM." 2>&1 | tee -a "$LOG"
-      break
-      ;;
-    *)
-      echo "Please enter 'y' or 'n' to proceed."
-      ;;
-    esac
-  done
+if [ -d "$sddm_simple_sddm_2" ]; then
+  # Apply the current wallpaper as SDDM background without prompting
+  sudo -n cp -r "$DOTFILES_DIR/config/hypr/wallpaper_effects/.wallpaper_current" "/usr/share/sddm/themes/simple_sddm_2/Backgrounds/default" || true
+  echo "${NOTE} Current wallpaper applied as default SDDM background" 2>&1 | tee -a "$LOG"
 fi
 
 # additional wallpapers
@@ -636,15 +678,32 @@ else
   cleanup_backups prompt "$LOG"
 fi
 
-# Check if ~/.config/waybar/style.css does not exist or is a symlink
-if [ ! -e "$HOME/.config/waybar/style.css" ] || [ -L "$HOME/.config/waybar/style.css" ]; then
-  ln -sf "$waybar_style" "$HOME/.config/waybar/style.css" 2>&1 | tee -a "$LOG"
+# Ensure waybar style uses the normalized default.
+# - If the current path is not a symlink (regular file), convert it to a symlink.
+# - If the symlink points somewhere else (or is broken), reset it to the new default.
+WAYBAR_STYLE_LINK="$HOME/.config/waybar/style.css"
+WAYBAR_STYLE_TARGET="$waybar_style"
+if [ -e "$WAYBAR_STYLE_TARGET" ]; then
+  if [ -L "$WAYBAR_STYLE_LINK" ]; then
+    current_target=$(readlink "$WAYBAR_STYLE_LINK" || true)
+    if [ "$current_target" != "$WAYBAR_STYLE_TARGET" ] || [ ! -e "$WAYBAR_STYLE_LINK" ]; then
+      ln -sf "$WAYBAR_STYLE_TARGET" "$WAYBAR_STYLE_LINK" 2>&1 | tee -a "$LOG"
+    fi
+  else
+    ln -sf "$WAYBAR_STYLE_TARGET" "$WAYBAR_STYLE_LINK" 2>&1 | tee -a "$LOG"
+  fi
+else
+  echo "${WARN} Waybar default style target not found at $WAYBAR_STYLE_TARGET; leaving $WAYBAR_STYLE_LINK as-is." 2>&1 | tee -a "$LOG"
 fi
 
 printf "\n%.0s" {1..1}
 
 # initialize wallust to avoid config error on hyprland
 wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
+if is_nixos && ! command -v waybar-weather >/dev/null 2>&1; then
+  echo "${WARN} waybar-weather binary is missing." 2>&1 | tee -a "$LOG"
+  echo "Install the current NixOS-Hyprland version to install waybar-weather applet for Waybar" 2>&1 | tee -a "$LOG"
+fi
 
 printf "\n%.0s" {1..2}
 printf "${OK} GREAT! KooL's Hyprland-Dots is now Loaded & Ready !!! "

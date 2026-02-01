@@ -1,5 +1,13 @@
 # Changelog — JAK's Hyprland Dotfiles
 
+## v2.3.21
+
+- Fixed no tooltips when `waybar cava` running
+  - Thank you Max Gangel for the fix!
+- Added check for `rsync` in `copy.sh`
+- Fixed two more style sheets with hardcoded colors that broke with global theme
+- Fixed Window Rules for `zapzap`
+
 ## v2.3.20
 
 - Bugfix release
