@@ -10,6 +10,16 @@
 - Added French Translations
   - Moved docs to proper i18n locations
   - Thank you @Loris383v
+- Fixed `waybar-cava` starting many new processes
+  - When you switched waybarconfigs, old processes remained
+  - This is especially bad with mulitple monitors
+  - New code kills the `waybar-cava` processes on refresh
+- Fixed setting SDDM/Wallpaper/Waybar defaults on update/installs
+- Added WindowRule for proton-laucher games
+- Added `Hyprshot` screenshot tool set to region capture
+  - `ALT + S` Saves to clipboard and `~/Pictures/Screenshots/`
+  - Not all keyboards have `PrtScr` button
+  - `hyprshot.sh` is fast, simple, no system bell sound
 
 ## v2.3.20
 
