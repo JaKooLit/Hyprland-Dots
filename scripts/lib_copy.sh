@@ -149,7 +149,15 @@ restore_hypr_assets() {
 
     echo -e "\n${NOTE:-[NOTE]} Restoring ${SKY_BLUE:-}Animations & Monitor Profiles${RESET:-} into ${YELLOW:-}$HYPR_DIR${RESET:-}..."
 
-    local DIR_B=("Monitor_Profiles" "animations" "wallpaper_effects")
+    # Fresh installs should apply repo defaults; do not restore a previous wallpaper.
+    # RUN_MODE is set by copy.sh (install|upgrade|express) and is visible here.
+    local DIR_B=("Monitor_Profiles" "animations")
+    if [ "${RUN_MODE:-}" != "install" ]; then
+      DIR_B+=("wallpaper_effects")
+    else
+      echo "${NOTE:-[NOTE]} Fresh install: skipping restore of wallpaper_effects so default wallpaper applies." 2>&1 | tee -a "$log"
+    fi
+
     for DIR_RESTORE in "${DIR_B[@]}"; do
       local BACKUP_SUBDIR="$BACKUP_HYPR_PATH/$DIR_RESTORE"
       if [ -d "$BACKUP_SUBDIR" ]; then
