@@ -285,6 +285,52 @@ class InstallerOrchestrator:
 
         set_step("Update complete.", 100)
 
+    async def _pre_authenticate_sudo(
+        self,
+        *,
+        log: LogFn,
+        prompt_password: PromptPasswordFn | None = None,
+    ) -> bool:
+        """Pre-authenticate sudo to cache credentials before any prompts.
+
+        Returns True if sudo is authenticated (or passwordless), False otherwise.
+        """
+        # Try non-interactive sudo first
+        result = await run_cmd(["sudo", "-n", "true"], log=log)
+        if result.returncode == 0:
+            return True
+
+        # Check if failure is due to missing password
+        is_auth_fail = (
+            "password is required" in result.output.lower() or result.returncode == 1
+        )
+        if not is_auth_fail:
+            return False
+
+        if prompt_password is None:
+            log("[NOTE] Sudo authentication required for system changes.")
+            return False
+
+        log("[NOTE] Sudo authentication required. Please enter your password.")
+
+        while True:
+            pw = prompt_password("Enter sudo password (or Esc to skip):")
+            if not pw:
+                log("[NOTE] Sudo authentication skipped.")
+                return False
+
+            auth_res = await run_cmd(
+                ["sudo", "-v", "-S"],
+                input_text=pw + "\n",
+                log=log,
+            )
+
+            if auth_res.returncode == 0:
+                log("[OK] Sudo authentication successful.")
+                return True
+            else:
+                log("[WARN] Authentication failed. Please try again.")
+
     async def run_install(
         self,
         config: InstallConfig,
@@ -308,6 +354,13 @@ class InstallerOrchestrator:
         self._assert_repo_root()
 
         set_step("Preparing...", 5)
+
+        # Pre-authenticate sudo before any prompts (SDDM operations need it)
+        if plan is None:
+            await self._pre_authenticate_sudo(
+                log=log,
+                prompt_password=prompt_password,
+            )
         if plan is None:
             res = await run_cmd(["xdg-user-dirs-update"], log=log)
             if res.returncode != 0:
@@ -432,12 +485,12 @@ class InstallerOrchestrator:
                         clock_24h=config.clock_24h,
                         default_editor=config.default_editor,
                         download_wallpapers=config.download_wallpapers,
-                        apply_sddm_wallpaper=config.apply_sddm_wallpaper,
                         enable_asus=config.enable_asus,
                         enable_blueman=config.enable_blueman,
                         enable_ags=config.enable_ags,
                         enable_quickshell=config.enable_quickshell,
                         dry_run=config.dry_run,
+                        default_wallpaper=config.default_wallpaper,
                     )
 
                     assert self.last_state is not None
@@ -612,10 +665,10 @@ class InstallerOrchestrator:
                     # (including legacy copy.sh format backups)
                     if hypr_backup is None:
                         from dots_tui.logic.backup import find_most_recent_backup
-                        
+
                         hypr_dir = target_config_root / "hypr"
                         hypr_backup = find_most_recent_backup(hypr_dir)
-                        
+
                         if hypr_backup is not None:
                             log(
                                 f"[NOTE] Found existing backup from previous installation: {hypr_backup.name}"
@@ -624,7 +677,7 @@ class InstallerOrchestrator:
                             log(
                                 "[NOTE] No hypr backup found for this run; skipping restore."
                             )
-                    
+
                     if hypr_backup is not None:
                         hypr_dir = target_config_root / "hypr"
                         express = config.run_mode == "express"
@@ -1228,9 +1281,9 @@ class InstallerOrchestrator:
             config_target = (
                 waybar_dir
                 / "configs"
-                / ("[TOP] Default" if chassis == "desktop" else "[TOP] Default Laptop")
+                / ("TOP-Default" if chassis == "desktop" else "TOP-Default-Laptop")
             )
-            style_target = waybar_dir / "style" / "[Extra] Neon Circuit.css"
+            style_target = waybar_dir / "style" / "Extra-Prismatic-Glow.css"
             if config_target.exists():
                 cfg_link = waybar_dir / "config"
                 if not cfg_link.exists() or cfg_link.is_symlink():
@@ -1272,14 +1325,28 @@ class InstallerOrchestrator:
                 except Exception:
                     pass
 
+        # Initialize default desktop wallpaper if not already set
+        wall_effects_dir = hypr_dir / "wallpaper_effects"
+        wallpaper_current = wall_effects_dir / ".wallpaper_current"
+        if not wallpaper_current.exists():
+            default_filename = cfg.default_wallpaper
+            pictures_dir = await self._detect_pictures_dir(log)
+            default_img = pictures_dir / "wallpapers" / default_filename
+            if not default_img.exists():
+                default_img = self.repo_root / "wallpapers" / default_filename
+            if default_img.exists():
+                wall_effects_dir.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(default_img, wallpaper_current)
+                log("[OK] Default desktop wallpaper initialized.")
+            else:
+                log(
+                    f"[WARN] Default wallpaper '{default_filename}' not found; skipping initialization"
+                )
+
         # SDDM wallpaper
         sddm_theme = Path("/usr/share/sddm/themes/simple_sddm_2")
         if sddm_theme.is_dir():
-            if cfg.run_mode == "express":
-                log("[NOTE] Express mode: skipping SDDM wallpaper prompt.")
-            elif not cfg.apply_sddm_wallpaper:
-                log("[NOTE] SDDM wallpaper step disabled; skipping.")
-            else:
+            if cfg.apply_sddm_wallpaper:
                 wallpaper_src = hypr_dir / "wallpaper_effects" / ".wallpaper_current"
                 dest = sddm_theme / "Backgrounds" / "default"
                 if wallpaper_src.exists():
@@ -1295,6 +1362,8 @@ class InstallerOrchestrator:
                         )
                 else:
                     log("[WARN] SDDM wallpaper source not found; skipping")
+            else:
+                log("[NOTE] SDDM wallpaper disabled; skipping.")
 
         # SDDM clock format edits
         if not cfg.clock_24h:

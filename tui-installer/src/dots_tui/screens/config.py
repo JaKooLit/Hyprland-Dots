@@ -111,7 +111,7 @@ class ConfigScreen(Screen[None]):
                 yield Checkbox(
                     "Download additional wallpapers (1GB)", id="extra_wallpapers"
                 )
-                yield Checkbox("Apply wallpaper to SDDM", id="extra_sddm")
+                yield Checkbox("Apply wallpaper to SDDM", id="extra_sddm", value=True)
                 yield Label("Additional Components")
                 yield Checkbox(
                     "Blueman (Bluetooth Manager)", id="enable_blueman", value=True

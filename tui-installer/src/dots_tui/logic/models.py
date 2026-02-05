@@ -74,12 +74,13 @@ class InstallConfig:
     clock_24h: bool
     default_editor: EditorChoice | None
     download_wallpapers: bool
-    apply_sddm_wallpaper: bool
     enable_asus: bool
     enable_blueman: bool
     enable_ags: bool
     enable_quickshell: bool
+    apply_sddm_wallpaper: bool = True
     dry_run: bool = False
+    default_wallpaper: str = "Lofi-Cafe1.png"
 
 
 @dataclass(frozen=True)
