@@ -20,6 +20,9 @@
   - `ALT + S` Saves to clipboard and `~/Pictures/Screenshots/`
   - Not all keyboards have `PrtScr` button
   - `hyprshot.sh` is fast, simple, no system bell sound
+- Fixed start CLI apps from rofi like `htop`, `btop` being started with `xterm`
+  - This made the apps run in light mode with tiny fonts
+  - Now they are started with `kitty`
 
 ## v2.3.20
 

@@ -1,0 +1,8 @@
+/* Global Rofi runtime configuration overrides
+ * Ensures terminal-based apps launched from drun/run use kitty instead of xterm.
+ */
+configuration {
+  terminal: "kitty";
+  // keep run-shell explicit to avoid theme overrides changing behavior
+  run-shell-command: "{terminal} -e {cmd}";
+}
