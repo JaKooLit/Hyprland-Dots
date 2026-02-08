@@ -17,6 +17,8 @@
 - Fixed setting SDDM/Wallpaper/Waybar defaults on update/installs
 - Added WindowRule for proton-laucher games
 - Added WindowRule for CachyOS Kernel Manager
+- Added WindowRule for CachyOS Hello app
+- Added WindowRule for CachyOS Package Installer app
 - Added `Hyprshot` screenshot tool set to region capture
   - `ALT + S` Saves to clipboard and `~/Pictures/Screenshots/`
   - Not all keyboards have `PrtScr` button
