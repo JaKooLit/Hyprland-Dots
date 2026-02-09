@@ -30,6 +30,8 @@
   - Based on code from `DemiGoD`
   - I added variables for finer control
   - Some tweaks to lower CPU further
+  - Added `-h/--help`
+  - Added `--run-once` to set RainbowBorders but no animation
 
 ## v2.3.20
 

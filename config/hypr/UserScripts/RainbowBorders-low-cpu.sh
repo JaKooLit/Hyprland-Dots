@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# RainbowBorders-low-gpu.sh — low-overhead animated rainbow border for Hyprland
+# RainbowBorders-low-cpu.sh — low-overhead animated rainbow border for Hyprland
 #
 # Goal
 #   Animate Hyprland's active border with a rotating rainbow gradient while
 #   minimizing CPU usage on older systems by:
 #     - Using a modest update rate (default 1.0s) and larger angle steps
 #     - Avoiding subshell-heavy work inside the loop
-#     - Using a persistent Hyprland command socket (socat) when available
+#     - Using Hyprland's command socket via socat when available
 #     - Quoting/validating inputs and suppressing noisy output
 #     - Preventing multiple concurrent instances
 #     - Optionally restoring the previous border value on exit
@@ -22,16 +22,17 @@
 #     RB_START_DEG   Integer starting angle          (default: 0)
 #     RB_TARGET      Hypr option to update           (default: general:col.active_border)
 #     RB_COLORS      Space-separated color list      (default: 10-color rainbow below)
-#     RB_RESTORE     If "1", attempt to restore previous value on exit (default: 1)
-#     RB_LOCKFILE    Path to a PID lock file         (default: /tmp/hypr-rainbowborders.lock)
+#     RB_RESTORE     If "1", attempt to restore previous value on exit (loop mode; default: 1)
+#     RB_LOCKFILE    Path to a PID lock file         (loop mode; default: /tmp/hypr-rainbowborders.lock)
 #     RB_TRANSPORT   auto|socat|hyprctl              (default: auto)
 #                      - socat: send each command via Hyprland's command socket
 #                        using socat (one short-lived connection per tick)
 #                      - hyprctl: spawn hyprctl each tick
 #                      - auto: prefer socat if possible, otherwise hyprctl
+#     RB_ONCE        1 to apply once and exit (no animation; default: 0)
 #
 #   Example (slower animation):
-#     RB_INTERVAL=1.5 RB_STEP_DEG=12 ~/.config/hypr/UserScripts/RainbowBorders-low-gpu.sh &
+#     RB_INTERVAL=1.5 RB_STEP_DEG=12 ~/.config/hypr/UserScripts/RainbowBorders-low-cpu.sh &
 #
 # Notes
 #   - This focuses on the active border only. Animating inactive borders too
@@ -51,15 +52,56 @@ RB_COLORS="${RB_COLORS:-$RB_COLORS_DEFAULT}"
 RB_RESTORE="${RB_RESTORE:-1}"
 RB_LOCKFILE="${RB_LOCKFILE:-/tmp/hypr-rainbowborders.lock}"
 RB_TRANSPORT="${RB_TRANSPORT:-auto}"
+RB_ONCE="${RB_ONCE:-0}"
 
 # ---------- helpers ----------
-log() { printf '[RainbowBorders-low-gpu] %s\n' "$*" >&2; }
+log() { printf '[RainbowBorders-low-cpu] %s\n' "$*" >&2; }
 
 die() { log "ERROR: $*"; exit 1; }
+
+usage() {
+  cat <<'EOF'
+Usage: RainbowBorders-low-cpu.sh [options]
+
+Options:
+  -h, --help     Show this help and exit
+  --once, --run-once, -1
+                 Apply the current gradient once and exit (no animation).
+                 In this mode, RB_RESTORE is ignored (the color persists).
+
+Environment overrides:
+  RB_INTERVAL    Seconds between updates (default: 1.0)
+  RB_STEP_DEG    Degrees per tick (default: 10)
+  RB_START_DEG   Starting angle (default: 0)
+  RB_TARGET      Hypr option to update (default: general:col.active_border)
+  RB_COLORS      Space-separated colors (default: 10-color rainbow)
+  RB_RESTORE     1 to restore previous value on exit (loop mode only; default: 1)
+  RB_LOCKFILE    PID lock path (loop mode only; default: /tmp/hypr-rainbowborders.lock)
+  RB_TRANSPORT   auto|socat|hyprctl (default: auto)
+  RB_ONCE        1 for one-shot mode (same as --once)
+
+Examples:
+  Animate (light CPU):
+    RB_INTERVAL=1.5 RB_STEP_DEG=12 ./RainbowBorders-low-cpu.sh &
+
+  Set a static rainbow once (no animation):
+    ./RainbowBorders-low-cpu.sh --once
+EOF
+}
 
 is_float() { [[ "$1" =~ ^[0-9]+(\.[0-9]+)?$|^\.[0-9]+$ ]]; }
 
 is_int()   { [[ "$1" =~ ^[0-9]+$ ]]; }
+
+# ---------- parse CLI flags ----------
+while (( $# )); do
+  case "$1" in
+    -h|--help) usage; exit 0 ;;
+    --once|--run-once|-1) RB_ONCE=1 ;;
+    *) log "Unknown option: $1"; usage; exit 2 ;;
+  esac
+  shift
+done
 
 # ---------- validation ----------
 if ! is_float "$RB_INTERVAL"; then
@@ -78,19 +120,21 @@ fi
 # ---------- single-instance lock (PID file) ----------
 cleanup_lock() { [[ -f "$RB_LOCKFILE" ]] && rm -f "$RB_LOCKFILE"; }
 
-if [[ -f "$RB_LOCKFILE" ]]; then
-  oldpid="$(cat "$RB_LOCKFILE" 2>/dev/null || true)"
-  if [[ -n "${oldpid:-}" ]] && kill -0 "$oldpid" 2>/dev/null; then
-    log "Another instance is running (pid=$oldpid). Exiting."
-    exit 0
-  else
-    # Stale lock
-    rm -f "$RB_LOCKFILE" || true
+if [[ "$RB_ONCE" != "1" ]]; then
+  if [[ -f "$RB_LOCKFILE" ]]; then
+    oldpid="$(cat "$RB_LOCKFILE" 2>/dev/null || true)"
+    if [[ -n "${oldpid:-}" ]] && kill -0 "$oldpid" 2>/dev/null; then
+      log "Another instance is running (pid=$oldpid). Exiting."
+      exit 0
+    else
+      # Stale lock
+      rm -f "$RB_LOCKFILE" || true
+    fi
   fi
+  printf '%d' "$$" >"$RB_LOCKFILE" 2>/dev/null || die "Cannot write lockfile $RB_LOCKFILE"
 fi
-printf '%d' "$$" >"$RB_LOCKFILE" 2>/dev/null || die "Cannot write lockfile $RB_LOCKFILE"
 
-# ---------- transport (socat persistent socket vs hyprctl) ----------
+# ---------- transport (socat vs hyprctl) ----------
 RB_MODE=""
 RB_SOCK=""
 
@@ -127,7 +171,7 @@ log "Using transport: $RB_MODE"
 
 # ---------- optional restore of previous border value ----------
 PREV_VALUE=""
-if [[ "$RB_RESTORE" == "1" ]]; then
+if [[ "$RB_RESTORE" == "1" && "$RB_ONCE" != "1" ]]; then
   if command -v hyprctl >/dev/null 2>&1; then
     # hyprctl getoption <opt> prints various formats; try common keys
     PREV_VALUE="$(hyprctl getoption "$RB_TARGET" 2>/dev/null \
@@ -150,9 +194,13 @@ on_exit() {
   restore_previous
   cleanup_lock
 }
-trap on_exit INT TERM EXIT
 
-# ---------- main loop ----------
+# In loop mode, set traps for cleanup/restore
+if [[ "$RB_ONCE" != "1" ]]; then
+  trap on_exit INT TERM EXIT
+fi
+
+# ---------- main logic ----------
 angle=$(( RB_START_DEG % 360 ))
 STEP=$(( RB_STEP_DEG % 360 ))
 (( STEP == 0 )) && STEP=10
@@ -165,6 +213,12 @@ write_border() {
     hyprctl keyword "$RB_TARGET" "$RB_COLORS ${a}deg" >/dev/null 2>&1 || true
   fi
 }
+
+if [[ "$RB_ONCE" == "1" ]]; then
+  # Single write and exit; do not restore previous (intended to persist)
+  write_border "$angle" || log "WARN: one-shot write failed"
+  exit 0
+fi
 
 # Prime first write (avoid waiting one interval)
 write_border "$angle" || log "WARN: initial write failed"
