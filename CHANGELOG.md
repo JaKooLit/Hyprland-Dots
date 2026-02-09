@@ -26,6 +26,10 @@
 - Fixed start CLI apps from rofi like `htop`, `btop` being started with `xterm`
   - This made the apps run in light mode with tiny fonts
   - Now they are started with `kitty`
+- Added alternative `RainbowBorders-low-cpu.sh`
+  - Based on code from `DemiGoD`
+  - I added variables for finer control
+  - Some tweaks to lower CPU further
 
 ## v2.3.20
 
