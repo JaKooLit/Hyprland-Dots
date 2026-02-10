@@ -140,7 +140,6 @@ label.module:hover {
   transition: all 0.3s ease-in-out;
   border: 1px solid transparent;
   min-width: 26px;
-  text-align: center;
 }
 
 #workspaces button.active {
