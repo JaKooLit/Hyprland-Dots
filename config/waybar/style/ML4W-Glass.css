@@ -36,8 +36,7 @@ General
 @define-color on_primary_fixed_variant      @foreground;
 @define-color on_tertiary_fixed             @background;       /* module pill bg */
 @define-color on_tertiary_fixed_variant     @foreground;       /* module pill fg */
-@define-color surface     @background-alt; /* neutral semi‑transparent base */
-@define-color surface_dim @background; /* darker neutral base */
+@define-color on_surface                    #e6edf7;           /* brighten text/icons */
 
 window#waybar {
   background: transparent;
@@ -136,10 +135,12 @@ label.module:hover {
 #workspaces button {
   color: @on_surface;
   border-radius: 3px;
-  padding: 0px 5px 0px 5px;
+  padding: 0px 6px 0px 6px;
   margin: 0px 2px 0px 2px;
   transition: all 0.3s ease-in-out;
   border: 1px solid transparent;
+  min-width: 26px;
+  text-align: center;
 }
 
 #workspaces button.active {
