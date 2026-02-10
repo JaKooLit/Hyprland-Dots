@@ -26,6 +26,16 @@ General
 }
 
 @import "style/ML4W/glass.css";
+
+/* Neutral glass overrides: avoid red/magenta palettes from wallust */
+@define-color surface                       @background-alt;   /* main glass body */
+@define-color surface_dim                   @background;       /* inner shadow base */
+@define-color primary                       @foreground;       /* accents/lines */
+@define-color on_primary                    @background;       /* accent contrast */
+@define-color on_primary_fixed              @background;
+@define-color on_primary_fixed_variant      @foreground;
+@define-color on_tertiary_fixed             @background;       /* module pill bg */
+@define-color on_tertiary_fixed_variant     @foreground;       /* module pill fg */
 @define-color surface     @background-alt; /* neutral semi‑transparent base */
 @define-color surface_dim @background; /* darker neutral base */
 
