@@ -26,6 +26,8 @@ General
 }
 
 @import "style/ML4W/glass.css";
+@define-color surface     @background-alt; /* neutral semi‑transparent base */
+@define-color surface_dim @background; /* darker neutral base */
 
 window#waybar {
   background: transparent;
