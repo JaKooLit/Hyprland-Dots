@@ -32,6 +32,13 @@
   - Some tweaks to lower CPU further
   - Added `-h/--help`
   - Added `--run-once` to set RainbowBorders but no animation
+- Added 'TOP-ddubs-simple-bar'
+- Fixed CSS formatting in `ML4W-Glass.css`
+- Added keybind for "Static Rainbow border"
+  - Run `RainbowBorders-low-cpu --exec-once` to set the rainbow border w/o animation
+  - Updated `Picture-in-Picture` rule
+    - Works properly with `Brave` and other chromium browsers
+      - Thanks to `Goodborn` for the fix
 
 ## v2.3.20
 
