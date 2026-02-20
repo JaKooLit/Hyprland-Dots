@@ -1,4 +1,4 @@
-# Changelog — JAK's Hyprland Dotfiles
+xxxxxxxxxxxx  # Changelog — JAK's Hyprland Dotfiles
 
 ## v2.3.20
 
