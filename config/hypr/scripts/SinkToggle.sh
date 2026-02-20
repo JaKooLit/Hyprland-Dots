@@ -15,7 +15,7 @@ for i in "${!ctlcheck[@]}"; do
   fi
 done
 
-PID=$(hyprctl -j activewindow 2>/dev/null | jq -r '"\(.pid) \(.class) \(.title) \(.initialClass)"' || exit 1)
+PID=$(hyprctl -j activewindow 2>/dev/null | jq -r '"\(.pid) \(.class) \(.title)"' || exit 1)
 
 #// Read $PID
 read -r __pid __class __title <<< "${PID}"
