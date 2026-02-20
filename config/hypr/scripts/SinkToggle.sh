@@ -6,7 +6,7 @@
 XDG_CONFIG_HOME="$HOME/.config"
 swayIconDir="${XDG_CONFIG_HOME}/swaync/icons"
 
-ctlcheck=("hyprctl" "pactl" "jq" "notify-send")
+ctlcheck=("pactl" "jq" "notify-send")
 
 #// Parse ctlcheck to declare the script to be available for us.
 for i in "${!ctlcheck[@]}"; do
