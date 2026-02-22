@@ -4,6 +4,12 @@
 [![ua](https://img.shields.io/badge/lang-ua-white.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.ua.md)
 [![de](https://img.shields.io/badge/lang-de-magenta.svg)](https://github.com/JaKooLit/Hyprland-Dots/blob/main/i18n/README.de.md)
 
+
+## IMPORTANT! Beginning of March 2026, This project will be archived and it will be maintained by Dwilliams
+- https://github.com/LinuxBeginnings
+- https://github.com/LinuxBeginnings/Hyprland-Dots
+
+
 <h3 align="center">
 <img align="center" width="80%" src=https://github.com/user-attachments/assets/bc18bd4d-944b-4d5f-a119-7578fa38f9b4 />
 </h3>
