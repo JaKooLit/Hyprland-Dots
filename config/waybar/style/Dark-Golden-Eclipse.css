@@ -118,7 +118,6 @@ window#waybar.hidden {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: cyan;
-    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #battery.critical:not(.charging) {

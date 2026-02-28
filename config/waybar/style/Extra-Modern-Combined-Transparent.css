@@ -247,7 +247,6 @@ tooltip {
 #custom-lock,
 #idle_inhibitor {
     color: @teal;
-    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #custom-weather,
@@ -271,7 +270,6 @@ tooltip {
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
 	color: #39FF14;
-    border-bottom: 8px solid rgba(0, 0, 0, 0.2);
 }
 
 #clock {
