@@ -22,6 +22,9 @@ for _prs in "${_ps[@]}"; do
   fi
 done
 
+# Clean up any Waybar-spawned cava instances (unique temp conf names)
+pkill -f 'waybar-cava\..*\.conf' 2>/dev/null || true
+
 # added since wallust sometimes not applying
 killall -SIGUSR2 waybar
 # Added sleep for GameMode causing multiple waybar

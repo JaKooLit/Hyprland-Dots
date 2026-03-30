@@ -16,6 +16,9 @@
 /* ---- Global Configuration Fonts ---- */
 @import "~/.config/rofi/0-shared-fonts.rasi"
 
+/* Force kitty as terminal for Terminal=true apps and run-shell */
+@import "~/.config/rofi/00-terminal.rasi"
+
 /* note: Main themes in ~/.config/rofi/themes */
 /* You can manually change here or you can use rofi theme selector SUPER SHIFT E */
 
