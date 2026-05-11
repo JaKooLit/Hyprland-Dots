@@ -1,0 +1,49 @@
+[34m[INFO](B[m Bibata-Hyprcursor directory detected. Activating Hyprcursor....
+[33m[NOTE](B[m kb_layout [35mus(B[m configured in settings.
+[32m[OK](B[m You have chosen < 1440p resolution.
+[32m[OK](B[m 12H format set on waybar clocks succesfully.
+[32m[OK](B[m Rainbow borders are now disabled.
+[33m[NOTE](B[m - Skipping [33mfastfetch(B[m
+[33m[NOTE](B[m - Skipping [33mkitty(B[m
+[33m[NOTE](B[m - Skipping [33mrofi(B[m
+[33m[NOTE](B[m - Skipping [33mswaync(B[m
+[33m[NOTE](B[m - Skipping [33mwaybar(B[m config replacement.
+[32m[OK](B[m - Restored directory: [35mMonitor_Profiles(B[m
+[32m[OK](B[m - Restored directory: [35manimations(B[m
+[32m[OK](B[m - Restored directory: [35mwallpaper_effects(B[m
+[32m[OK](B[m - Restored file: [35mmonitors.conf(B[m
+[32m[OK](B[m - Restored file: [35mworkspaces.conf(B[m
+[32m[OK](B[m - 01-UserDefaults.conf restored!
+[33m[NOTE](B[m - Skipped restoring ENVariables.conf.
+[32m[OK](B[m - LaptopDisplay.conf restored!
+[32m[OK](B[m - Laptops.conf restored!
+[32m[OK](B[m - Startup_Apps.conf restored!
+[32m[OK](B[m - UserDecorations.conf restored!
+[32m[OK](B[m - UserAnimations.conf restored!
+[32m[OK](B[m - UserKeybinds.conf restored!
+[32m[OK](B[m - UserSettings.conf restored!
+[32m[OK](B[m - WindowRules.conf restored!
+[32m[OK](B[m - RofiBeats.sh restored!
+[32m[OK](B[m - Weather.py restored!
+[32m[OK](B[m - Weather.sh restored!
+[32m[OK](B[m Some [35mwallpapers(B[m copied successfully!
+[33m[NOTE](B[m You chose not to download additional wallpapers.
+[[1m[34mI[39m[0m] [1m[35mimage[39m[0m: .wallpaper_current
+[[1m[34mI[39m[0m] [1m[35mimage parser[39m[0m: Using [94m[1mKmeans[0m[39m backend parser
+[[1m[34mI[39m[0m] [1m[35mthreshold[39m[0m: Using a threshold of 11 in between colors.
+[[1m[34mI[39m[0m] [1m[35mcolorspace[39m[0m: Using [32m[1mLabMixed[0m[39m colorspace variation
+[[1m[34mI[39m[0m] [1m[35mscheme palette[39m[0m: Using [94m[1mDark16[0m[39m palette
+
+[48;2;77;77;78m    [49m[48;2;91;98;108m    [49m[48;2;104;112;122m    [49m[48;2;130;141;155m    [49m[48;2;175;178;179m    [49m[48;2;175;179;179m    [49m[48;2;175;179;179m    [49m[48;2;236;238;239m    [49m
+[48;2;165;167;167m    [49m[48;2;121;130;144m    [49m[48;2;139;149;162m    [49m[48;2;173;188;206m    [49m[48;2;233;237;238m    [49m[48;2;234;238;239m    [49m[48;2;234;238;239m    [49m[48;2;236;238;239m    [49m
+
+[[1m[34mI[39m[0m] [1m[35mtemplates[39m[0m: Writing templates..
+ [1m[34m*[39m[0m Templated [1mrofi[0m to '[3m/home/hasan/.config/rofi/wallust/colors-rofi.rasi[0m'
+ [1m[34m*[39m[0m Templated [1mhypr[0m to '[3m/home/hasan/.config/hypr/wallust/wallust-hyprland.conf[0m'
+ [1m[34m*[39m[0m Templated [1mwaybar[0m to '[3m/home/hasan/.config/waybar/wallust/colors-waybar.css[0m'
+ [1m[34m*[39m[0m Templated [1mkitty[0m to '[3m/home/hasan/.config/kitty/kitty-themes/01-Wallust.conf[0m'
+ [1m[34m*[39m[0m Templated [1mquickshell[0m to '[3m/home/hasan/.config/quickshell/qml_color.json[0m'
+ [1m[34m*[39m[0m Templated [1mcava[0m to '[3m/home/hasan/.config/cava/config[0m'
+[[1m[34mI[39m[0m] [1m[35mcache[39m[0m: Saving scheme to cache.
+
+[5m[1m[38;2;236;238;239mE [39m[0m[0m[5m[1m[38;2;234;238;239mN [39m[0m[0m[5m[1m[38;2;234;238;239mJ [39m[0m[0m[5m[1m[38;2;233;237;238mO [39m[0m[0m[5m[1m[38;2;173;188;206mY [39m[0m[0m[9m  [0m[5m[1m[38;2;139;149;162mT [39m[0m[0m[5m[1m[38;2;121;130;144mH [39m[0m[0m[5m[1m[38;2;165;167;167mE [39m[0m[0m[9m  [0m[5m[1m[38;2;236;238;239mP [39m[0m[0m[5m[1m[38;2;175;179;179mA [39m[0m[0m[5m[1m[38;2;175;179;179mL [39m[0m[0m[5m[1m[38;2;175;178;179mE [39m[0m[0m[5m[1m[38;2;130;141;155mT [39m[0m[0m[5m[1m[38;2;104;112;122mT [39m[0m[0m[5m[1m[38;2;91;98;108mE [39m[0m[0m[5m[1m[38;2;248;249;249m! [39m[0m[0m

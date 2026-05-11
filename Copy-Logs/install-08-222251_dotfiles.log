@@ -1,0 +1,161 @@
+[34m[INFO](B[m Bibata-Hyprcursor directory detected. Activating Hyprcursor....
+[33m[NOTE](B[m kb_layout [35mus(B[m configured in settings.
+[32m[OK](B[m You have chosen < 1440p resolution.
+[32m[OK](B[m 12H format set on waybar clocks succesfully.
+[33m[NOTE](B[m No changes made. Rainbow borders remain enabled.
+[33m[NOTE](B[m - Skipping [33mfastfetch(B[m
+[33m[NOTE](B[m - Backed up kitty to /home/hasan/.config/kitty-backup-back-up_1008_2223.
+[32m[OK](B[m - Replaced kitty with new configuration.
+[33m[NOTE](B[m - Backed up rofi to /home/hasan/.config/rofi-backup-back-up_1008_2223.
+[32m[OK](B[m - Replaced rofi with new configuration.
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_LonerOrZ.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-10-Fancy.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-10-Fancy-v2.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-11-Win11-list-dark.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-11-Win11-list-light.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-12-TOP-Docu.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-13-Vertical.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-14.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-15-solarized.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-1.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-2-Dark.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-2-Light.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-3-FullScreen-v1.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-3-Fullscreen-v2.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-4.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-5.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-6.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-7.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-8.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/KooL_style-9.rasi to /home/hasan/.config/rofi/themes/
+Copying /home/hasan/.config/rofi-backup-back-up_1008_2223/themes/saint-rofi.rasi to /home/hasan/.config/rofi/themes/
+Restoring /home/hasan/.config/rofi-backup-back-up_1008_2223/0-shared-fonts.rasi to /home/hasan/.config/rofi/
+[33m[NOTE](B[m - Backed up swaync to /home/hasan/.config/swaync-backup-back-up_1008_2223.
+[32m[OK](B[m - Replaced swaync with new configuration.
+[33m[NOTE](B[m - Backed up waybar to /home/hasan/.config/waybar-backup-back-up_1008_2224.
+File /home/hasan/.config/waybar/configs/[BOT] Camellia already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[BOT] Chrysanthemum already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[BOT] Default already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[BOT] Gardenia already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[BOT & Left] SouthWest already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[BOT] Peony already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[BOT & Right] SouthEast already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[BOT] Simple already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[BOT] Sleek already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[LEFT] WestWing already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[LEFT] WestWing v2 already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[RIGHT] EastWing already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[RIGHT] EastWing v2 already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] 0-Ja-0 already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Arrow already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP & BOT] SummitSplit already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP & BOT] SummitSplit v2 already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Camellia already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Chrysanthemum already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Default already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Default (old v1) already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Default (old v2) already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Default (old v3) already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Default (old v4) already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Everforest already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Gardenia already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP & Left] NorthWest already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Minimal - Long already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Minimal - Short already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Peony already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP & Right] NorthEast already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Simple already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Simpliest already exists. Skipping.
+File /home/hasan/.config/waybar/configs/[TOP] Sleek already exists. Skipping.
+File /home/hasan/.config/waybar/style/[0 VERTICAL] [Catpuccin] Mocha.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[0 VERTICAL] Golden Noir.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[0 VERTICAL] Oglo Chicklets.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Black & White] Monochrome.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Catppuccin] Frappe.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Catppuccin] Latte.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Catppuccin] Mocha.css already exists. Skipping.
+Directory /home/hasan/.config/waybar/style/catppuccin-themes already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Colored] Chroma Glow.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Colored] Translucent.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Colorful] Aurora Blossom.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Colorful] Aurora.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Colorful] Oglo Chicklets.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Colorful] Rainbow Spectrum.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Colorful] stolen-style.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Dark] Golden Eclipse.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Dark] Golden Noir.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Dark] Half-Moon.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Dark] Latte-Wallust combined.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Dark] Latte-Wallust combined v2.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Dark] Purpl.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Dark] Wallust Obsidian Edge.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Arrow.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Crimson.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] EverForest.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Mauve.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] ML4W starter.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Modern-Combined.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Modern-Combined - Transparent.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Neon Circuit.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Prismatic Glow.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Rose Pine.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Extra] Simple Pink.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Light] Monochrome Contrast.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Light] Obsidian Glow.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Rainbow] RGB Bordered.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Retro] Simple Style.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Transparent] Crystal Clear.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[VERTICAL] [Catpuccin] Mocha.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust Bordered] Chroma Fusion Edge.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust Bordered] Chroma Simple.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust] Box type.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust] Chroma Edge.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust] Chroma Fusion.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust] Chroma Tally.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust] Chroma Tally V2.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust] Colored.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[WALLUST] ML4W-modern.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[WALLUST] ML4W-modern-mixed.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust] Simple.css already exists. Skipping.
+File /home/hasan/.config/waybar/style/[Wallust Transparent] Crystal Clear.css already exists. Skipping.
+[32m[OK](B[m - Restored directory: [35mMonitor_Profiles(B[m
+[32m[OK](B[m - Restored directory: [35manimations(B[m
+[32m[OK](B[m - Restored directory: [35mwallpaper_effects(B[m
+[32m[OK](B[m - Restored file: [35mmonitors.conf(B[m
+[32m[OK](B[m - Restored file: [35mworkspaces.conf(B[m
+[32m[OK](B[m - 01-UserDefaults.conf restored!
+[32m[OK](B[m - ENVariables.conf restored!
+[32m[OK](B[m - LaptopDisplay.conf restored!
+[32m[OK](B[m - Laptops.conf restored!
+[32m[OK](B[m - Startup_Apps.conf restored!
+[32m[OK](B[m - UserDecorations.conf restored!
+[32m[OK](B[m - UserAnimations.conf restored!
+[32m[OK](B[m - UserKeybinds.conf restored!
+[32m[OK](B[m - UserSettings.conf restored!
+[32m[OK](B[m - WindowRules.conf restored!
+[32m[OK](B[m - RofiBeats.sh restored!
+[32m[OK](B[m - Weather.py restored!
+[32m[OK](B[m - Weather.sh restored!
+[32m[OK](B[m - hyprlock.conf restored!
+[32m[OK](B[m - hypridle.conf restored!
+[32m[OK](B[m Some [35mwallpapers(B[m copied successfully!
+[33m[NOTE](B[m You chose not to download additional wallpapers.
+[[1m[34mI[39m[0m] [1m[35mimage[39m[0m: .wallpaper_current
+[[1m[34mI[39m[0m] [1m[35mimage parser[39m[0m: Using [94m[1mKmeans[0m[39m backend parser
+[[1m[34mI[39m[0m] [1m[35mthreshold[39m[0m: Using a threshold of 11 in between colors.
+[[1m[34mI[39m[0m] [1m[35mcolorspace[39m[0m: Using [32m[1mLabMixed[0m[39m colorspace variation
+[[1m[34mI[39m[0m] [1m[35mscheme palette[39m[0m: Using [94m[1mDark16[0m[39m palette
+
+[48;2;77;72;77m    [49m[48;2;37;21;38m    [49m[48;2;84;53;112m    [49m[48;2;84;53;113m    [49m[48;2;162;75;116m    [49m[48;2;162;75;116m    [49m[48;2;147;95;83m    [49m[48;2;217;183;175m    [49m
+[48;2;152;128;122m    [49m[48;2;50;28;50m    [49m[48;2;112;70;150m    [49m[48;2;112;70;150m    [49m[48;2;216;100;154m    [49m[48;2;216;100;154m    [49m[48;2;196;127;111m    [49m[48;2;217;183;175m    [49m
+
+[[1m[34mI[39m[0m] [1m[35mtemplates[39m[0m: Writing templates..
+  * Templated [1mhypr[0m to '[3m/home/hasan/.config/hypr/wallust/wallust-hyprland.conf[0m'
+  * Templated [1mcava[0m to '[3m/home/hasan/.config/cava/config[0m'
+  * Templated [1mrofi[0m to '[3m/home/hasan/.config/rofi/wallust/colors-rofi.rasi[0m'
+  * Templated [1mquickshell[0m to '[3m/home/hasan/.config/quickshell/qml_color.json[0m'
+  * Templated [1mwaybar[0m to '[3m/home/hasan/.config/waybar/wallust/colors-waybar.css[0m'
+  * Templated [1mkitty[0m to '[3m/home/hasan/.config/kitty/kitty-themes/01-Wallust.conf[0m'
+[[1m[34mI[39m[0m] [1m[35mcache[39m[0m: Saving scheme to cache.
+
+[5m[1m[38;2;217;183;175mE [39m[0m[0m[5m[1m[38;2;196;127;111mN [39m[0m[0m[5m[1m[38;2;216;100;154mJ [39m[0m[0m[5m[1m[38;2;216;100;154mO [39m[0m[0m[5m[1m[38;2;112;70;150mY [39m[0m[0m[9m  [0m[5m[1m[38;2;112;70;150mT [39m[0m[0m[5m[1m[38;2;50;28;50mH [39m[0m[0m[5m[1m[38;2;152;128;122mE [39m[0m[0m[9m  [0m[5m[1m[38;2;217;183;175mP [39m[0m[0m[5m[1m[38;2;147;95;83mA [39m[0m[0m[5m[1m[38;2;162;75;116mL [39m[0m[0m[5m[1m[38;2;162;75;116mE [39m[0m[0m[5m[1m[38;2;84;53;113mT [39m[0m[0m[5m[1m[38;2;84;53;112mT [39m[0m[0m[5m[1m[38;2;37;21;38mE [39m[0m[0m[5m[1m[38;2;234;210;205m! [39m[0m[0m
