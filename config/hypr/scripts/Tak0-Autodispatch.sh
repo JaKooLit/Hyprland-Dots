@@ -175,7 +175,7 @@ get_descendants() {
     changed=0
     for p in "${all[@]}"; do
       for c in $(pgrep -P "$p" 2>/dev/null || true); do
-        if [[ ! " ${all[*]} " =~ " $c " ]]; then
+        if [[ ! " ${all[*]} " =~ (^|[[:space:]])$c($|[[:space:]]) ]]; then
           all+=("$c")
           changed=1
         fi
