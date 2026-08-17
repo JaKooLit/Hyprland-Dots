@@ -7,12 +7,14 @@ music_icon="$HOME/.config/swaync/icons/music.png"
 # Play the next track
 play_next() {
   playerctl next
+  sleep 0.3
   show_music_notification
 }
 
 # Play the previous track
 play_previous() {
   playerctl previous
+  sleep 0.3
   show_music_notification
 }
 
