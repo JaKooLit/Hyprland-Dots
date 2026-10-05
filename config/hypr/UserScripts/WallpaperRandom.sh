@@ -8,8 +8,12 @@ SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
 focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 
-PICS=($(find -L "${wallDIR}" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.pnm" -o -name "*.tga" -o -name "*.tiff" -o -name "*.webp" -o -name "*.bmp" -o -name "*.farbfeld" -o -name "*.gif" \)))
-RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
+# Wallpaper daemon compat (awww preferred, swww fallback)
+# shellcheck source=/dev/null
+. "$SCRIPTSDIR/WallpaperDaemon.sh"
+
+mapfile -d '' PICS < <(find -L "${wallDIR}" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.pnm" -o -name "*.tga" -o -name "*.tiff" -o -name "*.webp" -o -name "*.bmp" -o -name "*.farbfeld" -o -name "*.gif" \) -print0)
+RANDOMPICS="${PICS[ $RANDOM % ${#PICS[@]} ]}"
 
 
 # Transition config
@@ -20,7 +24,7 @@ BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --transition-bezier $BEZIER"
 
 
-swww query || swww-daemon --format xrgb && swww img -o $focused_monitor ${RANDOMPICS} $SWWW_PARAMS
+www_start_daemon && "$WWW_CMD" img -o "$focused_monitor" "$RANDOMPICS" $SWWW_PARAMS
 
 wait $!
 "$SCRIPTSDIR/WallustSwww.sh" &&

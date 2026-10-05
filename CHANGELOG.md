@@ -1,5 +1,15 @@
 # Changelog — JAK's Hyprland Dotfiles
 
+## Unreleased
+
+- Fixed: wallpaper scripts/daemon compatibility with `awww`, the maintained successor of `swww` (distros like Arch now ship `awww`/`awww-daemon` in place of `swww`)
+  - New `scripts/WallpaperDaemon.sh` helper: prefers `awww`, falls back to `swww`; used by `exec-once` in `Startup_Apps.conf` and sourced by all wallpaper scripts
+  - `WallustSwww.sh` now parses both the new `awww query` output and the versioned cache dir (`~/.cache/awww/<ver>/`), including paths with spaces
+  - `WallpaperRandom.sh` now handles wallpaper filenames containing spaces
+- Fixed: config errors on Hyprland 0.54+
+  - `togglesplit` dispatcher removed → `layoutmsg, togglesplit` in `Keybinds.conf`
+  - Removed obsolete `dwindle:pseudotile` and `misc:vfr` options in `SystemSettings.conf`
+
 ## v2.3.20
 
 - Bugfix release

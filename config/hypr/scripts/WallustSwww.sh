@@ -7,22 +7,29 @@ set -euo pipefail
 
 # Inputs and paths
 passed_path="${1:-}"
-cache_dir="$HOME/.cache/swww/"
+# Wallpaper daemon compat (awww preferred, swww fallback) provides WWW_CACHE_DIR
+# shellcheck source=/dev/null
+. "$HOME/.config/hypr/scripts/WallpaperDaemon.sh"
+cache_dir="${WWW_CACHE_DIR}/"
 rofi_link="$HOME/.config/rofi/.current_wallpaper"
 wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
 read_cached_wallpaper() {
   local cache_file="$1"
   if [[ -f "$cache_file" ]]; then
-    awk 'NF && $0 !~ /^filter/ {print; exit}' "$cache_file"
+    # cache line: "<filter info> <wallpaper path>"; path is absolute, may contain
+    # spaces, and awww >= 0.12 prefixes the line with a NUL byte
+    awk 'NF && $0 !~ /filter/ { sub(/^[^/]*/, ""); print; exit }' "$cache_file"
   fi
 }
 
 read_wallpaper_from_query() {
   local monitor="$1"
-  swww query | awk -v mon="$monitor" '
-    /^Monitor/ {
+  # awww >= 0.12: ": eDP-1: WxH, scale: 1, currently displaying: image: /path"
+  # swww legacy:  "Monitor eDP-1: WxH: currently displaying: image: /path"
+  "$WWW_CMD" query | awk -v mon="$monitor" '
+    /^(:|Monitor)/ {
       cur=$2
-      gsub(":", "", cur)
+      sub(/:$/, "", cur)
     }
     /image:/ && cur==mon {
       sub(/^.*image: /,"")
@@ -46,11 +53,17 @@ wallpaper_path=""
 if [[ -n "$passed_path" && -f "$passed_path" ]]; then
   wallpaper_path="$passed_path"
 else
-  # Try to read from swww cache for the focused monitor, with a short retry loop
+  # Try to read from the wallpaper cache for the focused monitor, with a short retry loop
   current_monitor="$(get_focused_monitor)"
   cache_file="$cache_dir$current_monitor"
+  if [[ ! -f "$cache_file" ]]; then
+    # awww >= 0.12 caches under a versioned subdirectory (e.g. ~/.cache/awww/0.12.1/)
+    for _f in "$cache_dir"*/"$current_monitor"; do
+      [[ -f "$_f" ]] && cache_file="$_f" && break
+    done
+  fi
 
-  # Wait briefly for swww to write its cache after an image change
+  # Wait briefly for the daemon to write its cache after an image change
   for i in {1..10}; do
     if [[ -f "$cache_file" ]]; then
       break
@@ -63,7 +76,7 @@ else
     wallpaper_path="$(read_cached_wallpaper "$cache_file")"
   fi
 
-  if [[ -z "$wallpaper_path" ]]; then
+  if [[ -z "$wallpaper_path" || ! -f "$wallpaper_path" ]]; then
     wallpaper_path="$(read_wallpaper_from_query "$current_monitor")"
   fi
 fi

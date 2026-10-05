@@ -31,11 +31,13 @@ for pid in waybar rofi swaync ags swaybg; do
 done
 
 
-# Initialize swww if needed
-swww query || swww-daemon --format xrgb
+# Initialize wallpaper daemon if needed (awww preferred, swww fallback)
+# shellcheck source=/dev/null
+. "$SCRIPTSDIR/WallpaperDaemon.sh"
+www_start_daemon
 
-# Set swww options
-swww="swww img"
+# Set wallpaper command
+swww="$WWW_CMD img"
 effect="--transition-bezier .43,1.19,1,.4 --transition-fps 60 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2"
 
 # Determine current theme mode
