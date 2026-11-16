@@ -1,0 +1,11 @@
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
+# wallust configuration - kitty only
+
+backend = "fastresize"
+color_space = "labmixed"
+palette = "softdark16"
+threshold = 11
+
+[templates]
+kitty.template = 'colors-kitty.conf'
+kitty.target = '~/.config/kitty/kitty-themes/01-Wallust.conf'

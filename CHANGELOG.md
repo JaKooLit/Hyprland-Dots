@@ -1,5 +1,45 @@
 # Changelog — JAK's Hyprland Dotfiles
 
+## v2.3.21
+
+- Fixed no tooltips when `waybar cava` running
+  - Thank you Max Gangel for the fix!
+- Added check for `rsync` in `copy.sh`
+- Fixed two more style sheets with hardcoded colors that broke with global theme
+- Fixed Window Rules for `zapzap`
+- Added French Translations
+  - Moved docs to proper i18n locations
+  - Thank you @Loris383v
+- Fixed `waybar-cava` starting many new processes
+  - When you switched waybarconfigs, old processes remained
+  - This is especially bad with mulitple monitors
+  - New code kills the `waybar-cava` processes on refresh
+- Fixed setting SDDM/Wallpaper/Waybar defaults on update/installs
+- Added WindowRule for proton-laucher games
+- Added WindowRule for CachyOS Kernel Manager
+- Added WindowRule for CachyOS Hello app
+- Added WindowRule for CachyOS Package Installer app
+- Added `Hyprshot` screenshot tool set to region capture
+  - `ALT + S` Saves to clipboard and `~/Pictures/Screenshots/`
+  - Not all keyboards have `PrtScr` button
+  - `hyprshot.sh` is fast, simple, no system bell sound
+- Fixed start CLI apps from rofi like `htop`, `btop` being started with `xterm`
+  - This made the apps run in light mode with tiny fonts
+  - Now they are started with `kitty`
+- Added alternative `RainbowBorders-low-cpu.sh`
+  - Based on code from `DemiGoD`
+  - I added variables for finer control
+  - Some tweaks to lower CPU further
+  - Added `-h/--help`
+  - Added `--run-once` to set RainbowBorders but no animation
+- Added 'TOP-ddubs-simple-bar'
+- Fixed CSS formatting in `ML4W-Glass.css`
+- Added keybind for "Static Rainbow border"
+  - Run `RainbowBorders-low-cpu --exec-once` to set the rainbow border w/o animation
+  - Updated `Picture-in-Picture` rule
+    - Works properly with `Brave` and other chromium browsers
+      - Thanks to `Goodborn` for the fix
+
 ## v2.3.20
 
 - Bugfix release

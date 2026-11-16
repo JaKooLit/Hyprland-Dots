@@ -1,0 +1,79 @@
+//Updated Sumsplit to include 0-JA-0 Top and updated BOT
+  [
+    {
+    "include": [
+    "$HOME/.config/waybar/Modules",
+    "$HOME/.config/waybar/ModulesWorkspaces",
+    "$HOME/.config/waybar/ModulesCustom",
+    "$HOME/.config/waybar/ModulesGroups",
+    "$HOME/.config/waybar/UserModules",
+    ],
+      "name": "topbar",
+      "layer": "top",
+      "position": "top",
+      //"mode": "dock",
+      "exclusive": true,
+      "spacing": 2,
+      "passthrough": false,
+      "gtk-layer-shell": true,
+      "reload_style_on_change": true,
+      "modules-left": [
+        "idle_inhibitor",
+        "custom/separator#blank",
+        "tray",
+        "connections",
+        "clock",
+        "network#speed",
+
+        "custom/separator#blank_2",
+      ],
+      "modules-center": ["group/app_drawer",
+      "custom/separator#dot-line",
+      "hyprland/workspaces#rw",
+      "custom/separator#dot-line",
+      "group/notify",],
+
+
+  "modules-right": [
+
+    "group/laptop",
+    "custom/separator#blank",
+    "group/mobo_drawer",
+    "custom/separator#line",
+    "group/audio",
+    "custom/separator#dot-line",
+    "mpris",
+    "custom/separator#blank",
+    "custom/nightlight",
+    "group/status",
+      ],
+
+  },
+    {
+    "include": [
+    "$HOME/.config/waybar/Modules",
+    "$HOME/.config/waybar/ModulesWorkspaces",
+    "$HOME/.config/waybar/ModulesCustom",
+    "$HOME/.config/waybar/ModulesGroups",
+    "$HOME/.config/waybar/UserModules",
+    ],
+      "name": "bottombar",
+      "layer": "top",
+      "position": "bottom",
+      "height": 30,
+      "mode": "dock",
+      "exclusive": true,
+      "spacing": 2,
+      "passthrough": true,
+      "gtk-layer-shell": true,
+      "reload_style_on_change": true,
+      "modules-left": [        "hyprland/window",
+      "custom/cava_mviz", "custom/playerctl"],
+      "modules-center": ["wlr/taskbar"],
+      "modules-right": ["custom/backlight",
+      "backlight/slider",
+      "custom/speaker",
+      "pulseaudio/slider", "custom/updater",
+      ],
+    }
+  ]
